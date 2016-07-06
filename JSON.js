@@ -40,3 +40,20 @@ class JSON
     return '<script type="text/javascript">var '+ varName + '=' + stringify(config) +'</script>';
 };
 }
+
+class TATableData{
+    /**
+     * function to get rowheaders with ids
+     * @param {String} tableName
+     * @return {Object} - object with ids, titles and row indexes
+     */
+    static function getTableRowHeaders(tableName){
+        var rowheaders={};
+        var rowHeaderTitles = report.TableUtils.GetRowHeaderCategoryTitles(tableName);
+        var rowHeaderIds = report.TableUtils.GetRowHeaderCategoryIds(tableName);
+        for(var i=0; i<rowHeaderIds.length;i++){
+            rowheaders[rowHeaderIds[i][0]] = {title: rowHeaderTitles[i], index: i};
+        }
+    return rowheaders;
+    }
+}

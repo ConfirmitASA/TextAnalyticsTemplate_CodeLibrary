@@ -25,8 +25,8 @@ class TAQuestion{
     var subcategories = [];
     var attributes = [];
 
-    var hierarchy = []; //hierarchical structure of categories {id: String, name: String, children: []}
-    var categoriesArray = [];//flat structure of categories {id: String, name: String, parentId: String}
+    var hierarchy = []; //hierarchical structure of categories {id: String, name: String, children: [], parent: String}
+    var categoriesArray = [];//flat structure of categories {id: String, name: String, parent: String}
 
     var currentTheme = -1;
 
