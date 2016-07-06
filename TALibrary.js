@@ -56,6 +56,7 @@ class TALibrary{
     TATableUtils.setGlobals(pageContext,log,report,confirmit,user);
     TAFilterUtils.setGlobals(pageContext,log,report,confirmit,user);
     TAParameterUtils.setGlobals(pageContext,log,report,confirmit,user);
+    TATableData.setGlobals(pageContext,log,report,confirmit,user);
 }
 
     /**

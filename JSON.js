@@ -42,6 +42,27 @@ class JSON
 }
 
 class TATableData{
+    //Globals
+    static var pageContext: ScriptPageContext;
+    static var log: Logger;
+    static var report: Report;
+    static var confirmit: ConfirmitFacade;
+    static var user: User;
+
+    /**
+     * @param {Logger} l - log
+     * @param {Report} r - report
+     * @param {ConfirmitFacade} c - confirmit
+     * @param {User} u - user
+     */
+    static function setGlobals(p: ScriptPageContext, l: Logger, r: Report, c: ConfirmitFacade, u: User){
+        pageContext = p;
+        log = l;
+        report = r;
+        confirmit = c;
+        user = u;
+    }
+
     /**
      * function to get rowheaders with ids
      * @param {String} tableName
