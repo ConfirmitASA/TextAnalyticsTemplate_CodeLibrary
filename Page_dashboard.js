@@ -59,6 +59,7 @@ class Page_dashboard {
 
     static function tblMostNegative_Render(context){
     TATableUtils.createTopSentimentTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "neg");
+    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart"]);
 }
 
     static function tblMostPositive_Hide(context){
@@ -67,6 +68,7 @@ class Page_dashboard {
 
     static function tblMostPositive_Render(context){
     TATableUtils.createTopSentimentTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "pos");
+    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart"]);
 }
 
     static function txtComparePeriods_Hide(context){
@@ -102,6 +104,7 @@ class Page_dashboard {
 
     static function tblMostImproved_Render(context){
     TATableUtils.createTopChangedThemesTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "pos", context.state.Parameters.GetString("TA_COMPARE_PERIODS"));
+    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart"]);
 }
 
     static function txtMostDeclined_Hide(context){
@@ -119,6 +122,7 @@ class Page_dashboard {
 
     static function tblMostDeclined_Render(context){
     TATableUtils.createTopChangedThemesTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "neg", context.state.Parameters.GetString("TA_COMPARE_PERIODS"));
+    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart"]);
 }
 
     static function txtThemeDistribution_Hide(context){
@@ -145,6 +149,7 @@ class Page_dashboard {
 
     static function tblThemeDistribution_Render(context){
     TATableUtils.createThemeDistributionTable(context.component, context.state.Parameters.GetString("TA_VIEW_SENTIMENT"));
+    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table"]);
 }
 
 }

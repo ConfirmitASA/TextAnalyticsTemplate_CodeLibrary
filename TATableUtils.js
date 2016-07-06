@@ -362,6 +362,30 @@ class TATableUtils{
     table.Drilling.Rows.TargetPages = pageIDs;
 }
 
+    /**
+     * add classes to the table
+     * @param {Table} table
+     * @param {String[]} classes - array of classes that should be added
+     */
+    static function setupTableClasses(table: Table, classes){
+        table.CssClass+=classes.join(" ");
+    }
+
+    /**
+     *sorting rows by Nth column from start
+     * @param {Table} table
+     * @param {Boolean} directionAscending - if sorting Ascending
+     * @param {Byte} position - Nth column from start
+     * @param {Byte} topN ho many rows from start will be shown in table
+     */
+    static function setupRowsTableSorting(table: Table, directionAscending: Boolean, position: Byte, topN){
+        table.Sorting.Rows.Enabled = true;
+        table.Sorting.Rows.SortByType = TableSortByType.Position;
+        table.Sorting.Rows.Direction = directionAscending?TableSortDirection.Ascending:TableSortDirection.Descending;
+        table.Sorting.Rows.Position = position;
+        table.Sorting.Rows.PositionDirection =  TableSortByPositionType.FromStart;
+        table.Sorting.Rows.TopN = topN?topN:0;
+    }
 
     /*---------creating tables--------*/
 
@@ -400,15 +424,7 @@ class TATableUtils{
 
     table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[{Formula: "cellv(col-1,row)", Color: (sentiment=="pos"?Config.Colors.NegNeuPosPalette.Positive:Config.Colors.NegNeuPosPalette.Negative)}],"Count"));
 
-    table.Sorting.Rows.Enabled = true;
-    table.Sorting.Rows.SortByType = TableSortByType.Position;
-    table.Sorting.Rows.Direction = TableSortDirection.Descending;
-    table.Sorting.Rows.Position = 1;
-    table.Sorting.Rows.PositionDirection =  TableSortByPositionType.FromStart;
-    table.Sorting.Rows.TopN = topN?topN:0;
-
-    table.CssClass = "reportal-table reportal-categories reportal-barchart";
-
+    setupRowsTableSorting(table, false, 1, topN);
 }
 
     /**
@@ -462,14 +478,7 @@ class TATableUtils{
     table.ColumnHeaders.Add(headerFormula);
     table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[{Formula: "cellv(col-1,row)", Color: (sentiment=="pos"?Config.Colors.NegNeuPosPalette.Positive:Config.Colors.NegNeuPosPalette.Negative)}], "Change in avg. score"));
 
-    table.Sorting.Rows.Enabled = true;
-    table.Sorting.Rows.SortByType = TableSortByType.Position;
-    table.Sorting.Rows.Direction = sentiment=="pos"?TableSortDirection.Descending:TableSortDirection.Ascending;
-    table.Sorting.Rows.Position = 3;
-    table.Sorting.Rows.PositionDirection =  TableSortByPositionType.FromStart;
-    table.Sorting.Rows.TopN = topN?topN:0;
-
-    table.CssClass = "reportal-table reportal-categories reportal-barchart ";
+    setupRowsTableSorting(table, (sentiment == "neg"), 3, topN);
 }
 
     /**
