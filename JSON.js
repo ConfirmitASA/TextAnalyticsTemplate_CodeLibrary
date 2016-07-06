@@ -73,7 +73,7 @@ class TATableData{
         var rowHeaderTitles = report.TableUtils.GetRowHeaderCategoryTitles(tableName);
         var rowHeaderIds = report.TableUtils.GetRowHeaderCategoryIds(tableName);
         for(var i=0; i<rowHeaderIds.length;i++){
-            rowheaders[rowHeaderIds[i][0]] = {title: rowHeaderTitles[i], index: i};
+            rowheaders[rowHeaderIds[i][0]] = {title: rowHeaderTitles[i][0], index: i};
         }
     return rowheaders;
     }
