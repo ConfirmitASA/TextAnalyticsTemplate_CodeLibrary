@@ -368,7 +368,7 @@ class TATableUtils{
      * @param {String[]} classes - array of classes that should be added
      */
     static function setupTableClasses(table: Table, classes){
-        table.CssClass+=(table.CssClass?" ":"")+classes.join(" ");
+        table.CssClass=((!table.CssClass)?"":(table.CssClass+" "))+classes.join(" ");
     }
 
     /**
