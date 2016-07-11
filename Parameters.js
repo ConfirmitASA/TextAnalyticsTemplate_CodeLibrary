@@ -1,5 +1,8 @@
 class Parameters {
 
+    /**
+     * Page: Dashboard, Level of hierarchy
+     */
     static function TA_LEVEL_Domain(context){
     var parameterValues = [{Code: "themes", Label: "1st level (category)"},{Code: "categories", Label: "2nd level (sub-category)"}]
     if(TALibrary.currentQuestion.attributes.length>0){
@@ -8,6 +11,9 @@ class Parameters {
     ParameterUtilities.LoadParameterValues(context.report, context.component, parameterValues);
 }
 
+    /**
+     * Page: Dashboard, periods to compare in Most improved and most declined charts
+     */
     static function TA_COMPARE_PERIODS_Domain(context){
     var parameterValues = [
         {Code: "wow", Label: "Current vs Last Week"},
@@ -18,6 +24,9 @@ class Parameters {
     ParameterUtilities.LoadParameterValues(context.report, context.component, parameterValues);
 }
 
+    /**
+     * Page: Dasboard, Overall sentiment for Theme distribution
+     */
     static function TA_VIEW_SENTIMENT_Domain(context){
     var parameterValues = [
         {Code: "all", Label: "All sentiments"},
@@ -27,6 +36,16 @@ class Parameters {
     ]
     ParameterUtilities.LoadParameterValues(context.report, context.component, parameterValues);
 }
+
+    /**
+     * Page: Detailed Analysis, Top Categories selector
+     */
+    static function TA_TOP_CATEGORIES_SINGLE(context){
+        TAParameterUtils.createThemesListParameter(context.component,context.pageContext.Items["questionID"]);
+    }
+
+
+
 
 
     static function COMPARATIVE_RATING_METRICS_Domain(context) {
@@ -117,26 +136,21 @@ class Parameters {
     ParameterLoadedFromScript_Domain(context);
 }
 
-
     static function TRENDPAGE_LABELS_Domain(context) {
     ParameterLoadedFromScript_Domain(context);
 }
-
 
     static function TRENDPAGE_METRIC_Domain(context) {
     ParameterLoadedFromScript_Domain(context);
 }
 
-
     static function TRENDPAGE_STATISTIC_Domain(context) {
     ParameterLoadedFromScript_Domain(context);
 }
 
-
     static function TRENDPAGE_UNIT_Domain(context) {
     ParameterLoadedFromScript_Domain(context);
 }
-
 
     static function VERBATIM_Domain(context) {
     ParameterLoadedFromScript_Domain(context);
