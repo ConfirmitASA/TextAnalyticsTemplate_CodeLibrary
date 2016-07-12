@@ -1,6 +1,6 @@
 class Page_dashboard {
     static private const PageId = "dashboard";
-    static private var themeDistributionHeaders: Object ;
+    static private var themeDistributionHeaders: Object = {} ;
 
     static function Hide(context) {
     return false
