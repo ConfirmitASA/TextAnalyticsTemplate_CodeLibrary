@@ -40,7 +40,7 @@ class Parameters {
     /**
      * Page: Detailed Analysis, Top Categories selector
      */
-    static function TA_TOP_CATEGORIES_SINGLE(context){
+    static function TA_TOP_CATEGORIES_SINGLE_Domain(context){
         TAParameterUtils.createThemesListParameter(context.component,context.pageContext.Items["questionID"]);
     }
 
