@@ -127,7 +127,7 @@ class TAQuestion{
      * @param {Object} context - context object from page {component: page, pageContext: pageContext, log: log, report: report, state: state, confirmit: confirmit, user: user}
      */
     function setCurrentTheme(id){
-        if(id!="all"){
+        if(id.toLowerCase()!="all"){
             for(var i=0; i<themes.length;i++){
                 if(themes[i].id == id){
                     currentTheme = i;
