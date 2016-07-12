@@ -1,4 +1,4 @@
-class Page_dashboard {
+class Page_detailed_analysis {
     static private const PageId = "detailed_analysis";
 
     static function Hide(context) {
