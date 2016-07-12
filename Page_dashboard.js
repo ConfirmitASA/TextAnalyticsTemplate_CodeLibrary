@@ -164,7 +164,7 @@ class Page_dashboard {
         try {
             headers = TATableData.getTableRowHeaders("tblThemeDistribution");
         }catch(e){
-            context.log.LogDebug("there is no tblThemeDistribution table on the page. "+e)
+            context.log.LogDebug("there is no tblThemeDistribution table on the page. "+e+" headers: "+headers);
         }
         headers ? themeDistributionHeaders = headers : null;
         context.component.Output.Append(JSON.print(themeDistributionHeaders,"rowheaders"));
