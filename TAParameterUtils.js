@@ -23,7 +23,7 @@ class TAParameterUtils{
 
     /**
      * domain script to get list of top TA categories
-     * @param {Parameter} paramrter - parameter object
+     * @param {Parameter} parameter - parameter object
      * @param {Byte} questionID - question number in TAConfig
      */
     static function createThemesListParameter(parameter: Parameter,questionID){
