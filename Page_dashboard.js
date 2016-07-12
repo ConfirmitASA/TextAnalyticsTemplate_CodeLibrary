@@ -165,6 +165,7 @@ class Page_dashboard {
             headers = null;
             context.log.LogDebug("there is no tblThemeDistribution table on the page. "+e+" headers: "+headers);
         }
+        context.log.LogDebug(" headers: "+headers);
         headers ? TALibrary.currentQuestion.setThemeDistrubutionHeaders(headers) : null;
         context.component.Output.Append(JSON.print(TALibrary.currentQuestion.hierarchy,"hierarchy"));
         context.component.Output.Append(JSON.print(TALibrary.currentQuestion.getThemeDistributionHeaders(),"rowheaders"));
