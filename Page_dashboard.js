@@ -1,5 +1,6 @@
 class Page_dashboard {
     static private const PageId = "dashboard";
+    static private var themeDistributionHeaders;
 
     static function Hide(context) {
     return false
@@ -159,7 +160,12 @@ class Page_dashboard {
 
     static function txtThemeDistributionScript_Render(context){
         context.component.Output.Append(JSON.print(TALibrary.currentQuestion.hierarchy,"hierarchy"));
-        context.component.Output.Append(JSON.print(TATableData.getTableRowHeaders("tblThemeDistribution"),"rowheaders"));
+        try {
+            themeDistributionHeaders = TATableData.getTableRowHeaders("tblThemeDistribution");
+        }catch(e){
+            log.LogDebug("there is no tblThemeDistribution table on the page. "+e)
+        }
+        context.component.Output.Append(JSON.print(themeDistributionHeaders,"rowheaders"));
         context.component.Output.Append("<script type=\"text/javascript\">Array.prototype.slice.call(document.querySelectorAll('table.reportal-fixed-header')).forEach((table)=>{"
             +"var table= new Reportal.FixedHeader(table);"+
             "});</script>");
