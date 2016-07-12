@@ -29,7 +29,7 @@ class TAParameterUtils{
     static function createThemesListParameter(parameter: Parameter,questionID){
         var parameterValues=[];
         var question: TAQuestion;
-
+        parameterValues.push({Code: "all", Label: "All"});
         question=(questionID?TALibrary.questions[questionID]:TALibrary.currentQuestion);
 
         for(var i=0; i<question.themes.length; i++)
