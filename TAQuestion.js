@@ -32,7 +32,9 @@ class TAQuestion{
 
     private static var _themeDistributionHeaders;
 
-    function setThemeDistrubutionHeaders(headers){};
+    function setThemeDistrubutionHeaders(headers){
+      _themeDistributionHeaders = headers;
+    }
 
     function getThemeDistributionHeaders(){
         return _themeDistributionHeaders;

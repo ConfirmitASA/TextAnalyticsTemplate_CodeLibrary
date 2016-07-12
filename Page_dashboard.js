@@ -168,7 +168,7 @@ class Page_dashboard {
         context.log.LogDebug(" headers: "+headers);
         headers ? TALibrary.currentQuestion.setThemeDistrubutionHeaders(headers) : null;
         context.component.Output.Append(JSON.print(TALibrary.currentQuestion.hierarchy,"hierarchy"));
-        context.component.Output.Append(JSON.print(headers,"rowheaders"))//TALibrary.currentQuestion.getThemeDistributionHeaders(),"rowheaders"));
+        context.component.Output.Append(JSON.print(TALibrary.currentQuestion.getThemeDistributionHeaders(),"rowheaders"));
         context.component.Output.Append("<script type=\"text/javascript\">Array.prototype.slice.call(document.querySelectorAll('table.reportal-fixed-header')).forEach((table)=>{"
             +"var table= new Reportal.FixedHeader(table);"+
             "});</script>");
