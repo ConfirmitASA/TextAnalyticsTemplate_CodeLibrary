@@ -152,7 +152,11 @@ class Page_dashboard {
     TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table"]);
 }
 
-    static function txtThemeDistributionScript(context){
+    static function txtThemeDistributionScript_Hide(context){
+        return false;
+    }
+
+    static function txtThemeDistributionScript_Render(context){
         context.component.Output.Append(JSON.print(TALibrary.currentQuestion.hierarchy,"hierarchy"));
         context.component.Output.Append(JSON.print(TATableData.getTableRowHeaders("tblThemeDistribution"),"rowheaders"));
         context.component.Output.Append("<script type=\"text/javascript\">Array.prototype.slice.call(document.querySelectorAll('table.reportal-fixed-header')).forEach((table)=>{"
