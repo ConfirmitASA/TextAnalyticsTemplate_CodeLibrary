@@ -163,7 +163,7 @@ class Page_dashboard {
         try {
             themeDistributionHeaders = TATableData.getTableRowHeaders("tblThemeDistribution");
         }catch(e){
-            log.LogDebug("there is no tblThemeDistribution table on the page. "+e)
+            context.log.LogDebug("there is no tblThemeDistribution table on the page. "+e)
         }
         context.component.Output.Append(JSON.print(themeDistributionHeaders,"rowheaders"));
         context.component.Output.Append("<script type=\"text/javascript\">Array.prototype.slice.call(document.querySelectorAll('table.reportal-fixed-header')).forEach((table)=>{"
