@@ -152,4 +152,15 @@ class Page_dashboard {
     TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table"]);
 }
 
+    static function txtThemeDistributionScript(context){
+        context.component.Output.Append(JSON.print(TALibrary.currentQuestion.hierarchy,"hierarchy"));
+        context.component.Output.Append(JSON.print(TATableData.getTableRowHeaders("tblThemeDistribution"),"rowheaders"));
+        context.component.Output.Append("<script type=\"text/javascript\">Array.prototype.slice.call(document.querySelectorAll('table.reportal-fixed-header')).forEach((table)=>{"
+            +"var table= new Reportal.FixedHeader(table);"+
+            "});</script>");
+
+        context.component.Output.Append("<script type=\"text/javascript\">Array.prototype.slice.call(document.querySelectorAll('table.reportal-hierarchy-table:not(.fixed)')).forEach((table)=>{"
+            +"var table= new Reportal.HierarchyTable(table,hierarchy,rowheaders);"+
+            "});</script>");
+    }
 }
