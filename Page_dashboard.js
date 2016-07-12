@@ -160,11 +160,13 @@ class Page_dashboard {
 
     static function txtThemeDistributionScript_Render(context){
         context.component.Output.Append(JSON.print(TALibrary.currentQuestion.hierarchy,"hierarchy"));
+        var headers;
         try {
-            themeDistributionHeaders = TATableData.getTableRowHeaders("tblThemeDistribution");
+            headers = TATableData.getTableRowHeaders("tblThemeDistribution");
         }catch(e){
             context.log.LogDebug("there is no tblThemeDistribution table on the page. "+e)
         }
+        headers ? themeDistributionHeaders = headers : null;
         context.component.Output.Append(JSON.print(themeDistributionHeaders,"rowheaders"));
         context.component.Output.Append("<script type=\"text/javascript\">Array.prototype.slice.call(document.querySelectorAll('table.reportal-fixed-header')).forEach((table)=>{"
             +"var table= new Reportal.FixedHeader(table);"+
