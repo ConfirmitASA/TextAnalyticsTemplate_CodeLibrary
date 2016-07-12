@@ -159,15 +159,15 @@ class Page_dashboard {
     }
 
     static function txtThemeDistributionScript_Render(context){
+        var headers;
         try {
             headers = TATableData.getTableRowHeaders("tblThemeDistribution");
         }catch(e){
-            context.log.LogDebug("there is no tblThemeDistribution table on the page. "+e+" headers: "+headers+" thDistrHe: "+themeDistributionHeaders);
+            headers = null;
+            context.log.LogDebug("there is no tblThemeDistribution table on the page. "+e+" headers: "+headers);
         }
+        headers ? TALibrary.currentQuestion.setThemeDistrubutionHeaders(headers) : null;
         context.component.Output.Append(JSON.print(TALibrary.currentQuestion.hierarchy,"hierarchy"));
-        var headers;
-
-
         context.component.Output.Append(JSON.print(TALibrary.currentQuestion.getThemeDistributionHeaders(),"rowheaders"));
         context.component.Output.Append("<script type=\"text/javascript\">Array.prototype.slice.call(document.querySelectorAll('table.reportal-fixed-header')).forEach((table)=>{"
             +"var table= new Reportal.FixedHeader(table);"+
