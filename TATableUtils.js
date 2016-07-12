@@ -353,12 +353,13 @@ class TATableUtils{
     /**
      * function to setub categories drilldown
      * @param {Table} table
+     * @param {String} parameterId
      * @param {String} pageIDs - string with pageIDs for drilldown separated by commas
      */
-    static function setupTableDrilldown(table: Table, pageIDs: String){
+    static function setupTableDrilldown(table: Table, parameterId: String, pageIDs){
     table.Drilling.Rows.Enabled = true;
     table.Drilling.Rows.Type = DrilldownType.SetParameter;
-    //table.Drilling.Rows.ParameterID = TALibrary.currentQuestion.questionDetails.TACategoryListParameter;
+    table.Drilling.Rows.ParameterID = parameterId;
     table.Drilling.Rows.TargetPages = pageIDs;
 }
 
