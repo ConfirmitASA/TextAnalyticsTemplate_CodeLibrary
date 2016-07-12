@@ -30,6 +30,14 @@ class TAQuestion{
 
     var currentTheme = -1;
 
+    private static var _themeDistributionHeaders;
+
+    function setThemeDistrubutionHeaders(headers){};
+
+    function getThemeDistributionHeaders(){
+        return _themeDistributionHeaders;
+    }
+
 
     /**
      * TAQuestion Constructor
