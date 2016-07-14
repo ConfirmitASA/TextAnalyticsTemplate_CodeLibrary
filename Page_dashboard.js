@@ -164,7 +164,9 @@ class Page_dashboard {
             headers = TATableData.getTableRowHeaders("tblThemeDistribution");
             themeDistributionHeaders = headers;
         }catch(e){
+
             headers = themeDistributionHeaders ? themeDistributionHeaders : TALibrary.currentQuestion.tableHeaders;
+            themeDistributionHeaders ? context.log.LogDebug("themeDistributionHeader") : context.log.LogDebug("tableHeaders");
             context.log.LogDebug("there is no tblThemeDistribution table on the page. "+e);
         }
 
