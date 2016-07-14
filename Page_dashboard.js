@@ -1,5 +1,6 @@
 class Page_dashboard {
     static private const PageId = "dashboard";
+    static private var themeDistributionHeaders;
 
     static function Hide(context) {
     return false
@@ -161,11 +162,12 @@ class Page_dashboard {
         var headers;
         try {
             headers = TATableData.getTableRowHeaders("tblThemeDistribution");
+            themeDistributionHeaders = headers;
         }catch(e){
-            headers = null;
+            headers = themeDistributionHeaders ? themeDistributionHeaders : TALibrary.currentQuestion.tableHeaders;
             context.log.LogDebug("there is no tblThemeDistribution table on the page. "+e);
         }
-        headers ? TALibrary.currentQuestion.setThemeDistrubutionHeaders(headers) : null;
+
         context.component.Output.Append(JSON.print(TALibrary.currentQuestion.hierarchy,"hierarchy"));
         context.component.Output.Append(JSON.print(TALibrary.currentQuestion.getThemeDistributionHeaders(),"rowheaders"));
         context.component.Output.Append("<script type=\"text/javascript\">Array.prototype.slice.call(document.querySelectorAll('table.reportal-fixed-header')).forEach((table)=>{"
