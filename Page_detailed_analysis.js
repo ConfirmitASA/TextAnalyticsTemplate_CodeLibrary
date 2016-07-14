@@ -17,7 +17,7 @@ class Page_detailed_analysis {
 
         TALibrary.setReport(context.pageContext, context.log, context.report, context.confirmit, context.user);
         TALibrary.setCurrentQuestion(context.pageContext.Items["questionID"]);
-        TALibrary.currentQuestion.setCurrentTheme(context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE"));
+        TALibrary.currentQuestion.setCurrentTheme(context.state.Parameters.IsNull ? null : ("TA_TOP_CATEGORIES_SINGLE")context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE"));
     }
 
     static function txtCategory_Hide(context){
