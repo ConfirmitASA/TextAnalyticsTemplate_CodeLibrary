@@ -24,6 +24,10 @@ class Page_dashboard {
     }
 
     context.log.LogDebug(context.state.Parameters.GetString("TA_COMPARE_PERIODS")+" comp period");
+
+    if(state.Parameters.IsNull("TA_DISTRIBUTION_TOGGLE"))
+        state.Parameters["TA_DISTRIBUTION_TOGGLE"] = new ParameterValueResponse("0");
+
     //TALibrary.currentQuestion.setCurrentTheme(context);
 }
 
