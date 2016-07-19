@@ -44,6 +44,17 @@ class Parameters {
         TAParameterUtils.createThemesListParameter(context.component,context.pageContext.Items["questionID"]);
     }
 
+    /**
+     * Page: All, Count/% selector
+     */
+    static function TA_DISTRIBUTION_TOGGLE_Domain(context){
+        var parameterValues = [
+            {Code: 0, Label: "Count"},
+            {Code: 1, Label: "%"}
+        ]
+
+        ParameterUtilities.LoadParameterValues(context.report, context.component, parameterValues);
+    }
 
 
 
