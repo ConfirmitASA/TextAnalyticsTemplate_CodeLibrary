@@ -19,8 +19,8 @@ class Page_detailed_analysis {
         TALibrary.setCurrentQuestion(context.pageContext.Items["questionID"]);
         TALibrary.currentQuestion.setCurrentTheme(context.state.Parameters.IsNull("TA_TOP_CATEGORIES_SINGLE") ? null : context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE"));
 
-        if(state.Parameters.IsNull("TA_DISTRIBUTION_TOGGLE"))
-                state.Parameters["TA_DISTRIBUTION_TOGGLE"] = new ParameterValueResponse("0");
+        if(context.state.Parameters.IsNull("TA_DISTRIBUTION_TOGGLE"))
+            context.state.Parameters["TA_DISTRIBUTION_TOGGLE"] = new ParameterValueResponse("0");
     }
 
     static function txtCategory_Hide(context){
