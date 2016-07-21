@@ -500,7 +500,7 @@ class TATableUtils{
     var totalRenpondentsHeader: HeaderQuestion;
     if(distribution == "1"){
         totalRenpondentsHeader = getCategoriesHeader("total",false).Item[0];
-        totalRenpondentsHeader.Collapsed = true;
+        totalRenpondentsHeader.IsCollapsed = true;
         totalRenpondentsHeader.HideData = true;
         table.RowHeaders.Add(totalRenpondentsHeader);
     }
