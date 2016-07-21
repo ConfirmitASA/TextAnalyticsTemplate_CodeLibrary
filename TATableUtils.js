@@ -497,12 +497,12 @@ class TATableUtils{
      */
 
     static function createThemeDistributionTable(table: Table, sentiment, period, distribution){
-    var totalRenpondentsHeader: HeaderCollection;
+    var totalRenpondentsHeader: HeaderQuestion;
     if(distribution == "1"){
-        totalRenpondentsHeader = getCategoriesHeader("total",false);
-        totalRenpondentsHeader.Item[0].Collapsed = true;
-        totalRenpondentsHeader.Item[0].HideData = true;
-        table.RowHeaders.AddRange(totalRenpondentsHeader);
+        totalRenpondentsHeader = getCategoriesHeader("total",false).Item[0];
+        totalRenpondentsHeader.Collapsed = true;
+        totalRenpondentsHeader.HideData = true;
+        table.RowHeaders.Add(totalRenpondentsHeader);
     }
     var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
     headerQuestion.ShowTotals = false;
