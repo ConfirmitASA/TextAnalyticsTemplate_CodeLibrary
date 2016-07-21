@@ -500,8 +500,10 @@ class TATableUtils{
     var totalRespondentsHeader: HeaderQuestion;
     if(distribution == "1"){
         totalRespondentsHeader = getTAQuestionHeader("categories");
-        totalRespondentsHeader.IsCollapsed = true;
-        //totalRespondentsHeader.HideData = true;
+        totalRespondentsHeader.IsCollapsed = false;
+        totalRespondentsHeader.Mask.Type = MaskType.HideAll;
+        totalRespondentsHeader.ShowTotals = true;
+        totalRespondentsHeader.HideData = true;
         table.RowHeaders.Add(totalRespondentsHeader);
     }
     var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
@@ -526,7 +528,7 @@ class TATableUtils{
     var verticalPercentsFormula: HeaderFormula;
 
     if(distribution == "1"){
-        //headerBase.HideData = true;
+        headerBase.HideData = true;
 
         verticalPercentsFormula = new HeaderFormula();
         verticalPercentsFormula.Type = FormulaType.Expression;
