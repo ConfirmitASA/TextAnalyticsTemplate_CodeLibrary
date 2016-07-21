@@ -607,7 +607,7 @@ class TATableUtils{
             headerQuestion = getTAQuestionHeader("overallSentiment");
         }else{
             headerQuestion = getTAQuestionHeader("categorySentiment");
-            headerQuestion.Mask  = getCurrentCategoryMask(category);
+            headerQuestion.AnswerMask  = getCurrentCategoryMask(category);
         }
 
         headerQuestion.IsCollapsed = true;
