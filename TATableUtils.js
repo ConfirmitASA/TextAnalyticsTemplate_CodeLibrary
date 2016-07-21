@@ -526,7 +526,7 @@ class TATableUtils{
     var verticalPercentsFormula: HeaderFormula;
 
     if(distribution == "1"){
-        headerBase.HideData = true;
+        //headerBase.HideData = true;
 
         verticalPercentsFormula = new HeaderFormula();
         verticalPercentsFormula.Type = FormulaType.Expression;
