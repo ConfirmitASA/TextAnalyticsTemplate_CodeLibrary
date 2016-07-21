@@ -544,7 +544,7 @@ class TATableUtils{
 
         verticalPercentsFormula = new HeaderFormula();
         verticalPercentsFormula.Type = FormulaType.Expression;
-        verticalPercentsFormula.Decimals = 2;
+        verticalPercentsFormula.Decimals = 1;
         verticalPercentsFormula.Priority = 0;
         verticalPercentsFormula.Expression = "cellv(col-1,row)/cellv(1,1)";
         verticalPercentsFormula.Percent = true;
