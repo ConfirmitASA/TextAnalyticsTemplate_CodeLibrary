@@ -603,7 +603,7 @@ class TATableUtils{
 
     static function createTotalCommentsTileTable(table, category){
         var headerQuestion: HeaderQuestion;
-        if(category = -1){
+        if(category == -1){
             headerQuestion = getTAQuestionHeader("overallSentiment");
         }else{
             headerQuestion = getTAQuestionHeader("categorySentiment");
