@@ -517,6 +517,11 @@ class TATableUtils{
 
     var headerBase: HeaderBase= new HeaderBase();
     headerBase.HideHeader=true;
+    if(distribution == "1"){
+        headerBase.Distributions.Enabled = true;
+        headerBase.Distributions.Count = false;
+        headerBase.Distributions.VerticalPercents = true;
+    }
     headerTimeSeries.SubHeaders.Add(headerBase);
     headerTimeSeries.SubHeaders.Add(headerStatistics);
 
