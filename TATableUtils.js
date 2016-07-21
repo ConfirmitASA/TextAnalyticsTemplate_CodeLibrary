@@ -520,7 +520,7 @@ class TATableUtils{
     if(distribution == "1"){
         headerBase.Distributions.Enabled = true;
         headerBase.Distributions.Count = false;
-        headerBase.Distributions.HorisontalPercents = true;
+        headerBase.Distributions.HorizontalPercents = true;
     }
     headerTimeSeries.SubHeaders.Add(headerBase);
     headerTimeSeries.SubHeaders.Add(headerStatistics);
