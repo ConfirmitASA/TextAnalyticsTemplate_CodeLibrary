@@ -497,13 +497,14 @@ class TATableUtils{
      */
 
     static function createThemeDistributionTable(table: Table, sentiment, period, distribution){
+    var totalRenpondentsHeader: HeaderQuestion;
+    if(distribution == "1"){
+        totalRenpondentsHeader = getCategoriesHeader("total",false);
+        totalRenpondentsHeader.HideData = true;
+    }
     var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
     headerQuestion.ShowTotals = false;
-    if(distribution == "1"){
-        headerQuestion.Distributions.Enabled = true;
-        headerQuestion.Distributions.Count = false;
-        headerQuestion.Distributions.VerticalPercents = true;
-    }
+
 
     var timeperiod = "m";
     var from = -12;
@@ -517,12 +518,24 @@ class TATableUtils{
 
     var headerBase: HeaderBase= new HeaderBase();
     headerBase.HideHeader=true;
+
+
+
+    var verticalPercentsFormula: headerFormula;
+
     if(distribution == "1"){
-        headerBase.Distributions.Enabled = true;
-        headerBase.Distributions.Count = false;
-        headerBase.Distributions.HorizontalPercents = true;
+        headerBase.HideData = true;
+
+        verticalPercentsFormula = new HeaderFormula();
+        verticalPercentsFormula.Type = FormulaType.Expression;
+        headerFormula.Decimals = 2;
+        headerFormula.Priority = 0;
+        headerFormula.Expression = "cellv(col-1,row)/cellv(1,1)";
+        headerFormula.Percent = true;
+        headerFormula.HideHeader = true;
     }
     headerTimeSeries.SubHeaders.Add(headerBase);
+    distribution == "1" ? headerTimeSeries.SubHeaders.Add( verticalPercentsFormula) : null;
     headerTimeSeries.SubHeaders.Add(headerStatistics);
 
     table.RowHeaders.Add(headerQuestion);
