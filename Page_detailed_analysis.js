@@ -35,7 +35,11 @@ class Page_detailed_analysis {
         return false;
     }
 
-    static function tblTotalCommentsTile(context){
+    static function tblTotalCommentsTile_Hide(context){
+        return false;
+    }
+
+    static function tblTotalCommentsTile_Render(context){
         TATableUtils.createTotalCommentsTileTable(context.component, TALibrary.currentQuestion.currentTheme);
     }
 }
