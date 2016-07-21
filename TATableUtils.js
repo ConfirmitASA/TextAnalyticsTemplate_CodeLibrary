@@ -74,7 +74,7 @@ class TATableUtils{
      * @param {Boolean} addMinus - flag to add minus to the formula(only for negative category)
      */
     static function getCategoriesHeader(groupName: String, addMinus){
-    var header: HeaderCollection = new HeaderCollection();
+    var header: HeaderCollection;
     var headerFormula : HeaderFormula;
     var headerCategories: HeaderCategories;
     var categoryTitle: Label;
@@ -497,12 +497,12 @@ class TATableUtils{
      */
 
     static function createThemeDistributionTable(table: Table, sentiment, period, distribution){
-    var totalRenpondentsHeader: HeaderQuestion;
+    var totalRespondentsHeader: HeaderQuestion;
     if(distribution == "1"){
-        totalRenpondentsHeader = getCategoriesHeader("total",false).Item[0];
-        totalRenpondentsHeader.IsCollapsed = true;
-        totalRenpondentsHeader.HideData = true;
-        table.RowHeaders.Add(totalRenpondentsHeader);
+        totalRespondentsHeader = getTAQuestionHeader("categories");
+        totalRespondentsHeader.IsCollapsed = true;
+        totalRespondentsHeader.HideData = true;
+        table.RowHeaders.Add(totalRespondentsHeader);
     }
     var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
     headerQuestion.ShowTotals = false;
