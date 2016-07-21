@@ -513,7 +513,7 @@ class TATableUtils{
     if(distribution == "1"){
         totalRespondentsHeader = getTAQuestionHeader("categories");
         totalRespondentsHeader.IsCollapsed = true;
-        totalRespondentsHeader.Mask = getHideAllMask();
+        totalRespondentsHeader.AnswerMask = getHideAllMask();
         totalRespondentsHeader.ShowTotals = true;
         totalRespondentsHeader.HideData = true;
         table.RowHeaders.Add(totalRespondentsHeader);
