@@ -497,7 +497,7 @@ class TATableUtils{
      */
 
     static function createThemeDistributionTable(table: Table, sentiment, period, distribution){
-    var totalRenpondentsHeader: HeaderQuestion;
+    var totalRenpondentsHeader: HeaderCollection;
     if(distribution == "1"){
         totalRenpondentsHeader = getCategoriesHeader("total",false);
         totalRenpondentsHeader.HideData = true;
@@ -521,18 +521,18 @@ class TATableUtils{
 
 
 
-    var verticalPercentsFormula: headerFormula;
+    var verticalPercentsFormula: HeaderFormula;
 
     if(distribution == "1"){
         headerBase.HideData = true;
 
         verticalPercentsFormula = new HeaderFormula();
         verticalPercentsFormula.Type = FormulaType.Expression;
-        headerFormula.Decimals = 2;
-        headerFormula.Priority = 0;
-        headerFormula.Expression = "cellv(col-1,row)/cellv(1,1)";
-        headerFormula.Percent = true;
-        headerFormula.HideHeader = true;
+        verticalPercentsFormula.Decimals = 2;
+        verticalPercentsFormula.Priority = 0;
+        verticalPercentsFormula.Expression = "cellv(col-1,row)/cellv(1,1)";
+        verticalPercentsFormula.Percent = true;
+        verticalPercentsFormula.HideHeader = true;
     }
     headerTimeSeries.SubHeaders.Add(headerBase);
     distribution == "1" ? headerTimeSeries.SubHeaders.Add( verticalPercentsFormula) : null;
