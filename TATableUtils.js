@@ -421,9 +421,9 @@ class TATableUtils{
     var headerBase: HeaderBase = new HeaderBase();
     headerBase.HideHeader = true;
     if(distribution == "percents"){
-        headerBase.Distribution.Enabled = true;
-        headerBase.Distribution.Count = false;
-        headerBase.Distribution.VerticalPercents = true;
+        headerBase.Distributions.Enabled = true;
+        headerBase.Distributions.Count = false;
+        headerBase.Distributions.VerticalPercents = true;
     }
     table.ColumnHeaders.Add(headerBase);
 
