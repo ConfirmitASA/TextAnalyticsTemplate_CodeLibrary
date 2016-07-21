@@ -18,6 +18,7 @@ class Page_detailed_analysis {
         TALibrary.setReport(context.pageContext, context.log, context.report, context.confirmit, context.user);
         TALibrary.setCurrentQuestion(context.pageContext.Items["questionID"]);
         TALibrary.currentQuestion.setCurrentTheme(context.state.Parameters.IsNull("TA_TOP_CATEGORIES_SINGLE") ? null : context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE"));
+    context.log.LogDebug(TALibrary.currentQuestion.currentTheme+ " on page");
 
         if(context.state.Parameters.IsNull("TA_DISTRIBUTION_TOGGLE"))
             context.state.Parameters["TA_DISTRIBUTION_TOGGLE"] = new ParameterValueResponse("0");
@@ -40,6 +41,7 @@ class Page_detailed_analysis {
     }
 
     static function tblTotalCommentsTile_Render(context){
+    context.log.LogDebug(TALibrary.currentQuestion.currentTheme+ " on table");
         TATableUtils.createTotalCommentsTileTable(context.component, TALibrary.currentQuestion.currentTheme);
     }
 }
