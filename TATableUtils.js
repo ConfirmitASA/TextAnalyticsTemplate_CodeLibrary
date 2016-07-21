@@ -347,6 +347,18 @@ class TATableUtils{
     return mask
 }
 
+    static function getHideAllMask(){
+        var mask: MaskFlat = new MaskFlat();
+
+        mask.IsInclusive = false;
+
+        for(var i=0; i<TALibrary.currentQuestion.categoriesArray.length; i++){
+            mask.Codes.Add(TALibrary.currentQuestion.categoriesArray[i].id);
+    }
+
+    return mask
+}
+
 
     /*-----------setup Table functions-------------*/
 
@@ -500,8 +512,8 @@ class TATableUtils{
     var totalRespondentsHeader: HeaderQuestion;
     if(distribution == "1"){
         totalRespondentsHeader = getTAQuestionHeader("categories");
-        totalRespondentsHeader.IsCollapsed = false;
-        totalRespondentsHeader.Mask.Type = MaskType.HideAll;
+        totalRespondentsHeader.IsCollapsed = true;
+        totalRespondentsHeader.Mask = getHideAllMask();
         totalRespondentsHeader.ShowTotals = true;
         totalRespondentsHeader.HideData = true;
         table.RowHeaders.Add(totalRespondentsHeader);
