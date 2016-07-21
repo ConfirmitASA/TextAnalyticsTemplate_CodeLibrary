@@ -359,6 +359,20 @@ class TATableUtils{
     return mask
 }
 
+    /**
+     * masking only selected category
+     * @param {String} catId - return only categories for selected theme otherwise return all subcategories mask
+     * @return {MaskFlat}
+     */
+    static function getCurrentCategoryMask(category){
+    var mask: MaskFlat = new MaskFlat();
+    mask.IsInclusive = true;
+    var categoryId = category ? category : TALibrary.currentQuestion.themes[ TALibrary.currentQuestion.currentTheme ];
+    mask.Codes.Add(categoryId);
+
+    return mask
+}
+
 
     /*-----------setup Table functions-------------*/
 
@@ -586,4 +600,23 @@ class TATableUtils{
     table.ConditionalFormatting = formatter;
 
 }
+
+    static function createTotalCommentsTileTable(table, category){
+        var headerQuestion: HeaderQuestion;
+        if(category = -1){
+            headerQuestion = getTAQuestionHeader("overallSentiment");
+        }else{
+            headerQuestion = getTAQuestionHeader("categorySentiment");
+            headerQuestion.Mask  = getCurrentCategoryMask(category);
+        }
+
+        headerQuestion.IsCollapsed = true;
+        headerQuestion.HideHeader = true;
+
+        var headerBase: HeaderBase= new HeaderBase();
+        headerBase.HideHeader = true;
+
+        table.RowHeaders.Add(headerQuestion);
+        table.ColumnHeaders.Add(headerBase);
+    }
 }

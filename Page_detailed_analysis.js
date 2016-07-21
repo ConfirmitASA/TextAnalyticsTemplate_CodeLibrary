@@ -34,4 +34,8 @@ class Page_detailed_analysis {
     static function lstCategory_Hide(context){
         return false;
     }
+
+    static function tblTotalCommentsTile(context){
+        TATableUtils.createTotalCommentsTileTable(context.component, TALibrary.currentQuestion.currentTheme);
+    }
 }
