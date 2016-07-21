@@ -63,7 +63,7 @@ class Page_dashboard {
 }
 
     static function tblMostNegative_Render(context){
-    TATableUtils.createTopSentimentTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "neg");
+    TATableUtils.createTopSentimentTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "neg", context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
     TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart"]);
 }
 

@@ -397,8 +397,9 @@ class TATableUtils{
      * @param {String} level - value of TA_LEVEL parameter "categories", "attributes" or "themes"
      * @param {Byte} topN - top N rows for sorting, 0 by default
      * @param {String} sentiment - negative or positive sentiment ("neg", "pos"), negative by default
+     * @param {Byte} distribution - 0 for "count" or 1 for "percents" count by default
      */
-    static function createTopSentimentTable(table: Table, level, topN, sentiment){
+    static function createTopSentimentTable(table: Table, level, topN, sentiment,distribution){
     var headerQuestion: HeaderQuestion = getTAQuestionHeader(sentiment.toLowerCase()=="pos"?"positiveMentions":"negativeMentions");
 
     headerQuestion.ShowTotals = false;
@@ -419,7 +420,12 @@ class TATableUtils{
     table.RowHeaders.Add(headerQuestion);
     var headerBase: HeaderBase = new HeaderBase();
     headerBase.HideHeader = true;
-    table.ColumnHeaders.Add(new HeaderBase());
+    if(distribution == "percents"){
+        headerBase.Distribution.Enabled = true;
+        headerBase.Distribution.Count = false;
+        headerBase.Distribution.VerticalPercents = true;
+    }
+    table.ColumnHeaders.Add(headerBase);
 
 
 
