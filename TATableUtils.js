@@ -493,11 +493,18 @@ class TATableUtils{
      * @param {Table} table
      * @param {String} sentiment - TA_VIEW_SENTIMENT parameter value "all", "neg", "neu", "pos"
      * @param {String} period - value of parameter to define what time period show in the table
+     * @param {String} distribution - 0 for "count" or 1 for "percents" count by default
      */
 
-    static function createThemeDistributionTable(table: Table, sentiment, period){
+    static function createThemeDistributionTable(table: Table, sentiment, period, distribution){
     var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
     headerQuestion.ShowTotals = false;
+    if(distribution == "1"){
+        headerQuestion.Distributions.Enabled = true;
+        headerQuestion.Distributions.Count = false;
+        headerQuestion.Distributions.VerticalPercents = true;
+    }
+
     var timeperiod = "m";
     var from = -12;
     var to = 0;
@@ -516,7 +523,6 @@ class TATableUtils{
     table.RowHeaders.Add(headerQuestion);
     table.ColumnHeaders.Add(headerTimeSeries);
 
-    table.CssClass = "reportal-table reportal-categories";
 
     //adding conditional formatting
     var formatter : ConditionalFormatting = table.ConditionalFormatting;

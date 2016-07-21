@@ -72,7 +72,7 @@ class Page_dashboard {
 }
 
     static function tblMostPositive_Render(context){
-    TATableUtils.createTopSentimentTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "pos");
+    TATableUtils.createTopSentimentTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "pos", context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
     TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart"]);
 }
 
@@ -153,7 +153,7 @@ class Page_dashboard {
 }
 
     static function tblThemeDistribution_Render(context){
-    TATableUtils.createThemeDistributionTable(context.component, context.state.Parameters.GetString("TA_VIEW_SENTIMENT"));
+    TATableUtils.createThemeDistributionTable(context.component, context.state.Parameters.GetString("TA_VIEW_SENTIMENT"),null,context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
     TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table"]);
     TATableUtils.setupTableDrilldown(context.component, "TA_TOP_CATEGORIES_SINGLE","detailed_analysis");
 }
