@@ -420,7 +420,7 @@ class TATableUtils{
     table.RowHeaders.Add(headerQuestion);
     var headerBase: HeaderBase = new HeaderBase();
     headerBase.HideHeader = true;
-    if(distribution == "percents"){
+    if(distribution){
         headerBase.Distributions.Enabled = true;
         headerBase.Distributions.Count = false;
         headerBase.Distributions.VerticalPercents = true;
