@@ -500,7 +500,7 @@ class TATableUtils{
     var totalRenpondentsHeader: HeaderCollection;
     if(distribution == "1"){
         totalRenpondentsHeader = getCategoriesHeader("total",false);
-        totalRenpondentsHeader.HideData = true;
+        totalRenpondentsHeader.Item[0].HideData = true;
     }
     var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
     headerQuestion.ShowTotals = false;
