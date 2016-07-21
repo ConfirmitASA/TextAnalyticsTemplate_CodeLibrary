@@ -501,7 +501,7 @@ class TATableUtils{
     if(distribution == "1"){
         totalRespondentsHeader = getTAQuestionHeader("categories");
         totalRespondentsHeader.IsCollapsed = true;
-        totalRespondentsHeader.HideData = true;
+        //totalRespondentsHeader.HideData = true;
         table.RowHeaders.Add(totalRespondentsHeader);
     }
     var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
