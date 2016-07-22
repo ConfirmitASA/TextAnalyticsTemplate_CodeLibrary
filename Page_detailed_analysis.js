@@ -67,4 +67,12 @@ class Page_detailed_analysis {
     static function tblPositiveCommentsTile_Render(context){
         TATableUtils.createDetailedAnalysisTiles(context.component,"pos",context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
     }
+
+    static function txtViewBy_Hide(context){
+        return false;
+    }
+
+    static function txtViewBy_Render(context){
+        context.component.Output.Append("View by:");
+    }
 }
