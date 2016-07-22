@@ -638,6 +638,6 @@ class TATableUtils{
 
         columnHeader.HideHeader = true;
         table.RowHeaders.Add(headerQuestion);
-        table.ColumnHeaders.Add(headerBase);
+        table.ColumnHeaders.Add(columnHeader);
 }
 }
