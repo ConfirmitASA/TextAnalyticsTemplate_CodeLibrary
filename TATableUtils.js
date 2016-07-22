@@ -74,17 +74,23 @@ class TATableUtils{
      * @param {Boolean} addMinus - flag to add minus to the formula(only for negative category)
      */
     static function getCategoriesHeader(groupName: String, addMinus){
+    log.LogDebug("getCategoriesHeader 1")
     var header: HeaderCollection;
     var headerFormula : HeaderFormula;
     var headerCategories: HeaderCategories;
     var categoryTitle: Label;
-
+    log.LogDebug("getCategoriesHeader 2")
     if(groupName=="total"){
+        log.LogDebug("getCategoriesHeader 3 if")
         headerCategories= new HeaderCategories();
+        log.LogDebug("getCategoriesHeader 4 if")
         headerCategories.Mask.Type = MaskType.HideAll;
+        log.LogDebug("getCategoriesHeader 5 if")
         headerCategories.Totals = true;
+        log.LogDebug("getCategoriesHeader 6 if")
 
         header.Add(headerCategories);
+        log.LogDebug("getCategoriesHeader 7 if")
     }else{
         headerCategories= new HeaderCategories();
         headerCategories.Mask.Type = MaskType.ShowCodes;
@@ -119,8 +125,9 @@ class TATableUtils{
         header.Add(headerCategories);
         header.Add(headerFormula);
     }
-
+    log.LogDebug("getCategoriesHeader 8 ")
     return header;
+
 }
 
     /**
@@ -635,10 +642,10 @@ class TATableUtils{
             log.LogDebug("createDetailedAnalysisTiles 3 else");
         }
 
-    log.LogDebug("createDetailedAnalysisTiles 4");
+
 
         headerQuestion.IsCollapsed = true;
-
+    log.LogDebug("createDetailedAnalysisTiles 4");
         columnHeader = getCategoriesHeader(sentiment, false);
     log.LogDebug("createDetailedAnalysisTiles 5");
         table.RowHeaders.Add(headerQuestion);
