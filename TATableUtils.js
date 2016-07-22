@@ -603,7 +603,7 @@ class TATableUtils{
 
     static function createTotalCommentsTileTable(table){
         var headerQuestion: HeaderQuestion;
-        if(category == -1){
+        if(TALibrary.currentQuestion.currentTheme == -1){
             headerQuestion = getTAQuestionHeader("overallSentiment");
         }else{
             headerQuestion = getTAQuestionHeader("categorySentiment");
