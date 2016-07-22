@@ -75,7 +75,7 @@ class TATableUtils{
      */
     static function getCategoriesHeader(groupName: String, addMinus){
     log.LogDebug("getCategoriesHeader 1")
-    var header: HeaderCollection;
+    var header: HeaderCollection = new HeaderCollection();
     var headerFormula : HeaderFormula;
     var headerCategories: HeaderCategories;
     var categoryTitle: Label;
