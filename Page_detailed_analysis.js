@@ -49,7 +49,7 @@ class Page_detailed_analysis {
     }
 
     static function tblNegativeCommentsTile_Render(context){
-        TATableUtils.createDetailedAnalysisTiles(context.component,"neg");
+        TATableUtils.createDetailedAnalysisTiles(context.component,"neg",context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
     }
 
     static function tblNeutralCommentsTile_Hide(context){
@@ -57,7 +57,7 @@ class Page_detailed_analysis {
 }
 
     static function tblNeutralCommentsTile_Render(context){
-        TATableUtils.createDetailedAnalysisTiles(context.component,"neu");
+        TATableUtils.createDetailedAnalysisTiles(context.component,"neu",context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
     }
 
     static function tblPositiveCommentsTile_Hide(context){
@@ -65,6 +65,6 @@ class Page_detailed_analysis {
 }
 
     static function tblPositiveCommentsTile_Render(context){
-        TATableUtils.createDetailedAnalysisTiles(context.component,"pos");
+        TATableUtils.createDetailedAnalysisTiles(context.component,"pos",context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
     }
 }

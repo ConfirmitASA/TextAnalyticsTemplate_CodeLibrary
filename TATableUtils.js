@@ -72,8 +72,9 @@ class TATableUtils{
      * function to have categories header for Negative, Neutral, Positive and Total values
      * @param {String} groupName - "total", "neg", "neu", "pos"
      * @param {Boolean} addMinus - flag to add minus to the formula(only for negative category)
+     * @param {String} distribution - 0 for "count" or 1 for "percents" count by default
      */
-    static function getCategoriesHeader(groupName: String, addMinus){
+    static function getCategoriesHeader(groupName: String, addMinus, distribution){
     log.LogDebug("getCategoriesHeader 1")
     var header: HeaderCollection = new HeaderCollection();
     var headerFormula : HeaderFormula;
@@ -96,6 +97,7 @@ class TATableUtils{
         headerCategories.Mask.Type = MaskType.ShowCodes;
         headerCategories.Totals = false;
         headerCategories.HideData = true;
+
 
         headerFormula = new HeaderFormula();
         headerFormula.Type = FormulaType.Expression;
@@ -122,6 +124,13 @@ class TATableUtils{
 
         headerFormula.Title = categoryTitle;
 
+        if(distribution == "1"){
+            headerCategories.Distributions.Enabled = true;
+            headerCategories.Distributions.Count = false;
+            headerCategories.Distributions.HorizontalPercents = true;
+
+            headerFormula.Percent = true;
+        }
         header.Add(headerCategories);
         header.Add(headerFormula);
     }
@@ -608,26 +617,14 @@ class TATableUtils{
 
 }
 
-    static function createTotalCommentsTileTable(table){
-        var headerQuestion: HeaderQuestion;
-        if(TALibrary.currentQuestion.currentTheme == -1){
-            headerQuestion = getTAQuestionHeader("overallSentiment");
-        }else{
-            headerQuestion = getTAQuestionHeader("categorySentiment");
-            headerQuestion.AnswerMask  = getCurrentCategoryMask();
-        }
 
-        headerQuestion.IsCollapsed = true;
-        headerQuestion.HideHeader = true;
-
-        var headerBase: HeaderBase= new HeaderBase();
-        headerBase.HideHeader = true;
-
-        table.RowHeaders.Add(headerQuestion);
-        table.ColumnHeaders.Add(headerBase);
-    }
-
-    static function createDetailedAnalysisTiles(table, sentiment){
+    /**
+     * DA: Tiles
+     * @param {Table} table
+     * @param {String} sentiment - "total", "neg","neu","pos"
+     * @param {String} distribution - 0 for "count" or 1 for "percents" count by default
+     */
+    static function createDetailedAnalysisTiles(table: Table, sentiment: String, distribution){
         log.LogDebug("createDetailedAnalysisTiles 1");
         var headerQuestion: HeaderQuestion;
         var columnHeader;
@@ -646,7 +643,7 @@ class TATableUtils{
 
         headerQuestion.IsCollapsed = true;
     log.LogDebug("createDetailedAnalysisTiles 4");
-        columnHeader = getCategoriesHeader(sentiment, false);
+        columnHeader = getCategoriesHeader(sentiment.toLowerCase(), false, distribution);
     log.LogDebug("createDetailedAnalysisTiles 5");
         table.RowHeaders.Add(headerQuestion);
     log.LogDebug("createDetailedAnalysisTiles 6");
