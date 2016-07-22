@@ -117,7 +117,7 @@ class TATableUtils{
                 break;
             case "pos":
                 headerCategories.Mask.Codes = '7,8,9,10,11';
-                headerFormula.Expression = "cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row)";
+                headerFormula.Expression = "(cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row))";
                 categoryTitle = new Label(9, "Positive");
                 break;
         }
@@ -125,10 +125,10 @@ class TATableUtils{
         headerFormula.Title = categoryTitle;
 
         if(distribution == "1"){
-            /*headerCategories.Distributions.Enabled = true;
+            headerCategories.Distributions.Enabled = true;
             headerCategories.Distributions.Count = false;
-            headerCategories.Distributions.HorizontalPercents = true;*/
-
+            headerCategories.Distributions.HorizontalPercents = true;
+            headerFormula.Expression +="/100";
             headerFormula.Percent = true;
         }
         header.Add(headerCategories);
