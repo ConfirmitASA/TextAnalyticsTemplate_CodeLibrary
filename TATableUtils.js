@@ -129,7 +129,7 @@ class TATableUtils{
             headerCategories.Distributions.Count = false;
             headerCategories.Distributions.HorizontalPercents = true;
 
-            headerFormula.Percent = true;
+            //headerFormula.Percent = true;
         }
         header.Add(headerCategories);
         header.Add(headerFormula);
