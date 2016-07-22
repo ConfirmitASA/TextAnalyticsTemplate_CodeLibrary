@@ -367,7 +367,7 @@ class TATableUtils{
     static function getCurrentCategoryMask(category){
     var mask: MaskFlat = new MaskFlat();
     mask.IsInclusive = true;
-    var categoryId = category ? category : TALibrary.currentQuestion.themes[ TALibrary.currentQuestion.currentTheme ];
+    var categoryId = category ? category : TALibrary.currentQuestion.themes[ TALibrary.currentQuestion.currentTheme].id;
     mask.Codes.Add(categoryId);
 
     return mask
@@ -601,13 +601,13 @@ class TATableUtils{
 
 }
 
-    static function createTotalCommentsTileTable(table, category){
+    static function createTotalCommentsTileTable(table){
         var headerQuestion: HeaderQuestion;
         if(category == -1){
             headerQuestion = getTAQuestionHeader("overallSentiment");
         }else{
             headerQuestion = getTAQuestionHeader("categorySentiment");
-            headerQuestion.AnswerMask  = getCurrentCategoryMask(category);
+            headerQuestion.AnswerMask  = getCurrentCategoryMask();
         }
 
         headerQuestion.IsCollapsed = true;
