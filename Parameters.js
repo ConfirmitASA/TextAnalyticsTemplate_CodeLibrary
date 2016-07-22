@@ -63,7 +63,7 @@ class Parameters {
             parameterValues.push({Code: Config.VariablesToViewBy[i], Label: Config.VariablesToViewBy[i]});
         }
 
-        ParameterUtilites.LoadParameterValues(context.report, context.component, parameterValues);
+        ParameterUtilities.LoadParameterValues(context.report, context.component, parameterValues);
     }
 
 
