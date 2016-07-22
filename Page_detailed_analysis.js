@@ -42,6 +42,6 @@ class Page_detailed_analysis {
 
     static function tblTotalCommentsTile_Render(context){
     context.log.LogDebug(TALibrary.currentQuestion.currentTheme+ " on table");
-        TATableUtils.createTotalCommentsTileTable(context.component);
+        TATableUtils.createDetailedAnalysisTiles(context.component,"total");
     }
 }

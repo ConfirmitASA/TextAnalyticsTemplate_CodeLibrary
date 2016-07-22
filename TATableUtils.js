@@ -619,4 +619,25 @@ class TATableUtils{
         table.RowHeaders.Add(headerQuestion);
         table.ColumnHeaders.Add(headerBase);
     }
+
+    static function createDetailedAnalysisTiles(table, sentiment){
+        var headerQuestion: HeaderQuestion;
+        var columnHeader;
+        if(TALibrary.currentQuestion.currentTheme == -1){
+            headerQuestion = getTAQuestionHeader("overallSentiment");
+        }else{
+            headerQuestion = getTAQuestionHeader("categorySentiment");
+            headerQuestion.AnswerMask  = getCurrentCategoryMask();
+        }
+
+
+        headerQuestion.IsCollapsed = true;
+        headerQuestion.HideHeader = true;
+
+        columnHeader = getCategoriesHeader(sentiment, false);
+
+        columnHeader.HideHeader = true;
+        table.RowHeaders.Add(headerQuestion);
+        table.ColumnHeaders.Add(headerBase);
+}
 }
