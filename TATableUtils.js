@@ -125,11 +125,11 @@ class TATableUtils{
         headerFormula.Title = categoryTitle;
 
         if(distribution == "1"){
-            headerCategories.Distributions.Enabled = true;
+            /*headerCategories.Distributions.Enabled = true;
             headerCategories.Distributions.Count = false;
-            headerCategories.Distributions.HorizontalPercents = true;
+            headerCategories.Distributions.HorizontalPercents = true;*/
 
-            //headerFormula.Percent = true;
+            headerFormula.Percent = true;
         }
         header.Add(headerCategories);
         header.Add(headerFormula);
