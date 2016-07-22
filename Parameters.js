@@ -56,6 +56,15 @@ class Parameters {
         ParameterUtilities.LoadParameterValues(context.report, context.component, parameterValues);
     }
 
+    static function TA_VIEW_BY_Domain(context){
+        var parameterValues = [{Code: "0", Label: "-select-"}];
+        for(var i = 0; i<Config.VariablesToViewBy.length; i++ ){
+            parameterValues.push({Code: Config.VariablesToViewBy[i], Label: Code: Config.VariablesToViewBy[i]});
+        }
+
+        ParameterUtilites.LoadParameterValues(context.report, context.component, parameterValues);
+    }
+
 
 
 
