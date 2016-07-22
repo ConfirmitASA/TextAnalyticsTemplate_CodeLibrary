@@ -621,22 +621,29 @@ class TATableUtils{
     }
 
     static function createDetailedAnalysisTiles(table, sentiment){
+        log.LogDebug("createDetailedAnalysisTiles 1");
         var headerQuestion: HeaderQuestion;
         var columnHeader;
         if(TALibrary.currentQuestion.currentTheme == -1){
+            log.LogDebug("createDetailedAnalysisTiles 2 if");
             headerQuestion = getTAQuestionHeader("overallSentiment");
+            log.LogDebug("createDetailedAnalysisTiles 3 if");
         }else{
+            log.LogDebug("createDetailedAnalysisTiles 2 else");
             headerQuestion = getTAQuestionHeader("categorySentiment");
             headerQuestion.AnswerMask  = getCurrentCategoryMask();
+            log.LogDebug("createDetailedAnalysisTiles 3 else");
         }
 
+    log.LogDebug("createDetailedAnalysisTiles 4");
 
         headerQuestion.IsCollapsed = true;
-        headerQuestion.HideHeader = true;
 
         columnHeader = getCategoriesHeader(sentiment, false);
-
+    log.LogDebug("createDetailedAnalysisTiles 5");
         table.RowHeaders.Add(headerQuestion);
+    log.LogDebug("createDetailedAnalysisTiles 6");
         table.ColumnHeaders.AddRange(columnHeader);
+    log.LogDebug("createDetailedAnalysisTiles 7");
 }
 }
