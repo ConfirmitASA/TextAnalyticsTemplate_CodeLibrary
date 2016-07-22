@@ -41,7 +41,30 @@ class Page_detailed_analysis {
     }
 
     static function tblTotalCommentsTile_Render(context){
-    context.log.LogDebug(TALibrary.currentQuestion.currentTheme+ " on table");
         TATableUtils.createDetailedAnalysisTiles(context.component,"total");
+    }
+
+    static function tblNegativeCommentsTile_Hide(context){
+        return false;
+    }
+
+    static function tblNegativeCommentsTile_Render(context){
+        TATableUtils.createDetailedAnalysisTiles(context.component,"neg");
+    }
+
+    static function tblNeutralCommentsTile_Hide(context){
+    return false;
+}
+
+    static function tblNeutralCommentsTile_Render(context){
+        TATableUtils.createDetailedAnalysisTiles(context.component,"neu");
+    }
+
+    static function tblPositiveCommentsTile_Hide(context){
+    return false;
+}
+
+    static function tblPositiveCommentsTile_Render(context){
+        TATableUtils.createDetailedAnalysisTiles(context.component,"pos");
     }
 }
