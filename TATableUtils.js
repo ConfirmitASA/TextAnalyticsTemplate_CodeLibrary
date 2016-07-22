@@ -636,8 +636,7 @@ class TATableUtils{
 
         columnHeader = getCategoriesHeader(sentiment, false);
 
-        columnHeader.HideHeader = true;
         table.RowHeaders.Add(headerQuestion);
-        table.ColumnHeaders.Add(columnHeader);
+        table.ColumnHeaders.AddRange(columnHeader);
 }
 }
