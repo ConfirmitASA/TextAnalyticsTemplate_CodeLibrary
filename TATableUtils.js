@@ -590,6 +590,28 @@ class TATableUtils{
             }
         ));
 
+    var area : Area = new Area();
+    area.Name = 'NegNeuPos';
+    area.ApplyTo(Area.Columns, Area.Left, '1-100');
+
+    var c1 : Condition = new Condition();
+    c1.Expression = 'cellv(col+1, row)<(-1)';
+    c1.Style = 'negative';
+
+    var c2 : Condition = new Condition();
+    c2.Expression = '(cellv(col+1, row)>=(-1)) AND (cellv(col+1, row)<=1)';
+    c2.Style = 'neutral';
+
+    var c3 : Condition = new Condition();
+    c3.Expression = 'cellv(col+1, row)>1';
+    c3.Style = 'positive';
+
+    area.AddCondition(c1);
+    area.AddCondition(c2);
+    area.AddCondition(c3);
+
+    formatter.AddArea(area);
+
         table.ConditionalFormatting = formatter;
 
     }
