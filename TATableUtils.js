@@ -360,7 +360,7 @@ class TATableUtils{
         area.Name = 'name';
         area.ApplyTo(applyTo.axis, applyTo.direction, applyTo.indexes);
 
-        for(obj in conditions){
+        for(var obj in conditions){
             condition = new Condition();
             condition.Expression = obj.expression;
             condition.Style = obj.style;
