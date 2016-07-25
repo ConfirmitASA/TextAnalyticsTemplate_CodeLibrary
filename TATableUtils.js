@@ -631,7 +631,7 @@ class TATableUtils{
             table.RowHeaders.Add(getTotalCategoriesHeader());
         }
 
-        taCategoriesHeader: HeaderQuestion = getTAQuestionHeader("categorySentiment");
+        taCategoriesHeader = getTAQuestionHeader("categorySentiment");
         taCategoriesHeader.ShowTotals = false;
 
 
