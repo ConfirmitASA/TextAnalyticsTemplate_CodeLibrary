@@ -354,9 +354,9 @@ class TATableUtils{
      * @param {Object} applyTo - array of objects { axis: Area.Column, direction: Area.Left, indexes: "3-5" }
      * @returns {Area}
      */
-    static function setupConditionalFormatting(conditions,name, applyTo){
-        var area : Area = new Area();
-        area.Name = 'name';
+    static function setupConditionalFormatting(area, conditions,name, applyTo){
+        //var area : Area = new Area();
+        area.Name = name;
         area.ApplyTo(applyTo.axis, applyTo.direction, applyTo.indexes);
 
         for(var obj in conditions){
@@ -366,7 +366,7 @@ class TATableUtils{
             area.AddCondition(condition);
         }
 
-        return area;
+        //return area;
     }
 
 
@@ -565,7 +565,8 @@ class TATableUtils{
 
         var formatter : ConditionalFormatting = table.ConditionalFormatting;
 
-        var area: Area = setupConditionalFormatting(
+        var area: Area = new Area();
+        setupConditionalFormatting(area,
         [
             {
                 expression: 'cellv(col+1, row)<(-1)',
@@ -665,7 +666,7 @@ class TATableUtils{
 
         var formatter : ConditionalFormatting = table.ConditionalFormatting;
 
-        formatter.AddArea(setupConditionalFormatting(
+        /*formatter.AddArea(setupConditionalFormatting(
             [
                 {
                     expression: 'cellv(col,row)<(-1)',
@@ -739,7 +740,7 @@ class TATableUtils{
         ));
 
 
-        table.ConditionalFormatting = formatter;
+        table.ConditionalFormatting = formatter;*/
 
     }
 }
