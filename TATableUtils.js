@@ -643,7 +643,7 @@ class TATableUtils{
         commentsCountFormula.Type = FormulaType.Expression;
         commentsCountFormula.Decimals = 1;
         commentsCountFormula.Priority = 0;
-        commentsCountFormula.Expression = distribution == "1" ? "cellv(col-1,row)/cellv(1,1)": "cellv(col-1)";
+        commentsCountFormula.Expression = distribution == "1" ? "cellv(col-1,row)/cellv(1,1)": "cellv(col-1,row)";
         commentsCountFormula.Percent = (distribution == "1");
         commentsCountFormula.Title = new Label(9, "Comments");
         commentsCountFormula.HideHeader = true;
