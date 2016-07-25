@@ -4,7 +4,6 @@ class Page_detailed_analysis {
     static function Hide(context) {
         return false
     }
-
     static function Render(context) {
         var metaData = new MetaData(context.report, context.log);
         //var configurationManager = new ConfigurationManager();
@@ -27,7 +26,6 @@ class Page_detailed_analysis {
     static function txtCategory_Hide(context){
         return false;
     }
-
     static function txtCategory_Render(context){
         context.component.Output.Append("Category");
     }
@@ -39,7 +37,6 @@ class Page_detailed_analysis {
     static function tblTotalCommentsTile_Hide(context){
         return false;
     }
-
     static function tblTotalCommentsTile_Render(context){
         TATableUtils.createDetailedAnalysisTiles(context.component,"total");
     }
@@ -47,7 +44,6 @@ class Page_detailed_analysis {
     static function tblNegativeCommentsTile_Hide(context){
         return false;
     }
-
     static function tblNegativeCommentsTile_Render(context){
         TATableUtils.createDetailedAnalysisTiles(context.component,"neg",context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
     }
@@ -55,7 +51,6 @@ class Page_detailed_analysis {
     static function tblNeutralCommentsTile_Hide(context){
     return false;
 }
-
     static function tblNeutralCommentsTile_Render(context){
         TATableUtils.createDetailedAnalysisTiles(context.component,"neu",context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
     }
@@ -63,7 +58,6 @@ class Page_detailed_analysis {
     static function tblPositiveCommentsTile_Hide(context){
     return false;
 }
-
     static function tblPositiveCommentsTile_Render(context){
         TATableUtils.createDetailedAnalysisTiles(context.component,"pos",context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
     }
@@ -71,12 +65,14 @@ class Page_detailed_analysis {
     static function txtViewBy_Hide(context){
         return false;
     }
-
     static function txtViewBy_Render(context){
         context.component.Output.Append("View by:");
     }
 
-    static function tblDetailedAnalysis(context){
+    static function tblDetailedAnalysis_Hide(context){
+        return false;
+    }
+    static function tblDetailedAnalysis_Render(context){
         createDetailedAnalysisTable(context.component, context.state.Parameters.GetString("TA_VIEW_BY"), context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"))
     }
 }
