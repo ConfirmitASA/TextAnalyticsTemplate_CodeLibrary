@@ -74,7 +74,7 @@ class TATableUtils{
      * @returns {QuestionHeader}
      */
     static function getTotalCategoriesHeader(){
-        var totalRespondentsHeader: QuestionHeadeder;
+        var totalRespondentsHeader: QuestionHeader;
         totalRespondentsHeader = getTAQuestionHeader("categories");
         totalRespondentsHeader.IsCollapsed = true;
         totalRespondentsHeader.AnswerMask = getHideAllMask();
