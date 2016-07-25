@@ -28,45 +28,60 @@ class TATableUtils{
      * @return {HeaderQuestion}
      */
     static function getTAQuestionHeader(type: String){
-    var headerQuestion: HeaderQuestion;
+        var headerQuestion: HeaderQuestion;
 
-    switch(type){
-        case "overallSentiment":
-            headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.overallSentiment.questionnaireElement);
-            headerQuestion.DefaultStatistic = StatisticsType.Average;
-            headerQuestion.Preaggregation = PreaggregationType.Average;
-            headerQuestion.HeaderId = "overall_sentiment";
-            break;
+        switch(type){
+            case "overallSentiment":
+                headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.overallSentiment.questionnaireElement);
+                headerQuestion.DefaultStatistic = StatisticsType.Average;
+                headerQuestion.Preaggregation = PreaggregationType.Average;
+                headerQuestion.HeaderId = "overall_sentiment";
+                break;
 
-        case "categories":
-            headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.categories.questionnaireElement);
-            break;
+            case "categories":
+                headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.categories.questionnaireElement);
+                break;
 
-        case "positiveMentions":
-            headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.positiveMentions.questionnaireElement);
-            break;
+            case "positiveMentions":
+                headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.positiveMentions.questionnaireElement);
+                break;
 
-        case "negativeMentions":
-            headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.negativeMentions.questionnaireElement);
-            break;
+            case "negativeMentions":
+                headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.negativeMentions.questionnaireElement);
+                break;
 
-        case "categorySentiment":
-            headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.categorySentiment.questionnaireElement);
-            headerQuestion.DefaultStatistic = StatisticsType.Average;
-            headerQuestion.Preaggregation = PreaggregationType.Average;
-            break;
+            case "categorySentiment":
+                headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.categorySentiment.questionnaireElement);
+                headerQuestion.DefaultStatistic = StatisticsType.Average;
+                headerQuestion.Preaggregation = PreaggregationType.Average;
+                break;
 
-        case "verbatim":
-        default:
-            headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.verbatim.questionnaireElement);
-            break;
-    }
-    headerQuestion.IsCollapsed = true;
-    headerQuestion.Distributions.Enabled = true;
-    headerQuestion.Distributions.Count = true;
+            case "verbatim":
+            default:
+                headerQuestion = new HeaderQuestion(TALibrary.currentQuestion.verbatim.questionnaireElement);
+                break;
+        }
+        headerQuestion.IsCollapsed = true;
+        headerQuestion.Distributions.Enabled = true;
+        headerQuestion.Distributions.Count = true;
 
-    return headerQuestion;
+        return headerQuestion;
 }
+
+
+    /**
+     * function to get total respondents row for the vertical percent formulas
+     * @returns {QuestionHeader}
+     */
+    static function getTotalCategoriesHeader(){
+        var totalRespondentsHeader: QuestionHeadeder;
+        totalRespondentsHeader = getTAQuestionHeader("categories");
+        totalRespondentsHeader.IsCollapsed = true;
+        totalRespondentsHeader.AnswerMask = getHideAllMask();
+        totalRespondentsHeader.ShowTotals = true;
+        totalRespondentsHeader.HideData = true;
+        return totalRespondentsHeader;
+    }
 
     /**
      * function to have categories header for Negative, Neutral, Positive and Total values
@@ -75,23 +90,16 @@ class TATableUtils{
      * @param {String} distribution - 0 for "count" or 1 for "percents" count by default
      */
     static function getCategoriesHeader(groupName: String, addMinus, distribution){
-    log.LogDebug("getCategoriesHeader 1")
     var header: HeaderCollection = new HeaderCollection();
     var headerFormula : HeaderFormula;
     var headerCategories: HeaderCategories;
     var categoryTitle: Label;
-    log.LogDebug("getCategoriesHeader 2")
     if(groupName=="total"){
-        log.LogDebug("getCategoriesHeader 3 if")
         headerCategories= new HeaderCategories();
-        log.LogDebug("getCategoriesHeader 4 if")
         headerCategories.Mask.Type = MaskType.HideAll;
-        log.LogDebug("getCategoriesHeader 5 if")
         headerCategories.Totals = true;
-        log.LogDebug("getCategoriesHeader 6 if")
 
         header.Add(headerCategories);
-        log.LogDebug("getCategoriesHeader 7 if")
     }else{
         headerCategories= new HeaderCategories();
         headerCategories.Mask.Type = MaskType.ShowCodes;
@@ -134,64 +142,9 @@ class TATableUtils{
         header.Add(headerCategories);
         header.Add(headerFormula);
     }
-    log.LogDebug("getCategoriesHeader 8 ")
-    return header;
-
-}
-
-    /**
-     * function to get categories header with Total and NegNeuPos recoding
-     * @return {HeaderCollection}
-     */
-    static function getTotalNegNeuPosCategoriesHeader(){
-    var header: HeaderCollection = new HeaderCollection();
-
-    header.AddRange(getCategoriesHeader("total",false));
-    header.AddRange(getCategoriesHeader("neg",false));
-    header.AddRange(getCategoriesHeader("neu",false));
-    header.AddRange(getCategoriesHeader("pos",false));
 
     return header;
-}
 
-    /**
-     * function to get categories header with Total and NegPos recoding
-     * @return {HeaderCollection}
-     */
-    static function getTotalNegPosCategoriesHeader(){
-    var header: HeaderCollection = new HeaderCollection();
-
-    header.AddRange(getCategoriesHeader("total",false));
-    header.AddRange(getCategoriesHeader("neg", true));
-    header.AddRange(getCategoriesHeader("pos", false));
-
-    return header;
-}
-
-    /**
-     * function to get categories header with Total and Pos recoding
-     * @return {HeaderCollection}
-     */
-    static function getTotalPosCategoriesHeader(){
-    var header: HeaderCollection = new HeaderCollection();
-
-    header.AddRange(getCategoriesHeader("total",false));
-    header.AddRange(getCategoriesHeader("pos", false));
-
-    return header;
-}
-
-    /**
-     * function to get categories header with Total and Neg recoding
-     * @return {HeaderCollection}
-     */
-    static function getTotalNegCategoriesHeader(){
-    var header: HeaderCollection = new HeaderCollection();
-
-    header.AddRange(getCategoriesHeader("total",false));
-    header.AddRange(getCategoriesHeader("neg", false));
-
-    return header;
 }
 
     /**
@@ -310,6 +263,10 @@ class TATableUtils{
     return chartHeader;
 }
 
+    static function getVerticalPercentsFormula(){
+
+    }
+
 
     /*-----------masking functions----------------*/
 
@@ -388,6 +345,30 @@ class TATableUtils{
 
     return mask
 }
+    /*-----------conditional formatting functions--------*/
+
+    /**
+     * function to geat conditional formatting area
+     * @param {Object[]} conditions - array of objects { expression: "some expression", style: "some style" }
+     * @param {String} name - name for the conditional formatting area
+     * @param {Object} applyTo - array of objects { axis: Area.Column, direction: Area.Left, indexes: "3-5" }
+     * @returns {Area}
+     */
+    function setupConditionalFormatting(conditions,name, applyTo){
+        var area : Area = new Area();
+        var condition: Condition;
+        area.Name = 'name';
+        area.ApplyTo(applyTo.axis, applyTo.direction, applyTo.indexes);
+
+        for(obj in conditions){
+            condition = new Condition();
+            condition.Expression = obj.expression;
+            condition.Style = obj.style;
+            area.AddCondition(condition);
+        }
+
+        return area;
+    }
 
 
     /*-----------setup Table functions-------------*/
@@ -434,7 +415,7 @@ class TATableUtils{
 
 
     /**
-     * Table for top positive or negative themes table
+     * DB:  top positive or negative themes table
      * @param {Table} table
      * @param {String} level - value of TA_LEVEL parameter "categories", "attributes" or "themes"
      * @param {Byte} topN - top N rows for sorting, 0 by default
@@ -442,24 +423,24 @@ class TATableUtils{
      * @param {String} distribution - 0 for "count" or 1 for "percents" count by default
      */
     static function createTopSentimentTable(table: Table, level, topN, sentiment,distribution){
-    var headerQuestion: HeaderQuestion = getTAQuestionHeader(sentiment.toLowerCase()=="pos"?"positiveMentions":"negativeMentions");
+    var taCategoriesHeader: HeaderQuestion = getTAQuestionHeader(sentiment.toLowerCase()=="pos"?"positiveMentions":"negativeMentions");
 
-    headerQuestion.ShowTotals = false;
+    taCategoriesHeader.ShowTotals = false;
 
     switch(level.toLowerCase()){
         case "categories":
-            headerQuestion.AnswerMask = getCategoriesMask();
+            taCategoriesHeader.AnswerMask = getCategoriesMask();
             break;
         case "attributes":
-            headerQuestion.AnswerMask = getAttributesMask();
+            taCategoriesHeader.AnswerMask = getAttributesMask();
             break;
         case "themes":
         default:
-            headerQuestion.AnswerMask = getThemesMask();
+            taCategoriesHeader.AnswerMask = getThemesMask();
             break;
     }
 
-    table.RowHeaders.Add(headerQuestion);
+    table.RowHeaders.Add(taCategoriesHeader);
     var headerBase: HeaderBase = new HeaderBase();
     headerBase.HideHeader = true;
     if(distribution == "1"){
@@ -477,7 +458,7 @@ class TATableUtils{
 }
 
     /**
-     * Table for top improved and top declined themes
+     * DB:  top improved and top declined themes
      * @param {Table} table
      * @param {String} level - value of TA_LEVEL parameter "categories, "attributes" or "themes"
      * @param {Byte} topN - top N rows for sorting, 0 by default
@@ -485,20 +466,20 @@ class TATableUtils{
      * @param {String} period - value of TA_COMPARE_PERIODS parameter "wow", "qoq", "mom" or "yoy" ("qoq by default")
      */
     static function createTopChangedThemesTable(table: Table, level, topN, sentiment, period){
-    var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
+    var taCategoriesHeader: HeaderQuestion = getTAQuestionHeader("categorySentiment");
 
-    headerQuestion.ShowTotals = false;
+    taCategoriesHeader.ShowTotals = false;
 
     switch(level.toLowerCase()){
         case "categories":
-            headerQuestion.AnswerMask = getCategoriesMask();
+            taCategoriesHeader.AnswerMask = getCategoriesMask();
             break;
         case "attributes":
-            headerQuestion.AnswerMask = getAttributesMask();
+            taCategoriesHeader.AnswerMask = getAttributesMask();
             break;
         case "themes":
         default:
-            headerQuestion.AnswerMask = getThemesMask();
+            taCategoriesHeader.AnswerMask = getThemesMask();
             break;
     }
 
@@ -522,7 +503,7 @@ class TATableUtils{
     headerFormula.HideHeader = true;
 
 
-    table.RowHeaders.Add(headerQuestion);
+    table.RowHeaders.Add(taCategoriesHeader);
     table.ColumnHeaders.Add(headerStatistics);
     table.ColumnHeaders.Add(headerFormula);
     table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[{Formula: "cellv(col-1,row)", Color: (sentiment=="pos"?Config.Colors.NegNeuPosPalette.Positive:Config.Colors.NegNeuPosPalette.Negative)}], "Change in avg. score"));
@@ -531,7 +512,7 @@ class TATableUtils{
 }
 
     /**
-     * Table for Themes distribution
+     * DB: Themes distribution
      * @param {Table} table
      * @param {String} sentiment - TA_VIEW_SENTIMENT parameter value "all", "neg", "neu", "pos"
      * @param {String} period - value of parameter to define what time period show in the table
@@ -539,83 +520,79 @@ class TATableUtils{
      */
 
     static function createThemeDistributionTable(table: Table, sentiment, period, distribution){
-    var totalRespondentsHeader: HeaderQuestion;
-    if(distribution == "1"){
-        totalRespondentsHeader = getTAQuestionHeader("categories");
-        totalRespondentsHeader.IsCollapsed = true;
-        totalRespondentsHeader.AnswerMask = getHideAllMask();
-        totalRespondentsHeader.ShowTotals = true;
-        totalRespondentsHeader.HideData = true;
-        table.RowHeaders.Add(totalRespondentsHeader);
+
+        var totalRespondentsHeader: HeaderQuestion;
+        if(distribution == "1"){
+            table.RowHeaders.Add(getTotalCategoriesHeader());
+        }
+        var taCategoriesHeader: HeaderQuestion = getTAQuestionHeader("categorySentiment");
+        taCategoriesHeader.ShowTotals = false;
+
+        table.RowHeaders.Add(taCategoriesHeader);
+
+
+
+        var headerTimeSeries: HeaderQuestion = getTimeSeries("m",-12,0);
+
+        var headerStatistics: HeaderStatistics = new HeaderStatistics();
+        headerStatistics.HideHeader = true;
+        headerStatistics.Statistics.Avg = true;
+        headerStatistics.HideData = true;
+
+        var headerBase: HeaderBase= new HeaderBase();
+        headerBase.HideHeader=true;
+
+        var verticalPercentsFormula: HeaderFormula;
+
+        if(distribution == "1"){
+            headerBase.HideData = true;
+
+            verticalPercentsFormula = new HeaderFormula();
+            verticalPercentsFormula.Type = FormulaType.Expression;
+            verticalPercentsFormula.Decimals = 1;
+            verticalPercentsFormula.Priority = 0;
+            verticalPercentsFormula.Expression = "cellv(col-1,row)/cellv(1,1)";
+            verticalPercentsFormula.Percent = true;
+            verticalPercentsFormula.HideHeader = true;
+        }
+        headerTimeSeries.SubHeaders.Add(headerBase);
+        distribution == "1" ? headerTimeSeries.SubHeaders.Add( verticalPercentsFormula) : null;
+        headerTimeSeries.SubHeaders.Add(headerStatistics);
+
+
+        table.ColumnHeaders.Add(headerTimeSeries);
+
+
+
+        var formatter : ConditionalFormatting = table.ConditionalFormatting;
+
+        formatter.AddArea(setupConditionalFormatting(
+            [
+                {
+                    expression: 'cellv(col+1, row)<(-1)',
+                    style: 'negative'
+                },
+
+                {
+                    expression: '(cellv(col+1, row)>=(-1)) AND (cellv(col+1, row)<=1)',
+                    style: 'neutral'
+                },
+                {
+                    expression: 'cellv(col+1, row)>1',
+                    style: 'positive'
+                }
+            ],
+            "NegNeuPos",
+            {
+                axis: Area.Column,
+                direction: Area.Left,
+                indexes: "1-1000"
+            }
+        ));
+
+        table.ConditionalFormatting = formatter;
+
     }
-    var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
-    headerQuestion.ShowTotals = false;
-
-
-    var timeperiod = "m";
-    var from = -12;
-    var to = 0;
-    var headerTimeSeries: HeaderQuestion = getTimeSeries(timeperiod,-12,0);
-
-    var headerStatistics: HeaderStatistics = new HeaderStatistics();
-    headerStatistics.HideHeader = true;
-    headerStatistics.Statistics.Avg = true;
-    headerStatistics.HideData = true;
-
-    var headerBase: HeaderBase= new HeaderBase();
-    headerBase.HideHeader=true;
-
-
-
-    var verticalPercentsFormula: HeaderFormula;
-
-    if(distribution == "1"){
-        headerBase.HideData = true;
-
-        verticalPercentsFormula = new HeaderFormula();
-        verticalPercentsFormula.Type = FormulaType.Expression;
-        verticalPercentsFormula.Decimals = 1;
-        verticalPercentsFormula.Priority = 0;
-        verticalPercentsFormula.Expression = "cellv(col-1,row)/cellv(1,1)";
-        verticalPercentsFormula.Percent = true;
-        verticalPercentsFormula.HideHeader = true;
-    }
-    headerTimeSeries.SubHeaders.Add(headerBase);
-    distribution == "1" ? headerTimeSeries.SubHeaders.Add( verticalPercentsFormula) : null;
-    headerTimeSeries.SubHeaders.Add(headerStatistics);
-
-    table.RowHeaders.Add(headerQuestion);
-    table.ColumnHeaders.Add(headerTimeSeries);
-
-
-    //adding conditional formatting
-    var formatter : ConditionalFormatting = table.ConditionalFormatting;
-
-    var area : Area = new Area();
-    area.Name = 'NegNeuPos';
-    area.ApplyTo(Area.Columns, Area.Left, '1-100');
-
-    var c1 : Condition = new Condition();
-    c1.Expression = 'cellv(col+1, row)<(-1)';
-    c1.Style = 'negative';
-
-    var c2 : Condition = new Condition();
-    c2.Expression = '(cellv(col+1, row)>=(-1)) AND (cellv(col+1, row)<=1)';
-    c2.Style = 'neutral';
-
-    var c3 : Condition = new Condition();
-    c3.Expression = 'cellv(col+1, row)>1';
-    c3.Style = 'positive';
-
-    area.AddCondition(c1);
-    area.AddCondition(c2);
-    area.AddCondition(c3);
-
-    formatter.AddArea(area);
-
-    table.ConditionalFormatting = formatter;
-
-}
 
 
     /**
@@ -625,29 +602,142 @@ class TATableUtils{
      * @param {String} distribution - 0 for "count" or 1 for "percents" count by default
      */
     static function createDetailedAnalysisTiles(table: Table, sentiment: String, distribution){
-        log.LogDebug("createDetailedAnalysisTiles 1");
-        var headerQuestion: HeaderQuestion;
+        var taCategoryHeader: HeaderQuestion;
         var columnHeader;
         if(TALibrary.currentQuestion.currentTheme == -1){
-            log.LogDebug("createDetailedAnalysisTiles 2 if");
-            headerQuestion = getTAQuestionHeader("overallSentiment");
-            log.LogDebug("createDetailedAnalysisTiles 3 if");
+            taCategoryHeader = getTAQuestionHeader("overallSentiment");
         }else{
-            log.LogDebug("createDetailedAnalysisTiles 2 else");
-            headerQuestion = getTAQuestionHeader("categorySentiment");
-            headerQuestion.AnswerMask  = getCurrentCategoryMask();
-            log.LogDebug("createDetailedAnalysisTiles 3 else");
+            taCategoryHeader = getTAQuestionHeader("categorySentiment");
+            taCategoryHeader.AnswerMask  = getCurrentCategoryMask();
         }
 
-
-
-        headerQuestion.IsCollapsed = true;
-    log.LogDebug("createDetailedAnalysisTiles 4");
+        taCategoryHeader.IsCollapsed = true;
         columnHeader = getCategoriesHeader(sentiment.toLowerCase(), false, distribution);
-    log.LogDebug("createDetailedAnalysisTiles 5");
-        table.RowHeaders.Add(headerQuestion);
-    log.LogDebug("createDetailedAnalysisTiles 6");
+        table.RowHeaders.Add(taCategoryHeader);
         table.ColumnHeaders.AddRange(columnHeader);
-    log.LogDebug("createDetailedAnalysisTiles 7");
-}
+    }
+
+    /**
+     * DA: Detailed Analysis table
+     * @param {Table} table,
+     * @param {String} selectedQId
+     * @param {String} distribution
+     */
+    static function createDetailedAnalysisTable(table: Table, selectedQId, distribution){
+        var taCategoriesHeader: HeaderQuestion;
+        var totalRespondentsHeader: HeaderQuestion;
+        var commentsCountFormula: HeaderFormula;
+        if(distribution == "1"){
+            table.RowHeaders.Add(getTotalCategoriesHeader());
+        }
+
+        taCategoriesHeader: HeaderQuestion = getTAQuestionHeader("categorySentiment");
+        taCategoriesHeader.ShowTotals = false;
+
+
+        var headerBase: HeaderBase= new HeaderBase();
+        headerBase.HideHeader=true;
+        headerBase.HideData = true;
+
+        commentsCountFormula = new HeaderFormula();
+        commentsCountFormula.Type = FormulaType.Expression;
+        commentsCountFormula.Decimals = 1;
+        commentsCountFormula.Priority = 0;
+        commentsCountFormula.Expression = distribution == "1" ? "cellv(col-1,row)/cellv(1,1)": "cellv(col-1)";
+        commentsCountFormula.Percent = (distribution == "1");
+        commentsCountFormula.Title = new Label(9, "Comments");
+        commentsCountFormula.HideHeader = true;
+
+        var headerStatistics: HeaderStatistics = new HeaderStatistics();
+        headerStatistics.Statistics.Avg = true;
+
+
+        table.ColumnHeaders.Add(headerBase);
+        table.ColumnHeaders.Add(commentsCountFormula);
+        table.ColumnHeaders.Add(headerStatistics);
+        table.ColumnHeaders.AddRange(getCategoriesHeader("pos",false,distribution));
+        table.ColumnHeaders.AddRange(getCategoriesHeader("neu",false,distribution));
+        table.ColumnHeaders.AddRange(getCategoriesHeader("neu",false,distribution));
+
+        table.RowHeaders.Add(taCategoriesHeader);
+
+        var formatter : ConditionalFormatting = table.ConditionalFormatting;
+
+        formatter.AddArea(setupConditionalFormatting(
+            [
+                {
+                    expression: 'cellv(col,row)<(-1)',
+                    style: 'negative'
+                },
+
+                {
+                    expression: '(cellv(col, row)>=(-1)) AND (cellv(col, row)<=1)',
+                    style: 'neutral'
+                },
+                {
+                    expression: 'cellv(col, row)>1',
+                    style: 'positive'
+                }
+            ],
+            "NegNeuPos",
+            {
+                axis: Area.Column,
+                direction: Area.Left,
+                indexes: "2"
+            }
+        ));
+
+
+        formatter.AddArea(setupConditionalFormatting(
+            [
+                {
+                    expression: 'true',
+                    style: 'negative'
+                },
+
+            ],
+            "Negative",
+            {
+                axis: Area.Column,
+                direction: Area.Left,
+                indexes: "5"
+            }
+        ));
+
+        formatter.AddArea(setupConditionalFormatting(
+            [
+                {
+                    expression: 'true',
+                    style: 'neutral'
+                },
+
+            ],
+            "Neutral",
+            {
+                axis: Area.Column,
+                direction: Area.Left,
+                indexes: "4"
+            }
+        ));
+
+        formatter.AddArea(setupConditionalFormatting(
+            [
+                {
+                    expression: 'true',
+                    style: 'positive'
+                },
+
+            ],
+            "NPositive",
+            {
+                axis: Area.Column,
+                direction: Area.Left,
+                indexes: "3"
+            }
+        ));
+
+
+        table.ConditionalFormatting = formatter;
+
+    }
 }

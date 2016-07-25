@@ -75,4 +75,8 @@ class Page_detailed_analysis {
     static function txtViewBy_Render(context){
         context.component.Output.Append("View by:");
     }
+
+    static function tblDetailedAnalysis(context){
+        createDetailedAnalysisTable(context.component, context.state.Parameters.GetString("TA_VIEW_BY"), context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"))
+    }
 }
