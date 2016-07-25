@@ -356,12 +356,11 @@ class TATableUtils{
      */
     static function setupConditionalFormatting(conditions,name, applyTo){
         var area : Area = new Area();
-        var condition: Condition;
         area.Name = 'name';
         area.ApplyTo(applyTo.axis, applyTo.direction, applyTo.indexes);
 
         for(var obj in conditions){
-            condition = new Condition();
+            var condition: Condition = new Condition();
             condition.Expression = obj.expression;
             condition.Style = obj.style;
             area.AddCondition(condition);
