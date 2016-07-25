@@ -114,17 +114,17 @@ class TATableUtils{
 
         switch(groupName){
             case "neg":
-                headerCategories.Mask.Codes = '1,2,3,4,5';
+                headerCategories.Mask.Codes = '1,2,3,4';
                 headerFormula.Expression = "(cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row))"+(addMinus?"*(-1)":"");
                 categoryTitle = new Label(9, "Negative");
                 break;
             case "neu":
-                headerCategories.Mask.Codes = '6';
+                headerCategories.Mask.Codes = '5,6,7';
                 headerFormula.Expression = "cellv(col-1,row)";
                 categoryTitle = new Label(9, "Neutral");
                 break;
             case "pos":
-                headerCategories.Mask.Codes = '7,8,9,10,11';
+                headerCategories.Mask.Codes = '8,9,10,11';
                 headerFormula.Expression = "(cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row))";
                 categoryTitle = new Label(9, "Positive");
                 break;
@@ -683,7 +683,7 @@ class TATableUtils{
             {
                 axis: Area.Columns,
                 direction: Area.Left,
-                indexes: "2"
+                indexes: "3"
             }
         ));
 
@@ -700,7 +700,7 @@ class TATableUtils{
             {
                 axis: Area.Columns,
                 direction: Area.Left,
-                indexes: "5"
+                indexes: "17"
             }
         ));
 
@@ -716,7 +716,7 @@ class TATableUtils{
             {
                 axis: Area.Columns,
                 direction: Area.Left,
-                indexes: "4"
+                indexes: "12"
             }
         ));
 
@@ -728,11 +728,11 @@ class TATableUtils{
                 },
 
             ],
-            "NPositive",
+            "Positive",
             {
                 axis: Area.Columns,
                 direction: Area.Left,
-                indexes: "3"
+                indexes: "8"
             }
         ));
 
