@@ -657,7 +657,7 @@ class TATableUtils{
         table.ColumnHeaders.Add(headerStatistics);
         table.ColumnHeaders.AddRange(getCategoriesHeader("pos",false,distribution));
         table.ColumnHeaders.AddRange(getCategoriesHeader("neu",false,distribution));
-        table.ColumnHeaders.AddRange(getCategoriesHeader("neu",false,distribution));
+        table.ColumnHeaders.AddRange(getCategoriesHeader("neg",false,distribution));
 
         table.RowHeaders.Add(taCategoriesHeader);
 
