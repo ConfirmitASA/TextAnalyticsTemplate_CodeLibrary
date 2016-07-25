@@ -591,7 +591,7 @@ class TATableUtils{
         ));
 
     var area : Area = new Area();
-    area.Name = 'NegNeuPos';
+    area.Name = 'NegNeuPositive';
     area.ApplyTo(Area.Columns, Area.Left, '1-100');
 
     var c1 : Condition = new Condition();
