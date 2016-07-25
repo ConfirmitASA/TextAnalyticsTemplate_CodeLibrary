@@ -584,7 +584,7 @@ class TATableUtils{
             ],
             "NegNeuPos",
             {
-                axis: Area.Column,
+                axis: Area.Columns,
                 direction: Area.Left,
                 indexes: "1-1000"
             }
@@ -681,7 +681,7 @@ class TATableUtils{
             ],
             "NegNeuPos",
             {
-                axis: Area.Column,
+                axis: Area.Columns,
                 direction: Area.Left,
                 indexes: "2"
             }
@@ -698,7 +698,7 @@ class TATableUtils{
             ],
             "Negative",
             {
-                axis: Area.Column,
+                axis: Area.Columns,
                 direction: Area.Left,
                 indexes: "5"
             }
@@ -714,7 +714,7 @@ class TATableUtils{
             ],
             "Neutral",
             {
-                axis: Area.Column,
+                axis: Area.Columns,
                 direction: Area.Left,
                 indexes: "4"
             }
@@ -730,7 +730,7 @@ class TATableUtils{
             ],
             "NPositive",
             {
-                axis: Area.Column,
+                axis: Area.Columns,
                 direction: Area.Left,
                 indexes: "3"
             }
