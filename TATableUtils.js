@@ -659,7 +659,7 @@ class TATableUtils{
         var rowHeadersParent;
 
         if(selectedQId && selectedQId != "0"){
-            var viewByHeader: HeaderQuestion =  new HeaderQuestion(TALibrary.currentQuestion.project.CreateQuestionnaireElement(selectedQid));
+            var viewByHeader: HeaderQuestion =  new HeaderQuestion(TALibrary.currentQuestion.project.CreateQuestionnaireElement(selectedQId));
             rowHeadersParent = viewByHeader.SubHeaders;
         }else{
             rowHeadersParent = table.RowHeaders;
