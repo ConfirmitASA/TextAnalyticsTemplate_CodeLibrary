@@ -120,7 +120,7 @@ class TATableUtils{
                 break;
             case "neu":
                 headerCategories.Mask.Codes = '5,6,7';
-                headerFormula.Expression = "cellv(col-1,row)+cellv(col-2,row)+cellv(col-3,row)";
+                headerFormula.Expression = "(cellv(col-1,row)+cellv(col-2,row)+cellv(col-3,row))";
                 categoryTitle = new Label(9, "Neutral");
                 break;
             case "pos":
@@ -633,8 +633,11 @@ class TATableUtils{
         var taCategoriesHeader: HeaderQuestion;
         var totalRespondentsHeader: HeaderQuestion;
         var commentsCountFormula: HeaderFormula;
+
         if(distribution == "1"){
-            table.RowHeaders.Add(getTAQuestionHeader("overallSentiment"));
+            var overallSentimentHeader: HeaderQuestion = getTAQuestionHeader("overallSentiment");
+            overallSentimentHeader.HideData = true;
+            table.RowHeaders.Add(overallSentimentHeader);
         }
 
         taCategoriesHeader = getTAQuestionHeader("categorySentiment");
