@@ -658,7 +658,7 @@ class TATableUtils{
         var commentsCountFormula: HeaderFormula;
         var rowHeadersParent;
 
-        if(selectedOid && selectedOid != "0"){
+        if(selectedQid && selectedQid != "0"){
             var viewByHeader: HeaderQuestion = TALibrary.currentQuestion.project.CreateQuestionnaireElement(selectedOid);
             rowHeadersParent = viewByHeader.SubHeaders;
         }else{
@@ -681,7 +681,7 @@ class TATableUtils{
 
         rowHeadersParent.Add(taCategoriesHeader);
 
-        if(selectedOid && selectedOid != "0"){
+        if(selectedQid && selectedQid != "0"){
             table.RowHeaders.Add(viewByHeader)
         }
 
