@@ -21,6 +21,9 @@ class Page_detailed_analysis {
 
         if(context.state.Parameters.IsNull("TA_DISTRIBUTION_TOGGLE"))
             context.state.Parameters["TA_DISTRIBUTION_TOGGLE"] = new ParameterValueResponse("0");
+
+        if(context.state.Parameters.IsNull("TA_VIEW_BY"))
+            context.state.Parameters["TA_VIEW_BY"] = new ParameterValueResponse("0");
     }
 
     static function txtCategory_Hide(context){
