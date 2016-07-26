@@ -365,8 +365,9 @@ class TATableUtils{
         log.LogDebug("expression: "+conditions[0].expression);
         log.LogDebug("style: "+conditions[0].style)
 
-        /*area.ApplyTo(applyTo.axis, applyTo.direction, applyTo.indexes);
+        area.ApplyTo(applyTo.axis, applyTo.direction, applyTo.indexes);
         var condition: Condition = new Condition();
+    /*
         condition.Expression = conditions[0].expression;
         condition.Style = conditions[0].style;
         area.AddCondition(condition);*/
