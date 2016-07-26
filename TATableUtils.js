@@ -68,7 +68,6 @@ class TATableUtils{
         return headerQuestion;
 }
 
-
     /**
      * function to get total respondents row for the vertical percent formulas
      * @returns {QuestionHeader}
@@ -332,17 +331,41 @@ class TATableUtils{
 
     /**
      * masking only selected category
-     * @param {String} catId - return only categories for selected theme otherwise return all subcategories mask
      * @return {MaskFlat}
      */
-    static function getCurrentCategoryMask(category){
+    static function getCurrentCategoryMask(){
     var mask: MaskFlat = new MaskFlat();
     mask.IsInclusive = true;
-    var categoryId = category ? category : TALibrary.currentQuestion.themes[ TALibrary.currentQuestion.currentTheme].id;
+    var categoryId = TALibrary.currentQuestion.themes[ TALibrary.currentQuestion.currentTheme].id;
     mask.Codes.Add(categoryId);
 
     return mask
 }
+
+    /**
+     * recursive function to have all children and grand-chilren from array
+     * @param {MaskFlat} mask
+     * @param {TA} children
+     */
+    static function addChildrenToMask(mask: MaskFlat, children){
+        for(var i = 0; i< children; i++){
+            mask.Codes.Add(children[i].id);
+            addChildrenToMask(mask, children[i].children);
+        }
+    }
+
+    /**
+     * function to get all hierarchical tree for the current category
+     * @returns {MaskFlat}
+     */
+    static function getCurrentCategoryTreeMask(){
+        var mask: MaskFlat = new MaskFlat();
+        mask.IsInclusive = true;
+        var categoryId = TALibrary.currentQuestion.themes[ TALibrary.currentQuestion.currentTheme].id;
+        mask.Codes.Add(categoryId);
+        addChildrenToMask(mask, TALibrary.currentQuestion.themes[ TALibrary.currentQuestion.currentTheme].children);
+        return mask
+    }
 
     /*-----------conditional formatting functions--------*/
 
@@ -642,6 +665,12 @@ class TATableUtils{
         taCategoriesHeader = getTAQuestionHeader("categorySentiment");
         taCategoriesHeader.ShowTotals = false;
 
+        if(TALibrary.currentQuestion.currentTheme>-1){
+            taCategoriesHeader.AnswerMask = getCurrentCategoryTreeMask();
+        }
+
+
+        table.RowHeaders.Add(taCategoriesHeader);
 
         var headerBase: HeaderBase= new HeaderBase();
         headerBase.HideHeader=true;
@@ -667,7 +696,6 @@ class TATableUtils{
         table.ColumnHeaders.AddRange(getCategoriesHeader("neu",false,distribution));
         table.ColumnHeaders.AddRange(getCategoriesHeader("neg",false,distribution));
 
-        table.RowHeaders.Add(taCategoriesHeader);
 
         var formatter : ConditionalFormatting = table.ConditionalFormatting;
 
