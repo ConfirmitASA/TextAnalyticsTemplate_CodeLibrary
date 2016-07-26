@@ -73,6 +73,7 @@ class Page_detailed_analysis {
         return false;
     }
     static function tblDetailedAnalysis_Render(context){
-        TATableUtils.createDetailedAnalysisTable(context.component, context.state.Parameters.GetString("TA_VIEW_BY"), context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"))
+        TATableUtils.createDetailedAnalysisTable(context.component, context.state.Parameters.GetString("TA_VIEW_BY"), context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
+        TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table"]);
     }
 }
