@@ -747,7 +747,7 @@ class TATableUtils{
 
         table.ConditionalFormatting = formatter;
 
-    /*table.ColumnHeaders.Add(getChartHeader(
+    table.ColumnHeaders.Add(getChartHeader(
         ChartComboType.Bar100,
         [
             {
@@ -764,7 +764,7 @@ class TATableUtils{
             }
         ],
         " "
-    ));*/
+    ));
 
     }
 }
