@@ -348,6 +348,7 @@ class TATableUtils{
      * @param {TA} children
      */
     static function addChildrenToMask(mask: MaskFlat, children){
+        log.LogDebug("add children to mask start"+children.length)
         for(var i = 0; i< children; i++){
             log.LogDebug("add children to mask "+i);
             mask.Codes.Add(children[i].id);
