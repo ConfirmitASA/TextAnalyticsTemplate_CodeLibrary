@@ -349,7 +349,7 @@ class TATableUtils{
      */
     static function addChildrenToMask(mask: MaskFlat, children){
         log.LogDebug("add children to mask start"+children.length)
-        for(var i = 0; i< children; i++){
+        for(var i = 0; i< children.length; i++){
             log.LogDebug("add children to mask "+i);
             mask.Codes.Add(children[i].id);
             addChildrenToMask(mask, children[i].children);
