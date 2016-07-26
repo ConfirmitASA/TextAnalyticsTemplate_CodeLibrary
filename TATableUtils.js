@@ -354,7 +354,7 @@ class TATableUtils{
      * @param {Object} applyTo - array of objects { axis: Area.Column, direction: Area.Left, indexes: "3-5" }
      * @returns {Area}
      */
-    static function setupConditionalFormatting(area, conditions,name, applyTo){
+    static function setupConditionalFormatting(conditions,name, applyTo){
         var area : Area = new Area();
 
         area.Name = name;
