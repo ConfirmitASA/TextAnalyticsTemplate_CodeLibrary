@@ -809,5 +809,7 @@ class TATableUtils{
         " "
     ));
 
+    table.RowNesting = TableRowNestingType.Nesting;
+
     }
 }
