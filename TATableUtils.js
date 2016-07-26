@@ -348,9 +348,7 @@ class TATableUtils{
      * @param {TA} children
      */
     static function addChildrenToMask(mask: MaskFlat, children){
-        log.LogDebug("add children to mask start"+children.length)
         for(var i = 0; i< children.length; i++){
-            log.LogDebug("add children to mask "+i);
             mask.Codes.Add(children[i].id);
             addChildrenToMask(mask, children[i].children);
         }
@@ -654,14 +652,23 @@ class TATableUtils{
      * @param {String} distribution
      */
     static function createDetailedAnalysisTable(table: Table, selectedQId, distribution){
+
         var taCategoriesHeader: HeaderQuestion;
         var totalRespondentsHeader: HeaderQuestion;
         var commentsCountFormula: HeaderFormula;
+        var rowHeadersParent;
+
+        if(selectedOid && selectedOid != "0"){
+            var viewByHeader: HeaderQuestion = TALibrary.currentQuestion.project.CreateQuestionnaireElement(selectedOid);
+            rowHeadersParent = viewByHeader.SubHeaders;
+        }else{
+            rowHeadersParent = table.RowHeaders;
+        }
 
         if(distribution == "1"){
             var overallSentimentHeader: HeaderQuestion = getTAQuestionHeader("overallSentiment");
             overallSentimentHeader.HideData = true;
-            table.RowHeaders.Add(overallSentimentHeader);
+            rowHeadersParent.RowHeaders.Add(overallSentimentHeader);
         }
 
         taCategoriesHeader = getTAQuestionHeader("categorySentiment");
@@ -672,7 +679,12 @@ class TATableUtils{
         }
 
 
-        table.RowHeaders.Add(taCategoriesHeader);
+        rowHeadersParent.Add(taCategoriesHeader);
+
+        if(selectedOid && selectedOid != "0"){
+            table.RowHeaders.Add(viewByHeader)
+        }
+
 
         var headerBase: HeaderBase= new HeaderBase();
         headerBase.HideHeader=true;
