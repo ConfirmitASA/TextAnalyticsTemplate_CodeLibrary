@@ -681,7 +681,7 @@ class TATableUtils{
 
         var formatter : ConditionalFormatting = table.ConditionalFormatting;
 
-        /*formatter.AddArea(setupConditionalFormatting(
+        formatter.AddArea(setupConditionalFormatting(
             [
                 {
                     expression: 'cellv(col,row)<(-1)',
@@ -755,7 +755,7 @@ class TATableUtils{
         ));
 
 
-        table.ConditionalFormatting = formatter;*/
+        table.ConditionalFormatting = formatter;
 
     }
 }
