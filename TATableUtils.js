@@ -351,7 +351,7 @@ class TATableUtils{
         for(var i = 0; i< children; i++){
             log.LogDebug("add children to mask "+i);
             mask.Codes.Add(children[i].id);
-            mask = addChildrenToMask(mask, children[i].children);
+            addChildrenToMask(mask, children[i].children);
         }
     }
 
