@@ -263,9 +263,7 @@ class TATableUtils{
     return chartHeader;
 }
 
-    static function getVerticalPercentsFormula(){
 
-    }
 
 
     /*-----------masking functions----------------*/
@@ -345,6 +343,7 @@ class TATableUtils{
 
     return mask
 }
+
     /*-----------conditional formatting functions--------*/
 
     /**
@@ -747,6 +746,25 @@ class TATableUtils{
 
 
         table.ConditionalFormatting = formatter;
+
+    table.ColumnHeaders.Add(getChartHeader(
+        ChartComboType.Bar100,
+        [
+            {
+                Formula: "cellv(col-10,row)",
+                Color: (Config.Colors.NegNeuPosPalette.Positive)
+            },
+            {
+                Formula: "cellv(col-6,row)",
+                Color: (Config.Colors.NegNeuPosPalette.Neutral)
+            },
+            {
+                Formula: "cellv(col-1,row)",
+                Color: (Config.Colors.NegNeuPosPalette.Negative)
+            }
+        ],
+        " "
+    ));
 
     }
 }
