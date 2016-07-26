@@ -355,23 +355,11 @@ class TATableUtils{
      * @returns {Area}
      */
     static function setupConditionalFormatting(area, conditions,name, applyTo){
-        //var area : Area = new Area();
-        log.LogDebug("in setup conditional formatting");
+        var area : Area = new Area();
+
         area.Name = name;
-        log.LogDebug("setup name");
-        log.LogDebug("axis: "+applyTo.axis);
-        log.LogDebug("direction: "+ applyTo.direction);
-        log.LogDebug("indexes: "+ applyTo.indexes);
-        log.LogDebug("expression: "+conditions[0].expression);
-        log.LogDebug("style: "+conditions[0].style)
 
         area.ApplyTo(applyTo.axis, applyTo.direction, applyTo.indexes);
-    /*
-        var condition: Condition = new Condition();
-
-        condition.Expression = conditions[0].expression;
-        condition.Style = conditions[0].style;
-        area.AddCondition(condition);*/
 
 
         for(var i = 0; i< conditions.length; i++){
@@ -381,7 +369,7 @@ class TATableUtils{
             area.AddCondition(condition);
         }
 
-        //return area;
+        return area;
     }
 
 
@@ -580,8 +568,8 @@ class TATableUtils{
 
         var formatter : ConditionalFormatting = table.ConditionalFormatting;
 
-        var area: Area = new Area();
-        setupConditionalFormatting(area,
+
+    formatter.AddArea(setupConditionalFormatting(
         [
             {
                 expression: 'cellv(col+1, row)<(-1)',
@@ -603,9 +591,9 @@ class TATableUtils{
             direction: Area.Left,
             indexes: "1-1000"
         }
-    );
+    ));
 
-        formatter.AddArea(area);
+
 
 
         table.ConditionalFormatting = formatter;
