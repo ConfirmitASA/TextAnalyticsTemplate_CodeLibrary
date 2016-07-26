@@ -634,7 +634,7 @@ class TATableUtils{
         var totalRespondentsHeader: HeaderQuestion;
         var commentsCountFormula: HeaderFormula;
         if(distribution == "1"){
-            table.RowHeaders.Add(getTotalCategoriesHeader());
+            table.RowHeaders.Add(getTAQuestionHeader("overallSentiment"));
         }
 
         taCategoriesHeader = getTAQuestionHeader("categorySentiment");
