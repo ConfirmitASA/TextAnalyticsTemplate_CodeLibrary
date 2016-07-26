@@ -356,15 +356,28 @@ class TATableUtils{
      */
     static function setupConditionalFormatting(area, conditions,name, applyTo){
         //var area : Area = new Area();
+        log.LogDebug("in setup conditional formatting");
         area.Name = name;
-        area.ApplyTo(applyTo.axis, applyTo.direction, applyTo.indexes);
+        log.LogDebug("setup name");
+        log.LogDebug("axis: "+applyTo.axis);
+        log.LogDebug("direction: "+ applyTo.direction);
+        log.LogDebug("indexes: "+ applyTo.indexes);
+        log.LogDebug("expression: "+conditions[0].expression);
+        log.LogDebug("style: "+conditions[0].style)
 
+        area.ApplyTo(applyTo.axis, applyTo.direction, applyTo.indexes);
+        var condition: Condition = new Condition();
+        condition.Expression = conditions[0].expression;
+        condition.Style = conditions[0].style;
+        area.AddCondition(condition);
+
+/*
         for(var obj in conditions){
             var condition: Condition = new Condition();
             condition.Expression = obj.expression;
             condition.Style = obj.style;
             area.AddCondition(condition);
-        }
+        }*/
 
         //return area;
     }
@@ -583,7 +596,7 @@ class TATableUtils{
             }
         ],
         "NegNeuPos",
-        {
+          {
             axis: Area.Columns,
             direction: Area.Left,
             indexes: "1-1000"
