@@ -349,10 +349,10 @@ class TATableUtils{
      */
     static function addChildrenToMask(mask: MaskFlat, children){
         for(var i = 0; i< children; i++){
+            log.LogDebug("add children to mask "+i);
             mask.Codes.Add(children[i].id);
             mask = addChildrenToMask(mask, children[i].children);
         }
-        return mask
     }
 
     /**
@@ -364,7 +364,7 @@ class TATableUtils{
         mask.IsInclusive = true;
         var categoryId = TALibrary.currentQuestion.themes[ TALibrary.currentQuestion.currentTheme].id;
         mask.Codes.Add(categoryId);
-        mask = addChildrenToMask(mask, TALibrary.currentQuestion.themes[ TALibrary.currentQuestion.currentTheme].children);
+        addChildrenToMask(mask, TALibrary.currentQuestion.themes[ TALibrary.currentQuestion.currentTheme].children);
         return mask
     }
 
