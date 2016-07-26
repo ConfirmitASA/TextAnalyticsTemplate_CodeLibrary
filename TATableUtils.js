@@ -115,17 +115,17 @@ class TATableUtils{
         switch(groupName){
             case "neg":
                 headerCategories.Mask.Codes = '1,2,3,4';
-                headerFormula.Expression = "(cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row))"+(addMinus?"*(-1)":"");
+                headerFormula.Expression = "(cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row))"+(addMinus?"*(-1)":"");
                 categoryTitle = new Label(9, "Negative");
                 break;
             case "neu":
                 headerCategories.Mask.Codes = '5,6,7';
-                headerFormula.Expression = "cellv(col-1,row)";
+                headerFormula.Expression = "cellv(col-1,row)+cellv(col-2,row)+cellv(col-3,row)";
                 categoryTitle = new Label(9, "Neutral");
                 break;
             case "pos":
                 headerCategories.Mask.Codes = '8,9,10,11';
-                headerFormula.Expression = "(cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row))";
+                headerFormula.Expression = "(cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row))";
                 categoryTitle = new Label(9, "Positive");
                 break;
         }
