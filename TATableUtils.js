@@ -658,8 +658,8 @@ class TATableUtils{
         var commentsCountFormula: HeaderFormula;
         var rowHeadersParent;
 
-        if(selectedQid && selectedQid != "0"){
-            var viewByHeader: HeaderQuestion = TALibrary.currentQuestion.project.CreateQuestionnaireElement(selectedOid);
+        if(selectedQId && selectedQId != "0"){
+            var viewByHeader: HeaderQuestion =  new HeaderQuestion(TALibrary.currentQuestion.project.CreateQuestionnaireElement(selectedOid));
             rowHeadersParent = viewByHeader.SubHeaders;
         }else{
             rowHeadersParent = table.RowHeaders;
@@ -668,7 +668,7 @@ class TATableUtils{
         if(distribution == "1"){
             var overallSentimentHeader: HeaderQuestion = getTAQuestionHeader("overallSentiment");
             overallSentimentHeader.HideData = true;
-            rowHeadersParent.RowHeaders.Add(overallSentimentHeader);
+            rowHeadersParent.Add(overallSentimentHeader);
         }
 
         taCategoriesHeader = getTAQuestionHeader("categorySentiment");
@@ -681,7 +681,7 @@ class TATableUtils{
 
         rowHeadersParent.Add(taCategoriesHeader);
 
-        if(selectedQid && selectedQid != "0"){
+        if(selectedQId && selectedQId != "0"){
             table.RowHeaders.Add(viewByHeader)
         }
 
