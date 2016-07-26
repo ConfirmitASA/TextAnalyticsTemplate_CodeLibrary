@@ -365,19 +365,19 @@ class TATableUtils{
         log.LogDebug("expression: "+conditions[0].expression);
         log.LogDebug("style: "+conditions[0].style)
 
-        area.ApplyTo(applyTo.axis, applyTo.direction, applyTo.indexes);
+        /*area.ApplyTo(applyTo.axis, applyTo.direction, applyTo.indexes);
         var condition: Condition = new Condition();
         condition.Expression = conditions[0].expression;
         condition.Style = conditions[0].style;
-        area.AddCondition(condition);
+        area.AddCondition(condition);*/
 
-/*
-        for(var obj in conditions){
+
+        for(var i = 0; i< conditions.length; i++){
             var condition: Condition = new Condition();
-            condition.Expression = obj.expression;
-            condition.Style = obj.style;
+            condition.Expression = conditions[i].expression;
+            condition.Style = conditions[i].style;
             area.AddCondition(condition);
-        }*/
+        }
 
         //return area;
     }
