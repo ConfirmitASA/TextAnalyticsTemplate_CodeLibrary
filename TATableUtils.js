@@ -661,6 +661,7 @@ class TATableUtils{
 
         if(selectedQId && selectedQId != "0"){
             var viewByHeader: HeaderQuestion =  new HeaderQuestion(TALibrary.currentQuestion.project.CreateQuestionnaireElement(selectedQId));
+            viewByHeader.Totals = false;
             rowHeadersParent = viewByHeader.SubHeaders;
         }else{
             rowHeadersParent = table.RowHeaders;
@@ -695,7 +696,7 @@ class TATableUtils{
         commentsCountFormula.Type = FormulaType.Expression;
         commentsCountFormula.Decimals = 1;
         commentsCountFormula.Priority = 0;
-        commentsCountFormula.Expression = distribution == "1" ? "cellv(col-1,row)/cellv(1,1)": "cellv(col-1,row)";
+        commentsCountFormula.Expression = distribution == "1" ? "IF((cellv(1,1)>0),(cellv(col-1,row)/cellv(1,1)),0)": "cellv(col-1,row)";
         commentsCountFormula.Percent = (distribution == "1");
         commentsCountFormula.Title = new Label(9, "Comments");
         commentsCountFormula.HideHeader = true;
@@ -790,26 +791,26 @@ class TATableUtils{
 
         table.ConditionalFormatting = formatter;
 
-    table.ColumnHeaders.Add(getChartHeader(
-        ChartComboType.Bar100,
-        [
-            {
-                Formula: "cellv(col-10,row)",
-                Color: (Config.Colors.NegNeuPosPalette.Positive)
-            },
-            {
-                Formula: "cellv(col-6,row)",
-                Color: (Config.Colors.NegNeuPosPalette.Neutral)
-            },
-            {
-                Formula: "cellv(col-1,row)",
-                Color: (Config.Colors.NegNeuPosPalette.Negative)
-            }
-        ],
-        " "
-    ));
+        table.ColumnHeaders.Add(getChartHeader(
+            ChartComboType.Bar100,
+            [
+                {
+                    Formula: "cellv(col-10,row)",
+                    Color: (Config.Colors.NegNeuPosPalette.Positive)
+                },
+                {
+                    Formula: "cellv(col-6,row)",
+                    Color: (Config.Colors.NegNeuPosPalette.Neutral)
+                },
+                {
+                    Formula: "cellv(col-1,row)",
+                    Color: (Config.Colors.NegNeuPosPalette.Negative)
+                }
+            ],
+            " "
+        ));
 
-    table.RowNesting = TableRowNestingType.Nesting;
+        table.RowNesting = TableRowNestingType.Nesting;
 
     }
 }
