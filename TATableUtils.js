@@ -743,7 +743,7 @@ class TATableUtils{
         formatter.AddArea(setupConditionalFormatting(
             [
                 {
-                    expression: 'cellv(col,row)>0',
+                    expression: 'cellv(col,row)>=0',
                     style: 'negative'
                 },
 
@@ -759,7 +759,7 @@ class TATableUtils{
         formatter.AddArea(setupConditionalFormatting(
             [
                 {
-                    expression: 'cellv(col,row)>0',
+                    expression: 'cellv(col,row)>=0',
                     style: 'neutral'
                 },
 
@@ -775,7 +775,7 @@ class TATableUtils{
         formatter.AddArea(setupConditionalFormatting(
             [
                 {
-                    expression: 'cellv(col,row)>0',
+                    expression: 'cellv(col,row)>=0',
                     style: 'positive'
                 },
 
