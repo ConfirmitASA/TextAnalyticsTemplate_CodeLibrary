@@ -27,19 +27,10 @@ class TAQuestion{
 
     var hierarchy = []; //hierarchical structure of categories {id: String, name: String, children: [], parent: String}
     var categoriesArray = [];//flat structure of categories {id: String, name: String, parent: String}
-    var tableHeaders = {};
+    var themeDistributionHeaders = {};
 
     var currentTheme = -1;
 
-    private static var _themeDistributionHeaders;
-
-    function setThemeDistrubutionHeaders(headers){
-      _themeDistributionHeaders = headers;
-    }
-
-    function getThemeDistributionHeaders(){
-        return _themeDistributionHeaders;
-    }
 
 
     /**
@@ -87,7 +78,7 @@ class TAQuestion{
 
     for(var i=0; i<codes.Count; i++){
         categoriesArray.push({id: codes.Item(i), name: names.Item(i), parent: parents.Count>0?parents.Item(i):null});
-        tableHeaders[codes.Item(i)] = {title: names.Item(i), index: i};
+        themeDistributionHeaders[codes.Item(i)] = {title: names.Item(i), index: i};
     }
 
     setupHierarchy(0, null);

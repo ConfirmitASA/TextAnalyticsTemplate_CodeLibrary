@@ -169,8 +169,8 @@ class Page_dashboard {
             themeDistributionHeaders = headers;
         }catch(e){
 
-            headers = themeDistributionHeaders ? themeDistributionHeaders : TALibrary.currentQuestion.tableHeaders;
-            themeDistributionHeaders ? context.log.LogDebug("themeDistributionHeader") : context.log.LogDebug("tableHeaders");
+            headers = themeDistributionHeaders ? themeDistributionHeaders : TALibrary.currentQuestion.themeDistributionHeaders;
+            themeDistributionHeaders ? context.log.LogDebug("themeDistributionHeader") : context.log.LogDebug("themeDistributionHeaders");
             context.log.LogDebug("there is no tblThemeDistribution table on the page. "+e);
         }
 
