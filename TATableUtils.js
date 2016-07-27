@@ -661,7 +661,7 @@ class TATableUtils{
 
         if(selectedQId && selectedQId != "0"){
             var viewByHeader: HeaderQuestion =  new HeaderQuestion(TALibrary.currentQuestion.project.CreateQuestionnaireElement(selectedQId));
-            viewByHeader.Totals = false;
+            viewByHeader.ShowTotals = false;
             rowHeadersParent = viewByHeader.SubHeaders;
         }else{
             rowHeadersParent = table.RowHeaders;
