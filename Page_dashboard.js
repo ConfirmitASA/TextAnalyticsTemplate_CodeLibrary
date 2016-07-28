@@ -127,7 +127,7 @@ class Page_dashboard {
 
     static function tblMostDeclined_Render(context){
     TATableUtils.createTopChangedThemesTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "neg", context.state.Parameters.GetString("TA_COMPARE_PERIODS"));
-    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart"]);
+    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
 }
 
     static function txtThemeDistribution_Hide(context){
