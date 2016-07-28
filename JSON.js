@@ -77,4 +77,17 @@ class TATableData{
         }
     return rowheaders;
     }
+
+    /**
+     * function to get blocks Ids for DA table
+     */
+    static function getBlockIds(qName){
+        var blocks=[];
+        var question: Question = TALibrary.currentQuestion.project.GetQuestion(qName);
+        var answers = question.GetAnswers();
+        for(var i = 0; i < answers.length; i++){
+            blocks.push(answers[i].Precode);
+        }
+        return blocks;
+    }
 }
