@@ -64,7 +64,7 @@ class Page_dashboard {
 
     static function tblMostNegative_Render(context){
     TATableUtils.createTopSentimentTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "neg", context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
-    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart"]);
+    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
 }
 
     static function tblMostPositive_Hide(context){
@@ -73,7 +73,7 @@ class Page_dashboard {
 
     static function tblMostPositive_Render(context){
     TATableUtils.createTopSentimentTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "pos", context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE"));
-    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart"]);
+    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
 }
 
     static function txtComparePeriods_Hide(context){
@@ -109,7 +109,7 @@ class Page_dashboard {
 
     static function tblMostImproved_Render(context){
     TATableUtils.createTopChangedThemesTable(context.component, context.state.Parameters.GetString("TA_LEVEL"), 5, "pos", context.state.Parameters.GetString("TA_COMPARE_PERIODS"));
-    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart"]);
+    TATableUtils.setupTableClasses(context.component, ["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
 }
 
     static function txtMostDeclined_Hide(context){
