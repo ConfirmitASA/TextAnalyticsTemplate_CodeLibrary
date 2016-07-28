@@ -73,7 +73,7 @@ class TATableData{
         var rowHeaderTitles = report.TableUtils.GetRowHeaderCategoryTitles(tableName);
         var rowHeaderIds = report.TableUtils.GetRowHeaderCategoryIds(tableName);
         for(var i=0; i<rowHeaderIds.length;i++){
-            rowheaders[rowHeaderIds[i][0]+((rowHeaderIds.length>1)?("_"+rowHeaderIds[i][1]):null)] = {title: rowHeaderTitles[i][0], index: i, parentsIds: rowHeaderIds[i], parentsTitles: rowHeaderTitles[i]};
+            rowheaders[rowHeaderIds[i][0]+((rowHeaderIds.length>1)?("_"+rowHeaderIds[i][1]):null)] = {title: rowHeaderTitles[i][0], index: i, categoryId: rowHeaderIds[i][0], parentId: ((rowHeaderIds.length>1)?(rowHeaderIds[i][1]):null)};
         }
     return rowheaders;
     }
