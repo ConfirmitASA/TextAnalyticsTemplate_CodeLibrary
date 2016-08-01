@@ -26,8 +26,7 @@ class TAHitlistUtils {
     static function
 
     getTAHitlistColumn(name){
-        var hitlistColumn;
-        HitListColumn = new HitListColumn();
+        var hitlistColumn: HitListColumn = new HitListColumn();
 
         switch (name.toLowerCase()) {
             case "overallsentiment":

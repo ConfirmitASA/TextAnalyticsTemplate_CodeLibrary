@@ -4,6 +4,7 @@ class Page_comments {
     static function Hide(context) {
         return false
     }
+
     static function Render(context) {
         var metaData = new MetaData(context.report, context.log);
         var parameterUtilities = new ParameterUtilities(context.report, context.state, context.log);
