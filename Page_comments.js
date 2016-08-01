@@ -1,5 +1,5 @@
-class Page_detailed_analysis {
-    static private const PageId = "detailed_analysis";
+class Page_comments {
+    static private const PageId = "comments";
 
     static function Hide(context) {
         return false
