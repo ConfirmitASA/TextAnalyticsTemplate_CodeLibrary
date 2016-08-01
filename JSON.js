@@ -73,7 +73,7 @@ class TATableData{
         var rowHeaderTitles = report.TableUtils.GetRowHeaderCategoryTitles(tableName);
         var rowHeaderIds = report.TableUtils.GetRowHeaderCategoryIds(tableName);
         for(var i=0; i<rowHeaderIds.length;i++){
-            rowheaders[rowHeaderIds[i][0]+((rowHeaderIds[i].length>1)?("_"+rowHeaderIds[i][1]):null)] = {title: rowHeaderTitles[i][0], index: i, categoryId: rowHeaderIds[i][0], blockId: ((rowHeaderIds[i].length>1)?(rowHeaderIds[i][1]):null)};
+            rowheaders[rowHeaderIds[i][0]+((rowHeaderIds[i].length>1)?("_block"+rowHeaderIds[i][1]):null)] = {title: rowHeaderTitles[i][0], index: i, categoryId: rowHeaderIds[i][0], blockId: ((rowHeaderIds[i].length>1)?("block"+rowHeaderIds[i][1]):null)};
         }
     return rowheaders;
     }
@@ -86,7 +86,7 @@ class TATableData{
         var question: Question = TALibrary.currentQuestion.project.GetQuestion(qName);
         var answers = question.GetAnswers();
         for(var i = 0; i < answers.length; i++){
-            blocks.push(answers[i].Precode);
+            blocks.push("block"+answers[i].Precode);
         }
         return blocks;
     }
