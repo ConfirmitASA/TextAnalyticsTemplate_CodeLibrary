@@ -39,14 +39,14 @@ class Page_comments {
 
     static function htlComments_Render(context){
         if(TALibrary.currentQuestion.currentTheme>=0){
-            context.component.Columns.Add(TALibrary.getTAHitlistColumn("categorysentiment"));
+            context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn("categorysentiment"));
         }
-        context.component.Columns.Add(TALibrary.getTAHitlistColumn("verbatim"));
-        context.component.Columns.Add(TALibrary.getTAHitlistColumn(Config.DateVariableId ? Config.DateVariableId : "interview_start"));
-        context.component.Columns.Add(TALibrary.getTAHitlistColumn("overallsentiment"));
+        context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn("verbatim"));
+        context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn(Config.DateVariableId ? Config.DateVariableId : "interview_start"));
+        context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn("overallsentiment"));
 
         for(var i = 0 ; i < TALibrary.currentQuestion.questionDetails.TAHitlistFields.length; i++){
-            context.component.Columns.Add(TALibrary.getTAHitlistColumn(TALibrary.currentQuestion.questionDetails.TAHitlistFields[i]));
+            context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn(TALibrary.currentQuestion.questionDetails.TAHitlistFields[i]));
         }
 
     }
