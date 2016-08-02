@@ -43,6 +43,7 @@ class Page_comments {
         }
         context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn("verbatim"));
         context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn(Config.DateVariableId ? Config.DateVariableId : "interview_start"));
+        context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn("categories"));
         context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn("overallsentiment"));
 
         for(var i = 0 ; i < TALibrary.currentQuestion.questionDetails.TAHitlistFields.length; i++){
