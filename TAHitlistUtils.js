@@ -28,7 +28,6 @@ class TAHitlistUtils {
     getTAHitlistColumn(name, sortable){
 
         var hitlistColumn: HitListColumn = new HitListColumn();
-        log.LogDebug(hitlistColumn.IsSortable+" 1");
         switch (name.toLowerCase()) {
             case "overallsentiment":
                 hitlistColumn.QuestionnaireElement = TALibrary.currentQuestion.overallSentiment.questionnaireElement;
@@ -52,7 +51,6 @@ class TAHitlistUtils {
                 hitlistColumn.QuestionnaireElement = TALibrary.currentQuestion.project.CreateQuestionnaireElement(name);
                 break;
         }
-        log.LogDebug(sortable+" sort")
         hitlistColumn.IsSortable = (sortable? true : false);
 
         return hitlistColumn
