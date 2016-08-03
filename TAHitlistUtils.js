@@ -25,7 +25,7 @@ class TAHitlistUtils {
      */
     static function
 
-    getTAHitlistColumn(name){
+    getTAHitlistColumn(name, sortable){
         var hitlistColumn: HitListColumn = new HitListColumn();
 
         switch (name.toLowerCase()) {
@@ -52,6 +52,7 @@ class TAHitlistUtils {
                 break;
         }
 
+        hitlistColumn.IsSortable = sortable;
         return hitlistColumn
     }
 }

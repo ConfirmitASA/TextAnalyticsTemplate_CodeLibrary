@@ -42,7 +42,7 @@ class Page_comments {
             context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn("categorysentiment"));
         }
         context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn("verbatim"));
-        context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn(Config.DateVariableId ? Config.DateVariableId : "interview_start"));
+        context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn(Config.DateVariableId ? Config.DateVariableId : "interview_start"), true);
         context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn("categories"));
         context.component.Columns.Add(TAHitlistUtils.getTAHitlistColumn("overallsentiment"));
 
