@@ -52,7 +52,7 @@ class TAHitlistUtils {
                 break;
         }
 
-        hitlistColumn.IsSortable = sortable;
+        hitlistColumn.IsSortable = sortable ? YesNoDefaultValue.Yes : false;
         return hitlistColumn
     }
 }
