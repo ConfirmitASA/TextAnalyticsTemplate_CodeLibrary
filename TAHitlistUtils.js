@@ -53,6 +53,8 @@ class TAHitlistUtils {
         }
 
         hitlistColumn.IsSortable = sortable ? YesNoDefaultValue.Yes : false;
+
+        log.LogDebug(hitlistColumn.IsSortable);
         return hitlistColumn
     }
 }
