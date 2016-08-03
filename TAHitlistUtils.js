@@ -52,7 +52,7 @@ class TAHitlistUtils {
                 break;
         }
 
-        hitlistColumn.IsSortable = sortable ? YesNoDefaultValue.Yes : false;
+        hitlistColumn.IsSortable = sortable ? true : false;
 
         log.LogDebug(hitlistColumn.IsSortable);
         return hitlistColumn
