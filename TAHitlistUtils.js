@@ -51,7 +51,7 @@ class TAHitlistUtils {
                 hitlistColumn.QuestionnaireElement = TALibrary.currentQuestion.project.CreateQuestionnaireElement(name);
                 break;
         }
-        hitlistColumn.IsSortable = (sortable? true : false);
+        hitlistColumn.IsSortable = true;
 
         return hitlistColumn
     }
