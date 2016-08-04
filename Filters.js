@@ -11,4 +11,8 @@ class Filters {
         context.Component.Expression = "";
     }
 }
+
+    static function TACurrentThemeFilter(context){
+        TAFilterUtils.currentThemeFilter(context.component)
+    }
 }
