@@ -694,7 +694,7 @@ class TATableUtils{
 
         commentsCountFormula = new HeaderFormula();
         commentsCountFormula.Type = FormulaType.Expression;
-        commentsCountFormula.Decimals = 1;
+        commentsCountFormula.Decimals = 0;
         commentsCountFormula.Priority = 0;
         commentsCountFormula.Expression = distribution == "1" ? "IF((cellv(1,1)>0),(cellv(col-1,row)/cellv(1,1)),0)": "cellv(col-1,row)";
         commentsCountFormula.Percent = (distribution == "1");
