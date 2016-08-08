@@ -116,5 +116,6 @@ class TATableData{
                 createDetailedAnalysisHeader(rowheadersObject,themesArray[j],blocks[i],index);
             }
         }
+        return rowheadersObject;
     }
 }
