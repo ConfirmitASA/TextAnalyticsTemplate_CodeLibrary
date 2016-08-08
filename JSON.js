@@ -96,7 +96,7 @@ class TATableData{
         rowheadersObject[hierarchyObject.id+(blockId?("_"+blockId):null)]= {
             title: hierarchyObject.name,
             index: index,
-            categoryId: id,
+            categoryId: hierarchyObject.id,
             blockId: blockId
         }
         index++;
