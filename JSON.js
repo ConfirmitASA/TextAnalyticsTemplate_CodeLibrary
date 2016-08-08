@@ -108,10 +108,10 @@ class TATableData{
 
     static function getDetailedAnalysisHeaders(blocks) {
         var rowheadersObject = {};
-    rowheadersObject.index = 0;
+        rowheadersObject.index = 0;
         var index = 0;
         var themesArray = [];
-        if (blocks.length > 0) blocks.push(null);
+        if (!blocks.length > 0) blocks.push(null);
         TALibrary.currentQuestion.currentTheme > -1 ? themesArray.push(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme]) : themesArray = TALibrary.currentQuestion.themes;
         for (var i = 0; i < blocks.length; i++) {
             for (var j = 0; j < themesArray.length; j++) {
