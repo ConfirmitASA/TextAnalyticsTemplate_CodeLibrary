@@ -93,7 +93,7 @@ class TATableData{
 
 
     static function createDetailedAnalysisHeader(rowheadersObject,hierarchyObject,blockId){
-        rowheadersObject[hierarchyObject.id+(blockId?("_"+blockId):null)]= {
+        rowheadersObject[hierarchyObject.id+(blockId?("_"+blockId):"")]= {
             title: hierarchyObject.name,
             index: rowheadersObject.index,
             categoryId: hierarchyObject.id,
