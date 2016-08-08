@@ -101,8 +101,9 @@ class TATableData{
         }
         index++;
         for(var i =0; i<hierarchyObject.children.length;i++){
-            createDetailedAnalysisHeader(rowheadersObject,hierarchyObject.children[i],blockId,index);
+            rowheadersObject = createDetailedAnalysisHeader(rowheadersObject,hierarchyObject.children[i],blockId,index);
         }
+    return rowheadersObject;
     }
 
     static function getDetailedAnalysisHeaders(blocks) {
@@ -113,7 +114,7 @@ class TATableData{
         TALibrary.currentQuestion.currentTheme > -1 ? themesArray.push(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme]) : themesArray = TALibrary.currentQuestion.themes;
         for (var i = 0; i < blocks.length; i++) {
             for (var j = 0; j < themesArray.length; j++) {
-                createDetailedAnalysisHeader(rowheadersObject,themesArray[j],blocks[i],index);
+                rowheadersObject = createDetailedAnalysisHeader(rowheadersObject,themesArray[j],blocks[i],index);
             }
         }
         return rowheadersObject;
