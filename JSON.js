@@ -92,29 +92,30 @@ class TATableData{
     }
 
 
-    static function createDetailedAnalysisHeader(rowheadersObject,hierarchyObject,blockId,index){
+    static function createDetailedAnalysisHeader(rowheadersObject,hierarchyObject,blockId){
         rowheadersObject[hierarchyObject.id+(blockId?("_"+blockId):null)]= {
             title: hierarchyObject.name,
-            index: index,
+            index: rowheadersObject.index,
             categoryId: hierarchyObject.id,
             blockId: blockId
-        }
-        index++;
+        };
+    rowheadersObject.index++;
         for(var i =0; i<hierarchyObject.children.length;i++){
-            rowheadersObject = createDetailedAnalysisHeader(rowheadersObject,hierarchyObject.children[i],blockId,index);
+            rowheadersObject = createDetailedAnalysisHeader(rowheadersObject,hierarchyObject.children[i],blockId);
         }
     return rowheadersObject;
     }
 
     static function getDetailedAnalysisHeaders(blocks) {
         var rowheadersObject = {};
+    rowheadersObject.index = 0;
         var index = 0;
         var themesArray = [];
         if (blocks.length > 0) blocks.push(null);
         TALibrary.currentQuestion.currentTheme > -1 ? themesArray.push(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme]) : themesArray = TALibrary.currentQuestion.themes;
         for (var i = 0; i < blocks.length; i++) {
             for (var j = 0; j < themesArray.length; j++) {
-                rowheadersObject = createDetailedAnalysisHeader(rowheadersObject,themesArray[j],blocks[i],index);
+                rowheadersObject = createDetailedAnalysisHeader(rowheadersObject,themesArray[j],blocks[i]);
             }
         }
         return rowheadersObject;
