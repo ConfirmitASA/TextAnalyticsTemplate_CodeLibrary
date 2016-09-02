@@ -16,7 +16,7 @@ class JSON
         var t = typeof (obj);
         if (t != "object" || obj === null) {
             // simple data type
-            if (t == "string") obj = '"'+ escapeEntities(obj) +'"';
+            if (t == "string") obj = '"'+ _escapeEntities(obj) +'"';
             else if(t=="number") obj = '"'+obj+'"';
             return String(obj);
         }
