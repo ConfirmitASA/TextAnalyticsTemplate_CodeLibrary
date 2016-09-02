@@ -1,58 +1,72 @@
-class TAHitlistUtils {
-    static var pageContext: ScriptPageContext;
-    static var log: Logger;
-    static var report: Report;
-    static var confirmit: ConfirmitFacade;
-    static var user: User;
+/**
+ * @class TAHitlistUtils
+ * @classdesc Class to work with the hitlist
+ *
+ * @constructs TAHitlistUtils
+ * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+ * @param {TAFolder} folder
+ * @param {Hitlist} hitlist
+ */
+class TAHitlistUtils{
+    private var _globals;
+    private var _folder: TAFolder;
+    private var _hitlist: HitList;
+
+    function TAHitlistUtils(globals, folder, hitlist){
+        _globals = globals;
+        _folder = folder;
+        _hitlist = hitlist;
+    }
 
     /**
-     * @param {Logger} l - log
-     * @param {Report} r - report
-     * @param {ConfirmitFacade} c - confirmit
-     * @param {User} u - user
+     * @memberof TAHitlistUtils
+     * @instance
+     * @function AddTAColumn
+     * @description function to add a text analytics variable to the hitlist
+     * @param {String} columnName - type of the question "overallsentiment" or "os", "categories" or "c", "positivementions" or "positive" or "pm", "negativementions" or "negative" or "nm", "categorysentiment" or "cs"
+     * @param {Boolean} sortable
+     * @param {String} postfix - id of the selected category
      */
-    static function setGlobals(p: ScriptPageContext, l: Logger, r: Report, c: ConfirmitFacade, u: User){
-    pageContext = p;
-    log = l;
-    report = r;
-    confirmit = c;
-    user = u;
-}
-    /**
-     * function to add column to hitlist
-     * @param {String} name - question id or TA postfix
-     * @return {HitListColumn}
-     */
-    static function
-
-    getTAHitlistColumn(name, sortable){
-
+    function AddTAColumn(columnName, sortable, postfix){
         var hitlistColumn: HitListColumn = new HitListColumn();
-        switch (name.toLowerCase()) {
-            case "overallsentiment":
-                hitlistColumn.QuestionnaireElement = TALibrary.currentQuestion.overallSentiment.questionnaireElement;
-                break;
-            case "categories":
-                hitlistColumn.QuestionnaireElement = TALibrary.currentQuestion.categories.questionnaireElement;
-                break;
-            case "positivementions":
-                hitlistColumn.QuestionnaireElement = TALibrary.currentQuestion.positiveMentions.questionnaireElement;
-                break;
-            case "negativementions":
-                hitlistColumn.QuestionnaireElement = TALibrary.currentQuestion.negativeMentions.questionnaireElement;
-                break;
-            case "categorysentiment":
-                hitlistColumn.QuestionnaireElement = TALibrary.currentQuestion.currentTheme>=0 ? TALibrary.currentQuestion.project.CreateQuestionnaireElement(TALibrary.currentQuestion.categorySentiment.questionName, TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id) : TALibrary.currentQuestion.categorySentiment.questionnaireElement;
-                break;
-            case "verbatim":
-                hitlistColumn.QuestionnaireElement = TALibrary.currentQuestion.verbatim.questionnaireElement;
-                break;
-            default:
-                hitlistColumn.QuestionnaireElement = TALibrary.currentQuestion.project.CreateQuestionnaireElement(name);
-                break;
-        }
+        var project : Project = _globals.report.DataSource.GetProject(_folder.GetDatasourceId());
+        var columnId = _folder.GetQuestionId(columnName);
+        hitlistColumn.QuestionnaireElement = columnName == "categorysentiment" ? project.CreateQuestionnaireElement(columnId, postfix) : project.CreateQuestionnaireElement(columnId);
         sortable ? (hitlistColumn.IsSortable = true) : null;
+        _hitlist.Columns.Add(hitlistColumn);
+    }
 
-        return hitlistColumn
+    /**
+     * @memberof TAHitlistUtils
+     * @instance
+     * @function AddColumn
+     * @description function to add a not text analytics variable to the hitlist
+     * @param {String} columnName - variable qId
+     * @param {Boolean} sortable
+     */
+    function AddColumn(columnName, sortable){
+        var hitlistColumn: HitListColumn = new HitListColumn();
+        var project : Project = _globals.report.DataSource.GetProject(_folder.GetDatasourceId());
+
+        hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columnName);
+        sortable ? (hitlistColumn.IsSortable = true) : null;
+        _hitlist.Columns.Add(hitlistColumn);
+    }
+
+    /**
+     * @memberof TAHitlistUtils
+     * @instance
+     * @function AddConfiguredColumns
+     * @description function to add columns from config
+     */
+    function AddConfiguredColumns(){
+        var hitlistColumn: HitListColumn;
+        var project : Project = _globals.report.DataSource.GetProject(_folder.GetDatasourceId());
+        var columns = _folder.GetHitlistColumns();
+        for( var i = 0; i < columns.length; i++){
+            hitlistColumn = new HitListColumn();
+            hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columns[i]);
+            _hitlist.Columns.Add(hitlistColumn);
+        }
     }
 }
