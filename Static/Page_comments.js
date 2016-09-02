@@ -88,7 +88,7 @@ class Page_comments{
         htlComments.AddTAColumn();
         htlComments.AddColumn(_folder.GetTimeVariableId(), true);
         htlComments.AddTAColumn("overallsentiment");
-        htlComments.AddTAColumn("categories");
+        //htlComments.AddTAColumn("categories");
         htlComments.AddConfiguredColumns();
     }
 
@@ -129,7 +129,7 @@ class Page_comments{
 
         hitlistHeaders["date"] = _folder.GetTimeVariableId() ? _folder.GetTimeVariableId() : "interview_start";
 
-        hitlistHeaders["categories"] = _folder.GetQuestionId("categories");
+        //hitlistHeaders["categories"] = _folder.GetQuestionId("categories");
 
         hitlistHeaders["overallSentiment"] = _folder.GetQuestionId("overallSentiment");
 
