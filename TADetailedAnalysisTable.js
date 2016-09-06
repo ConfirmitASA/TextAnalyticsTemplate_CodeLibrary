@@ -78,7 +78,7 @@ class TADetailedAnalysisTable{
         }
 
         if(_distribution == "1"){
-            categoryHeader += _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:true") + "+";
+            categoryHeader += _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:false") + "+";
         }
 
         if( _selectedCategory != "all" ){
