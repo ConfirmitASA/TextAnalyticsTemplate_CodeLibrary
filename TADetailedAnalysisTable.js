@@ -101,7 +101,7 @@ class TADetailedAnalysisTable{
      */
     private function _getColumnheadersExpression(){
         var columnexpr = "";
-        var columnbase = "[N]{hideheader:true;hidedata:true}";
+        var columnbase = "[N]{hideheader:true;hidedata:false}";
 
         var countformula = _getColumnFormulaExpression();
 
@@ -122,11 +122,12 @@ class TADetailedAnalysisTable{
      */
     private function _getColumnFormulaExpression(){
         var countformulaexpression;
-        var countformula = '[FORMULA]{decimals:0;label:"Comments";hideheader:true;percent:false';
+        var countformula = '[FORMULA]{decimals:0;label:"Comments";hideheader:true';
         if( _distribution == "1"){
             countformula += ";percent:true";
             countformulaexpression = '"IF((cellv(1,1)>0),(cellv(col-1,row)/cellv(1,1)),EMPTYV())"';
         }else{
+            countformula += ";percent:false";
             countformulaexpression = '"IF(cellv(col-1,row)>0,cellv(col-1,row),EMPTYV())"';
         }
         countformula += ";expression:"+countformulaexpression;
