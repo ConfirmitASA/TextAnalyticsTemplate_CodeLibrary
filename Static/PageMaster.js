@@ -45,7 +45,7 @@ class PageMaster{
         filterSummary = summarySegments.join("<span>AND</span>");
         context.component.Output.Append(filterSummary);
         if( codes.length > 0 )
-            context.component.Output.Append("<button title='Clear filters' onclick='javascript:document.querySelector(\'.filters-clear-button input\').click()' style = 'padding: 1px'><svg width='10' height='10' class='icon-circle-x'><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='/discoveryanalytics/svg-icons/stack/svg/sprite.stack.svg#circle-x'></use></svg></button>");
+            context.component.Output.Append('<button title="Clear filters" onclick="javascript:document.querySelector(\'.filters-clear-button input\').click()" style = "padding: 1px"><svg width="10" height="10" class="icon-circle-x"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=""/discoveryanalytics/svg-icons/stack/svg/sprite.stack.svg#circle-x"></use></svg></button>');
     }
 
     /**
