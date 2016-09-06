@@ -73,12 +73,13 @@ class TADetailedAnalysisTable{
         var categoryHeader = "(";
 
         var mask = false;
-        if( _selectedQuestion != "all" ){
-            blockHeader += _selectedQuestion+'{id:'+_selectedQuestion+';totals:false}/'
-        }
 
         if(_distribution == "1"){
-            categoryHeader += _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:false") + "+";
+            blockHeader += _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:true") + "+";
+        }
+
+        if( _selectedQuestion != "all" ){
+            blockHeader += _selectedQuestion+'{id:'+_selectedQuestion+';totals:false}/'
         }
 
         if( _selectedCategory != "all" ){
