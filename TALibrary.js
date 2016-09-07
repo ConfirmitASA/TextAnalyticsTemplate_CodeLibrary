@@ -43,17 +43,17 @@ class TALibrary{
      * @returns {TAFolder}
      */
     function GetFolderById(id){
+    var result;
         if(id){
-
             for(var i=0; i<_folders.length; i++){
                 if(_folders[i].GetId() == id){
-                    return _folders[i];
+                    result = _folders[i];
                     break;
                 }
             }
-
-            throw new Error(201, "incorrect question Id");
-
+            if(!result) {
+                throw new Error(201, "incorrect question Id");
+            }
         }else{
             return _folders[0];
         }
