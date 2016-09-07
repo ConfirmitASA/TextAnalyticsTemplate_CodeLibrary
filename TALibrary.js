@@ -17,6 +17,7 @@ class TALibrary{
         _globals = globals;
         globals.log.LogDebug("TALibrary1");
     var filtersQuestions = TAHelper.GetTagsFromSurvey(globals, config.DS_Main, ["ta_filter"]);
+    globals.log.LogDebug("TALibrary1 1");
         _filtersQuestions = TAHelper.GetConfiguredVariables(globals, null, config.FilterQuestions, filtersQuestions, []);
     globals.log.LogDebug("TALibrary2");
         var folder: TAFolder;
