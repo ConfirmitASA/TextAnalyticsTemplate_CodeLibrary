@@ -13,13 +13,13 @@ class TALibrary{
     private var _filtersQuestions;
 
 
-    function TALibrary(globals,folders,filterQuestions){
+    function TALibrary(globals,folders, config){
         _globals = globals;
 
-        _filtersQuestions = TAHelper.GetConfiguredVariables(globals, null, filterQuestions, "ta_filter", []);
+        _filtersQuestions = TAHelper.GetConfiguredVariables(globals, null, config.FilterQuestions, "ta_filter", []);
         var folder: TAFolder;
         for(var i = 0 ; i < folders.length; i++){
-            folder = new TAFolder(_globals,folders[i]);
+            folder = new TAFolder(_globals,folders[i], config);
             _folders.push(folder);
         }
 

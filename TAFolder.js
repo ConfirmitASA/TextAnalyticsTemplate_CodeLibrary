@@ -23,16 +23,16 @@ class TAFolder{
     private var _hierarchy: Hierarchy;
 
 
-    function TAFolder(globals, questionObj: Object){
+    function TAFolder(globals, questionObj: Object, config){
         _globals = globals;
         _id = questionObj.TAQuestionId;
         _qName = questionObj.TAQuestionName;
         _modelNo = questionObj.TAModelNo;
         _timeVariableId = TAHelper.GetConfiguredVariables(globals, [questionObj.TimeVariableId], null, null, ["interview_start"])[0];
 
-        _datasourceId = TAHelper.GetConfiguredVariables(globals, [questionObj.DatasourceId], [Config.DS_Main], null, ["ds0"])[0];
-        _variablesToViewBy = TAHelper.GetConfiguredVariables(globals, questionObj.VariablesToViewBy, Config.VariablesToViewBy, "ta_viewby", []);
-        _hitlistColumns = TAHelper.GetConfiguredVariables(globals, questionObj.HitlistColumns, Config.HitlistColumns, "hitlist", []);
+        _datasourceId = TAHelper.GetConfiguredVariables(globals, [questionObj.DatasourceId], [config.DS_Main], null, ["ds0"])[0];
+        _variablesToViewBy = TAHelper.GetConfiguredVariables(globals, questionObj.VariablesToViewBy, config.VariablesToViewBy, "ta_viewby", []);
+        _hitlistColumns = TAHelper.GetConfiguredVariables(globals, questionObj.HitlistColumns, config.HitlistColumns, "hitlist", []);
         _hierarchy = new Hierarchy(globals, {
             schemaId: questionObj.DatabaseSchemaId,
             tableName: questionObj.DatabaseTableName,
