@@ -15,20 +15,14 @@ class TALibrary{
 
     function TALibrary(globals,config){
         _globals = globals;
-        globals.log.LogDebug("TALibrary1");
     var filtersQuestions = TAHelper.GetTagsFromSurvey(globals, config.DS_Main, ["ta_filter"]);
-    globals.log.LogDebug("TALibrary1 1");
         _filtersQuestions = TAHelper.GetConfiguredVariables(globals, null, config.FilterQuestions, filtersQuestions, []);
-    globals.log.LogDebug("TALibrary2");
         var folder: TAFolder;
-    globals.log.LogDebug("TALibrary3");
         for(var i = 0 ; i < config.TAQuestions.length; i++){
             folder = new TAFolder(_globals,i, config);
             _folders.push(folder);
         }
-    globals.log.LogDebug("TALibrary4");
         _currentFolder = _folders[0];
-    globals.log.LogDebug("TALibrary5");
     }
 
     /**
@@ -52,7 +46,7 @@ class TALibrary{
         if(id){
 
             for(var i=0; i<_folders.length; i++){
-                if(_folders[i].id == id){
+                if(_folders[i].GetId() == id){
                     return _folders[i];
                     break;
                 }
