@@ -106,13 +106,18 @@ class TAHelper{
         return result;
     }
 
-    static function GetTagsFromSurvey(globals, datasourseId, tags){
+    static function GetTagsFromSurvey(globals, datasourceId, tags){
+    globals.log.LogDebug("GTFS1");
     var result = [];
-    var project = globals.report.DataSource.GetProject(datasourseId);
+    globals.log.LogDebug("GTFS2");
+    var project = globals.report.DataSource.GetProject(datasourceId);
+    globals.log.LogDebug("GTFS3");
     var questions = project.GetQuestionsWithAnswers(false, tags);
+    globals.log.LogDebug("GTFS4");
     for (var i = 0; i < questions.length; i++){
         result.push(questions[i].QuestionId);
     }
+    globals.log.LogDebug("GTFS5");
     return result;
 }
 
