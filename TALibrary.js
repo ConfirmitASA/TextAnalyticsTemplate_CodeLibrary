@@ -19,7 +19,7 @@ class TALibrary{
         _filtersQuestions = TAHelper.GetConfiguredVariables(globals, null, config.FilterQuestions, "ta_filter", []);
         var folder: TAFolder;
         for(var i = 0 ; i < folders.length; i++){
-            folder = new TAFolder(_globals,folders[i], config);
+            folder = new TAFolder(_globals,i, config);
             _folders.push(folder);
         }
 

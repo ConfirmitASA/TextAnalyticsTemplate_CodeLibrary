@@ -23,21 +23,21 @@ class TAFolder{
     private var _hierarchy: Hierarchy;
 
 
-    function TAFolder(globals, questionObj: Object, config){
+    function TAFolder(globals, questionIndex, config){
         _globals = globals;
-        _id = questionObj.TAQuestionId;
-        _qName = questionObj.TAQuestionName;
-        _modelNo = questionObj.TAModelNo;
-        _timeVariableId = TAHelper.GetConfiguredVariables(globals, [questionObj.TimeVariableId], null, null, ["interview_start"])[0];
+        _id = config.TAQuestions[questionIndex].TAQuestionId;
+        _qName = config.TAQuestions[questionIndex].TAQuestionName;
+        _modelNo = config.TAQuestions[questionIndex].TAModelNo;
+        _timeVariableId = TAHelper.GetConfiguredVariables(globals, [config.TAQuestions[questionIndex].TimeVariableId], null, null, ["interview_start"])[0];
 
-        _datasourceId = TAHelper.GetConfiguredVariables(globals, [questionObj.DatasourceId], [config.DS_Main], null, ["ds0"])[0];
-        _variablesToViewBy = TAHelper.GetConfiguredVariables(globals, questionObj.VariablesToViewBy, config.VariablesToViewBy, "ta_viewby", []);
-        _hitlistColumns = TAHelper.GetConfiguredVariables(globals, questionObj.HitlistColumns, config.HitlistColumns, "hitlist", []);
+        _datasourceId = TAHelper.GetConfiguredVariables(globals, [config.TAQuestions[questionIndex].DatasourceId], [config.DS_Main], null, ["ds0"])[0];
+        _variablesToViewBy = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].VariablesToViewBy, config.VariablesToViewBy, "ta_viewby", []);
+        _hitlistColumns = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].HitlistColumns, config.HitlistColumns, "hitlist", []);
         _hierarchy = new Hierarchy(globals, {
-            schemaId: questionObj.DatabaseSchemaId,
-            tableName: questionObj.DatabaseTableName,
-            relationshipColumnName: questionObj.RelationshipColumnName,
-            textSeparator: questionObj.TextSeparator
+            schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
+            tableName: config.TAQuestions[questionIndex].DatabaseTableName,
+            relationshipColumnName: config.TAQuestions[questionIndex].RelationshipColumnName,
+            textSeparator: config.TAQuestions[questionIndex].TextSeparator
         });
     }
 
