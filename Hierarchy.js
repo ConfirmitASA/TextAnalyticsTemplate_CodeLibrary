@@ -80,9 +80,13 @@ class Hierarchy{
      * @param {Object[]} rows - list of rows from db table
      */
     private function _generateFlatList(rows) {
+    _globals.log.LogDebug("_generateFlatList start");
         for(var i = 0; i < rows.Count; ++i) {
+            _globals.log.LogDebug("_generateFlatList for");
             var flatEntry = _createFlatEntry(rows[i]);
+            _globals.log.LogDebug("_generateFlatList for2");
             _flat.push(flatEntry);
+            _globals.log.LogDebug("_generateFlatList for3");
         }
     }
 
@@ -96,13 +100,16 @@ class Hierarchy{
      * @returns {Object}
      */
     private function _createFlatEntry(row) {
+    _globals.log.LogDebug("_createFlatEntry start");
         var name = TAHelper.GetSelfName(row[_settings.textColumnName], _settings.textSeparator, _globals.log);
+    _globals.log.LogDebug("_createFlatEntry 1");
         var flatEntry = {
             id: row[_settings.idColumnName],
             text: row[_settings.textColumnName],
             name: name,
             parent: row[_settings.relationshipColumnName]
         };
+    _globals.log.LogDebug("_createFlatEntry 2");
         return flatEntry;
     }
 
