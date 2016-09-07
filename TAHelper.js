@@ -87,18 +87,14 @@ class TAHelper{
      * @param {Object} defaultValue
      * @returns {Object}
      */
-    static function GetConfiguredVariables(globals, questionConfig, config, tag, defaultValue){
+    static function GetConfiguredVariables(questionConfig, config, tag, defaultValue){
         var result = [];
         if(!questionConfig){
             if( !config){
                 if(!tag){
                     result = defaultValue
                 }else{
-                    var project = globals.report.DataSource.GetProject(Config.DS_Main);
-                    var questions = project.GetQuestionsWithAnswers(false, [tag]);
-                    for (var i = 0; i < questions.length; i++){
-                        result.push(questions[i].QuestionId);
-                    }
+                    result = tag
                 }
             }else{
                 result = config;
@@ -109,6 +105,16 @@ class TAHelper{
 
         return result;
     }
+
+    static function GetTagsFromSurvey(globals, datasourseId, tags){
+    var result = [];
+    var project = globals.report.DataSource.GetProject(datasourseId);
+    var questions = project.GetQuestionsWithAnswers(false, tags);
+    for (var i = 0; i < questions.length; i++){
+        result.push(questions[i].QuestionId);
+    }
+    return result;
+}
 
     /**
      * @memberof TAHelper

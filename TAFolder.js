@@ -28,11 +28,14 @@ class TAFolder{
         _id = config.TAQuestions[questionIndex].TAQuestionId;
         _qName = config.TAQuestions[questionIndex].TAQuestionName;
         _modelNo = config.TAQuestions[questionIndex].TAModelNo;
-        _timeVariableId = TAHelper.GetConfiguredVariables(globals, [config.TAQuestions[questionIndex].TimeVariableId], null, null, ["interview_start"])[0];
 
-        _datasourceId = TAHelper.GetConfiguredVariables(globals, [config.TAQuestions[questionIndex].DatasourceId], [config.DS_Main], null, ["ds0"])[0];
-        _variablesToViewBy = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].VariablesToViewBy, config.VariablesToViewBy, "ta_viewby", []);
-        _hitlistColumns = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].HitlistColumns, config.HitlistColumns, "hitlist", []);
+        _timeVariableId = TAHelper.GetConfiguredVariables([config.TAQuestions[questionIndex].TimeVariableId], null, null, ["interview_start"])[0];
+
+        _datasourceId = TAHelper.GetConfiguredVariables([config.TAQuestions[questionIndex].DatasourceId], [config.DS_Main], null, ["ds0"])[0];
+    var variablesToViewBy = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_viewby"]);
+        _variablesToViewBy = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].VariablesToViewBy, config.VariablesToViewBy, variablesToViewBy, []);
+    var hitlistColumns = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["hitlist"]);
+        _hitlistColumns = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].HitlistColumns, config.HitlistColumns, hitlistColumns, []);
         _hierarchy = new Hierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
             tableName: config.TAQuestions[questionIndex].DatabaseTableName,
