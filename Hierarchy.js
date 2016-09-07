@@ -26,10 +26,13 @@ class Hierarchy{
     function Hierarchy(globals, settings) {
         _globals = globals;
         _settings = _mergeOptions(_defaultSettings, settings);
-        globals.log.LogDebug(_settings.schemaId)
+        globals.log.LogDebug(_settings.schemaId);
         var dataTable = _getDataTable();
+    globals.log.LogDebug("getDataTable");
         _generateFlatList(dataTable.Rows)
+    globals.log.LogDebug("generateFlatList");
         _setupHierarchy(0, null);
+    globals.log.LogDebug("setupHierarchy");
     }
 
     /**
