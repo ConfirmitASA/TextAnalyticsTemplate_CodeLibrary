@@ -25,7 +25,9 @@ class TAFolder{
 
     function TAFolder(globals, questionIndex, config){
         _globals = globals;
+    globals.log.LogDebug("TAFolder1");
         _id = config.TAQuestions[questionIndex].TAFolderId;
+    globals.log.LogDebug("TAFolder2 "+_id);
         _qName = config.TAQuestions[questionIndex].TAQuestionName;
         _modelNo = config.TAQuestions[questionIndex].TAModelNo;
 
@@ -107,6 +109,8 @@ class TAFolder{
      * @returns {String}
      */
     function GetId(){
+    _globals.log.LogDebug("Getid");
+    _globals.log.LogDebug(_id);
         return _id;
     }
 
