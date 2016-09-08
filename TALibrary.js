@@ -63,10 +63,10 @@ class TALibrary{
     /**
      * @memberof TALibrary
      * @instance
-     * @function GetFiltersQuestions
+     * @function GetFilterQuestions
      * @returns {String[]}
      */
-    function GetFiltersQuestions(){
+    function GetFilterQuestions(){
         return _filterQuestions;
     }
 
