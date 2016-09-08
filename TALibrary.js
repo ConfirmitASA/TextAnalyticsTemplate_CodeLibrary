@@ -54,6 +54,7 @@ class TALibrary{
             if(!result) {
                 throw new Error(201, "incorrect question Id");
             }
+            return result
         }else{
             return _folders[0];
         }
