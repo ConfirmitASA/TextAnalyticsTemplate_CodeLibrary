@@ -213,7 +213,11 @@ class Page_detailed_analysis{
                                     "enabled: true,"+
                                     "excludedColumns: [6]"+
                                 "},"+
-                            "fixedHeader: {hasListeners:false}"+
+                            "fixedHeader:"+
+                                "{"+
+                                    "enabled: true,"+
+                                    "hasListeners:false"+
+                                "}"+
                         "}"+
                     ")"+
                 "</script>";
