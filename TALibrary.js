@@ -67,7 +67,7 @@ class TALibrary{
      * @returns {String[]}
      */
     function GetFiltersQuestions(){
-        return _filtersQuestions;
+        return _filterQuestions;
     }
 
     /**
