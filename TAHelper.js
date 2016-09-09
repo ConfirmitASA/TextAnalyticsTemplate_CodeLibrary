@@ -87,7 +87,7 @@ class TAHelper{
      * @param {Object} defaultValue
      * @returns {Object}
      */
-    static function GetConfiguredVariables(questionConfig, config, tag, defaultValue){
+    static function GetConfiguredVariables(globals,questionConfig, config, tag, defaultValue){
 
         var result = [];
         if(!questionConfig || questionConfig.length == 0){
