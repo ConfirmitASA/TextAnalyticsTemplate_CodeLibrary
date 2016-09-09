@@ -97,7 +97,7 @@ class TAHelper{
                 globals.log.LogDebug("GetConfiguredVariables4");
                 if(!tag || tag.length == 0){
                     globals.log.LogDebug("GetConfiguredVariables5");
-                    result = defaultValue
+                    result = defaultValue;
                     globals.log.LogDebug("GetConfiguredVariables61");
                 }else{
                     globals.log.LogDebug("GetConfiguredVariables7");
@@ -114,8 +114,9 @@ class TAHelper{
             result = questionConfig
             globals.log.LogDebug("GetConfiguredVariables12");
         }
-
+    globals.log.LogDebug("GetConfiguredVariables13"+result.length);
         return result;
+    globals.log.LogDebug("GetConfiguredVariables14");
     }
 
     static function GetTagsFromSurvey(globals, datasourceId, tags){
