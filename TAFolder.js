@@ -29,11 +29,14 @@ class TAFolder{
         _id = config.TAQuestions[questionIndex].TAFolderId;
     globals.log.LogDebug("TAFolder2 "+_id);
         _qName = config.TAQuestions[questionIndex].TAQuestionName;
+    globals.log.LogDebug("TAFolder3");
         _modelNo = config.TAQuestions[questionIndex].TAModelNo;
+    globals.log.LogDebug("TAFolder4");
 
-        _timeVariableId = TAHelper.GetConfiguredVariables([config.TAQuestions[questionIndex].TimeVariableId], null, null, ["interview_start"])[0];
+        _timeVariableId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].TimeVariableId], null, null, ["interview_start"])[0];
 
-        _datasourceId = TAHelper.GetConfiguredVariables([config.TAQuestions[questionIndex].DatasourceId], [config.DS_Main], null, ["ds0"])[0];
+
+        _datasourceId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].DatasourceId], [config.DS_Main], null, ["ds0"])[0];
     var variablesToViewBy = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_viewby"]);
         _variablesToViewBy = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].VariablesToViewBy, config.VariablesToViewBy, variablesToViewBy, []);
     var hitlistColumns = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["hitlist"]);
