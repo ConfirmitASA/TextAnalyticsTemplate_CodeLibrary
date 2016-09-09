@@ -88,6 +88,7 @@ class TAHelper{
      * @returns {Object}
      */
     static function GetConfiguredVariables(questionConfig, config, tag, defaultValue){
+
         var result = [];
         if(!questionConfig){
             if( !config){
@@ -107,14 +108,14 @@ class TAHelper{
     }
 
     static function GetTagsFromSurvey(globals, datasourceId, tags){
-    var result = [];
-    var project = globals.report.DataSource.GetProject(datasourceId);
-    var questions = project.GetQuestionsWithAnswers(false, tags);
-    for (var i = 0; i < questions.length; i++){
-        result.push(questions[i].QuestionId);
+        var result = [];
+        var project = globals.report.DataSource.GetProject(datasourceId);
+        var questions = project.GetQuestionsWithAnswers(false, tags);
+        for (var i = 0; i < questions.length; i++){
+            result.push(questions[i].QuestionId);
+        }
+        return result;
     }
-    return result;
-}
 
     /**
      * @memberof TAHelper
