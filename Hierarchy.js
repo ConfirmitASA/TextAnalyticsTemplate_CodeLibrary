@@ -98,7 +98,7 @@ class Hierarchy{
             id: row[_settings.idColumnName],
             text: row[_settings.textColumnName],
             name: name,
-            parent: row[_settings.relationshipColumnName]
+            parent: row[_settings.relationshipColumnName] ? row[_settings.relationshipColumnName] : null
         };
         return flatEntry;
     }
