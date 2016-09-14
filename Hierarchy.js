@@ -126,7 +126,7 @@ class Hierarchy{
         if(_levels.length > level) {
             return _levels[level];
         }else{
-            throw new Error(201, "level index is out of range");
+            throw new Error(201, "Hierarchy level index is out of range");
         }
 
     }
@@ -162,7 +162,11 @@ class Hierarchy{
      * @returns {Object}
      */
     function GetObjectById(id) {
-        return _flatObject[id];
+        if(_flatObject[id]) {
+            return _flatObject[id];
+        }else{
+            throw new Error(201, "Hierarchy object id doesn't exist");
+        }
     }
 
     /**
