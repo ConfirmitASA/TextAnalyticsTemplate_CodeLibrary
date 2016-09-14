@@ -123,7 +123,12 @@ class Hierarchy{
      * @returns {Object[]}
      */
     function GetLevelArray(level) {
-        return _levels[level];
+        if(_levels.length > level) {
+            return _levels[level];
+        }else{
+            throw new Error(201, "level index is out of range");
+        }
+
     }
 
     /**
