@@ -57,7 +57,7 @@ class PageMaster{
      */
     static function ClearFilters_Hide(context){
         var hideButton = true;
-        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary());
+        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
 
         hideButton = !_filterComponents.GetAllAnsweredFilterCodes().length > 0;
 

@@ -38,7 +38,7 @@ class Page_filters{
         paramUtils.SetDefaultParameterValues(_defaultParameters);
         Config.SetTALibrary(TAHelper.GetGlobals(context));
         _folder = Config.GetTALibrary().GetFolderById();
-        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary());
+        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
     }
 
     /**

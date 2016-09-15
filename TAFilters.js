@@ -4,7 +4,7 @@
  *
  * @constructs TAFilters
  * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {TAFoldee} folder - Text Analytics folder to build table from
+ * @param {TAFolder} folder - Text Analytics folder to build table from
  */
 class TAFilters{
     private var _globals;

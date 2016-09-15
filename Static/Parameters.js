@@ -134,7 +134,7 @@ class Parameters{
      * @param {Number} filterNumber
      */
     static function FILTER_Domain(context, filterNumber){
-        var filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary());
+        var filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
         var filterQuestion = filterComponents.GetFilterQuestion(filterNumber -1 );
         if(filterQuestion){
             var parameterValues = [];

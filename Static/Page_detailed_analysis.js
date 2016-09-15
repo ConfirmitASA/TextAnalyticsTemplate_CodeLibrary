@@ -40,7 +40,7 @@ class Page_detailed_analysis{
      */
     static function Render(context){
         if(context.component.SubmitSource == "ClearFilters"){
-            new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary()).ClearFilters()
+            new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main).ClearFilters()
         }
 
         if(context.component.SubmitSource == "btnClearDateFilter"){

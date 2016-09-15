@@ -13,11 +13,10 @@ class FilterComponents{
     private var _parameterUtilities;
 
 
-    function FilterComponents(globals,taLib){
+    function FilterComponents(globals,questionsArray, dataSource){
         _globals = globals;
-        var questionsArray = taLib.GetFilterQuestions()
         _filterQuestions = [];
-        var project  = _globals.report.DataSource.GetProject(Config.DS_Main);
+        var project  = _globals.report.DataSource.GetProject(dataSource);
         for( var i = 0; i < questionsArray.length; i++ ){
             _filterQuestions.push(project.GetQuestion( questionsArray[i]))
         }
