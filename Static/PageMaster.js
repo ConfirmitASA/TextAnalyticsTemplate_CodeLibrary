@@ -35,7 +35,7 @@ class PageMaster{
     static function FilterSummary_Render(context){
         var filterSummary ;
         var summarySegments = [];
-        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary());
+        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
 
         var codes = _filterComponents.GetAllAnsweredFilterCodes();
         for( var i = 0 ; i < codes.length; i++){
