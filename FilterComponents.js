@@ -4,7 +4,8 @@
  *
  * @constructs FilterComponents
  * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {TALibrary} taLib
+ * @param {String[]} questionsArray
+ * @param {String} dataSource - ds id
  */
 
 class FilterComponents{
@@ -110,7 +111,7 @@ class FilterComponents{
      * @returns {Object} - Object with Filter information and answers like { questionTitle: "Title", questionId: "qId", values: [1,2], texts: ["one", "two"]}
      */
     function GetFilterInformation(filterNumber){
-        var result = false;
+        var result = [];
         var parameterName = 'FILTER' + (filterNumber +1);
         var codes = _parameterUtilities.GetParameterCodes(parameterName);
         if ( codes.length > 0 ){

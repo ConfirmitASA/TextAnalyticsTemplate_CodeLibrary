@@ -88,35 +88,21 @@ class TAHelper{
      * @returns {Object}
      */
     static function GetConfiguredVariables(globals,questionConfig, config, tag, defaultValue){
-    globals.log.LogDebug("GetConfiguredVariables1");
         var result = [];
-    globals.log.LogDebug("GetConfiguredVariables2");
         if(!questionConfig || questionConfig.length == 0){
-            globals.log.LogDebug("GetConfiguredVariables3");
             if( !config || config.length == 0){
-                globals.log.LogDebug("GetConfiguredVariables4");
                 if(!tag || tag.length == 0){
-                    globals.log.LogDebug("GetConfiguredVariables5");
                     result = defaultValue;
-                    globals.log.LogDebug("GetConfiguredVariables61");
                 }else{
-                    globals.log.LogDebug("GetConfiguredVariables7");
                     result = tag
-                    globals.log.LogDebug("GetConfiguredVariables8");
                 }
             }else{
-                globals.log.LogDebug("GetConfiguredVariables9");
                 result = config;
-                globals.log.LogDebug("GetConfiguredVariables10");
             }
         }else{
-            globals.log.LogDebug("GetConfiguredVariables11");
             result = questionConfig
-            globals.log.LogDebug("GetConfiguredVariables12");
         }
-    globals.log.LogDebug("GetConfiguredVariables13"+result.length);
         return result;
-    globals.log.LogDebug("GetConfiguredVariables14");
     }
 
     static function GetTagsFromSurvey(globals, datasourceId, tags){
