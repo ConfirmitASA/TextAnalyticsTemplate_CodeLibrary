@@ -111,7 +111,7 @@ class FilterComponents{
      * @returns {Object} - Object with Filter information and answers like { questionTitle: "Title", questionId: "qId", values: [1,2], texts: ["one", "two"]}
      */
     function GetFilterInformation(filterNumber){
-        var result = [];
+        var result = false;
         var parameterName = 'FILTER' + (filterNumber +1);
         var codes = _parameterUtilities.GetParameterCodes(parameterName);
         if ( codes.length > 0 ){
