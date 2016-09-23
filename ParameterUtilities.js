@@ -81,7 +81,7 @@ class ParameterUtilities {
      * @returns {String[]}
      */
     function GetParameterCodes(parameterName) {
-        var parameterValues : ParameterValueMultiSelect = ParameterValueMultiSelect( _globals.state.Parameters[parameterName]);
+        var parameterValues : ParameterValueMultiSelect = _globals.state.Parameters[parameterName] ? _globals.state.Parameters[parameterName]: ParameterValueMultiSelect(null);
         var codes = [];
         if(parameterValues != null) {
             for (var enumerator : Enumerator = new Enumerator(parameterValues) ; !enumerator.atEnd(); enumerator.moveNext()) {
