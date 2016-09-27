@@ -25,13 +25,9 @@ class TAFolder{
 
     function TAFolder(globals, questionIndex, config){
         _globals = globals;
-    globals.log.LogDebug("TAFolder1");
         _id = config.TAQuestions[questionIndex].TAFolderId;
-    globals.log.LogDebug("TAFolder2 "+_id);
         _qName = config.TAQuestions[questionIndex].TAQuestionName;
-    globals.log.LogDebug("TAFolder3");
         _modelNo = config.TAQuestions[questionIndex].TAModelNo;
-    globals.log.LogDebug("TAFolder4");
 
         _timeVariableId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].TimeVariableId], null, null, ["interview_start"])[0];
 
@@ -45,7 +41,7 @@ class TAFolder{
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
             tableName: config.TAQuestions[questionIndex].DatabaseTableName,
             relationshipColumnName: config.TAQuestions[questionIndex].RelationshipColumnName,
-            textSeparator: config.TAQuestions[questionIndex].TextSeparator
+            textSeparator: config.TAQuestions[questionIndex].TextSeparator != "" ? config.TAQuestions[questionIndex].TextSeparator: null
         });
     }
 
