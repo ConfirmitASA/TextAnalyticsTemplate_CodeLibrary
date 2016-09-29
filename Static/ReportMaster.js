@@ -20,7 +20,7 @@ class ReportMaster {
      */
     static function CustomerLogo_Render(context) {
         if(Config.CustomerLogo !== null) {
-            context.component.Output.Append('<img class="customer-logo" src="' + Config.CustomerLogo + '">');
+            context.component.Output.Append('<img class="customer-logo" src="' + Config.CustomerLogo + '" height="60px" >');
         }
     }
 
