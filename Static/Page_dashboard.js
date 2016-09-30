@@ -41,7 +41,7 @@ class Page_dashboard{
     static function Render(context){
     context.log.LogDebug("Render1");
         if(context.component.SubmitSource == "ClearFilters"){
-            new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions()).ClearFilters()
+            new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(),Config.DS_Main).ClearFilters()
         }
     context.log.LogDebug("Render2");
         if(context.component.SubmitSource == "btnClearDateFilter"){
