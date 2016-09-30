@@ -21,8 +21,8 @@ class Parameters{
     static function TA_COMPARE_PERIODS_Domain(context){
         var parameterValues = [
             {Code: "wow", Label: "Current vs Last Week"},
-            {Code: "qoq", Label: "Current vs Last Quarter"},
             {Code: "mom", Label: "Current vs Last Month"},
+            {Code: "qoq", Label: "Current vs Last Quarter"},
             {Code: "yoy", Label: "Current vs Last Year"}
         ];
         new ParameterUtilities(TAHelper.GetGlobals(context)).LoadParameterValues(context.component, parameterValues);
