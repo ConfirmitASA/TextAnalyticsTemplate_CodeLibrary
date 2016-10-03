@@ -30,6 +30,11 @@ class TAHitlistUtils{
     function AddTAColumn(columnName, sortable, postfix){
     try {
         var hitlistColumn: HitListColumn = new HitListColumn();
+    }catch(t){
+        _globals.log.LogDebug("Error in AddTAColumn 0. Column name: "+ columnName+". ErrorMessage: "+t);
+
+    }
+    try{
         var project: Project = _globals.report.DataSource.GetProject(_folder.GetDatasourceId());
     } catch(e){
         _globals.log.LogDebug("Error in AddTAColumn 1. Column name: "+ columnName+". ErrorMessage: "+e);
