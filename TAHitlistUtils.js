@@ -13,9 +13,11 @@ class TAHitlistUtils{
     private var _hitlist: HitList;
 
     function TAHitlistUtils(globals, folder, hitlist){
+    globals.log.LogDebug("TAHitlistUtils1");
         _globals = globals;
         _folder = folder;
         _hitlist = hitlist;
+    globals.log.LogDebug("TAHitlistUtils2");
     }
 
     /**
