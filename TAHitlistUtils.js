@@ -32,11 +32,15 @@ class TAHitlistUtils{
         var hitlistColumn: HitListColumn = new HitListColumn();
         var project: Project = _globals.report.DataSource.GetProject(_folder.GetDatasourceId());
         var columnId = _folder.GetQuestionId(columnName);
+    } catch(e){
+        _globals.log.LogDebug("Error in AddTAColumn 1. Column name: "+ columnName+". ErrorMessage: "+e);
+    }
+    try{
         hitlistColumn.QuestionnaireElement = columnName == "categorysentiment" ? project.CreateQuestionnaireElement(columnId, postfix) : project.CreateQuestionnaireElement(columnId);
         sortable ? (hitlistColumn.IsSortable = true) : null;
         _hitlist.Columns.Add(hitlistColumn);
-    } catch(e){
-        _globals.log.LogDebug("Error in AddTAColumn. Column name: "+ columnName+". ErrorMessage: "+e);
+    } catch(z){
+        _globals.log.LogDebug("Error in AddTAColumn 2. Column name: "+ columnName+". ErrorMessage: "+z);
     }
     }
 
