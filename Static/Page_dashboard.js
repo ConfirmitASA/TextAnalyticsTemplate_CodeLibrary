@@ -95,7 +95,7 @@ class Page_dashboard{
         var table = context.component;
         var period = context.state.Parameters.IsNull("TA_COMPARE_PERIODS") ? "qoq" : context.state.Parameters.GetString("TA_COMPARE_PERIODS");
 
-        var topChangedTable = new TATopChangedTable(globals, _folder, table, sentiment, level, period,10);
+        var topChangedTable = new TATopChangedTable(globals, _folder, table, sentiment, level, period);
         topChangedTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
     }
 
