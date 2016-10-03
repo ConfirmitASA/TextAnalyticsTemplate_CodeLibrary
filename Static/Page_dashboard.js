@@ -78,7 +78,7 @@ class Page_dashboard{
         var level = context.state.Parameters.IsNull("TA_LEVEL") ? 0 : context.state.Parameters.GetString("TA_LEVEL");
         var globals = TAHelper.GetGlobals(context);
         var table = context.component;
-        var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level);
+        var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level, 10);
         topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
     }
 
