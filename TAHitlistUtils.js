@@ -28,12 +28,16 @@ class TAHitlistUtils{
      * @param {String} postfix - id of the selected category
      */
     function AddTAColumn(columnName, sortable, postfix){
+    try {
         var hitlistColumn: HitListColumn = new HitListColumn();
-        var project : Project = _globals.report.DataSource.GetProject(_folder.GetDatasourceId());
+        var project: Project = _globals.report.DataSource.GetProject(_folder.GetDatasourceId());
         var columnId = _folder.GetQuestionId(columnName);
         hitlistColumn.QuestionnaireElement = columnName == "categorysentiment" ? project.CreateQuestionnaireElement(columnId, postfix) : project.CreateQuestionnaireElement(columnId);
         sortable ? (hitlistColumn.IsSortable = true) : null;
         _hitlist.Columns.Add(hitlistColumn);
+    } catch(e){
+        _globals.log.LogDebug("Error in AddTAColumn. Column name: "+ columnName+". ErrorMessage: "+e);
+    }
     }
 
     /**
