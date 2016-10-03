@@ -80,17 +80,22 @@ class Page_comments{
     static function htlComments_Render(context){
     context.log.LogDebug("TAHitkist render folder: "+_folder.GetId());
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
+    context.log.LogDebug("TAHitkist render 1");
         var selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-
+    context.log.LogDebug("TAHitkist render 2");
         if( selectedCategory ){
             htlComments.AddTAColumn("categorysentiment", false, selectedCategory);
         }
-
+    context.log.LogDebug("TAHitkist render 3");
         htlComments.AddTAColumn("verbatim");
+    context.log.LogDebug("TAHitkist render 4");
         htlComments.AddColumn(_folder.GetTimeVariableId(), true);
+    context.log.LogDebug("TAHitkist render 5");
         htlComments.AddTAColumn("overallsentiment");
+    context.log.LogDebug("TAHitkist render 6");
         //htlComments.AddTAColumn("categories");
         htlComments.AddConfiguredColumns();
+    context.log.LogDebug("TAHitkist render 7");
     }
 
     /**
