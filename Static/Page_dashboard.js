@@ -78,7 +78,7 @@ class Page_dashboard{
         var level = context.state.Parameters.IsNull("TA_LEVEL") ? 0 : context.state.Parameters.GetString("TA_LEVEL");
         var globals = TAHelper.GetGlobals(context);
         var table = context.component;
-        var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level, 10);
+        var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level);
         topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
     }
 
@@ -95,7 +95,7 @@ class Page_dashboard{
         var table = context.component;
         var period = context.state.Parameters.IsNull("TA_COMPARE_PERIODS") ? "qoq" : context.state.Parameters.GetString("TA_COMPARE_PERIODS");
 
-        var topChangedTable = new TATopChangedTable(globals, _folder, table, sentiment, level, period);
+        var topChangedTable = new TATopChangedTable(globals, _folder, table, sentiment, level, period,10);
         topChangedTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
     }
 
