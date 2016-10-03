@@ -85,7 +85,7 @@ class Page_comments{
             htlComments.AddTAColumn("categorysentiment", false, selectedCategory);
         }
 
-        htlComments.AddTAColumn();
+        htlComments.AddTAColumn("verbatim");
         htlComments.AddColumn(_folder.GetTimeVariableId(), true);
         htlComments.AddTAColumn("overallsentiment");
         //htlComments.AddTAColumn("categories");

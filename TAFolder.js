@@ -81,6 +81,7 @@ class TAFolder{
             case "cs":
                 postfix = "CategorySentiment"
                 break;
+            case "verbatim":
             default:
                 postfix = false;
                 break;
