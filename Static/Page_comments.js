@@ -81,6 +81,9 @@ class Page_comments{
     context.log.LogDebug("TAHitkist render folder0 ");
     context.log.LogDebug("TAHitkist render folder0.1 "+_folder);
     context.log.LogDebug("TAHitkist render folder: "+Config.GetTALibrary());
+    if(!Config.GetTALibrary()){
+        Config.SetTALibrary(TAHelper.GetGlobals(context));
+    }
     if(!_folder){
         _folder =Config.GetTALibrary().GetFolderById();
     }
