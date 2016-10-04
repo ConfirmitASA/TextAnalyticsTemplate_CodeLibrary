@@ -79,7 +79,10 @@ class Page_comments{
      */
     static function htlComments_Render(context){
     context.log.LogDebug("TAHitkist render folder0 ");
-    context.log.LogDebug("TAHitkist render folder: "+_folder);
+    context.log.LogDebug("TAHitkist render folder: "+Config.GetTALibrary());
+    if(!_folder){
+        _folder =Config.GetTALibrary().GetFolderById();
+    }
     context.log.LogDebug("TAHitkist render folder: "+_folder.GetId());
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
     context.log.LogDebug("TAHitkist render 1");
