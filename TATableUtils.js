@@ -25,13 +25,14 @@ class TATableUtils{
      * @param {Boolean} directionAscending
      * @param {Byte} position
      * @param {Number} topN
+     * @param {Boolean} positionFromEnd
      */
-    function SetupRowsTableSorting(directionAscending: Boolean, position: Byte, topN){
+    function SetupRowsTableSorting(directionAscending: Boolean, position: Byte, topN, positionFromEnd){
         _table.Sorting.Rows.Enabled = true;
         _table.Sorting.Rows.SortByType = TableSortByType.Position;
         _table.Sorting.Rows.Direction = directionAscending ? TableSortDirection.Ascending : TableSortDirection.Descending;
         _table.Sorting.Rows.Position = position;
-        _table.Sorting.Rows.PositionDirection =  TableSortByPositionType.FromStart;
+        _table.Sorting.Rows.PositionDirection =  positionFromEnd? TableSortByPositionType.FromEnd : TableSortByPositionType.FromStart;
         _table.Sorting.Rows.TopN = topN ? topN : 0;
     }
 

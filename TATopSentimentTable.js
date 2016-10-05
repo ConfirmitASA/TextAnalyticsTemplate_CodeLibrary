@@ -85,6 +85,6 @@ class TATopSentimentTable{
      * @function _setupSorting
      */
     private function _setupSorting(){
-        _taTableUtils.SetupRowsTableSorting( false, 1, _topN)
+        _taTableUtils.SetupRowsTableSorting( false, 2, _topN, true);
     }
 }
