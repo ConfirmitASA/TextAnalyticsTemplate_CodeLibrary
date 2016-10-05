@@ -240,6 +240,8 @@ class TATableUtils{
             if(distribution && distribution == "1"){
                 formulaExpression +="/100";
                 formulaHeader += ";percent:true";
+            }else{
+                formulaHeader+=";percent:false"
             }
 
             formulaHeader += ';label:'+categoryLabel+';expression:"'+formulaExpression+'"';
