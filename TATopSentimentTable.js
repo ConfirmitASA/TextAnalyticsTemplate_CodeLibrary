@@ -19,9 +19,9 @@ class TATopSentimentTable{
     private var _level;
     private var _topN;
     private var _sentiment;
-    private var _percents;
+    private var _distribution;
 
-    function TATopSentimentTable(globals, folder, table, sentiment, level, topN){
+    function TATopSentimentTable(globals, folder, table, sentiment, level, topN, distribution){
         _globals = globals;
         _folder = folder;
         _taMasks = new TAMasks(globals, folder);
@@ -30,7 +30,7 @@ class TATopSentimentTable{
         _sentiment = sentiment ? true : false;
         _level = parseInt(level);
         _topN = topN ? topN : 5;
-
+        _distribution = distribution ? distribution : "0";
         _render();
     }
 
@@ -51,10 +51,11 @@ class TATopSentimentTable{
      * @function _render
      */
     private function _render(){
-        var qType = _sentiment ? "positivementions" : "negativementions";
+        var qType = "categorysentiment";
         var mask = _taMasks.GetCategoriesMask(_level);
         var rowexpr = _taTableUtils.GetTAQuestionExpression(qType, mask);
-        var columnexpr = "[N]";
+        var sentiment = _sentiment ? "pos" : "neg";
+        var columnexpr = _taTableUtils.GetCategoriesExpression( sentiment, false, false, _distribution );
         _taTableUtils.CreateTableFromExpression(rowexpr, columnexpr);
         _addChartColumn();
         _setupSorting();
