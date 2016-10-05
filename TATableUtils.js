@@ -216,7 +216,7 @@ class TATableUtils{
                 expression += ';hideheader:true';
             expression += '}'
         }else{
-            var categoriesHeader = '[CAT]{totals:false;hidedata:false';
+            var categoriesHeader = '[CAT]{totals:false;hidedata:true';
             var formulaHeader = '[FORMULA]{decimals:0';
             var formulaExpression;
             var categoryLabel;
@@ -240,8 +240,6 @@ class TATableUtils{
             if(distribution && distribution == "1"){
                 formulaExpression +="/100";
                 formulaHeader += ";percent:true";
-            }else{
-                formulaHeader+=";percent:false"
             }
 
             formulaHeader += ';label:'+categoryLabel+';expression:"'+formulaExpression+'"';
