@@ -169,7 +169,7 @@ class Page_detailed_analysis{
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
         var hideEmptyRows = new ParameterUtilities(globals).GetCheckedValues("TA_HIDE_EMPTY_ROWS");
         var detailedAnalysisTable = new TADetailedAnalysisTable(globals, _folder, context.component, selectedCategory, selectedQuestion, distribution);
-        //detailedAnalysisTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table", "reportal-barchart", "detailed-analysis-table"]);
+        detailedAnalysisTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table", "reportal-barchart", "detailed-analysis-table"]);
         detailedAnalysisTable.GetTATableUtils().SetupHideEmptyRows((hideEmptyRows.length >0));
     }
 
