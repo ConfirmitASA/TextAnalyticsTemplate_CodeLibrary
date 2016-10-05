@@ -150,7 +150,7 @@ class TATableUtils{
             headerCategories= new HeaderCategories();
             headerCategories.Mask.Type = MaskType.ShowCodes;
             headerCategories.Totals = false;
-            headerCategories.HideData = true;
+            headerCategories.HideData = false;
 
 
             headerFormula = new HeaderFormula();
@@ -216,7 +216,7 @@ class TATableUtils{
                 expression += ';hideheader:true';
             expression += '}'
         }else{
-            var categoriesHeader = '[CAT]{totals:false;hidedata:true';
+            var categoriesHeader = '[CAT]{totals:false;hidedata:false';
             var formulaHeader = '[FORMULA]{decimals:0';
             var formulaExpression;
             var categoryLabel;
