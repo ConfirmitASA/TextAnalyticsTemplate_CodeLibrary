@@ -45,6 +45,6 @@ class Filters {
     static function FilterPageFilter(context){
         var fExpr = "";
         fExpr = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main).GetGlobalsFilterExpression();
-        context.component.Expression = [ fExpr , 'status = "complete"'].join(" AND ");
+        context.component.Expression = [ fExpr , 'ANY(status ,"complete")'].join(" AND ");
     }
 }
