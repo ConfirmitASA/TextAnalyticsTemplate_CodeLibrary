@@ -106,7 +106,7 @@ class TADetailedAnalysisTable{
 
         var countformula = _getColumnFormulaExpression();
 
-        var columnstatistic = "[STATISTICS]{statistics:avg;decimals:5}";
+        var columnstatistic = "[STATISTICS]{statistics:avg}";
         var positivecolumn = _taTableUtils.GetCategoriesExpression( "pos", false, false, _distribution );
         var neutralcolumn = _taTableUtils.GetCategoriesExpression( "neu", false, false, _distribution );
         var negativecolumn = _taTableUtils.GetCategoriesExpression( "neg", false, false, _distribution );
