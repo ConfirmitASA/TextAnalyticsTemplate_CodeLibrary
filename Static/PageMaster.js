@@ -7,6 +7,35 @@ class PageMaster{
 
     /**
      * @memberof PageMaster
+     * @function FiltersButtonHtml_Hide
+     * @description function to hide the Filters button html
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function FiltersButtonHtml_Hide(context){
+        var filterQuestions = Config.GetTALibrary().GetFilterQuestions()
+        return filterQuestions.length == 0
+    }
+
+    /**
+     * @memberof PageMaster
+     * @function FiltersButtonHtml_Render
+     * @description function to render the filters button
+     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function FiltersButtonHtml_Render(context){
+        var htmlText = '<button type="button" class="filter-button" onclick="javascript:document.querySelector(\'.goToFiltersPage input\').click()" title="Filters">'+
+            '<svg width="16" height="12" viewBox="0 0 16 12">'+
+            '<path xmlns="http://www.w3.org/2000/svg" d="M 0 0 l 6 6 v 6 l 4 -1 V 6 l 6 -6 Z"></path>'+
+            '</svg>'+
+            '<svg width="10" height="10" viewBox="0 0 10 10">'+
+            '<path xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd" fill-rule="evenodd" d="M 10 4 H 6 V 0 H 4 v 4 H 0 v 2 h 4 v 4 h 2 V 6 h 4 Z"></path>'+
+            '</svg>'+
+            '</button>';
+        context.component.Output.Append(htmlText);
+    }
+    /**
+     * @memberof PageMaster
      * @function Filters_Hide
      * @description function to hide the Ffilters button
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
