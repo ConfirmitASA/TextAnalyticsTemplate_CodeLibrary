@@ -130,7 +130,7 @@ class Page_comments{
 
         if( selectedCategory){
             hitlistHeaders["sentiment"].push( {
-                    name: _folder.GetQuestionId("categorysentiment")+"_"+selectedCategory,
+                    name: _folder.GetQuestionId("categorysentiment")+"_"+selectedCategory
             } );
         }
 
