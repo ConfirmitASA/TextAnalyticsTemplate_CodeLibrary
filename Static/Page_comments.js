@@ -78,33 +78,22 @@ class Page_comments{
      * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function htlComments_Render(context){
-    context.log.LogDebug("TAHitkist render folder0 ");
-    context.log.LogDebug("TAHitkist render folder0.1 "+_folder);
-    context.log.LogDebug("TAHitkist render folder: "+Config.GetTALibrary());
     if(!Config.GetTALibrary()){
         Config.SetTALibrary(TAHelper.GetGlobals(context));
     }
     if(!_folder){
         _folder =Config.GetTALibrary().GetFolderById();
     }
-    context.log.LogDebug("TAHitkist render folder: "+_folder.GetId());
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
-    context.log.LogDebug("TAHitkist render 1");
         var selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-    context.log.LogDebug("TAHitkist render 2");
         if( selectedCategory ){
             htlComments.AddTAColumn("categorysentiment", false, selectedCategory);
         }
-    context.log.LogDebug("TAHitkist render 3");
         htlComments.AddTAColumn("verbatim");
-    context.log.LogDebug("TAHitkist render 4");
         htlComments.AddColumn(_folder.GetTimeVariableId(), true);
-    context.log.LogDebug("TAHitkist render 5");
         htlComments.AddTAColumn("overallsentiment");
-    context.log.LogDebug("TAHitkist render 6");
         //htlComments.AddTAColumn("categories");
         htlComments.AddConfiguredColumns();
-    context.log.LogDebug("TAHitkist render 7");
     }
 
     /**
@@ -136,23 +125,44 @@ class Page_comments{
         var hitlistHeaders = {};
 
         var selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
+
+        hitlistHeaders["sentiment"] = []
+
         if( selectedCategory){
-            hitlistHeaders["categorySentiment"]= _folder.GetQuestionId("categorysentiment")+"_"+selectedCategory;
+            hitlistHeaders["sentiment"].push( {
+                    name: _folder.GetQuestionId("categorysentiment")+"_"+selectedCategory,
+            } );
         }
 
-        hitlistHeaders["verbatim"] = _folder.GetQuestionId();
+        hitlistHeaders["verbatim"] = [{
+            name: _folder.GetQuestionId(),
+            title: "Comments",
+            main: true
+        }];
 
-        hitlistHeaders["date"] = _folder.GetTimeVariableId() ? _folder.GetTimeVariableId() : "interview_start";
+        hitlistHeaders["date"] = [{
+            name: _folder.GetTimeVariableId() ? _folder.GetTimeVariableId() : "interview_start",
+            title: "Date"
+        }];
 
-        //hitlistHeaders["categories"] = _folder.GetQuestionId("categories");
+        /*
+            hitlistHeaders["categories"] = {
+                name: _folder.GetQuestionId("categories")
+            };
+         */
 
-        hitlistHeaders["overallSentiment"] = _folder.GetQuestionId("overallSentiment");
+        hitlistHeaders["sentiment"].push( {
+            name: _folder.GetQuestionId("overallSentiment"),
+            title: "Overall Sentiment"
+        });
 
         hitlistHeaders["other"] = [];
 
         var hitlistColumns = _folder.GetHitlistColumns();
         for(var i = 0 ; i < hitlistColumns.length; i++){
-            hitlistHeaders["other"].push(hitlistColumns[i]);
+            hitlistHeaders["other"].push( {
+                name: hitlistColumns[i]
+            });
         }
         context.component.Output.Append(JSON.print(hitlistHeaders, "hitlistHeaders"));
         context.component.Output.Append(hitlistInit);
