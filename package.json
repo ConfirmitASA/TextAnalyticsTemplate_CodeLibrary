@@ -1,0 +1,23 @@
+{
+  "name": "text-analytics-template-codelibrary",
+  "version": "0.0.120",
+  "description": "Text analytics template Codelibrary",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "docs": "node_modules/.bin/jsdoc --configure jsdoc.conf --verbose",
+    "docs-commit": "git subtree push --prefix docs/text-analytics-template-codelibrary origin gh-pages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConfirmitASA/TextAnalyticsTemplate_Codelibrary.git"
+  },
+  "author": "ConfirmitASA",
+  "license": "",
+  "homepage": "https://github.com/ConfirmitASA/TextAnalyticsTemplate_Codelibrary#readme",
+  "devDependencies": {
+    "docdash": "^0.4.0",
+    "jsdoc": "^3.4.0"
+  },
+  "dependencies": {}
+}
