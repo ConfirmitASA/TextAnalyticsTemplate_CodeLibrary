@@ -79,7 +79,7 @@ class TADetailedAnalysisTable{
         }
 
         if( _selectedQuestion != "all" ){
-            blockHeader += _selectedQuestion+'{id:'+_selectedQuestion+';totals:false}/'
+            blockHeader += _selectedQuestion+'{id:'+_selectedQuestion+';totals:false;collapsed:true}/'
         }
 
         if( _selectedCategory != "all" ){
