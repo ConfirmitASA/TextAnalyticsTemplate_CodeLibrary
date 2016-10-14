@@ -26,7 +26,7 @@ class Page_filters{
      */
     static function Render(context){
         if(context.component.SubmitSource == "btnClearFilters"){
-            new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary()).ClearFilters()
+            new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary(), Config.DS_Main).ClearFilters()
         }
 
         if(context.component.SubmitSource == "btnClearDateFilter"){

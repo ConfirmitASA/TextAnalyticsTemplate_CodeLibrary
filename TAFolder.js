@@ -35,7 +35,7 @@ class TAFolder{
         _datasourceId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].DatasourceId], [config.DS_Main], null, ["ds0"])[0];
     var variablesToViewBy = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_viewby"]);
         _variablesToViewBy = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].VariablesToViewBy, config.VariablesToViewBy, variablesToViewBy, []);
-    var hitlistColumns = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["hitlist"]);
+    var hitlistColumns = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_hitlist"]);
         _hitlistColumns = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].HitlistColumns, config.HitlistColumns, hitlistColumns, []);
         _hierarchy = new Hierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
@@ -109,8 +109,6 @@ class TAFolder{
      * @returns {String}
      */
     function GetId(){
-    _globals.log.LogDebug("Getid");
-    _globals.log.LogDebug(_id);
         return _id;
     }
 

@@ -13,11 +13,9 @@ class TAHitlistUtils{
     private var _hitlist: HitList;
 
     function TAHitlistUtils(globals, folder, hitlist){
-    globals.log.LogDebug("TAHitlistUtils1");
         _globals = globals;
         _folder = folder;
         _hitlist = hitlist;
-    globals.log.LogDebug("TAHitlistUtils2");
     }
 
     /**
@@ -31,29 +29,17 @@ class TAHitlistUtils{
      */
     function AddTAColumn(columnName, sortable, postfix){
         var hitlistColumn: HitListColumn = new HitListColumn();
-try {
     var dsId = _folder.GetDatasourceId();
-}catch(t){
-    _globals.log.LogDebug("Error in AddTAColumn 0. Column name: "+ columnName+". ErrorMessage: "+t);
 
-}
-    try{
         var project: Project = _globals.report.DataSource.GetProject(dsId);
-    } catch(e){
-        _globals.log.LogDebug("Error in AddTAColumn 1. Column name: "+ columnName+". ErrorMessage: "+e);
-    }
-    try{
+
         var columnId = _folder.GetQuestionId(columnName);
-    } catch(l){
-        _globals.log.LogDebug("Error in AddTAColumn 2. Column name: "+ columnName+". ErrorMessage: "+l);
-    }
-    try{
+
+
         hitlistColumn.QuestionnaireElement = columnName == "categorysentiment" ? project.CreateQuestionnaireElement(columnId, postfix) : project.CreateQuestionnaireElement(columnId);
         sortable ? (hitlistColumn.IsSortable = true) : null;
         _hitlist.Columns.Add(hitlistColumn);
-    } catch(z){
-        _globals.log.LogDebug("Error in AddTAColumn 3. Column name: "+ columnName+". ErrorMessage: "+z);
-    }
+
     }
 
     /**
