@@ -25,8 +25,9 @@ class Page_filters{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
+            _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
         if(context.component.SubmitSource == "btnClearFilters"){
-            _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary(), Config.DS_Main).ClearFilters()
+            _filterComponents.ClearFilters();
         }
 
         if(context.component.SubmitSource == "btnClearDateFilter"){
@@ -38,8 +39,7 @@ class Page_filters{
         paramUtils.SetDefaultParameterValues(_defaultParameters);
         Config.SetTALibrary(TAHelper.GetGlobals(context));
         _folder = Config.GetTALibrary().GetFolderById();
-    if(!_filterComponents)
-        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+
     }
 
     /**
