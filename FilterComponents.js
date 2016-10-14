@@ -140,10 +140,8 @@ class FilterComponents{
      * @description function to set all filter parameters to null
      */
     function ClearFilters(){
-        _globals.log.LogDebug("Filters clear1");
         for (var i = 0; i < _filterQuestions.length; i++){
             _globals.state.Parameters["FILTER"+(i+1)] = null;
         }
-    _globals.log.LogDebug("Filters clear2");
     }
 }
