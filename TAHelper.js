@@ -106,9 +106,11 @@ class TAHelper{
     }
 
     static function GetTagsFromSurvey(globals, datasourceId, tags){
-        var result = [];
+        var result = false;
         var project = globals.report.DataSource.GetProject(datasourceId);
         var questions = project.GetQuestionsWithAnswers(false, tags);
+        if(questions.length > 0)
+            result = [];
         for (var i = 0; i < questions.length; i++){
             result.push(questions[i].QuestionId);
         }
