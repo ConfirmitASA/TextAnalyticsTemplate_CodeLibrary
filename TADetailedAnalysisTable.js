@@ -19,8 +19,9 @@ class TADetailedAnalysisTable{
     private var _selectedCategory;
     private var _selectedQuestion;
     private var _distribution;
+    private var _multiQuestion;
 
-    function TADetailedAnalysisTable(globals, folder, table, selectedCategory, selectedQuestion, distribution){
+    function TADetailedAnalysisTable(globals, folder, table, selectedCategory, selectedQuestion, distribution, multiQuestion){
         _globals = globals;
         _folder = folder;
         _taMasks = new TAMasks(globals, folder);
@@ -79,7 +80,13 @@ class TADetailedAnalysisTable{
         }
 
         if( _selectedQuestion != "all" ){
-            blockHeader += _selectedQuestion+'{id:'+_selectedQuestion+';totals:false;collapsed:true}/'
+            blockHeader += _selectedQuestion+'{id:'+_selectedQuestion+';totals:false'
+
+            if(_multiQuestion){
+                blockHeader+= ";collapsed:true";
+            }
+
+            blockHeader += "}/";
         }
 
         if( _selectedCategory != "all" ){
