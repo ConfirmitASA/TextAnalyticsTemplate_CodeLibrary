@@ -30,6 +30,7 @@ class TADetailedAnalysisTable{
         _selectedCategory = selectedCategory && selectedCategory != "emptyv" ? selectedCategory : "all";
         _selectedQuestion = selectedQuestion && selectedQuestion != "emptyv" ? selectedQuestion : "all";
         _distribution = distribution ? distribution : "0";
+        _multiQuestion = multiQuestion;
         _render();
     }
 
