@@ -167,7 +167,9 @@ class Page_detailed_analysis{
         var selectedCategory = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
         var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
         var project =  globals.report.DataSource.GetProject(Config.DS_Main);
-        var selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
+        var selectedQuestionType = false;
+        if(selectedQuestion && selectedQuestion != "emptyv")
+            selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
         var hideEmptyRows = new ParameterUtilities(globals).GetCheckedValues("TA_HIDE_EMPTY_ROWS");
         var detailedAnalysisTable = new TADetailedAnalysisTable(globals, _folder, context.component, selectedCategory, selectedQuestion, distribution, ( selectedQuestionType == QuestionType.Multi));
