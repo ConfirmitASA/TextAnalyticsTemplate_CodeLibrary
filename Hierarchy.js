@@ -95,10 +95,10 @@ class Hierarchy{
     private function _createFlatEntry(row) {
         var name = TAHelper.GetSelfName(row[_settings.textColumnName], _settings.textSeparator, _globals.log);
         var flatEntry = {
-            id: row[_settings.idColumnName],
+            id: row[_settings.idColumnName].toLowerCase(),
             text: row[_settings.textColumnName],
             name: name,
-            parent: row[_settings.relationshipColumnName] ? row[_settings.relationshipColumnName] : null
+            parent: row[_settings.relationshipColumnName] ? row[_settings.relationshipColumnName].toLowerCase() : null
         };
         return flatEntry;
     }
