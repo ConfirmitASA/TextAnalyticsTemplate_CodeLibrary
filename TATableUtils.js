@@ -234,22 +234,18 @@ class TATableUtils{
             var formulaHeader = '[FORMULA]{decimals:0';
             var formulaExpression;
             var categoryLabel;
-            var mask = ";mask:";
             switch(groupName.toLowerCase()){
                 case "neg":
-                    mask += configuration.Negative.join(",");
                     formulaExpression = _getSumOfCells(configuration.Negative.length, (configuration.Positive.length+configuration.Neutral.length))+(addMinus?'*(-1)':'');
                     categoryLabel = '"Negative"';
                     break;
 
                 case "neu":
-                    mask += configuration.Neutral.join(",");
                     formulaExpression = _getSumOfCells(configuration.Neutral.length,(configuration.Positive.length));
                     categoryLabel = '"Neutral"';
                     break;
 
                 case "pos":
-                    mask += configuration.Positive.join(",");
                     formulaExpression = _getSumOfCells(configuration.Positive.length,0);
                     categoryLabel = '"Positive"';
                     break;
@@ -265,7 +261,7 @@ class TATableUtils{
             if ( hideHeader )
                 formulaHeader += ';hideheader:true';
             formulaHeader +='}'
-            categoriesHeader += mask + "}"
+            categoriesHeader += "}"
             expression = [categoriesHeader, formulaHeader].join("+")
         }
         return expression
