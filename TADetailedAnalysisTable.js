@@ -115,9 +115,9 @@ class TADetailedAnalysisTable{
         var countformula = _getColumnFormulaExpression();
 
         var columnstatistic = "[STATISTICS]{statistics:avg}";
-        var positivecolumn = _taTableUtils.GetCategoriesExpression( "pos", false, false, _distribution );
-        var neutralcolumn = _taTableUtils.GetCategoriesExpression( "neu", false, false, _distribution );
-        var negativecolumn = _taTableUtils.GetCategoriesExpression( "neg", false, false, _distribution );
+        var positivecolumn = _taTableUtils.GetCategoriesExpression( "pos", false, false, _distribution, Config.SentimentRange );
+        var neutralcolumn = _taTableUtils.GetCategoriesExpression( "neu", false, false, _distribution, Config.SentimentRange );
+        var negativecolumn = _taTableUtils.GetCategoriesExpression( "neg", false, false, _distribution, Config.SentimentRange );
 
         columnexpr = [columnbase, countformula, columnstatistic, positivecolumn, neutralcolumn, negativecolumn].join("+");
         return columnexpr
