@@ -32,7 +32,7 @@ class TATableUtils{
         _table.Sorting.Rows.SortByType = TableSortByType.Position;
         _table.Sorting.Rows.Direction = directionAscending ? TableSortDirection.Ascending : TableSortDirection.Descending;
         _table.Sorting.Rows.Position = position;
-        _table.Sorting.Rows.PositionDirection =  positionFromEnd? TableSortByPositionType.FromEnd : TableSortByPositionType.FromStart;
+        _table.Sorting.Rows.PositionDirection =  positionFromEnd ? TableSortByPositionType.FromEnd : TableSortByPositionType.FromStart;
         _table.Sorting.Rows.TopN = topN ? topN : 0;
     }
 
