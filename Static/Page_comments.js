@@ -177,7 +177,7 @@ class Page_comments{
             },
             {
                 sentiment: "negative",
-                range: {min: (Config.SentimentRange.Negative[0]-6), max: (Config.SentimentRange.Positive[Config.SentimentRange.Positive.length - 1]-6)}
+                range: {min: (Config.SentimentRange.Negative[0]-6), max: (Config.SentimentRange.Positive[Config.SentimentRange.Negative.length - 1]-6)}
             }
         ];
         context.component.Output.Append(JSON.print(hitlistHeaders, "hitlistHeaders"));
