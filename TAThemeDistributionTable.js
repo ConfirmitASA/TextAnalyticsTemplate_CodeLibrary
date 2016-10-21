@@ -85,7 +85,7 @@ class TAThemeDistributionTable{
      * @returns {HeaderCollection}
      */
     private function _getCountsColumn(){
-        var columnsCollection: HeaderCollection = _taTableUtils.GetCategoriesHeader(_sentiment, false, true, false);
+        var columnsCollection: HeaderCollection = _taTableUtils.GetCategoriesHeader(_sentiment, false, true, false, Config.SentimentRange);
         return columnsCollection
     }
 

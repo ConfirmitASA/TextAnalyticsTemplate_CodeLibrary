@@ -118,7 +118,8 @@ class Page_comments{
                 "Y.Global.on('hitlistloaded', function (e) {  "+
                     "var upgradedHitlist = new Reportal.Hitlist({"+
                         "hitlist: document.querySelector('.reportal-hitlist-container'),"+
-                        "headers: hitlistHeaders"+
+                        "headers: hitlistHeaders,"+
+                        "sentimentConfig: sentimentConfig"+
                     "});"+
                 "});"+
             "</script>";
@@ -164,7 +165,23 @@ class Page_comments{
                 name: hitlistColumns[i]
             });
         }
+
+        var sentimentConfig = [
+            {
+                sentiment: "positive",
+                range: {min: (Config.SentimentRange.Positive[0]-6), max: (Config.SentimentRange.Positive[Config.SentimentRange.Positive.length - 1]-6)}
+            },
+            {
+                sentiment: "neutral",
+                range: {min: (Config.SentimentRange.Neutral[0]-6), max: (Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1]-6)}
+            },
+            {
+                sentiment: "negative",
+                range: {min: (Config.SentimentRange.Negative[0]-6), max: (Config.SentimentRange.Negative[Config.SentimentRange.Negative.length - 1]-6)}
+            }
+        ];
         context.component.Output.Append(JSON.print(hitlistHeaders, "hitlistHeaders"));
+        context.component.Output.Append(JSON.print(sentimentConfig,"sentimentConfig"));
         context.component.Output.Append(hitlistInit);
     }
 

@@ -32,7 +32,7 @@ class TATableUtils{
         _table.Sorting.Rows.SortByType = TableSortByType.Position;
         _table.Sorting.Rows.Direction = directionAscending ? TableSortDirection.Ascending : TableSortDirection.Descending;
         _table.Sorting.Rows.Position = position;
-        _table.Sorting.Rows.PositionDirection =  positionFromEnd? TableSortByPositionType.FromEnd : TableSortByPositionType.FromStart;
+        _table.Sorting.Rows.PositionDirection =  positionFromEnd ? TableSortByPositionType.FromEnd : TableSortByPositionType.FromStart;
         _table.Sorting.Rows.TopN = topN ? topN : 0;
     }
 
@@ -132,11 +132,17 @@ class TATableUtils{
      * @param {String} distribution - 0 - for counts, 1 - for percents
      * @returns {HeaderCollection}
      */
-    function GetCategoriesHeader(groupName: String, addMinus, hideHeader, distribution){
+    function GetCategoriesHeader(groupName: String, addMinus, hideHeader, distribution, config){
         var header: HeaderCollection = new HeaderCollection();
         var headerFormula : HeaderFormula;
         var headerCategories: HeaderCategories;
         var categoryTitle: Label;
+        var defaultConfig = {
+            Positive: [8,9,10,11],
+            Neutral: [5,6,7],
+            Negative: [1,2,3,4]
+        };
+        var configuration = config ? config : defaultConfig;
         if( groupName == "all" ){
             headerCategories= new HeaderCategories();
             headerCategories.Mask.Type = MaskType.HideAll;
@@ -160,20 +166,20 @@ class TATableUtils{
 
             switch(groupName.toLowerCase()){
                 case "neg":
-                    headerCategories.Mask.Codes = Config.SentimentRange.Negative.join(",");
-                    headerFormula.Expression = _getSumOfCells(4)+(addMinus?"*(-1)":"");
+                    headerCategories.Mask.Codes = configuration.Negative.join(",");
+                    headerFormula.Expression = _getSumOfCells(configuration.Negative.length)+(addMinus?"*(-1)":"");
                     categoryTitle = new Label(9, "Negative");
                     break;
 
                 case "neu":
-                    headerCategories.Mask.Codes = Config.SentimentRange.Neutral.join(",");
-                    headerFormula.Expression = _getSumOfCells(3);
+                    headerCategories.Mask.Codes = configuration.Neutral.join(",");
+                    headerFormula.Expression = _getSumOfCells(configuration.Neutral.length);
                     categoryTitle = new Label(9, "Neutral");
                     break;
 
                 case "pos":
-                    headerCategories.Mask.Codes = Config.SentimentRange.Positive.join(",");
-                    headerFormula.Expression = _getSumOfCells(4);
+                    headerCategories.Mask.Codes = configuration.Positive.join(",");
+                    headerFormula.Expression = _getSumOfCells(configuration.Positive.length);
                     categoryTitle = new Label(9, "Positive");
                     break;
             }
@@ -196,6 +202,8 @@ class TATableUtils{
         return header
     }
 
+
+
     /**
      * @memberof TATableUtils
      * @instance
@@ -207,8 +215,14 @@ class TATableUtils{
      * @param {String} distribution - 0 - for counts, 1 - for percents
      * @returns {String}
      */
-    function GetCategoriesExpression( groupName: String, addMinus, hideHeader, distribution ){
+    function GetCategoriesExpression( groupName: String, addMinus, hideHeader, distribution, config ){
         var expression = "";
+        var defaultConfig = {
+            Positive: [8,9,10,11],
+            Neutral: [5,6,7],
+            Negative: [1,2,3,4]
+        };
+    var configuration = config ? config : defaultConfig;
         if( groupName == "all" ){
             expression = '[CAT]{totals:true';
             expression += ';mask:emptyv';
@@ -222,17 +236,17 @@ class TATableUtils{
             var categoryLabel;
             switch(groupName.toLowerCase()){
                 case "neg":
-                    formulaExpression = _getSumOfCells(4,7)+(addMinus?'*(-1)':'');
+                    formulaExpression = _getSumOfCells(configuration.Negative.length, (configuration.Positive.length+configuration.Neutral.length))+(addMinus?'*(-1)':'');
                     categoryLabel = '"Negative"';
                     break;
 
                 case "neu":
-                    formulaExpression = _getSumOfCells(3,4);
+                    formulaExpression = _getSumOfCells(configuration.Neutral.length,(configuration.Positive.length));
                     categoryLabel = '"Neutral"';
                     break;
 
                 case "pos":
-                    formulaExpression = _getSumOfCells(4,0);
+                    formulaExpression = _getSumOfCells(configuration.Positive.length,0);
                     categoryLabel = '"Positive"';
                     break;
             }

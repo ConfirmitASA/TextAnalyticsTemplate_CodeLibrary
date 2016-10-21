@@ -29,7 +29,7 @@ class TATableData{
         var rowHeaderTitles = _globals.report.TableUtils.GetRowHeaderCategoryTitles(_tableName);
         var rowHeaderIds = _globals.report.TableUtils.GetRowHeaderCategoryIds(_tableName);
         for(var i=0; i<rowHeaderIds.length;i++){
-            rowheaders[rowHeaderIds[i][0]+((rowHeaderIds[i].length>1)?("_block"+rowHeaderIds[i][1]):"")] = {title: rowHeaderTitles[i][0], index: i, categoryId: rowHeaderIds[i][0], blockId: ((rowHeaderIds[i].length>1)?("block"+rowHeaderIds[i][1]):null)};
+            rowheaders[rowHeaderIds[i][0]+((rowHeaderIds[i].length>1)?("_block"+rowHeaderIds[i][1]):"")] = {title: rowHeaderTitles[i][0], index: i, categoryId: rowHeaderIds[i][0].toLowerCase(), blockId: ((rowHeaderIds[i].length>1)?("block"+rowHeaderIds[i][1]):null)};
             rowheaders.length++;
         }
         return rowheaders;

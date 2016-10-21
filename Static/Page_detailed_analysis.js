@@ -166,9 +166,14 @@ class Page_detailed_analysis{
         var globals = TAHelper.GetGlobals(context);
         var selectedCategory = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
         var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
+        var project =  globals.report.DataSource.GetProject(Config.DS_Main);
+        var selectedQuestionType = false;
+        if(selectedQuestion && selectedQuestion != "emptyv")
+            selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
+        globals.log.LogDebug("SQT: "+selectedQuestionType);
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
         var hideEmptyRows = new ParameterUtilities(globals).GetCheckedValues("TA_HIDE_EMPTY_ROWS");
-        var detailedAnalysisTable = new TADetailedAnalysisTable(globals, _folder, context.component, selectedCategory, selectedQuestion, distribution);
+        var detailedAnalysisTable = new TADetailedAnalysisTable(globals, _folder, context.component, selectedCategory, selectedQuestion, distribution, ( selectedQuestionType == QuestionType.Multi));
         detailedAnalysisTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table", "reportal-barchart", "detailed-analysis-table"]);
         detailedAnalysisTable.GetTATableUtils().SetupHideEmptyRows((hideEmptyRows.length >0));
     }

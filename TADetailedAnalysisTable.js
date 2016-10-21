@@ -19,8 +19,9 @@ class TADetailedAnalysisTable{
     private var _selectedCategory;
     private var _selectedQuestion;
     private var _distribution;
+    private var _multiQuestion;
 
-    function TADetailedAnalysisTable(globals, folder, table, selectedCategory, selectedQuestion, distribution){
+    function TADetailedAnalysisTable(globals, folder, table, selectedCategory, selectedQuestion, distribution, multiQuestion){
         _globals = globals;
         _folder = folder;
         _taMasks = new TAMasks(globals, folder);
@@ -29,6 +30,7 @@ class TADetailedAnalysisTable{
         _selectedCategory = selectedCategory && selectedCategory != "emptyv" ? selectedCategory : "all";
         _selectedQuestion = selectedQuestion && selectedQuestion != "emptyv" ? selectedQuestion : "all";
         _distribution = distribution ? distribution : "0";
+        _multiQuestion = multiQuestion;
         _render();
     }
 
@@ -79,7 +81,13 @@ class TADetailedAnalysisTable{
         }
 
         if( _selectedQuestion != "all" ){
-            blockHeader += _selectedQuestion+'{id:'+_selectedQuestion+';totals:false}/'
+            blockHeader += _selectedQuestion+'{id:'+_selectedQuestion+';totals:false'
+
+            if(_multiQuestion){
+                blockHeader+= ";collapsed:true";
+            }
+
+            blockHeader += "}/";
         }
 
         if( _selectedCategory != "all" ){
@@ -107,9 +115,9 @@ class TADetailedAnalysisTable{
         var countformula = _getColumnFormulaExpression();
 
         var columnstatistic = "[STATISTICS]{statistics:avg}";
-        var positivecolumn = _taTableUtils.GetCategoriesExpression( "pos", false, false, _distribution );
-        var neutralcolumn = _taTableUtils.GetCategoriesExpression( "neu", false, false, _distribution );
-        var negativecolumn = _taTableUtils.GetCategoriesExpression( "neg", false, false, _distribution );
+        var positivecolumn = _taTableUtils.GetCategoriesExpression( "pos", false, false, _distribution, Config.SentimentRange );
+        var neutralcolumn = _taTableUtils.GetCategoriesExpression( "neu", false, false, _distribution, Config.SentimentRange );
+        var negativecolumn = _taTableUtils.GetCategoriesExpression( "neg", false, false, _distribution, Config.SentimentRange );
 
         columnexpr = [columnbase, countformula, columnstatistic, positivecolumn, neutralcolumn, negativecolumn].join("+");
         return columnexpr
