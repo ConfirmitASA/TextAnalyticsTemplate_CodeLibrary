@@ -69,7 +69,8 @@ class Page_dashboard{
         var table = context.component;
         var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level);
         topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
-        topSentimentTable.GetTATableUtils().SetupDrilldown("TA_TOP_CATEGORIES_SINGLE","detailed_analysis");
+        if(level == 0)
+            topSentimentTable.GetTATableUtils().SetupDrilldown("TA_TOP_CATEGORIES_SINGLE","detailed_analysis");
     }
 
     /**
