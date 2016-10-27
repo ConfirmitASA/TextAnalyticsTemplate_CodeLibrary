@@ -382,4 +382,32 @@ class TATableUtils{
         var tableExpression = headersArray.join('^');
         _table.AddHeaders(_globals.report, Config.DS_Main, tableExpression);
     }
+
+    /**
+     * @memberof TATableUtils
+     * @instance
+     * @function ClearTableDistributions
+     * @description function to clear distributions presets for table
+     */
+    function ClearTableDistributions(){
+        _table.Distribution.Count = false;
+        _table.Distribution.VerticalPercents = false;
+        _table.Distribution.HorizontalPercents = false;
+    }
+
+    /**
+     * @memberof TATableUtils
+     * @instance
+     * @function SetDataSupressing
+     * @description function to set suppression
+     * @param {Number} baseLessThen
+     */
+    function SetupDataSupressing(baseLessThen){
+        _table.SupressData.SupressData = true;
+        _table.SupressData.BaseDisplay = BaseDisplayOption.Hide;
+        _table.SupressData.BaseLessThen = baseLessThen;
+        _table.SupressData.DistributionMeasure = DistributionMeasureType.InnermostColumn;
+        _table.SupressData.CellDisplay = BaseDisplayOption.Hide;
+        _table.SupressData.CellLimit = 1;
+    }
 }
