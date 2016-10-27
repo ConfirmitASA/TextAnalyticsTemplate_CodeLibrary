@@ -17,6 +17,7 @@ class TAThemeDistributionTable{
     private var _sentiment;
     private var _percents;
     private var _period;
+    private var _config;
 
     function TAThemeDistributionTable(globals, folder, table, sentiment,config){
         _globals = globals;
