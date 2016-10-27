@@ -403,11 +403,11 @@ class TATableUtils{
      * @param {Number} baseLessThen
      */
     function SetupDataSupressing(baseLessThen){
-        _table.SupressData.SupressData = true;
-        _table.SupressData.BaseDisplay = BaseDisplayOption.Hide;
-        _table.SupressData.BaseLessThen = baseLessThen;
-        _table.SupressData.DistributionMeasure = DistributionMeasureType.InnermostColumn;
-        _table.SupressData.CellDisplay = BaseDisplayOption.Hide;
-        _table.SupressData.CellLimit = 1;
+        _table.SuppressData.SuppressData = true;
+        _table.SuppressData.BaseDisplay = BaseDisplayOption.Hide;
+        _table.SuppressData.BaseLessThen = baseLessThen;
+        _table.SuppressData.DistributionMeasure = DistributionMeasureType.InnermostColumn;
+        _table.SuppressData.CellDisplay = BaseDisplayOption.Hide;
+        _table.SuppressData.CellLimit = 1;
     }
 }
