@@ -402,10 +402,10 @@ class TATableUtils{
      * @description function to set suppression
      * @param {Number} baseLessThen
      */
-    function SetupDataSupressing(baseLessThen){
+    function SetupDataSupressing(baseLessThan){
         _table.SuppressData.SuppressData = true;
         _table.SuppressData.BaseDisplay = BaseDisplayOption.Hide;
-        _table.SuppressData.BaseLessThen = baseLessThen;
+        _table.SuppressData.BaseLessThan = baseLessThan;
         _table.SuppressData.DistributionMeasure = DistributionMeasureType.InnermostColumn;
         _table.SuppressData.CellDisplay = BaseDisplayOption.Hide;
         _table.SuppressData.CellLimit = 1;
