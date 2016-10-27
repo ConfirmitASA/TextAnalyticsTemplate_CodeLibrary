@@ -17,8 +17,9 @@ class TAThemeDistributionTable{
     private var _sentiment;
     private var _percents;
     private var _period;
+    private var _config;
 
-    function TAThemeDistributionTable(globals, folder, table, sentiment){
+    function TAThemeDistributionTable(globals, folder, table, sentiment,config){
         _globals = globals;
         _folder = folder;
         _taMasks = new TAMasks(globals, folder);
@@ -31,7 +32,7 @@ class TAThemeDistributionTable{
             From: -11,
             To: 0
         };
-
+        _config = config;
         _render();
     }
 
@@ -139,16 +140,16 @@ class TAThemeDistributionTable{
         _taTableUtils.SetupConditionalFormatting(
             [
                 {
-                    expression: 'cellv(col+1, row)<(-1) AND cellv(col,row)<>EMPTYV() ',
+                    expression: 'cellv(col+1, row)<('+(_config.SentimentRange.Neutral[0] - 5)+') AND cellv(col,row)<>EMPTYV() ',
                     style: 'negative'
                 },
 
                 {
-                    expression: '(cellv(col+1, row)>=(-1)) AND (cellv(col+1, row)<=1) AND cellv(col,row)<>EMPTYV()',
+                    expression: '(cellv(col+1, row)>=('+(_config.SentimentRange.Neutral[0] - 5)+')) AND (cellv(col+1, row)<='+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 5)+') AND cellv(col,row)<>EMPTYV()',
                     style: 'neutral'
                 },
                 {
-                    expression: 'cellv(col+1, row)>1 AND cellv(col,row)<>EMPTYV()',
+                    expression: 'cellv(col+1, row)>'+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 5)+' AND cellv(col,row)<>EMPTYV()',
                     style: 'positive'
                 }
             ],
