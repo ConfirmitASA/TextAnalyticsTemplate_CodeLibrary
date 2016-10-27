@@ -7,21 +7,21 @@ class Page_dashboard{
     private static var _filter_panel;
     private static var _folder;
     private static const _defaultParameters = [
-    {
-        Id: "TA_LEVEL",
-        Value: "0"
-    },
+        {
+            Id: "TA_LEVEL",
+            Value: "0"
+        },
 
-    {
-        Id: "TA_COMPARE_PERIODS",
-        Value: "qoq"
-    },
+        {
+            Id: "TA_COMPARE_PERIODS",
+            Value: "qoq"
+        },
 
-    {
-        Id: "TA_VIEW_SENTIMENT",
-        Value: "emptyv"
-    }
-];
+        {
+            Id: "TA_VIEW_SENTIMENT",
+            Value: "emptyv"
+        }
+    ];
 
     /**
      * @memberof Page_dashboard
@@ -31,8 +31,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -74,13 +74,16 @@ class Page_dashboard{
      * @param {String} sentiment - "neg" or "pos"
      */
     private static function _renderTblMostSentiment(context, sentiment){
-    var level = context.state.Parameters.IsNull("TA_LEVEL") ? 0 : context.state.Parameters.GetString("TA_LEVEL");
-    var globals = TAHelper.GetGlobals(context);
-    var table = context.component;
-    var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level);
-    topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
-    topSentimentTable.GetTATableUtils().ClearTableDistributions();
-}
+
+        var level = context.state.Parameters.IsNull("TA_LEVEL") ? 0 : context.state.Parameters.GetString("TA_LEVEL");
+        var globals = TAHelper.GetGlobals(context);
+        var table = context.component;
+        var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level);
+        topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
+        if(level == 0)
+            topSentimentTable.GetTATableUtils().SetupDrilldown("TA_TOP_CATEGORIES_SINGLE","detailed_analysis");
+        topSentimentTable.GetTATableUtils().ClearTableDistributions();
+    }
 
     /**
      * @memberof Page_dashboard
@@ -95,10 +98,10 @@ class Page_dashboard{
     var table = context.component;
     var period = context.state.Parameters.IsNull("TA_COMPARE_PERIODS") ? "qoq" : context.state.Parameters.GetString("TA_COMPARE_PERIODS");
 
-    var topChangedTable = new TATopChangedTable(globals, _folder, table, sentiment, level, period);
-    topChangedTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
-    topChangedTable.GetTATableUtils().ClearTableDistributions();
-}
+        var topChangedTable = new TATopChangedTable(globals, _folder, table, sentiment, level, period);
+        topChangedTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
+        topChangedTable.GetTATableUtils().ClearTableDistributions();
+    }
 
     /**
      * @memberof Page_dashboard
@@ -107,8 +110,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostPositive_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -116,8 +119,8 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblMostPositive_Render(context){
-    _renderTblMostSentiment(context, true);
-}
+        _renderTblMostSentiment(context, true);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -126,8 +129,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostNegative_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -135,8 +138,8 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblMostNegative_Render(context){
-    _renderTblMostSentiment(context, false);
-}
+        _renderTblMostSentiment(context, false);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -145,8 +148,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostImproved_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -154,8 +157,8 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblMostImproved_Render(context){
-    _renderTblMostChanged(context, true);
-}
+        _renderTblMostChanged(context, true);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -164,8 +167,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostDeclined_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -173,8 +176,8 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblMostDeclined_Render(context){
-    _renderTblMostChanged(context, false);
-}
+        _renderTblMostChanged(context, false);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -183,8 +186,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblThemeDistribution_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -192,9 +195,9 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblThemeDistribution_Render(context){
-    var globals = TAHelper.GetGlobals(context);
-    var table = context.component;
-    var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
+        var globals = TAHelper.GetGlobals(context);
+        var table = context.component;
+        var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
 
     var themeDistributionTable = new TAThemeDistributionTable(globals, _folder, table, sentiment,Config);
     themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
