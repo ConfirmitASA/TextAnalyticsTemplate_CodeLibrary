@@ -30,7 +30,7 @@ class TAFolder{
         _modelNo = config.TAQuestions[questionIndex].TAModelNo;
 
         _timeVariableId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].TimeVariableId], [config.TimeVariableId], null, ["interview_start"])[0];
-
+        globals.log.LogDebug("config time var: "+ _timeVariableId);
 
         _datasourceId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].DatasourceId], [config.DS_Main], null, ["ds0"])[0];
     var variablesToViewBy = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_viewby"]);
