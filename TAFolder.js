@@ -29,6 +29,7 @@ class TAFolder{
         _qName = config.TAQuestions[questionIndex].TAQuestionName;
         _modelNo = config.TAQuestions[questionIndex].TAModelNo;
     globals.log.LogDebug("config time var 1: "+ config.TimeVariableId);
+    globals.log.LogDebug("config time var 1: "+ config.TAQuestions[questionIndex].TimeVariableId);
         _timeVariableId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].TimeVariableId], [config.TimeVariableId], null, ["interview_start"])[0];
         globals.log.LogDebug("config time var: "+ _timeVariableId);
 
