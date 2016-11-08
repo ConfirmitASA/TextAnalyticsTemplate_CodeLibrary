@@ -91,6 +91,7 @@ class Page_comments{
         }
         htlComments.AddTAColumn("verbatim");
         htlComments.AddColumn(_folder.GetTimeVariableId(), true);
+        context.log.LogDebug("time var: "+ _folder.GetTimeVariableId());
         htlComments.AddTAColumn("overallsentiment");
         //htlComments.AddTAColumn("categories");
         htlComments.AddConfiguredColumns();
