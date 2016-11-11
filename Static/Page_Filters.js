@@ -26,7 +26,7 @@ class Page_filters{
      */
     static function Render(context){
         context.log.LogDebug("Page_Filters 1");
-
+    Config.SetTALibrary(TAHelper.GetGlobals(context));
     context.log.LogDebug("Page_Filters 1/1");
     _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
     context.log.LogDebug("Page_Filters 2");
@@ -43,7 +43,7 @@ class Page_filters{
     context.log.LogDebug("Page_Filters 5");
         paramUtils.SetDefaultParameterValues(_defaultParameters);
     context.log.LogDebug("Page_Filters 6");
-    Config.SetTALibrary(TAHelper.GetGlobals(context));
+
         _folder = Config.GetTALibrary().GetFolderById();
     context.log.LogDebug("Page_Filters 7");
     }
