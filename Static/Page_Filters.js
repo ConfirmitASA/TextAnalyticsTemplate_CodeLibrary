@@ -25,27 +25,18 @@ class Page_filters{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
-        context.log.LogDebug("Page_Filters 1");
-    Config.SetTALibrary(TAHelper.GetGlobals(context));
-    context.log.LogDebug("Page_Filters 1/1");
-    _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
-    context.log.LogDebug("Page_Filters 2");
-    if(context.component.SubmitSource == "btnClearFilters"){
-            _filterComponents.ClearFilters();
-        }
-    context.log.LogDebug("Page_Filters 3");
+        Config.SetTALibrary(TAHelper.GetGlobals(context));
+        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+        if(context.component.SubmitSource == "btnClearFilters"){
+                _filterComponents.ClearFilters();
+            }
         if(context.component.SubmitSource == "btnClearDateFilter"){
             context.state.Parameters["TA_DATE_FROM"] = null;
             context.state.Parameters["TA_DATE_TO"] = null;
         }
-    context.log.LogDebug("Page_Filters 4");
         var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
-    context.log.LogDebug("Page_Filters 5");
         paramUtils.SetDefaultParameterValues(_defaultParameters);
-    context.log.LogDebug("Page_Filters 6");
-
         _folder = Config.GetTALibrary().GetFolderById();
-    context.log.LogDebug("Page_Filters 7");
     }
 
     /**
