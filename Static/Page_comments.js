@@ -42,6 +42,7 @@ class Page_comments{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
+    Config.SetTALibrary(TAHelper.GetGlobals(context));
         if(context.component.SubmitSource == "ClearFilters"){
             new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main).ClearFilters()
         }
@@ -53,7 +54,7 @@ class Page_comments{
         TAHelper.SetLastVisitedPage(TAHelper.GetGlobals(context), "comments");
         var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
         paramUtils.SetDefaultParameterValues(_defaultParameters);
-        Config.SetTALibrary(TAHelper.GetGlobals(context));
+
         var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
         _folder = Config.GetTALibrary().GetFolderById();
         taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
