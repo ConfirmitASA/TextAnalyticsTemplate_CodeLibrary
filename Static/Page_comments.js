@@ -89,7 +89,7 @@ class Page_comments{
     }
     if(!_folder){
         context.log.LogDebug("htl render: "+context.state.Parameters["TA_FOLDERS"]);
-        var selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS"]) : null;
+        var selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
         _folder =Config.GetTALibrary().GetFolderById(selectedFolder);
     }
     context.log.LogDebug("htl render1");
