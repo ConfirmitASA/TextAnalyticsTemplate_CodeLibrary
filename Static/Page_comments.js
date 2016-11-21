@@ -21,7 +21,11 @@ class Page_comments{
         {
             Id: "TA_COMMENTS_SENTIMENT",
             Value: "emptyv"
-        }
+        },
+    {
+        Id: "TA_FOLDERS",
+        Value: Config.TAQuestions[0].TAFolderId
+    }
     ];
 
     /**
@@ -56,7 +60,8 @@ class Page_comments{
         paramUtils.SetDefaultParameterValues(_defaultParameters);
 
         var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
-        _folder = Config.GetTALibrary().GetFolderById();
+        var selectedFolder = context.state.Parameters["TA_FOLDERS"];
+        _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
     }
@@ -83,7 +88,8 @@ class Page_comments{
         Config.SetTALibrary(TAHelper.GetGlobals(context));
     }
     if(!_folder){
-        _folder =Config.GetTALibrary().GetFolderById();
+        var selectedFolder = context.state.Parameters["TA_FOLDERS"];
+        _folder =Config.GetTALibrary().GetFolderById(selectedFolder);
     }
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
         var selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
