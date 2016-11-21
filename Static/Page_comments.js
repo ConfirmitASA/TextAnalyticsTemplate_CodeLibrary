@@ -88,7 +88,8 @@ class Page_comments{
         Config.SetTALibrary(TAHelper.GetGlobals(context));
     }
     if(!_folder){
-        var selectedFolder = context.state.Parameters["TA_FOLDERS"];
+        context.log.LogDebug("htl render: "+context.state.Parameters["TA_FOLDERS"]);
+        var selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS"]) : null;
         _folder =Config.GetTALibrary().GetFolderById(selectedFolder);
     }
     context.log.LogDebug("htl render1");
