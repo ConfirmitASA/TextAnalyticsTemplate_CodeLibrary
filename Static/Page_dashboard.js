@@ -72,12 +72,19 @@ class Page_dashboard{
      * @param {String} sentiment - "neg" or "pos"
      */
     private static function _renderTblMostSentiment(context, sentiment){
+    context.log.LogDebug("tblMostSentiment1");
         var level = context.state.Parameters.IsNull("TA_LEVEL") ? 0 : context.state.Parameters.GetString("TA_LEVEL");
+    context.log.LogDebug("tblMostSentiment2");
         var globals = TAHelper.GetGlobals(context);
+    context.log.LogDebug("tblMostSentiment3");
         var table = context.component;
+    context.log.LogDebug("tblMostSentiment4");
         var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level);
+    context.log.LogDebug("tblMostSentiment5");
         topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
+    context.log.LogDebug("tblMostSentiment6");
         topSentimentTable.GetTATableUtils().ClearTableDistributions();
+    context.log.LogDebug("tblMostSentiment7");
     }
 
     /**
