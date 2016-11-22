@@ -113,7 +113,7 @@ class TAThemeDistributionTable{
 
             switch (_sentiment) {
                 case "neg":
-                    headerStatistics.Expression = "-5";
+                    headerStatistics.Expression = "-6";
                     break;
 
                 case "neu":
@@ -121,7 +121,7 @@ class TAThemeDistributionTable{
                     break;
 
                 case "pos":
-                    headerStatistics.Expression = "5";
+                    headerStatistics.Expression = "6";
                     break;
             }
         }

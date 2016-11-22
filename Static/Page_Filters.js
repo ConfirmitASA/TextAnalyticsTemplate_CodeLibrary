@@ -25,21 +25,18 @@ class Page_filters{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
-            _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+        Config.SetTALibrary(TAHelper.GetGlobals(context));
+        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
         if(context.component.SubmitSource == "btnClearFilters"){
-            _filterComponents.ClearFilters();
-        }
-
+                _filterComponents.ClearFilters();
+            }
         if(context.component.SubmitSource == "btnClearDateFilter"){
             context.state.Parameters["TA_DATE_FROM"] = null;
             context.state.Parameters["TA_DATE_TO"] = null;
         }
-
         var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
         paramUtils.SetDefaultParameterValues(_defaultParameters);
-        Config.SetTALibrary(TAHelper.GetGlobals(context));
         _folder = Config.GetTALibrary().GetFolderById();
-
     }
 
     /**
@@ -124,8 +121,8 @@ class Page_filters{
     var filterTitle = _filterComponents.GetFilterTitle(filterNumber-1);
     if(filterTitle)
         context.component.Output.Append(filterTitle);
+    }
 
-}
     /**
      * @memberof Page_filters
      * @function lstFilterList_Hide
