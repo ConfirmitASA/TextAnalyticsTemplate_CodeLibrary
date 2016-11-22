@@ -36,7 +36,12 @@ class Page_filters{
         }
         var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
         paramUtils.SetDefaultParameterValues(_defaultParameters);
-        var selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
+    var selectedFolder;
+    try {
+        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS1") ? context.state.Parameters.GetString("TA_FOLDERS1") : null;
+    }catch(e){
+        selectedFolder = null;
+    }
         _folder =Config.GetTALibrary().GetFolderById(selectedFolder);
     }
 
