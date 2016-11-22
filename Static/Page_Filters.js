@@ -38,7 +38,7 @@ class Page_filters{
         paramUtils.SetDefaultParameterValues(_defaultParameters);
     var selectedFolder;
     try {
-        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS1") ? context.state.Parameters.GetString("TA_FOLDERS1") : null;
+        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
     }catch(e){
         selectedFolder = null;
     }

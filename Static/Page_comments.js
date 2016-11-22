@@ -22,10 +22,10 @@ class Page_comments{
             Id: "TA_COMMENTS_SENTIMENT",
             Value: "emptyv"
         },
-    {
-        Id: "TA_FOLDERS",
-        Value: Config.TAQuestions[0].TAFolderId
-    }
+        {
+            Id: "TA_FOLDERS",
+            Value: Config.TAQuestions[0].TAFolderId
+        }
     ];
 
     /**
@@ -63,7 +63,7 @@ class Page_comments{
     context.log.LogDebug("page render: "+context.state.Parameters["TA_FOLDERS"]);
     var selectedFolder;
     try {
-        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS1") ? context.state.Parameters.GetString("TA_FOLDERS1") : null;
+        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
     }catch(e){
         selectedFolder = null;
     }

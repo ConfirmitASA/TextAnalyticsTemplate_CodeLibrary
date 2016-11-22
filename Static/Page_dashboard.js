@@ -52,13 +52,13 @@ class Page_dashboard{
         paramUtils.SetDefaultParameterValues(_defaultParameters);
         var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
         var selectedFolder;
-        try {
+        /*try {
             context.log.LogDebug("try");
-            selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS1") ? context.state.Parameters.GetString("TA_FOLDERS1") : null;
+            selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
         }catch(e){
             context.log.LogDebug("catch");
             selectedFolder = null;
-        }
+        }*/
         _folder = Config.GetTALibrary().GetFolderById();//selectedFolder);
         taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
