@@ -6,12 +6,13 @@ class Parameters{
 
     /**
      * @memberof Parameters
-     * @function TA_QUESTIONS_Domain
+     * @function TA_FOLDERS_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_FOLDERS_Domain(context){
         new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderFoldersParameter(context.component);
     }
+
     /**
      * @memberof Parameters
      * @function TA_LEVEL_Domain

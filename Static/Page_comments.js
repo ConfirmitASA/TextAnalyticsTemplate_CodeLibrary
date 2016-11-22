@@ -61,7 +61,12 @@ class Page_comments{
 
         var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
     context.log.LogDebug("page render: "+context.state.Parameters["TA_FOLDERS"]);
-    var selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
+    var selectedFolder;
+    try {
+        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS1") ? context.state.Parameters.GetString("TA_FOLDERS1") : null;
+    }catch(e){
+        selectedFolder = null;
+    }
     _folder =Config.GetTALibrary().GetFolderById(selectedFolder);
         taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
