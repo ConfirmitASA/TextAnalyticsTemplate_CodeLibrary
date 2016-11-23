@@ -208,27 +208,20 @@ class Page_detailed_analysis{
             var blocks = taTableData.GetBlocks();
 
             var upgradeText = "<script type=\"text/javascript\">"+
-                    "var upgradedTable = new Reportal.AggregatedTable("+
+                    "var upgradedTable = new Reportal.TAhierarchy("+
                         "{"+
-                            "table: document.querySelector('table.reportal-hierarchy-table'),"+
-                            "hierarchy:"+
-                                "{"+
-                                    "hierarchy: "+JSON.stringify(hierarhy)+","+
-                                    "rowheaders:"+JSON.stringify(headers)+","+
-                                    "search:{enabled:true},"+
-                                    "blocks:"+JSON.stringify(blocks)+","+
-                                    "column:"+ ( blocks.length > 0 ? 1 : 0 ) +""+
-                                "},"+
+                            "source: document.querySelector('table.reportal-hierarchy-table'),"+
+                            "hierarchy: "+JSON.stringify(hierarhy)+","+
+                            "rowheaders:"+JSON.stringify(headers)+","+
+                            "search:{},"+
+                            "blocks:"+JSON.stringify(blocks)+","+
+                            "floatingHeader: {}"+
+                            "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
                             "sorting:"+
                                 "{"+
                                     "enabled: true,"+
                                     "excludedColumns: [6]"+
                                 "},"+
-                            "fixedHeader:"+
-                                "{"+
-                                    "enabled: true,"+
-                                    "hasListeners:false"+
-                                "}"+
                         "}"+
                     ")"+
                 "</script>";
