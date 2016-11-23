@@ -215,7 +215,7 @@ class Page_detailed_analysis{
                             "rowheaders:"+JSON.stringify(headers)+","+
                             "search:{},"+
                             "blocks:"+JSON.stringify(blocks)+","+
-                            "floatingHeader: {}"+
+                            "floatingHeader: {},"+
                             "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
                             "sorting:"+
                                 "{"+
