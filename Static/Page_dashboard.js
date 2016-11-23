@@ -193,7 +193,7 @@ class Page_dashboard{
     var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
 
     var themeDistributionTable = new TAThemeDistributionTable(globals, _folder, table, sentiment,Config);
-    themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table"]);
+    themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
     themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_TOP_CATEGORIES_SINGLE", "detailed_analysis");
     themeDistributionTable.GetTATableUtils().ClearTableDistributions();
     themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
