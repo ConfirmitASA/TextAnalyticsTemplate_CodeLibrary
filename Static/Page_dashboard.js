@@ -404,7 +404,7 @@ class Page_dashboard{
         "{"+
             "source: document.querySelector('table.reportal-hierarchy-table'),"+
             "blocks: [],"+
-            "sorting:{},"+
+            "sorting:{ enabled: false },"+
             "search:{},"+
             "floatingHeader:{},"+
             "hierarchy:"+JSON.stringify(hierarhy)+","+
