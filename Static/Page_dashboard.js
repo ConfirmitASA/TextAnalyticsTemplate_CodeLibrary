@@ -400,16 +400,16 @@ class Page_dashboard{
 
     headers = new TATableData(TAHelper.GetGlobals(context), "tblThemeDistribution").GetTableRowHeaders();
     var upgradeText = "<script type=\"text/javascript\">"+
-        "var upgradedTable = new Reportal.AggregatedTable("+
+        "var upgradedTable = new Reportal.TAhierarchy("+
         "{"+
-        "table: document.querySelector('table.reportal-hierarchy-table'),"+
-        "hierarchy:"+
-        "{"+
-        "hierarchy: "+JSON.stringify(hierarhy)+","+
-        "rowheaders:"+JSON.stringify(headers)+","+
-        "search:{enabled:true}"+
-        "},"+
-        "fixedHeader: {hasListeners:false}"+
+            "source: document.querySelector('table.reportal-hierarchy-table'),"+
+            "blocks: [],"+
+            "sorting:{},"+
+            "search:{},"+
+            "floatingHeader:{},"+
+            "hierarchy:"+JSON.stringify(hierarhy)+","+
+            "rowheaders:"+JSON.stringify(headers)+","+
+            "clearLinks:true"+
         "}"+
         ")"+
         "</script>";
