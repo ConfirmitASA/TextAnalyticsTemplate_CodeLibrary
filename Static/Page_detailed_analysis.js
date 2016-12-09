@@ -173,7 +173,8 @@ class Page_detailed_analysis{
         var globals = TAHelper.GetGlobals(context);
         var selectedCategory = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
         var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
-        var project =  globals.report.DataSource.GetProject(Config.DS_Main);
+        //var project =  globals.report.DataSource.GetProject(Config.DS_Main);
+        var project =  globals.report.DataSource.GetProject(_folder.GetDatasourceId());
         var selectedQuestionType = false;
         if(selectedQuestion && selectedQuestion != "emptyv")
             selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
