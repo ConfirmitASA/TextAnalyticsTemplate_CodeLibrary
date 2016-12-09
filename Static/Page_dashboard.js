@@ -53,7 +53,7 @@ class Page_dashboard{
     var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
     var selectedFolder;
     try {
-        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS1") ? context.state.Parameters.GetString("TA_FOLDERS1") : null;
+        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
     }catch(e){
         selectedFolder = null;
     }
