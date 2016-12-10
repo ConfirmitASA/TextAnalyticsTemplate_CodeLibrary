@@ -380,7 +380,8 @@ class TATableUtils{
             headersArray.push( columnHeaders )
         }
         var tableExpression = headersArray.join('^');
-        _table.AddHeaders(_globals.report, Config.DS_Main, tableExpression);
+        //_table.AddHeaders(_globals.report, Config.DS_Main, tableExpression);
+        _table.AddHeaders(_globals.report, _folder.GetDatasourceId(), tableExpression);
     }
 
     /**
