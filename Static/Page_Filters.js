@@ -34,6 +34,14 @@ class Page_filters{
             context.state.Parameters["TA_DATE_FROM"] = null;
             context.state.Parameters["TA_DATE_TO"] = null;
         }
+        if(context.component.SubmitSource == "lstQuestions") {
+            context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
+            context.state.Parameters["TA_LEVEL"] = null;
+            context.state.Parameters["TA_SUB_CATEGORIES_SINGLE"] = null;
+            context.state.Parameters["TA_TOP_CATEGORIES_SINGLE"] = null;
+            context.state.Parameters["TA_VIEW_BY"] = null;
+        }
+
         var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
         paramUtils.SetDefaultParameterValues(_defaultParameters);
     var selectedFolder;
@@ -42,7 +50,7 @@ class Page_filters{
     }catch(e){
         selectedFolder = null;
     }
-        _folder =Config.GetTALibrary().GetFolderById(selectedFolder);
+        _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
     }
 
     /**

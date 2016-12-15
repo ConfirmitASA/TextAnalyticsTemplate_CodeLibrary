@@ -48,6 +48,13 @@ class Page_detailed_analysis{
             context.state.Parameters["TA_DATE_FROM"] = null;
             context.state.Parameters["TA_DATE_TO"] = null;
         }
+        if(context.component.SubmitSource == "lstQuestions") {
+            context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
+            context.state.Parameters["TA_LEVEL"] = null;
+            context.state.Parameters["TA_SUB_CATEGORIES_SINGLE"] = null;
+            context.state.Parameters["TA_TOP_CATEGORIES_SINGLE"] = null;
+            context.state.Parameters["TA_VIEW_BY"] = null;
+        }
 
         TAHelper.SetLastVisitedPage(TAHelper.GetGlobals(context), "detailed_analysis");
         var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
