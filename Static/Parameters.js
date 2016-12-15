@@ -3,6 +3,16 @@
  * @classdesc Static class for Reportal parameter components
  */
 class Parameters{
+    private static function getSelectedFolder(context) {
+        var selectedFolder;
+        try {
+            selectedFolder = context.state.Parameters.GetString("TA_FOLDERS");
+        } catch(e){
+            selectedFolder = null;
+        } finally {
+            return selectedFolder;
+        }
+    }
 
     /**
      * @memberof Parameters
@@ -19,7 +29,7 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_LEVEL_Domain(context){
-        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelsParameter(context.component, null);
+        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelsParameter(context.component, getSelectedFolder(context));
     }
 
     /**
@@ -43,7 +53,7 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_TOP_CATEGORIES_SINGLE_Domain(context){
-        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, null, 0, "-select-")
+        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, getSelectedFolder(context), 0, "-select-")
     }
 
     /**
@@ -52,7 +62,7 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_SUB_CATEGORIES_SINGLE_Domain(context){
-        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, null, 1, "-select-")
+        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, getSelectedFolder(context), 1, "-select-")
     }
 
     /**
@@ -61,7 +71,7 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_ATTRIBUTES_SINGLE_Domain(context){
-        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, null, 2, "-select-")
+        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, getSelectedFolder(context), 2, "-select-")
     }
 
     /**
@@ -72,7 +82,7 @@ class Parameters{
     static function TA_SUB_CATEGORIES_SINGLE_Mask(context){
         var category = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
         if(category && category != "emptyv")
-            new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).MaskSelectedCategoryChildren(context.component,null,category,true)
+            new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).MaskSelectedCategoryChildren(context.component,getSelectedFolder(context),category,true)
     }
 
     /**
@@ -83,7 +93,7 @@ class Parameters{
     static function TA_ATTRIBUTES_SINGLE_Mask(context){
         var category = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
         if(category && category != "emptyv")
-            new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).MaskSelectedCategoryChildren(context.component,null,category,true)
+            new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).MaskSelectedCategoryChildren(context.component,getSelectedFolder(context),category,true)
     }
 
     /**
@@ -121,7 +131,7 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_VIEW_BY_Domain(context){
-        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderViewByParameter(context.component, null, "-select-");
+        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderViewByParameter(context.component, getSelectedFolder(context), "-select-");
     }
 
     /**
