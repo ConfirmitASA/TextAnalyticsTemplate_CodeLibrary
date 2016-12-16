@@ -68,14 +68,14 @@ class Page_comments{
         paramUtils.SetDefaultParameterValues(_defaultParameters);
 
         var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
-        context.log.LogDebug("page render: "+context.state.Parameters["TA_FOLDERS"]);
-        var selectedFolder;
-        try {
+        //context.log.LogDebug("page render: "+context.state.Parameters["TA_FOLDERS"]);
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        /*try {
             selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
         } catch(e){
             selectedFolder = null;
-        }
-        _folder =Config.GetTALibrary().GetFolderById(selectedFolder);
+        }*/
+        _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
     }
@@ -98,15 +98,25 @@ class Page_comments{
      * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function htlComments_Render(context){
-    if(!Config.GetTALibrary()){
-        Config.SetTALibrary(TAHelper.GetGlobals(context));
-    }
-    if(!_folder){
-        context.log.LogDebug("htl render: "+context.state.Parameters["TA_FOLDERS"]);
-        var selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
-        _folder =Config.GetTALibrary().GetFolderById(selectedFolder);
-    }
-    context.log.LogDebug("htl render1");
+        if(!Config.GetTALibrary()){
+            Config.SetTALibrary(TAHelper.GetGlobals(context));
+        }
+        if(!_folder){
+            //context.log.LogDebug("htl render: "+context.state.Parameters["TA_FOLDERS"]);
+            //var selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
+            //_folder =Config.GetTALibrary().GetFolderById(selectedFolder);
+
+            var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+			/*try {
+				selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
+			} catch(e){
+				selectedFolder = null;
+			}*/
+			 _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+			
+			
+        }
+        context.log.LogDebug("htl render1");
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
         var selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         if( selectedCategory ){

@@ -4,14 +4,13 @@
  */
 class Parameters{
     private static function getSelectedFolder(context) {
-        var selectedFolder;
-        try {
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        return selectedFolder;
+        /*try {
             selectedFolder = context.state.Parameters.GetString("TA_FOLDERS");
         } catch(e){
             selectedFolder = null;
-        } finally {
-            return selectedFolder;
-        }
+        } finally {}*/
     }
 
     /**
