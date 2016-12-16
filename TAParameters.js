@@ -50,8 +50,8 @@ class TAParameters{
 
         for(var i = 0; i < folders.length; i++){
             parameterValues.push({
-                Code: folders[i].id,
-                Label: folders[i].id
+                Code: folders[i].GetId(),
+                Label: folders[i].GetId()
             });
         }
         _parameterUtilities.LoadParameterValues(parameter, parameterValues);
