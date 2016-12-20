@@ -47,19 +47,27 @@ class Page_dashboard{
         context.state.Parameters["TA_DATE_FROM"] = null;
         context.state.Parameters["TA_DATE_TO"] = null;
     }
+    if(context.component.SubmitSource == "lstQuestions") {
+        context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
+        context.state.Parameters["TA_LEVEL"] = null;
+        context.state.Parameters["TA_SUB_CATEGORIES_SINGLE"] = null;
+        context.state.Parameters["TA_TOP_CATEGORIES_SINGLE"] = null;
+        context.state.Parameters["TA_VIEW_BY"] = null;
+    }
+
     TAHelper.SetLastVisitedPage(TAHelper.GetGlobals(context), "dashboard");
     var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
     paramUtils.SetDefaultParameterValues(_defaultParameters);
     var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
-    var selectedFolder;
-    try {
-        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS1") ? context.state.Parameters.GetString("TA_FOLDERS1") : null;
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    /*try {
+        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
     }catch(e){
         selectedFolder = null;
-    }
+    }*/
     _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-    taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+    taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+    taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
 }
 
     /**
@@ -193,7 +201,7 @@ class Page_dashboard{
     var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
 
     var themeDistributionTable = new TAThemeDistributionTable(globals, _folder, table, sentiment,Config);
-    themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table"]);
+    themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
     themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_TOP_CATEGORIES_SINGLE", "detailed_analysis");
     themeDistributionTable.GetTATableUtils().ClearTableDistributions();
     themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
@@ -400,16 +408,15 @@ class Page_dashboard{
 
     headers = new TATableData(TAHelper.GetGlobals(context), "tblThemeDistribution").GetTableRowHeaders();
     var upgradeText = "<script type=\"text/javascript\">"+
-        "var upgradedTable = new Reportal.AggregatedTable("+
+        "var upgradedTable = new Reportal.TAhierarchy("+
         "{"+
-        "table: document.querySelector('table.reportal-hierarchy-table'),"+
-        "hierarchy:"+
-        "{"+
-        "hierarchy: "+JSON.stringify(hierarhy)+","+
-        "rowheaders:"+JSON.stringify(headers)+","+
-        "search:{enabled:true}"+
-        "},"+
-        "fixedHeader: {hasListeners:false}"+
+            "source: document.querySelector('table.reportal-hierarchy-table'),"+
+            "blocks: [],"+
+            "search:{},"+
+            "floatingHeader:{},"+
+            "hierarchy:"+JSON.stringify(hierarhy)+","+
+            "rowheaders:"+JSON.stringify(headers)+","+
+            "clearLinks:true"+
         "}"+
         ")"+
         "</script>";
