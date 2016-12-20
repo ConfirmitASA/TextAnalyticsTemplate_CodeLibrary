@@ -51,10 +51,10 @@ class TAParameters{
         var question;
         for(var i = 0; i < folders.length; i++){
             project = _globals.report.DataSource.GetProject(folders[i].GetDatasourceId());
-            question = project.GetQuestion(folders[i].GetQuestionId());
+            //question = project.GetQuestion(folders[i].GetQuestionId());
             parameterValues.push({
                 Code: folders[i].GetId(),
-                Label: folders[i].GetId() + " " + question.GetText()
+                Label: folders[i].GetId() //+ " " + question.GetText()
             });
         }
         _parameterUtilities.LoadParameterValues(parameter, parameterValues);
