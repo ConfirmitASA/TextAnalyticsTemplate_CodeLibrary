@@ -47,19 +47,27 @@ class Page_dashboard{
         context.state.Parameters["TA_DATE_FROM"] = null;
         context.state.Parameters["TA_DATE_TO"] = null;
     }
+    if(context.component.SubmitSource == "lstQuestions") {
+        context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
+        context.state.Parameters["TA_LEVEL"] = null;
+        context.state.Parameters["TA_SUB_CATEGORIES_SINGLE"] = null;
+        context.state.Parameters["TA_TOP_CATEGORIES_SINGLE"] = null;
+        context.state.Parameters["TA_VIEW_BY"] = null;
+    }
+
     TAHelper.SetLastVisitedPage(TAHelper.GetGlobals(context), "dashboard");
     var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
     paramUtils.SetDefaultParameterValues(_defaultParameters);
     var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
-    var selectedFolder;
-    try {
-        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS1") ? context.state.Parameters.GetString("TA_FOLDERS1") : null;
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    /*try {
+        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
     }catch(e){
         selectedFolder = null;
-    }
+    }*/
     _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-    taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+    taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+    taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
 }
 
     /**

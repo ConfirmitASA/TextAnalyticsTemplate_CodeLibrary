@@ -84,4 +84,15 @@ class TALibrary{
             }
         }
     }
+
+    static function GetTAFoldersParameterValue(context) {
+        var selectedFolder = null;
+        try {
+            selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
+        } catch(e) {
+            selectedFolder = null;
+        } finally {
+            return selectedFolder;
+        }
+    }
 }
