@@ -54,7 +54,7 @@ class TAParameters{
             question = project.GetQuestion(folders[i].GetQuestionId());
             parameterValues.push({
                 Code: folders[i].GetId(),
-                Label: folders[i].GetId() + " - " + question.Text
+                Label: folders[i].GetId() + (question.Text ? " - " + question.Text : "")
             });
         }
         _parameterUtilities.LoadParameterValues(parameter, parameterValues);
