@@ -92,6 +92,7 @@ class TALibrary{
         } catch(e) {
             selectedFolder = null;
         } finally {
+            context.log.LogDebug("selected folder: "+selectedFolder);
             return selectedFolder;
         }
     }
