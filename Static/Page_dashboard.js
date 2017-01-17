@@ -3,6 +3,7 @@
  * @classdesc Static class for Reportal Page dashboard components
  */
 class Page_dashboard{
+    private static var _filterComponents;
     private static var _folder;
     private static const _defaultParameters = [
     {
@@ -40,9 +41,7 @@ class Page_dashboard{
      */
     static function Render(context){
     Config.SetTALibrary(TAHelper.GetGlobals(context));
-    if(context.component.SubmitSource == "ClearFilters"){
-        new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(),Config.DS_Main).ClearFilters()
-    }
+
     if(context.component.SubmitSource == "btnClearDateFilter"){
         context.state.Parameters["TA_DATE_FROM"] = null;
         context.state.Parameters["TA_DATE_TO"] = null;
@@ -66,6 +65,10 @@ class Page_dashboard{
         selectedFolder = null;
     }*/
     _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+    _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+    if(context.component.SubmitSource == "ClearFilters"){
+        _filterComponents.ClearFilters()
+    }
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
 }
@@ -423,5 +426,54 @@ class Page_dashboard{
 
     context.component.Output.Append(upgradeText);
     context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
+}
+
+    /**
+     * @memberof Page_filters
+     * @function btnSave_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function btnSave_Hide(context){
+    return false
+}
+
+    /**
+     * @memberof Page_filters
+     * @function btnSave_Render
+     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function btnSave_Render(context){
+    context.component.Label = new Label(9,"Save");
+    //context.component.TargetPage = "filters";
+}
+
+    static function txtFilterTitle_Hide(context, filterNumber){
+    var filterQuestion = _filterComponents.GetFilterQuestion(filterNumber-1);
+    return !filterQuestion
+}
+
+    /**
+     * @memberof Page_filters
+     * @function txtFilterTitle_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {Number} filterNumber
+     */
+    static function txtFilterTitle_Render(context, filterNumber){
+    var filterTitle = _filterComponents.GetFilterTitle(filterNumber-1);
+    if(filterTitle)
+        context.component.Output.Append(filterTitle);
+}
+
+    /**
+     * @memberof Page_filters
+     * @function lstFilterList_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {Number} filterNumber
+     * @returns {Boolean}
+     */
+    static function lstFilterList_Hide(context, filterNumber){
+    var filterQuestion = _filterComponents.GetFilterQuestion(filterNumber-1);
+    return !filterQuestion
 }
 }
