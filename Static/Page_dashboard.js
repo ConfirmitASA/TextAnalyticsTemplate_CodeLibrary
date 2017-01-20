@@ -459,7 +459,7 @@ class Page_dashboard{
      */
     static function btnSave_Render(context){
     context.log.LogDebug("btnSave "+_filterComponents);
-    _filter_panel.btnSave_Render(context);
+   // _filter_panel.btnSave_Render(context);
 }
 
     static function txtFilterTitle_Hide(context, filterNumber){
