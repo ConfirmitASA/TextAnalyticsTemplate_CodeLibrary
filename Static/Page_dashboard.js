@@ -446,6 +446,7 @@ class Page_dashboard{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSave_Render(context){
+    context.log.LogDebug("btnSave "+_filter_panel);
     _filter_panel.btnSave_Render(context);
 }
 
