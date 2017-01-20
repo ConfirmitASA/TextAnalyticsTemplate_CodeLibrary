@@ -437,6 +437,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function btnSave_Hide(context){
+    context.log.LogDebug("btnSave_Hide "+_filter_panel);
     return _filter_panel.btnSave_Hide(context);
 }
 
