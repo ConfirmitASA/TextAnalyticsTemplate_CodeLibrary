@@ -451,7 +451,7 @@ class Page_dashboard{
     context.log.LogDebug("page button save start 1");
     //_filter_panel.btnSave_Render(context);
     context.component.Label = new Label(9,"Save")
-    context.log.LogDebug("page button save end" + _filter_panel.btnSave_Hide(context));
+    //context.log.LogDebug("page button save end" + _filter_panel.btnSave_Hide(context));
 }
 
     static function txtFilterTitle_Hide(context, filterNumber){
