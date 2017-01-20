@@ -437,7 +437,6 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function btnSave_Hide(context){
-    context.log.LogDebug("btnSave_Hide "+_filter_panel);
     return _filter_panel.btnSave_Hide(context);
 }
 
@@ -447,7 +446,7 @@ class Page_dashboard{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSave_Render(context){
-    context.log.LogDebug("btnSave "+_filter_panel);
+    context.log.LogDebug("btnSave "+_filterComponents);
     _filter_panel.btnSave_Render(context);
 }
 
