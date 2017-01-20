@@ -449,7 +449,7 @@ class Page_dashboard{
     context.log.LogDebug("page button save start");
     context.component.Label = new Label(9,"Save");
     context.log.LogDebug("page button save start 1");
-    _filter_panel.btnSave_Render1(context);
+    _filter_panel.btnSave_Render(context);
     context.log.LogDebug("page button save start 2");
 }
 
