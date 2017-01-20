@@ -44,8 +44,7 @@ class FilterPanel{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     function btnSave_Render(context){
-    //context.component.Label = new Label(9,"Save");
-    var b=2+2;
+    context.component.Label = new Label(9,"Save");
 }
 
     /**
