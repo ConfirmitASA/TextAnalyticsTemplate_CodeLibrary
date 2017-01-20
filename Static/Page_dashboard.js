@@ -452,7 +452,7 @@ class Page_dashboard{
     try {
         _filter_panel.btnSave_Render(context);
     }catch(e){
-        log.LogDebug("buttonError: "+e);
+        context.log.LogDebug("buttonError: "+e);
     }
     context.log.LogDebug("page button save start 2");
 }
