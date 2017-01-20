@@ -447,6 +447,8 @@ class Page_dashboard{
      */
     static function btnSave_Render(context){
     context.log.LogDebug("page button save start");
+    var fp = _filter_panel;
+    context.log.LogDebug("page button save start 1");
     _filter_panel.btnSave_Render(context);
     context.log.LogDebug("page button save end");
 }
