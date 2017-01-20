@@ -4,6 +4,7 @@
  */
 class Page_dashboard{
     private static var _filterComponents;
+    private static var _filter_panel;
     private static var _folder;
     private static const _defaultParameters = [
     {
@@ -66,6 +67,7 @@ class Page_dashboard{
     }*/
     _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
     _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+    _filter_panel = new FilterPanel(_filterComponents);
     if(context.component.SubmitSource == "ClearFilters"){
         _filterComponents.ClearFilters()
     }
@@ -429,13 +431,13 @@ class Page_dashboard{
 }
 
     /**
-     * @memberof Page_filters
+     * @memberof Page_dashoboard
      * @function btnSave_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
     static function btnSave_Hide(context){
-    return false
+    return _filter_panel.btnSave_Hide(context);
 }
 
     /**
@@ -444,13 +446,11 @@ class Page_dashboard{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSave_Render(context){
-    context.component.Label = new Label(9,"Save");
-    //context.component.TargetPage = "filters";
+    _filter_panel.btnSave_Render(context);
 }
 
     static function txtFilterTitle_Hide(context, filterNumber){
-    var filterQuestion = _filterComponents.GetFilterQuestion(filterNumber-1);
-    return !filterQuestion
+    return _filter_panel.txtFilterTitle_Hide(context, filterNumber);
 }
 
     /**
@@ -460,9 +460,7 @@ class Page_dashboard{
      * @param {Number} filterNumber
      */
     static function txtFilterTitle_Render(context, filterNumber){
-    var filterTitle = _filterComponents.GetFilterTitle(filterNumber-1);
-    if(filterTitle)
-        context.component.Output.Append(filterTitle);
+    _filter_panel.txtFilterTitle_Render(context, filterNumber);
 }
 
     /**
@@ -473,7 +471,6 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function lstFilterList_Hide(context, filterNumber){
-    var filterQuestion = _filterComponents.GetFilterQuestion(filterNumber-1);
-    return !filterQuestion
+    return _filter_panel.lstFilterList_Hide(context, filterNumber);
 }
 }

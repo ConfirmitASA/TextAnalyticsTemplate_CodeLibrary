@@ -6,7 +6,7 @@ class Page_filters{
     private static var _filterComponents;
     private static var _folder;
     private static const _defaultParameters = [];
-
+    private static var _filter_panel;
     /**
      * @memberof Page_filters
      * @function Hide
@@ -27,6 +27,7 @@ class Page_filters{
     static function Render(context){
         Config.SetTALibrary(TAHelper.GetGlobals(context));
         _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+        _filter_panel = new FilterPanel(_filterComponents);
         if(context.component.SubmitSource == "btnClearFilters"){
                 _filterComponents.ClearFilters();
             }
@@ -60,7 +61,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnSaveReturn_Hide(context){
-        return false
+        return filterPanel.btnSaveReturn_Hide(context);
     }
 
     /**
@@ -69,8 +70,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSaveReturn_Render(context){
-        context.component.Label = new Label(9,"Save and Return");
-        context.component.TargetPage = context.state.Parameters.GetString("TA_LAST_VISITED_PAGE");
+        _filter_panel.btnSaveReturn_Render(context)
     }
 
     /**
@@ -80,7 +80,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnSave_Hide(context){
-        return false
+        return _filter_panel.btnSave_Hide(context);
     }
 
     /**
@@ -89,8 +89,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSave_Render(context){
-        context.component.Label = new Label(9,"Save");
-        context.component.TargetPage = "filters";
+    _filter_panel.btnSave_Render(context);
     }
 
     /**
@@ -100,7 +99,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnClearFilters_Hide(context){
-        return false
+        return _filter_panel.btnClearFilters_Hide(context);
     }
 
     /**
@@ -109,8 +108,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnClearFilters_Render(context){
-    context.component.Label = new Label(9,"Clear Filters");
-    context.component.TargetPage = "filters";
+    _filter_panel.btnClearFilters_Render(context);
 }
 
     /**
@@ -121,8 +119,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function txtFilterTitle_Hide(context, filterNumber){
-    var filterQuestion = _filterComponents.GetFilterQuestion(filterNumber-1);
-        return !filterQuestion
+        return _filter_panel.txtFilterTitle_Hide(context, filterNumber);
     }
 
     /**
@@ -132,9 +129,7 @@ class Page_filters{
      * @param {Number} filterNumber
      */
     static function txtFilterTitle_Render(context, filterNumber){
-    var filterTitle = _filterComponents.GetFilterTitle(filterNumber-1);
-    if(filterTitle)
-        context.component.Output.Append(filterTitle);
+        _filter_panel.txtFilterTitle_Render(context, filterNumber)
     }
 
     /**
@@ -145,7 +140,6 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function lstFilterList_Hide(context, filterNumber){
-        var filterQuestion = _filterComponents.GetFilterQuestion(filterNumber-1);
-        return !filterQuestion
+        return _filter_panel.lstFilterList_Hide(context, filterNumber);
     }
 }
