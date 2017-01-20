@@ -449,11 +449,8 @@ class Page_dashboard{
     context.log.LogDebug("page button save start");
     context.component.Label = new Label(9,"Save");
     context.log.LogDebug("page button save start 1");
-    try {
         _filter_panel.btnSave_Render(context);
-    }catch(e){
-        context.log.LogDebug("buttonError: "+e);
-    }
+
     context.log.LogDebug("page button save start 2");
 }
 
