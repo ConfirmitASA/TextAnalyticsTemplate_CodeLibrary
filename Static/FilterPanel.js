@@ -14,7 +14,7 @@ class FilterPanel{
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
-    static function btnSaveReturn_Hide(context){
+    function btnSaveReturn_Hide(context){
     return false
 }
 
@@ -23,7 +23,7 @@ class FilterPanel{
      * @function btnSaveReturn_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function btnSaveReturn_Render(context){
+    function btnSaveReturn_Render(context){
     context.component.Label = new Label(9,"Save and Return");
     context.component.TargetPage = context.state.Parameters.GetString("TA_LAST_VISITED_PAGE");
 }
@@ -34,7 +34,7 @@ class FilterPanel{
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
-    static function btnSave_Hide(context){
+    function btnSave_Hide(context){
     return false
 }
 
@@ -43,9 +43,8 @@ class FilterPanel{
      * @function btnSave_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function btnSave_Render(context){
+    function btnSave_Render(context){
     context.component.Label = new Label(9,"Save");
-    context.component.TargetPage = "filters";
 }
 
     /**
@@ -54,7 +53,7 @@ class FilterPanel{
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
-    static function btnClearFilters_Hide(context){
+    function btnClearFilters_Hide(context){
     return false
 }
 
@@ -63,7 +62,7 @@ class FilterPanel{
      * @function btnClearFilters_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function btnClearFilters_Render(context){
+    function btnClearFilters_Render(context){
     context.component.Label = new Label(9,"Clear Filters");
     context.component.TargetPage = "filters";
 }
