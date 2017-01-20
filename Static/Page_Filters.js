@@ -61,7 +61,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnSaveReturn_Hide(context){
-        return filterPanel.btnSaveReturn_Hide(context);
+        return _filter_anel.btnSaveReturn_Hide(context);
     }
 
     /**
