@@ -447,11 +447,10 @@ class Page_dashboard{
      */
     static function btnSave_Render(context){
     context.log.LogDebug("page button save start");
-    var fp = _filter_panel;
+    context.component.Label = new Label(9,"Save");
     context.log.LogDebug("page button save start 1");
-    //_filter_panel.btnSave_Render(context);
-    context.component.Label = new Label(9,"Save")
-    context.log.LogDebug("page button save end" + _filter_panel.btnSave_Hide(context));
+    _filter_panel.btnSave_Render1(context);
+    context.log.LogDebug("page button save start 2");
 }
 
     static function txtFilterTitle_Hide(context, filterNumber){
