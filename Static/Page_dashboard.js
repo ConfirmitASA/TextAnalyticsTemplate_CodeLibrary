@@ -449,8 +449,8 @@ class Page_dashboard{
     context.log.LogDebug("page button save start");
     var fp = _filter_panel;
     context.log.LogDebug("page button save start 1");
-    _filter_panel.btnSave_Render(context);
-    context.log.LogDebug("page button save end");
+    //_filter_panel.btnSave_Render(context);
+    context.log.LogDebug("page button save end" + _filter_panel.btnSave_Render(context));
 }
 
     static function txtFilterTitle_Hide(context, filterNumber){
