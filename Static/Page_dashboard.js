@@ -430,7 +430,7 @@ class Page_dashboard{
                 "blocks: [],"+
                 "hierarchy:"+JSON.stringify(hierarhy)+","+
                 "rowheaders:"+JSON.stringify(headers)+","+
-                "search:{}"+
+                "search:{enabled: true}"+
             "},"+
             "search:{},"+
             "fixedHeader:{},"+
