@@ -62,4 +62,13 @@ class ReportMaster {
     static function btnClearDateFilter_Render(context){
         context.component.Label = new Label(9, "Clear Date Filters");
     }
+    static function txtFilterPanelScript_Render(context){
+    var script = "<script type = \"text/javascript\">" +
+        "(function(){"+
+        "var filterpanel = new Reportal.Filterpanel({source: document, target: document.querySelector(\".reportal-filterpanel\")});"+
+        "})()"+
+        "</script>";
+    context.component.Output.Append(script)
+
+}
 }
