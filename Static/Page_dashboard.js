@@ -427,8 +427,8 @@ class Page_dashboard{
         "{"+
             "source: document.querySelector('table.reportal-hierarchy-table'),"+
             "blocks: [],"+
-            "search:{},"+
-            "floatingHeader:{},"+
+            "search:{enabled: true},"+
+            "floatingHeader:{enabled: true},"+
             "hierarchy:"+JSON.stringify(hierarhy)+","+
             "rowheaders:"+JSON.stringify(headers)+","+
             "clearLinks:true"+
