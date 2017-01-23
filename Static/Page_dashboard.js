@@ -41,9 +41,7 @@ class Page_dashboard{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
-    context.log.LogDebug("pd1");
     Config.SetTALibrary(TAHelper.GetGlobals(context));
-    context.log.LogDebug("pd2");
     if(context.component.SubmitSource == "btnClearDateFilter"){
         context.state.Parameters["TA_DATE_FROM"] = null;
         context.state.Parameters["TA_DATE_TO"] = null;
@@ -449,7 +447,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function btnSave_Hide(context){
-    return _filter_panel.btnSave_Hide(context);
+    return FilterPanel.btnSave_Hide(context);
 }
 
     /**
@@ -458,8 +456,7 @@ class Page_dashboard{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSave_Render(context){
-    context.log.LogDebug("btnSave "+_filterComponents);
-   // _filter_panel.btnSave_Render(context);
+       FilterPanel.btnSave_Render(context);
 }
 
     static function txtFilterTitle_Hide(context, filterNumber){

@@ -61,7 +61,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnSaveReturn_Hide(context){
-        return _filter_panel.btnSaveReturn_Hide(context);
+        return FilterPanel.btnSaveReturn_Hide(context);
     }
 
     /**
@@ -70,7 +70,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSaveReturn_Render(context){
-        _filter_panel.btnSaveReturn_Render(context)
+        FilterPanel.btnSaveReturn_Render(context)
     }
 
     /**
@@ -80,7 +80,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnSave_Hide(context){
-        return _filter_panel.btnSave_Hide(context);
+        return FilterPanel.btnSave_Hide(context);
     }
 
     /**
@@ -89,7 +89,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSave_Render(context){
-    _filter_panel.btnSave_Render(context);
+        FilterPanel.btnSave_Render(context);
     }
 
     /**
@@ -99,7 +99,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnClearFilters_Hide(context){
-        return _filter_panel.btnClearFilters_Hide(context);
+        return FilterPanel.btnClearFilters_Hide(context);
     }
 
     /**
@@ -108,8 +108,8 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnClearFilters_Render(context){
-    _filter_panel.btnClearFilters_Render(context);
-}
+        FilterPanel.btnClearFilters_Render(context);
+    }
 
     /**
      * @memberof Page_filters
