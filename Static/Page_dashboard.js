@@ -423,14 +423,16 @@ class Page_dashboard{
 
     headers = new TATableData(TAHelper.GetGlobals(context), "tblThemeDistribution").GetTableRowHeaders();
     var upgradeText = "<script type=\"text/javascript\">"+
-        "var upgradedTable = new Reportal.TAHierarchyTable("+
+        "var upgradedTable = new Reportal.AggregatedTable("+
         "{"+
-            "source: document.querySelector('table.reportal-hierarchy-table'),"+
-            "blocks: [],"+
-            "search:{enabled: true},"+
-            "floatingHeader:{enabled: true},"+
-            "hierarchy:"+JSON.stringify(hierarhy)+","+
-            "rowheaders:"+JSON.stringify(headers)+","+
+            "table: document.querySelector('table.reportal-hierarchy-table'),"+
+            "hierarchy: {"+
+                "blocks: [],"+
+                "hierarchy:"+JSON.stringify(hierarhy)+","+
+                "rowheaders:"+JSON.stringify(headers)+","+
+            "},"+
+            "search:{},"+
+            "fixedHeader:{},"+
             "clearLinks:true"+
         "}"+
         ")"+
