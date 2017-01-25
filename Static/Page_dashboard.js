@@ -46,7 +46,6 @@ class Page_dashboard{
         context.state.Parameters["TA_DATE_FROM"] = null;
         context.state.Parameters["TA_DATE_TO"] = null;
     }
-    context.log.LogDebug("pd3");
     if(context.component.SubmitSource == "lstQuestions") {
         context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
         context.state.Parameters["TA_LEVEL"] = null;
@@ -54,35 +53,24 @@ class Page_dashboard{
         context.state.Parameters["TA_TOP_CATEGORIES_SINGLE"] = null;
         context.state.Parameters["TA_VIEW_BY"] = null;
     }
-    context.log.LogDebug("pd4");
     TAHelper.SetLastVisitedPage(TAHelper.GetGlobals(context), "dashboard");
-    context.log.LogDebug("pd5");
     var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
-    context.log.LogDebug("pd6");
     paramUtils.SetDefaultParameterValues(_defaultParameters);
-    context.log.LogDebug("pd6");
     var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
-    context.log.LogDebug("pd7");
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
     /*try {
         selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
     }catch(e){
         selectedFolder = null;
     }*/
-    context.log.LogDebug("pd8");
     _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    context.log.LogDebug("pd9");
     _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
-    context.log.LogDebug("pd10");
     _filter_panel = new FilterPanel(_filterComponents);
     if(context.component.SubmitSource == "ClearFilters"){
         _filterComponents.ClearFilters()
     }
-    context.log.LogDebug("pd11");
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-    context.log.LogDebug("pd12");
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-    context.log.LogDebug("pd13");
 }
 
     /**

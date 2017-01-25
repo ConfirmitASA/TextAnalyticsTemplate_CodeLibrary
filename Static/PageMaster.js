@@ -65,6 +65,8 @@ class PageMaster{
         var filterSummary ;
         var summarySegments = [];
         _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+        var selectedFolder = Config.GetTALibrary().GetTAFoldersParameterValue(context);
+        summarySegments.push(( "<div>Selected question = "+ selectedFolder+"</div>"));
 
         var codes = _filterComponents.GetAllAnsweredFilterCodes();
         for( var i = 0 ; i < codes.length; i++){
