@@ -68,12 +68,12 @@ class PageMaster{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         summarySegments.push(( "<div>Selected question = "+ selectedFolder+"</div>"));
 
-        var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.GetDate("TA_DATE_FROM").ToString();
+        var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
 
         if(startDate){
             summarySegments.push(("<div>Start date = " + startDate + "</div>"));
         }
-        var endDate = !context.state.Parameters.IsNull("TA_DATE_TO") && context.state.Parameters.GetDate("TA_DATE_TO").ToString();
+        var endDate = !context.state.Parameters.IsNull("TA_DATE_TO") && context.state.Parameters.GetDate("TA_DATE_TO").ToShortDateString();
 
         if(endDate){
             summarySegments.push(("<div>End date = " + endDate + "</div>"));
