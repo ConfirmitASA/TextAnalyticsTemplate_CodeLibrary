@@ -67,7 +67,9 @@ class Page_dashboard{
     _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
     _filter_panel = new FilterPanel(_filterComponents);
     if(context.component.SubmitSource == "ClearFilters"){
-        _filterComponents.ClearFilters()
+        _filterComponents.ClearFilters();
+        context.state.Parameters["TA_DATE_FROM"] = null;
+        context.state.Parameters["TA_DATE_TO"] = null;
     }
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");

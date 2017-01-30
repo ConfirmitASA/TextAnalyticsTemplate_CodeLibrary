@@ -68,6 +68,17 @@ class PageMaster{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         summarySegments.push(( "<div>Selected question = "+ selectedFolder+"</div>"));
 
+        var startDate = context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.GetDate("TA_DATE_FROM").ToString();
+
+        if(startDate){
+            summarySegments.push(("<div>Start date = " + startDate + "</div>"));
+        }
+        var endDate = context.state.Parameters.IsNull("TA_DATE_TO") && context.state.Parameters.GetDate("TA_DATE_TO").ToString();
+
+        if(endDate){
+            summarySegments.push(("<div>End date = " + endDate + "</div>"));
+        }
+
         var codes = _filterComponents.GetAllAnsweredFilterCodes();
         for( var i = 0 ; i < codes.length; i++){
             summarySegments.push(( "<div>" + codes[i].questionTitle + " = "+ codes[i].texts.join(" | ")+"</div>"));
