@@ -43,8 +43,10 @@ class Page_dashboard{
     static function Render(context){
     Config.SetTALibrary(TAHelper.GetGlobals(context));
     if(context.component.SubmitSource == "ClearFilters"){
+        context.log.LogDebug("clear date start");
         context.state.Parameters["TA_DATE_FROM"] = null;
         context.state.Parameters["TA_DATE_TO"] = null;
+        context.log.LogDebug("clear date : "+context.state.Parameters.GetDate("TA_DATE_FROM").ToString());
     }
     if(context.component.SubmitSource == "lstQuestions") {
         context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
