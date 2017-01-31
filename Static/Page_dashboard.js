@@ -42,13 +42,6 @@ class Page_dashboard{
      */
     static function Render(context){
     Config.SetTALibrary(TAHelper.GetGlobals(context));
-    context.log.LogDebug("clear date start 1: "+context.component.SubmitSource);
-    if(context.component.SubmitSource == "ClearFilters"){
-        context.log.LogDebug("clear date start");
-        context.state.Parameters["TA_DATE_FROM"] = null;
-        context.state.Parameters["TA_DATE_TO"] = null;
-        context.log.LogDebug("clear date : "+context.state.Parameters.GetDate("TA_DATE_FROM").ToString());
-    }
     if(context.component.SubmitSource == "lstQuestions") {
         context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
         context.state.Parameters["TA_LEVEL"] = null;
@@ -66,6 +59,8 @@ class Page_dashboard{
     _filter_panel = new FilterPanel(_filterComponents);
     if(context.component.SubmitSource == "ClearFilters"){
         _filterComponents.ClearFilters();
+        context.state.Parameters["TA_DATE_FROM"] = null;
+        context.state.Parameters["TA_DATE_TO"] = null;
     }
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
