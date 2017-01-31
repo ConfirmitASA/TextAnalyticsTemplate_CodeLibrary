@@ -101,7 +101,7 @@ class PageMaster{
         var hideButton = true;
         _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
 
-        hideButton = !_filterComponents.GetAllAnsweredFilterCodes().length > 0 || !context.state.Parameters.IsNull("TA_DATE_FROM") || !context.state.Parameters.IsNull("TA_DATE_TO");
+        hideButton = !_filterComponents.GetAllAnsweredFilterCodes().length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");
 
         return hideButton
     }
