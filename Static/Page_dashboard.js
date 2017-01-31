@@ -42,6 +42,7 @@ class Page_dashboard{
      */
     static function Render(context){
     Config.SetTALibrary(TAHelper.GetGlobals(context));
+    context.log.LogDebug("clear date start 1: "+context.component.SubmitSource);
     if(context.component.SubmitSource == "ClearFilters"){
         context.log.LogDebug("clear date start");
         context.state.Parameters["TA_DATE_FROM"] = null;
