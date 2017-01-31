@@ -42,7 +42,7 @@ class Page_dashboard{
      */
     static function Render(context){
     Config.SetTALibrary(TAHelper.GetGlobals(context));
-    if(context.component.SubmitSource == "btnClearDateFilter"){
+    if(context.component.SubmitSource == "ClearFilters"){
         context.state.Parameters["TA_DATE_FROM"] = null;
         context.state.Parameters["TA_DATE_TO"] = null;
     }
@@ -58,19 +58,11 @@ class Page_dashboard{
     paramUtils.SetDefaultParameterValues(_defaultParameters);
     var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    /*try {
-        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
-    }catch(e){
-        selectedFolder = null;
-    }*/
     _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
     _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
     _filter_panel = new FilterPanel(_filterComponents);
     if(context.component.SubmitSource == "ClearFilters"){
-        context.state.Parameters["TA_DATE_FROM"] = null;
-        context.state.Parameters["TA_DATE_TO"] = null;
         _filterComponents.ClearFilters();
-
     }
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
