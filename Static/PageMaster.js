@@ -64,12 +64,11 @@ class PageMaster{
     static function FilterSummary_Render(context){
         var filterSummary ;
         var summarySegments = [];
+        Config.SetTALibrary();
         _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    if(selectedFolder)
-    summarySegments.push(("<div>Selected question = "+selectedFolder ? +selectedFolder : Config.GetTALibrary().GetFolderById(selectedFolder).GetId() +"</div>"));
-
-
+        if(selectedFolder)
+        summarySegments.push(("<div>Selected question = "+selectedFolder ? +selectedFolder : Config.GetTALibrary().GetFolderById(selectedFolder).GetId() +"</div>"));
 
         var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
 
