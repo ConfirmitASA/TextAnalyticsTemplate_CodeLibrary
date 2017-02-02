@@ -66,7 +66,7 @@ class PageMaster{
         var summarySegments = [];
         _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        summarySegments.push(( selectedFolder || "<div>Selected question = "+selectedFolder+"</div>"));
+        summarySegments.push(( selectedFolder && "<div>Selected question = "+selectedFolder+"</div>"));
 
         var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
 
