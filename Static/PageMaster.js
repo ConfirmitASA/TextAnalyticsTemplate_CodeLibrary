@@ -121,7 +121,7 @@ class PageMaster{
 
 }
     static function txtQuestion_Render(context){
-        label = 'Question';
+        var label = 'Question';
         context.component.Output.Append(label);
 
 }
@@ -131,7 +131,7 @@ class PageMaster{
 
 }
     static function txtDateFrom_Render(context){
-    label = 'From';
+    var label = 'From';
     context.component.Output.Append(label);
 
 }
@@ -141,7 +141,7 @@ class PageMaster{
 
 }
     static function txtDateTo_Render(context){
-    label = 'To';
+    var label = 'To';
     context.component.Output.Append(label);
 
 }
