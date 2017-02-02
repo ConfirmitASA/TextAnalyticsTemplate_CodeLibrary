@@ -116,4 +116,41 @@ class PageMaster{
 
     }
 
+    static function txtQuestion_Hide(context){
+    return false
+
+}
+    static function txtQuestion_Render(context){
+        label = 'Question';
+        context.component.Output.Append(label);
+
+}
+
+    static function txtDateFrom_Hide(context){
+    return false
+
+}
+    static function txtDateFrom_Render(context){
+    label = 'From';
+    context.component.Output.Append(label);
+
+}
+
+    static function txtDateTo_Hide(context){
+    return false
+
+}
+    static function txtDateTo_Render(context){
+    label = 'To';
+    context.component.Output.Append(label);
+
+}
+
+    static function btnApplyFilters_Hide(context){
+    return false
+}
+    static function btnApplyFilters_Render(context){
+    FilterPanel.btnSave_Render(context);
+}
+
 }
