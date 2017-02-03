@@ -142,4 +142,34 @@ class Page_filters{
     static function lstFilterList_Hide(context, filterNumber){
         return _filter_panel.lstFilterList_Hide(context, filterNumber);
     }
+
+    static function txtQuestion_Hide(context){
+    return false
+
+}
+    static function txtQuestion_Render(context){
+    var label = 'Question';
+    context.component.Output.Append(label);
+
+}
+
+    static function txtDateFrom_Hide(context){
+    return false
+
+}
+    static function txtDateFrom_Render(context){
+    var label = 'From';
+    context.component.Output.Append(label);
+
+}
+
+    static function txtDateTo_Hide(context){
+    return false
+
+}
+    static function txtDateTo_Render(context){
+    var label = 'To';
+    context.component.Output.Append(label);
+
+}
 }
