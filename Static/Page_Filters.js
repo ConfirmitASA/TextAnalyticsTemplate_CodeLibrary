@@ -30,6 +30,8 @@ class Page_filters{
         _filter_panel = new FilterPanel(_filterComponents);
         if(context.component.SubmitSource == "btnClearFilters"){
                 _filterComponents.ClearFilters();
+            context.state.Parameters["TA_DATE_FROM"] = null;
+            context.state.Parameters["TA_DATE_TO"] = null;
             }
         if(context.component.SubmitSource == "btnClearDateFilter"){
             context.state.Parameters["TA_DATE_FROM"] = null;
