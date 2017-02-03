@@ -351,4 +351,29 @@ class Page_comments{
         var label = "Sentiment";
         context.component.Output.Append(label);
     }
+
+    static function txtFilterTitle_Hide(context, filterNumber){
+    return _filter_panel.txtFilterTitle_Hide(context, filterNumber);
+}
+
+    /**
+     * @memberof Page_filters
+     * @function txtFilterTitle_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {Number} filterNumber
+     */
+    static function txtFilterTitle_Render(context, filterNumber){
+    _filter_panel.txtFilterTitle_Render(context, filterNumber);
+}
+
+    /**
+     * @memberof Page_filters
+     * @function lstFilterList_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {Number} filterNumber
+     * @returns {Boolean}
+     */
+    static function lstFilterList_Hide(context, filterNumber){
+    return _filter_panel.lstFilterList_Hide(context, filterNumber);
+}
 }
