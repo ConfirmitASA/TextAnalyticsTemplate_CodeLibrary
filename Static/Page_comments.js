@@ -4,6 +4,7 @@
  */
 class Page_comments{
     private static var _filterComponents;
+    private static var _filter_panel;
     private static var _folder;
     private static const _defaultParameters = [
         {

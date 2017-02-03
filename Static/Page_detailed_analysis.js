@@ -3,6 +3,8 @@
  * @classdesc Static class for Reportal Page detailed_analysis components
  */
 class Page_detailed_analysis{
+    private static var _filterComponents;
+    private static var _filter_panel;
     private static var _folder;
     private static const _defaultParameters = [
         {
