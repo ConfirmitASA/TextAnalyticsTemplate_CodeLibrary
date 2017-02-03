@@ -75,7 +75,9 @@ class Page_comments{
         } catch(e){
             selectedFolder = null;
         }*/
-        _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+    _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+    _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+    _filter_panel = new FilterPanel(_filterComponents);
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
     }
