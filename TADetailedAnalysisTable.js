@@ -206,11 +206,11 @@ class TADetailedAnalysisTable{
                 },
 
                 {
-                    expression: '(cellv(col, row)>=('+(Config.SentimentRange.Neutral[0] - 5)+')) AND (cellv(col, row)<='+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 5)+') AND cellv(col,row)<>EMPTYV()',
+                    expression: '(cellv(col, row)>=('+(Config.SentimentRange.Neutral[0] - 5)+')) AND (cellv(col, row)<='+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 5)+') AND cellv(col,row)<>EMPTYV()',
                     style: 'neutral'
                 },
                 {
-                    expression: 'cellv(col, row)>'+(Config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 5)+' AND cellv(col,row)<>EMPTYV()',
+                    expression: 'cellv(col, row)>'+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 5)+' AND cellv(col,row)<>EMPTYV()',
                     style: 'positive'
                 }
             ],
