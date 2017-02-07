@@ -125,8 +125,8 @@ class TAThemeDistributionTable{
                     break;
             }
         }
-        headerStatistics.HideHeader = true;
-        headerStatistics.HideData = true;
+        //headerStatistics.HideHeader = true;
+        //headerStatistics.HideData = true;
         return headerStatistics
     }
 
