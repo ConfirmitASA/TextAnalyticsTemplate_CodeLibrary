@@ -48,15 +48,28 @@ class Page_detailed_analysis{
             context.state.Parameters["TA_DATE_FROM"] = null;
             context.state.Parameters["TA_DATE_TO"] = null;
         }
+        if(context.component.SubmitSource == "lstQuestions") {
+            context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
+            context.state.Parameters["TA_LEVEL"] = null;
+            context.state.Parameters["TA_SUB_CATEGORIES_SINGLE"] = null;
+            context.state.Parameters["TA_TOP_CATEGORIES_SINGLE"] = null;
+            context.state.Parameters["TA_VIEW_BY"] = null;
+        }
 
         TAHelper.SetLastVisitedPage(TAHelper.GetGlobals(context), "detailed_analysis");
         var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
         paramUtils.SetDefaultParameterValues(_defaultParameters);
 
         var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
-        _folder = Config.GetTALibrary().GetFolderById();
-        taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-        taParams.ClearSubcategoriesParameters(null, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        /*try {
+            selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
+        }catch(e){
+            selectedFolder = null;
+        }*/
+        _folder =Config.GetTALibrary().GetFolderById(selectedFolder);
+        taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+        taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
     }
 
     /**
@@ -167,7 +180,8 @@ class Page_detailed_analysis{
         var globals = TAHelper.GetGlobals(context);
         var selectedCategory = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
         var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
-        var project =  globals.report.DataSource.GetProject(Config.DS_Main);
+        //var project =  globals.report.DataSource.GetProject(Config.DS_Main);
+        var project =  globals.report.DataSource.GetProject(_folder.GetDatasourceId());
         var selectedQuestionType = false;
         if(selectedQuestion && selectedQuestion != "emptyv")
             selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
@@ -202,27 +216,20 @@ class Page_detailed_analysis{
             var blocks = taTableData.GetBlocks();
 
             var upgradeText = "<script type=\"text/javascript\">"+
-                    "var upgradedTable = new Reportal.AggregatedTable("+
+                    "var upgradedTable = new Reportal.TAhierarchy("+
                         "{"+
-                            "table: document.querySelector('table.reportal-hierarchy-table'),"+
-                            "hierarchy:"+
-                                "{"+
-                                    "hierarchy: "+JSON.stringify(hierarhy)+","+
-                                    "rowheaders:"+JSON.stringify(headers)+","+
-                                    "search:{enabled:true},"+
-                                    "blocks:"+JSON.stringify(blocks)+","+
-                                    "column:"+ ( blocks.length > 0 ? 1 : 0 ) +""+
-                                "},"+
+                            "source: document.querySelector('table.reportal-hierarchy-table'),"+
+                            "hierarchy: "+JSON.stringify(hierarhy)+","+
+                            "rowheaders:"+JSON.stringify(headers)+","+
+                            "search:{},"+
+                            "blocks:"+JSON.stringify(blocks)+","+
+                            "floatingHeader: {},"+
+                            "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
                             "sorting:"+
                                 "{"+
                                     "enabled: true,"+
                                     "excludedColumns: [6]"+
                                 "},"+
-                            "fixedHeader:"+
-                                "{"+
-                                    "enabled: true,"+
-                                    "hasListeners:false"+
-                                "}"+
                         "}"+
                     ")"+
                 "</script>";

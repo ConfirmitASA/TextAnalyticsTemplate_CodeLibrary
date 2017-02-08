@@ -3,6 +3,7 @@
  * @classdesc Static class for Report Master components
  */
 class ReportMaster {
+
     /**
      * @memberof ReportMaster
      * @function CustomerLogo_Hide
