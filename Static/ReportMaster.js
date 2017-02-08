@@ -81,7 +81,7 @@ class ReportMaster {
 }
 
     static function txtHierarchyLabel_Render(context) {
-    var label = "Hierarchy";
+    var label = "Hierarchy:";
     context.component.Output.Append(label);
 }
 }
