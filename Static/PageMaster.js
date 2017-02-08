@@ -154,4 +154,17 @@ class PageMaster{
     FilterPanel.btnSave_Render(context);
 }
 
+    static function hierarchyComponent_Hide(context) {
+    return !context.report.PersonalizedQuestion
+}
+
+    static function txtHierarchyLabel_Hide(context) {
+    return !context.report.PersonalizedQuestion
+}
+
+    static function txtHierarchyLabel_Render(context) {
+    var label = "Hierarchy:";
+    context.component.Output.Append(label);
+}
+
 }
