@@ -71,4 +71,8 @@ class ReportMaster {
     context.component.Output.Append(script)
 
 }
+
+    static function hierarchyComponent_Render(context) {
+    return !context.report.PersonalizedQuestion
+}
 }
