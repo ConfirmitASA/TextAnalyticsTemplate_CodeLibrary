@@ -140,16 +140,16 @@ class TAThemeDistributionTable{
         _taTableUtils.SetupConditionalFormatting(
             [
                 {
-                    expression: 'cellv(col+1, row)<('+(_config.SentimentRange.Neutral[0] - 5)+') AND cellv(col,row)<>EMPTYV() ',
+                    expression: 'cellv(col+1, row)<('+(_config.SentimentRange.Neutral[0] - 6)+') AND cellv(col,row)<>EMPTYV() ',
                     style: 'negative'
                 },
 
                 {
-                    expression: '(cellv(col+1, row)>=('+(_config.SentimentRange.Neutral[0] - 5)+')) AND (cellv(col+1, row)<='+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 5)+') AND cellv(col,row)<>EMPTYV()',
+                    expression: '(cellv(col+1, row)>=('+(_config.SentimentRange.Neutral[0] - 6)+')) AND (cellv(col+1, row)<='+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 6)+') AND cellv(col,row)<>EMPTYV()',
                     style: 'neutral'
                 },
                 {
-                    expression: 'cellv(col+1, row)>'+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 5)+' AND cellv(col,row)<>EMPTYV()',
+                    expression: 'cellv(col+1, row)>'+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 6)+' AND cellv(col,row)<>EMPTYV()',
                     style: 'positive'
                 }
             ],

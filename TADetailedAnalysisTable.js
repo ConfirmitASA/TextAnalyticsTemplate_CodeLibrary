@@ -200,19 +200,21 @@ class TADetailedAnalysisTable{
     private function _setupConditionalFormatting(){
         _taTableUtils.SetupConditionalFormatting(
             [
-                {
-                    expression: 'cellv(col,row)<(-1)',
-                    style: 'negative'
-                },
+                [
+                    {
+                        expression: 'cellv(col, row)<('+(Config.SentimentRange.Neutral[0] - 6)+') AND cellv(col,row)<>EMPTYV() ',
+                        style: 'negative'
+                    },
 
-                {
-                    expression: '(cellv(col, row)>=(-1)) AND (cellv(col, row)<=1)',
-                    style: 'neutral'
-                },
-                {
-                    expression: 'cellv(col, row)>1',
-                    style: 'positive'
-                }
+                    {
+                        expression: '(cellv(col, row)>=('+(Config.SentimentRange.Neutral[0] - 6)+')) AND (cellv(col, row)<='+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+') AND cellv(col,row)<>EMPTYV()',
+                        style: 'neutral'
+                    },
+                    {
+                        expression: 'cellv(col, row)>'+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+' AND cellv(col,row)<>EMPTYV()',
+                        style: 'positive'
+                    }
+                ]
             ],
             "NegNeuPos",
             {
