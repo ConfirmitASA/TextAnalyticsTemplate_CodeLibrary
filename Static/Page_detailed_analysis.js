@@ -222,21 +222,20 @@ class Page_detailed_analysis{
                     "var upgradedTable = new Reportal.AggregatedTable("+
                 "{"+
                 "source: document.querySelector('table.reportal-hierarchy-table'),"+
-                    "hierarchy: {"+
-                "hierarchy: "+JSON.stringify(hierarhy)+","+
-                "rowheaders:"+JSON.stringify(headers)+","+
+                "hierarchy: {"+
+                    "hierarchy: "+JSON.stringify(hierarhy)+","+
+                    "rowheaders:"+JSON.stringify(headers)+","+
 
-                "blocks:"+JSON.stringify(blocks)+","+
-                "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
-                "sorting:"+
-                "{"+
-                "enabled: true,"+
-                "excludedColumns: [6]"+
-                "}"+
-                    "},"+
+                    "blocks:"+JSON.stringify(blocks)+","+
+                    "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
+                    "sorting:"+
+                    "{"+
+                        "enabled: true,"+
+                        "excludedColumns: [6]"+
+                    "}"+
+                "},"+
                 "floatingHeader: {},"+
-                "search:{},"+
-
+                "search:{}"+
                 "}"+
                 ")"+
                 "</script>";
