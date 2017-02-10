@@ -418,7 +418,7 @@ class Page_dashboard{
             "},"+
             "search:{},"+
             "fixedHeader:{},"+
-            "clearLinks:true"+
+            "clearLinks:false"+
         "}"+
         ")"+
         "</script>";
