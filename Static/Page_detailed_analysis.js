@@ -221,7 +221,7 @@ class Page_detailed_analysis{
             var upgradeText = "<script type=\"text/javascript\">"+
                     "var upgradedTable = new Reportal.AggregatedTable("+
                 "{"+
-                "source: document.querySelector('table.reportal-hierarchy-table'),"+
+                "table: document.querySelector('table.reportal-hierarchy-table'),"+
                 "hierarchy: {"+
                     "hierarchy: "+JSON.stringify(hierarhy)+","+
                     "rowheaders:"+JSON.stringify(headers)+","+
