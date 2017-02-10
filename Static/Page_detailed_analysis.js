@@ -82,7 +82,7 @@ class Page_detailed_analysis{
      * @param {String} type - "all", "neg", "neu", "pos"
      */
     static private function _buildTATiles(context, type){
-        var selectedCategory = _selectedCategory;
+        var selectedCategory = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
         new TATiles(TAHelper.GetGlobals(context), _folder, context.component, type, selectedCategory, distribution)
     }
