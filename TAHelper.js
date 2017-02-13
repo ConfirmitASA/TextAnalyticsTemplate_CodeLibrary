@@ -28,7 +28,7 @@ class TAHelper{
      * @param {ReportState} state
      * @param {String} categoriesParameterName
      * @param {String} subCategoriesParameterName
-     * @param {String} attribtesPararmeterNam
+     * @param {String} attributesParameterName
      * @returns {String}
      */
     static function GetSelectedCategory(state, categoriesParameterName, subCategoriesParameterName, attribtesPararmeterName){
@@ -61,6 +61,37 @@ class TAHelper{
         }
 
         return selectedCategory;
+    }
+
+    static function SetSelectedCategory(paramUtils, hierarchy, allCategoriesParameterValue, categoriesParameterName, subCategoriesParameterName, attribtesPararmeterName){
+        var defaultParameterValues = [
+            {
+                Id: categoriesParameterName,
+                Value: "emptyv"
+            },
+            {
+                Id: subCategoriesParameterName,
+                Value: "emptyv"
+            },
+            {
+                Id: attribtesPararmeterName,
+                Value: "emptyv"
+            }
+        ];
+        if( allCategoriesParameterValue != "emptyv"){
+            var selectedCategory = hierarchy.GetObjectById(allCategoriesParameterValue);
+            defaultParameterValues[selectedCategory.level].Value = selectedCategory.id;
+            if(selectedCategory.level > 0){
+                defaultParameterValues[selectedCategory.level-1].Value = selectedCategory.parent
+            }
+
+            if(selectedCategory.level == 2){
+                defaultParameterValues[0].Value = hierarchy.GetObjectById(selectedCategory.parent).parent
+            }
+
+        }
+
+        paramUtils.SetDefaultParameterValues(defaultParameterValues);
     }
 
     /**

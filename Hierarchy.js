@@ -189,7 +189,8 @@ class Hierarchy{
                     text: _flat[i].text,
                     name: _flat[i].name,
                     parent: parentObjId,
-                    subcells: []
+                    subcells: [],
+                    level: level
                 };
                 if( _levels.length <= level ) {
                     _levels.push( [] );

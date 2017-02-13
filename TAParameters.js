@@ -194,7 +194,7 @@ class TAParameters{
      * @param {String} value - empty value for that parameter "emptyv"
      * @param {String} categoriesParameter
      * @param {String} subcategoriesParameter
-     * @param {String} attributesParamete
+     * @param {String} attributesParameter
      */
     function ClearSubcategoriesParameters(folderId, value, categoriesParameter, subcategoriesParameter, attributesParameter){
         var folder = _library.GetFolderById(folderId);

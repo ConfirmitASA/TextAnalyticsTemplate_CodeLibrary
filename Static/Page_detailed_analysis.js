@@ -9,6 +9,10 @@ class Page_detailed_analysis{
     private static var _selectedCategory;
     private static const _defaultParameters = [
         {
+            Id: "TA_ALL_CATEGORIES",
+            Value: "emptyv"
+        },
+        {
             Id: "TA_TOP_CATEGORIES_SINGLE",
             Value: "emptyv"
         },
@@ -60,6 +64,7 @@ class Page_detailed_analysis{
         if(context.component.SubmitSource == "lstQuestions") {
             context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
             context.state.Parameters["TA_LEVEL"] = null;
+            context.state.Parameters["TA_ALL_CATEGORIES"] = null;
             context.state.Parameters["TA_SUB_CATEGORIES_SINGLE"] = null;
             context.state.Parameters["TA_TOP_CATEGORIES_SINGLE"] = null;
             context.state.Parameters["TA_VIEW_BY"] = null;
@@ -76,12 +81,17 @@ class Page_detailed_analysis{
         }catch(e){
             selectedFolder = null;
         }*/
-    _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-    _filter_panel = new FilterPanel(_filterComponents);
+        _filter_panel = new FilterPanel(_filterComponents);
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-        _selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE") || 'emptyv';
+        if(context.component.SubmitSource == "lstCategory" || context.component.SubmitSource == "lstSubCategory" || context.component.SubmitSource == "lstAttribute"){
+            _selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
+        }else {
+            _selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+            TAHelper.SetSelectedCategory(paramUtils, _folder.GetHierarchy(), _selectedCategory, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
+        }
     }
 
     /**

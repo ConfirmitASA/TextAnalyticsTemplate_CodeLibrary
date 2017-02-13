@@ -8,6 +8,10 @@ class Page_comments{
     private static var _folder;
     private static const _defaultParameters = [
         {
+            Id: "TA_ALL_CATEGORIES",
+            Value: "emptyv"
+        },
+        {
             Id: "TA_TOP_CATEGORIES_SINGLE",
             Value: "emptyv"
         },

@@ -20,6 +20,10 @@ class Page_dashboard{
         {
             Id: "TA_VIEW_SENTIMENT",
             Value: "emptyv"
+        },
+        {
+            Id: "TA_ALL_CATEGORIES",
+            Value: "emptyv"
         }
     ];
 
@@ -81,7 +85,7 @@ class Page_dashboard{
         var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level);
         topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
         if(level == 0)
-            topSentimentTable.GetTATableUtils().SetupDrilldown("TA_TOP_CATEGORIES_SINGLE","detailed_analysis");
+            topSentimentTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES","detailed_analysis");
         topSentimentTable.GetTATableUtils().ClearTableDistributions();
     }
 
@@ -201,7 +205,7 @@ class Page_dashboard{
 
     var themeDistributionTable = new TAThemeDistributionTable(globals, _folder, table, sentiment,Config);
     themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
-    themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_TOP_CATEGORIES_SINGLE", "detailed_analysis");
+    themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "detailed_analysis");
     themeDistributionTable.GetTATableUtils().ClearTableDistributions();
     themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
 }
