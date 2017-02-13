@@ -90,7 +90,7 @@ class Page_detailed_analysis{
             _selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
         }else {
             _selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-            TAHelper.SetSelectedCategory(paramUtils, _folder.GetHierarchy(), _selectedCategory, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
+            TAHelper.SetSelectedCategory(context.state, _folder.GetHierarchy(), _selectedCategory, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
         }
     }
 

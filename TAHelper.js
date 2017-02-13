@@ -63,7 +63,7 @@ class TAHelper{
         return selectedCategory;
     }
 
-    static function SetSelectedCategory(paramUtils, hierarchy, allCategoriesParameterValue, categoriesParameterName, subCategoriesParameterName, attribtesPararmeterName){
+    static function SetSelectedCategory(state, hierarchy, allCategoriesParameterValue, categoriesParameterName, subCategoriesParameterName, attribtesPararmeterName){
         var defaultParameterValues = [
             {
                 Id: categoriesParameterName,
@@ -91,8 +91,11 @@ class TAHelper{
 
         }
 
-        paramUtils.SetDefaultParameterValues(defaultParameterValues);
-    }
+        for(var i = 0; i < defaultParameterValues; i++) {
+            state.Parameters[defaultParameterValues[i].Id] = new ParameterValueResponse(defaultParameterValues[i].Value);
+        }
+
+}
 
     /**
      * @memberof TAHelper
