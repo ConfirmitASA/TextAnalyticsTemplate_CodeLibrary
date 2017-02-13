@@ -114,6 +114,7 @@ class Hierarchy{
         return _hierarchy;
     }
 
+
     /**
      * @memberof Hierarchy
      * @instance
