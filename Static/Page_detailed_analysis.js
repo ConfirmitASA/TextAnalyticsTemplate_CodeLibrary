@@ -6,7 +6,7 @@ class Page_detailed_analysis{
     private static var _filterComponents;
     private static var _filter_panel;
     private static var _folder;
-    static var _selectedCategory;
+    private static var _selectedCategory;
     private static const _defaultParameters = [
         {
             Id: "TA_TOP_CATEGORIES_SINGLE",
