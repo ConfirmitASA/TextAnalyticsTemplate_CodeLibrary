@@ -81,7 +81,7 @@ class Page_detailed_analysis{
     _filter_panel = new FilterPanel(_filterComponents);
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-        _selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+        _selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE") || 'emptyv';
     }
 
     /**
@@ -92,7 +92,7 @@ class Page_detailed_analysis{
      * @param {String} type - "all", "neg", "neu", "pos"
      */
     static private function _buildTATiles(context, type){
-        var selectedCategory = _selectedCategory
+        var selectedCategory = _selectedCategory;
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
         new TATiles(TAHelper.GetGlobals(context), _folder, context.component, type, selectedCategory, distribution)
     }
