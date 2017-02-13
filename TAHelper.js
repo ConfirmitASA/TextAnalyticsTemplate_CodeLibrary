@@ -39,12 +39,12 @@ class TAHelper{
 
         var subCategoriesParameter;
         if(subCategoriesParameterName)
-            subCategoriesParameter= state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
+            subCategoriesParameter= state.Parameters.GetString(subCategoriesParameterName);
 
 
         var attributesParameter;
         if(attribtesPararmeterName)
-            attributesParameter = state.Parameters.GetString("TA_ATTRIBUTES_SINGLE");
+            attributesParameter = state.Parameters.GetString(attribtesPararmeterName);
 
         var selectedCategory = false;
 
