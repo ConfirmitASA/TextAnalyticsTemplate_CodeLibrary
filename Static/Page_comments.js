@@ -118,25 +118,18 @@ class Page_comments{
 			
 			
         }
-        context.log.LogDebug("htl render1");
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
         var selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         if( selectedCategory ){
             htlComments.AddTAColumn("categorysentiment", false, selectedCategory);
 
         }
-    context.log.LogDebug("htl render2");
         htlComments.AddTAColumn("verbatim");
-    context.log.LogDebug("htl render3");
         htlComments.AddColumn(_folder.GetTimeVariableId(), true);
-    context.log.LogDebug("htl render4");
         context.log.LogDebug("time var: "+ _folder.GetTimeVariableId());
-    context.log.LogDebug("htl render5");
         htlComments.AddTAColumn("overallsentiment");
-    context.log.LogDebug("htl render6");
         //htlComments.AddTAColumn("categories");
         htlComments.AddConfiguredColumns();
-    context.log.LogDebug("htl render7");
     }
 
     /**

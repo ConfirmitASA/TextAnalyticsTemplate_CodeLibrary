@@ -6,6 +6,7 @@ class Page_detailed_analysis{
     private static var _filterComponents;
     private static var _filter_panel;
     private static var _folder;
+    static var _selectedCategory;
     private static const _defaultParameters = [
         {
             Id: "TA_TOP_CATEGORIES_SINGLE",
@@ -73,6 +74,7 @@ class Page_detailed_analysis{
     _filter_panel = new FilterPanel(_filterComponents);
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+        _selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
     }
 
     /**
@@ -83,7 +85,7 @@ class Page_detailed_analysis{
      * @param {String} type - "all", "neg", "neu", "pos"
      */
     static private function _buildTATiles(context, type){
-        var selectedCategory = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
+        var selectedCategory = _selectedCategory
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
         new TATiles(TAHelper.GetGlobals(context), _folder, context.component, type, selectedCategory, distribution)
     }
@@ -181,7 +183,6 @@ class Page_detailed_analysis{
      */
     static function tblDetailedAnalysis_Render(context){
         var globals = TAHelper.GetGlobals(context);
-        var selectedCategory = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
         var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
         //var project =  globals.report.DataSource.GetProject(Config.DS_Main);
         var project =  globals.report.DataSource.GetProject(_folder.GetDatasourceId());
@@ -190,7 +191,7 @@ class Page_detailed_analysis{
             selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
         var hideEmptyRows = new ParameterUtilities(globals).GetCheckedValues("TA_HIDE_EMPTY_ROWS");
-        var detailedAnalysisTable = new TADetailedAnalysisTable(globals, _folder, context.component, selectedCategory, selectedQuestion, distribution, ( selectedQuestionType == QuestionType.Multi));
+        var detailedAnalysisTable = new TADetailedAnalysisTable(globals, _folder, context.component, _selectedCategory, selectedQuestion, distribution, ( selectedQuestionType == QuestionType.Multi));
         detailedAnalysisTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table", "reportal-barchart", "detailed-analysis-table"]);
         detailedAnalysisTable.GetTATableUtils().SetupHideEmptyRows((hideEmptyRows.length >0));
     }
@@ -308,5 +309,76 @@ class Page_detailed_analysis{
      */
     static function lstFilterList_Hide(context, filterNumber){
     return _filter_panel.lstFilterList_Hide(context, filterNumber);
+}
+
+    /**
+     * @memberof Page_comments
+     * @function lstSubCategory_Hide
+     * @description function to hide the Sub Category selector
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstSubCategory_Hide(context){
+    var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
+    return ((! parameterValue) || parameterValue == "emptyv" || _folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
+}
+
+    /**
+     * @memberof Page_comments
+     * @function lstAttribute_Hide
+     * @description function to hide the Attribute selector
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstAttribute_Hide(context){
+    var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
+    return ((! parameterValue) || parameterValue == "emptyv" || _folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
+}
+
+
+    /**
+     * @memberof Page_comments
+     * @function txtSubCategory_Hide
+     * @description function to hide the the sub category list label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtSubCategory_Hide(context){
+    var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
+    return ((! parameterValue) || parameterValue == "emptyv" || _folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
+}
+
+    /**
+     * @memberof Page_comments
+     * @function txtSubCategory_Render
+     * @description function to render the sub Category selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtSubCategory_Render(context){
+    var label = "Sub category";
+    context.component.Output.Append(label);
+}
+
+    /**
+     * @memberof Page_comments
+     * @function txtAttribute_Hide
+     * @description function to hide the the attributes list label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtAttribute_Hide(context){
+    var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
+    return ((! parameterValue) || parameterValue == "emptyv" || _folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
+}
+
+    /**
+     * @memberof Page_comments
+     * @function txtAttribute_Render
+     * @description function to render the attributes selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtAttribute_Render(context){
+    var label = "Attribute";
+    context.component.Output.Append(label);
 }
 }
