@@ -12,7 +12,14 @@ class Page_detailed_analysis{
             Id: "TA_TOP_CATEGORIES_SINGLE",
             Value: "emptyv"
         },
-
+        {
+            Id: "TA_SUB_CATEGORIES_SINGLE",
+            Value: "emptyv"
+        },
+        {
+            Id: "TA_ATTRIBUTES_SINGLE",
+            Value: "emptyv"
+        },
         {
             Id: "TA_DISTRIBUTION_TOGGLE",
             Value: "0"
