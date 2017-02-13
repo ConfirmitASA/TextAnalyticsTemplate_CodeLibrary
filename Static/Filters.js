@@ -35,8 +35,7 @@ class Filters {
             selectedFolder = null;
         }*/
 
-        var fExpr = new TAFilters(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFolderById(selectedFolder)).GetSentimentFilterExpression("TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE","TA_COMMENTS_SENTIMENT")
-    context.log.LogDebug("filter expr: " + fExpr);
+        var fExpr = new TAFilters(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFolderById(selectedFolder)).GetSentimentFilterExpression("TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE","TA_COMMENTS_SENTIMENT");
     context.component.Expression = fExpr;
     }
 
