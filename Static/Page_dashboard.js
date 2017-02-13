@@ -418,11 +418,12 @@ class Page_dashboard{
                 "blocks: [],"+
                 "hierarchy:"+JSON.stringify(hierarhy)+","+
                 "rowheaders:"+JSON.stringify(headers)+","+
-                "search:{enabled: true}"+
+                "search:{enabled: true},"+
+                "clearLinks:false"+
             "},"+
             "search:{},"+
             "fixedHeader:{},"+
-            "clearLinks:false"+
+
         "}"+
         ")"+
         "</script>";
