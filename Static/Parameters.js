@@ -51,6 +51,15 @@ class Parameters{
      * @function TA_TOP_CATEGORIES_SINGLE_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
+    static function TA_ALL_CATEGORIES_Domain(context){
+    new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderAllCategoriesParameter(context.component, getSelectedFolder(context),"-select-")
+}
+
+    /**
+     * @memberof Parameters
+     * @function TA_TOP_CATEGORIES_SINGLE_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function TA_TOP_CATEGORIES_SINGLE_Domain(context){
         new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, getSelectedFolder(context), 0, "-select-")
     }

@@ -60,6 +60,21 @@ class TAParameters{
         _parameterUtilities.LoadParameterValues(parameter, parameterValues);
     }
 
+    function RenderAllCategoriesParameter(parameter,folderId, emptyValueLabel){
+        var categories = _library.
+        GetFolderById(folderId).
+        GetHierarchy().
+        GetFlatArray();
+        var parameterValues = _addEmptyValue(emptyValueLabel);
+        for(var i = 0; i < categories.length; i++){
+            parameterValues.push({
+                Code: categories[i].id,
+                Label: categories[i].name
+            })
+        }
+        _parameterUtilities.LoadParameterValues(parameter, parameterValues);
+    }
+
     /**
      * @memberof TAParameters
      * @instance
