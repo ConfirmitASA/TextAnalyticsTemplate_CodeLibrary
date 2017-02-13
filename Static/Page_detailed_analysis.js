@@ -87,10 +87,11 @@ class Page_detailed_analysis{
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         if(context.component.SubmitSource == "lstCategory" || context.component.SubmitSource == "lstSubCategory" || context.component.SubmitSource == "lstAttribute"){
-            _selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
+            _selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+            context.state.Parameters['TA_ALL_CATEGORIES'] = new ParameterValueResponse(_selectedCategory);
         }else {
             _selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-            TAHelper.SetSelectedCategory(context.state, _folder.GetHierarchy(), _selectedCategory, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
+            TAHelper.SetSelectedCategory(context.state, _folder.GetHierarchy(), _selectedCategory, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE",log);
         }
     }
 

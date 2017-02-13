@@ -63,7 +63,7 @@ class TAHelper{
         return selectedCategory;
     }
 
-    static function SetSelectedCategory(state, hierarchy, allCategoriesParameterValue, categoriesParameterName, subCategoriesParameterName, attribtesPararmeterName){
+    static function SetSelectedCategory(state, hierarchy, allCategoriesParameterValue, categoriesParameterName, subCategoriesParameterName, attribtesPararmeterName,log){
         var defaultParameterValues = [
             {
                 Id: categoriesParameterName,
@@ -79,8 +79,10 @@ class TAHelper{
             }
         ];
         if( allCategoriesParameterValue != "emptyv"){
+            log.LogDebug('not empty');
             var selectedCategory = hierarchy.GetObjectById(allCategoriesParameterValue);
             defaultParameterValues[selectedCategory.level].Value = selectedCategory.id;
+            log.LogDebug('level: '+selectedCategory.level+' value: '+selectedCategory.id);
             if(selectedCategory.level > 0){
                 defaultParameterValues[selectedCategory.level-1].Value = selectedCategory.parent
             }
@@ -91,7 +93,7 @@ class TAHelper{
 
         }
 
-        for(var i = 0; i < defaultParameterValues; i++) {
+        for(var i = 0; i < defaultParameterValues.length; i++) {
             state.Parameters[defaultParameterValues[i].Id] = new ParameterValueResponse(defaultParameterValues[i].Value);
         }
 
