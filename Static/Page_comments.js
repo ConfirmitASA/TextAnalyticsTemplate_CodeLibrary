@@ -6,6 +6,7 @@ class Page_comments{
     private static var _filterComponents;
     private static var _filter_panel;
     private static var _folder;
+    private static var _selectedCategory;
     private static const _defaultParameters = [
         {
             Id: "TA_ALL_CATEGORIES",
@@ -84,6 +85,14 @@ class Page_comments{
     _filter_panel = new FilterPanel(_filterComponents);
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+
+    if(context.component.SubmitSource == "lstCategory" || context.component.SubmitSource == "lstSubCategory" || context.component.SubmitSource == "lstAttribute"){
+        _selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+        context.state.Parameters['TA_ALL_CATEGORIES'] = new ParameterValueResponse(_selectedCategory);
+    }else {
+        _selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+        TAHelper.SetSelectedCategory(context.state, _folder.GetHierarchy(), _selectedCategory, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE",context.log);
+    }
     }
 
     /**
@@ -123,14 +132,13 @@ class Page_comments{
 			
         }
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
-        var selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+        var selectedCategory = _selectedCategory
         if( selectedCategory ){
             htlComments.AddTAColumn("categorysentiment", false, selectedCategory);
 
         }
         htlComments.AddTAColumn("verbatim");
         htlComments.AddColumn(_folder.GetTimeVariableId(), true);
-        context.log.LogDebug("time var: "+ _folder.GetTimeVariableId());
         htlComments.AddTAColumn("overallsentiment");
         //htlComments.AddTAColumn("categories");
         htlComments.AddConfiguredColumns();
@@ -165,7 +173,7 @@ class Page_comments{
             "</script>";
         var hitlistHeaders = {};
 
-        var selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
+        var selectedCategory = _selectedCategory;
 
         hitlistHeaders["sentiment"] = []
 
