@@ -61,6 +61,7 @@ class Page_comments{
         }
 
         if(context.component.SubmitSource == "lstQuestions") {
+            context.state.Parameters["TA_ALL_CATEGORIES"] = null;
             context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
             context.state.Parameters["TA_LEVEL"] = null;
             context.state.Parameters["TA_SUB_CATEGORIES_SINGLE"] = null;
