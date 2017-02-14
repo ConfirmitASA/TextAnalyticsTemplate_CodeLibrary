@@ -253,6 +253,7 @@ class Page_detailed_analysis{
                         "enabled: true,"+
                         "excludedColumns: [6]"+
                     "}"+
+                    "clearLinks: false"+
                 "},"+
                 "floatingHeader: {},"+
                 "search:{}"+
