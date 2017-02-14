@@ -112,7 +112,7 @@ class TATopChangedTable{
         headerFormula.HideData = false;
         headerFormula.Decimals = 1;
         var sign = _sentiment ? ">" : "<";
-        headerFormula.Expression = "IF((cellv(col-3,row)-cellv(col-4,row))"+sign+"0,(cellv(col-3,row)-cellv(col-4,row)),EMPTYV())";
+        headerFormula.Expression = "IF((cellv(col-1,row)-cellv(col-2,row))"+sign+"0,(cellv(col-1,row)-cellv(col-2,row)),EMPTYV())";
         headerFormula.Title = new Label(9, " ");
         headerFormula.HideHeader = true;
 
