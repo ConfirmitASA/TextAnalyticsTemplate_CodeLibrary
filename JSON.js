@@ -49,7 +49,7 @@ class JSON
             '\"': '\\&quot;',
             '\'':'&amp;apos;'
         };
-        return str.replace(/[&<>\"\']/g, function(key) {
+        return str.replace(/[\"\']/g, function(key) {
             return entitiesMap[key];
         });
     }
