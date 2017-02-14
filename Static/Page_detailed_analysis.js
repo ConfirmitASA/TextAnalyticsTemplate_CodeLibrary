@@ -239,7 +239,7 @@ class Page_detailed_analysis{
             var blocks = taTableData.GetBlocks();
 
             var upgradeText = "<script type=\"text/javascript\">"+
-                    "var upgradedTable = new Reportal.AggregatedTable("+
+                    "var upgradedTable = new Reportal.TAhierarchy("+
                 "{"+
                 "table: document.querySelector('table.reportal-hierarchy-table'),"+
                 "hierarchy: {"+
