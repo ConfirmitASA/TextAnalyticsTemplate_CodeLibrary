@@ -411,7 +411,7 @@ class Page_dashboard{
 
     headers = new TATableData(TAHelper.GetGlobals(context), "tblThemeDistribution").GetTableRowHeaders();
     var upgradeText = "<script type=\"text/javascript\">"+
-        "var upgradedTable = new Reportal.TAhierarchy("+
+        "var upgradedTable = new Reportal.AggregatedTable("+
         "{"+
             "table: document.querySelector('table.reportal-hierarchy-table'),"+
             "hierarchy: {"+
