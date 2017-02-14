@@ -64,8 +64,7 @@ class TATopChangedTable{
         _taTableUtils.CreateTableFromExpression(rowexpr);
 
         _addTimeSeriesColumn();
-    _addTimeSeriesFormula();
-    _addTimeSeriesFormula();
+
         _addDifferenceColumn();
         _addChartColumn();
         _setupSorting();
@@ -84,21 +83,8 @@ class TATopChangedTable{
     headerStatistics.Statistics.Avg = true;
     headerStatistics.SubHeaders.Add(headerTimeSeries);
     _table.ColumnHeaders.Add(headerStatistics);
-    headerStatistics.HideData = true;
 }
 
-    private function _addTimeSeriesFormula(){
-    var headerFormula: HeaderFormula = new HeaderFormula();
-    headerFormula.Type = FormulaType.Expression;
-    headerFormula.HideData = false;
-    headerFormula.Decimals = 1;
-    var sign = _sentiment ? ">" : "<";
-    headerFormula.Expression = "IF((cellv(col-2,row)-cellv(col-3,row))"+sign+"0,cellv(col-2,row),EMPTYV())";
-    headerFormula.Title = new Label(9, " ");
-    headerFormula.HideHeader = true;
-
-    _table.ColumnHeaders.Add(headerFormula);
-}
 
     /**
      * @memberof TATopChangedTable
