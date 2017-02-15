@@ -134,7 +134,7 @@ class Page_comments{
         }
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
         var selectedCategory = _selectedCategory
-        if( selectedCategory ){
+        if( selectedCategory && selectedCategory != "emptyv" ){
             htlComments.AddTAColumn("categorysentiment", false, selectedCategory);
 
         }
@@ -178,7 +178,7 @@ class Page_comments{
 
         hitlistHeaders["sentiment"] = []
 
-        if( selectedCategory){
+        if( selectedCategory && selectedCategjry != "emptyv"){
             hitlistHeaders["sentiment"].push( {
                     name: _folder.GetQuestionId("categorysentiment")+"_"+selectedCategory
             } );
