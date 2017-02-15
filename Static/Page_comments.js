@@ -158,11 +158,11 @@ class Page_comments{
             "</script>";
         var hitlistHeaders = {};
 
-        var selectedCategory = _selectedCategory;
+        var selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
 
         hitlistHeaders["sentiment"] = []
 
-        if( selectedCategory && selectedCategory != "emptyv"){
+        if( selectedCategory){
             hitlistHeaders["sentiment"].push( {
                     name: _folder.GetQuestionId("categorysentiment")+"_"+selectedCategory
             } );
