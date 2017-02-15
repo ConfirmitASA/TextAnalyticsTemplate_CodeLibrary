@@ -178,7 +178,7 @@ class Page_comments{
 
         hitlistHeaders["sentiment"] = []
 
-        if( selectedCategory && selectedCategjry != "emptyv"){
+        if( selectedCategory && selectedCategory != "emptyv"){
             hitlistHeaders["sentiment"].push( {
                     name: _folder.GetQuestionId("categorysentiment")+"_"+selectedCategory
             } );
