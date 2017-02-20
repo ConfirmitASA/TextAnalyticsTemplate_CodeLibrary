@@ -6,6 +6,7 @@ class Page_dashboard{
     private static var _filterComponents;
     private static var _filter_panel;
     private static var _folder;
+    private static var _currentLanguage;
     private static const _defaultParameters = [
         {
             Id: "TA_LEVEL",
@@ -69,6 +70,10 @@ class Page_dashboard{
     }
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+
+    _currentLanguage = context.report.CurrentLanguage;
+
+    context.component.Title = new LanguageText(_currentLanguage, Translations.dictionary['dashboard'][_currentLanguage]);
 }
 
     /**
