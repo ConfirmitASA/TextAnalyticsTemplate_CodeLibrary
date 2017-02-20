@@ -73,7 +73,6 @@ class Page_dashboard{
 
     _currentLanguage = context.report.CurrentLanguage;
 
-    context.component.Title = new LanguageText(_currentLanguage, Translations.dictionary['dashboard'][_currentLanguage]);
 }
 
     /**
