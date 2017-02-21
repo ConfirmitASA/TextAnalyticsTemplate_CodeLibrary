@@ -12,7 +12,12 @@ class Translations{
                     'End date': 'Дата окончания',
                     'Compare': 'Сравнить',
                     'Top 5 most improved themes': '5 тем ставших лучше',
-                    'Top 5 most declined themes': '5 тем ставших хуже'
+                    'Top 5 most declined themes': '5 тем ставших хуже',
+                    'Theme distribution': 'Изменение тем',
+                    'View': 'Показывать',
+                    'Positive': "Положительные",
+                    'Neutral': 'Нейтральные',
+                    'Negative': 'Отрицательные'
                 };
                 break;
             case 9 :
@@ -27,7 +32,12 @@ class Translations{
                     'End date': 'End date',
                     'Compare': 'Compare',
                     'Top 5 most improved themes': 'Top 5 most improved themes',
-                    'Top 5 most declined themes': 'Top 5 most declined themes'
+                    'Top 5 most declined themes': 'Top 5 most declined themes',
+                    'Theme distribution': 'Theme distribution',
+                    'View': 'View',
+                    'Positive': 'Positive',
+                    'Neutral': 'Neutral',
+                    'Negative': 'Negative'
                 };
                 break;
         }

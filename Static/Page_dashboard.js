@@ -373,7 +373,7 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtThemeDistribution_Render(context){
-    var label = "Theme distribution";
+    var label = _curDictionary["Theme distribution"];
     context.component.Output.Append(label);
 }
 
@@ -393,7 +393,67 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtViewSentiment_Render(context){
-    var label = "View";
+    var label = _curDictionary["View"];
+    context.component.Output.Append(label);
+}
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtViewSentiment_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtPositive_Hide(context){
+    return false;
+}
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtViewSentiment_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtPositive_Render(context){
+    var label = _curDictionary["Positive"];
+    context.component.Output.Append(label);
+}
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtViewSentiment_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtNeutral_Hide(context){
+    return false;
+}
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtViewSentiment_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtNeutral_Render(context){
+    var label = _curDictionary["Neutral"];
+    context.component.Output.Append(label);
+}
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtViewSentiment_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtNegative_Hide(context){
+    return false;
+}
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtViewSentiment_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtNegative_Render(context){
+    var label = _curDictionary["Negative"];
     context.component.Output.Append(label);
 }
 
