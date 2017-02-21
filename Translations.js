@@ -6,8 +6,8 @@ class Translations{
                     'Dashboard': 'Главная страница',
                     'Selected question': 'Выбранный вопрос',
                     'View by': 'Уровень иерархии',
-                    'Top 5 most positive themes': '5 лучших тем',
-                    'Top 5 most negative themes': '5 худших тем',
+                    'Top 5 most positive themes': '5 хороших тем',
+                    'Top 5 most negative themes': '5 плохих тем',
                     'Start date': 'Дата начала',
                     'End date': 'Дата окончания',
                     'Compare': 'Сравнить',
@@ -17,7 +17,8 @@ class Translations{
                     'View': 'Показывать',
                     'Positive': "Положительные",
                     'Neutral': 'Нейтральные',
-                    'Negative': 'Отрицательные'
+                    'Negative': 'Отрицательные',
+                    'Categories': 'Категории'
                 };
                 break;
             case 9 :
@@ -37,7 +38,8 @@ class Translations{
                     'View': 'View',
                     'Positive': 'Positive',
                     'Neutral': 'Neutral',
-                    'Negative': 'Negative'
+                    'Negative': 'Negative',
+                    'Categories': 'Categories'
                 };
                 break;
         }

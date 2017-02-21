@@ -497,6 +497,12 @@ class Page_dashboard{
 
     context.component.Output.Append(upgradeText);
     context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
+
+    var categoriesText = "<script>" +
+        "var z = document.querySelectorAll('.reportal-categories>thead>tr>td[class*='_cc']');" +
+        "z.forEach(item => item.innerHTML = "+Translations.dictionary(_currentLanguage)['Categories']+")" +
+        "</script>"
+    context.component.Output.Append(categoriesText);
 }
 
     /**
