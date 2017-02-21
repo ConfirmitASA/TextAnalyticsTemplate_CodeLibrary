@@ -7,6 +7,7 @@ class Page_dashboard{
     private static var _filter_panel;
     private static var _folder;
     private static var _currentLanguage;
+    private static var _curDictionary;
     private static const _defaultParameters = [
         {
             Id: "TA_LEVEL",
@@ -72,6 +73,7 @@ class Page_dashboard{
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
 
     _currentLanguage = context.report.CurrentLanguage;
+    _curDictionary = Translations.dictionary(_currentLanguage);
 
 }
 
@@ -231,7 +233,7 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtLevel_Render(context){
-    var label = "View by";
+    var label = _curDictionary['View by'];
     context.component.Output.Append(label);
 }
 
@@ -251,7 +253,7 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtMostPositive_Render(context){
-    var label = "Top 5 most positive themes";
+    var label = _curDictionary['Top 5 most positive themes'];
     context.component.Output.Append(label);
 }
 
@@ -271,7 +273,7 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtMostNegative_Render(context){
-    var label = "Top 5 most negative themes";
+    var label = _curDictionary["Top 5 most negative themes"];
     context.component.Output.Append(label);
 }
 
@@ -291,7 +293,7 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtComparePeriods_Render(context){
-    var label = "Compare";
+    var label = _curDictionary["Compare"];
     context.component.Output.Append(label);
 }
 
@@ -311,7 +313,7 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtMostImproved_Render(context){
-    var label = "Top 5 most improved themes";
+    var label = _curDictionary["Top 5 most improved themes"];
     context.component.Output.Append(label);
 }
 
@@ -351,7 +353,7 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtMostDeclined_Render(context){
-    var label = "Top 5 most declined themes";
+    var label = _curDictionary["Top 5 most declined themes"];
     context.component.Output.Append(label);
 }
 

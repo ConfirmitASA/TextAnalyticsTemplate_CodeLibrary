@@ -69,17 +69,18 @@ class PageMaster{
         _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var currentLaguage = context.report.CurrentLanguage;
-        summarySegments.push(("<div>"+Translations.dictionary['Selected question'][currentLaguage]+" = "+(selectedFolder ? selectedFolder : Config.GetTALibrary().GetFolderById(selectedFolder).GetId()) +"</div>"));
+        var curDictionary = Translations.dictionary(currentLaguage);
+        summarySegments.push(("<div>"+curDictionary['Selected question']+" = "+(selectedFolder ? selectedFolder : Config.GetTALibrary().GetFolderById(selectedFolder).GetId()) +"</div>"));
 
         var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
 
         if(startDate){
-            summarySegments.push(("<div>Start date = " + startDate + "</div>"));
+            summarySegments.push(("<div>"+curDictionary['Start date']+" = " + startDate + "</div>"));
         }
         var endDate = !context.state.Parameters.IsNull("TA_DATE_TO") && context.state.Parameters.GetDate("TA_DATE_TO").ToShortDateString();
 
         if(endDate){
-            summarySegments.push(("<div>End date = " + endDate + "</div>"));
+            summarySegments.push(("<div>"+curDictionary['End date']+" = " + endDate + "</div>"));
         }
 
         var codes = _filterComponents.GetAllAnsweredFilterCodes();
