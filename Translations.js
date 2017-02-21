@@ -1,7 +1,7 @@
 class Translations{
     static function dictionary(language) {
         switch(language) {
-            case '25' :
+            case 25 :
                 return {
                     'Dashboard': 'Главная страница',
                     'Selected question': 'Выбранный вопрос',
@@ -15,7 +15,7 @@ class Translations{
                     'Top 5 most declined themes': '5 тем ставших хуже'
                 };
                 break;
-            case '9' :
+            case 9 :
             default:
                 return {
                     'Dashboard': 'Dashboard',
@@ -29,7 +29,7 @@ class Translations{
                     'Top 5 most improved themes': 'Top 5 most improved themes',
                     'Top 5 most declined themes': 'Top 5 most declined themes'
                 };
-                break
+                break;
         }
     }
 }
