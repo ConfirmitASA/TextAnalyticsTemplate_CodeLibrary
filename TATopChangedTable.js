@@ -22,6 +22,7 @@ class TATopChangedTable{
     private var _sentiment;
     private var _percents;
     private var _period;
+    private var _currentLanguage;
 
     function TATopChangedTable(globals, folder, table, sentiment, level, period, topN){
         _globals = globals;
@@ -37,6 +38,7 @@ class TATopChangedTable{
             From: -1,
             To: 0
         };
+    _currentLanguage = globals.report.CurrentLanguage;
 
         _render();
     }
@@ -118,7 +120,7 @@ class TATopChangedTable{
                 Formula: "cellv(col-1,row)",
                 Color: ( _sentiment ? Config.Colors.NegNeuPosPalette.Positive : Config.Colors.NegNeuPosPalette.Negative )
             }],
-            "Change in avg. score");
+            Translations.dictionary(_currentLanguage)['Change in avg. score']);
         _table.ColumnHeaders.Add(chartHeader);
     }
 

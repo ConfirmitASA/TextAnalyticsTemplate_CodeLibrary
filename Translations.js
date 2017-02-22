@@ -19,7 +19,8 @@ class Translations{
                     'Neutral': 'Нейтральные',
                     'Negative': 'Отрицательные',
                     'Categories': 'Категории',
-                    'Count': 'Количество'
+                    'Count': 'Количество',
+                    'Change in avg. score': 'Изменение средней оценки'
                 };
                 break;
             case 9 :
@@ -41,7 +42,8 @@ class Translations{
                     'Neutral': 'Neutral',
                     'Negative': 'Negative',
                     'Categories': 'Categories',
-                    'Count': 'Count'
+                    'Count': 'Count',
+                    'Change in avg. score': 'Change in avg. score'
                 };
                 break;
         }
