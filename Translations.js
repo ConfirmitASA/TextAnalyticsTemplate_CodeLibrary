@@ -20,7 +20,11 @@ class Translations{
                     'Negative': 'Отрицательные',
                     'Categories': 'Категории',
                     'Count': 'Количество',
-                    'Change in avg. score': 'Изменение средней оценки'
+                    'Change in avg. score': 'Изменение средней оценки',
+                    '1st level (category)': '1-й уровень (категории)',
+                    '2nd level (sub-category)': '2-й уровень (подкатегории)',
+                    '3rd level (attributes)': '3-й уровень (аттрибуты)'
+
                 };
                 break;
             case 9 :
@@ -43,7 +47,10 @@ class Translations{
                     'Negative': 'Negative',
                     'Categories': 'Categories',
                     'Count': 'Count',
-                    'Change in avg. score': 'Change in avg. score'
+                    'Change in avg. score': 'Change in avg. score',
+                    '1st level (category)': '1st level (category)',
+                    '2nd level (sub-category)': '2nd level (sub-category)',
+                    '3rd level (attributes)': '3rd level (attributes)'
                 };
                 break;
         }

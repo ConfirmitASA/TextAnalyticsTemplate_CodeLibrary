@@ -10,11 +10,15 @@ class TAParameters{
     private var _globals;
     private var _library: TALibrary;
     private var _parameterUtilities: ParameterUtilities;
+    private var _currentLanguage;
+    private var _curDictionary;
 
     function TAParameters(globals, library){
         _globals = globals;
         _library = library;
         _parameterUtilities = new ParameterUtilities(_globals);
+        _currentLanguage = globals.report.CurrentLanguage;
+        _curDictionary = Translations.dictionary(_currentLanguage);
     }
 
     /**
@@ -136,15 +140,15 @@ class TAParameters{
         var levelValues = [
             {
                 Code: "0",
-                Label: "1st level (category)"
+                Label: _curDictionary["1st level (category)"]
             },
             {
                 Code: "1",
-                Label: "2nd level (sub-category)"
+                Label: _curDictionary["2nd level (sub-category)"]
             },
             {
                 Code: "2",
-                Label: "3rd level (attributes)"
+                Label: _curDictionary["3rd level (attributes)"]
             }
         ];
         var parameterValues = _addEmptyValue(emptyValueLabel);
