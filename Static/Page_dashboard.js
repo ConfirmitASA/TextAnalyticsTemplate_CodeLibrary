@@ -490,7 +490,6 @@ class Page_dashboard{
             "},"+
             "search:{},"+
             "fixedHeader:{},"+
-
         "}"+
         ")"+
         "</script>";
@@ -500,8 +499,8 @@ class Page_dashboard{
 
     var categoriesText = "<script>" +
         "var z = document.querySelectorAll('.reportal-categories>thead>tr>td[class*=\"_cc\"]');" +
-        "z.forEach(item => item.innerHTML = '"+Translations.dictionary(_currentLanguage)['Categories']+"')" +
-        "</script>"
+        "z.forEach(item => item.innerHTML = '"+Translations.dictionary(_currentLanguage)['Categories']+"');" +
+        "</script>";
     context.component.Output.Append(categoriesText);
 }
 

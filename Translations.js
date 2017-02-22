@@ -18,7 +18,8 @@ class Translations{
                     'Positive': "Положительные",
                     'Neutral': 'Нейтральные',
                     'Negative': 'Отрицательные',
-                    'Categories': 'Категории'
+                    'Categories': 'Категории',
+                    'Count': 'Количество'
                 };
                 break;
             case 9 :
@@ -39,7 +40,8 @@ class Translations{
                     'Positive': 'Positive',
                     'Neutral': 'Neutral',
                     'Negative': 'Negative',
-                    'Categories': 'Categories'
+                    'Categories': 'Categories',
+                    'Count': 'Count'
                 };
                 break;
         }
