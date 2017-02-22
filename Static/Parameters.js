@@ -37,11 +37,13 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_COMPARE_PERIODS_Domain(context){
+    var currentLanguage = context.report.CurrentLanguage;
+    var currentDictionary = Translations.dictionary(currentLanguage);
         var parameterValues = [
-            {Code: "wow", Label: "Current vs Last Week"},
-            {Code: "mom", Label: "Current vs Last Month"},
-            {Code: "qoq", Label: "Current vs Last Quarter"},
-            {Code: "yoy", Label: "Current vs Last Year"}
+            {Code: "wow", Label: currentDictionary["Current vs Last Week"]},
+            {Code: "mom", Label: currentDictionary["Current vs Last Month"]},
+            {Code: "qoq", Label: currentDictionary["Current vs Last Quarter"]},
+            {Code: "yoy", Label: currentDictionary["Current vs Last Year"]}
         ];
         new ParameterUtilities(TAHelper.GetGlobals(context)).LoadParameterValues(context.component, parameterValues);
     }
@@ -110,11 +112,13 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_VIEW_SENTIMENT_Domain(context){
+    var currentLanguage = context.report.CurrentLanguage;
+    var currentDictionary = Translations.dictionary(currentLanguage);
         var parameterValues = [
-            {Code: "emptyv", Label: "All sentiments"},
-            {Code: "pos", Label: "Positive"},
-            {Code: "neu", Label: "Neutral"},
-            {Code: "neg", Label: "Negative"}
+            {Code: "emptyv", Label: currentDictionary["All sentiments"]},
+            {Code: "pos", Label: currentDictionary["Positive"]},
+            {Code: "neu", Label: currentDictionary["Neutral"]},
+            {Code: "neg", Label: currentDictionary["Negative"]}
         ]
         new ParameterUtilities(TAHelper.GetGlobals(context)).LoadParameterValues(context.component, parameterValues);
     }

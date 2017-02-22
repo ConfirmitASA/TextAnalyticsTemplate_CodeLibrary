@@ -23,7 +23,12 @@ class Translations{
                     'Change in avg. score': 'Изменение средней оценки',
                     '1st level (category)': '1-й уровень (категории)',
                     '2nd level (sub-category)': '2-й уровень (подкатегории)',
-                    '3rd level (attributes)': '3-й уровень (аттрибуты)'
+                    '3rd level (attributes)': '3-й уровень (аттрибуты)',
+                    'Current vs Last Week': 'Текущая и предыдущая недели',
+                    'Current vs Last Month': 'Текущий и предыдущий месяц',
+                    'Current vs Last Quarter': 'Текущий и предыдущий квартал',
+                    'Current vs Last Year': 'Текущий и предыдущий год',
+                    'All sentiments': 'Все комментарии'
 
                 };
                 break;
@@ -50,7 +55,12 @@ class Translations{
                     'Change in avg. score': 'Change in avg. score',
                     '1st level (category)': '1st level (category)',
                     '2nd level (sub-category)': '2nd level (sub-category)',
-                    '3rd level (attributes)': '3rd level (attributes)'
+                    '3rd level (attributes)': '3rd level (attributes)',
+                    'Current vs Last Week': 'Current vs Last Week',
+                    'Current vs Last Month': 'Current vs Last Month',
+                    'Current vs Last Quarter': 'Current vs Last Quarter',
+                    'Current vs Last Year': 'Current vs Last Year',
+                    'All sentiments': 'All sentiments'
                 };
                 break;
         }
