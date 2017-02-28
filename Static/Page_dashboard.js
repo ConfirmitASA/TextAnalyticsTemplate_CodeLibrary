@@ -575,11 +575,11 @@ static function lstLanguage_Hide(context){
 * @param {Number} filterNumber
 * @returns {Boolean}
 */
-static function ltxtLanguage_Hide(context){
+static function txtLanguage_Hide(context){
     return _filter_panel.txtLanguage_Hide(context);
 }
 
-    static function ltxtLanguage_Render(context){
+    static function txtLanguage_Render(context){
     return _filter_panel.txtLanguage_Render(context);
 }
 }
