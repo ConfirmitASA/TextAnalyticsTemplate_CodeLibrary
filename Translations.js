@@ -28,7 +28,8 @@ class Translations{
                     'Current vs Last Month': 'Текущий и предыдущий месяц',
                     'Current vs Last Quarter': 'Текущий и предыдущий квартал',
                     'Current vs Last Year': 'Текущий и предыдущий год',
-                    'All sentiments': 'Все комментарии'
+                    'All sentiments': 'Все комментарии',
+                    'Language': 'Язык'
 
                 };
                 break;
@@ -60,7 +61,8 @@ class Translations{
                     'Current vs Last Month': 'Current vs Last Month',
                     'Current vs Last Quarter': 'Current vs Last Quarter',
                     'Current vs Last Year': 'Current vs Last Year',
-                    'All sentiments': 'All sentiments'
+                    'All sentiments': 'All sentiments',
+                    'Language': 'Language'
                 };
                 break;
         }

@@ -3,9 +3,11 @@
  */
 class FilterPanel{
     private var _filterComponents;
+    private var _current_dictionary;
 
-    function FilterPanel(filterComponents){
+    function FilterPanel(filterComponents, currentDictionary){
         _filterComponents = filterComponents;
+        _current_dictionary = currentDictionary;
     }
 
     /**
@@ -101,5 +103,17 @@ class FilterPanel{
     function lstFilterList_Hide(context, filterNumber){
     var filterQuestion = _filterComponents.GetFilterQuestion(filterNumber-1);
     return !filterQuestion
+}
+
+    function txtLanguage_Render(context){
+    var LanguageTitle = _current_dictionary['Language'];
+}
+
+    function txtLanguage_Hide(context){
+    return !context.report.Languages.length > 1
+}
+
+    function lstLanguage_Hide(context){
+    return !context.report.Languages.length > 1
 }
 }

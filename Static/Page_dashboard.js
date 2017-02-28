@@ -63,7 +63,9 @@ class Page_dashboard{
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
     _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
     _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
-    _filter_panel = new FilterPanel(_filterComponents);
+    _currentLanguage = context.report.CurrentLanguage;
+    _curDictionary = Translations.dictionary(_currentLanguage);
+    _filter_panel = new FilterPanel(_filterComponents,_curDictionary);
     if(context.component.SubmitSource == "ClearFilters"){
         _filterComponents.ClearFilters();
         context.state.Parameters["TA_DATE_FROM"] = null;
@@ -546,5 +548,31 @@ class Page_dashboard{
      */
     static function lstFilterList_Hide(context, filterNumber){
     return _filter_panel.lstFilterList_Hide(context, filterNumber);
+}
+
+/**
+* @memberof Page_filters
+* @function lstFilterList_Hide
+* @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+* @param {Number} filterNumber
+* @returns {Boolean}
+*/
+static function lstLanguage_Hide(context){
+    return _filter_panel.lstLanguage_Hide(context);
+}
+
+/**
+* @memberof Page_filters
+* @function lstFilterList_Hide
+* @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+* @param {Number} filterNumber
+* @returns {Boolean}
+*/
+static function ltxtLanguage_Hide(context){
+    return _filter_panel.txtLanguage_Hide(context);
+}
+
+    static function ltxtLanguage_Render(context){
+    return _filter_panel.txtLanguage_Render(context);
 }
 }

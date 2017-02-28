@@ -13,6 +13,15 @@ class Parameters{
         } finally {}*/
     }
 
+    static function LANGUAGES_Domain(context){
+    var selectedLanguages = context.report.Languages;
+    var parameterValues =[]
+    for(var i = 0 ; i < selectedLanguages.length; i++){
+        parameterValues.push({Code: selectedLanguages[i], Label: Languages.List[selectedLanguages[i]]});
+    }
+    new ParameterUtilities(TAHelper.GetGlobals(context)).LoadParameterValues(context.component, parameterValues);
+    }
+
     /**
      * @memberof Parameters
      * @function TA_FOLDERS_Domain
