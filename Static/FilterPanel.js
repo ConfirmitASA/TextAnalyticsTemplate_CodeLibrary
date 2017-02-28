@@ -107,6 +107,7 @@ class FilterPanel{
 
     function txtLanguage_Render(context){
     var LanguageTitle = _current_dictionary['Language'];
+    context.component.Output.Append(LanguageTitle);
 }
 
     function txtLanguage_Hide(context){
