@@ -71,6 +71,7 @@ class Page_comments{
 
         TAHelper.SetLastVisitedPage(TAHelper.GetGlobals(context), "comments");
         var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
+
         paramUtils.SetDefaultParameterValues(_defaultParameters);
 
         var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());

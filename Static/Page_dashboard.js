@@ -59,9 +59,7 @@ class Page_dashboard{
         context.state.Parameters["TA_VIEW_BY"] = null;
     }
 
-    if(context.component.SubmitSource == "lstLanguage"){
-        context.report.CurrentLanguage = parseInt(context.state.Parameters.GetString('LANGUAGE'));
-    }
+
     TAHelper.SetLastVisitedPage(TAHelper.GetGlobals(context), "dashboard");
     var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
     _defaultParameters.push({Id: 'LANGUAGE', Value: _currentLanguage.ToString()});
