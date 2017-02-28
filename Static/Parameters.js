@@ -13,7 +13,7 @@ class Parameters{
         } finally {}*/
     }
 
-    static function LANGUAGES_Domain(context){
+    static function LANGUAGE_Domain(context){
     var selectedLanguages = context.report.Languages;
     var parameterValues =[]
     for(var i = 0 ; i < selectedLanguages.length; i++){
