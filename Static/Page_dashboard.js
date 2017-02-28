@@ -47,6 +47,8 @@ class Page_dashboard{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
+    _currentLanguage = context.report.CurrentLanguage;
+    _curDictionary = Translations.dictionary(_currentLanguage);
     Config.SetTALibrary(TAHelper.GetGlobals(context));
     if(context.component.SubmitSource == "lstQuestions") {
         context.state.Parameters["TA_ALL_CATEGORIES"] = null;
@@ -56,15 +58,20 @@ class Page_dashboard{
         context.state.Parameters["TA_TOP_CATEGORIES_SINGLE"] = null;
         context.state.Parameters["TA_VIEW_BY"] = null;
     }
+
+    if(context.component.SubmitSource == "lstLanguage"){
+        context.report.CurrentLanguage = parseInt(context.state.Parameters.GetString('LANGUAGE'));
+    }
     TAHelper.SetLastVisitedPage(TAHelper.GetGlobals(context), "dashboard");
     var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
+    _defaultParameters.push({Id: 'LANGUAGE', Value: _currentLanguage.ToString()});
+
     paramUtils.SetDefaultParameterValues(_defaultParameters);
     var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
     _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
     _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
-    _currentLanguage = context.report.CurrentLanguage;
-    _curDictionary = Translations.dictionary(_currentLanguage);
+
     _filter_panel = new FilterPanel(_filterComponents,_curDictionary);
     if(context.component.SubmitSource == "ClearFilters"){
         _filterComponents.ClearFilters();
