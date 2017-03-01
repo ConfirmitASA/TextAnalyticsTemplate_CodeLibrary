@@ -125,7 +125,7 @@ class PageMaster{
 
 }
     static function txtQuestion_Render(context){
-        var label = 'Question';
+        var label = Translations.dictionary(context.report.CurrentLanguage)['Question'];
         context.component.Output.Append(label);
 
 }
@@ -135,7 +135,7 @@ class PageMaster{
 
 }
     static function txtDateFrom_Render(context){
-    var label = 'From';
+    var label = Translations.dictionary(context.report.CurrentLanguage)['From'];
     context.component.Output.Append(label);
 
 }
@@ -145,7 +145,7 @@ class PageMaster{
 
 }
     static function txtDateTo_Render(context){
-    var label = 'To';
+    var label = Translations.dictionary(context.report.CurrentLanguage)['To'];
     context.component.Output.Append(label);
 
 }
@@ -166,7 +166,7 @@ class PageMaster{
 }
 
     static function txtHierarchyLabel_Render(context) {
-    var label = "Hierarchy";
+    var label = Translations.dictionary(context.report.CurrentLanguage)["Hierarchy"];
     context.component.Output.Append(label);
 }
 

@@ -29,7 +29,13 @@ class Translations{
                     'Current vs Last Quarter': 'Текущий и предыдущий квартал',
                     'Current vs Last Year': 'Текущий и предыдущий год',
                     'All sentiments': 'Все комментарии',
-                    'Language': 'Язык'
+                    'Language': 'Язык',
+                    'Save': 'Сохранить',
+                    'Clear filters': 'Очистить фильтры',
+                    'Question': 'Вопрос',
+                    'From': 'С',
+                    'To': 'По',
+                    'Hierarchy': 'Иерархия'
 
                 };
                 break;
@@ -62,7 +68,13 @@ class Translations{
                     'Current vs Last Quarter': 'Current vs Last Quarter',
                     'Current vs Last Year': 'Current vs Last Year',
                     'All sentiments': 'All sentiments',
-                    'Language': 'Language'
+                    'Language': 'Language',
+                    'Save': 'Save',
+                    'Clear filters': 'Clear filters',
+                    'Question': 'Question',
+                    'From': 'From',
+                    'To': 'To',
+                    'Hierarchy': 'Hierarchy'
                 };
                 break;
         }
