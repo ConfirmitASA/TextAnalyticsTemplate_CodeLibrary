@@ -105,16 +105,5 @@ class FilterPanel{
     return !filterQuestion
 }
 
-    function txtLanguage_Render(context){
-    var LanguageTitle = _current_dictionary['Language'];
-    context.component.Output.Append(LanguageTitle);
-}
 
-    function txtLanguage_Hide(context){
-    return !context.report.Languages.length > 1
-}
-
-    function lstLanguage_Hide(context){
-    return !context.report.Languages.length > 1
-}
 }

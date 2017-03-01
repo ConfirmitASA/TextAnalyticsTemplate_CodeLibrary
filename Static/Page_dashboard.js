@@ -62,7 +62,7 @@ class Page_dashboard{
 
     TAHelper.SetLastVisitedPage(TAHelper.GetGlobals(context), "dashboard");
     var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
-    _defaultParameters.push({Id: 'LANGUAGE', Value: _currentLanguage.ToString()});
+
 
     paramUtils.SetDefaultParameterValues(_defaultParameters);
     var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
@@ -78,9 +78,6 @@ class Page_dashboard{
     }
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
     taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-
-    _currentLanguage = context.report.CurrentLanguage;
-    _curDictionary = Translations.dictionary(_currentLanguage);
 
 }
 
@@ -555,29 +552,5 @@ class Page_dashboard{
     return _filter_panel.lstFilterList_Hide(context, filterNumber);
 }
 
-/**
-* @memberof Page_filters
-* @function lstFilterList_Hide
-* @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-* @param {Number} filterNumber
-* @returns {Boolean}
-*/
-static function lstLanguage_Hide(context){
-    return _filter_panel.lstLanguage_Hide(context);
-}
-
-/**
-* @memberof Page_filters
-* @function lstFilterList_Hide
-* @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-* @param {Number} filterNumber
-* @returns {Boolean}
-*/
-static function txtLanguage_Hide(context){
-    return _filter_panel.txtLanguage_Hide(context);
-}
-
-    static function txtLanguage_Render(context){
-    return _filter_panel.txtLanguage_Render(context);
-}
+/
 }
