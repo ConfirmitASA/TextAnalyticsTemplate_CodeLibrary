@@ -46,7 +46,7 @@ class FilterPanel{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSave_Render(context){
-    context.component.Label = new Label(context.report.CurrentLanguage,Translations.dictionarycontext.report.CurrentLanguage)["Save"]);
+    context.component.Label = new Label(context.report.CurrentLanguage,Translations.dictionary(context.report.CurrentLanguage)["Save"]);
 }
 
     /**
