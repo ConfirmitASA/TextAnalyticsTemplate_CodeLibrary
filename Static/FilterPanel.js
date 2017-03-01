@@ -65,7 +65,7 @@ class FilterPanel{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnClearFilters_Render(context){
-    context.component.Label = new Label(context.report.CurrentLanguage,Translations.dictionarycontext.report.CurrentLanguage)["Clear filters"]);
+    context.component.Label = new Label(context.report.CurrentLanguage,Translations.dictionary(context.report.CurrentLanguage)["Clear filters"]);
     context.component.TargetPage = "filters";
 }
 
