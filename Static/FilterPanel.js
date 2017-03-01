@@ -45,8 +45,8 @@ class FilterPanel{
      * @function btnSave_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    function btnSave_Render(context){
-    context.component.Label = new Label(context.report.CurrentLanguage,_current_dictionary["Save"]);
+    static function btnSave_Render(context){
+    context.component.Label = new Label(context.report.CurrentLanguage,Translations.dictionarycontext.report.CurrentLanguage)["Save"]);
 }
 
     /**
@@ -64,8 +64,8 @@ class FilterPanel{
      * @function btnClearFilters_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    function btnClearFilters_Render(context){
-    context.component.Label = new Label(context.report.CurrentLanguage,_current_dictionary["Clear filters"]);
+    static function btnClearFilters_Render(context){
+    context.component.Label = new Label(context.report.CurrentLanguage,Translations.dictionarycontext.report.CurrentLanguage)["Clear filters"]);
     context.component.TargetPage = "filters";
 }
 
