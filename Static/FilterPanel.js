@@ -45,7 +45,7 @@ class FilterPanel{
      * @function btnSave_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function btnSave_Render(context){
+    function btnSave_Render(context){
     context.component.Label = new Label(context.report.CurrentLanguage,_current_dictionary["Save"]);
 }
 
@@ -64,7 +64,7 @@ class FilterPanel{
      * @function btnClearFilters_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function btnClearFilters_Render(context){
+    function btnClearFilters_Render(context){
     context.component.Label = new Label(context.report.CurrentLanguage,_current_dictionary["Clear filters"]);
     context.component.TargetPage = "filters";
 }
