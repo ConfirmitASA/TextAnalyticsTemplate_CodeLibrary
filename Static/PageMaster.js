@@ -169,5 +169,12 @@ class PageMaster{
     var label = Translations.dictionary(context.report.CurrentLanguage)["Hierarchy"];
     context.component.Output.Append(label);
 }
+    static function txtPageTitle_Hide(context){
+    return false
+}
+    static function txtPageTitle_Render(context){
+    var label = Translations.dictionary(context.report.CurrentLanguage)["What people are talking about"];
+    context.component.Output.Append(label);
+}
 
 }

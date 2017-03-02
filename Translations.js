@@ -35,7 +35,8 @@ class Translations{
                     'Question': 'Вопрос',
                     'From': 'С',
                     'To': 'По',
-                    'Hierarchy': 'Иерархия'
+                    'Hierarchy': 'Иерархия',
+                    'What people are talking about': 'О чем говоят люди'
 
                 };
                 break;
@@ -74,7 +75,8 @@ class Translations{
                     'Question': 'Question',
                     'From': 'From',
                     'To': 'To',
-                    'Hierarchy': 'Hierarchy'
+                    'Hierarchy': 'Hierarchy',
+                    'What people are talking about': 'What people are talking about'
                 };
                 break;
         }
