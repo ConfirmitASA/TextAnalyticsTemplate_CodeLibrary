@@ -142,7 +142,7 @@ class Page_comments{
         htlComments.AddTAColumn("verbatim");
         htlComments.AddColumn(_folder.GetTimeVariableId(), true);
         htlComments.AddTAColumn("overallsentiment");
-        //htlComments.AddTAColumn("categories");
+        htlComments.AddTAColumn("categories");
         htlComments.AddConfiguredColumns();
     }
 
@@ -196,11 +196,11 @@ class Page_comments{
             title: "Date"
         }];
 
-        /*
+
             hitlistHeaders["categories"] = {
                 name: _folder.GetQuestionId("categories")
             };
-         */
+
 
         hitlistHeaders["sentiment"].push( {
             name: _folder.GetQuestionId("overallSentiment"),
