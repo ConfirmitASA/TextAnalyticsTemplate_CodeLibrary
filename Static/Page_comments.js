@@ -197,9 +197,9 @@ class Page_comments{
         }];
 
 
-            hitlistHeaders["categories"] = {
+            hitlistHeaders["categories"] = [{
                 name: _folder.GetQuestionId("categories")
-            };
+            }];
 
 
         hitlistHeaders["sentiment"].push( {
