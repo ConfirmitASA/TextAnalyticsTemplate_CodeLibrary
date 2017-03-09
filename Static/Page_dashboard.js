@@ -95,7 +95,7 @@ class Page_dashboard{
         var table = context.component;
         var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level);
         topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
-            topSentimentTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES","detailed_analysis");
+            topSentimentTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES","detailed_analysis, comments");
         topSentimentTable.GetTATableUtils().ClearTableDistributions();
     }
 
