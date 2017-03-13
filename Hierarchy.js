@@ -24,6 +24,7 @@ class Hierarchy{
     };
 
     function Hierarchy(globals, settings) {
+    globals.log.LogDebug("hier");
         _globals = globals;
 
         globals.log.LogDebug(_settings.schemaId);
