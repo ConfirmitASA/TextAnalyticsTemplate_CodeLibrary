@@ -407,5 +407,66 @@ class Page_detailed_analysis{
     var label = _curDictionary['Attribute'];
     context.component.Output.Append(label);
 }
+
+
+    static function txtTotalComments_Hide(context){
+    return false
+}
+
+    /**
+     * @memberof Page_comments
+     * @function txtSubCategory_Render
+     * @description function to render the sub Category selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtTotalComments_Render(context){
+    var label = _curDictionary['Total comments'];
+    context.component.Output.Append(label);
+}
+
+    static function txtPositive_Hide(context){
+    return false
+}
+
+    /**
+     * @memberof Page_comments
+     * @function txtSubCategory_Render
+     * @description function to render the sub Category selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtPositive_Render(context){
+    var label = _curDictionary['Positive'];
+    context.component.Output.Append(label);
+}
+
+    static function txtNeutral_Hide(context){
+    return false
+}
+
+    /**
+     * @memberof Page_comments
+     * @function txtSubCategory_Render
+     * @description function to render the sub Category selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtNeutral_Render(context){
+    var label = _curDictionary['Neutral'];
+    context.component.Output.Append(label);
+}
+
+    static function txtNegative_Hide(context){
+    return false
+}
+
+    /**
+     * @memberof Page_comments
+     * @function txtSubCategory_Render
+     * @description function to render the sub Category selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtNegative_Render(context){
+    var label = _curDictionary['Negative'];
+    context.component.Output.Append(label);
+}
 }
 

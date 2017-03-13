@@ -37,6 +37,7 @@ class Translations{
                     'Top 5 most improved themes': '5 тем ставших лучше',
                     'Top 5 most negative themes': '5 плохих тем',
                     'Top 5 most positive themes': '5 хороших тем',
+                    'Total comments': 'Все комментарии',
                     'View': 'Показывать',
                     'View by': 'Уровень иерархии',
                     'What people are talking about': 'О чем говоят люди'
@@ -81,7 +82,8 @@ class Translations{
                     'What people are talking about': 'What people are talking about',
                     'Category': 'Category',
                     'Sub category': 'Sub category',
-                    'Attribute': 'Attribute'
+                    'Attribute': 'Attribute',
+                    'Total comments': 'Total comments'
                 };
                 break;
         }
