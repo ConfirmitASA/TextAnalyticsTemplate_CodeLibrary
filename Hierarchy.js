@@ -28,12 +28,14 @@ class Hierarchy{
 
         globals.log.LogDebug(_settings.schemaId);
         var dataTable = _getDataTable();
+    globals.log.LogDebug("gdt");
         if(!dataTable.Columns.Contains(settings.textColumnName))
             settings.textColumnName = "__l9"
-
+    globals.log.LogDebug("set cur l");
     _settings = _mergeOptions(_defaultSettings, settings);
+    globals.log.LogDebug("merge options");
         _generateFlatList(dataTable.Rows)
-
+    globals.log.LogDebug("gfl");
         _setupHierarchy(0, null);
     }
 

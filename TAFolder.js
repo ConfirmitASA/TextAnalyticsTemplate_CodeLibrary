@@ -37,7 +37,7 @@ class TAFolder{
 
         var hitlistColumns = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_hitlist"]);
         _hitlistColumns = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].HitlistColumns, config.HitlistColumns, hitlistColumns, []);
-
+        globals.log.LogDebug('before hierarchy');
         _hierarchy = new Hierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
             tableName: config.TAQuestions[questionIndex].DatabaseTableName,
