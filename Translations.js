@@ -3,6 +3,7 @@ class Translations{
         switch(language) {
             case 25 :
                 return {
+                    '-select-': '-выберите-',
                     '1st level (category)': '1-й уровень (категории)',
                     '2nd level (sub-category)': '2-й уровень (подкатегории)',
                     '3rd level (attributes)': '3-й уровень (аттрибуты)',
@@ -21,6 +22,7 @@ class Translations{
                     'Dashboard': 'Главная страница',
                     'End date': 'Дата окончания',
                     'From': 'С',
+                    'Hide categories with no hits': 'Скрыть пустые категории',
                     'Hierarchy': 'Иерархия',
                     'Language': 'Язык',
                     'Negative': 'Отрицательные',
@@ -40,7 +42,8 @@ class Translations{
                     'Total comments': 'Все комментарии',
                     'View': 'Показывать',
                     'View by': 'Уровень иерархии',
-                    'What people are talking about': 'О чем говоят люди'
+                    'What people are talking about': 'О чем говоят люди',
+
                 };
                 break;
             case 9 :
@@ -83,7 +86,9 @@ class Translations{
                     'Category': 'Category',
                     'Sub category': 'Sub category',
                     'Attribute': 'Attribute',
-                    'Total comments': 'Total comments'
+                    'Total comments': 'Total comments',
+                    '-select-': '-select-',
+                    'Hide categories with no hits': 'Hide categories with no hits'
                 };
                 break;
         }

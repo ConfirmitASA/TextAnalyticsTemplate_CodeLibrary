@@ -38,8 +38,9 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_COMPARE_PERIODS_Domain(context){
-    var currentLanguage = context.report.CurrentLanguage;
-    var currentDictionary = Translations.dictionary(currentLanguage);
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
         var parameterValues = [
             {Code: "wow", Label: currentDictionary["Current vs Last Week"]},
             {Code: "mom", Label: currentDictionary["Current vs Last Month"]},
@@ -55,7 +56,9 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_ALL_CATEGORIES_Domain(context){
-    new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderAllCategoriesParameter(context.component, getSelectedFolder(context),"-select-")
+    var currentLanguage = context.report.CurrentLanguage;
+    var currentDictionary = Translations.dictionary(currentLanguage);
+    new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderAllCategoriesParameter(context.component, getSelectedFolder(context),currentDictionary["-select-"])
 }
 
     /**
@@ -64,7 +67,10 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_TOP_CATEGORIES_SINGLE_Domain(context){
-        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, getSelectedFolder(context), 0, "-select-")
+    var currentLanguage = context.report.CurrentLanguage;
+    var currentDictionary = Translations.dictionary(currentLanguage);
+
+        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, getSelectedFolder(context), 0, currentDictionary["-select-"])
     }
 
     /**
@@ -73,7 +79,9 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_SUB_CATEGORIES_SINGLE_Domain(context){
-        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, getSelectedFolder(context), 1, "-select-")
+    var currentLanguage = context.report.CurrentLanguage;
+    var currentDictionary = Translations.dictionary(currentLanguage);
+        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, getSelectedFolder(context), 1, currentDictionary["-select-"])
     }
 
     /**
@@ -82,7 +90,9 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_ATTRIBUTES_SINGLE_Domain(context){
-        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, getSelectedFolder(context), 2, "-select-")
+    var currentLanguage = context.report.CurrentLanguage;
+    var currentDictionary = Translations.dictionary(currentLanguage);
+        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderLevelCategoriesParameter(context.component, getSelectedFolder(context), 2, currentDictionary["-select-"])
     }
 
     /**
@@ -130,8 +140,10 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_DISTRIBUTION_TOGGLE_Domain(context){
+    var currentLanguage = context.report.CurrentLanguage;
+    var currentDictionary = Translations.dictionary(currentLanguage);
         var parameterValues = [
-            {Code: 0, Label: "Count"},
+            {Code: 0, Label: currentDictionary["Count"]},
             {Code: 1, Label: "%"}
         ]
 
@@ -144,7 +156,9 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_VIEW_BY_Domain(context){
-        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderViewByParameter(context.component, getSelectedFolder(context), "-select-");
+    var currentLanguage = context.report.CurrentLanguage;
+    var currentDictionary = Translations.dictionary(currentLanguage);
+        new TAParameters(TAHelper.GetGlobals(context),Config.GetTALibrary()).RenderViewByParameter(context.component, getSelectedFolder(context), currentDictionary["-select-"]);
     }
 
     /**
@@ -153,8 +167,10 @@ class Parameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_HIDE_EMPTY_ROWS_Domain(context){
+    var currentLanguage = context.report.CurrentLanguage;
+    var currentDictionary = Translations.dictionary(currentLanguage);
         var parameterValues = [
-            {Code: "hide", Label: "Hide categories with no hits"}
+            {Code: "hide", Label: currentDictionary["Hide categories with no hits"]}
         ]
         new ParameterUtilities(TAHelper.GetGlobals(context)).LoadParameterValues(context.component, parameterValues);
     }
