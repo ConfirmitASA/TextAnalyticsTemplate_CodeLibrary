@@ -93,6 +93,7 @@ class Hierarchy{
      * @returns {Object}
      */
     private function _createFlatEntry(row) {
+        _globals.log(row);
         var name = TAHelper.GetSelfName(row[_settings.textColumnName], _settings.textSeparator, _globals.log);
         var flatEntry = {
             id: row[_settings.idColumnName].toLowerCase(),
