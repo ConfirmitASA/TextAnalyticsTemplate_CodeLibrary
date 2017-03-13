@@ -26,14 +26,14 @@ class Hierarchy{
     function Hierarchy(globals, settings) {
     globals.log.LogDebug("hier");
         _globals = globals;
-
+    _settings = _mergeOptions(_defaultSettings, settings);
         globals.log.LogDebug(_settings.schemaId);
         var dataTable = _getDataTable();
     globals.log.LogDebug("gdt");
-        if(!dataTable.Columns.Contains(settings.textColumnName))
-            settings.textColumnName = "__l9"
+        if(!dataTable.Columns.Contains(_settings.textColumnName))
+            _settings.textColumnName = "__l9"
     globals.log.LogDebug("set cur l");
-    _settings = _mergeOptions(_defaultSettings, settings);
+
     globals.log.LogDebug("merge options");
         _generateFlatList(dataTable.Rows)
     globals.log.LogDebug("gfl");
