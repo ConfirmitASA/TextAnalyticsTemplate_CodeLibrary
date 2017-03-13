@@ -42,7 +42,7 @@ class Translations{
                     'Total comments': 'Все комментарии',
                     'View': 'Показывать',
                     'View by': 'Уровень иерархии',
-                    'What people are talking about': 'О чем говоят люди',
+                    'What people are talking about': 'О чем говоят люди'
 
                 };
                 break;
