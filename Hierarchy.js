@@ -25,10 +25,15 @@ class Hierarchy{
 
     function Hierarchy(globals, settings) {
         _globals = globals;
-        _settings = _mergeOptions(_defaultSettings, settings);
+
         globals.log.LogDebug(_settings.schemaId);
         var dataTable = _getDataTable();
+        if(!dataTable.Columns.Contains(settings.textColumnName))
+            settings.textColumnName = "__l9"
+
+    _settings = _mergeOptions(_defaultSettings, settings);
         _generateFlatList(dataTable.Rows)
+
         _setupHierarchy(0, null);
     }
 
@@ -93,7 +98,6 @@ class Hierarchy{
      * @returns {Object}
      */
     private function _createFlatEntry(row) {
-        _globals.log(row);
         var name = TAHelper.GetSelfName(row[_settings.textColumnName], _settings.textSeparator, _globals.log);
         var flatEntry = {
             id: row[_settings.idColumnName].toLowerCase(),
