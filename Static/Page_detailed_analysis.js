@@ -7,6 +7,8 @@ class Page_detailed_analysis{
     private static var _filter_panel;
     private static var _folder;
     private static var _selectedCategory;
+    private static var _currentLanguage;
+    private static var _curDictionary;
     private static const _defaultParameters = [
         {
             Id: "TA_ALL_CATEGORIES",
@@ -54,7 +56,9 @@ class Page_detailed_analysis{
      */
     static function Render(context){
         Config.SetTALibrary(TAHelper.GetGlobals(context));
-    _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+        _currentLanguage = context.report.CurrentLanguage;
+        _curDictionary = Translations.dictionary(_currentLanguage);
+        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
         if(context.component.SubmitSource == "ClearFilters"){
             _filterComponents.ClearFilters();
             context.state.Parameters["TA_DATE_FROM"] = null;
@@ -304,7 +308,8 @@ class Page_detailed_analysis{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtCategory_Render(context){
-        context.component.Output.Append("Category");
+        var label = _curDictionary['Category'];
+        context.component.Output.Append(label);
     }
 
     static function txtFilterTitle_Hide(context, filterNumber){
@@ -376,7 +381,7 @@ class Page_detailed_analysis{
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtSubCategory_Render(context){
-    var label = "Sub category";
+    var label = _curDictionary['Sub category'];
     context.component.Output.Append(label);
 }
 
@@ -399,7 +404,7 @@ class Page_detailed_analysis{
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtAttribute_Render(context){
-    var label = "Attribute";
+    var label = _curDictionary['Attribute'];
     context.component.Output.Append(label);
 }
 }
