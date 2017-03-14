@@ -12,7 +12,9 @@ class Translations{
                     'Categories': 'Категории',
                     'Category': 'Категория',
                     'Change in avg. score': 'Изменение средней оценки',
+                    'Chart': 'График',
                     'Clear filters': 'Очистить фильтры',
+                    'Comments': 'Комментарии',
                     'Compare': 'Сравнить',
                     'Count': 'Количество',
                     'Current vs Last Month': 'Текущий и предыдущий месяц',
@@ -90,7 +92,9 @@ class Translations{
                     'Total comments': 'Total comments',
                     '-select-': '-select-',
                     'Hide categories with no hits': 'Hide categories with no hits',
-                    'View by:': 'View by:'
+                    'View by:': 'View by:',
+                    'Comments': 'Comments',
+                    'Chart': 'Chart'
                 };
                 break;
         }

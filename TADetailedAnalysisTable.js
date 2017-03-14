@@ -20,9 +20,13 @@ class TADetailedAnalysisTable{
     private var _selectedQuestion;
     private var _distribution;
     private var _multiQuestion;
+    private var _currentLanguage;
+    private var _curDictionary;
 
     function TADetailedAnalysisTable(globals, folder, table, selectedCategory, selectedQuestion, distribution, multiQuestion){
         _globals = globals;
+        _currentLanguage = _globals.report.CurrentLanguage;
+        _curDictionary = Translations.dictionary(_currentLanguage);
         _folder = folder;
         _taMasks = new TAMasks(globals, folder);
         _table = table;
@@ -31,6 +35,7 @@ class TADetailedAnalysisTable{
         _selectedQuestion = selectedQuestion && selectedQuestion != "emptyv" ? selectedQuestion : "all";
         _distribution = distribution ? distribution : "0";
         _multiQuestion = multiQuestion;
+    var currentLanguage =
         _render();
     }
 
@@ -131,7 +136,7 @@ class TADetailedAnalysisTable{
      */
     private function _getColumnFormulaExpression(){
         var countformulaexpression;
-        var countformula = '[FORMULA]{decimals:0;label:"Comments";hideheader:true';
+        var countformula = '[FORMULA]{decimals:0;label:"'+_curDictionary['Comments']+'";hideheader:true';
         if( _distribution == "1"){
             countformula += ";percent:true";
             countformulaexpression = '"IF((cellv(1,1)>0),(cellv(col-1,row)/cellv(1,1)),EMPTYV())"';
@@ -246,7 +251,7 @@ class TADetailedAnalysisTable{
                 },
 
             ],
-            "Negative",
+            "Neutral",
             {
                 axis: Area.Columns,
                 direction: Area.Left,
@@ -262,7 +267,7 @@ class TADetailedAnalysisTable{
                 },
 
             ],
-            "Negative",
+            "Positive",
             {
                 axis: Area.Columns,
                 direction: Area.Left,
