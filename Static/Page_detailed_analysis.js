@@ -289,7 +289,8 @@ class Page_detailed_analysis{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtViewBy_Render(context){
-        context.component.Output.Append("View by:");
+        var label = _curDictionary['View by:'];
+        context.component.Output.Append(label);
     }
 
     /**

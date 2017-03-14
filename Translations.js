@@ -42,6 +42,7 @@ class Translations{
                     'Total comments': 'Все комментарии',
                     'View': 'Показывать',
                     'View by': 'Уровень иерархии',
+                    'View by:': 'Разбить по:',
                     'What people are talking about': 'О чем говоят люди'
 
                 };
@@ -88,7 +89,8 @@ class Translations{
                     'Attribute': 'Attribute',
                     'Total comments': 'Total comments',
                     '-select-': '-select-',
-                    'Hide categories with no hits': 'Hide categories with no hits'
+                    'Hide categories with no hits': 'Hide categories with no hits',
+                    'View by:': 'View by:'
                 };
                 break;
         }
