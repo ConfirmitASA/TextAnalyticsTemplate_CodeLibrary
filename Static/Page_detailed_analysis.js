@@ -34,7 +34,11 @@ class Page_detailed_analysis{
         {
             Id: "TA_VIEW_BY",
             Value: "emptyv"
-        }
+        },
+    {
+        Id: "TA_FOLDERS",
+        Value: (Config.TAQuestions[0].TAQuestionName+Config.TAQuestions[0].TAModelNo)
+    }
     ];
 
     /**
