@@ -32,7 +32,7 @@ class Page_comments{
         },
         {
             Id: "TA_FOLDERS",
-            Value: Config.TAQuestions[0].TAFolderId
+            Value: (Config.TAQuestions[0].TAQuestionName+Config.TAQuestions[0].TAModelNo)
         }
     ];
 
