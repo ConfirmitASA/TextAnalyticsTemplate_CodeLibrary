@@ -7,6 +7,8 @@ class Page_comments{
     private static var _filter_panel;
     private static var _folder;
     private static var _selectedCategory;
+    private static var _currentLanguage;
+    private static var _curDictionary;
     private static const _defaultParameters = [
         {
             Id: "TA_ALL_CATEGORIES",
@@ -52,6 +54,8 @@ class Page_comments{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
+    _currentLanguage = context.report.CurrentLanguage;
+    _curDictionary = Translations.dictionary(_currentLanguage);
     Config.SetTALibrary(TAHelper.GetGlobals(context));
     _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
         if(context.component.SubmitSource == "ClearFilters"){
@@ -187,13 +191,13 @@ class Page_comments{
 
         hitlistHeaders["verbatim"] = [{
             name: _folder.GetQuestionId(),
-            title: "Comments",
+            title: _curDictionary["Comments"],
             main: true
         }];
 
         hitlistHeaders["date"] = [{
             name: _folder.GetTimeVariableId() ? _folder.GetTimeVariableId() : "interview_start",
-            title: "Date"
+            title: _curDictionary["Date"]
         }];
 
 
@@ -204,7 +208,7 @@ class Page_comments{
 
         hitlistHeaders["sentiment"].push( {
             name: _folder.GetQuestionId("overallSentiment"),
-            title: "Overall Sentiment"
+            title: _curDictionary["Overall Sentiment"]
         });
 
         hitlistHeaders["other"] = [];
@@ -288,7 +292,7 @@ class Page_comments{
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtCategory_Render(context){
-        var label = "Category";
+        var label = _curDictionary["Category"];
         context.component.Output.Append(label);
     }
 
@@ -312,7 +316,7 @@ class Page_comments{
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtSubCategory_Render(context){
-        var label = "Sub category";
+        var label = _curDictionary["Sub category"];
         context.component.Output.Append(label);
     }
 
@@ -335,7 +339,7 @@ class Page_comments{
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtAttribute_Render(context){
-        var label = "Attribute";
+        var label = _curDictionary["Attribute"];
         context.component.Output.Append(label);
     }
 
@@ -357,7 +361,7 @@ class Page_comments{
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtSentiment_Render(context){
-        var label = "Sentiment";
+        var label = _curDictionary["Sentiment"];
         context.component.Output.Append(label);
     }
 

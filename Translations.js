@@ -22,6 +22,7 @@ class Translations{
                     'Current vs Last Week': 'Текущая и предыдущая недели',
                     'Current vs Last Year': 'Текущий и предыдущий год',
                     'Dashboard': 'Главная страница',
+                    'Date': 'Дата',
                     'End date': 'Дата окончания',
                     'From': 'С',
                     'Hide categories with no hits': 'Скрыть пустые категории',
@@ -29,10 +30,12 @@ class Translations{
                     'Language': 'Язык',
                     'Negative': 'Отрицательные',
                     'Neutral': 'Нейтральные',
+                    'Overall Sentiment': 'Общие впечатления',
                     'Positive': "Положительные",
                     'Question': 'Вопрос',
                     'Save': 'Сохранить',
                     'Selected question': 'Выбранный вопрос',
+                    'Sentiment': 'Впечатление',
                     'Start date': 'Дата начала',
                     'Sub category': 'Подкатегория',
                     'Theme distribution': 'Изменение тем',
@@ -94,7 +97,10 @@ class Translations{
                     'Hide categories with no hits': 'Hide categories with no hits',
                     'View by:': 'View by:',
                     'Comments': 'Comments',
-                    'Chart': 'Chart'
+                    'Chart': 'Chart',
+                    'Date': 'Date',
+                    'Overall Sentiment': 'Overall Sentiment',
+                    'Sentiment': 'Sentiment'
                 };
                 break;
         }
