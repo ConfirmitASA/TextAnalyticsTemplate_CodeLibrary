@@ -257,15 +257,16 @@ class Page_detailed_analysis{
 
                     "blocks:"+JSON.stringify(blocks)+","+
                     "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
-                    "sorting:"+
-                    "{"+
-                        "enabled: true,"+
-                        "excludedColumns: [6]"+
-                    "},"+
+
                     "clearLinks: false,"+
                     "search: {" +
                     "enabled: true"+
                 "}"+
+                "},"+
+                "sorting:"+
+                "{"+
+                "enabled: true,"+
+                "excludedColumns: [6]"+
                 "},"+
                 "floatingHeader: {},"+
                 "search:{}"+
