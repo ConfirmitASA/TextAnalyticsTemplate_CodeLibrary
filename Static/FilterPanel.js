@@ -26,7 +26,7 @@ class FilterPanel{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSaveReturn_Render(context){
-    context.component.Label = new Label(9,"Save and Return");
+    context.component.Label = new Label(context.report.CurrentLanguage,Translations.dictionary(context.report.CurrentLanguage)["Save and return"]);
     context.component.TargetPage = context.state.Parameters.GetString("TA_LAST_VISITED_PAGE");
 }
 

@@ -6,6 +6,8 @@ class Page_filters{
     private static var _filterComponents;
     private static var _folder;
     private static const _defaultParameters = [];
+    private static var _currentLanguage;
+    private static var _curDictionary;
     private static var _filter_panel;
     /**
      * @memberof Page_filters
@@ -25,6 +27,8 @@ class Page_filters{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
+    _currentLanguage = context.report.CurrentLanguage;
+    _curDictionary = Translations.dictionary(_currentLanguage);
         Config.SetTALibrary(TAHelper.GetGlobals(context));
         _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
         _filter_panel = new FilterPanel(_filterComponents);
@@ -151,7 +155,7 @@ class Page_filters{
 
 }
     static function txtQuestion_Render(context){
-    var label = 'Question';
+    var label = _curDictionary['Question'];
     context.component.Output.Append(label);
 
 }
@@ -161,7 +165,7 @@ class Page_filters{
 
 }
     static function txtDateFrom_Render(context){
-    var label = 'From';
+    var label = _curDictionary['From'];
     context.component.Output.Append(label);
 
 }
@@ -171,7 +175,7 @@ class Page_filters{
 
 }
     static function txtDateTo_Render(context){
-    var label = 'To';
+    var label = _curDictionary['To'];
     context.component.Output.Append(label);
 
 }
