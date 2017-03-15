@@ -268,8 +268,7 @@ class Page_detailed_analysis{
                 "enabled: true,"+
                 "excludedColumns: [6]"+
                 "},"+
-                "floatingHeader: {},"+
-                "search:{}"+
+                "fixedHeader: {}"+
                 "}"+
                 ")"+
                 "</script>";
