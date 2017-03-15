@@ -34,6 +34,7 @@ class Translations{
                     'Positive': "Положительные",
                     'Question': 'Вопрос',
                     'Save': 'Сохранить',
+                    'Save and return': 'Сщхранить и вернуться',
                     'Selected question': 'Выбранный вопрос',
                     'Sentiment': 'Впечатление',
                     'Start date': 'Дата начала',
@@ -100,7 +101,8 @@ class Translations{
                     'Chart': 'Chart',
                     'Date': 'Date',
                     'Overall Sentiment': 'Overall Sentiment',
-                    'Sentiment': 'Sentiment'
+                    'Sentiment': 'Sentiment',
+                    'Save and return': 'Save and return'
                 };
                 break;
         }
