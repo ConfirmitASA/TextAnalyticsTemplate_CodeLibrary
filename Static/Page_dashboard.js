@@ -481,6 +481,10 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtThemeDistributionScript_Render(context){
+    var categoriesText = "<script>" +
+        "var z = document.querySelectorAll('.reportal-categories>thead>tr>td[class*=\"_cc\"]');" +
+        "z.forEach(item => item.innerHTML = '"+Translations.dictionary(_currentLanguage)['Categories']+"');" +
+        "</script>";
     var headers;
     var hierarhy = _folder.GetHierarchy().GetHierarchyArray()
 
@@ -502,14 +506,12 @@ class Page_dashboard{
         ")"+
         "</script>";
 
+    context.component.Output.Append(categoriesText);
     context.component.Output.Append(upgradeText);
     context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
 
-    var categoriesText = "<script>" +
-        "var z = document.querySelectorAll('.reportal-categories>thead>tr>td[class*=\"_cc\"]');" +
-        "z.forEach(item => item.innerHTML = '"+Translations.dictionary(_currentLanguage)['Categories']+"');" +
-        "</script>";
-    context.component.Output.Append(categoriesText);
+
+
 }
 
     /**
