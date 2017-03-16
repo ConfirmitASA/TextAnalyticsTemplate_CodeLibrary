@@ -41,6 +41,7 @@ class Translations{
                     'Sub category': 'Подкатегория',
                     'Theme distribution': 'Изменение тем',
                     'To': 'По',
+                    'Toggle chart view': 'переключить вид чарта',
                     'Top 5 most declined themes': '5 тем ставших хуже',
                     'Top 5 most improved themes': '5 тем ставших лучше',
                     'Top 5 most negative themes': '5 плохих тем',
@@ -102,7 +103,8 @@ class Translations{
                     'Date': 'Date',
                     'Overall Sentiment': 'Overall Sentiment',
                     'Sentiment': 'Sentiment',
-                    'Save and return': 'Save and return'
+                    'Save and return': 'Save and return',
+                    'Toggle chart view': 'Toggle chart view'
                 };
                 break;
         }

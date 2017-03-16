@@ -217,8 +217,11 @@ class Page_detailed_analysis{
         if(selectedQuestion && selectedQuestion != "emptyv")
             selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
-        var hideEmptyRows = new ParameterUtilities(globals).GetCheckedValues("TA_HIDE_EMPTY_ROWS");
-        var detailedAnalysisTable = new TADetailedAnalysisTable(globals, _folder, context.component, _selectedCategory, selectedQuestion, distribution, ( selectedQuestionType == QuestionType.Multi));
+    var parameterUtilities = new ParameterUtilities(globals)
+        var hideEmptyRows = parameterUtilities.GetCheckedValues("TA_HIDE_EMPTY_ROWS");
+        var toggleChartValue = parameterUtilities.GetCheckedValues("TA_TOGGLE_BARCHART");
+        var toggleChart = (toggleChartValue.length > 0)
+        var detailedAnalysisTable = new TADetailedAnalysisTable(globals, _folder, context.component, _selectedCategory, selectedQuestion, distribution, ( selectedQuestionType == QuestionType.Multi), toggleChart);
         detailedAnalysisTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table", "reportal-barchart", "detailed-analysis-table"]);
         detailedAnalysisTable.GetTATableUtils().SetupHideEmptyRows((hideEmptyRows.length >0));
         detailedAnalysisTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "comments");

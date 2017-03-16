@@ -22,8 +22,9 @@ class TADetailedAnalysisTable{
     private var _multiQuestion;
     private var _currentLanguage;
     private var _curDictionary;
+    private var _bar100;
 
-    function TADetailedAnalysisTable(globals, folder, table, selectedCategory, selectedQuestion, distribution, multiQuestion){
+    function TADetailedAnalysisTable(globals, folder, table, selectedCategory, selectedQuestion, distribution, multiQuestion, bar100){
         _globals = globals;
         _currentLanguage = _globals.report.CurrentLanguage;
         _curDictionary = Translations.dictionary(_currentLanguage);
@@ -35,6 +36,7 @@ class TADetailedAnalysisTable{
         _selectedQuestion = selectedQuestion && selectedQuestion != "emptyv" ? selectedQuestion : "all";
         _distribution = distribution ? distribution : "0";
         _multiQuestion = multiQuestion;
+        _bar100 = bar100 ? bar100 : false;
     var currentLanguage =
         _render();
     }
@@ -176,8 +178,9 @@ class TADetailedAnalysisTable{
      * @function _addChartColumn
      */
     private function _addChartColumn(){
+    var chartType = _bar100 ? ChartComboType.Bar100 : ChartComboType.Bar
         var chartHeader =  _taTableUtils.GetChartHeader(
-            ChartComboType.Bar,
+            chartType,
             [
                 {
                     Formula: "cellv(col-25,row)",

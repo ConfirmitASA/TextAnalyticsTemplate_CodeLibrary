@@ -196,4 +196,13 @@ class Parameters{
             new ParameterUtilities(TAHelper.GetGlobals(context)).LoadParameterValues(context.component, parameterValues);
         }
     }
+
+    static function TA_TOGGLE_CHART_Domain(context){
+    var currentLanguage = context.report.CurrentLanguage;
+    var currentDictionary = Translations.dictionary(currentLanguage);
+    var parameterValues = [
+        {Code: "toggle", Label: currentDictionary["Toggle chart view"]}
+    ]
+    new ParameterUtilities(TAHelper.GetGlobals(context)).LoadParameterValues(context.component, parameterValues);
+    }
 }
