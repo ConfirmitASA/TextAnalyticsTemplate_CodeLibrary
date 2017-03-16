@@ -177,7 +177,7 @@ class TADetailedAnalysisTable{
      */
     private function _addChartColumn(){
         var chartHeader =  _taTableUtils.GetChartHeader(
-            ChartComboType.Bar,
+            ChartComboType.Bar100,
             [
                 {
                     Formula: "cellv(col-25,row)",
