@@ -65,7 +65,7 @@ class ReportMaster {
     static function txtFilterPanelScript_Render(context){
     var script = "<script type = \"text/javascript\">" +
         "(function(){"+
-        "var filterpanel = new Reportal.Filterpanel({source: document, target: document.querySelector(\".reportal-filterpanel\")});"+
+        "var filterpanel = new Reportal.Filterpanel({source: document, target: document.querySelector(\".reportal-filterpanel .reportal-filterpanel-wrapper\")});"+
         "})()"+
         "</script>";
     context.component.Output.Append(script)
