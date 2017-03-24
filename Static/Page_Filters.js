@@ -69,7 +69,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSaveReturn_Render(context){
-        context.component.Label = new Label(9,"Save and Return");
+        context.component.Label = new Label(context.report.CurrentLanguage,"Save and Return");
         context.component.TargetPage = context.state.Parameters.GetString("TA_LAST_VISITED_PAGE");
     }
 
@@ -89,7 +89,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSave_Render(context){
-        context.component.Label = new Label(9,"Save");
+        context.component.Label = new Label(context.report.CurrentLanguage,"Save");
         context.component.TargetPage = "filters";
     }
 
@@ -109,7 +109,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnClearFilters_Render(context){
-    context.component.Label = new Label(9,"Clear Filters");
+    context.component.Label = new Label(context.report.CurrentLanguage,"Clear Filters");
     context.component.TargetPage = "filters";
 }
 
