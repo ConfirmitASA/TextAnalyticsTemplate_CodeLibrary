@@ -234,7 +234,7 @@ class TATableUtils{
                 expression += ';hideheader:true';
             expression += '}'
         }else{
-            var categoriesHeader = '[CAT]{totals:false';//;hidedata:true';
+            var categoriesHeader = '[CAT]{totals:false;hidedata:true';
             var formulaHeader = '[FORMULA]{decimals:0';
             var formulaExpression;
             var categoryLabel;
