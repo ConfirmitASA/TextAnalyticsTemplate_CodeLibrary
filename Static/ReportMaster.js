@@ -167,7 +167,7 @@ class ReportMaster {
 
     str += "</style>";
 
-    text.Output.Append(str);
+    context.component.Output.Append(str);
 
 }
 
