@@ -60,7 +60,7 @@ class TAFilters{
                 sentimentRange ='"' + Config.SentimentRange.Negative.join('","')+'"';
                 break;
         }
-        var questionName = selectedCategory && selectedCategory != "emptyv" ? (_folder.GetQuestionId("categorysentiment")+"_"+selectedCategory) : _folder.GetQuestionId("overallsentiment");
+        var questionName = (selectedCategory && selectedCategory != "emptyv") ? (_folder.GetQuestionId("categorysentiment")+"_"+selectedCategory) : _folder.GetQuestionId("overallsentiment");
         fExpr = sentimentRange ?('IN(' + questionName + ','+sentimentRange+')') : '';
         return fExpr;
     }
