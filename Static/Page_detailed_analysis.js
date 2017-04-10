@@ -244,6 +244,7 @@ class Page_detailed_analysis{
      */
     static function txtDetailedAnalysisScript_Render(context){
         var headers;
+        context.log.LogDebug("selectedCat: "+ _selectedCategory)
         var hierarhy = _selectedCategory == 'emptyv'? _folder.GetHierarchy().GetHierarchyArray() : [_folder.GetHierarchy().GetObjectById(_selectedCategory)];
         var taTableData = new TATableData(TAHelper.GetGlobals(context), "tblDetailedAnalysis");
         var headers = taTableData.GetTableRowHeaders();
