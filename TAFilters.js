@@ -29,7 +29,7 @@ class TAFilters{
         var fExpr;
         var selectedCategory = TAHelper.GetSelectedCategory(_globals.state, categoriesParameter, subCategoriesParameter, attributesParameter);
 
-        fExpr = selectedCategory ?('ANY(' + _folder.GetQuestionId("categories") + ',"'+selectedCategory+'")'):'NOT ISNULL('+_folder.GetQuestionId("overallSentiment")+')';
+        fExpr = (selectedCategory && selectedCategory !="emptyv") ?('ANY(' + _folder.GetQuestionId("categories") + ',"'+selectedCategory+'")'):'NOT ISNULL('+_folder.GetQuestionId("overallSentiment")+')';
 
         return fExpr;
     }
@@ -60,7 +60,8 @@ class TAFilters{
                 sentimentRange ='"' + Config.SentimentRange.Negative.join('","')+'"';
                 break;
         }
-        var questionName = (selectedCategory != "emptyv") ? (_folder.GetQuestionId("categorysentiment")+"_"+selectedCategory) : _folder.GetQuestionId("overallsentiment");
+        var questionName = (selectedCategory && selectedCategory != "emptyv") ? (_folder.GetQuestionId("categorysentiment")+"_"+selectedCategory) : _folder.GetQuestionId("overallsentiment");
+
         fExpr = sentimentRange ?('IN(' + questionName + ','+sentimentRange+')') : '';
         return fExpr;
     }
