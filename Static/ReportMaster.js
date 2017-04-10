@@ -92,7 +92,7 @@ class ReportMaster {
     str += "* {outline-color: " + darkAccentColor +
         "\n;}a:hover, .link:hover {color: " + darkAccentColor +
         "\n;}.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.dd-wrapper .dd-button-menu button:hover {background-color: " + darkAccentColor +
-        "\n;}body, body.reportal-viewmode,.reportal-table .cf_positive,  .reportal-table .cf_neutral,  .reportal-table .cf_negative {color: " + primaryTextColor +
+        "\n;}body, body.reportal-viewmode,.reportal-table .cf_positive,  .reportal-table .cf_neutral,  .reportal-table .cf_negative,.reportal-hitlist-container .yui3-datatable-cell,.reportal-hitlist-container .yui3-datatable-cell:hover,.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {color: " + primaryTextColor +
         "\n;}[class^=icon-],.yui3-menu-horizontal ul > li > a {fill: " + primaryTextColor +
         "\n;}body, body.reportal-viewmode,.yui3-menu-horizontal ul > li > a {background-color: " + defaultPrimaryColor +
         "\n;}.report-filters-horizontal,.yui3-menu-horizontal ul > li.css-menu-selected > a,      .yui3-menu-horizontal ul > li.css-menu-child-selected > a,      .yui3-menu-horizontal ul > li.css-menu-topitem > a:hover,      .yui3-menu-horizontal ul > li > a.yui3-menu-label-menuvisible:not(.css-menu-sublabel),.yui3-menu-horizontal ul ul > li.yui3-menuitem-active > a,        .yui3-menu-horizontal ul ul > li > a.yui3-menu-label-active,        .yui3-menu-horizontal ul ul > li > a.yui3-menu-label-menuvisible,.reportal-table>thead>tr>td,  .reportal-table>thead>tr>th,.reportal-table.reportal-barchart>thead>tr,.reportal-table .btn.hierarchy-search.visible {background-color: " + lightPrimaryColor +
@@ -166,7 +166,6 @@ class ReportMaster {
         "\n;}";
 
     str += "</style>";
-
     context.component.Output.Append(str);
 
 }
