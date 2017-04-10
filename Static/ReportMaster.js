@@ -142,9 +142,9 @@ class ReportMaster {
         "\n;}.reportal-hierarchy-table>tbody>tr>td[class*=_dc]:nth-last-child(even) {background: " + primaryBackgroundColor +
         "\n;}.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {background-color: " + primaryBackgroundColor +
         "\n;}.reportal-hierarchy-table tr.firstInBlock:not(:first-child)>td {border-top: 3px " + dividerColor +
-        "\n double !important;}.hitlist-dropdown-button,.yui-calcontainer>table .calnav,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn {background: " + lightPrimaryColor +
+        "\n double !important;}.hitlist-dropdown-button,.hitlist-export-button.hitlist-btn,.yui-calcontainer>table .calnav,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn {background: " + lightPrimaryColor +
         "\n !important;}.hitlist-dropdown-button:after {border-color: " + darkPrimaryColor +
-        "\n transparent transparent;}.hitlist-dropdown-button:hover,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-cancel:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn:hover {background: " + defaultPrimaryColor +
+        "\n transparent transparent;}.hitlist-dropdown-button:hover,.hitlist-export-button.hitlist-btn:hover,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-cancel:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn:hover {background: " + defaultPrimaryColor +
         "\n !important;}.yui-ac-bd>ul>li.yui-ac-highlight,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear:hover,.hitlist-nav-button,.hitlist-nav-page,.yui-calcontainer>table td.calcell.selected>a,.yui-calcontainer>table .calnav:hover {color: " + textPrimaryColor +
         "\n !important;}.hitlist-filter,.yui-calcontainer>table td.calcell.today>a {background: " + lightAccentColor +
         "\n !important;}.hitlist-dropdown-panel,.yui-calcontainer .yui-cal-nav {border-color: " + dividerColor +
@@ -153,7 +153,7 @@ class ReportMaster {
         "\n !important;}.hitlist-dropdown-panel .hitlist-filter-item>label,.yui-calcontainer>table .calweekdaycell,.yui-calcontainer>table .calnav {color: " + secondaryTextColor +
         "\n !important;}.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear:hover {background: " + secondaryTextColor +
         "\n !important;}.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply:hover,.hitlist-nav-button:hover, .hitlist-nav-page:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn.yui-default:hover {background: " + darkAccentColor +
-        "\n !important;}.reportal-hitlist-container .yui3-datatable-columns,.reportal-hitlist-container .yui3-datatable-header {border-top: 1px solid " + dividerColor +
+        "\n !important;}.reportal-hitlist-container .yui3-datatable-columns,.reportal-hitlist-container .yui3-datatable-header,.reportal-hitlist-container .yui3-datatable-cell {border-bottom: 1px solid " + dividerColor +
         "\n !important;}.yui-calcontainer {border: 1px solid " + dividerColor +
         "\n !important;}.reportal-hitlist-container .hitlist-date-info {color: " + secondaryTextColor +
         "\n;}.reportal-hitlist-container .hitlist-nav-prev.disabled,.reportal-hitlist-container .hitlist-nav-next.disabled {color: " + disabledTextColor +
@@ -167,7 +167,7 @@ class ReportMaster {
 
     str += "</style>";
 
-    context.component.Output.Append(str);
+    text.Output.Append(str);
 
 }
 
