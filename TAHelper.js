@@ -46,7 +46,7 @@ class TAHelper{
         if(attribtesPararmeterName)
             attributesParameter = state.Parameters.GetString(attribtesPararmeterName);
 
-        var selectedCategory = false;
+        var selectedCategory = "emptyv";
 
         if(categoriesParameter && categoriesParameter != "emptyv"){
             selectedCategory = categoriesParameter;
