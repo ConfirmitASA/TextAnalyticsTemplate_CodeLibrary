@@ -74,7 +74,7 @@ class ReportMaster {
         var backgroundColor = Config.Design.backgroundColor;
         var lightPrimaryColor = Config.Design.lightPrimaryColor;
         var buttonTextColor = Config.Design.buttonTextColor;
-        var darkAccentColor = Config.Design.darkAccentColor;
+        var buttonHoverColor = Config.Design.buttonHoverColor;
         var defaultAccentColor = Config.Design.defaultAccentColor;
         var lightAccentColor = Config.Design.lightAccentColor;
         var primaryBackgroundColor = Config.Design.primaryBackgroundColor;
@@ -89,9 +89,9 @@ class ReportMaster {
 
         var str = "<style>";
 
-        str += "* {outline-color: " + darkAccentColor +
-            "\n;}a:hover, .link:hover {color: " + darkAccentColor +
-            "\n;}.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.dd-wrapper .dd-button-menu button:hover {background-color: " + darkAccentColor +
+        str += "* {outline-color: " + buttonHoverColor +
+            "\n;}a:hover, .link:hover {color: " + buttonHoverColor +
+            "\n;}.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.dd-wrapper .dd-button-menu button:hover {background-color: " + buttonHoverColor +
             "\n;}body, body.reportal-viewmode,.reportal-select select,.reportal-table .cf_positive,  .reportal-table .cf_neutral,  .reportal-table .cf_negative,.hitlist-dropdown-panel .hitlist-filter-item>input.hitlist-opentext-field,    .hitlist-dropdown-panel .hitlist-filter-item>input.ac,    .hitlist-dropdown-panel .hitlist-filter-item>.hitlist-toggle-field>input.hitlist-filter-text-field,    .hitlist-dropdown-panel .hitlist-filter-item>select,.reportal-datepicker>span>span> input,.yui-calcontainer select.yui-cal-nav-mc,  .yui-calcontainer input.yui-cal-nav-yc {color: " + primaryTextColor +
             "\n;}[class^=icon-],.yui3-menu-horizontal ul > li > a {fill: " + primaryTextColor +
             "\n;}body, body.reportal-viewmode,.yui3-menu-horizontal ul > li > a {background-color: " + backgroundColor +
@@ -151,7 +151,7 @@ class ReportMaster {
             "\n !important;}.hitlist-dropdown-panel {background-color: " + primaryBackgroundColor +
             "\n !important;}.hitlist-dropdown-panel .hitlist-filter-item>label,.yui-calcontainer>table .calweekdaycell,.yui-calcontainer>table .calnav {color: " + secondaryTextColor +
             "\n !important;}.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear:hover {background: " + secondaryTextColor +
-            "\n !important;}.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply:hover,.hitlist-nav-button:hover, .hitlist-nav-page:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn.yui-default:hover {background: " + darkAccentColor +
+            "\n !important;}.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply:hover,.hitlist-nav-button:hover, .hitlist-nav-page:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn.yui-default:hover {background: " + buttonHoverColor +
             "\n !important;}.reportal-hitlist-container .yui3-datatable-columns,.reportal-hitlist-container .yui3-datatable-header,.reportal-hitlist-container .yui3-datatable-cell {border-bottom: 1px solid " + lightDividerColor +
             "\n !important;}.reportal-hitlist-container .hitlist-date-info {color: " + secondaryTextColor +
             "\n;}.reportal-hitlist-container .hitlist-nav-prev.disabled,.reportal-hitlist-container .hitlist-nav-next.disabled {color: " + disabledTextColor +
