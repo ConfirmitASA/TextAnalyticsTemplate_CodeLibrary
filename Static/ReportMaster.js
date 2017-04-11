@@ -105,7 +105,7 @@ class ReportMaster {
         "\n !important;}a:active,  a:visited,  .link:active,  .link:visited {color: " + defaultAccentColor +
         "\n;}.btn.btn-primary, button.btn-primary,.dd-wrapper .dd-button-menu button {background-color: " + defaultAccentColor +
         "\n;}.dd-wrapper .dd-button-menu button:focus {outline-color: " + defaultAccentColor +
-        "\n;}.btn.btn-primary, button.btn-primary,.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.filter-bar .well-filter-summary,.filter-bar div {color: " + textPrimaryColor +
+        "\n;}.btn.btn-primary, button.btn-primary,.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.filter-bar .well-filter-summary {color: " + textPrimaryColor +
         "\n;}.icon-face-positive,.cf_positive {fill: " + positiveColor +
         "\n;}.cf_positive {color: " + positiveColor +
         "\n;}.icon-face-neutral,.cf_neutral {fill: " + neutralColor +
@@ -114,16 +114,14 @@ class ReportMaster {
         "\n;}.cf_negative {color: " + negativeColor +
         "\n;}.filter-bar .filter-button {background-color: " + dividerColor +
         "\n;}.filter-bar .filter-button:hover,    .filter-bar .filter-button:active,    .filter-bar .filter-button:focus {fill: " + dividerColor +
-        "\n;}[type=radio]:disabled:not(:checked) + label:before,[type=radio]:disabled:checked + label:before,[type=checkbox]:disabled:not(:checked) + label:before,[type=checkbox]:disabled:checked + label:before {border-color: " + dividerColor +
-        "\n;}.toggle input:checked + label {background: " + dividerColor +
+        "\n;}.filter-bar div,.toggle input:checked + label {background: " + dividerColor +
+        "\n;}[type=radio]:disabled:not(:checked) + label:before,[type=radio]:disabled:checked + label:before,[type=checkbox]:disabled:not(:checked) + label:before,[type=checkbox]:disabled:checked + label:before,.toggle input:checked + label {border-color: " + dividerColor +
         "\n;}.toggle input:not(checked) + label {color: " + dividerColor +
         "\n;}.filter-bar .filter-button {fill: " + secondaryTextColor +
         "\n;}.filter-bar .filter-button:hover,    .filter-bar .filter-button:active,    .filter-bar .filter-button:focus,[type=radio] + label:after {background-color: " + secondaryTextColor +
         "\n;}.filter-bar .well-filter-summary {background: " + secondaryTextColor +
-        "\n;}.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label,[type=radio]:disabled:checked + label:after, [type=checkbox]:disabled:checked + label:after,[type=\"checkbox\"] + label:after,.dd-target-button .dd-target-button-arrow, .dd-target-button .dd-target-button-text {color: " + secondaryTextColor +
+        "\n;}.filter-bar div,.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label,[type=radio] + label, [type=checkbox] + label,[type=radio]:disabled:checked + label:after, [type=checkbox]:disabled:checked + label:after,[type=\"checkbox\"] + label:after,.dd-target-button .dd-target-button-arrow, .dd-target-button .dd-target-button-text {color: " + secondaryTextColor +
         "\n;}.filter-bar .well-filter-summary:hover {background-color: " + darkPrimaryColor +
-        "\n;}.filter-bar div {background: " + darkPrimaryColor +
-        "\n;}[type=radio] + label, [type=checkbox] + label {color: " + darkPrimaryColor +
         "\n;}.legend .cf_positive:before,.reportal-table>tbody>tr>td.cf_positive:after {background: " + positiveColor +
         "\n;}.legend .cf_neutral:before,.reportal-table>tbody>tr>td.cf_neutral:after {background: " + neutralColor +
         "\n;}.legend .cf_negative:before,.reportal-table>tbody>tr>td.cf_negative:after {background: " + negativeColor +
