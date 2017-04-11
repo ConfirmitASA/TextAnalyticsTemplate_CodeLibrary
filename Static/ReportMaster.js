@@ -75,7 +75,7 @@ class ReportMaster {
         var lightPrimaryColor = Config.Design.lightPrimaryColor;
         var buttonTextColor = Config.Design.buttonTextColor;
         var buttonHoverColor = Config.Design.buttonHoverColor;
-        var defaultAccentColor = Config.Design.defaultAccentColor;
+        var buttonMainColor = Config.Design.buttonMainColor;
         var lightAccentColor = Config.Design.lightAccentColor;
         var primaryBackgroundColor = Config.Design.primaryBackgroundColor;
         var primaryTextColor = Config.Design.primaryTextColor;
@@ -97,14 +97,14 @@ class ReportMaster {
             "\n;}body, body.reportal-viewmode,.yui3-menu-horizontal ul > li > a {background-color: " + backgroundColor +
             "\n;}.report-filters-horizontal,.yui3-menu-horizontal ul > li.css-menu-selected > a,      .yui3-menu-horizontal ul > li.css-menu-child-selected > a,      .yui3-menu-horizontal ul > li.css-menu-topitem > a:hover,      .yui3-menu-horizontal ul > li > a.yui3-menu-label-menuvisible:not(.css-menu-sublabel),.yui3-menu-horizontal ul ul > li.yui3-menuitem-active > a,        .yui3-menu-horizontal ul ul > li > a.yui3-menu-label-active,        .yui3-menu-horizontal ul ul > li > a.yui3-menu-label-menuvisible,.reportal-table>thead>tr>td,  .reportal-table>thead>tr>th,.reportal-table.reportal-barchart>thead>tr,.reportal-table .btn.hierarchy-search.visible {background-color: " + lightPrimaryColor +
             "\n;}.kpi-tile,.reportal-hierarchy-table tr.firstInBlock>td:first-child {background: " + lightPrimaryColor +
-            "\n;}a, .link {color: " + defaultAccentColor +
-            "\n !important;}.yui-ac-bd>ul>li.yui-ac-highlight {background-color: " + defaultAccentColor +
-            "\n !important;}.hitlist-filter {border-color: " + defaultAccentColor +
-            "\n !important;}.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply,.hitlist-nav-button,.hitlist-nav-page,.yui-calcontainer>table td.calcell.selected>a,.yui-calcontainer>table .calnav:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn.yui-default {background: " + defaultAccentColor +
-            "\n !important;}.dd-wrapper .dd-header .dd-search-input:focus,.dd-wrapper .dd-header .dd-item-text:focus {outline-color: " + defaultAccentColor +
-            "\n !important;}a:active,  a:visited,  .link:active,  .link:visited {color: " + defaultAccentColor +
-            "\n;}.btn.btn-primary, button.btn-primary,.dd-wrapper .dd-button-menu button {background-color: " + defaultAccentColor +
-            "\n;}.dd-wrapper .dd-button-menu button:focus {outline-color: " + defaultAccentColor +
+            "\n;}a, .link {color: " + buttonMainColor +
+            "\n !important;}.yui-ac-bd>ul>li.yui-ac-highlight {background-color: " + buttonMainColor +
+            "\n !important;}.hitlist-filter {border-color: " + buttonMainColor +
+            "\n !important;}.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply,.hitlist-nav-button,.hitlist-nav-page,.yui-calcontainer>table td.calcell.selected>a,.yui-calcontainer>table .calnav:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn.yui-default {background: " + buttonMainColor +
+            "\n !important;}.dd-wrapper .dd-header .dd-search-input:focus,.dd-wrapper .dd-header .dd-item-text:focus {outline-color: " + buttonMainColor +
+            "\n !important;}a:active,  a:visited,  .link:active,  .link:visited {color: " + buttonMainColor +
+            "\n;}.btn.btn-primary, button.btn-primary,.dd-wrapper .dd-button-menu button {background-color: " + buttonMainColor +
+            "\n;}.dd-wrapper .dd-button-menu button:focus {outline-color: " + buttonMainColor +
             "\n;}.btn.btn-primary, button.btn-primary,.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.toggle input:checked + label {color: " + buttonTextColor +
             "\n;}.toggle input:not(checked) + label {background: " + buttonTextColor +
             "\n;}.icon-face-positive,.cf_positive {fill: " + positiveColor +
@@ -159,12 +159,13 @@ class ReportMaster {
             "\n;}.dd-wrapper,.dd-wrapper .dd-header,.dd-wrapper .dd-header .dd-search-input,.dd-wrapper .dd-header .dd-items a,.dd-wrapper .dd-button-menu {border-color: " + lightDividerColor +
             "\n !important;}.dd-wrapper .dd-header {background-color: " + lightDividerColor +
             "\n !important;}.yui-calcontainer {border: 1px solid " + dividerColor +
-            "\n !important;}.yui-calcontainer>table .calnavleft:before, .yui-calcontainer>table .calnavright:before {border: 1px solid " + defaultAccentColor +
+            "\n !important;}.yui-calcontainer>table .calnavleft:before, .yui-calcontainer>table .calnavright:before {border: 1px solid " + buttonMainColor +
             "\n;}.yui-calcontainer>table .calnav,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn {background: " + lightPrimaryColor +
             "\n !important;}table>thead td.sortable:not(.hierarchy-search-visible):after {color: " + primaryTextColor +
             "\n;}";
 
         str += "</style>";
+
         context.component.Output.Append(str);
     }
 
