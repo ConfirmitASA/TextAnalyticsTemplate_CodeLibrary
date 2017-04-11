@@ -92,8 +92,10 @@ class ReportMaster {
             "\n;}a:hover, .link:hover {color: " + buttonHoverColor +
             "\n;}.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.dd-wrapper .dd-button-menu button:hover {background-color: " + buttonHoverColor +
             "\n;}body, body.reportal-viewmode,.reportal-select select,.reportal-table .cf_positive,  .reportal-table .cf_neutral,  .reportal-table .cf_negative,.hitlist-dropdown-panel .hitlist-filter-item>input.hitlist-opentext-field,    .hitlist-dropdown-panel .hitlist-filter-item>input.ac,    .hitlist-dropdown-panel .hitlist-filter-item>.hitlist-toggle-field>input.hitlist-filter-text-field,    .hitlist-dropdown-panel .hitlist-filter-item>select,.reportal-datepicker>span>span> input,.yui-calcontainer select.yui-cal-nav-mc,  .yui-calcontainer input.yui-cal-nav-yc {color: " + primaryTextColor +
-            "\n;}[class^=icon-],.yui3-menu-horizontal ul > li > a {fill: " + primaryTextColor +
-            "\n;}body, body.reportal-viewmode,.yui3-menu-horizontal ul > li > a {background-color: " + backgroundColor +
+            "\n;}[class^=icon-],.filter-bar .filter-button,.yui3-menu-horizontal ul > li > a {fill: " + primaryTextColor +
+            "\n;}.filter-bar .filter-button:hover,    .filter-bar .filter-button:active,    .filter-bar .filter-button:focus {background-color: " + primaryTextColor +
+            "\n;}body, body.reportal-viewmode,.filter-bar .filter-button,.yui3-menu-horizontal ul > li > a {background-color: " + backgroundColor +
+            "\n;}.filter-bar .filter-button:hover,    .filter-bar .filter-button:active,    .filter-bar .filter-button:focus {fill: " + backgroundColor +
             "\n;}.report-filters-horizontal,.yui3-menu-horizontal ul > li.css-menu-selected > a,      .yui3-menu-horizontal ul > li.css-menu-child-selected > a,      .yui3-menu-horizontal ul > li.css-menu-topitem > a:hover,      .yui3-menu-horizontal ul > li > a.yui3-menu-label-menuvisible:not(.css-menu-sublabel),.yui3-menu-horizontal ul ul > li.yui3-menuitem-active > a,        .yui3-menu-horizontal ul ul > li > a.yui3-menu-label-active,        .yui3-menu-horizontal ul ul > li > a.yui3-menu-label-menuvisible,.reportal-table>thead>tr>td,  .reportal-table>thead>tr>th,.reportal-table.reportal-barchart>thead>tr,.reportal-table .btn.hierarchy-search.visible {background-color: " + lightPrimaryColor +
             "\n;}.kpi-tile,.reportal-hierarchy-table tr.firstInBlock>td:first-child {background: " + lightPrimaryColor +
             "\n;}a, .link {color: " + buttonMainColor +
@@ -104,7 +106,7 @@ class ReportMaster {
             "\n !important;}a:active,  a:visited,  .link:active,  .link:visited {color: " + buttonMainColor +
             "\n;}.btn.btn-primary, button.btn-primary,.dd-wrapper .dd-button-menu button {background-color: " + buttonMainColor +
             "\n;}.dd-wrapper .dd-button-menu button:focus {outline-color: " + buttonMainColor +
-            "\n;}.btn.btn-primary, button.btn-primary,.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.toggle input:checked + label {color: " + buttonTextColor +
+            "\n;}.btn.btn-primary, button.btn-primary,.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.filter-bar div,.toggle input:checked + label {color: " + buttonTextColor +
             "\n;}.toggle input:not(checked) + label {background: " + buttonTextColor +
             "\n;}.icon-face-positive,.cf_positive {fill: " + positiveColor +
             "\n;}.cf_positive {color: " + positiveColor +
@@ -112,22 +114,19 @@ class ReportMaster {
             "\n;}.cf_neutral {color: " + neutralColor +
             "\n;}.icon-face-negative,.cf_negative {fill: " + negativeColor +
             "\n;}.cf_negative {color: " + negativeColor +
-            "\n;}.filter-bar .filter-button {background-color: " + dividerColor +
-            "\n;}.filter-bar .filter-button:hover,    .filter-bar .filter-button:active,    .filter-bar .filter-button:focus {fill: " + dividerColor +
             "\n;}.filter-bar div,.toggle input:checked + label {background: " + dividerColor +
             "\n;}[type=radio]:disabled:not(:checked) + label:before,[type=radio]:disabled:checked + label:before,[type=checkbox]:disabled:not(:checked) + label:before,[type=checkbox]:disabled:checked + label:before,.toggle input:checked + label,.toggle input:not(checked) + label {border-color: " + dividerColor +
             "\n;}.toggle input:not(checked) + label {color: " + dividerColor +
-            "\n;}.filter-bar .filter-button {fill: " + secondaryTextColor +
-            "\n;}.filter-bar .filter-button:hover,    .filter-bar .filter-button:active,    .filter-bar .filter-button:focus,[type=radio] + label:after {background-color: " + secondaryTextColor +
-            "\n;}.filter-bar div,.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label,[type=radio] + label, [type=checkbox] + label,[type=radio]:disabled:checked + label:after, [type=checkbox]:disabled:checked + label:after,[type=\"checkbox\"] + label:after,.dd-target-button .dd-target-button-arrow, .dd-target-button .dd-target-button-text {color: " + secondaryTextColor +
             "\n;}.legend .cf_positive:before,.reportal-table>tbody>tr>td.cf_positive:after {background: " + positiveColor +
             "\n;}.legend .cf_neutral:before,.reportal-table>tbody>tr>td.cf_neutral:after {background: " + neutralColor +
             "\n;}.legend .cf_negative:before,.reportal-table>tbody>tr>td.cf_negative:after {background: " + negativeColor +
             "\n;}.yui3-menu-horizontal ul > li > *:nth-last-child(2):after {border-left: 1px solid " + secondaryTextColor +
             "\n;}[type=radio]:checked:focus + label:before,[type=radio]:not(:checked):focus + label:before,[type=checkbox]:checked:focus + label:before,[type=checkbox]:not(:checked):focus + label:before {border: 1px solid " + secondaryTextColor +
-            "\n;}.yui3-menu-horizontal ul > li > *:nth-last-child(2):before,.reportal-select.reportal-dropdown>span:after,.hitlist-dropdown-button:after {border-color: " + dividerColor +
+            "\n;}.yui3-menu-horizontal ul > li > *:nth-last-child(2):before,.reportal-select.reportal-dropdown>span:after,.hitlist-dropdown-button:after {border-color: " + primaryTextColor +
             "\n transparent transparent;}.yui3-menu-horizontal ul > li > a,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-cancel,.reportal-hitlist-container .yui3-datatable-cell,.reportal-hitlist-container .yui3-datatable-cell:hover,.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {color: " + primaryTextColor +
             "\n !important;}.yui3-menu-horizontal ul ul > li > *:nth-last-child(2):before {border-color: transparent transparent transparent " + backgroundColor +
+            "\n;}.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label,[type=radio] + label, [type=checkbox] + label,[type=radio]:disabled:checked + label:after, [type=checkbox]:disabled:checked + label:after,[type=\"checkbox\"] + label:after,.dd-target-button .dd-target-button-arrow, .dd-target-button .dd-target-button-text {color: " + secondaryTextColor +
+            "\n;}[type=radio] + label:after {background-color: " + secondaryTextColor +
             "\n;}.reportal-select select,.hitlist-dropdown-panel .hitlist-filter-item>input.hitlist-opentext-field,    .hitlist-dropdown-panel .hitlist-filter-item>input.ac,    .hitlist-dropdown-panel .hitlist-filter-item>.hitlist-toggle-field>input.hitlist-filter-text-field,    .hitlist-dropdown-panel .hitlist-filter-item>select,.reportal-datepicker>span>span> input,.yui-calcontainer select.yui-cal-nav-mc,  .yui-calcontainer input.yui-cal-nav-yc {border: 1px solid " + dividerColor +
             "\n;}.reportal-table .btn.hierarchy-search.visible {border-bottom: 1px solid " + dividerColor +
             "\n;}[type=radio]:disabled:not(:checked) + label:before,[type=radio]:disabled:checked + label:before,[type=checkbox]:disabled:not(:checked) + label:before,[type=checkbox]:disabled:checked + label:before {background-color: " + lightDividerColor +
