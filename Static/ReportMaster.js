@@ -76,7 +76,7 @@ class ReportMaster {
         var buttonTextColor = Config.Design.buttonTextColor;
         var buttonHoverColor = Config.Design.buttonHoverColor;
         var buttonMainColor = Config.Design.buttonMainColor;
-        var primaryBackgroundColor = Config.Design.primaryBackgroundColor;
+        var tableColumnColor = Config.Design.tableColumnColor;
         var primaryTextColor = Config.Design.primaryTextColor;
         var secondaryTextColor = Config.Design.secondaryTextColor;
         var disabledTextColor = Config.Design.disabledTextColor;
@@ -136,8 +136,8 @@ class ReportMaster {
             "\n;}.reportal-table>tbody>tr>td {border-bottom: 1px solid " + lightDividerColor +
             "\n;}.toggle label,.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {border: solid 1px " + dividerColor +
             "\n;}table>thead td.sortable:not(.hierarchy-search-visible):after {color: " + primaryTextColor +
-            "\n;}.reportal-hierarchy-table>tbody>tr>td[class*=_dc]:nth-last-child(even) {background: " + primaryBackgroundColor +
-            "\n;}.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {background-color: " + primaryBackgroundColor +
+            "\n;}.reportal-hierarchy-table>tbody>tr>td[class*=_dc]:nth-last-child(even) {background: " + tableColumnColor +
+            "\n;}.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {background-color: " + tableColumnColor +
             "\n;}.reportal-hierarchy-table tr.firstInBlock:not(:first-child)>td {border-top: 3px " + dividerColor +
             "\n double !important;}.reportal-collapsed-row .reportal-collapse-button:before,.reportal-uncollapsed-row .reportal-collapse-button:before,.hitlist-dropdown-button:after,.dd-target-button.dd-button-selected .dd-target-button-arrow {border-color: " + secondaryTextColor +
             "\n transparent transparent;}.reportal-no-children .reportal-collapse-button:before {border: 1px solid " + disabledTextColor +
@@ -146,7 +146,7 @@ class ReportMaster {
             "\n !important;}.hitlist-dropdown-button:hover,.hitlist-export-button.hitlist-btn:hover,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-cancel:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn:hover {background: " + backgroundColor +
             "\n !important;}.yui-ac-bd>ul>li.yui-ac-highlight,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear:hover,.hitlist-nav-button,.hitlist-nav-page,.yui-calcontainer>table td.calcell.selected>a,.yui-calcontainer>table .calnav:hover {color: " + buttonTextColor +
             "\n !important;}.hitlist-dropdown-panel {box-shadow: 0 2px 8px " + lightDividerColor +
-            "\n !important;}.hitlist-dropdown-panel {background-color: " + primaryBackgroundColor +
+            "\n !important;}.hitlist-dropdown-panel {background-color: " + tableColumnColor +
             "\n !important;}.hitlist-dropdown-panel .hitlist-filter-item>label,.yui-calcontainer>table .calweekdaycell,.yui-calcontainer>table .calnav {color: " + secondaryTextColor +
             "\n !important;}.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear:hover {background: " + secondaryTextColor +
             "\n !important;}.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply:hover,.hitlist-nav-button:hover, .hitlist-nav-page:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn.yui-default:hover {background: " + buttonHoverColor +
@@ -163,7 +163,6 @@ class ReportMaster {
             "\n;}";
 
         str += "</style>";
-
         context.component.Output.Append(str);
     }
 
