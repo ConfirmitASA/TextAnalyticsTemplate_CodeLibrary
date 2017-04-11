@@ -117,13 +117,13 @@ class ReportMaster {
         "\n;}[type=radio]:disabled:not(:checked) + label:before,[type=radio]:disabled:checked + label:before,[type=checkbox]:disabled:not(:checked) + label:before,[type=checkbox]:disabled:checked + label:before {border-color: " + dividerColor +
         "\n;}.toggle input:checked + label {background: " + dividerColor +
         "\n;}.toggle input:not(checked) + label {color: " + dividerColor +
-        "\n;}.filter-bar .filter-button {fill: " + darkPrimaryColor +
-        "\n;}.filter-bar .filter-button:hover,    .filter-bar .filter-button:active,    .filter-bar .filter-button:focus,.filter-bar .well-filter-summary:hover {background-color: " + darkPrimaryColor +
-        "\n;}.filter-bar div {background: " + darkPrimaryColor +
-        "\n;}[type=radio] + label, [type=checkbox] + label {color: " + darkPrimaryColor +
+        "\n;}.filter-bar .filter-button {fill: " + secondaryTextColor +
+        "\n;}.filter-bar .filter-button:hover,    .filter-bar .filter-button:active,    .filter-bar .filter-button:focus,[type=radio] + label:after {background-color: " + secondaryTextColor +
         "\n;}.filter-bar .well-filter-summary {background: " + secondaryTextColor +
         "\n;}.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label,[type=radio]:disabled:checked + label:after, [type=checkbox]:disabled:checked + label:after,[type=\"checkbox\"] + label:after,.dd-target-button .dd-target-button-arrow, .dd-target-button .dd-target-button-text {color: " + secondaryTextColor +
-        "\n;}[type=radio] + label:after {background-color: " + secondaryTextColor +
+        "\n;}.filter-bar .well-filter-summary:hover {background-color: " + darkPrimaryColor +
+        "\n;}.filter-bar div {background: " + darkPrimaryColor +
+        "\n;}[type=radio] + label, [type=checkbox] + label {color: " + darkPrimaryColor +
         "\n;}.legend .cf_positive:before,.reportal-table>tbody>tr>td.cf_positive:after {background: " + positiveColor +
         "\n;}.legend .cf_neutral:before,.reportal-table>tbody>tr>td.cf_neutral:after {background: " + neutralColor +
         "\n;}.legend .cf_negative:before,.reportal-table>tbody>tr>td.cf_negative:after {background: " + negativeColor +
@@ -143,12 +143,11 @@ class ReportMaster {
         "\n;}.reportal-hierarchy-table>tbody>tr>td[class*=_dc]:nth-last-child(even) {background: " + primaryBackgroundColor +
         "\n;}.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {background-color: " + primaryBackgroundColor +
         "\n;}.reportal-hierarchy-table tr.firstInBlock:not(:first-child)>td {border-top: 3px " + dividerColor +
-        "\n double !important;}.reportal-collapsed-row .reportal-collapse-button:before,.reportal-uncollapsed-row .reportal-collapse-button:before,.dd-target-button.dd-button-selected .dd-target-button-arrow {border-color: " + secondaryTextColor +
+        "\n double !important;}.reportal-collapsed-row .reportal-collapse-button:before,.reportal-uncollapsed-row .reportal-collapse-button:before,.hitlist-dropdown-button:after,.dd-target-button.dd-button-selected .dd-target-button-arrow {border-color: " + secondaryTextColor +
         "\n transparent transparent;}.reportal-no-children .reportal-collapse-button:before {border: 1px solid " + disabledTextColor +
         "\n;}.hitlist-dropdown-button,.hitlist-export-button.hitlist-btn {background: " + dividerColor +
         "\n !important;}.hitlist-dropdown-panel,.yui-calcontainer .yui-cal-nav {border-color: " + dividerColor +
-        "\n !important;}.hitlist-dropdown-button:after {border-color: " + darkPrimaryColor +
-        "\n transparent transparent;}.hitlist-dropdown-button:hover,.hitlist-export-button.hitlist-btn:hover,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-cancel:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn:hover {background: " + defaultPrimaryColor +
+        "\n !important;}.hitlist-dropdown-button:hover,.hitlist-export-button.hitlist-btn:hover,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-cancel:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn:hover {background: " + defaultPrimaryColor +
         "\n !important;}.yui-ac-bd>ul>li.yui-ac-highlight,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear:hover,.hitlist-nav-button,.hitlist-nav-page,.yui-calcontainer>table td.calcell.selected>a,.yui-calcontainer>table .calnav:hover {color: " + textPrimaryColor +
         "\n !important;}.hitlist-filter,.yui-calcontainer>table td.calcell.today>a {background: " + lightAccentColor +
         "\n !important;}.hitlist-dropdown-panel {box-shadow: 0 2px 8px " + lightDividerColor +
