@@ -105,7 +105,7 @@ class ReportMaster {
         "\n !important;}a:active,  a:visited,  .link:active,  .link:visited {color: " + defaultAccentColor +
         "\n;}.btn.btn-primary, button.btn-primary,.dd-wrapper .dd-button-menu button {background-color: " + defaultAccentColor +
         "\n;}.dd-wrapper .dd-button-menu button:focus {outline-color: " + defaultAccentColor +
-        "\n;}.btn.btn-primary, button.btn-primary,.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.filter-bar .well-filter-summary {color: " + textPrimaryColor +
+        "\n;}.btn.btn-primary, button.btn-primary,.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus {color: " + textPrimaryColor +
         "\n;}.icon-face-positive,.cf_positive {fill: " + positiveColor +
         "\n;}.cf_positive {color: " + positiveColor +
         "\n;}.icon-face-neutral,.cf_neutral {fill: " + neutralColor +
@@ -119,9 +119,7 @@ class ReportMaster {
         "\n;}.toggle input:not(checked) + label {color: " + dividerColor +
         "\n;}.filter-bar .filter-button {fill: " + secondaryTextColor +
         "\n;}.filter-bar .filter-button:hover,    .filter-bar .filter-button:active,    .filter-bar .filter-button:focus,[type=radio] + label:after {background-color: " + secondaryTextColor +
-        "\n;}.filter-bar .well-filter-summary {background: " + secondaryTextColor +
         "\n;}.filter-bar div,.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label,[type=radio] + label, [type=checkbox] + label,[type=radio]:disabled:checked + label:after, [type=checkbox]:disabled:checked + label:after,[type=\"checkbox\"] + label:after,.dd-target-button .dd-target-button-arrow, .dd-target-button .dd-target-button-text {color: " + secondaryTextColor +
-        "\n;}.filter-bar .well-filter-summary:hover {background-color: " + darkPrimaryColor +
         "\n;}.legend .cf_positive:before,.reportal-table>tbody>tr>td.cf_positive:after {background: " + positiveColor +
         "\n;}.legend .cf_neutral:before,.reportal-table>tbody>tr>td.cf_neutral:after {background: " + neutralColor +
         "\n;}.legend .cf_negative:before,.reportal-table>tbody>tr>td.cf_negative:after {background: " + negativeColor +
@@ -161,8 +159,7 @@ class ReportMaster {
         "\n !important;}.dd-wrapper .dd-header {background-color: " + lightDividerColor +
         "\n !important;}.yui-calcontainer {border: 1px solid " + dividerColor +
         "\n !important;}.yui-calcontainer>table .calnavleft:before, .yui-calcontainer>table .calnavright:before {border: 1px solid " + defaultAccentColor +
-        "\n;}.yui-calcontainer>table td.calcell.calcellhover>a {background: " + darkPrimaryColor +
-        "\n !important;}.yui-calcontainer>table .calnav,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn {background: " + lightPrimaryColor +
+        "\n;}.yui-calcontainer>table .calnav,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn {background: " + lightPrimaryColor +
         "\n !important;}table>thead td.sortable:not(.hierarchy-search-visible):after {color: " + primaryTextColor +
         "\n;}";
 
