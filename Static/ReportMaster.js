@@ -73,7 +73,7 @@ class ReportMaster {
     if(Config.Design) {
         var backgroundColor = Config.Design.backgroundColor;
         var lightPrimaryColor = Config.Design.lightPrimaryColor;
-        var textPrimaryColor = Config.Design.textPrimaryColor;
+        var buttonTextColor = Config.Design.buttonTextColor;
         var darkAccentColor = Config.Design.darkAccentColor;
         var defaultAccentColor = Config.Design.defaultAccentColor;
         var lightAccentColor = Config.Design.lightAccentColor;
@@ -105,8 +105,8 @@ class ReportMaster {
             "\n !important;}a:active,  a:visited,  .link:active,  .link:visited {color: " + defaultAccentColor +
             "\n;}.btn.btn-primary, button.btn-primary,.dd-wrapper .dd-button-menu button {background-color: " + defaultAccentColor +
             "\n;}.dd-wrapper .dd-button-menu button:focus {outline-color: " + defaultAccentColor +
-            "\n;}.btn.btn-primary, button.btn-primary,.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.toggle input:checked + label {color: " + textPrimaryColor +
-            "\n;}.toggle input:not(checked) + label {background: " + textPrimaryColor +
+            "\n;}.btn.btn-primary, button.btn-primary,.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.toggle input:checked + label {color: " + buttonTextColor +
+            "\n;}.toggle input:not(checked) + label {background: " + buttonTextColor +
             "\n;}.icon-face-positive,.cf_positive {fill: " + positiveColor +
             "\n;}.cf_positive {color: " + positiveColor +
             "\n;}.icon-face-neutral,.cf_neutral {fill: " + neutralColor +
@@ -145,7 +145,7 @@ class ReportMaster {
             "\n;}.hitlist-dropdown-button,.hitlist-export-button.hitlist-btn {background: " + dividerColor +
             "\n !important;}.hitlist-dropdown-panel,.yui-calcontainer .yui-cal-nav {border-color: " + dividerColor +
             "\n !important;}.hitlist-dropdown-button:hover,.hitlist-export-button.hitlist-btn:hover,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-cancel:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn:hover {background: " + backgroundColor +
-            "\n !important;}.yui-ac-bd>ul>li.yui-ac-highlight,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear:hover,.hitlist-nav-button,.hitlist-nav-page,.yui-calcontainer>table td.calcell.selected>a,.yui-calcontainer>table .calnav:hover {color: " + textPrimaryColor +
+            "\n !important;}.yui-ac-bd>ul>li.yui-ac-highlight,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear:hover,.hitlist-nav-button,.hitlist-nav-page,.yui-calcontainer>table td.calcell.selected>a,.yui-calcontainer>table .calnav:hover {color: " + buttonTextColor +
             "\n !important;}.hitlist-filter,.yui-calcontainer>table td.calcell.today>a {background: " + lightAccentColor +
             "\n !important;}.hitlist-dropdown-panel {box-shadow: 0 2px 8px " + lightDividerColor +
             "\n !important;}.hitlist-dropdown-panel {background-color: " + primaryBackgroundColor +
