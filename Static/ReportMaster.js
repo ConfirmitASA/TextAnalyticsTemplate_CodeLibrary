@@ -71,7 +71,7 @@ class ReportMaster {
     context.component.Output.Append(script)
 
     if(Config.Design) {
-        var defaultPrimaryColor = Config.Design.defaultPrimaryColor;
+        var backgroundColor = Config.Design.backgroundColor;
         var lightPrimaryColor = Config.Design.lightPrimaryColor;
         var textPrimaryColor = Config.Design.textPrimaryColor;
         var darkAccentColor = Config.Design.darkAccentColor;
