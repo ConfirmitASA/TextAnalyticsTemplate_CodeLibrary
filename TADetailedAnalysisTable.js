@@ -77,7 +77,7 @@ class TADetailedAnalysisTable{
         var mask = false;
 
         if(_distribution == "1"){
-            blockHeader += _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:false") + "+";
+            blockHeader += _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:true") + "+";
         }
 
         if( _selectedQuestion != "all" ){
@@ -110,7 +110,7 @@ class TADetailedAnalysisTable{
      */
     private function _getColumnheadersExpression(){
         var columnexpr = "";
-        var columnbase = "[N]{hideheader:true;hidedata:false}";
+        var columnbase = "[N]{hideheader:true;hidedata:true}";
 
         var countformula = _getColumnFormulaExpression();
 
