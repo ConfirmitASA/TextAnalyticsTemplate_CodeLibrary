@@ -110,7 +110,7 @@ class TADetailedAnalysisTable{
      */
     private function _getColumnheadersExpression(){
         var columnexpr = "";
-        var columnbase = "[N]{hideheader:true;hidedata:true}";
+        var columnbase = "[N]{hideheader:true;hidedata:false}";
 
         var countformula = _getColumnFormulaExpression();
 
