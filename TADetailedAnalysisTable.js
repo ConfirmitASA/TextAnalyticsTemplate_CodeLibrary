@@ -77,7 +77,7 @@ class TADetailedAnalysisTable{
         var mask = false;
 
         if(_distribution == "1"){
-            blockHeader += _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:true") + "+";
+            blockHeader += _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:false") + "+";
         }
 
         if( _selectedQuestion != "all" ){
