@@ -482,7 +482,7 @@ class Page_dashboard{
      */
     static function txtThemeDistributionScript_Render(context){
     var categoriesText = "<script>" +
-        "var z = document.querySelectorAll('.reportal-categories>thead>tr>td[class*=\"_cc\"]');" +
+        "var z = [].slice.call(document.querySelectorAll('.reportal-categories>thead>tr>td[class*=\"_cc\"]'));" +
         "z.forEach(item => item.innerHTML = '"+Translations.dictionary(_currentLanguage)['Categories']+"');" +
         "</script>";
     var headers;
