@@ -274,8 +274,7 @@ class Page_detailed_analysis{
         context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
         context.component.Output.Append(JSON.print(headers,"rowheaders"));
         context.component.Output.Append(JSON.print(blocks,"blocks"));
-        context.component.Output.Append(JSON.stringify(hierarhy));
-
+        context.component.Output.Append(JSON.stringify(headers));
     }
 }
     /**
