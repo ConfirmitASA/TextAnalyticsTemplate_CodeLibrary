@@ -37,7 +37,6 @@ class TADetailedAnalysisTable{
         _distribution = distribution ? distribution : "0";
         _multiQuestion = multiQuestion;
         _bar100 = bar100 ? bar100 : false;
-    var currentLanguage =
         _render();
     }
 
