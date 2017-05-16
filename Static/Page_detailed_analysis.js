@@ -179,6 +179,7 @@ class Page_detailed_analysis{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblDetailedAnalysis_Render(context){
+        context.component.Caching.Enabled = false;
         var globals = TAHelper.GetGlobals(context);
         var selectedCategory = _selectedCategory;
         var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
