@@ -138,7 +138,8 @@ class Page_comments{
 			
         }
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
-        var selectedCategory = _selectedCategory
+        var selectedCategory = _selectedCategory;
+        context.log.LogDebug(selectedCategory);
         if( selectedCategory && selectedCategory != "emptyv" ){
             htlComments.AddTAColumn("categorysentiment", false, selectedCategory);
         }
