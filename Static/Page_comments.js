@@ -127,7 +127,9 @@ class Page_comments{
             context.log.LogDebug("getFolderFromHitlist");
             var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 			 _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+            _selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
         }
+
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
         var selectedCategory = _selectedCategory;
         context.log.LogDebug("selected category: "+selectedCategory);
