@@ -7,36 +7,39 @@
  * @param {Object} settings - object containing idColumnName, textColumnName, relationshipColumnName, textSeparator
  *
  */
-class Hierarchy{
-    private var _globals;
-    private var _settings;
+class Hierarchy {
+    private var
+    _globals;
+    private var
+    _settings;
 
-    private var _hierarchy = [];
-    private var _levels = [];
-    private var _flat = [];
-    private var _flatObject = {};
+    private var
+    _hierarchy = [];
+    private var
+    _levels = [];
+    private var
+    _flat = [];
+    private var
+    _flatObject = {};
 
-    private var _defaultSettings = {
+    private var
+    _defaultSettings = {
         idColumnName: "id",
         textColumnName: "__l9",
         relationshipColumnName: "parent",
         textSeparator: "|"
     };
 
-    function Hierarchy(globals, settings) {
-    globals.log.LogDebug("hier");
-        _globals = globals;
-    _settings = _mergeOptions(_defaultSettings, settings);
-        globals.log.LogDebug(_settings.schemaId);
-        var dataTable = _getDataTable();
-    globals.log.LogDebug("gdt");
-        if(!dataTable.Columns.Contains(_settings.textColumnName))
-            _settings.textColumnName = "__l9"
-    globals.log.LogDebug("set cur l");
+    function
 
-    globals.log.LogDebug("merge options");
+    Hierarchy(globals, settings) {
+        _globals = globals;
+        _settings = _mergeOptions(_defaultSettings, settings);
+        var dataTable = _getDataTable();
+        if (!dataTable.Columns.Contains(_settings.textColumnName))
+            _settings.textColumnName = "__l9"
+
         _generateFlatList(dataTable.Rows)
-    globals.log.LogDebug("gfl");
         _setupHierarchy(0, null);
     }
 
@@ -50,7 +53,9 @@ class Hierarchy{
      * @param {Object} obj2
      * @returns {Object}
      */
-    private function _mergeOptions(obj1, obj2) {
+    private function
+
+    _mergeOptions(obj1, obj2) {
         var obj3 = {};
         for (var attrname in obj1) {
             obj3[attrname] = obj1[attrname];
@@ -69,7 +74,9 @@ class Hierarchy{
      * @description function to get DataTable from DatabaseDesigner
      * @returns {DataTable}
      */
-    private function _getDataTable() {
+    private function
+
+    _getDataTable() {
         var schema = _globals.confirmit.GetDBDesignerSchema(_settings.schemaId);
         var table = schema.GetDBDesignerTable(_settings.tableName);
         var dataTable = table.GetDataTable();
@@ -84,8 +91,10 @@ class Hierarchy{
      * @description creating list of rows for variable _flat
      * @param {Object[]} rows - list of rows from db table
      */
-    private function _generateFlatList(rows) {
-        for(var i = 0; i < rows.Count; ++i) {
+    private function
+
+    _generateFlatList(rows) {
+        for (var i = 0; i < rows.Count; ++i) {
             var flatEntry = _createFlatEntry(rows[i]);
             _flat.push(flatEntry);
         }
@@ -100,7 +109,9 @@ class Hierarchy{
      * @param {Object} row - db table row
      * @returns {Object}
      */
-    private function _createFlatEntry(row) {
+    private function
+
+    _createFlatEntry(row) {
         var name = TAHelper.GetSelfName(row[_settings.textColumnName], _settings.textSeparator, _globals.log);
         var flatEntry = {
             id: row[_settings.idColumnName].toLowerCase(),
@@ -118,7 +129,9 @@ class Hierarchy{
      * @description function to get Array of hierarchical objects
      * @returns {Object[]}
      */
-    function GetHierarchyArray() {
+    function
+
+    GetHierarchyArray() {
         return _hierarchy;
     }
 
@@ -131,10 +144,12 @@ class Hierarchy{
      * @param {Number} level
      * @returns {Object[]}
      */
-    function GetLevelArray(level) {
-        if(_levels.length > level) {
+    function
+
+    GetLevelArray(level) {
+        if (_levels.length > level) {
             return _levels[level];
-        }else{
+        } else {
             throw new Error(201, "Hierarchy level index is out of range");
         }
 
@@ -147,7 +162,9 @@ class Hierarchy{
      * @description function to get Count of levels in the hierarchy
      * @returns {Number}
      */
-    function GetLevelsCount() {
+    function
+
+    GetLevelsCount() {
         return _levels.length
     }
 
@@ -158,7 +175,9 @@ class Hierarchy{
      * @description function to get Array of rows from db table
      * @returns {Number}
      */
-    function GetFlatArray() {
+    function
+
+    GetFlatArray() {
         return _flat;
     }
 
@@ -170,10 +189,12 @@ class Hierarchy{
      * @param {String} id
      * @returns {Object}
      */
-    function GetObjectById(id) {
-        if(_flatObject[id]) {
+    function
+
+    GetObjectById(id) {
+        if (_flatObject[id]) {
             return _flatObject[id];
-        }else{
+        } else {
             throw new Error(201, "Hierarchy object id doesn't exist");
         }
     }
@@ -187,11 +208,13 @@ class Hierarchy{
      * @param {Number} level
      * @param {Number} parentObj
      */
-    private function _setupHierarchy( level, parentObj ) {
-        var parentObjId = parentObj ? parentObj.id  : "";
+    private function
 
-        for(var i = 0; i < _flat.length; ++i) {
-            if( ( !parentObj && !_flat[i].parent ) || parentObjId.CompareTo( _flat[i].parent ? _flat[i].parent : "" ) == 0) {
+    _setupHierarchy(level, parentObj) {
+        var parentObjId = parentObj ? parentObj.id : "";
+
+        for (var i = 0; i < _flat.length; ++i) {
+            if (( !parentObj && !_flat[i].parent ) || parentObjId.CompareTo(_flat[i].parent ? _flat[i].parent : "") == 0) {
                 var newObj = {
                     id: _flat[i].id,
                     text: _flat[i].text,
@@ -200,18 +223,18 @@ class Hierarchy{
                     subcells: [],
                     level: level
                 };
-                if( _levels.length <= level ) {
-                    _levels.push( [] );
+                if (_levels.length <= level) {
+                    _levels.push([]);
                 }
-                _setupHierarchy( (level+1), newObj );
-                if( !parentObj ) {
-                    _hierarchy.push( newObj );
+                _setupHierarchy((level + 1), newObj);
+                if (!parentObj) {
+                    _hierarchy.push(newObj);
                 }
                 else {
-                    parentObj.subcells.push( newObj );
+                    parentObj.subcells.push(newObj);
                 }
-                _levels[ level ].push( newObj );
-                _flatObject[ newObj.id ] = newObj;
+                _levels[level].push(newObj);
+                _flatObject[newObj.id] = newObj;
             }
         }
     }

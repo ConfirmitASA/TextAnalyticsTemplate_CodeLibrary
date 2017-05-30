@@ -120,26 +120,17 @@ class Page_comments{
      */
     static function htlComments_Render(context){
         if(!Config.GetTALibrary()){
+            context.log.LogDebug("setHierFromHitlist");
             Config.SetTALibrary(TAHelper.GetGlobals(context));
         }
         if(!_folder){
-            //context.log.LogDebug("htl render: "+context.state.Parameters["TA_FOLDERS"]);
-            //var selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
-            //_folder =Config.GetTALibrary().GetFolderById(selectedFolder);
-
+            context.log.LogDebug("getFolderFromHitlist");
             var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-			/*try {
-				selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
-			} catch(e){
-				selectedFolder = null;
-			}*/
 			 _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-			
-			
         }
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
         var selectedCategory = _selectedCategory;
-        context.log.LogDebug(selectedCategory);
+        context.log.LogDebug("selected category: "+selectedCategory);
         if( selectedCategory && selectedCategory != "emptyv" ){
             htlComments.AddTAColumn("categorysentiment", false, selectedCategory);
         }
