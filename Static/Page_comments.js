@@ -120,11 +120,9 @@ class Page_comments{
      */
     static function htlComments_Render(context){
         if(!Config.GetTALibrary()){
-            context.log.LogDebug("setHierFromHitlist");
             Config.SetTALibrary(TAHelper.GetGlobals(context));
         }
         if(!_folder){
-            context.log.LogDebug("getFolderFromHitlist");
             var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 			 _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
             _selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
@@ -132,7 +130,6 @@ class Page_comments{
 
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
         var selectedCategory = _selectedCategory;
-        context.log.LogDebug("selected category: "+selectedCategory);
         if( selectedCategory && selectedCategory != "emptyv" ){
             htlComments.AddTAColumn("categorysentiment", false, selectedCategory);
         }
