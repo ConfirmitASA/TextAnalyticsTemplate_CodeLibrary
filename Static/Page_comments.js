@@ -128,6 +128,7 @@ class Page_comments{
             _selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
         }
 
+        context.log.LogDebug("FolderId: "+ _folder.GetId());
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
         var selectedCategory = _selectedCategory;
         if( selectedCategory && selectedCategory != "emptyv" ){
