@@ -122,11 +122,11 @@ class Page_comments{
         if(!Config.GetTALibrary()){
             Config.SetTALibrary(TAHelper.GetGlobals(context));
         }
-        if(!_folder){
+        //if(!_folder){
             var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 			 _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
             _selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-        }
+        //}
 
         context.log.LogDebug("FolderId: "+ _folder.GetId());
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
