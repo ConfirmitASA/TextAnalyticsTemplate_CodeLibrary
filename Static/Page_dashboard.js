@@ -5,7 +5,6 @@
 class Page_dashboard{
     private static var _filterComponents;
     private static var _filter_panel;
-    private static var _folder;
     private static var _currentLanguage;
     private static var _curDictionary;
     private static const _defaultParameters = [
@@ -71,7 +70,6 @@ class Page_dashboard{
     paramUtils.SetDefaultParameterValues(_defaultParameters);
     var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
     _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
 
     _filter_panel = new FilterPanel(_filterComponents,_curDictionary);
@@ -97,7 +95,9 @@ class Page_dashboard{
         var level = context.state.Parameters.IsNull("TA_LEVEL") ? 0 : context.state.Parameters.GetString("TA_LEVEL");
         var globals = TAHelper.GetGlobals(context);
         var table = context.component;
-        var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level);
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+     var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var topSentimentTable = new TATopSentimentTable(globals, folder, table, sentiment, level);
         topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
             topSentimentTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES","detailed_analysis, comments");
         topSentimentTable.GetTATableUtils().ClearTableDistributions();
@@ -116,7 +116,9 @@ class Page_dashboard{
     var table = context.component;
     var period = context.state.Parameters.IsNull("TA_COMPARE_PERIODS") ? "qoq" : context.state.Parameters.GetString("TA_COMPARE_PERIODS");
 
-        var topChangedTable = new TATopChangedTable(globals, _folder, table, sentiment, level, period);
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var topChangedTable = new TATopChangedTable(globals, folder, table, sentiment, level, period);
         topChangedTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
         topChangedTable.GetTATableUtils().ClearTableDistributions();
         topChangedTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES","detailed_analysis, comments");
@@ -217,8 +219,9 @@ class Page_dashboard{
         var globals = TAHelper.GetGlobals(context);
         var table = context.component;
         var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
-
-    var themeDistributionTable = new TAThemeDistributionTable(globals, _folder, table, sentiment,Config);
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+    var themeDistributionTable = new TAThemeDistributionTable(globals, folder, table, sentiment,Config);
     themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
     themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "detailed_analysis, comments");
     themeDistributionTable.GetTATableUtils().ClearTableDistributions();
@@ -486,7 +489,9 @@ class Page_dashboard{
         "z.forEach(item => item.innerHTML = '"+Translations.dictionary(_currentLanguage)['Categories']+"');" +
         "</script>";
     var headers;
-    var hierarhy = _folder.GetHierarchy().GetHierarchyArray()
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+    var hierarhy = folder.GetHierarchy().GetHierarchyArray()
 
     headers = new TATableData(TAHelper.GetGlobals(context), "tblThemeDistribution").GetTableRowHeaders();
     var upgradeText = "<script type=\"text/javascript\">"+
