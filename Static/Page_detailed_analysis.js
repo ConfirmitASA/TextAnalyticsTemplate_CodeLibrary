@@ -52,7 +52,7 @@ class Page_detailed_analysis{
             folderId: selectedFolder,
             value: "emptyv",
             categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
-            subcategoriesParameter: "TA_ATTRIBUTES_SINGLE",
+            subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
         });
 
         processSelectedCategoryParameter({
