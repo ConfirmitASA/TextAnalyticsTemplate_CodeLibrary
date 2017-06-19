@@ -12,7 +12,6 @@
  * @param {Number} topN
  */
 class TATopChangedTable{
-    private var _globals;
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
     private var _taMasks: TAMasks;
@@ -24,21 +23,21 @@ class TATopChangedTable{
     private var _period;
     private var _currentLanguage;
 
-    function TATopChangedTable(globals, folder, table, sentiment, level, period, topN){
-        _globals = globals;
-        _folder = folder;
-        _taMasks = new TAMasks(globals, folder);
-        _table = table;
-        _taTableUtils = new TATableUtils(globals, folder, table);
-        _sentiment = sentiment ? true : false;
-        _level = parseInt(level);
-        _topN = topN ? topN : 5;
+    function TATopChangedTable(paramsglobals, folder, table, sentiment, level, period, topN){
+        var context = params.context;
+        _folder = params.folder;
+        _taMasks = new TAMasks(context, _folder);
+        _table = params.table;
+        _taTableUtils = new TATableUtils(globals, _folder, _table);
+        _sentiment = params.sentiment ? true : false;
+        _level = parseInt(params.level);
+        _topN = params.topN ? params.topN : 5;
         _period = {
-            Unit: period.toLowerCase().substr(0,1),
+            Unit: params.period.toLowerCase().substr(0,1),
             From: -1,
             To: 0
         };
-    _currentLanguage = globals.report.CurrentLanguage;
+        _currentLanguage = context.report.CurrentLanguage;
 
         _render();
     }

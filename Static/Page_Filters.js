@@ -3,12 +3,6 @@
  * @classdesc Static class for Reportal Page filters components
  */
 class Page_filters{
-    private static var _filterComponents;
-    private static var _folder;
-    private static const _defaultParameters = [];
-    private static var _currentLanguage;
-    private static var _curDictionary;
-    private static var _filter_panel;
     /**
      * @memberof Page_filters
      * @function Hide
@@ -27,38 +21,33 @@ class Page_filters{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
-    _currentLanguage = context.report.CurrentLanguage;
-    _curDictionary = Translations.dictionary(_currentLanguage);
-        Config.SetTALibrary(TAHelper.GetGlobals(context));
-        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
-        _filter_panel = new FilterPanel(_filterComponents);
-        if(context.component.SubmitSource == "btnClearFilters"){
-                _filterComponents.ClearFilters();
-            context.state.Parameters["TA_DATE_FROM"] = null;
-            context.state.Parameters["TA_DATE_TO"] = null;
-            }
-        if(context.component.SubmitSource == "btnClearDateFilter"){
-            context.state.Parameters["TA_DATE_FROM"] = null;
-            context.state.Parameters["TA_DATE_TO"] = null;
-        }
-        if(context.component.SubmitSource == "lstQuestions") {
-            context.state.Parameters["TA_ALL_CATEGORIES"] = null;
-            context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
-            context.state.Parameters["TA_LEVEL"] = null;
-            context.state.Parameters["TA_SUB_CATEGORIES_SINGLE"] = null;
-            context.state.Parameters["TA_TOP_CATEGORIES_SINGLE"] = null;
-            context.state.Parameters["TA_VIEW_BY"] = null;
+        Config.SetTALibrary(context);
+
+        initiateParameters(context);
+    }
+
+    static function initiateParameters(context){
+
+        //TODO: refactor setting default parameters
+        if(context.component.SubmitSource === "lstQuestions") {
+            ParameterUtilities.SetDefaultParametersValues(
+                {
+                    context: context,
+                    parameterValues: DefaultParameters.values
+                }
+            )
         }
 
-        var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
-        paramUtils.SetDefaultParameterValues(_defaultParameters);
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        /*try {
-            selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
-        }catch(e){
-            selectedFolder = null;
-        }*/
-        _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        ParameterUtilities.SetDefaultParameterValuesForEmpty({
+            context: context,
+            parameterValues: DefaultParameters.values.concat(
+                {
+                    Id: "TA_FOLDERS",
+                    Value: (Config.TAQuestions[0].TAQuestionName+Config.TAQuestions[0].TAModelNo)
+                }
+            )
+        });
     }
 
     /**
@@ -126,7 +115,17 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function txtFilterTitle_Hide(context, filterNumber){
-        return _filter_panel.txtFilterTitle_Hide(context, filterNumber);
+        var filterComponents = new FilterComponents({
+            context: context,
+            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
+            dataSource: Config.DS_Main
+        });
+
+        return FilterPanel.lstFilterList_Hide({
+            context: context,
+            filterComponents: filterComponents,
+            filterNumber: filterNumber
+        });
     }
 
     /**
@@ -136,7 +135,17 @@ class Page_filters{
      * @param {Number} filterNumber
      */
     static function txtFilterTitle_Render(context, filterNumber){
-        _filter_panel.txtFilterTitle_Render(context, filterNumber)
+        var filterComponents = new FilterComponents({
+            context: context,
+            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
+            dataSource: Config.DS_Main
+        });
+
+        FilterPanel.txtFilterTitle_Render({
+            context: context,
+            filterComponents: filterComponents,
+            filterNumber: filterNumber
+        })
     }
 
     /**
@@ -147,36 +156,56 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function lstFilterList_Hide(context, filterNumber){
-        return _filter_panel.lstFilterList_Hide(context, filterNumber);
+        var filterComponents = new FilterComponents({
+            context: context,
+            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
+            dataSource: Config.DS_Main
+        });
+        return FilterPanel.lstFilterList_Hide({
+            context: context,
+            filterComponents: filterComponents,
+            filterNumber: filterNumber
+        });
     }
 
     static function txtQuestion_Hide(context){
-    return false
+        return false
 
-}
+    }
+
     static function txtQuestion_Render(context){
-    var label = _curDictionary['Question'];
-    context.component.Output.Append(label);
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
 
-}
+        var label = currentDictionary['Question'];
+        context.component.Output.Append(label);
+
+    }
 
     static function txtDateFrom_Hide(context){
-    return false
+        return false
 
-}
+    }
     static function txtDateFrom_Render(context){
-    var label = _curDictionary['From'];
-    context.component.Output.Append(label);
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
 
-}
+        var label = currentDictionary['From'];
+        context.component.Output.Append(label);
+
+    }
 
     static function txtDateTo_Hide(context){
-    return false
+        return false
 
-}
+    }
+
     static function txtDateTo_Render(context){
-    var label = _curDictionary['To'];
-    context.component.Output.Append(label);
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
 
-}
+        var label = currentDictionary['To'];
+        context.component.Output.Append(label);
+
+    }
 }

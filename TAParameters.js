@@ -9,15 +9,13 @@
 class TAParameters{
     private var _globals;
     private var _library: TALibrary;
-    private var _parameterUtilities: ParameterUtilities;
     private var _currentLanguage;
     private var _curDictionary;
 
-    function TAParameters(globals, library){
-        _globals = globals;
-        _library = library;
-        _parameterUtilities = new ParameterUtilities(_globals);
-        _currentLanguage = globals.report.CurrentLanguage;
+    function TAParameters(params){
+        var context = params.context;
+        _library = params.library;
+        _currentLanguage = context.report.CurrentLanguage;
         _curDictionary = Translations.dictionary(_currentLanguage);
     }
 
@@ -47,21 +45,29 @@ class TAParameters{
      * @description render parameter with list of TAFoders using in the report
      * @param {Parameter} parameter
      */
-    function RenderFoldersParameter(parameter){
+    function RenderFoldersParameter(params){
+        var context = params.context;
+        var parameter = context.component;
         var folders = _library.GetFolders();
 
         var parameterValues = [];
         var project;
         var question;
+
         for(var i = 0; i < folders.length; i++){
-            project = _globals.report.DataSource.GetProject(folders[i].GetDatasourceId());
+            project = context.report.DataSource.GetProject(folders[i].GetDatasourceId());
             question = project.GetQuestion(folders[i].GetQuestionId());
             parameterValues.push({
                 Code: folders[i].GetId(),
                 Label: folders[i].GetName() //+ (question.Text ? " - " + question.Text : "")
             });
         }
-        _parameterUtilities.LoadParameterValues(parameter, parameterValues);
+
+        ParameterUtilities.LoadParameterValues({
+            context: context,
+            parameter: parameter,
+            parameterValues: parameterValues
+        });
     }
 
     function RenderAllCategoriesParameter(parameter,folderId, emptyValueLabel){
@@ -200,17 +206,113 @@ class TAParameters{
      * @param {String} subcategoriesParameter
      * @param {String} attributesParameter
      */
-    function ClearSubcategoriesParameters(folderId, value, categoriesParameter, subcategoriesParameter, attributesParameter){
+    function ClearSubcategoriesParameters(params){
+        var context = params.context;
+        var folderId = params.folderId;
+        var value = params.value;
+        var categoriesParameter = params.categoriesParameter;
+        var subcategoriesParameter = params.subcategoriesParameter;
+        var attributesParameter = params.attributesParameter;
+
         var folder = _library.GetFolderById(folderId);
-        var topCategory = _globals.state.Parameters.GetString(categoriesParameter);
-        var subCategory = _globals.state.Parameters.GetString(subcategoriesParameter);
-        if(subCategory && subCategory != value){
-            if (folder.GetHierarchy().GetObjectById(subCategory).parent != topCategory){
-                _globals.state.Parameters[subcategoriesParameter] = new ParameterValueResponse(value);
+        var topCategory = context.state.Parameters.GetString(categoriesParameter);
+        var subCategory = context.state.Parameters.GetString(subcategoriesParameter);
+        if(subCategory && subCategory !== value){
+            if (folder.GetHierarchy().GetObjectById(subCategory).parent !== topCategory){
+                context.state.Parameters[subcategoriesParameter] = new ParameterValueResponse(value);
                 if ( attributesParameter ){
-                    _globals.state.Parameters[attributesParameter] = new ParameterValueResponse(value);
+                    context.state.Parameters[attributesParameter] = new ParameterValueResponse(value);
                 }
             }
+        }
+    }
+
+    /**
+     * @memberof TAHelper
+     * @function GetSelectedCategory
+     * @description function to get id of selected category, subcategory or attribute
+     * @param {ReportState} state
+     * @param {String} categoriesParameterName
+     * @param {String} subCategoriesParameterName
+     * @param {String} attributesParameterName
+     * @returns {String}
+     */
+    static function GetSelectedCategory(params){
+        var context = params.context;
+        var categoriesParameterName = params.categoriesParameterName;
+        var subCategoriesParameterName = params.subCategoriesParameterName;
+        var attribtesPararmeterName = params.attribtesPararmeterName;
+
+        var categoriesParameter;
+
+        if(categoriesParameterName)
+            categoriesParameter = context.state.Parameters.GetString(categoriesParameterName);
+
+
+        var subCategoriesParameter;
+        if(subCategoriesParameterName)
+            subCategoriesParameter= context.state.Parameters.GetString(subCategoriesParameterName);
+
+
+        var attributesParameter;
+        if(attribtesPararmeterName)
+            attributesParameter = context.state.Parameters.GetString(attribtesPararmeterName);
+
+        var selectedCategory = "emptyv";
+
+        if(categoriesParameter && categoriesParameter != "emptyv"){
+            selectedCategory = categoriesParameter;
+        }
+
+        if(subCategoriesParameter && subCategoriesParameter != "emptyv"){
+            selectedCategory = subCategoriesParameter;
+        }
+
+        if(attributesParameter && attributesParameter != "emptyv"){
+            selectedCategory = attributesParameter;
+        }
+
+        return selectedCategory;
+    }
+
+    static function SetSelectedCategory(params){
+        var context = params.context;
+        var hierarchy = params.hierarchy;
+        var allCategoriesParameterValue = params.allCategoriesParameterValue;
+        var categoriesParameterName = params.categoriesParameterName;
+        var subCategoriesParameterName = params.subCategoriesParameterName;
+        var attribtesPararmeterName = params.attribtesPararmeterName;
+
+        var defaultParameterValues = [
+            {
+                Id: categoriesParameterName,
+                Value: "emptyv"
+            },
+            {
+                Id: subCategoriesParameterName,
+                Value: "emptyv"
+            },
+            {
+                Id: attribtesPararmeterName,
+                Value: "emptyv"
+            }
+        ];
+
+        if( allCategoriesParameterValue != "emptyv"){
+            var selectedCategory = hierarchy.GetObjectById(allCategoriesParameterValue);
+            defaultParameterValues[selectedCategory.level].Value = selectedCategory.id;
+            if(selectedCategory.level > 0){
+                defaultParameterValues[selectedCategory.level-1].Value = selectedCategory.parent
+            }
+
+            if(selectedCategory.level == 2){
+                defaultParameterValues[0].Value = hierarchy.GetObjectById(selectedCategory.parent).parent
+            }
+
+        }
+
+        for(var i = 0; i < defaultParameterValues.length; i++) {
+            context.state.Parameters[defaultParameterValues[i].Id] = new ParameterValueResponse(defaultParameterValues[i].Value);
         }
     }
 }

@@ -11,7 +11,6 @@
  * @param {String} distribution - "0" for counts "1" for percents
  */
 class TADetailedAnalysisTable{
-    private var _globals;
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
     private var _taMasks: TAMasks;
@@ -24,19 +23,30 @@ class TADetailedAnalysisTable{
     private var _curDictionary;
     private var _bar100;
 
-    function TADetailedAnalysisTable(globals, folder, table, selectedCategory, selectedQuestion, distribution, multiQuestion, bar100){
-        _globals = globals;
-        _currentLanguage = _globals.report.CurrentLanguage;
+    function TADetailedAnalysisTable(params){
+        var context = params.context;
+        _currentLanguage = context.report.CurrentLanguage;
         _curDictionary = Translations.dictionary(_currentLanguage);
-        _folder = folder;
-        _taMasks = new TAMasks(globals, folder);
-        _table = table;
-        _taTableUtils = new TATableUtils(globals, folder, table);
-        _selectedCategory = selectedCategory && selectedCategory != "emptyv" ? selectedCategory : "all";
-        _selectedQuestion = selectedQuestion && selectedQuestion != "emptyv" ? selectedQuestion : "all";
-        _distribution = distribution ? distribution : "0";
-        _multiQuestion = multiQuestion;
-        _bar100 = bar100 ? bar100 : false;
+        _folder = params.folder;
+
+        _taMasks = new TAMasks({
+            context: context,
+            folder: _folder
+        });
+
+        _table = context.component;
+        _taTableUtils = new TATableUtils({
+            context: context,
+            folder: _folder,
+            table: _table
+        });
+
+        _selectedCategory = params.category && params.category !== "emptyv" ? params.category : "all";
+        _selectedQuestion = sparams.question && params.question !== "emptyv" ? params.question : "all";
+        _distribution = params.distribution ? params.distribution : "0";
+        _multiQuestion = params.questionType;
+        _bar100 = params.toggleChart ? params.toggleChart : false;
+
         _render();
     }
 
@@ -138,7 +148,7 @@ class TADetailedAnalysisTable{
     private function _getColumnFormulaExpression(){
         var countformulaexpression;
         var countformula = '[FORMULA]{decimals:0;label:"'+_curDictionary['Comments']+'";hideheader:true';
-        if( _distribution == "1"){
+        if( _distribution === "1"){
             countformula += ";percent:true";
             countformulaexpression = '"IF((cellv(1,1)>0),(cellv(col-1,row)/cellv(1,1)),EMPTYV())"';
         }else{
@@ -161,7 +171,7 @@ class TADetailedAnalysisTable{
         _table.Distribution.Enabled = true;
         _table.Distribution.VerticalPercents = false;
 
-        if(_distribution == "1"){
+        if(_distribution === "1"){
             _table.Distribution.HorizontalPercents = true;
             _table.Distribution.Count = false;
         }else{
@@ -204,6 +214,7 @@ class TADetailedAnalysisTable{
      * @instance
      * @function _setupConditionalFormatting
      */
+        //TODO: conditional formatting based on config
     private function _setupConditionalFormatting(){
         _taTableUtils.SetupConditionalFormatting(
             [

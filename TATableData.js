@@ -7,13 +7,6 @@
  * @param {String} tableName
  */
 class TATableData{
-    private var _globals;
-    private var _tableName;
-
-    function  TATableData(globals, tableName){
-        _globals = globals;
-        _tableName = tableName
-    }
 
     /**
      * @memberof TATableData
@@ -22,16 +15,23 @@ class TATableData{
      * @description function to get rowheaders with ids
      * @returns {Object} - object with ids, titles and row indexes
      */
-    function GetTableRowHeaders(){
+    static function GetTableRowHeaders(params){
+        var context = params.context;
+        var tableName = params.tableName;
+
         var rowheaders={
             length: 0
         };
-        var rowHeaderTitles = _globals.report.TableUtils.GetRowHeaderCategoryTitles(_tableName);
-        var rowHeaderIds = _globals.report.TableUtils.GetRowHeaderCategoryIds(_tableName);
+
+        var rowHeaderTitles = context.report.TableUtils.GetRowHeaderCategoryTitles(tableName);
+        var rowHeaderIds = context.report.TableUtils.GetRowHeaderCategoryIds(tableName);
+
+        //TODO: change styling
         for(var i=0; i<rowHeaderIds.length;i++){
             rowheaders[rowHeaderIds[i][0]+((rowHeaderIds[i].length>1)?("_block"+rowHeaderIds[i][1]):"")] = {title: rowHeaderTitles[i][0], index: i, categoryId: rowHeaderIds[i][0].toLowerCase(), blockId: ((rowHeaderIds[i].length>1)?("block"+rowHeaderIds[i][1]):null)};
             rowheaders.length++;
         }
+
         return rowheaders;
     }
 
@@ -42,15 +42,17 @@ class TATableData{
      * @description function to get parent rowheader ids
      * @returns {String}
      */
-    function GetBlocks(){
+    static function GetBlocks(params){
+        var context = params.context;
+        var tableName = params.tableName;
         var blocks = [];
-        var rowHeaderIds = _globals.report.TableUtils.GetRowHeaderCategoryIds(_tableName);
+        var rowHeaderIds = context.report.TableUtils.GetRowHeaderCategoryIds(tableName);
         var blockExists = false;
         if(rowHeaderIds.length >0 && rowHeaderIds[0].length > 1){
             for(var i=0; i<rowHeaderIds.length; i++){
                 blockExists = false;
                 for(var j = 0; j < blocks.length; j++){
-                    if( ("block"+rowHeaderIds[i][1]) == blocks[j]){
+                    if( ("block"+rowHeaderIds[i][1]) === blocks[j]){
                         blockExists = true;
                         break;
                     }

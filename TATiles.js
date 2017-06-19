@@ -11,7 +11,6 @@
  * @param {String} distribution - 0 for counts, 1 for percents
  */
 class TATiles{
-    private var _globals;
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
     private var _taMasks: TAMasks;
@@ -21,15 +20,23 @@ class TATiles{
     private var _selectedCategory;
 
 
-    function TATiles(globals, folder, table, sentiment, selectedCategory, distribution){
-        _globals = globals;
-        _folder = folder;
-        _taMasks = new TAMasks(globals, folder);
-        _table = table;
-        _taTableUtils = new TATableUtils(globals, folder, table);
-        _sentiment = sentiment ? sentiment : "all";
-        _selectedCategory = selectedCategory != "emptyv" ? selectedCategory : "all";
-        _distribution = distribution ? distribution : "0";
+    function TATiles(params){
+        var context = params.context;
+        _folder = params.folder;
+        _taMasks = new TAMasks({
+            context: context,
+            folder: _folder
+        });
+        _table = context.component;
+
+        _taTableUtils = new TATableUtils({
+            context: context,
+            folder: _folder,
+            table: _table
+        });
+        _sentiment = params.sentiment ? params.sentiment : "all";
+        _selectedCategory = params.category !== "emptyv" ? params.category : "all";
+        _distribution = params.distribution ? params.distribution : "0";
 
         _render();
     }
@@ -53,11 +60,11 @@ class TATiles{
     private function _render(){
         var qType;
         var mask;
-        if( _selectedCategory == "all" ){
-            qType = "os"
+        if( _selectedCategory === "all" ){
+            qType = "os";
             mask = false;
         }else{
-            qType = "cs"
+            qType = "cs";
             mask = [_selectedCategory];
         }
 
@@ -68,7 +75,7 @@ class TATiles{
         _table.Distribution.Enabled = true;
         _table.Distribution.VerticalPercents = false;
 
-        if(_distribution == "1" && _sentiment != "all"){
+        if(_distribution === "1" && _sentiment !== "all"){
             _table.Distribution.HorizontalPercents = true;
             _table.Distribution.Count = false;
         }else{

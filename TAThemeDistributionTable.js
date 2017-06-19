@@ -9,7 +9,6 @@
  * @param {String} sentiment - "emptyv", "neg", "neu", "pos"
  */
 class TAThemeDistributionTable{
-    private var _globals;
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
     private var _taMasks: TAMasks;
@@ -19,20 +18,20 @@ class TAThemeDistributionTable{
     private var _period;
     private var _config;
 
-    function TAThemeDistributionTable(globals, folder, table, sentiment,config){
-        _globals = globals;
-        _folder = folder;
-        _taMasks = new TAMasks(globals, folder);
-        _table = table;
-        _taTableUtils = new TATableUtils(globals, folder, table);
-        _sentiment = sentiment == "emptyv" ? "all" : sentiment;
+    function TAThemeDistributionTable(params){
+        var context = params.context;
+        _folder = params.folder;
+        _taMasks = new TAMasks({context: context, folder: _folder});
+        _table = params.table;
+        _taTableUtils = new TATableUtils({context: context, folder: _folder, table: _table});
+        _sentiment = params.sentiment === "emptyv" ? "all" : params.sentiment;
 
         _period = {
             Unit: "m",
             From: -11,
             To: 0
         };
-        _config = config;
+        _config = params.config;
         _render();
     }
 

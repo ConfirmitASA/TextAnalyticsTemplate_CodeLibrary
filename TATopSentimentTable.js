@@ -11,7 +11,6 @@
  * @param {Number} topN
  */
 class TATopSentimentTable{
-    private var _globals;
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
     private var _taMasks: TAMasks;
@@ -22,17 +21,17 @@ class TATopSentimentTable{
     private var _sentiment;
     private var _distribution;
 
-    function TATopSentimentTable(globals, folder, table, sentiment, level, topN, distribution){
-        _globals = globals;
-        _folder = folder;
-        _taMasks = new TAMasks(globals, folder);
-        _table = table;
-        _taTableUtils = new TATableUtils(globals, folder, table);
-        _sentiment = sentiment ? true : false;
-        _level = parseInt(level);
-        _topN = topN ? topN : 5;
-        _distribution = distribution ? distribution : "0";
-        _currentLanguage = globals.report.CurrentLanguage;
+    function TATopSentimentTable(params){
+        var context = params.context;
+        _folder = params.folder;
+        _taMasks = new TAMasks(context, folder);
+        _table = params.table;
+        _taTableUtils = new TATableUtils(context, folder, table);
+        _sentiment = params.sentiment ? true : false;
+        _level = parseInt(params.level);
+        _topN = params.topN ? params.topN : 5;
+        _distribution = params.distribution ? params.distribution : "0";
+        _currentLanguage = context.report.CurrentLanguage;
         _render();
     }
 

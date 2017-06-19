@@ -7,22 +7,24 @@
  * @param {String[]} questionsArray
  * @param {String} dataSource - ds id
  */
-
+//TODO: make filter components static across the report
 class FilterComponents{
-    private var _globals;
     private var _filterQuestions;
     private var _parameterUtilities;
 
 
-    function FilterComponents(globals,questionsArray, dataSource){
-        _globals = globals;
-        _filterQuestions = [];
-        var project  = _globals.report.DataSource.GetProject(dataSource);
-        for( var i = 0; i < questionsArray.length; i++ ){
-            _filterQuestions.push(project.GetQuestion( questionsArray[i]))
-        }
+    function FilterComponents(params){
 
-        _parameterUtilities = new ParameterUtilities(_globals);
+        var context = params.context;
+        var questionsArray = params.questionsArray;
+        var dataSource = params.dataSource;
+
+        _filterQuestions = [];
+
+        var project  = context.report.DataSource.GetProject(dataSource);
+        for( var i = 0; i < questionsArray.length; i++ ){
+            _filterQuestions.push(project.GetQuestion(questionsArray[i]))
+        }
     }
 
     /**
@@ -35,7 +37,7 @@ class FilterComponents{
      */
     function GetFilterQuestion(filterNumber){
         var filterQuestion = false;
-        if(_filterQuestions.length > filterNumber && ( _filterQuestions[(filterNumber)].QuestionType == QuestionType.Multi || _filterQuestions[(filterNumber)].QuestionType == QuestionType.Single )){
+        if(_filterQuestions.length > filterNumber && ( _filterQuestions[(filterNumber)].QuestionType === QuestionType.Multi || _filterQuestions[(filterNumber)].QuestionType === QuestionType.Single )){
             var filterQuestion = _filterQuestions[(filterNumber)];
         }
 
@@ -139,9 +141,9 @@ class FilterComponents{
      * @function ClearFilters
      * @description function to set all filter parameters to null
      */
-    function ClearFilters(){
+    function ClearFilters(context){
         for (var i = 0; i < _filterQuestions.length; i++){
-            _globals.state.Parameters["FILTER"+(i+1)] = null;
+            context.state.Parameters["FILTER"+(i+1)] = null;
         }
     }
 }
