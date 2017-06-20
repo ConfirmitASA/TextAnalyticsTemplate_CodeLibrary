@@ -35,10 +35,6 @@ class DefaultParameters {
         {
             Id: "TA_DISTRIBUTION_TOGGLE",
             Value: "0"
-        },
-        {
-            Id: "TA_TOGGLE_BARCHART",
-            Value: "0"
         }
     ];
 
