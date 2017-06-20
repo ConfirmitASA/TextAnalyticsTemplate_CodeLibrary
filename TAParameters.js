@@ -284,7 +284,7 @@ class TAParameters{
         var context = params.context;
         var categoriesParameterName = params.categoriesParameterName;
         var subCategoriesParameterName = params.subCategoriesParameterName;
-        var attributesPararmeterName = params.attributesPararmeterName;
+        var attributesParameterName = params.attributesParameterName;
 
         var categoriesParameter;
 
@@ -298,8 +298,8 @@ class TAParameters{
 
 
         var attributesParameter;
-        if(attributesPararmeterName)
-            attributesParameter = context.state.Parameters.GetString(attributesPararmeterName);
+        if(attributesParameterName)
+            attributesParameter = context.state.Parameters.GetString(attributesParameterName);
 
         var selectedCategory = "emptyv";
 

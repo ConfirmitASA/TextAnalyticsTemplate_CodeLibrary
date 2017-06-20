@@ -11,8 +11,8 @@ class TAFilters{
     private var _folder: TAFolder;
     private var _parameterUtilities: ParameterUtilities;
 
-    function TAFilters(globals, folder){
-        _globals = globals;
+    function TAFilters(context, folder){
+        _globals = context;
         _folder = folder;
     }
 
@@ -27,7 +27,12 @@ class TAFilters{
      */
     function GetSelectedCategoryFilterExpression(categoriesParameter, subCategoriesParameter, attributesParameter){
         var fExpr;
-        var selectedCategory = TAHelper.GetSelectedCategory(_globals.state, categoriesParameter, subCategoriesParameter, attributesParameter);
+        var selectedCategory = TAParameters.GetSelectedCategory({
+            context: _globals,
+            categoriesParameterName: categoriesParameter,
+            subCategoriesParameterName: subCategoriesParameter,
+            attributesParameterName: attributesParameter
+        });
 
         fExpr = (selectedCategory && selectedCategory !="emptyv") ?('ANY(' + _folder.GetQuestionId("categories") + ',"'+selectedCategory+'")'):'NOT ISNULL('+_folder.GetQuestionId("overallSentiment")+')';
 
@@ -46,7 +51,13 @@ class TAFilters{
      */
     function GetSentimentFilterExpression(categoriesParameter, subCategoriesParameter, attributesParameter, sentimentParameter){
         var fExpr;
-        var selectedCategory = TAHelper.GetSelectedCategory(_globals.state, categoriesParameter, subCategoriesParameter, attributesParameter);
+        var selectedCategory = TAParameters.GetSelectedCategory({
+            context: _globals,
+            categoriesParameterName: categoriesParameter,
+            subCategoriesParameterName: subCategoriesParameter,
+            attributesParameterName: attributesParameter
+        });
+
         var sentimentParameterValue = _globals.state.Parameters.GetString(sentimentParameter);
         var sentimentRange = false;
         switch( sentimentParameterValue ){
