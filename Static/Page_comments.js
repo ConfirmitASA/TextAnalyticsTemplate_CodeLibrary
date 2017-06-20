@@ -30,14 +30,9 @@ class Page_comments{
 
         initializeFilters({context: context, taLibrary: taLibrary});
 
-        var taParams  = new TAParameters({
-            context: context,
-            taLibrary: taLibrary
-        });
-
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
-        taParams.ClearSubcategoriesParameters({
+        TAParameters.ClearSubcategoriesParameters({
             context: context,
             folderId: selectedFolder,
             value: "emptyv",
@@ -47,7 +42,7 @@ class Page_comments{
 
         });
 
-        taParams.ClearSubcategoriesParameters({
+        TAParameters.ClearSubcategoriesParameters({
             context: context,
             folderId: selectedFolder,
             value: "emptyv",

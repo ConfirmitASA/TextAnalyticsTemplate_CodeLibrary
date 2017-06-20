@@ -29,16 +29,11 @@ class Page_dashboard{
 
         initializeFilters({context: context, taLibrary: taLibrary});
 
-        var taParams  = new TAParameters({
-                context: context,
-                taLibrary: taLibrary
-            });
-
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
         //TODO: refactor Clearing subcategories
 
-        taParams.ClearSubcategoriesParameters({
+        TAParameters.ClearSubcategoriesParameters({
             context: context,
             folderId: selectedFolder,
             value: "emptyv",
@@ -48,7 +43,7 @@ class Page_dashboard{
 
         });
 
-        taParams.ClearSubcategoriesParameters({
+        TAParameters.ClearSubcategoriesParameters({
             context: context,
             folderId: selectedFolder,
             value: "emptyv",

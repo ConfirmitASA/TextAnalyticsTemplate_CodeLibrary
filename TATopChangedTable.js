@@ -28,7 +28,7 @@ class TATopChangedTable{
         _folder = params.folder;
         _taMasks = new TAMasks(context, _folder);
         _table = params.table;
-        _taTableUtils = new TATableUtils(globals, _folder, _table);
+        _taTableUtils = new TATableUtils(context, _folder, _table);
         _sentiment = params.sentiment ? true : false;
         _level = parseInt(params.level);
         _topN = params.topN ? params.topN : 5;

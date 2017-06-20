@@ -30,7 +30,7 @@ class Page_filters{
 
         //TODO: refactor setting default parameters
         if(context.component.SubmitSource === "lstQuestions") {
-            ParameterUtilities.SetDefaultParametersValues(
+            ParameterUtilities.SetDefaultParameterValues(
                 {
                     context: context,
                     parameterValues: DefaultParameters.values
