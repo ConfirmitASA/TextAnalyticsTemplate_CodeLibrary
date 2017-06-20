@@ -147,7 +147,7 @@ class Page_comments{
      */
     static function htlComments_Render(context){
         if(!Config.GetTALibrary()){
-            Config.SetTALibrary(TAHelper.GetGlobals(context));
+            Config.SetTALibrary(context);
         }
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);

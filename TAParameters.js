@@ -169,6 +169,8 @@ class TAParameters{
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
 
+        var parameterValues =[];
+
         var levelValues = [
             {
                 Code: "0",

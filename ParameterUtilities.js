@@ -105,7 +105,7 @@ class ParameterUtilities {
         var parameterName = parameterName.valuesArray;
 
         var parameterValues: ParameterValueMultiSelect = _globals.state.Parameters[parameterName]
-        ? _globals.state.Parameters[parameterName]
+        ? context.state.Parameters[parameterName]
         : ParameterValueMultiSelect(null);
 
         var codes = [];
