@@ -59,7 +59,7 @@ class Page_detailed_analysis{
     static function initiateParameters(context){
         //TODO: refactor setting default parameters
         if(context.component.SubmitSource === "lstQuestions") {
-            ParameterUtilities.SetDefaultParametersValues(
+            ParameterUtilities.SetDefaultParameterValues(
                 {
                     context: context,
                     parameterValues: DefaultParameters.values

@@ -42,7 +42,7 @@ class TADetailedAnalysisTable{
         });
 
         _selectedCategory = params.category && params.category !== "emptyv" ? params.category : "all";
-        _selectedQuestion = sparams.question && params.question !== "emptyv" ? params.question : "all";
+        _selectedQuestion = params.question && params.question !== "emptyv" ? params.question : "all";
         _distribution = params.distribution ? params.distribution : "0";
         _multiQuestion = params.questionType;
         _bar100 = params.toggleChart ? params.toggleChart : false;

@@ -15,8 +15,8 @@ class TAParameters{
      * @param {String} EmptyValueLabel
      * @returns {Object[]}
      */
-    private function _addEmptyValue(emptyValueLabel){
-            var parameterValues = [];
+    private static function _addEmptyValue(emptyValueLabel){
+        var parameterValues = [];
         if(emptyValueLabel){
             parameterValues.push({
                 Code : "emptyv",

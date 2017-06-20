@@ -15,7 +15,7 @@ class PageMaster{
      */
     static function FiltersButtonHtml_Hide(context){
         var filterQuestions = Config.GetTALibrary().GetFilterQuestions()
-        return filterQuestions.length == 0
+        return filterQuestions.length === 0
     }
 
     /**
@@ -66,7 +66,12 @@ class PageMaster{
         var filterSummary ;
         var summarySegments = [];
         Config.SetTALibrary();
-        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+        var filterComponents = new FilterComponents({
+            context: context,
+            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
+            dataSource: Config.DS_Main
+        });
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var currentLaguage = context.report.CurrentLanguage;
         var curDictionary = Translations.dictionary(currentLaguage);
@@ -83,7 +88,7 @@ class PageMaster{
             summarySegments.push(("<div>"+curDictionary['End date']+" = " + endDate + "</div>"));
         }
 
-        var codes = _filterComponents.GetAllAnsweredFilterCodes();
+        var codes = filterComponents.GetAllAnsweredFilterCodes();
         for( var i = 0 ; i < codes.length; i++){
             summarySegments.push(( "<div>" + codes[i].questionTitle + " = "+ codes[i].texts.join(" | ")+"</div>"));
         }
@@ -103,9 +108,13 @@ class PageMaster{
      */
     static function ClearFilters_Hide(context){
         var hideButton = true;
-        _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+        var filterComponents = new FilterComponents({
+            context: context,
+            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
+            dataSource: Config.DS_Main
+        });
 
-        hideButton = !_filterComponents.GetAllAnsweredFilterCodes().length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");
+        hideButton = !filterComponents.GetAllAnsweredFilterCodes().length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");
 
         return hideButton
     }
@@ -121,60 +130,59 @@ class PageMaster{
     }
 
     static function txtQuestion_Hide(context){
-    return false
+        return false
+    }
 
-}
     static function txtQuestion_Render(context){
         var label = Translations.dictionary(context.report.CurrentLanguage)['Question'];
         context.component.Output.Append(label);
-
-}
+    }
 
     static function txtDateFrom_Hide(context){
-    return false
+        return false
+    }
 
-}
     static function txtDateFrom_Render(context){
-    var label = Translations.dictionary(context.report.CurrentLanguage)['From'];
-    context.component.Output.Append(label);
+        var label = Translations.dictionary(context.report.CurrentLanguage)['From'];
+        context.component.Output.Append(label);
 
-}
+    }
 
     static function txtDateTo_Hide(context){
-    return false
+        return false
 
-}
+    }
     static function txtDateTo_Render(context){
-    var label = Translations.dictionary(context.report.CurrentLanguage)['To'];
-    context.component.Output.Append(label);
+        var label = Translations.dictionary(context.report.CurrentLanguage)['To'];
+        context.component.Output.Append(label);
 
-}
+    }
 
     static function btnApplyFilters_Hide(context){
-    return false
-}
+        return false
+    }
     static function btnApplyFilters_Render(context){
-    FilterPanel.btnSave_Render(context);
-}
+        FilterPanel.btnSave_Render(context);
+    }
 
     static function hierarchyComponent_Hide(context) {
-    return !context.report.PersonalizedQuestion
-}
+        return !context.report.PersonalizedQuestion
+    }
 
     static function txtHierarchyLabel_Hide(context) {
-    return !context.report.PersonalizedQuestion
-}
+        return !context.report.PersonalizedQuestion
+    }
 
     static function txtHierarchyLabel_Render(context) {
-    var label = Translations.dictionary(context.report.CurrentLanguage)["Hierarchy"];
-    context.component.Output.Append(label);
-}
+        var label = Translations.dictionary(context.report.CurrentLanguage)["Hierarchy"];
+        context.component.Output.Append(label);
+    }
     static function txtPageTitle_Hide(context){
-    return false
-}
+        return false
+    }
     static function txtPageTitle_Render(context){
-    var label = Translations.dictionary(context.report.CurrentLanguage)["What people are talking about"];
-    context.component.Output.Append(label);
-}
+        var label = Translations.dictionary(context.report.CurrentLanguage)["What people are talking about"];
+        context.component.Output.Append(label);
+    }
 
 }
