@@ -87,7 +87,7 @@ class ParameterUtilities {
     context.log.LogDebug("defa3");
         for (var i = 0; i < parameterValues.length; i++) {
             try {
-                if (!context.state.Parameters.GetString(valuesArray[i].Id))
+                if (!context.state.Parameters.GetString(parameterValues[i].Id))
                     context.state.Parameters[parameterValues[i].Id] = new ParameterValueResponse(parameterValues[i].Value);
             } catch (e) {
                 context.log.LogDebug(e);
