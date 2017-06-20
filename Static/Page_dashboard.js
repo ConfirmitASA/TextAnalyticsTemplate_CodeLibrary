@@ -57,8 +57,6 @@ class Page_dashboard{
     }
 
     static function initiateParameters(context){
-
-        context.log.LogDebug("render1");
         //TODO: refactor setting default parameters
         if(context.component.SubmitSource === "lstQuestions") {
             ParameterUtilities.SetDefaultParameterValues(
@@ -69,9 +67,8 @@ class Page_dashboard{
             )
         }
 
-        context.log.LogDebug("render1.1");
         TAHelper.SetLastVisitedPage(context, "dashboard");
-        context.log.LogDebug("render1.2");
+
         ParameterUtilities.SetDefaultParameterValuesForEmpty({
             context: context,
             parameterValues: DefaultParameters.values.concat(

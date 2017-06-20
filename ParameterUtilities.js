@@ -80,12 +80,15 @@ class ParameterUtilities {
     }
 
     static function SetDefaultParameterValuesForEmpty(params) {
-    var context = params.context;
-    var valuesArray = params.valuesArray;
+        context.log.LogDebug("defa1");
+        var context = params.context;
+    context.log.LogDebug("defa2");
+        var parameterValues = params.parameterValues;
+    context.log.LogDebug("defa3");
         for (var i = 0; i < valuesArray.length; i++) {
             try {
                 if (!context.state.Parameters.GetString(valuesArray[i].Id))
-                    context.state.Parameters[valuesArray[i].Id] = new ParameterValueResponse(valuesArray[i].Value);
+                    context.state.Parameters[parameterValues[i].Id] = new ParameterValueResponse(parameterValues[i].Value);
             } catch (e) {
                 context.log.LogDebug(e);
             }
