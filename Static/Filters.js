@@ -17,7 +17,7 @@ class Filters {
             selectedFolder = null;
         }*/
 
-        var fExpr = new TAFilters(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFolderById(selectedFolder)).GetSelectedCategoryFilterExpression("TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
+        var fExpr = new TAFilters(context, Config.GetTALibrary().GetFolderById(selectedFolder)).GetSelectedCategoryFilterExpression("TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
         context.component.Expression = fExpr;
     }
 
@@ -35,7 +35,7 @@ class Filters {
             selectedFolder = null;
         }*/
 
-        var fExpr = new TAFilters(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFolderById(selectedFolder)).GetSentimentFilterExpression("TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE","TA_COMMENTS_SENTIMENT");
+        var fExpr = new TAFilters(context, Config.GetTALibrary().GetFolderById(selectedFolder)).GetSentimentFilterExpression("TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE","TA_COMMENTS_SENTIMENT");
         context.component.Expression = fExpr;
     }
 
@@ -52,7 +52,7 @@ class Filters {
         }catch(e){
             selectedFolder = null;
         }*/
-        var fExpr = new TAFilters(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFolderById(selectedFolder)).GetDateFilterExpression("TA_DATE_FROM", "TA_DATE_TO");
+        var fExpr = new TAFilters(context, Config.GetTALibrary().GetFolderById(selectedFolder)).GetDateFilterExpression("TA_DATE_FROM", "TA_DATE_TO");
         context.component.Expression = fExpr;
     }
 
@@ -64,7 +64,7 @@ class Filters {
      */
     static function FilterPageFilter(context){
         var fExpr = "";
-        fExpr = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main).GetGlobalsFilterExpression();
+        fExpr = new FilterComponents(context, Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main).GetGlobalsFilterExpression();
         context.component.Expression = fExpr
     }
 }
