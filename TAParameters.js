@@ -7,18 +7,6 @@
  * @param {TALibrary} library
  */
 class TAParameters{
-    private var _globals;
-    private var _library: TALibrary;
-    private var _currentLanguage;
-    private var _curDictionary;
-
-    function TAParameters(params){
-        var context = params.context;
-        _library = params.library;
-        _currentLanguage = context.report.CurrentLanguage;
-        _curDictionary = Translations.dictionary(_currentLanguage);
-    }
-
     /**
      * @memberof TAParameters
      * @instance
@@ -45,10 +33,10 @@ class TAParameters{
      * @description render parameter with list of TAFoders using in the report
      * @param {Parameter} parameter
      */
-    function RenderFoldersParameter(params){
+    static function RenderFoldersParameter(params){
         var context = params.context;
         var parameter = context.component;
-        var folders = _library.GetFolders();
+        var folders = Config.GetTALibrary().GetFolders();
 
         var parameterValues = [];
         var project;
@@ -70,19 +58,31 @@ class TAParameters{
         });
     }
 
-    function RenderAllCategoriesParameter(parameter,folderId, emptyValueLabel){
-        var categories = _library.
-        GetFolderById(folderId).
-        GetHierarchy().
-        GetFlatArray();
+    static function RenderAllCategoriesParameter(params){
+        var context = params.context;
+        var parameter = context.component;
+        var emptyValueLabel = params.emptyValueLabel;
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+
+        var categories = Config.GetTALibrary().
+            GetFolderById(folderId).
+            GetHierarchy().
+            GetFlatArray();
+
         var parameterValues = _addEmptyValue(emptyValueLabel);
+
         for(var i = 0; i < categories.length; i++){
             parameterValues.push({
                 Code: categories[i].id,
                 Label: categories[i].name
             })
         }
-        _parameterUtilities.LoadParameterValues(parameter, parameterValues);
+
+        ParameterUtilities.LoadParameterValues({
+            context: context,
+            parameter: parameter,
+            parameterValues: parameterValues
+        });
     }
 
     /**
@@ -95,11 +95,17 @@ class TAParameters{
      * @param {String} level
      * @param {String} emptyValueLabel
      */
-    function RenderLevelCategoriesParameter(parameter,folderId, level, emptyValueLabel){
-        var categories = _library.
-        GetFolderById(folderId).
-        GetHierarchy().
-        GetLevelArray(level);
+    static function RenderLevelCategoriesParameter(params){
+        var context = params.context;
+        var parameter = context.component;
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+        var level = params.level;
+        var emptyValueLabel = params.emptyValueLabel;
+
+        var categories = Config.GetTALibrary().
+            GetFolderById(folderId).
+            GetHierarchy().
+            GetLevelArray(level);
 
         var parameterValues = _addEmptyValue(emptyValueLabel);
 
@@ -109,7 +115,12 @@ class TAParameters{
                 Label: categories[i].name
             })
         }
-        _parameterUtilities.LoadParameterValues(parameter, parameterValues);
+
+        ParameterUtilities.LoadParameterValues({
+            context: context,
+            parameter: parameter,
+            parameterValues: parameterValues
+        });
     }
 
     /**
@@ -122,13 +133,21 @@ class TAParameters{
      * @param {String} category
      * @param {Boolean} addEmpty
      */
-    function MaskSelectedCategoryChildren(mask,folderId,category,addEmpty){
-        var folder = _library.GetFolderById(folderId);
-        var taMasks = new TAMasks(_globals, folder);
+    static function MaskSelectedCategoryChildren(params){
+        var context = params.context;
+        var mask = context.component;
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+        var category = params.category;
+        var addEmpty = params.addEmpty;
+
+        var folder = Config.GetTALibrary().GetFolderById(folderId);
+        var taMasks = new TAMasks({context: context, folder: folder});
         var children = taMasks.GetChildrenMask(category);
         mask.Access = ParameterAccessType.Inclusive;
+
         if( addEmpty )
             mask.Keys.Add("emptyv");
+
         for ( var i = 0; i< children.length; i++)
             mask.Keys.Add(children[i]);
     }
@@ -142,31 +161,43 @@ class TAParameters{
      * @param {String} folderId
      * @param {String} emptyValueLabel
      */
-    function RenderLevelsParameter(parameter, folderId, emptyValueLabel){
+    static function RenderLevelsParameter(params){
+        var context = params.context;
+        var parameter = context.component;
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
         var levelValues = [
             {
                 Code: "0",
-                Label: _curDictionary["1st level (category)"]
+                Label: currentDictionary["1st level (category)"]
             },
             {
                 Code: "1",
-                Label: _curDictionary["2nd level (sub-category)"]
+                Label: currentDictionary["2nd level (sub-category)"]
             },
             {
                 Code: "2",
-                Label: _curDictionary["3rd level (attributes)"]
+                Label: currentDictionary["3rd level (attributes)"]
             }
         ];
-        var parameterValues = _addEmptyValue(emptyValueLabel);
-        var folder = _library.GetFolderById(folderId);
-        var hierarchy = folder.GetHierarchy();
-        var levelsCount=hierarchy.GetLevelsCount();
+
+        var levelsCount = Config.GetTALibrary().
+            GetFolderById(folderId).
+            GetHierarchy().
+            GetLevelsCount();
 
         for( var i = 0; i < levelsCount; i++){
             parameterValues.push( levelValues[i] );
         }
 
-        _parameterUtilities.LoadParameterValues(parameter, parameterValues);
+        ParameterUtilities.LoadParameterValues({
+            context: context,
+            parameter: parameter,
+            parameterValues: parameterValues
+        });
     }
 
     /**
@@ -178,12 +209,18 @@ class TAParameters{
      * @param {String} folderId
      * @param {String} emptyValueLabel
      */
-    function RenderViewByParameter(parameter, folderId, emptyValueLabel){
+    static function RenderViewByParameter(params){
+        var context = params.context;
+        var parameter = context.component;
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+        var emptyValueLabel = params.emptyValueLabel;
+
         var parameterValues = _addEmptyValue(emptyValueLabel);
-        var folder = _library.GetFolderById(folderId);
+        var folder = Config.GetTALibrary().GetFolderById(folderId);
         var variables = folder.GetViewByVariables();
-        var project = _globals.report.DataSource.GetProject(folder.GetDatasourceId());
+        var project = context.report.DataSource.GetProject(folder.GetDatasourceId());
         var question: Question;
+
         for( var i = 0; i < variables.length; i++){
             question = project.GetQuestion( variables[i] );
             parameterValues.push({
@@ -192,7 +229,11 @@ class TAParameters{
             });
         }
 
-        _parameterUtilities.LoadParameterValues(parameter, parameterValues);
+        ParameterUtilities.LoadParameterValues({
+            context: context,
+            parameter: parameter,
+            parameterValues: parameterValues
+        });
     }
 
     /**
@@ -206,15 +247,15 @@ class TAParameters{
      * @param {String} subcategoriesParameter
      * @param {String} attributesParameter
      */
-    function ClearSubcategoriesParameters(params){
+    static function ClearSubcategoriesParameters(params){
         var context = params.context;
-        var folderId = params.folderId;
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
         var value = params.value;
         var categoriesParameter = params.categoriesParameter;
         var subcategoriesParameter = params.subcategoriesParameter;
         var attributesParameter = params.attributesParameter;
 
-        var folder = _library.GetFolderById(folderId);
+        var folder = Config.GetTALibrary().GetFolderById(folderId);
         var topCategory = context.state.Parameters.GetString(categoriesParameter);
         var subCategory = context.state.Parameters.GetString(subcategoriesParameter);
         if(subCategory && subCategory !== value){
@@ -241,7 +282,7 @@ class TAParameters{
         var context = params.context;
         var categoriesParameterName = params.categoriesParameterName;
         var subCategoriesParameterName = params.subCategoriesParameterName;
-        var attribtesPararmeterName = params.attribtesPararmeterName;
+        var attributesPararmeterName = params.attributesPararmeterName;
 
         var categoriesParameter;
 
@@ -255,8 +296,8 @@ class TAParameters{
 
 
         var attributesParameter;
-        if(attribtesPararmeterName)
-            attributesParameter = context.state.Parameters.GetString(attribtesPararmeterName);
+        if(attributesPararmeterName)
+            attributesParameter = context.state.Parameters.GetString(attributesPararmeterName);
 
         var selectedCategory = "emptyv";
 

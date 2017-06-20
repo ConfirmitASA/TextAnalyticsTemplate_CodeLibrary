@@ -11,7 +11,7 @@ class TAHitlistUtils{
     private var _folder: TAFolder;
     private var _hitlist: HitList;
 
-    function TAHitlistUtils(paramsglobals, folder, hitlist){
+    function TAHitlistUtils(params){
         var context = params.context;
         _folder = params.folder;
         _hitlist = context.component;

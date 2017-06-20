@@ -24,10 +24,10 @@ class TATopSentimentTable{
     function TATopSentimentTable(params){
         var context = params.context;
         _folder = params.folder;
-        _taMasks = new TAMasks(context, folder);
+        _taMasks = new TAMasks(context, _folder);
         _table = params.table;
         _taTableUtils = new TATableUtils(context, folder, table);
-        _sentiment = params.sentiment ? true : false;
+        _sentiment = !!(params.sentiment);
         _level = parseInt(params.level);
         _topN = params.topN ? params.topN : 5;
         _distribution = params.distribution ? params.distribution : "0";

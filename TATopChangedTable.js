@@ -23,7 +23,7 @@ class TATopChangedTable{
     private var _period;
     private var _currentLanguage;
 
-    function TATopChangedTable(paramsglobals, folder, table, sentiment, level, period, topN){
+    function TATopChangedTable(params){
         var context = params.context;
         _folder = params.folder;
         _taMasks = new TAMasks(context, _folder);

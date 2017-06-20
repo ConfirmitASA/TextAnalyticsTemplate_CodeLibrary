@@ -16,6 +16,7 @@ class ParameterUtilities {
      * @param {Object[]} parameterValues - array of values like {Code: "AnswerCode", Label: "AnswerText"}
      */
     static function LoadParameterValues(params) {
+        var context = params.context;
         var parameter = params.parameter;
         var parameterValues = params.parameterValues;
 
@@ -24,7 +25,7 @@ class ParameterUtilities {
             parameterValueResponse.StringKeyValue = parameterValues[i].Code;
 
             var labels: LanguageTextCollection = new LanguageTextCollection();
-            labels.Add(new LanguageText(_globals.report.CurrentLanguage, parameterValues[i].Label));
+            labels.Add(new LanguageText(context.report.CurrentLanguage, parameterValues[i].Label));
 
             parameterValueResponse.LocalizedLabel = new Label(labels);
             parameterValueResponse.StringValue = parameterValues[i].Label;
