@@ -85,8 +85,11 @@ class ParameterUtilities {
         for (var i = 0; i < parameterValues.length; i++) {
             try {
                 context.log.LogDebug("parid: "+parameterValues[i].Id)
-                if (!context.state.Parameters.GetString(parameterValues[i].Id))
+                if (!context.state.Parameters.GetString(parameterValues[i].Id)) {
+                    context.log.LogDebug("parstr: "+!context.state.Parameters.GetString(parameterValues[i].Id));
                     context.state.Parameters[parameterValues[i].Id] = new ParameterValueResponse(parameterValues[i].Value);
+                    context.log.LogDebug("parstr1: "+!context.state.Parameters.GetString(parameterValues[i].Id));
+                }
             } catch (e) {
                 context.log.LogDebug(e);
             }
