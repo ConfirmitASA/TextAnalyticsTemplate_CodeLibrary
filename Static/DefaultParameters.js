@@ -1,5 +1,5 @@
 class DefaultParameters {
-    static const values = [
+    static var values = [
         {
             Id: "TA_LEVEL",
             Value: "0"
@@ -42,7 +42,7 @@ class DefaultParameters {
         }
     ];
 
-    static const dateParameters = [
+    static var dateParameters = [
         "TA_DATE_FROM",
         "TA_DATE_TO"
     ];

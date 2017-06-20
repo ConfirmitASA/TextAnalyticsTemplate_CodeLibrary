@@ -17,7 +17,7 @@ class ParameterUtilities {
      */
     static function LoadParameterValues(params) {
         var context = params.context;
-        var parameter = params.parameter;
+        var parameter = context.component;
         var parameterValues = params.parameterValues;
 
         for (var i = 0; i < parameterValues.length; ++i) {
