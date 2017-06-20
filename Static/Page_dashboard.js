@@ -21,7 +21,9 @@ class Page_dashboard{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
+    context.log.LogDebug("render1");
         Config.SetTALibrary(context);
+    context.log.LogDebug("render2");
         initiateParameters(context);
         context.log.LogDebug("render3");
         var taLibrary = Config.GetTALibrary();
@@ -58,6 +60,7 @@ class Page_dashboard{
 
     static function initiateParameters(context){
         //TODO: refactor setting default parameters
+    context.log.LogDebug("render1.0");
         if(context.component.SubmitSource === "lstQuestions") {
             ParameterUtilities.SetDefaultParameterValues(
                 {
@@ -66,9 +69,9 @@ class Page_dashboard{
                 }
             )
         }
-
+    context.log.LogDebug("render1.1");
         TAHelper.SetLastVisitedPage(context, "dashboard");
-
+    context.log.LogDebug("render1.2");
         ParameterUtilities.SetDefaultParameterValuesForEmpty({
             context: context,
             parameterValues: DefaultParameters.values.concat(

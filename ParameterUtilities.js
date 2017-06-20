@@ -80,11 +80,8 @@ class ParameterUtilities {
     }
 
     static function SetDefaultParameterValuesForEmpty(params) {
-        context.log.LogDebug("defa1");
         var context = params.context;
-    context.log.LogDebug("defa2");
         var parameterValues = params.parameterValues;
-    context.log.LogDebug("defa3");
         for (var i = 0; i < parameterValues.length; i++) {
             try {
                 if (!context.state.Parameters.GetString(parameterValues[i].Id))
