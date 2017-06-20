@@ -68,11 +68,11 @@ class ParameterUtilities {
      */
     static function SetDefaultParameterValues(params) {
         var context = params.context;
-        var valuesArray = params.valuesArray;
+        var parameterValues = params.parameterValues;
 
-        for (var i = 0; i < valuesArray.length; i++) {
+        for (var i = 0; i < parameterValues.length; i++) {
             try {
-                context.state.Parameters[valuesArray[i].Id] = new ParameterValueResponse(valuesArray[i].Value);
+                context.state.Parameters[parameterValues[i].Id] = new ParameterValueResponse(parameterValues[i].Value);
             } catch (e) {
                 context.log.LogDebug(e);
             }
@@ -84,6 +84,7 @@ class ParameterUtilities {
         var parameterValues = params.parameterValues;
         for (var i = 0; i < parameterValues.length; i++) {
             try {
+                context.log.LogDebug("parid: "+parameterValues[i].Id)
                 if (!context.state.Parameters.GetString(parameterValues[i].Id))
                     context.state.Parameters[parameterValues[i].Id] = new ParameterValueResponse(parameterValues[i].Value);
             } catch (e) {
