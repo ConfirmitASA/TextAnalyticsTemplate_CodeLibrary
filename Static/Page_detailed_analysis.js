@@ -240,6 +240,7 @@ class Page_detailed_analysis{
 
         var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
         var project =  context.report.DataSource.GetProject(folder.GetDatasourceId());
 
