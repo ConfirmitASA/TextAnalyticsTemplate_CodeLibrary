@@ -85,14 +85,8 @@ class Page_comments{
         var taLibrary = params.taLibrary;
         //TODO: clarify what to do with filter components
 
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: taLibrary.GetFilterQuestions(),
-            dataSource: Config.DS_Main
-        });
-
         if(context.component.SubmitSource == "ClearFilters"){
-            filterComponents.ClearFilters(context);
+            FilterComponents.ClearFilters(context);
 
             var dateParameters = DefaultParameters.dateParameters;
 
