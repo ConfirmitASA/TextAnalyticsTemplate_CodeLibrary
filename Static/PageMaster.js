@@ -109,7 +109,7 @@ class PageMaster{
     static function ClearFilters_Hide(context){
         var hideButton = true;
         var filterComponents = new FilterComponents({
-            context: context,
+            context: context
         });
 
         hideButton = !filterComponents.GetAllAnsweredFilterCodes().length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");
