@@ -32,6 +32,7 @@ class Page_comments{
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
+
         TAParameters.ClearSubcategoriesParameters({
             context: context,
             folderId: selectedFolder,
@@ -52,7 +53,7 @@ class Page_comments{
 
         processSelectedCategoryParameter({
             context: context,
-            folder: selectedFolder
+            folder: Config.GetTALibrary().GetFolderById(selectedFolder)
         })
     }
 
@@ -143,9 +144,10 @@ class Page_comments{
         }
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
 
-        var htlComments = new TAHitlistUtils({context: context, folder: selectedFolder});
+        var htlComments = new TAHitlistUtils({context: context, folder: folder});
 
         if( selectedCategory && selectedCategory !== "emptyv" ){
             htlComments.AddTAColumn({
@@ -159,7 +161,7 @@ class Page_comments{
 
         htlComments.AddColumn({
             context: context,
-            columnName: selectedFolder.GetTimeVariableId(),
+            columnName: folder.GetTimeVariableId(),
             sortable: true
         });
 
@@ -197,13 +199,14 @@ class Page_comments{
             "</script>";
         var hitlistHeaders = {};
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
 
         hitlistHeaders["sentiment"] = []
 
         if( selectedCategory && selectedCategory !== "emptyv"){
             hitlistHeaders["sentiment"].push( {
-                    name: selectedFolder.GetQuestionId("categorysentiment")+"_"+selectedCategory
+                    name: folder.GetQuestionId("categorysentiment")+"_"+selectedCategory
             } );
         }
 
@@ -211,30 +214,30 @@ class Page_comments{
         var currentDictionary = Translations.dictionary(currentLanguage);
 
         hitlistHeaders["verbatim"] = [{
-            name: selectedFolder.GetQuestionId(),
+            name: folder.GetQuestionId(),
             title: currentDictionary["Comments"],
             main: true
         }];
 
         hitlistHeaders["date"] = [{
-            name: selectedFolder.GetTimeVariableId() ? selectedFolder.GetTimeVariableId() : "interview_start",
+            name: folder.GetTimeVariableId() ? folder.GetTimeVariableId() : "interview_start",
             title: currentDictionary["Date"]
         }];
 
 
             hitlistHeaders["categories"] = [{
-                name: selectedFolder.GetQuestionId("categories")
+                name: folder.GetQuestionId("categories")
             }];
 
 
         hitlistHeaders["sentiment"].push( {
-            name: selectedFolder.GetQuestionId("overallSentiment"),
+            name: folder.GetQuestionId("overallSentiment"),
             title: currentDictionary["Overall Sentiment"]
         });
 
         hitlistHeaders["other"] = [];
 
-        var hitlistColumns = selectedFolder.GetHitlistColumns();
+        var hitlistColumns = folder.GetHitlistColumns();
         for(var i = 0 ; i < hitlistColumns.length; i++){
             hitlistHeaders["other"].push( {
                 name: hitlistColumns[i]
@@ -281,8 +284,9 @@ class Page_comments{
      */
     static function lstSubCategory_Hide(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder)
         var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
-        return ((! parameterValue) || parameterValue === "emptyv" || selectedFolder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
+        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
     }
 
     /**
@@ -294,8 +298,9 @@ class Page_comments{
      */
     static function lstAttribute_Hide(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
-        return ((! parameterValue) || parameterValue === "emptyv" || selectedFolder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
+        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
     }
 
     /**
@@ -333,8 +338,9 @@ class Page_comments{
      */
     static function txtSubCategory_Hide(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
-        return ((! parameterValue) || parameterValue === "emptyv" || selectedFolder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
+        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
     }
 
     /**
@@ -360,8 +366,9 @@ class Page_comments{
      */
     static function txtAttribute_Hide(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
-        return ((! parameterValue) || parameterValue === "emptyv" || selectedFolder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
+        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
     }
 
     /**
