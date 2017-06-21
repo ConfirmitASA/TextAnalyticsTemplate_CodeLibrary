@@ -60,7 +60,6 @@ class Page_dashboard{
 
     static function initiateParameters(context){
         //TODO: refactor setting default parameters
-    context.log.LogDebug("render1.0");
         if(context.component.SubmitSource === "lstQuestions") {
             ParameterUtilities.SetDefaultParameterValues(
                 {
@@ -69,9 +68,7 @@ class Page_dashboard{
                 }
             )
         }
-    context.log.LogDebug("render1.1");
         TAHelper.SetLastVisitedPage(context, "dashboard");
-    context.log.LogDebug("render1.2");
         ParameterUtilities.SetDefaultParameterValuesForEmpty({
             context: context,
             parameterValues: DefaultParameters.values.concat(
@@ -81,12 +78,12 @@ class Page_dashboard{
                 }
             )
         });
-        context.log.LogDebug("render1.3");
     }
 
     static function initializeFilters(params){
         var context = params.context;
         var taLibrary = params.taLibrary;
+    context.log.LogDebug("render4.1");
         //TODO: clarify what to do with filter components
 
         var filterComponents = new FilterComponents({
@@ -94,6 +91,7 @@ class Page_dashboard{
             filterQuestions: taLibrary.GetFilterQuestions(),
             dataSource: Config.DS_Main
         });
+    context.log.LogDebug("render4.2");
 
         if(context.component.SubmitSource == "ClearFilters"){
             filterComponents.ClearFilters(context);
@@ -103,6 +101,7 @@ class Page_dashboard{
             for(var i = 0; i < dateParameters.length; ++i)
                 context.state.Parameters[dateParameters[i]] = null;
         }
+    context.log.LogDebug("render4.3");
     }
 
     /**
