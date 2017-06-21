@@ -13,7 +13,7 @@ class DefaultParameters {
             Value: "emptyv"
         },
         {
-            Id: "TA_SELECTED_QUESTION",
+            Id: "TA_VIEW_BY",
             Value: "emptyv"
         },
         {
