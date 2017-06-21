@@ -110,8 +110,6 @@ class PageMaster{
         var hideButton = true;
         var filterComponents = new FilterComponents({
             context: context,
-            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
-            dataSource: Config.DS_Main
         });
 
         hideButton = !filterComponents.GetAllAnsweredFilterCodes().length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");

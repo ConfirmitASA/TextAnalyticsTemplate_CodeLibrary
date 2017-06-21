@@ -10,21 +10,22 @@
 //TODO: make filter components static across the report
 class FilterComponents{
     private var _filterQuestions;
-    private var _parameterUtilities;
-
 
     function FilterComponents(params){
-
         var context = params.context;
-        var questionsArray = params.questionsArray;
-        var dataSource = params.dataSource;
-
+        context.log.LogDebug("fc1");
+        var questionsArray = Config.GetTALibrary().GetFilterQuestions();
+    context.log.LogDebug("fc2");
+        var dataSource = Config.DS_Main;
+    context.log.LogDebug("fc3");
         _filterQuestions = [];
-
+    context.log.LogDebug("fc3");
         var project  = context.report.DataSource.GetProject(dataSource);
+    context.log.LogDebug("fc4");
         for( var i = 0; i < questionsArray.length; i++ ){
             _filterQuestions.push(project.GetQuestion(questionsArray[i]))
         }
+    context.log.LogDebug("fc5");
     }
 
     /**
@@ -93,10 +94,13 @@ class FilterComponents{
      * @description function to get selected filters information
      * @returns {Object[]} - array of Objects with Filter information and answers like { questionTitle: "Title", questionId: "qId", values: [1,2], texts: ["one", "two"]}
      */
-    function GetAllAnsweredFilterCodes(){
+    function GetAllAnsweredFilterCodes(context){
         var answeredCodes = [];
         for (var i = 0; i < _filterQuestions.length; i++){
-            var codes = GetFilterInformation(i);
+            var codes = GetFilterInformation({
+                context: context,
+                filterNumber: i
+            });
             if(codes && codes.values.length > 0){
                 answeredCodes.push(codes);
             }
@@ -112,10 +116,15 @@ class FilterComponents{
      * @param {Number} filterNumber
      * @returns {Object} - Object with Filter information and answers like { questionTitle: "Title", questionId: "qId", values: [1,2], texts: ["one", "two"]}
      */
-    function GetFilterInformation(filterNumber){
+    function GetFilterInformation(params){
+        var context = params.context;
+        var filterNumber = params.filterNumber;
         var result = false;
         var parameterName = 'FILTER' + (filterNumber +1);
-        var codes = _parameterUtilities.GetParameterCodes(parameterName);
+        var codes = ParameterUtilities.GetParameterCodes({
+            context: context,
+            parameterName: parameterName
+        });
         if ( codes.length > 0 ){
             var fTitle = GetFilterTitle(filterNumber);
             var fId = _filterQuestions[filterNumber].QuestionId;
