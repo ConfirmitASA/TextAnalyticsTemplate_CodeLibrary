@@ -114,7 +114,7 @@ class PageMaster{
             context: context
         });
     context.log.LogDebug("fc3");
-        hideButton = !filterComponents.GetAllAnsweredFilterCodes().length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");
+        hideButton = !filterComponents.GetAllAnsweredFilterCodes(context).length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");
     context.log.LogDebug("fc4");
         return hideButton
     }
