@@ -324,7 +324,7 @@ class TAParameters{
         var allCategoriesParameterValue = params.allCategoriesParameterValue;
         var categoriesParameterName = params.categoriesParameterName;
         var subCategoriesParameterName = params.subCategoriesParameterName;
-        var attribtesPararmeterName = params.attribtesPararmeterName;
+        var attributesParameterName = params.attributesParameterName;
 
         var defaultParameterValues = [
             {
@@ -336,19 +336,19 @@ class TAParameters{
                 Value: "emptyv"
             },
             {
-                Id: attribtesPararmeterName,
+                Id: attributesParameterName,
                 Value: "emptyv"
             }
         ];
 
-        if( allCategoriesParameterValue != "emptyv"){
+        if( allCategoriesParameterValue !== "emptyv"){
             var selectedCategory = hierarchy.GetObjectById(allCategoriesParameterValue);
             defaultParameterValues[selectedCategory.level].Value = selectedCategory.id;
             if(selectedCategory.level > 0){
                 defaultParameterValues[selectedCategory.level-1].Value = selectedCategory.parent
             }
 
-            if(selectedCategory.level == 2){
+            if(selectedCategory.level === 2){
                 defaultParameterValues[0].Value = hierarchy.GetObjectById(selectedCategory.parent).parent
             }
 

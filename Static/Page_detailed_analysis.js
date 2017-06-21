@@ -98,9 +98,13 @@ class Page_detailed_analysis{
 
     static function processSelectedCategoryParameter(params){
         var context = params.context;
+        context.log.LogDebug("proc1");
         var folder = params.folder;
+    context.log.LogDebug("proc2");
         var submitSource = context.component.SubmitSource;
+    context.log.LogDebug("proc3");
         var selectedCategory;
+    context.log.LogDebug("proc4");
         if(submitSource === "lstCategory" || submitSource === "lstSubCategory" || submitSource === "lstAttribute"){
             selectedCategory = TAParameters.GetSelectedCategory({
                 context: context,
@@ -111,7 +115,9 @@ class Page_detailed_analysis{
 
             context.state.Parameters['TA_ALL_CATEGORIES'] = new ParameterValueResponse(selectedCategory);
         }else {
+            context.log.LogDebug("proc5");
             selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+            context.log.LogDebug("proc6");
             TAParameters.SetSelectedCategory({
                 context: context,
                 hierarchy: folder.GetHierarchy(),
@@ -120,6 +126,7 @@ class Page_detailed_analysis{
                 subCategoriesParameterName: "TA_SUB_CATEGORIES_SINGLE",
                 attributesParameterName: "TA_ATTRIBUTES_SINGLE"
             });
+            context.log.LogDebug("proc7");
         }
 
     }
