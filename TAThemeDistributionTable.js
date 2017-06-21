@@ -20,19 +20,31 @@ class TAThemeDistributionTable{
 
     function TAThemeDistributionTable(params){
         var context = params.context;
+        context.log.LogDebug("buildTabl1");
         _folder = params.folder;
+    context.log.LogDebug("buildTabl2");
         _taMasks = new TAMasks({context: context, folder: _folder});
+    context.log.LogDebug("buildTabl3");
         _table = params.table;
-        _taTableUtils = new TATableUtils({context: context, folder: _folder, table: _table});
+    context.log.LogDebug("buildTabl4");
+        _taTableUtils = new TATableUtils({
+            context: context,
+            folder: _folder,
+            table: _table
+        });
+    context.log.LogDebug("buildTabl5");
         _sentiment = params.sentiment === "emptyv" ? "all" : params.sentiment;
-
+    context.log.LogDebug("buildTabl6");
         _period = {
             Unit: "m",
             From: -11,
             To: 0
         };
+    context.log.LogDebug("buildTabl7");
         _config = params.config;
+    context.log.LogDebug("buildTabl8");
         _render();
+    context.log.LogDebug("buildTabl9");
     }
 
     /**
