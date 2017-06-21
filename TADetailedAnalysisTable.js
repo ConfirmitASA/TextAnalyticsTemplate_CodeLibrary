@@ -28,6 +28,7 @@ class TADetailedAnalysisTable{
         _currentLanguage = context.report.CurrentLanguage;
         _curDictionary = Translations.dictionary(_currentLanguage);
         _folder = params.folder;
+        _table = context.component;
 
         _taMasks = new TAMasks({
             context: context,
