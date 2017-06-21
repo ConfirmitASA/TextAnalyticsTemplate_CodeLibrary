@@ -86,22 +86,16 @@ class Page_dashboard{
     context.log.LogDebug("render4.1");
         //TODO: clarify what to do with filter components
 
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: taLibrary.GetFilterQuestions(),
-            dataSource: Config.DS_Main
-        });
     context.log.LogDebug("render4.2");
 
-        if(context.component.SubmitSource == "ClearFilters"){
-            filterComponents.ClearFilters(context);
-
+        if(context.component.SubmitSource === "ClearFilters"){
+            FilterComponents.ClearFilters(context);
             var dateParameters = DefaultParameters.dateParameters;
 
             for(var i = 0; i < dateParameters.length; ++i)
                 context.state.Parameters[dateParameters[i]] = null;
         }
-    context.log.LogDebug("render4.3");
+        context.log.LogDebug("render4.3");
     }
 
     /**

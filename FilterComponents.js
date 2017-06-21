@@ -141,8 +141,9 @@ class FilterComponents{
      * @function ClearFilters
      * @description function to set all filter parameters to null
      */
-    function ClearFilters(context){
-        for (var i = 0; i < _filterQuestions.length; i++){
+    static function ClearFilters(context){
+        var filterQuestions = Config.GetTALibrary().GetFilterQuestions();
+        for (var i = 0; i < filterQuestions.length; i++){
             context.state.Parameters["FILTER"+(i+1)] = null;
         }
     }
