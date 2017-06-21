@@ -6,13 +6,15 @@
  * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
  * @param {TAFolder} folder
  */
+
+//TODO: Refactor masks
 class TAMasks{
     private var _globals;
     private var _folder: TAFolder;
 
-    function TAMasks(globals, folder){
-        _globals = globals;
-        _folder = folder;
+    function TAMasks(params){
+        _globals = params.context;
+        _folder = params.folder;
     }
 
     /**
