@@ -66,12 +66,12 @@ class FilterComponents{
      * @description function to get filter expression for all selected filters
      * @returns {String}
      */
-    function GetGlobalsFilterExpression(){
+    function GetGlobalsFilterExpression(context){
         var fExpr;
         var filterExpressionSegments = [];
-        var codes = GetAllAnsweredFilterCodes()
+        var codes = GetAllAnsweredFilterCodes(context)
         for (var i = 0; i < codes.length; i++){
-            if( codes[i].questionType == QuestionType.Multi ) {
+            if( codes[i].questionType === QuestionType.Multi ) {
                 filterExpressionSegments.push ('ANY(' + codes[i].questionId + ',"' + codes[i].values.join('","') + '")');
             }
             else

@@ -64,7 +64,7 @@ class Filters {
      */
     static function FilterPageFilter(context){
         var fExpr = "";
-        fExpr = new FilterComponents({context: context}).GetGlobalsFilterExpression();
+        fExpr = new FilterComponents({context: context}).GetGlobalsFilterExpression(context);
         context.component.Expression = fExpr
     }
 }
