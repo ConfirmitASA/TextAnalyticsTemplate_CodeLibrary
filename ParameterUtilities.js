@@ -104,7 +104,7 @@ class ParameterUtilities {
     static function GetParameterCodes(params) {
         var context = params.context;
     context.log.LogDebug("gpc1");
-        var parameterName = parameterName.valuesArray;
+        var parameterName = params.parameterName;
     context.log.LogDebug("gpc2");
         var parameterValues: ParameterValueMultiSelect = context.state.Parameters[parameterName]
         ? context.state.Parameters[parameterName]
