@@ -92,25 +92,23 @@ class FilterComponents{
      * @returns {Object[]} - array of Objects with Filter information and answers like { questionTitle: "Title", questionId: "qId", values: [1,2], texts: ["one", "two"]}
      */
     function GetAllAnsweredFilterCodes(context){
-        context.log.LogDebug("filtc1");
+
         var answeredCodes = [];
-    context.log.LogDebug("filtc2");
         for (var i = 0; i < _filterQuestions.length; i++){
-            context.log.LogDebug("filtc3 "+i);
             var codes = GetFilterInformation({
                 context: context,
                 filterNumber: i
             });
 
-            context.log.LogDebug("filtc4 "+i);
+            context.log.LogDebug("filtc41 "+i);
 
             if(codes && codes.values.length > 0){
                 answeredCodes.push(codes);
             }
 
-            context.log.LogDebug("filtc5 "+i);
+            context.log.LogDebug("filtc51 "+i);
         }
-    context.log.LogDebug("filtc6");
+    context.log.LogDebug("filtc61");
         return answeredCodes
     }
 
@@ -124,13 +122,19 @@ class FilterComponents{
      */
     function GetFilterInformation(params){
         var context = params.context;
+    context.log.LogDebug("filtc1");
         var filterNumber = params.filterNumber;
+    context.log.LogDebug("filtc2");
         var result = false;
+    context.log.LogDebug("filtc3");
         var parameterName = 'FILTER' + (filterNumber +1);
+    context.log.LogDebug("filtc4");
         var codes = ParameterUtilities.GetParameterCodes({
             context: context,
             parameterName: parameterName
         });
+    context.log.LogDebug("filtc5");
+
         if ( codes.length > 0 ){
             var fTitle = GetFilterTitle(filterNumber);
             var fId = _filterQuestions[filterNumber].QuestionId;
@@ -142,11 +146,14 @@ class FilterComponents{
                 values: [],
                 texts: []
             };
+
             for ( var i = 0; i < codes.length; i++){
                 result.values.push(codes[i]);
                 result.texts.push(_filterQuestions[filterNumber].GetAnswer(codes[i]).Text)
             }
         }
+
+    context.log.LogDebug("filtc6");
         return result
     }
 
