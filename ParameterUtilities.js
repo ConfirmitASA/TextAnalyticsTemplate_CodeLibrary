@@ -103,23 +103,30 @@ class ParameterUtilities {
      */
     static function GetParameterCodes(params) {
         var context = params.context;
+    context.log.LogDebug("gpc1");
         var parameterName = parameterName.valuesArray;
-
+    context.log.LogDebug("gpc2");
         var parameterValues: ParameterValueMultiSelect = context.state.Parameters[parameterName]
         ? context.state.Parameters[parameterName]
         : ParameterValueMultiSelect(null);
-
+    context.log.LogDebug("gpc3");
         var codes = [];
-
+    context.log.LogDebug("gpc4");
         if (parameterValues != null) {
+            context.log.LogDebug("gpc5");
             for (var enumerator : Enumerator = new Enumerator(parameterValues);
             !enumerator.atEnd();
             enumerator.moveNext()
              ){
+                context.log.LogDebug("gpc6");
                 var parameterValue: ParameterValueResponse = enumerator.item();
+                context.log.LogDebug("gpc7");
                 codes.push(parameterValue.StringKeyValue);
+                context.log.LogDebug("gpc8");
             }
+            context.log.LogDebug("gpc9");
         }
+    context.log.LogDebug("gpc10");
         return codes;
     }
 }
