@@ -92,16 +92,25 @@ class FilterComponents{
      * @returns {Object[]} - array of Objects with Filter information and answers like { questionTitle: "Title", questionId: "qId", values: [1,2], texts: ["one", "two"]}
      */
     function GetAllAnsweredFilterCodes(context){
+        context.log.LogDebug("filtc1");
         var answeredCodes = [];
+    context.log.LogDebug("filtc2");
         for (var i = 0; i < _filterQuestions.length; i++){
+            context.log.LogDebug("filtc3 "+i);
             var codes = GetFilterInformation({
                 context: context,
                 filterNumber: i
             });
+
+            context.log.LogDebug("filtc4 "+i);
+
             if(codes && codes.values.length > 0){
                 answeredCodes.push(codes);
             }
+
+            context.log.LogDebug("filtc5 "+i);
         }
+    context.log.LogDebug("filtc6");
         return answeredCodes
     }
 
