@@ -82,12 +82,10 @@ class Page_detailed_analysis{
 
     static function initializeFilters(params){
         var context = params.context;
-        var taLibrary = params.taLibrary;
         //TODO: clarify what to do with filter components
 
-        if(context.component.SubmitSource == "ClearFilters"){
+        if(context.component.SubmitSource === "ClearFilters"){
             FilterComponents.ClearFilters(context);
-
             var dateParameters = DefaultParameters.dateParameters;
 
             for(var i = 0; i < dateParameters.length; ++i)

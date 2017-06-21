@@ -26,9 +26,8 @@ class Page_dashboard{
     context.log.LogDebug("render2");
         initiateParameters(context);
         context.log.LogDebug("render3");
-        var taLibrary = Config.GetTALibrary();
         context.log.LogDebug("render4");
-        initializeFilters({context: context, taLibrary: taLibrary});
+        initializeFilters({context: context});
         context.log.LogDebug("render5");
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         context.log.LogDebug("render6");
@@ -82,11 +81,7 @@ class Page_dashboard{
 
     static function initializeFilters(params){
         var context = params.context;
-        var taLibrary = params.taLibrary;
-    context.log.LogDebug("render4.1");
         //TODO: clarify what to do with filter components
-
-    context.log.LogDebug("render4.2");
 
         if(context.component.SubmitSource === "ClearFilters"){
             FilterComponents.ClearFilters(context);
@@ -95,7 +90,6 @@ class Page_dashboard{
             for(var i = 0; i < dateParameters.length; ++i)
                 context.state.Parameters[dateParameters[i]] = null;
         }
-        context.log.LogDebug("render4.3");
     }
 
     /**
