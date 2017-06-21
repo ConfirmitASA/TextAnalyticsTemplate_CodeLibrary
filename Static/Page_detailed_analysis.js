@@ -22,16 +22,17 @@ class Page_detailed_analysis{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
+        context.log.LogDebug('darender1');
         Config.SetTALibrary(context);
-
+    context.log.LogDebug('darender2');
         initiateParameters(context);
-
+    context.log.LogDebug('darender3');
         var taLibrary = Config.GetTALibrary();
-
+    context.log.LogDebug('darender4');
         initializeFilters({context: context, taLibrary: taLibrary});
-
+    context.log.LogDebug('darender5');
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-
+    context.log.LogDebug('darender6');
         TAParameters.ClearSubcategoriesParameters({
             context: context,
             folderId: selectedFolder,
@@ -41,6 +42,7 @@ class Page_detailed_analysis{
             attributesParameter: "TA_ATTRIBUTES_SINGLE"
 
         });
+    context.log.LogDebug('darender7');
 
         TAParameters.ClearSubcategoriesParameters({
             context: context,
@@ -49,11 +51,12 @@ class Page_detailed_analysis{
             categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
             subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
         });
-
+    context.log.LogDebug('darender8');
         processSelectedCategoryParameter({
             context: context,
             folder: selectedFolder
         })
+    context.log.LogDebug('darender9');
     }
 
     static function initiateParameters(context){
