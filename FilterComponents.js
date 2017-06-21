@@ -13,19 +13,16 @@ class FilterComponents{
 
     function FilterComponents(params){
         var context = params.context;
-        context.log.LogDebug("fc1");
         var questionsArray = Config.GetTALibrary().GetFilterQuestions();
-    context.log.LogDebug("fc2");
         var dataSource = Config.DS_Main;
-    context.log.LogDebug("fc3");
+
         _filterQuestions = [];
-    context.log.LogDebug("fc3");
+
         var project  = context.report.DataSource.GetProject(dataSource);
-    context.log.LogDebug("fc4");
+
         for( var i = 0; i < questionsArray.length; i++ ){
             _filterQuestions.push(project.GetQuestion(questionsArray[i]))
         }
-    context.log.LogDebug("fc5");
     }
 
     /**

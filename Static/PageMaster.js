@@ -107,13 +107,15 @@ class PageMaster{
      * @returns {Boolean}
      */
     static function ClearFilters_Hide(context){
+    context.log.LogDebug("fc1");
         var hideButton = true;
+    context.log.LogDebug("fc2");
         var filterComponents = new FilterComponents({
             context: context
         });
-
+    context.log.LogDebug("fc3");
         hideButton = !filterComponents.GetAllAnsweredFilterCodes().length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");
-
+    context.log.LogDebug("fc4");
         return hideButton
     }
 
