@@ -22,17 +22,16 @@ class Page_detailed_analysis{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
-        context.log.LogDebug('darender1');
         Config.SetTALibrary(context);
-    context.log.LogDebug('darender2');
+
         initiateParameters(context);
-    context.log.LogDebug('darender3');
+
         var taLibrary = Config.GetTALibrary();
-    context.log.LogDebug('darender4');
+
         initializeFilters({context: context, taLibrary: taLibrary});
-    context.log.LogDebug('darender5');
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    context.log.LogDebug('darender6');
+
         TAParameters.ClearSubcategoriesParameters({
             context: context,
             folderId: selectedFolder,
@@ -42,7 +41,6 @@ class Page_detailed_analysis{
             attributesParameter: "TA_ATTRIBUTES_SINGLE"
 
         });
-    context.log.LogDebug('darender7');
 
         TAParameters.ClearSubcategoriesParameters({
             context: context,
@@ -51,12 +49,11 @@ class Page_detailed_analysis{
             categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
             subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
         });
-    context.log.LogDebug('darender8');
+
         processSelectedCategoryParameter({
             context: context,
             folder: Config.GetTALibrary().GetFolderById(selectedFolder)
         })
-    context.log.LogDebug('darender9');
     }
 
     static function initiateParameters(context){
@@ -98,13 +95,9 @@ class Page_detailed_analysis{
 
     static function processSelectedCategoryParameter(params){
         var context = params.context;
-        context.log.LogDebug("proc1");
         var folder = params.folder;
-    context.log.LogDebug("proc2");
         var submitSource = context.component.SubmitSource;
-    context.log.LogDebug("proc3");
         var selectedCategory;
-    context.log.LogDebug("proc4");
         if(submitSource === "lstCategory" || submitSource === "lstSubCategory" || submitSource === "lstAttribute"){
             selectedCategory = TAParameters.GetSelectedCategory({
                 context: context,
@@ -115,9 +108,7 @@ class Page_detailed_analysis{
 
             context.state.Parameters['TA_ALL_CATEGORIES'] = new ParameterValueResponse(selectedCategory);
         }else {
-            context.log.LogDebug("proc5");
             selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-            context.log.LogDebug("proc6");
             TAParameters.SetSelectedCategory({
                 context: context,
                 hierarchy: folder.GetHierarchy(),
@@ -126,7 +117,6 @@ class Page_detailed_analysis{
                 subCategoriesParameterName: "TA_SUB_CATEGORIES_SINGLE",
                 attributesParameterName: "TA_ATTRIBUTES_SINGLE"
             });
-            context.log.LogDebug("proc7");
         }
 
     }
@@ -147,7 +137,7 @@ class Page_detailed_analysis{
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
         new TATiles({
             context: context,
-            folder: selectedFolder,
+            folder: Config.GetTALibrary().GetFolderById(selectedFolder),
             type: type,
             category: selectedCategory,
             distribution: distribution
@@ -249,7 +239,7 @@ class Page_detailed_analysis{
         context.component.Caching.Enabled = false;
 
         var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
-        var folder = TALibrary.GetTAFoldersParameterValue(context);
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
         var project =  context.report.DataSource.GetProject(folder.GetDatasourceId());
 
@@ -269,7 +259,7 @@ class Page_detailed_analysis{
 
         var detailedAnalysisTable = new TADetailedAnalysisTable({
             context: context,
-            folder: folder,
+            folder: Config.GetTALibrary().GetFolderById(selectedFolder),
             category: selectedCategory,
             question: selectedQuestion,
             distribution: distribution,
@@ -299,7 +289,8 @@ class Page_detailed_analysis{
      */
     static function txtDetailedAnalysisScript_Render(context){
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-        var folder = TALibrary.GetTAFoldersParameterValue(context);
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var hierarhy = selectedCategory === 'emptyv'? folder.GetHierarchy().GetHierarchyArray() : [folder.GetHierarchy().GetObjectById(selectedCategory)];
         var headers = TATableData.GetTableRowHeaders({context: context, tableName: "tblDetailedAnalysis"});
         if( headers.length > 0){
@@ -446,7 +437,8 @@ class Page_detailed_analysis{
      */
     static function lstSubCategory_Hide(context){
         var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
-        var folder = TALibrary.GetTAFoldersParameterValue(context);
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
         return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
     }
@@ -460,7 +452,8 @@ class Page_detailed_analysis{
      */
     static function lstAttribute_Hide(context){
         var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
-        var folder = TALibrary.GetTAFoldersParameterValue(context);
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
         return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
     }
@@ -475,7 +468,8 @@ class Page_detailed_analysis{
      */
     static function txtSubCategory_Hide(context){
     var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
-    var folder = TALibrary.GetTAFoldersParameterValue(context);
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
     return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
 }
@@ -502,7 +496,8 @@ class Page_detailed_analysis{
      */
     static function txtAttribute_Hide(context){
         var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
-        var folder = TALibrary.GetTAFoldersParameterValue(context);
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
         return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
     }
