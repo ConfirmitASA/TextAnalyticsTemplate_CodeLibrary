@@ -246,12 +246,15 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblThemeDistribution_Render(context){
+        context.log.LogDebug("tblthemedistr1");
         var table = context.component;
+    context.log.LogDebug("tblthemedistr2");
         var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
-
+    context.log.LogDebug("tblthemedistr3");
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    context.log.LogDebug("tblthemedistr4");
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
+    context.log.LogDebug("tblthemedistr5");
         var themeDistributionTable = new TAThemeDistributionTable({
             context: context,
             folder: folder,
@@ -259,11 +262,16 @@ class Page_dashboard{
             sentiment: sentiment,
             config: Config
         });
+    context.log.LogDebug("tblthemedistr6");
 
         themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
+    context.log.LogDebug("tblthemedistr7");
         themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "detailed_analysis, comments");
+    context.log.LogDebug("tblthemedistr8");
         themeDistributionTable.GetTATableUtils().ClearTableDistributions();
+    context.log.LogDebug("tblthemedistr9");
         themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
+    context.log.LogDebug("tblthemedistr10");
     }
 
     /**
