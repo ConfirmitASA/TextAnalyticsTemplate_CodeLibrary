@@ -17,20 +17,28 @@ class TATableData{
      */
     static function GetTableRowHeaders(params){
         var context = params.context;
+        context.log.LogDebug("--tblData--1");
         var tableName = params.tableName;
-
+    context.log.LogDebug("--tblData--2");
         var rowheaders={
             length: 0
         };
+    context.log.LogDebug("--tblData--3");
 
         var rowHeaderTitles = context.report.TableUtils.GetRowHeaderCategoryTitles(tableName);
+    context.log.LogDebug("--tblData--4");
         var rowHeaderIds = context.report.TableUtils.GetRowHeaderCategoryIds(tableName);
-
+    context.log.LogDebug("--tblData--5");
         //TODO: change styling
         for(var i=0; i<rowHeaderIds.length;i++){
+            context.log.LogDebug("--tblData--6 "+i);
             rowheaders[rowHeaderIds[i][0]+((rowHeaderIds[i].length>1)?("_block"+rowHeaderIds[i][1]):"")] = {title: rowHeaderTitles[i][0], index: i, categoryId: rowHeaderIds[i][0].toLowerCase(), blockId: ((rowHeaderIds[i].length>1)?("block"+rowHeaderIds[i][1]):null)};
+            context.log.LogDebug("--tblData--7 "+i);
             rowheaders.length++;
+            context.log.LogDebug("--tblData--8 "+i);
+
         }
+    context.log.LogDebug("--tblData--9");
 
         return rowheaders;
     }

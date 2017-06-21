@@ -7,6 +7,8 @@
  * @param  {TAFolder} folder
  * @param {Table} table
  */
+
+//TODO: refactor
 class TATableUtils{
     private var _globals;
     private var _folder: TAFolder;
