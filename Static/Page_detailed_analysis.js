@@ -236,32 +236,25 @@ class Page_detailed_analysis{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblDetailedAnalysis_Render(context){
-        context.log.LogDebug("da1");
         context.component.Caching.Enabled = false;
-    context.log.LogDebug("da2");
+
         var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
-    context.log.LogDebug("da3");
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    context.log.LogDebug("da4");
+
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    context.log.LogDebug("da5");
+
         var project =  context.report.DataSource.GetProject(folder.GetDatasourceId());
-    context.log.LogDebug("da6");
+
         var selectedQuestionType = false;
-    context.log.LogDebug("da7 "+selectedQuestion);
+
         if(selectedQuestion && selectedQuestion !== "emptyv")
             selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
-    context.log.LogDebug("da8");
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
-    context.log.LogDebug("da9");
         var hideEmptyRows = ParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_HIDE_EMPTY_ROWS"});
-    context.log.LogDebug("da10");
         var toggleChartValue = ParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_TOGGLE_BARCHART"});
-    context.log.LogDebug("da11");
         var toggleChart = (toggleChartValue.length > 0);
-    context.log.LogDebug("da12");
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-    context.log.LogDebug("da13");
         var detailedAnalysisTable = new TADetailedAnalysisTable({
             context: context,
             folder: folder,
@@ -271,13 +264,10 @@ class Page_detailed_analysis{
             questionType: (selectedQuestionType === QuestionType.Multi),
             toggleChart: toggleChart
         });
-    context.log.LogDebug("da14");
+
         detailedAnalysisTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table", "reportal-barchart", "detailed-analysis-table"]);
-    context.log.LogDebug("da15");
         detailedAnalysisTable.GetTATableUtils().SetupHideEmptyRows((hideEmptyRows.length >0));
-    context.log.LogDebug("da16");
         detailedAnalysisTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "comments");
-    context.log.LogDebug("da17");
     }
 
     /**
