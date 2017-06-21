@@ -95,7 +95,7 @@ class PageMaster{
         }
     context.log.LogDebug('fsum12');
 
-        var codes = FilterComponents.GetAllAnsweredFilterCodes(context);
+        var codes = filterComponents.GetAllAnsweredFilterCodes(context);
     context.log.LogDebug('fsum13');
         for( var i = 0 ; i < codes.length; i++){
             summarySegments.push(( "<div>" + codes[i].questionTitle + " = "+ codes[i].texts.join(" | ")+"</div>"));
