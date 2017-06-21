@@ -14,12 +14,12 @@ class TATableUtils{
     private var _currentLanguage;
     private var _curDictionary;
 
-    function TATableUtils(globals, folder, table){
-        _globals = globals;
+    function TATableUtils(params){
+        _globals = params.context;
         _currentLanguage = _globals.report.CurrentLanguage;
         _curDictionary = Translations.dictionary(_currentLanguage);
-        _folder = folder;
-        _table = table;
+        _folder = params.folder;
+        _table = params.table;
     }
 
     /**
