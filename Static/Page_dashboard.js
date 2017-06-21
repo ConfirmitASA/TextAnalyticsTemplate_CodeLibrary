@@ -246,15 +246,11 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblThemeDistribution_Render(context){
-        context.log.LogDebug("tblthemedistr1");
         var table = context.component;
-    context.log.LogDebug("tblthemedistr2");
         var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
-    context.log.LogDebug("tblthemedistr3");
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    context.log.LogDebug("tblthemedistr4");
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    context.log.LogDebug("tblthemedistr5");
+
         var themeDistributionTable = new TAThemeDistributionTable({
             context: context,
             folder: folder,
@@ -262,16 +258,11 @@ class Page_dashboard{
             sentiment: sentiment,
             config: Config
         });
-    context.log.LogDebug("tblthemedistr6");
 
         themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
-    context.log.LogDebug("tblthemedistr7");
         themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "detailed_analysis, comments");
-    context.log.LogDebug("tblthemedistr8");
         themeDistributionTable.GetTATableUtils().ClearTableDistributions();
-    context.log.LogDebug("tblthemedistr9");
         themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
-    context.log.LogDebug("tblthemedistr10");
     }
 
     /**
@@ -554,32 +545,26 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtThemeDistributionScript_Render(context){
-        context.log.LogDebug("themedistr1");
         var currentLanguage = context.report.CurrentLanguage;
-        context.log.LogDebug("themedistr2");
-
         var currentDictionary = Translations.dictionary(currentLanguage);
-    context.log.LogDebug("themedistr3");
+
         var categoriesText = "<script>" +
             "var z = [].slice.call(document.querySelectorAll('.reportal-categories>thead>tr>td[class*=\"_cc\"]'));" +
             "z.forEach(item => item.innerHTML = '"+currentDictionary['Categories']+"');" +
             "</script>";
-    context.log.LogDebug("themedistr4");
 
         var headers;
-    context.log.LogDebug("themedistr4");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    context.log.LogDebug("themedistr5");
+
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    context.log.LogDebug("themedistr6");
         var hierarhy = folder.GetHierarchy().GetHierarchyArray()
-    context.log.LogDebug("themedistr7");
+
         headers = TATableData.GetTableRowHeaders({
             context: context,
             tableName: "tblThemeDistribution"
         });
-    context.log.LogDebug("themedistr8");
+
         var upgradeText = "<script type=\"text/javascript\">"+
             "var upgradedTable = new Reportal.AggregatedTable("+
                 "{"+
@@ -596,13 +581,10 @@ class Page_dashboard{
                 "}"+
             ")"+
             "</script>";
-    context.log.LogDebug("themedistr9");
+
         context.component.Output.Append(categoriesText);
-    context.log.LogDebug("themedistr10");
         context.component.Output.Append(upgradeText);
-    context.log.LogDebug("themedistr11");
         context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
-    context.log.LogDebug("themedistr12");
     }
 
     /**

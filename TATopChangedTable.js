@@ -26,10 +26,14 @@ class TATopChangedTable{
     function TATopChangedTable(params){
         var context = params.context;
         _folder = params.folder;
-        _taMasks = new TAMasks(context, _folder);
+        _taMasks = new TAMasks({context: context, folder: _folder});
         _table = params.table;
-        _taTableUtils = new TATableUtils(context, _folder, _table);
-        _sentiment = params.sentiment ? true : false;
+        _taTableUtils = new TATableUtils({
+            context: context,
+            folder: _folder,
+            table: _table
+        });
+        _sentiment = !!params.sentiment;
         _level = parseInt(params.level);
         _topN = params.topN ? params.topN : 5;
         _period = {
