@@ -54,7 +54,7 @@ class Page_detailed_analysis{
     context.log.LogDebug('darender8');
         processSelectedCategoryParameter({
             context: context,
-            folder: selectedFolder
+            folder: Config.GetTALibrary().GetFolderById(selectedFolder)
         })
     context.log.LogDebug('darender9');
     }
