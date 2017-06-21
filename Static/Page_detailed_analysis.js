@@ -248,7 +248,7 @@ class Page_detailed_analysis{
         var project =  context.report.DataSource.GetProject(folder.GetDatasourceId());
     context.log.LogDebug("da6");
         var selectedQuestionType = false;
-    context.log.LogDebug("da7");
+    context.log.LogDebug("da7 "+selectedQuestion);
         if(selectedQuestion && selectedQuestion !== "emptyv")
             selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
     context.log.LogDebug("da8");
