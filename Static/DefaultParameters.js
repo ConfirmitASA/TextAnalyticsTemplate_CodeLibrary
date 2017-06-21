@@ -13,6 +13,10 @@ class DefaultParameters {
             Value: "emptyv"
         },
         {
+            Id: "TA_SELECTED_QUESTION",
+            Value: "emptyv"
+        },
+        {
             Id: "TA_ALL_CATEGORIES",
             Value: "emptyv"
         },
