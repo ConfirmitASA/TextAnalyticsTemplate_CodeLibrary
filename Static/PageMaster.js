@@ -63,40 +63,51 @@ class PageMaster{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function FilterSummary_Render(context){
+        context.log.LogDebug('fsum1');
         var filterSummary ;
+    context.log.LogDebug('fsum2');
         var summarySegments = [];
+    context.log.LogDebug('fsum3');
         Config.SetTALibrary();
+    context.log.LogDebug('fsum4');
         var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            context: context
         });
-
+    context.log.LogDebug('fsum5');
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    context.log.LogDebug('fsum6');
         var currentLaguage = context.report.CurrentLanguage;
+    context.log.LogDebug('fsum7');
         var curDictionary = Translations.dictionary(currentLaguage);
+    context.log.LogDebug('fsum8');
         summarySegments.push(("<div>"+curDictionary['Selected question']+" = "+(selectedFolder ? selectedFolder : Config.GetTALibrary().GetFolderById(selectedFolder).GetName()) +"</div>"));
-
+    context.log.LogDebug('fsum9');
         var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
-
+    context.log.LogDebug('fsum9');
         if(startDate){
             summarySegments.push(("<div>"+curDictionary['Start date']+" = " + startDate + "</div>"));
         }
+    context.log.LogDebug('fsum10');
         var endDate = !context.state.Parameters.IsNull("TA_DATE_TO") && context.state.Parameters.GetDate("TA_DATE_TO").ToShortDateString();
-
+    context.log.LogDebug('fsum11');
         if(endDate){
             summarySegments.push(("<div>"+curDictionary['End date']+" = " + endDate + "</div>"));
         }
+    context.log.LogDebug('fsum12');
 
-        var codes = filterComponents.GetAllAnsweredFilterCodes();
+        var codes = FilterComponents.GetAllAnsweredFilterCodes(context);
+    context.log.LogDebug('fsum13');
         for( var i = 0 ; i < codes.length; i++){
             summarySegments.push(( "<div>" + codes[i].questionTitle + " = "+ codes[i].texts.join(" | ")+"</div>"));
         }
-
+    context.log.LogDebug('fsum14');
         filterSummary = summarySegments.join("<span>AND</span>");
+    context.log.LogDebug('fsum15');
         context.component.Output.Append(filterSummary);
+    context.log.LogDebug('fsum16');
         if( codes.length > 0 || startDate || endDate)
             context.component.Output.Append("<button title='Clear filters' onclick='javascript:document.querySelector(\".filters-clear-button input\").click()' style = 'padding: 1px'><svg width='10' height='10' class='icon-circle-x'><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='/discoveryanalytics/svg-icons/stack/svg/sprite.stack.svg#circle-x'></use></svg></button>");
+    context.log.LogDebug('fsum17');
     }
 
     /**
@@ -107,15 +118,12 @@ class PageMaster{
      * @returns {Boolean}
      */
     static function ClearFilters_Hide(context){
-    context.log.LogDebug("fc1");
         var hideButton = true;
-    context.log.LogDebug("fc2");
         var filterComponents = new FilterComponents({
             context: context
         });
-    context.log.LogDebug("fc3");
         hideButton = !filterComponents.GetAllAnsweredFilterCodes(context).length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");
-    context.log.LogDebug("fc4");
+
         return hideButton
     }
 
