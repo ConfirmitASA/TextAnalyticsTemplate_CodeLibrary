@@ -21,16 +21,13 @@ class Page_dashboard{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
-    context.log.LogDebug("render1");
         Config.SetTALibrary(context);
-    context.log.LogDebug("render2");
+
         initiateParameters(context);
-        context.log.LogDebug("render3");
-        context.log.LogDebug("render4");
+
         initializeFilters({context: context});
-        context.log.LogDebug("render5");
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        context.log.LogDebug("render6");
 
         //TODO: refactor Clearing subcategories
 
@@ -53,8 +50,6 @@ class Page_dashboard{
             categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
             subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
         });
-
-        context.log.LogDebug("render8");
     }
 
     static function initiateParameters(context){
