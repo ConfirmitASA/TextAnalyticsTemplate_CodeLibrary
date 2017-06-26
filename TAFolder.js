@@ -11,6 +11,7 @@ class TAFolder{
 
     //TA Fields
     private var _id: String;
+    private var _folderName;
     private var _qName: String;
     private var _modelNo: String;
 
@@ -25,7 +26,8 @@ class TAFolder{
 
     function TAFolder(globals, questionIndex, config){
         _globals = globals;
-        _id = config.TAQuestions[questionIndex].TAFolderId;
+        _id = config.TAQuestions[questionIndex].TAQuestionName+config.TAQuestions[questionIndex].TAModelNo;
+        _folderName = config.TAQuestions[questionIndex].TAFolderId;
         _qName = config.TAQuestions[questionIndex].TAQuestionName;
         _modelNo = config.TAQuestions[questionIndex].TAModelNo;
         _timeVariableId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].TimeVariableId], [config.TimeVariableId], null, ["interview_start"])[0];
@@ -37,11 +39,12 @@ class TAFolder{
 
         var hitlistColumns = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_hitlist"]);
         _hitlistColumns = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].HitlistColumns, config.HitlistColumns, hitlistColumns, []);
-
+        globals.log.LogDebug('before hierarchy');
         _hierarchy = new Hierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
             tableName: config.TAQuestions[questionIndex].DatabaseTableName,
             relationshipColumnName: config.TAQuestions[questionIndex].RelationshipColumnName,
+            textColumnName: "__l"+globals.report.CurrentLanguage,
             textSeparator: config.TAQuestions[questionIndex].TextSeparator != "" ? config.TAQuestions[questionIndex].TextSeparator: null
         });
     }
@@ -112,6 +115,10 @@ class TAFolder{
     function GetId(){
         return _id;
     }
+
+    function GetName(){
+        return _folderName;
+}
 
     /**
      * @memberof TAFolder

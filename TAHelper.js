@@ -28,7 +28,7 @@ class TAHelper{
      * @param {ReportState} state
      * @param {String} categoriesParameterName
      * @param {String} subCategoriesParameterName
-     * @param {String} attribtesPararmeterNam
+     * @param {String} attributesParameterName
      * @returns {String}
      */
     static function GetSelectedCategory(state, categoriesParameterName, subCategoriesParameterName, attribtesPararmeterName){
@@ -39,14 +39,14 @@ class TAHelper{
 
         var subCategoriesParameter;
         if(subCategoriesParameterName)
-            subCategoriesParameter= state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
+            subCategoriesParameter= state.Parameters.GetString(subCategoriesParameterName);
 
 
         var attributesParameter;
         if(attribtesPararmeterName)
-            attributesParameter = state.Parameters.GetString("TA_ATTRIBUTES_SINGLE");
+            attributesParameter = state.Parameters.GetString(attribtesPararmeterName);
 
-        var selectedCategory = false;
+        var selectedCategory = "emptyv";
 
         if(categoriesParameter && categoriesParameter != "emptyv"){
             selectedCategory = categoriesParameter;
@@ -62,6 +62,42 @@ class TAHelper{
 
         return selectedCategory;
     }
+
+    static function SetSelectedCategory(state, hierarchy, allCategoriesParameterValue, categoriesParameterName, subCategoriesParameterName, attribtesPararmeterName,log){
+        var defaultParameterValues = [
+            {
+                Id: categoriesParameterName,
+                Value: "emptyv"
+            },
+            {
+                Id: subCategoriesParameterName,
+                Value: "emptyv"
+            },
+            {
+                Id: attribtesPararmeterName,
+                Value: "emptyv"
+            }
+        ];
+        if( allCategoriesParameterValue != "emptyv"){
+            log.LogDebug('not empty');
+            var selectedCategory = hierarchy.GetObjectById(allCategoriesParameterValue);
+            defaultParameterValues[selectedCategory.level].Value = selectedCategory.id;
+            log.LogDebug('level: '+selectedCategory.level+' value: '+selectedCategory.id);
+            if(selectedCategory.level > 0){
+                defaultParameterValues[selectedCategory.level-1].Value = selectedCategory.parent
+            }
+
+            if(selectedCategory.level == 2){
+                defaultParameterValues[0].Value = hierarchy.GetObjectById(selectedCategory.parent).parent
+            }
+
+        }
+
+        for(var i = 0; i < defaultParameterValues.length; i++) {
+            state.Parameters[defaultParameterValues[i].Id] = new ParameterValueResponse(defaultParameterValues[i].Value);
+        }
+
+}
 
     /**
      * @memberof TAHelper

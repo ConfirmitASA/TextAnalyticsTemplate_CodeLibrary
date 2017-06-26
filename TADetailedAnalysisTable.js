@@ -20,9 +20,14 @@ class TADetailedAnalysisTable{
     private var _selectedQuestion;
     private var _distribution;
     private var _multiQuestion;
+    private var _currentLanguage;
+    private var _curDictionary;
+    private var _bar100;
 
-    function TADetailedAnalysisTable(globals, folder, table, selectedCategory, selectedQuestion, distribution, multiQuestion){
+    function TADetailedAnalysisTable(globals, folder, table, selectedCategory, selectedQuestion, distribution, multiQuestion, bar100){
         _globals = globals;
+        _currentLanguage = _globals.report.CurrentLanguage;
+        _curDictionary = Translations.dictionary(_currentLanguage);
         _folder = folder;
         _taMasks = new TAMasks(globals, folder);
         _table = table;
@@ -31,6 +36,7 @@ class TADetailedAnalysisTable{
         _selectedQuestion = selectedQuestion && selectedQuestion != "emptyv" ? selectedQuestion : "all";
         _distribution = distribution ? distribution : "0";
         _multiQuestion = multiQuestion;
+        _bar100 = bar100 ? bar100 : false;
         _render();
     }
 
@@ -131,7 +137,7 @@ class TADetailedAnalysisTable{
      */
     private function _getColumnFormulaExpression(){
         var countformulaexpression;
-        var countformula = '[FORMULA]{decimals:0;label:"Comments";hideheader:true';
+        var countformula = '[FORMULA]{decimals:0;label:"'+_curDictionary['Comments']+'";hideheader:true';
         if( _distribution == "1"){
             countformula += ";percent:true";
             countformulaexpression = '"IF((cellv(1,1)>0),(cellv(col-1,row)/cellv(1,1)),EMPTYV())"';
@@ -171,8 +177,9 @@ class TADetailedAnalysisTable{
      * @function _addChartColumn
      */
     private function _addChartColumn(){
+    var chartType = _bar100 ? ChartComboType.Bar100 : ChartComboType.Bar
         var chartHeader =  _taTableUtils.GetChartHeader(
-            ChartComboType.Bar100,
+            chartType,
             [
                 {
                     Formula: "cellv(col-25,row)",
@@ -200,21 +207,19 @@ class TADetailedAnalysisTable{
     private function _setupConditionalFormatting(){
         _taTableUtils.SetupConditionalFormatting(
             [
-                [
-                    {
-                        expression: 'cellv(col, row)<('+(Config.SentimentRange.Neutral[0] - 6)+') AND cellv(col,row)<>EMPTYV() ',
-                        style: 'negative'
-                    },
+                {
+                    expression: 'cellv(col, row)<('+(Config.SentimentRange.Neutral[0] - 6)+') AND cellv(col,row)<>EMPTYV() ',
+                    style: 'negative'
+                },
 
-                    {
-                        expression: '(cellv(col, row)>=('+(Config.SentimentRange.Neutral[0] - 6)+')) AND (cellv(col, row)<='+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+') AND cellv(col,row)<>EMPTYV()',
-                        style: 'neutral'
-                    },
-                    {
-                        expression: 'cellv(col, row)>'+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+' AND cellv(col,row)<>EMPTYV()',
-                        style: 'positive'
-                    }
-                ]
+                {
+                    expression: '(cellv(col, row)>=('+(Config.SentimentRange.Neutral[0] - 6)+')) AND (cellv(col, row)<='+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+') AND cellv(col,row)<>EMPTYV()',
+                    style: 'neutral'
+                },
+                {
+                    expression: 'cellv(col, row)>'+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+' AND cellv(col,row)<>EMPTYV()',
+                    style: 'positive'
+                }
             ],
             "NegNeuPos",
             {
@@ -248,7 +253,7 @@ class TADetailedAnalysisTable{
                 },
 
             ],
-            "Negative",
+            "Neutral",
             {
                 axis: Area.Columns,
                 direction: Area.Left,
@@ -264,7 +269,7 @@ class TADetailedAnalysisTable{
                 },
 
             ],
-            "Negative",
+            "Positive",
             {
                 axis: Area.Columns,
                 direction: Area.Left,
