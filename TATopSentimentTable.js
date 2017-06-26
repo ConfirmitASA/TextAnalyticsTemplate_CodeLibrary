@@ -17,6 +17,7 @@ class TATopSentimentTable{
     private var _taMasks: TAMasks;
     private var _table: Table;
     private var _level;
+    private var _currentLanguage;
     private var _topN;
     private var _sentiment;
     private var _distribution;
@@ -31,6 +32,7 @@ class TATopSentimentTable{
         _level = parseInt(level);
         _topN = topN ? topN : 5;
         _distribution = distribution ? distribution : "0";
+        _currentLanguage = globals.report.CurrentLanguage;
         _render();
     }
 
@@ -74,7 +76,7 @@ class TATopSentimentTable{
                 Formula: "cellv(col-1,row)",
                 Color: ( _sentiment ? Config.Colors.NegNeuPosPalette.Positive : Config.Colors.NegNeuPosPalette.Negative )
             }],
-            "Count");
+            Translations.dictionary(_currentLanguage)['Count']);
         _table.ColumnHeaders.Add(chartHeader);
     }
 

@@ -10,11 +10,15 @@ class TAParameters{
     private var _globals;
     private var _library: TALibrary;
     private var _parameterUtilities: ParameterUtilities;
+    private var _currentLanguage;
+    private var _curDictionary;
 
     function TAParameters(globals, library){
         _globals = globals;
         _library = library;
         _parameterUtilities = new ParameterUtilities(_globals);
+        _currentLanguage = globals.report.CurrentLanguage;
+        _curDictionary = Translations.dictionary(_currentLanguage);
     }
 
     /**
@@ -47,12 +51,30 @@ class TAParameters{
         var folders = _library.GetFolders();
 
         var parameterValues = [];
-
+        var project;
+        var question;
         for(var i = 0; i < folders.length; i++){
+            project = _globals.report.DataSource.GetProject(folders[i].GetDatasourceId());
+            question = project.GetQuestion(folders[i].GetQuestionId());
             parameterValues.push({
                 Code: folders[i].GetId(),
-                Label: folders[i].GetId()
+                Label: folders[i].GetName() //+ (question.Text ? " - " + question.Text : "")
             });
+        }
+        _parameterUtilities.LoadParameterValues(parameter, parameterValues);
+    }
+
+    function RenderAllCategoriesParameter(parameter,folderId, emptyValueLabel){
+        var categories = _library.
+        GetFolderById(folderId).
+        GetHierarchy().
+        GetFlatArray();
+        var parameterValues = _addEmptyValue(emptyValueLabel);
+        for(var i = 0; i < categories.length; i++){
+            parameterValues.push({
+                Code: categories[i].id,
+                Label: categories[i].name
+            })
         }
         _parameterUtilities.LoadParameterValues(parameter, parameterValues);
     }
@@ -118,15 +140,15 @@ class TAParameters{
         var levelValues = [
             {
                 Code: "0",
-                Label: "1st level (category)"
+                Label: _curDictionary["1st level (category)"]
             },
             {
                 Code: "1",
-                Label: "2nd level (sub-category)"
+                Label: _curDictionary["2nd level (sub-category)"]
             },
             {
                 Code: "2",
-                Label: "3rd level (attributes)"
+                Label: _curDictionary["3rd level (attributes)"]
             }
         ];
         var parameterValues = _addEmptyValue(emptyValueLabel);
@@ -176,7 +198,7 @@ class TAParameters{
      * @param {String} value - empty value for that parameter "emptyv"
      * @param {String} categoriesParameter
      * @param {String} subcategoriesParameter
-     * @param {String} attributesParamete
+     * @param {String} attributesParameter
      */
     function ClearSubcategoriesParameters(folderId, value, categoriesParameter, subcategoriesParameter, attributesParameter){
         var folder = _library.GetFolderById(folderId);

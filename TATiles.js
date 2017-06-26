@@ -62,7 +62,7 @@ class TATiles{
         }
 
         var rowexpr = _taTableUtils.GetTAQuestionExpression(qType, mask);
-        var columnexpr = _taTableUtils.GetCategoriesExpression( _sentiment, false, true, _distribution);
+        var columnexpr = _taTableUtils.GetCategoriesExpression( _sentiment, false, true, _distribution, Config.SentimentRange);
         _taTableUtils.CreateTableFromExpression(rowexpr, columnexpr);
 
         _table.Distribution.Enabled = true;

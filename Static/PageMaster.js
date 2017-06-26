@@ -5,6 +5,7 @@
 class PageMaster{
     private static var _filterComponents;
 
+
     /**
      * @memberof PageMaster
      * @function FiltersButtonHtml_Hide
@@ -64,7 +65,23 @@ class PageMaster{
     static function FilterSummary_Render(context){
         var filterSummary ;
         var summarySegments = [];
+        Config.SetTALibrary();
         _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var currentLaguage = context.report.CurrentLanguage;
+        var curDictionary = Translations.dictionary(currentLaguage);
+        summarySegments.push(("<div>"+curDictionary['Selected question']+" = "+(selectedFolder ? selectedFolder : Config.GetTALibrary().GetFolderById(selectedFolder).GetName()) +"</div>"));
+
+        var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
+
+        if(startDate){
+            summarySegments.push(("<div>"+curDictionary['Start date']+" = " + startDate + "</div>"));
+        }
+        var endDate = !context.state.Parameters.IsNull("TA_DATE_TO") && context.state.Parameters.GetDate("TA_DATE_TO").ToShortDateString();
+
+        if(endDate){
+            summarySegments.push(("<div>"+curDictionary['End date']+" = " + endDate + "</div>"));
+        }
 
         var codes = _filterComponents.GetAllAnsweredFilterCodes();
         for( var i = 0 ; i < codes.length; i++){
@@ -73,7 +90,7 @@ class PageMaster{
 
         filterSummary = summarySegments.join("<span>AND</span>");
         context.component.Output.Append(filterSummary);
-        if( codes.length > 0 )
+        if( codes.length > 0 || startDate || endDate)
             context.component.Output.Append("<button title='Clear filters' onclick='javascript:document.querySelector(\".filters-clear-button input\").click()' style = 'padding: 1px'><svg width='10' height='10' class='icon-circle-x'><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='/discoveryanalytics/svg-icons/stack/svg/sprite.stack.svg#circle-x'></use></svg></button>");
     }
 
@@ -88,7 +105,7 @@ class PageMaster{
         var hideButton = true;
         _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
 
-        hideButton = !_filterComponents.GetAllAnsweredFilterCodes().length > 0;
+        hideButton = !_filterComponents.GetAllAnsweredFilterCodes().length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");
 
         return hideButton
     }
@@ -102,4 +119,62 @@ class PageMaster{
     static function ClearFilters_Render(context){
 
     }
+
+    static function txtQuestion_Hide(context){
+    return false
+
+}
+    static function txtQuestion_Render(context){
+        var label = Translations.dictionary(context.report.CurrentLanguage)['Question'];
+        context.component.Output.Append(label);
+
+}
+
+    static function txtDateFrom_Hide(context){
+    return false
+
+}
+    static function txtDateFrom_Render(context){
+    var label = Translations.dictionary(context.report.CurrentLanguage)['From'];
+    context.component.Output.Append(label);
+
+}
+
+    static function txtDateTo_Hide(context){
+    return false
+
+}
+    static function txtDateTo_Render(context){
+    var label = Translations.dictionary(context.report.CurrentLanguage)['To'];
+    context.component.Output.Append(label);
+
+}
+
+    static function btnApplyFilters_Hide(context){
+    return false
+}
+    static function btnApplyFilters_Render(context){
+    FilterPanel.btnSave_Render(context);
+}
+
+    static function hierarchyComponent_Hide(context) {
+    return !context.report.PersonalizedQuestion
+}
+
+    static function txtHierarchyLabel_Hide(context) {
+    return !context.report.PersonalizedQuestion
+}
+
+    static function txtHierarchyLabel_Render(context) {
+    var label = Translations.dictionary(context.report.CurrentLanguage)["Hierarchy"];
+    context.component.Output.Append(label);
+}
+    static function txtPageTitle_Hide(context){
+    return false
+}
+    static function txtPageTitle_Render(context){
+    var label = Translations.dictionary(context.report.CurrentLanguage)["What people are talking about"];
+    context.component.Output.Append(label);
+}
+
 }

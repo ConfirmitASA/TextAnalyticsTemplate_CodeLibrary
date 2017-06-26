@@ -6,7 +6,9 @@ class Page_filters{
     private static var _filterComponents;
     private static var _folder;
     private static const _defaultParameters = [];
-
+    private static var _currentLanguage;
+    private static var _curDictionary;
+    private static var _filter_panel;
     /**
      * @memberof Page_filters
      * @function Hide
@@ -25,16 +27,22 @@ class Page_filters{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
+    _currentLanguage = context.report.CurrentLanguage;
+    _curDictionary = Translations.dictionary(_currentLanguage);
         Config.SetTALibrary(TAHelper.GetGlobals(context));
         _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+        _filter_panel = new FilterPanel(_filterComponents);
         if(context.component.SubmitSource == "btnClearFilters"){
                 _filterComponents.ClearFilters();
+            context.state.Parameters["TA_DATE_FROM"] = null;
+            context.state.Parameters["TA_DATE_TO"] = null;
             }
         if(context.component.SubmitSource == "btnClearDateFilter"){
             context.state.Parameters["TA_DATE_FROM"] = null;
             context.state.Parameters["TA_DATE_TO"] = null;
         }
         if(context.component.SubmitSource == "lstQuestions") {
+            context.state.Parameters["TA_ALL_CATEGORIES"] = null;
             context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
             context.state.Parameters["TA_LEVEL"] = null;
             context.state.Parameters["TA_SUB_CATEGORIES_SINGLE"] = null;
@@ -60,7 +68,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnSaveReturn_Hide(context){
-        return false
+        return FilterPanel.btnSaveReturn_Hide(context);
     }
 
     /**
@@ -69,8 +77,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSaveReturn_Render(context){
-        context.component.Label = new Label(context.report.CurrentLanguage,"Save and Return");
-        context.component.TargetPage = context.state.Parameters.GetString("TA_LAST_VISITED_PAGE");
+        FilterPanel.btnSaveReturn_Render(context)
     }
 
     /**
@@ -80,7 +87,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnSave_Hide(context){
-        return false
+        return FilterPanel.btnSave_Hide(context);
     }
 
     /**
@@ -89,8 +96,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSave_Render(context){
-        context.component.Label = new Label(context.report.CurrentLanguage,"Save");
-        context.component.TargetPage = "filters";
+        FilterPanel.btnSave_Render(context);
     }
 
     /**
@@ -100,7 +106,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnClearFilters_Hide(context){
-        return false
+        return FilterPanel.btnClearFilters_Hide(context);
     }
 
     /**
@@ -109,9 +115,8 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnClearFilters_Render(context){
-    context.component.Label = new Label(context.report.CurrentLanguage,"Clear Filters");
-    context.component.TargetPage = "filters";
-}
+        FilterPanel.btnClearFilters_Render(context);
+    }
 
     /**
      * @memberof Page_filters
@@ -121,8 +126,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function txtFilterTitle_Hide(context, filterNumber){
-    var filterQuestion = _filterComponents.GetFilterQuestion(filterNumber-1);
-        return !filterQuestion
+        return _filter_panel.txtFilterTitle_Hide(context, filterNumber);
     }
 
     /**
@@ -132,9 +136,7 @@ class Page_filters{
      * @param {Number} filterNumber
      */
     static function txtFilterTitle_Render(context, filterNumber){
-    var filterTitle = _filterComponents.GetFilterTitle(filterNumber-1);
-    if(filterTitle)
-        context.component.Output.Append(filterTitle);
+        _filter_panel.txtFilterTitle_Render(context, filterNumber)
     }
 
     /**
@@ -145,7 +147,36 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function lstFilterList_Hide(context, filterNumber){
-        var filterQuestion = _filterComponents.GetFilterQuestion(filterNumber-1);
-        return !filterQuestion
+        return _filter_panel.lstFilterList_Hide(context, filterNumber);
     }
+
+    static function txtQuestion_Hide(context){
+    return false
+
+}
+    static function txtQuestion_Render(context){
+    var label = _curDictionary['Question'];
+    context.component.Output.Append(label);
+
+}
+
+    static function txtDateFrom_Hide(context){
+    return false
+
+}
+    static function txtDateFrom_Render(context){
+    var label = _curDictionary['From'];
+    context.component.Output.Append(label);
+
+}
+
+    static function txtDateTo_Hide(context){
+    return false
+
+}
+    static function txtDateTo_Render(context){
+    var label = _curDictionary['To'];
+    context.component.Output.Append(label);
+
+}
 }
