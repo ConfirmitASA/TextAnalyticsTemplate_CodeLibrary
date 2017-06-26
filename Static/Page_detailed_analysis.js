@@ -3,6 +3,7 @@
  * @classdesc Static class for Reportal Page detailed_analysis components
  */
 class Page_detailed_analysis{
+
     private static var _filterComponents;
     private static var _filter_panel;
     private static var _folder;
@@ -95,6 +96,7 @@ class Page_detailed_analysis{
         _filter_panel = new FilterPanel(_filterComponents);
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
         taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
+
         if(context.component.SubmitSource == "lstCategory" || context.component.SubmitSource == "lstSubCategory" || context.component.SubmitSource == "lstAttribute"){
             _selectedCategory = TAHelper.GetSelectedCategory(context.state, "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
             context.state.Parameters['TA_ALL_CATEGORIES'] = new ParameterValueResponse(_selectedCategory);
@@ -285,6 +287,40 @@ class Page_detailed_analysis{
         }
     }
 
+    static function txtDetailedAnalysisScriptTest_Render(context){
+    var headers;
+    var hierarhy = _folder.GetHierarchy().GetHierarchyArray();
+    var taTableData = new TATableData(TAHelper.GetGlobals(context), "tblDetailedAnalysis");
+    var headers = taTableData.GetTableRowHeaders();
+    if( headers.length > 0){
+        var blocks = taTableData.GetBlocks();
+
+        var upgradeText = "<script type=\"text/javascript\">"+
+            "var upgradedTable = new Reportal.TAhierarchy("+
+            "{"+
+            "source: document.querySelector('table.reportal-hierarchy-table'),"+
+            "hierarchy: "+JSON.stringify(hierarhy)+","+
+            "rowheaders:"+JSON.stringify(headers)+","+
+            "search:{},"+
+            "blocks:"+JSON.stringify(blocks)+","+
+            "floatingHeader: {},"+
+            "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
+            "sorting:"+
+            "{"+
+            "enabled: true,"+
+            "excludedColumns: [6]"+
+            "},"+
+            "}"+
+            ")"+
+            "</script>";
+
+        context.component.Output.Append(upgradeText);
+        context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
+        context.component.Output.Append(JSON.print(headers,"rowheaders"));
+        context.component.Output.Append(JSON.print(blocks,"blocks"));
+        context.component.Output.Append(JSON.stringify(headers));
+    }
+}
     /**
      * @memberof Page_detailed_analysis
      * @function txtViewBy_Hide
@@ -374,7 +410,6 @@ class Page_detailed_analysis{
     return ((! parameterValue) || parameterValue == "emptyv" || _folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
 }
 
-
     /**
      * @memberof Page_comments
      * @function txtSubCategory_Hide
@@ -395,6 +430,7 @@ class Page_detailed_analysis{
      */
     static function txtSubCategory_Render(context){
     var label = _curDictionary['Sub category'];
+
     context.component.Output.Append(label);
 }
 

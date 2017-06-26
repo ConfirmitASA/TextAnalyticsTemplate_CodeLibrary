@@ -128,7 +128,6 @@ class Page_comments{
             _selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
         //}
 
-        context.log.LogDebug("FolderId: "+ _folder.GetId());
         var htlComments = new TAHitlistUtils(TAHelper.GetGlobals(context), _folder, context.component);
         var selectedCategory = _selectedCategory;
         if( selectedCategory && selectedCategory != "emptyv" ){
@@ -137,6 +136,7 @@ class Page_comments{
         htlComments.AddTAColumn("verbatim");
         htlComments.AddColumn(_folder.GetTimeVariableId(), true);
         htlComments.AddTAColumn("overallsentiment");
+
         htlComments.AddTAColumn("categories");
         htlComments.AddConfiguredColumns();
     }
@@ -191,11 +191,9 @@ class Page_comments{
             title: _curDictionary["Date"]
         }];
 
-
             hitlistHeaders["categories"] = [{
                 name: _folder.GetQuestionId("categories")
             }];
-
 
         hitlistHeaders["sentiment"].push( {
             name: _folder.GetQuestionId("overallSentiment"),
