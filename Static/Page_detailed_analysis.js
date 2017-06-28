@@ -63,6 +63,7 @@ class Page_detailed_analysis{
         _currentLanguage = context.report.CurrentLanguage;
         _curDictionary = Translations.dictionary(_currentLanguage);
         _filterComponents = new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(), Config.DS_Main);
+        context.log.LogDebug('submit source: '+context.component.SubmitSource);
         if(context.component.SubmitSource == "ClearFilters"){
             _filterComponents.ClearFilters();
             context.state.Parameters["TA_DATE_FROM"] = null;
