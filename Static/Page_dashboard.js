@@ -53,7 +53,7 @@ class Page_dashboard{
     _currentLanguage = context.report.CurrentLanguage;
     _curDictionary = Translations.dictionary(_currentLanguage);
     Config.SetTALibrary(TAHelper.GetGlobals(context));
-    if(context.component.SubmitSource == "lstQuestions") {
+    if(context.component.SubmitSource == "lstQuestion") {
         context.state.Parameters["TA_ALL_CATEGORIES"] = null;
         context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
         context.state.Parameters["TA_LEVEL"] = null;

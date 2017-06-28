@@ -64,7 +64,7 @@ class Page_comments{
             context.state.Parameters["TA_DATE_TO"] = null;
         }
 
-        if(context.component.SubmitSource == "lstQuestions") {
+        if(context.component.SubmitSource == "lstQuestion") {
             context.state.Parameters["TA_ALL_CATEGORIES"] = null;
             context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
             context.state.Parameters["TA_LEVEL"] = null;
