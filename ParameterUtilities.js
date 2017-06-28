@@ -68,7 +68,8 @@ class ParameterUtilities {
     function SetDefaultParameterValues(valuesArray){
         for( var i = 0; i < valuesArray.length; i++ ){
             try {
-                _globals.log.LogDebug("val arr: "+valuesArray[i].Id);
+                _globals.log.LogDebug("val arr: "+valuesArray[i].Id+" : "+_globals.state.Parameters.GetString(valuesArray[i].Id));
+
                 if (!_globals.state.Parameters.GetString(valuesArray[i].Id)) {
                     _globals.log.LogDebug("val arr val: "+valuesArray[i].Value);
                     _globals.state.Parameters[valuesArray[i].Id] = new ParameterValueResponse(valuesArray[i].Value);
