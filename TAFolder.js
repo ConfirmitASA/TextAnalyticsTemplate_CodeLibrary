@@ -21,8 +21,10 @@ class TAFolder{
     private var _variablesToViewBy;
     private var _hitlistColumns;
     private var _filterQuestions;
+    private var _correlationVariableId;
 
     private var _hierarchy: Hierarchy;
+
 
 
     function TAFolder(globals, questionIndex, config){
@@ -44,6 +46,7 @@ class TAFolder{
     var filterQuestions = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_filters"]);
     _filterQuestions = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].FilterQuestions, config.FilterQuestions, _filterQuestions, []);
 
+    _correlationVariableId = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].CorrelationVariableId, config.CorrelationVariableId, "");
         _hierarchy = new Hierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
             tableName: config.TAQuestions[questionIndex].DatabaseTableName,
@@ -170,5 +173,9 @@ class TAFolder{
 
     function GetFilterQuestions(){
          return _filterQuestions;
+    }
+
+    function GetCorrelationVariableId(){
+        return _correlationVariableId;
     }
 }
