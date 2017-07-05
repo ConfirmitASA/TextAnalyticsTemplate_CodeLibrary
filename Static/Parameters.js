@@ -45,6 +45,23 @@ class Parameters{
         });
     }
 
+    static function TA_PERIOD_Domain(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var parameterValues = [
+            {Code: "w", Label: currentDictionary["Weeks"]},
+            {Code: "m", Label: currentDictionary["Months"]},
+            {Code: "q", Label: currentDictionary["Quarters"]},
+            {Code: "y", Label: currentDictionary["Years"]}
+        ];
+
+        ParameterUtilities.LoadParameterValues({
+            context: context,
+            parameterValues: parameterValues
+        });
+    }
+
     /**
      * @memberof Parameters
      * @function TA_TOP_CATEGORIES_SINGLE_Domain

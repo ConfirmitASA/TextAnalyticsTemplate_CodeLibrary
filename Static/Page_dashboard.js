@@ -41,8 +41,6 @@ class Page_dashboard{
 
         });
 
-        context.log.LogDebug("render7");
-
         TAParameters.ClearSubcategoriesParameters({
             context: context,
             folderId: selectedFolder,
@@ -78,7 +76,7 @@ class Page_dashboard{
         var context = params.context;
         //TODO: clarify what to do with filter components
 
-        if(context.component.SubmitSource === "ClearFilters"){
+        if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "lstQuestions"){
             FilterComponents.ClearFilters(context);
             var dateParameters = DefaultParameters.dateParameters;
 
@@ -245,13 +243,15 @@ class Page_dashboard{
         var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
 
         var themeDistributionTable = new TAThemeDistributionTable({
             context: context,
             folder: folder,
             table: table,
             sentiment: sentiment,
-            config: Config
+            config: Config,
+            period: period
         });
 
         themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);

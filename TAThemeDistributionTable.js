@@ -30,7 +30,7 @@ class TAThemeDistributionTable{
         });
         _sentiment = params.sentiment === "emptyv" ? "all" : params.sentiment;
         _period = {
-            Unit: "m",
+            Unit: context.period ? context.period : "m",
             From: -11,
             To: 0
         };

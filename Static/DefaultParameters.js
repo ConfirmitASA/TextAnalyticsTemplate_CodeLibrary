@@ -39,6 +39,10 @@ class DefaultParameters {
         {
             Id: "TA_DISTRIBUTION_TOGGLE",
             Value: "0"
+        },
+        {
+            Id: "TA_PERIOD",
+            Value: "m"
         }
     ];
 
