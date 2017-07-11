@@ -77,7 +77,9 @@ class Hierarchy {
     private function
 
     _getDataTable() {
+        _globals.log.LogDebug("scid: "+_settings.schemaId);
         var schema = _globals.confirmit.GetDBDesignerSchema(_settings.schemaId);
+        _globals.log.LogDebug("tblnm: "+_settings.tableName);
         var table = schema.GetDBDesignerTable(_settings.tableName);
         var dataTable = table.GetDataTable();
         return dataTable;
