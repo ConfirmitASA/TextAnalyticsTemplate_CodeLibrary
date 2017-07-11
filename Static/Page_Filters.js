@@ -77,6 +77,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSaveReturn_Render(context){
+
         FilterPanel.btnSaveReturn_Render(context)
     }
 
@@ -117,6 +118,7 @@ class Page_filters{
     static function btnClearFilters_Render(context){
         FilterPanel.btnClearFilters_Render(context);
     }
+
 
     /**
      * @memberof Page_filters
