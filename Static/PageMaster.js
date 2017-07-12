@@ -14,8 +14,10 @@ class PageMaster{
      * @returns {Boolean}
      */
     static function FiltersButtonHtml_Hide(context){
-        var filterQuestions = Config.GetTALibrary().GetFilterQuestions()
-        return filterQuestions.length === 0
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var filterQuestions = folder.GetFilterQuestions()
+        return filterQuestions.length > 3
     }
 
     /**

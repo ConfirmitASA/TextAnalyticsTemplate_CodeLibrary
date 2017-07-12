@@ -602,9 +602,7 @@ class Page_dashboard{
     }
 
     static function txtFilterTitle_Hide(context, filterNumber){
-        context.log.LogDebug("txtFilterHide1");
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    context.log.LogDebug("txtFilterHide2");
     var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
     context.log.LogDebug("txtFilterHide3");
         var filterComponents = new FilterComponents({

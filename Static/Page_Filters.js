@@ -115,9 +115,11 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function txtFilterTitle_Hide(context, filterNumber){
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var filterComponents = new FilterComponents({
             context: context,
-            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
+            filterQuestions: folder.GetFilterQuestions(),
             dataSource: Config.DS_Main
         });
 
@@ -135,9 +137,11 @@ class Page_filters{
      * @param {Number} filterNumber
      */
     static function txtFilterTitle_Render(context, filterNumber){
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var filterComponents = new FilterComponents({
             context: context,
-            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
+            filterQuestions: folder.GetFilterQuestions(),
             dataSource: Config.DS_Main
         });
 
@@ -156,9 +160,11 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function lstFilterList_Hide(context, filterNumber){
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var filterComponents = new FilterComponents({
             context: context,
-            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
+            filterQuestions: folder.GetFilterQuestions(),
             dataSource: Config.DS_Main
         });
         return FilterPanel.lstFilterList_Hide({

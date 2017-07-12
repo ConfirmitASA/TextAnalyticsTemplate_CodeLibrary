@@ -372,9 +372,11 @@ class Page_detailed_analysis{
     }
 
     static function txtFilterTitle_Hide(context, filterNumber){
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var filterComponents = new FilterComponents({
             context: context,
-            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
+            filterQuestions: folder.GetFilterQuestions(),
             dataSource: Config.DS_Main
         });
 
@@ -392,9 +394,11 @@ class Page_detailed_analysis{
      * @param {Number} filterNumber
      */
     static function txtFilterTitle_Render(context, filterNumber){
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var filterComponents = new FilterComponents({
             context: context,
-            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
+            filterQuestions: folder.GetFilterQuestions(),
             dataSource: Config.DS_Main
         });
 
@@ -413,9 +417,11 @@ class Page_detailed_analysis{
      * @returns {Boolean}
      */
     static function lstFilterList_Hide(context, filterNumber){
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var filterComponents = new FilterComponents({
             context: context,
-            filterQuestions: Config.GetTALibrary().GetFilterQuestions(),
+            filterQuestions: folder.GetFilterQuestions(),
             dataSource: Config.DS_Main
         });
 
