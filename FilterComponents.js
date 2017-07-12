@@ -15,19 +15,19 @@ class FilterComponents{
         var context = params.context;
         context.log.LogDebug("filtcomm1");
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    context.log.LogDebug("filtcomm1");
+    context.log.LogDebug("filtcomm2");
         var questionsArray = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
-    context.log.LogDebug("filtcomm1");
+    context.log.LogDebug("filtcomm3");
         var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
-    context.log.LogDebug("filtcomm1");
+    context.log.LogDebug("filtcomm4");
         _filterQuestions = [];
-    context.log.LogDebug("filtcomm1");
+    context.log.LogDebug("filtcomm5");
         var project  = context.report.DataSource.GetProject(dataSource);
-    context.log.LogDebug("filtcomm1");
+    context.log.LogDebug("filtcomm6");
         for( var i = 0; i < questionsArray.length; i++ ){
             _filterQuestions.push(project.GetQuestion(questionsArray[i]))
         }
-    context.log.LogDebug("filtcomm1");
+    context.log.LogDebug("filtcomm7");
     }
 
     /**
