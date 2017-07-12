@@ -25,6 +25,7 @@ class FilterComponents{
         var project  = context.report.DataSource.GetProject(dataSource);
     context.log.LogDebug("filtcomm6");
         for( var i = 0; i < questionsArray.length; i++ ){
+
             _filterQuestions.push(project.GetQuestion(questionsArray[i]))
         }
     context.log.LogDebug("filtcomm7");
