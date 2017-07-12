@@ -377,7 +377,7 @@ class Page_detailed_analysis{
         var filterComponents = new FilterComponents({
             context: context,
             filterQuestions: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
 
         return FilterPanel.txtFilterTitle_Hide({
@@ -399,7 +399,7 @@ class Page_detailed_analysis{
         var filterComponents = new FilterComponents({
             context: context,
             filterQuestions: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
 
         FilterPanel.txtFilterTitle_Render({
@@ -422,7 +422,7 @@ class Page_detailed_analysis{
         var filterComponents = new FilterComponents({
             context: context,
             filterQuestions: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
 
         return FilterPanel.lstFilterList_Hide({

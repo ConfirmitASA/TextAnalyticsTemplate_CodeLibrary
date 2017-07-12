@@ -604,19 +604,16 @@ class Page_dashboard{
     static function txtFilterTitle_Hide(context, filterNumber){
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
     var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    context.log.LogDebug("txtFilterHide3");
         var filterComponents = new FilterComponents({
             context: context,
             questionsArray: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
-    context.log.LogDebug("txtFilterHide4");
         return FilterPanel.txtFilterTitle_Hide({
             context: context,
             filterNumber: filterNumber,
             filterComponents: filterComponents
         });
-    context.log.LogDebug("txtFilterHide5");
     }
 
     /**
@@ -626,23 +623,22 @@ class Page_dashboard{
      * @param {Number} filterNumber
      */
     static function txtFilterTitle_Render(context, filterNumber){
-    context.log.LogDebug("txtFilterRend1");
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    context.log.LogDebug("txtFilterRend2");
+
     var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    context.log.LogDebug("txtFilterRend3");
+
         var filterComponents = new FilterComponents({
             context: context,
             filterQuestions: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
-    context.log.LogDebug("txtFilterRend4");
+
         FilterPanel.txtFilterTitle_Render({
             context: context,
             filterComponents: filterComponents,
             filterNumber: filterNumber
         });
-    context.log.LogDebug("txtFilterRend5");
+
     }
 
     /**
@@ -659,7 +655,7 @@ class Page_dashboard{
         var filterComponents = new FilterComponents({
             context: context,
             filterQuestions: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
 
         return FilterPanel.lstFilterList_Hide({

@@ -120,7 +120,7 @@ class Page_filters{
         var filterComponents = new FilterComponents({
             context: context,
             filterQuestions: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
 
         return FilterPanel.lstFilterList_Hide({
@@ -142,7 +142,7 @@ class Page_filters{
         var filterComponents = new FilterComponents({
             context: context,
             filterQuestions: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
 
         FilterPanel.txtFilterTitle_Render({
@@ -165,7 +165,7 @@ class Page_filters{
         var filterComponents = new FilterComponents({
             context: context,
             filterQuestions: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
         return FilterPanel.lstFilterList_Hide({
             context: context,

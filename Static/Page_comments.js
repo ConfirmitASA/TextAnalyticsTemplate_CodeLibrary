@@ -184,7 +184,6 @@ class Page_comments{
      * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtCommentsScript_Render(context){
-        context.log.LogDebug("htl1");
         var hitlistInit = "<script>"+
                 "Y.Global.on('hitlistloaded', function (e) {  "+
                     "var upgradedHitlist = new Reportal.Hitlist({"+
@@ -194,61 +193,53 @@ class Page_comments{
                     "});"+
                 "});"+
             "</script>";
-    context.log.LogDebug("htl2");
         var hitlistHeaders = {};
-    context.log.LogDebug("htl3");
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    context.log.LogDebug("htl4");
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    context.log.LogDebug("htl5");
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-    context.log.LogDebug("htl6");
 
         hitlistHeaders["sentiment"] = [];
-    context.log.LogDebug("htl7");
 
         if( selectedCategory && selectedCategory !== "emptyv"){
             hitlistHeaders["sentiment"].push( {
                     name: folder.GetQuestionId("categorysentiment")+"_"+selectedCategory
             } );
         }
-    context.log.LogDebug("htl8");
+
         var currentLanguage = context.report.CurrentLanguage;
-    context.log.LogDebug("htl9");
+
         var currentDictionary = Translations.dictionary(currentLanguage);
-    context.log.LogDebug("htl10");
+
         hitlistHeaders["verbatim"] = [{
             name: folder.GetQuestionId(),
             title: currentDictionary["Comments"],
             main: true
         }];
-    context.log.LogDebug("htl11");
+
         hitlistHeaders["date"] = [{
             name: folder.GetTimeVariableId() ? folder.GetTimeVariableId() : "interview_start",
             title: currentDictionary["Date"]
         }];
 
-    context.log.LogDebug("htl12");
             hitlistHeaders["categories"] = [{
                 name: folder.GetQuestionId("categories")
             }];
 
-    context.log.LogDebug("htl13");
         hitlistHeaders["sentiment"].push( {
             name: folder.GetQuestionId("overallSentiment"),
             title: currentDictionary["Overall Sentiment"]
         });
-    context.log.LogDebug("htl14");
+
         hitlistHeaders["other"] = [];
-    context.log.LogDebug("htl15");
+
         var hitlistColumns = folder.GetHitlistColumns();
-    context.log.LogDebug("htl16");
+
         for(var i = 0 ; i < hitlistColumns.length; i++){
             hitlistHeaders["other"].push( {
                 name: hitlistColumns[i]
             });
         }
-    context.log.LogDebug("htl17");
+
     //TODO: configurable range of sentiments
         var sentimentConfig = [
             {
@@ -264,13 +255,10 @@ class Page_comments{
                 range: {min: (Config.SentimentRange.Negative[0]-6), max: (Config.SentimentRange.Negative[Config.SentimentRange.Negative.length - 1]-6)}
             }
         ];
-    context.log.LogDebug("htl18");
         context.component.Output.Append(JSON.print(hitlistHeaders, "hitlistHeaders"));
-    context.log.LogDebug("htl19");
         context.component.Output.Append(JSON.print(sentimentConfig,"sentimentConfig"));
-    context.log.LogDebug("htl20");
         context.component.Output.Append(hitlistInit);
-    context.log.LogDebug("htl21");
+
     }
 
     /**
@@ -425,7 +413,7 @@ class Page_comments{
         var filterComponents = new FilterComponents({
             context: context,
             filterQuestions: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
 
         return FilterPanel.txtFilterTitle_Hide({
@@ -448,7 +436,7 @@ class Page_comments{
         var filterComponents = new FilterComponents({
             context: context,
             filterQuestions: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
 
         FilterPanel.txtFilterTitle_Render({
@@ -471,7 +459,7 @@ class Page_comments{
         var filterComponents = new FilterComponents({
             context: context,
             filterQuestions: folder.GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            dataSource: folder.GetDatasourceId()
         });
 
         return FilterPanel.lstFilterList_Hide({
