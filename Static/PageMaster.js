@@ -17,7 +17,7 @@ class PageMaster{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var filterQuestions = folder.GetFilterQuestions()
-        return filterQuestions.length > 3
+        return filterQuestions.length < 4
     }
 
     /**
