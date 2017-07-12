@@ -168,7 +168,7 @@ class FilterComponents{
 
     var context = context;
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var questionsArray = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
+    var filterQuestions = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
         for (var i = 0; i < filterQuestions.length; i++){
             context.state.Parameters["FILTER"+(i+1)] = null;
         }
