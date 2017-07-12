@@ -239,10 +239,14 @@ class Parameters{
      * @param {Number} filterNumber
      */
     static function FILTER_Domain(context, filterNumber){
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+
+    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
         var filterComponents = new FilterComponents({
             context: context,
-            questionsArray: Config.GetTALibrary().GetFilterQuestions(),
-            dataSource: Config.DS_Main
+            questionsArray: folder.GetFilterQuestions(),
+            dataSource: folder.GetDatasourceId()
         });
 
         var filterQuestion = filterComponents.GetFilterQuestion(filterNumber -1 );
