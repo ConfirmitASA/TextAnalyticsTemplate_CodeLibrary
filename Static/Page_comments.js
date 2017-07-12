@@ -22,13 +22,18 @@ class Page_comments{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
-
+        context.log.LogDebug("htlrend1");
         Config.SetTALibrary(context);
+    context.log.LogDebug("htlrend2");
         initiateParameters(context);
+    context.log.LogDebug("htlrend3");
         var taLibrary = Config.GetTALibrary();
+    context.log.LogDebug("htlrend4");
         initializeFilters({context: context, taLibrary: taLibrary});
+    context.log.LogDebug("htlrend5");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    context.log.LogDebug("htlrend6");
 
         TAParameters.ClearSubcategoriesParameters({
             context: context,
@@ -38,6 +43,7 @@ class Page_comments{
             attributesParameter: "TA_ATTRIBUTES_SINGLE"
 
         });
+    context.log.LogDebug("htlrend7");
 
         TAParameters.ClearSubcategoriesParameters({
             context: context,
@@ -45,11 +51,12 @@ class Page_comments{
             categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
             subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
         });
-
+    context.log.LogDebug("htlrend8");
         processSelectedCategoryParameter({
             context: context,
             folder: Config.GetTALibrary().GetFolderById(selectedFolder)
         })
+    context.log.LogDebug("htlrend9");
 
     }
 
