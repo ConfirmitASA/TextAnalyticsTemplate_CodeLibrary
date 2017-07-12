@@ -239,7 +239,7 @@ class Parameters{
      * @param {Number} filterNumber
      */
     static function FILTER_Domain(context, filterNumber){
-        Config.SetTaLibrary(context);
+        Config.SetTALibrary(context);
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
     var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
