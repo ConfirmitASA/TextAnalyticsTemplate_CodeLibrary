@@ -33,20 +33,18 @@ class TAFolder{
         _folderName = config.TAQuestions[questionIndex].TAFolderId;
         _qName = config.TAQuestions[questionIndex].TAQuestionName;
         _modelNo = config.TAQuestions[questionIndex].TAModelNo;
-        _timeVariableId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].TimeVariableId], [config.TimeVariableId], null, ["interview_start"])[0];
+        _timeVariableId = config.TAQuestions[questionIndex].TimeVariableId;
 
-        _datasourceId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].DatasourceId], [config.DS_Main], null, ["ds0"])[0];
+        _datasourceId = config.TAQuestions[questionIndex].DatasourceId;
 
-        var variablesToViewBy = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_viewby"]);
-        _variablesToViewBy = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].VariablesToViewBy, config.VariablesToViewBy, variablesToViewBy, []);
+        _variablesToViewBy = config.TAQuestions[questionIndex].VariablesToViewBy;
 
-        var hitlistColumns = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_hitlist"]);
-        _hitlistColumns = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].HitlistColumns, config.HitlistColumns, hitlistColumns, []);
+        _hitlistColumns = config.TAQuestions[questionIndex].HitlistColumns;
 
-    var filterQuestions = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_filters"]);
-    _filterQuestions = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].FilterQuestions, config.FilterQuestions, _filterQuestions, []);
+    _filterQuestions = config.TAQuestions[questionIndex].FilterQuestions;
 
-    _correlationVariableId = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].CorrelationVariableId, config.CorrelationVariableId, "");
+    _correlationVariableId = config.TAQuestions[questionIndex].CorrelationVariableId;
+
         _hierarchy = new Hierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
             tableName: config.TAQuestions[questionIndex].DatabaseTableName,

@@ -13,8 +13,9 @@ class FilterComponents{
 
     function FilterComponents(params){
         var context = params.context;
-        var questionsArray = Config.GetTALibrary().GetFilterQuestions();
-        var dataSource = Config.DS_Main;
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var questionsArray = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
+        var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
 
         _filterQuestions = [];
 
@@ -164,7 +165,10 @@ class FilterComponents{
      * @description function to set all filter parameters to null
      */
     static function ClearFilters(context){
-        var filterQuestions = Config.GetTALibrary().GetFilterQuestions();
+
+    var context = params.context;
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    var questionsArray = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
         for (var i = 0; i < filterQuestions.length; i++){
             context.state.Parameters["FILTER"+(i+1)] = null;
         }
