@@ -13,17 +13,21 @@ class FilterComponents{
 
     function FilterComponents(params){
         var context = params.context;
+        context.log.LogDebug("filtcomm1");
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    context.log.LogDebug("filtcomm1");
         var questionsArray = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
+    context.log.LogDebug("filtcomm1");
         var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
-
+    context.log.LogDebug("filtcomm1");
         _filterQuestions = [];
-
+    context.log.LogDebug("filtcomm1");
         var project  = context.report.DataSource.GetProject(dataSource);
-
+    context.log.LogDebug("filtcomm1");
         for( var i = 0; i < questionsArray.length; i++ ){
             _filterQuestions.push(project.GetQuestion(questionsArray[i]))
         }
+    context.log.LogDebug("filtcomm1");
     }
 
     /**
