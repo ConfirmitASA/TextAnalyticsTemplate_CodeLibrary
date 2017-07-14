@@ -34,7 +34,7 @@ class TATiles{
             folder: _folder,
             table: _table
         });
-        _sentiment = params.sentiment ? params.sentiment : "all";
+        _sentiment = params.type ? params.type : "all";
         _selectedCategory = params.category !== "emptyv" ? params.category : "all";
         _distribution = params.distribution ? params.distribution : "0";
 
