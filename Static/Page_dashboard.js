@@ -282,17 +282,19 @@ class Page_dashboard{
         var label = currentDictionary['View by'];
         context.component.Output.Append(label);
 
-        var levelValues = {
+        /*var levelValues = {
             "0": currentDictionary["1st level (category)"],
             "1": currentDictionary["2nd level (sub-category)"],
             "2": currentDictionary["3rd level (attributes)"]
-        };
+        };*/
 
-        var parameterValue : ParameterValueResponse = context.state.Parameters['TA_LEVEL'];
-        var parameterValueLabel = levelValues[parameterValue.StringValue];
-
-
-        context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
+        //var parameterValueLabel = levelValues[parameterValue.StringValue];
+        //var labels = ParameterValues.getParameterValues_TA_LEVEL(currentDictionary);
+        /*var parameterID = 'TA_LEVEL';
+        var parameterValue : ParameterValueResponse = context.state.Parameters[parameterID];
+        var labels = ParameterValues.getParameterValues(parameterID);
+        var parameterValueLabel = ParameterValues.find(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
+        context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');*/
     }
 
     /**
