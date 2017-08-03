@@ -282,10 +282,10 @@ class Page_dashboard{
         var label = currentDictionary['View by'];
         context.component.Output.Append(label);
 
-        var parameterValue : ParameterValueResponse = state.Parameters['TA_LEVEL'];
-        var parameterValueLabel = parameterValue.LocalizedLabel
+        var parameterValue : ParameterValueResponse = context.state.Parameters['TA_LEVEL'];
+        var parameterValueLabel = parameterValue.LocalizedLabel;
 
-    context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
+        context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
     }
 
     /**
