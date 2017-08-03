@@ -284,7 +284,6 @@ class Page_dashboard{
 
         var parameterValue : ParameterValueResponse = context.state.Parameters['TA_LEVEL'];
         var parameterValueLabel = parameterValue.LocalizedLabel.Texts[0];
-
         context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
     }
 
