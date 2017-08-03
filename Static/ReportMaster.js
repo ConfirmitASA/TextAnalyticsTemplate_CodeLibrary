@@ -156,17 +156,6 @@ class ReportMaster {
 
         str += "</style>";
         context.component.Output.Append(str);
-
-        var strScript = "<script>" +
-            "        [].forEach.call(document.querySelectorAll('.layout-wrapper .reportal-select.reportal-dropdown select'), function(select) {" +
-            "            var value = select.options[select.selectedIndex].text;" +
-            "            var label = document.createElement('label');" +
-            "            label.setAttribute('class', 'pdfExportVisibleOnly');" +
-            "            label.innerText = ': ' + value;" +
-            "            select.parentNode.parentNode.insertBefore(label, select.parentNode);" +
-            "        })" +
-            "</script>";
-        context.component.Output.Append(strScript);
     }
 
 }
