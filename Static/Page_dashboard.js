@@ -281,6 +281,9 @@ class Page_dashboard{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['View by'];
         context.component.Output.Append(label);
+
+        var parameterValue = context.state.Parameters.GetString('TA_VIEW_BY');
+        context.component.Output.Append('<span class="pdfExportVisibleOnly">' + parameterValue + '</span>');
     }
 
     /**
