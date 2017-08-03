@@ -191,18 +191,22 @@ class Page_comments{
      * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtCommentsScript_Render(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var textSeparator = folder.GetHierarchy().GetTextSeparator();
+
         var hitlistInit = "<script>"+
                 "Y.Global.on('hitlistloaded', function (e) {  "+
                     "var upgradedHitlist = new Reportal.Hitlist({"+
                         "hitlist: document.querySelector('.reportal-hitlist-container'),"+
+                        "separator: '" + textSeparator ? textSeparator : '' + "',"+
                         "headers: hitlistHeaders,"+
                         "sentimentConfig: sentimentConfig"+
                     "});"+
                 "});"+
             "</script>";
+
         var hitlistHeaders = {};
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
 
         hitlistHeaders["sentiment"] = [];
