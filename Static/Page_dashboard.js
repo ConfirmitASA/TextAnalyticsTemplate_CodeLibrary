@@ -282,14 +282,15 @@ class Page_dashboard{
         var label = currentDictionary['View by'];
         context.component.Output.Append(label);
 
+        var levelValues = {
+            "0": currentDictionary["1st level (category)"],
+            "1": currentDictionary["2nd level (sub-category)"],
+            "2": currentDictionary["3rd level (attributes)"]
+        };
+
         var parameterValue : ParameterValueResponse = context.state.Parameters['TA_LEVEL'];
-        context.log.LogDebug('LocalizedLabel:');
-        context.log.LogDebug(parameterValue.LocalizedLabel);
-        context.log.LogDebug('Texts:');
-        context.log.LogDebug(parameterValue.LocalizedLabel.Texts);
-        context.log.LogDebug('Texts[0]:');
-        context.log.LogDebug(parameterValue.LocalizedLabel.Texts[0]);
-        var parameterValueLabel = parameterValue.LocalizedLabel.Texts[0].Text;
+        var parameterValueLabel = levelValues[parameterValue.StringValue];
+
 
         context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
     }
