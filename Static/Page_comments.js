@@ -199,7 +199,7 @@ class Page_comments{
                 "Y.Global.on('hitlistloaded', function (e) {  "+
                     "var upgradedHitlist = new Reportal.Hitlist({"+
                         "hitlist: document.querySelector('.reportal-hitlist-container'),"+
-                        "separator: '" + textSeparator ? textSeparator : '' + "',"+
+                        "separator: '" + (textSeparator ? textSeparator : '') + "',"+
                         "headers: hitlistHeaders,"+
                         "sentimentConfig: sentimentConfig"+
                     "});"+
