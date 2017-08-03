@@ -282,8 +282,8 @@ class Page_dashboard{
         var label = currentDictionary['View by'];
         context.component.Output.Append(label);
 
-        var parameterValue = context.state.Parameters.GetString('TA_VIEW_BY');
-        context.component.Output.Append('<span class="pdfExportVisibleOnly">' + parameterValue + '</span>');
+        var parameterValue = context.state.Parameters.GetString('TA_LEVEL');
+        context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValue + '</span>');
     }
 
     /**
