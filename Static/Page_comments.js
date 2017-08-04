@@ -416,6 +416,8 @@ class Page_comments{
 
         var label = currentDictionary["Sentiment"];
         context.component.Output.Append(label);
+
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_COMMENTS_SENTIMENT'));
     }
 
     static function txtFilterTitle_Hide(context, filterNumber){
