@@ -292,7 +292,7 @@ class Page_dashboard{
         //var labels = ParameterValues.getParameterValues_TA_LEVEL(currentDictionary);
         var parameterID = 'TA_LEVEL';
         var parameterValue : ParameterValueResponse = context.state.Parameters[parameterID];
-        var labels = ParameterValues.getParameterValues(parameterID);
+        var labels = ParameterValues.getParameterValues(currentDictionary, parameterID);
         var parameterValueLabel = ParameterValues.find(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
         context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
 
