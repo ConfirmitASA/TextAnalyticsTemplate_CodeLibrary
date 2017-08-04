@@ -366,6 +366,32 @@ class Page_dashboard{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary["Compare"];
         context.component.Output.Append(label);
+
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_COMPARE_PERIODS'));
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtViewPeriod_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtViewPeriod_Hide(context){
+        return false;
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtViewPeriod_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtViewPeriod_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Compare"];
+        context.component.Output.Append(label);
+
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_PERIOD'));
     }
 
     /**
@@ -474,6 +500,8 @@ class Page_dashboard{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary["View"];
         context.component.Output.Append(label);
+
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_VIEW_SENTIMENT'));
     }
 
     /**
