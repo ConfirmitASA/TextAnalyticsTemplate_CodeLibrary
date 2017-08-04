@@ -390,11 +390,11 @@ class Page_detailed_analysis{
         context.component.Output.Append(label);
 
         var folderId = TALibrary.GetTAFoldersParameterValue(context);
-        var parameterValueID = state.Parameters['TA_TOP_CATEGORIES_SINGLE'].StringValue;
+        var parameterValueID = context.state.Parameters['TA_TOP_CATEGORIES_SINGLE'].StringValue;
 
         var parameterValueLabel;
         try {
-            parameterValueLabel = Config.GetTALibrary().GetFolderById(folderId).GetHierarchy().GetObjectById(parameterValueID)name;
+            parameterValueLabel = Config.GetTALibrary().GetFolderById(folderId).GetHierarchy().GetObjectById(parameterValueID).name;
         } catch(e) {
             parameterValueLabel = currentDictionary["-select-"];
         }
@@ -522,7 +522,7 @@ class Page_detailed_analysis{
         context.component.Output.Append(label);
 
         var folderId = TALibrary.GetTAFoldersParameterValue(context);
-        var parameterValueID = state.Parameters['TA_SUB_CATEGORIES_SINGLE'].StringValue;
+        var parameterValueID = context.state.Parameters['TA_SUB_CATEGORIES_SINGLE'].StringValue;
 
         var parameterValueLabel;
         try {
@@ -563,11 +563,11 @@ class Page_detailed_analysis{
 
 
         var folderId = TALibrary.GetTAFoldersParameterValue(context);
-        var parameterValueID = state.Parameters['TA_ATTRIBUTES_SINGLE'].StringValue;
+        var parameterValueID = context.state.Parameters['TA_ATTRIBUTES_SINGLE'].StringValue;
 
         var parameterValueLabel;
         try {
-            parameterValueLabel = Config.GetTALibrary().GetFolderById(folderId).GetHierarchy().GetObjectById(parameterValueID)name;
+            parameterValueLabel = Config.GetTALibrary().GetFolderById(folderId).GetHierarchy().GetObjectById(parameterValueID).name;
         } catch(e) {
             parameterValueLabel = currentDictionary["-select-"];
         }
