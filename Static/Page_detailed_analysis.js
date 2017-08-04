@@ -356,7 +356,7 @@ class Page_detailed_analysis{
         var variables = folder.GetViewByVariables();
         var project = context.report.DataSource.GetProject(folder.GetDatasourceId());
 
-        var parameterValue : ParameterValueResponse = context.state.Parameters[parameterID];
+        var parameterValue : ParameterValueResponse = context.state.Parameters['TA_VIEW_BY'];
         for( var i = 0; i < variables.length; i++){
             if(variables[i] == parameterValue.StringValue) {
                 var question: Question = project.GetQuestion( variables[i] );
