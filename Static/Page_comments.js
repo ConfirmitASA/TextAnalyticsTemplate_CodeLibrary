@@ -334,6 +334,8 @@ class Page_comments{
 
         var label = currentDictionary["Category"];
         context.component.Output.Append(label);
+
+        context.component.Output.Append(getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
     }
 
 
@@ -363,6 +365,8 @@ class Page_comments{
 
         var label = currentDictionary["Sub category"];
         context.component.Output.Append(label);
+
+        context.component.Output.Append(getCategoryParameterValue(context, currentDictionary, 'TA_SUB_CATEGORIES_SINGLE'));
     }
 
     /**
@@ -391,6 +395,8 @@ class Page_comments{
 
         var label = currentDictionary["Attribute"];
         context.component.Output.Append(label);
+
+        context.component.Output.Append(getCategoryParameterValue(context, currentDictionary, 'TA_ATTRIBUTES_SINGLE'));
     }
 
     /**

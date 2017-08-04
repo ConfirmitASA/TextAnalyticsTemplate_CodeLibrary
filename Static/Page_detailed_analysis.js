@@ -365,7 +365,7 @@ class Page_detailed_analysis{
         }
 
 
-        context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
+        context.component.Output.Append('<span class="pdfExportVisibleOnly"> ' + parameterValueLabel + '</span>');
     }
 
     /**
@@ -389,17 +389,7 @@ class Page_detailed_analysis{
         var label = currentDictionary['Category'];
         context.component.Output.Append(label);
 
-        var folderId = TALibrary.GetTAFoldersParameterValue(context);
-        var parameterValueID = context.state.Parameters['TA_TOP_CATEGORIES_SINGLE'].StringValue;
-
-        var parameterValueLabel;
-        try {
-            parameterValueLabel = Config.GetTALibrary().GetFolderById(folderId).GetHierarchy().GetObjectById(parameterValueID).name;
-        } catch(e) {
-            parameterValueLabel = currentDictionary["-select-"];
-        }
-
-        context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
+        context.component.Output.Append(getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
     }
 
     static function txtFilterTitle_Hide(context, filterNumber){
@@ -521,17 +511,7 @@ class Page_detailed_analysis{
         var label = currentDictionary['Sub category'];
         context.component.Output.Append(label);
 
-        var folderId = TALibrary.GetTAFoldersParameterValue(context);
-        var parameterValueID = context.state.Parameters['TA_SUB_CATEGORIES_SINGLE'].StringValue;
-
-        var parameterValueLabel;
-        try {
-            parameterValueLabel = Config.GetTALibrary().GetFolderById(folderId).GetHierarchy().GetObjectById(parameterValueID).name;
-        } catch(e) {
-            parameterValueLabel = currentDictionary["-select-"];
-        }
-
-        context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
+        context.component.Output.Append(getCategoryParameterValue(context, currentDictionary, 'TA_SUB_CATEGORIES_SINGLE'));
     }
 
     /**
@@ -561,18 +541,7 @@ class Page_detailed_analysis{
         var label = currentDictionary['Attribute'];
         context.component.Output.Append(label);
 
-
-        var folderId = TALibrary.GetTAFoldersParameterValue(context);
-        var parameterValueID = context.state.Parameters['TA_ATTRIBUTES_SINGLE'].StringValue;
-
-        var parameterValueLabel;
-        try {
-            parameterValueLabel = Config.GetTALibrary().GetFolderById(folderId).GetHierarchy().GetObjectById(parameterValueID).name;
-        } catch(e) {
-            parameterValueLabel = currentDictionary["-select-"];
-        }
-
-        context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
+        context.component.Output.Append(getCategoryParameterValue(context, currentDictionary, 'TA_ATTRIBUTES_SINGLE'));
 
     }
 

@@ -65,6 +65,24 @@ class ParameterValues {
         var parameterValue : ParameterValueResponse = state.Parameters[parameterID];
         var labels = ParameterValues.getParameterValues(currentDictionary, parameterID);
         var parameterValueLabel = ParameterValues.findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
+        return getParameterSpan(parameterValueLabel);
+    }
+
+    static function getCategoryParameterValue(context, currentDictionary, parameterID) {
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+        var parameterValueID = context.state.Parameters[parameterID].StringValue;
+
+        var parameterValueLabel;
+        try {
+            parameterValueLabel = Config.GetTALibrary().GetFolderById(folderId).GetHierarchy().GetObjectById(parameterValueID).name;
+        } catch(e) {
+            parameterValueLabel = currentDictionary["-select-"];
+        }
+
+        return getParameterSpan(parameterValueLabel);
+    }
+
+    private static function getParameterSpan(parameterValueLabel) {
         return '<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>';
     }
 }
