@@ -577,6 +577,14 @@ class Page_dashboard{
         });
 
         var upgradeText = "<script type=\"text/javascript\">"+
+            "[].forEach.call(document.querySelectorAll('.layout-wrapper .reportal-select.reportal-dropdown select'), function(select) {" +
+            "            var value = select.options[select.selectedIndex].text;" +
+            "            var span = document.createElement('span');" +
+            "            span.setAttribute('class', 'pdfExportVisibleOnly');" +
+            "            var parameterName = select.parentNode.parentNode.children[0].innerText.trim();" +
+            "            span.innerText = (parameterName[parameterName.length - 1] == ':' ? ' ' : ': ') + value;" +
+            "            select.parentNode.parentNode.children[0].appendChild(span);" +
+            "        });\n" +
             "var upgradedTable = new Reportal.AggregatedTable("+
                 "{"+
                     "table: document.querySelector('table.reportal-hierarchy-table'),"+
