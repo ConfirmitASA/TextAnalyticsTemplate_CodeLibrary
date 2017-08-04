@@ -297,7 +297,7 @@ class Page_dashboard{
         var parameterValueLabel = ParameterValues.findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
         context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');*/
 
-        context.component.Output.Append(getParameterValue(state, currentDictionary, parameterID));
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_LEVEL'));
 
         //context.component.Output.Append('<span class="pdfExportVisibleOnly"></span>');
     }
