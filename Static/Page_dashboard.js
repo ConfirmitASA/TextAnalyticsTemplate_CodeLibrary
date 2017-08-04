@@ -290,11 +290,14 @@ class Page_dashboard{
 
         //var parameterValueLabel = levelValues[parameterValue.StringValue];
         //var labels = ParameterValues.getParameterValues_TA_LEVEL(currentDictionary);
-        var parameterID = 'TA_LEVEL';
+
+        /*var parameterID = 'TA_LEVEL';
         var parameterValue : ParameterValueResponse = context.state.Parameters[parameterID];
         var labels = ParameterValues.getParameterValues(currentDictionary, parameterID);
-        var parameterValueLabel = ParameterValues.find(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
-        context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
+        var parameterValueLabel = ParameterValues.findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
+        context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');*/
+
+        context.component.Output.Append(getParameterValue(state, currentDictionary, parameterID));
 
         //context.component.Output.Append('<span class="pdfExportVisibleOnly"></span>');
     }

@@ -18,11 +18,11 @@ class ParameterValues {
                 {Code: "neu", Label: currentDictionary["Neutral"]},
                 {Code: "neg", Label: currentDictionary["Negative"]}
             ],
-            "TA_VIEW_BY": [],
+            /*"TA_VIEW_BY": [],
             "TA_ALL_CATEGORIES": [],
             "TA_TOP_CATEGORIES_SINGLE": [],
             "TA_SUB_CATEGORIES_SINGLE": [],
-            "TA_ATTRIBUTES_SINGLE": [],
+            "TA_ATTRIBUTES_SINGLE": [],*/
             "TA_COMMENTS_SENTIMENT": [
                 {Code: "emptyv", Label: currentDictionary["All sentiments"]},
                 {Code: "pos", Label: currentDictionary["Positive"]},
@@ -42,7 +42,7 @@ class ParameterValues {
         };
     }
 
-    static function getParameterValues(currentDictionary, parameterId) {
+    private static function getParameterValues(currentDictionary, parameterId) {
         var values = calculateParameterValues(currentDictionary);
         return values[parameterId];
     }
@@ -64,7 +64,7 @@ class ParameterValues {
         ]
     }*/
 
-    static function find(array, condition) {
+    private static function findValue(array, condition) {
         for(var i = 0; i < array.length; i++) {
             if(condition(array[i])) {
                 return array[i];
@@ -72,5 +72,12 @@ class ParameterValues {
         }
 
         return null;
+    }
+
+    static function getParameterValue(state, currentDictionary, parameterID) {
+        var parameterValue : ParameterValueResponse = state.Parameters[parameterID];
+        var labels = ParameterValues.getParameterValues(currentDictionary, parameterID);
+        var parameterValueLabel = ParameterValues.findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
+        return '<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>';
     }
 }
