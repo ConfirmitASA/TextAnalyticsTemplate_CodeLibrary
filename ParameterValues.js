@@ -23,9 +23,22 @@ class ParameterValues {
             "TA_TOP_CATEGORIES_SINGLE": [],
             "TA_SUB_CATEGORIES_SINGLE": [],
             "TA_ATTRIBUTES_SINGLE": [],
-            "TA_COMMENTS_SENTIMENT": [],
-            "TA_DISTRIBUTION_TOGGLE": [],
-            "TA_PERIOD": []
+            "TA_COMMENTS_SENTIMENT": [
+                {Code: "emptyv", Label: currentDictionary["All sentiments"]},
+                {Code: "pos", Label: currentDictionary["Positive"]},
+                {Code: "neu", Label: currentDictionary["Neutral"]},
+                {Code: "neg", Label: currentDictionary["Negative"]}
+            ],
+            "TA_DISTRIBUTION_TOGGLE": [
+                {Code: 0, Label: currentDictionary["Count"]},
+                {Code: 1, Label: "%"}
+            ],
+            "TA_PERIOD": [
+                {Code: "w", Label: currentDictionary["Weeks"]},
+                {Code: "m", Label: currentDictionary["Months"]},
+                {Code: "q", Label: currentDictionary["Quarters"]},
+                {Code: "y", Label: currentDictionary["Years"]}
+            ]
         };
     }
 
