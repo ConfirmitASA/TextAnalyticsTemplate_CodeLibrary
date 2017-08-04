@@ -364,6 +364,7 @@ class Page_detailed_analysis{
             }
         }
 
+
         context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');
     }
 
