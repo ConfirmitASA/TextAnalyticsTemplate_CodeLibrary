@@ -82,6 +82,25 @@ class ParameterValues {
         return getParameterSpan(parameterValueLabel);
     }
 
+    static function getViewByParameterValue(context, currentDictionary) {
+        var parameterValueLabel = currentDictionary["-select-"];
+
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(folderId);
+        var variables = folder.GetViewByVariables();
+        var project = context.report.DataSource.GetProject(folder.GetDatasourceId());
+
+        var parameterValue : ParameterValueResponse = context.state.Parameters['TA_VIEW_BY'];
+        for( var i = 0; i < variables.length; i++){
+            if(variables[i] == parameterValue.StringValue) {
+                var question: Question = project.GetQuestion( variables[i] );
+                parameterValueLabel = question.Title ? question.Title : variables[i]
+            }
+        }
+
+        return getParameterSpan(parameterValueLabel);
+    }
+
     private static function getParameterSpan(parameterValueLabel) {
         return '<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>';
     }

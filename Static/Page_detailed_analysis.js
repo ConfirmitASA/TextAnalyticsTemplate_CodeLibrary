@@ -347,25 +347,7 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['View by:'];
         context.component.Output.Append(label);
-
-
-        var parameterValueLabel = currentDictionary["-select-"];
-
-        var folderId = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(folderId);
-        var variables = folder.GetViewByVariables();
-        var project = context.report.DataSource.GetProject(folder.GetDatasourceId());
-
-        var parameterValue : ParameterValueResponse = context.state.Parameters['TA_VIEW_BY'];
-        for( var i = 0; i < variables.length; i++){
-            if(variables[i] == parameterValue.StringValue) {
-                var question: Question = project.GetQuestion( variables[i] );
-                parameterValueLabel = question.Title ? question.Title : variables[i]
-            }
-        }
-
-
-        context.component.Output.Append('<span class="pdfExportVisibleOnly"> ' + parameterValueLabel + '</span>');
+        context.component.Output.Append(ParameterValues.getViewByParameterValue(context, currentDictionary));
     }
 
     /**
@@ -388,7 +370,6 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['Category'];
         context.component.Output.Append(label);
-
         context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
     }
 
@@ -510,7 +491,6 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['Sub category'];
         context.component.Output.Append(label);
-
         context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_SUB_CATEGORIES_SINGLE'));
     }
 
@@ -540,9 +520,7 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['Attribute'];
         context.component.Output.Append(label);
-
         context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_ATTRIBUTES_SINGLE'));
-
     }
 
 
