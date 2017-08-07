@@ -65,7 +65,7 @@ class ParameterValues {
         var parameterValue : ParameterValueResponse = state.Parameters[parameterID];
         var labels = ParameterValues.getParameterValues(currentDictionary, parameterID);
         var parameterValueLabel = ParameterValues.findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
-        return getParameterSpan(parameterValueLabel);
+        return getParameterSpan(': ' + parameterValueLabel);
     }
 
     static function getCategoryParameterValue(context, currentDictionary, parameterID) {
@@ -79,7 +79,7 @@ class ParameterValues {
             parameterValueLabel = currentDictionary["-select-"];
         }
 
-        return getParameterSpan(parameterValueLabel);
+        return getParameterSpan(': ' + parameterValueLabel);
     }
 
     static function getViewByParameterValue(context, currentDictionary) {
@@ -98,10 +98,10 @@ class ParameterValues {
             }
         }
 
-        return getParameterSpan(parameterValueLabel);
+        return getParameterSpan(' ' + parameterValueLabel);
     }
 
     private static function getParameterSpan(parameterValueLabel) {
-        return '<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>';
+        return '<span class="pdfExportVisibleOnly">' + parameterValueLabel + '</span>';
     }
 }
