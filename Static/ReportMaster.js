@@ -118,7 +118,7 @@ class ReportMaster {
             "\n;}.legend .cf_neutral:before,.reportal-table>tbody>tr>td.cf_neutral:after {background: " + neutralColor +
             "\n;}.legend .cf_negative:before,.reportal-table>tbody>tr>td.cf_negative:after {background: " + negativeColor +
             "\n;}.reportal-branding-panel {background: " + headerBackgroundColor +
-            "\n;}.reportal-branding-panel .page-title {background-color: " + headerBackgroundColor +
+            "\n;}.reportal-branding-panel .page-title,.yui3-menu-horizontal {background-color: " + headerBackgroundColor +
             "\n;}.reportal-branding-panel .page-title {color: " + headerTextColor +
             "\n;}.yui3-menu-horizontal ul > li > *:nth-last-child(2):after {border-left: 1px solid " + secondaryTextColor +
             "\n;}[type=radio]:checked:focus + label:before,[type=radio]:not(:checked):focus + label:before,[type=checkbox]:checked:focus + label:before,[type=checkbox]:not(:checked):focus + label:before {border: 1px solid " + secondaryTextColor +
