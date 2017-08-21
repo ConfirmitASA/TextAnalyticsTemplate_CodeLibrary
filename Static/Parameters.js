@@ -39,6 +39,8 @@ class Parameters{
             {Code: "yoy", Label: currentDictionary["Current vs Last Year"]}
         ];
 
+        //var parameterValues = ParameterValues.getParameterValues(currentDictionary, 'TA_COMPARE_PERIODS');
+
         ParameterUtilities.LoadParameterValues({
             context: context,
             parameterValues: parameterValues
@@ -172,6 +174,8 @@ class Parameters{
             {Code: "neu", Label: currentDictionary["Neutral"]},
             {Code: "neg", Label: currentDictionary["Negative"]}
         ];
+
+        //var parameterValues = ParameterValues.getParameterValues(currentDictionary, 'TA_VIEW_SENTIMENT');
 
         ParameterUtilities.LoadParameterValues({
             context: context,

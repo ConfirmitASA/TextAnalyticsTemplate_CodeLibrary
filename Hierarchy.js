@@ -201,6 +201,19 @@ class Hierarchy {
 
     /**
      * @memberof Hierarchy
+     * @instance
+     * @function GetTextSeparator
+     * @description function to get text separartor for categories
+     * @returns {String}
+     */
+    function
+
+    GetTextSeparator() {
+        return _settings.textSeparator;
+    }
+
+    /**
+     * @memberof Hierarchy
      * @private
      * @instance
      * @function _setupHierarchy

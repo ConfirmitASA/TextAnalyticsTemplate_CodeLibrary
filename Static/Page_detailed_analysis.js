@@ -347,6 +347,7 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['View by:'];
         context.component.Output.Append(label);
+        context.component.Output.Append(ParameterValues.getViewByParameterValue(context, currentDictionary));
     }
 
     /**
@@ -369,6 +370,7 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['Category'];
         context.component.Output.Append(label);
+        context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
     }
 
     static function txtFilterTitle_Hide(context, filterNumber){
@@ -489,6 +491,7 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['Sub category'];
         context.component.Output.Append(label);
+        context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_SUB_CATEGORIES_SINGLE'));
     }
 
     /**
@@ -517,6 +520,7 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['Attribute'];
         context.component.Output.Append(label);
+        context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_ATTRIBUTES_SINGLE'));
     }
 
 

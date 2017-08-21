@@ -185,6 +185,9 @@ class TAParameters{
                 Label: currentDictionary["3rd level (attributes)"]
             }
         ];
+        //var levelValues = ParameterValues.getParameterValues_TA_LEVEL(currentDictionary);
+
+        //var levelValues = ParameterValues.getParameterValues(currentDictionary, 'TA_LEVEL');
 
         var levelsCount = Config.GetTALibrary().
             GetFolderById(folderId).
