@@ -81,6 +81,10 @@ class ReportMaster {
         var positiveColor = Config.Design.positiveColor;
         var neutralColor = Config.Design.neutralColor;
         var negativeColor = Config.Design.negativeColor;
+        var issues = Config.Design.areasPalette["Priority Issues"];
+        var strength = Config.Design.areasPalette["Strength"];
+        var monitor = Config.Design.areasPalette["Monitor and Improve"];
+        var maintain = Config.Design.areasPalette["Maintain"];
 
         var str = "<style>";
 
@@ -117,9 +121,6 @@ class ReportMaster {
             "\n;}.legend .cf_positive:before,.reportal-table>tbody>tr>td.cf_positive:after {background: " + positiveColor +
             "\n;}.legend .cf_neutral:before,.reportal-table>tbody>tr>td.cf_neutral:after {background: " + neutralColor +
             "\n;}.legend .cf_negative:before,.reportal-table>tbody>tr>td.cf_negative:after {background: " + negativeColor +
-            "\n;}.reportal-branding-panel {background: " + headerBackgroundColor +
-            "\n;}.reportal-branding-panel .page-title,.yui3-menu-horizontal {background-color: " + headerBackgroundColor +
-            "\n;}.reportal-branding-panel .page-title {color: " + headerTextColor +
             "\n;}.yui3-menu-horizontal ul > li > *:nth-last-child(2):after {border-left: 1px solid " + secondaryTextColor +
             "\n;}[type=radio]:checked:focus + label:before,[type=radio]:not(:checked):focus + label:before,[type=checkbox]:checked:focus + label:before,[type=checkbox]:not(:checked):focus + label:before {border: 1px solid " + secondaryTextColor +
             "\n;}.yui3-menu-horizontal ul > li > *:nth-last-child(2):before,.reportal-select.reportal-dropdown>span:after,.hitlist-dropdown-button:after {border-color: " + primaryTextColor +
@@ -157,10 +158,19 @@ class ReportMaster {
             "\n !important;}.yui-calcontainer {border: 1px solid " + dividerColor +
             "\n !important;}.yui-calcontainer>table .calnavleft:before, .yui-calcontainer>table .calnavright:before {border: 1px solid " + buttonMainColor +
             "\n;}.yui-calcontainer>table .calnav,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn {background: " + lightPrimaryColor +
-            "\n !important;}#chart-tables-switcher svg {fill: " + primaryTextColor +
+            "\n !important;}.correlation-header--issues {background-color: " + issues +
+            "\n;}.correlation-list--issues>tr>td:first-child {color: " + issues +
+            "\n;}.correlation-header--strength {background-color: " + strength +
+            "\n;}.correlation-list--strength>tr>td:first-child {color: " + strength +
+            "\n;}.correlation-header--monitor {background-color: " + monitor +
+            "\n;}.correlation-list--monitor>tr>td:first-child {color: " + monitor +
+            "\n;}.correlation-header--maintain {background-color: " + maintain +
+            "\n;}.correlation-list--maintain>tr>td:first-child {color: " + maintain +
+            "\n;}#chart-tables-switcher svg {fill: " + primaryTextColor +
             "\n;}#chart-tables-switcher .selected svg {fill: " + buttonMainColor +
             "\n;}table>thead td.sortable:not(.hierarchy-search-visible):after {color: " + primaryTextColor +
             "\n;}";
+
 
         str += "</style>";
 
