@@ -85,8 +85,9 @@ class TATopChangedTableByFiscalYear{
     var headerTimeSeries: HeaderQuestion;
 
     headerTimeSeries = new HeaderQuestion(questionnaireElement);
-    headerTimeSeries.AnswerMask = new MaskFlat(true);
-    headerTimeSeries.AnswerMask.Codes.AddRange(_period.range);
+    var mask: MaskFlat = new MaskFlat(true);
+    mask.Codes.AddRange(_period.range);
+    headerTimeSeries.AnswerMask = mask;
     headerTimeSeries.ShowTotals = false;
 
         var headerStatistics: HeaderStatistics = new HeaderStatistics();
