@@ -74,6 +74,10 @@ class TAThemeDistributionTableByFiscalYear{
     headerTimeSeries = new HeaderQuestion(questionnaireElement);
     headerTimeSeries.ShowTotals = false;
 
+    var mask: MaskFlat = new MaskFlat(true);
+    mask.Codes.AddRange(_period.range);
+    headerTimeSeries.AnswerMask = mask;
+
         columnsCollection.AddRange(_getCountsColumn());
 
         headerTimeSeries.SubHeaders.AddRange(columnsCollection);

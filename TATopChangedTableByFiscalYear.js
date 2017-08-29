@@ -80,21 +80,24 @@ class TATopChangedTableByFiscalYear{
      * @function _addTimeSeriesColumn
      */
     private function _addTimeSeriesColumn(){
-    var project = _context.report.DataSource.GetProject(_folder.GetDatasourceId());
-    var questionnaireElement: QuestionnaireElement = project.CreateQuestionnaireElement(_period.question);
-    var headerTimeSeries: HeaderQuestion;
-
-    headerTimeSeries = new HeaderQuestion(questionnaireElement);
-    var mask: MaskFlat = new MaskFlat(true);
-    mask.Codes.AddRange(_period.range);
-    headerTimeSeries.AnswerMask = mask;
-    headerTimeSeries.ShowTotals = false;
-    headerTimeSeries.Decimals = 1;
-
+        var project = _context.report.DataSource.GetProject(_folder.GetDatasourceId());
+        var questionnaireElement: QuestionnaireElement = project.CreateQuestionnaireElement(_period.question);
+        var headerTimeSeries: HeaderQuestion;
+        var mask: MaskFlat;
         var headerStatistics: HeaderStatistics = new HeaderStatistics();
         headerStatistics.HideHeader = true;
         headerStatistics.Statistics.Avg = true;
-        headerStatistics.SubHeaders.Add(headerTimeSeries);
+
+
+        for(var i = 0; i< _period.range.length; i++){
+            headerTimeSeries = new HeaderQuestion(questionnaireElement);
+            mask = new MaskFlat(true);
+            mask.Codes.Add(_period.range[i]);
+            headerTimeSeries.AnswerMask = mask;
+            headerTimeSeries.ShowTotals = false;
+            headerTimeSeries.Decimals = 1;
+            headerStatistics.SubHeaders.Add(headerTimeSeries);
+        }
         _table.ColumnHeaders.Add(headerStatistics);
     }
 
