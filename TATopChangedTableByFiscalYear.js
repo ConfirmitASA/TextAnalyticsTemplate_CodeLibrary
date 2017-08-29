@@ -81,10 +81,14 @@ class TATopChangedTableByFiscalYear{
      */
     private function _addTimeSeriesColumn(){
     var project = _context.report.DataSource.GetProject(_folder.GetDatasourceId());
-    var questionnaireElement: QuestionnaireElement = project.CreateQuestionnaireElement(_period);
+    var questionnaireElement: QuestionnaireElement = project.CreateQuestionnaireElement(_period.question);
     var headerTimeSeries: HeaderQuestion;
 
     headerTimeSeries = new HeaderQuestion(questionnaireElement);
+    headerTimeSeries.AnswerMask = new MaskFlat(true);
+    headerTimeSeries.AnswerMask.AddRange(_period.range);
+    headerTimeSeries.ShowTotals = false;
+
         var headerStatistics: HeaderStatistics = new HeaderStatistics();
         headerStatistics.HideHeader = true;
         headerStatistics.Statistics.Avg = true;

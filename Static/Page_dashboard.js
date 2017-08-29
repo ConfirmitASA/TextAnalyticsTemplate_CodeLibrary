@@ -139,7 +139,7 @@ class Page_dashboard{
             table: table,
             sentiment: sentiment,
             level: level,
-            period: "fiscal_year"
+            period: {question: "fiscal_year", range: ["FY2016", "FY2017"]}
         });
 
         topChangedTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
