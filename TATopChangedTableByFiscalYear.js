@@ -89,6 +89,7 @@ class TATopChangedTableByFiscalYear{
     mask.Codes.AddRange(_period.range);
     headerTimeSeries.AnswerMask = mask;
     headerTimeSeries.ShowTotals = false;
+    headerTimeSeries.Decimals = 1;
 
         var headerStatistics: HeaderStatistics = new HeaderStatistics();
         headerStatistics.HideHeader = true;
