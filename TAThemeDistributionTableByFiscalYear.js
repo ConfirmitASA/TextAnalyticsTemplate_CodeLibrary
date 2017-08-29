@@ -88,7 +88,7 @@ class TAThemeDistributionTableByFiscalYear{
      * @returns {HeaderCollection}
      */
     private function _getCountsColumn(){
-        var columnsCollection: HeaderCollection = _taTableUtils.GetCategoriesHeader(_sentiment, false, true, false, Config.SentimentRange);
+        var columnsCollection: HeaderCollection = _taTableUtils.GetCategoriesHeader("all", false, true, false, Config.SentimentRange);
         return columnsCollection
     }
 }
