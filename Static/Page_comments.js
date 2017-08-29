@@ -159,6 +159,8 @@ class Page_comments{
                 sortable: false,
                 postfix: selectedCategory
             });
+        }else{
+            htlComments.AddTAColumn({context: context, columnName: "overallsentiment"});
         }
         htlComments.AddTAColumn({context: context, columnName: "verbatim"});
 
@@ -168,8 +170,8 @@ class Page_comments{
             sortable: true
         });
 
-        htlComments.AddTAColumn({context: context, columnName: "overallsentiment"});
-        htlComments.AddTAColumn({context: context, columnName: "categories"});
+
+        // htlComments.AddTAColumn({context: context, columnName: "categories"});
         htlComments.AddConfiguredColumns(context);
     }
 
@@ -207,11 +209,7 @@ class Page_comments{
 
         hitlistHeaders["sentiment"] = [];
 
-        if( selectedCategory && selectedCategory !== "emptyv"){
-            hitlistHeaders["sentiment"].push( {
-                    name: folder.GetQuestionId("categorysentiment")+"_"+selectedCategory
-            } );
-        }
+
 
         var currentLanguage = context.report.CurrentLanguage;
 
@@ -228,14 +226,21 @@ class Page_comments{
             title: currentDictionary["Date"]
         }];
 
-            hitlistHeaders["categories"] = [{
-                name: folder.GetQuestionId("categories")
-            }];
+            // hitlistHeaders["categories"] = [{
+            //     name: folder.GetQuestionId("categories")
+            // }];
 
+    if( selectedCategory && selectedCategory !== "emptyv"){
+        hitlistHeaders["sentiment"].push( {
+            name: folder.GetQuestionId("categorysentiment")+"_"+selectedCategory
+        } );
+    }else{
         hitlistHeaders["sentiment"].push( {
             name: folder.GetQuestionId("overallSentiment"),
             title: currentDictionary["Overall Sentiment"]
         });
+    }
+
 
         hitlistHeaders["other"] = [];
 

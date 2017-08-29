@@ -251,7 +251,7 @@ class Page_dashboard{
         });
 
         themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
-        themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "detailed_analysis, comments");
+        themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "ta_detailed_analysis, ta_comments");
         themeDistributionTable.GetTATableUtils().ClearTableDistributions();
         themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
     }
