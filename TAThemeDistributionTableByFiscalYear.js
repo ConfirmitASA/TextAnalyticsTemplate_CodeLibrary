@@ -70,18 +70,22 @@ class TAThemeDistributionTableByFiscalYear{
     var project = _context.report.DataSource.GetProject(_folder.GetDatasourceId());
     var questionnaireElement: QuestionnaireElement = project.CreateQuestionnaireElement(_period.question);
     var headerTimeSeries: HeaderQuestion;
+    var mask: MaskFlat;
 
-    headerTimeSeries = new HeaderQuestion(questionnaireElement);
-    headerTimeSeries.ShowTotals = false;
 
-    var mask: MaskFlat = new MaskFlat(true);
-    mask.Codes.AddRange(_period.range);
-    headerTimeSeries.AnswerMask = mask;
+        for(var i=0; i<_period.range.length; i++) {
+            headerTimeSeries = new HeaderQuestion(questionnaireElement);
+            headerTimeSeries.ShowTotals = false;
 
-        columnsCollection.AddRange(_getCountsColumn());
+            mask= new MaskFlat(true);
+            mask.Codes.Add(_period.range[i]);
+            headerTimeSeries.AnswerMask = mask;
 
-        headerTimeSeries.SubHeaders.AddRange(columnsCollection);
-        _table.ColumnHeaders.Add(headerTimeSeries);
+            columnsCollection.AddRange(_getCountsColumn());
+
+            headerTimeSeries.SubHeaders.AddRange(columnsCollection);
+            _table.ColumnHeaders.Add(headerTimeSeries);
+        }
     }
 
     /**
