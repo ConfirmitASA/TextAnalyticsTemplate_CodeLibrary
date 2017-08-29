@@ -57,13 +57,14 @@ class TAThemeDistributionTableByFiscalYear{
 
         _taTableUtils.CreateTableFromExpression(rowexpr);
         _addTimeSeriesColumn();
+        _table.RemoveEmptyHeaders.Columns = true
     }
 
     /**
      * @memberof TAThemeDistributionTable
      * @private
      * @instance
-     * @function _addTimeSeriesColum
+     * @function _addTimeSeriesColumn
      */
     private function _addTimeSeriesColumn(){
     var columnsCollection: HeaderCollection = new HeaderCollection();
