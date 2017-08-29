@@ -71,6 +71,7 @@ class TAThemeDistributionTableByFiscalYear{
     var questionnaireElement: QuestionnaireElement = project.CreateQuestionnaireElement(_period.question);
     var headerTimeSeries: HeaderQuestion;
     var mask: MaskFlat;
+    columnsCollection.AddRange(_getCountsColumn());
 
 
         for(var i=0; i<_period.range.length; i++) {
@@ -81,7 +82,7 @@ class TAThemeDistributionTableByFiscalYear{
             mask.Codes.Add(_period.range[i]);
             headerTimeSeries.AnswerMask = mask;
 
-            columnsCollection.AddRange(_getCountsColumn());
+
 
             headerTimeSeries.SubHeaders.AddRange(columnsCollection);
             _table.ColumnHeaders.Add(headerTimeSeries);
