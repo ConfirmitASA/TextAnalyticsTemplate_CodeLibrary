@@ -68,6 +68,8 @@ class ReportMaster {
         var backgroundColor = Config.Design.backgroundColor;
         var lightPrimaryColor = Config.Design.lightPrimaryColor;
         var buttonTextColor = Config.Design.buttonTextColor;
+        var headerBackgroundColor = Config.Design.headerBackgroundColor;
+        var headerTextColor = Config.Design.headerTextColor;
         var buttonHoverColor = Config.Design.buttonHoverColor;
         var buttonMainColor = Config.Design.buttonMainColor;
         var tableColumnColor = Config.Design.tableColumnColor;
@@ -79,6 +81,10 @@ class ReportMaster {
         var positiveColor = Config.Design.positiveColor;
         var neutralColor = Config.Design.neutralColor;
         var negativeColor = Config.Design.negativeColor;
+        var issues = Config.Design.areasPalette["Priority Issues"];
+        var strength = Config.Design.areasPalette["Strength"];
+        var monitor = Config.Design.areasPalette["Monitor and Improve"];
+        var maintain = Config.Design.areasPalette["Maintain"];
 
         var str = "<style>";
 
@@ -119,6 +125,7 @@ class ReportMaster {
             "\n;}[type=radio]:checked:focus + label:before,[type=radio]:not(:checked):focus + label:before,[type=checkbox]:checked:focus + label:before,[type=checkbox]:not(:checked):focus + label:before {border: 1px solid " + secondaryTextColor +
             "\n;}.yui3-menu-horizontal ul > li > *:nth-last-child(2):before,.reportal-select.reportal-dropdown>span:after,.hitlist-dropdown-button:after {border-color: " + primaryTextColor +
             "\n transparent transparent;}.yui3-menu-horizontal ul > li > a,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-cancel,.reportal-hitlist-container .yui3-datatable-cell,.reportal-hitlist-container .yui3-datatable-cell:hover,.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {color: " + primaryTextColor +
+            "\n !important;}.yui-calcontainer>table td.calcell.calcellhover>a {background: " + primaryTextColor +
             "\n !important;}.yui3-menu-horizontal ul ul > li > *:nth-last-child(2):before {border-color: transparent transparent transparent " + backgroundColor +
             "\n;}.reportal-select select,[type=\"checkbox\"] + label:before,[type=radio] + label:before,.hitlist-dropdown-panel .hitlist-filter-item>input.hitlist-opentext-field,    .hitlist-dropdown-panel .hitlist-filter-item>input.ac,    .hitlist-dropdown-panel .hitlist-filter-item>.hitlist-toggle-field>input.hitlist-filter-text-field,    .hitlist-dropdown-panel .hitlist-filter-item>select,.reportal-datepicker>span>span> input,.yui-calcontainer select.yui-cal-nav-mc,  .yui-calcontainer input.yui-cal-nav-yc {border: 1px solid " + dividerColor +
             "\n;}.reportal-table .btn.hierarchy-search.visible {border-bottom: 1px solid " + dividerColor +
@@ -133,7 +140,7 @@ class ReportMaster {
             "\n;}.reportal-hierarchy-table tr.firstInBlock:not(:first-child)>td {border-top: 3px " + dividerColor +
             "\n double !important;}.reportal-collapsed-row .reportal-collapse-button:before,.reportal-uncollapsed-row .reportal-collapse-button:before,.hitlist-dropdown-button:after,.dd-target-button.dd-button-selected .dd-target-button-arrow {border-color: " + secondaryTextColor +
             "\n transparent transparent;}.reportal-no-children .reportal-collapse-button:before {border: 1px solid " + disabledTextColor +
-            "\n;}.hitlist-dropdown-button,.hitlist-export-button.hitlist-btn,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-cancel:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn:hover {background: " + backgroundColor +
+            "\n;}.hitlist-dropdown-button,.hitlist-export-button.hitlist-btn,.hitlist-filter,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-cancel:hover,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn:hover {background: " + backgroundColor +
             "\n !important;}.hitlist-dropdown-button:hover,.hitlist-export-button.hitlist-btn:hover {background: " + dividerColor +
             "\n !important;}.hitlist-dropdown-panel,.yui-calcontainer .yui-cal-nav {border-color: " + dividerColor +
             "\n !important;}.yui-ac-bd>ul>li.yui-ac-highlight,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear:hover,.hitlist-nav-button,.hitlist-nav-page,.yui-calcontainer>table td.calcell.selected>a,.yui-calcontainer>table .calnav:hover {color: " + buttonTextColor +
@@ -151,10 +158,22 @@ class ReportMaster {
             "\n !important;}.yui-calcontainer {border: 1px solid " + dividerColor +
             "\n !important;}.yui-calcontainer>table .calnavleft:before, .yui-calcontainer>table .calnavright:before {border: 1px solid " + buttonMainColor +
             "\n;}.yui-calcontainer>table .calnav,.yui-calcontainer .yui-cal-nav-b>.yui-cal-nav-btn {background: " + lightPrimaryColor +
-            "\n !important;}table>thead td.sortable:not(.hierarchy-search-visible):after {color: " + primaryTextColor +
+            "\n !important;}.correlation-header--issues {background-color: " + issues +
+            "\n;}.correlation-list--issues>tr>td:first-child {color: " + issues +
+            "\n;}.correlation-header--strength {background-color: " + strength +
+            "\n;}.correlation-list--strength>tr>td:first-child {color: " + strength +
+            "\n;}.correlation-header--monitor {background-color: " + monitor +
+            "\n;}.correlation-list--monitor>tr>td:first-child {color: " + monitor +
+            "\n;}.correlation-header--maintain {background-color: " + maintain +
+            "\n;}.correlation-list--maintain>tr>td:first-child {color: " + maintain +
+            "\n;}#chart-tables-switcher svg {fill: " + primaryTextColor +
+            "\n;}#chart-tables-switcher .selected svg {fill: " + buttonMainColor +
+            "\n;}table>thead td.sortable:not(.hierarchy-search-visible):after {color: " + primaryTextColor +
             "\n;}";
 
+
         str += "</style>";
+
         context.component.Output.Append(str);
     }
 
