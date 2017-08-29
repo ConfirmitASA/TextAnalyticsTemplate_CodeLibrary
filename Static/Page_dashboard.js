@@ -128,7 +128,6 @@ class Page_dashboard{
 
         var level = context.state.Parameters.IsNull("TA_LEVEL") ? 0 : context.state.Parameters.GetString("TA_LEVEL");
         var table = context.component;
-        var period = context.state.Parameters.IsNull("TA_COMPARE_PERIODS") ? "qoq" : context.state.Parameters.GetString("TA_COMPARE_PERIODS");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
@@ -240,18 +239,15 @@ class Page_dashboard{
      */
     static function tblThemeDistribution_Render(context){
         var table = context.component;
-        var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
 
-        var themeDistributionTable = new TAThemeDistributionTable({
+        var themeDistributionTable = new TAThemeDistributionTableByFiscalYear({
             context: context,
             folder: folder,
             table: table,
-            sentiment: sentiment,
             config: Config,
-            period: period
+            period: {question: "fiscal_year"}
         });
 
         themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
