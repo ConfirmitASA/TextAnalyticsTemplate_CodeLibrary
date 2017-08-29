@@ -11,7 +11,7 @@
  * @param {String} period - m, y, d, w, q
  * @param {Number} topN
  */
-class TATopChangedTable{
+class TATopChangedTableByFiscalYear{
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
     private var _taMasks: TAMasks;
@@ -24,7 +24,7 @@ class TATopChangedTable{
     private var _currentLanguage;
     private var _context;
 
-    function TATopChangedTable(params){
+    function TATopChangedTableByFiscalYear(params){
         var context = params.context;
         _folder = params.folder;
         _taMasks = new TAMasks({context: context, folder: _folder});
