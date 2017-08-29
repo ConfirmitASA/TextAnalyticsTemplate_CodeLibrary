@@ -17,6 +17,7 @@ class TAThemeDistributionTableByFiscalYear{
     private var _percents;
     private var _period;
     private var _config;
+    private var _context;
 
     function TAThemeDistributionTableByFiscalYear(params){
         var context = params.context;
@@ -30,6 +31,7 @@ class TAThemeDistributionTableByFiscalYear{
         });
         _period = params.period;
         _config = params.config;
+        _context = context;
         _render();
     }
 
@@ -64,6 +66,7 @@ class TAThemeDistributionTableByFiscalYear{
      * @function _addTimeSeriesColum
      */
     private function _addTimeSeriesColumn(){
+    var columnsCollection: HeaderCollection = new HeaderCollection();
     var project = _context.report.DataSource.GetProject(_folder.GetDatasourceId());
     var questionnaireElement: QuestionnaireElement = project.CreateQuestionnaireElement(_period.question);
     var headerTimeSeries: HeaderQuestion;
