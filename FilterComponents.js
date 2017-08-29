@@ -13,22 +13,15 @@ class FilterComponents{
 
     function FilterComponents(params){
         var context = params.context;
-        context.log.LogDebug("filtcomm1");
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    context.log.LogDebug("filtcomm2");
         var questionsArray = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
-    context.log.LogDebug("filtcomm3");
         var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
-    context.log.LogDebug("filtcomm4");
         _filterQuestions = [];
-    context.log.LogDebug("filtcomm5");
         var project  = context.report.DataSource.GetProject(dataSource);
-    context.log.LogDebug("filtcomm6");
         for( var i = 0; i < questionsArray.length; i++ ){
 
             _filterQuestions.push(project.GetQuestion(questionsArray[i]))
         }
-    context.log.LogDebug("filtcomm7");
     }
 
     /**
@@ -106,15 +99,12 @@ class FilterComponents{
                 filterNumber: i
             });
 
-            context.log.LogDebug("filtc41 "+i);
 
             if(codes && codes.values.length > 0){
                 answeredCodes.push(codes);
             }
 
-            context.log.LogDebug("filtc51 "+i);
         }
-    context.log.LogDebug("filtc61");
         return answeredCodes
     }
 
@@ -128,18 +118,13 @@ class FilterComponents{
      */
     function GetFilterInformation(params){
         var context = params.context;
-    context.log.LogDebug("filtc1");
         var filterNumber = params.filterNumber;
-    context.log.LogDebug("filtc2");
         var result = false;
-    context.log.LogDebug("filtc3");
         var parameterName = 'FILTER' + (filterNumber +1);
-    context.log.LogDebug("filtc4");
         var codes = ParameterUtilities.GetParameterCodes({
             context: context,
             parameterName: parameterName
         });
-    context.log.LogDebug("filtc5");
 
         if ( codes.length > 0 ){
             var fTitle = GetFilterTitle(filterNumber);
@@ -159,7 +144,6 @@ class FilterComponents{
             }
         }
 
-    context.log.LogDebug("filtc6");
         return result
     }
 

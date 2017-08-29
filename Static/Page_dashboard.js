@@ -133,13 +133,13 @@ class Page_dashboard{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var topChangedTable = new TATopChangedTable({
+        var topChangedTable = new TATopChangedTableByFiscalYear({
             context: context,
             folder: folder,
             table: table,
             sentiment: sentiment,
             level: level,
-            period: period
+            period: "fiscal_year"
         });
 
         topChangedTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
