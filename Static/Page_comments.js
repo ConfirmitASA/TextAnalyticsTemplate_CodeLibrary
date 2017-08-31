@@ -201,13 +201,17 @@ class Page_comments{
                         "hitlist: document.querySelector('.reportal-hitlist-container'),"+
                         "separator: '" + (textSeparator ? textSeparator : "") + "',"+
                         "headers: hitlistHeaders,"+
-                        "sentimentConfig: sentimentConfig"+
+                        "sentimentConfig: sentimentConfig,"+
+                        "currentCategory: currentCategory"+
                     "});"+
                 "});"+
             "</script>";
 
         var hitlistHeaders = {};
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+        var currentCategory = "";
+        if(selectedCategory && selectedCategory !== "emptyv" && Config.ShowOnlySelectedCategoryTagInHitlist)
+            currentCategory = folder.GetHierarchy().GetObjectById(selectedCategory).text;
 
         hitlistHeaders["sentiment"] = [];
 
@@ -268,6 +272,7 @@ class Page_comments{
         ];
         context.component.Output.Append(JSON.print(hitlistHeaders, "hitlistHeaders"));
         context.component.Output.Append(JSON.print(sentimentConfig,"sentimentConfig"));
+        context.component.Output.Append(JSON.print(currentCategory,"currentCategory"));
         context.component.Output.Append(hitlistInit);
 
     }
