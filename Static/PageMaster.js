@@ -104,7 +104,17 @@ class PageMaster{
         context.component.Output.Append(filterSummary);
 
         if( codes.length > 0 || startDate || endDate)
-            context.component.Output.Append("<button title='Clear filters' onclick='javascript:document.querySelector(\".filters-clear-button input\").click()' style = 'padding: 1px'><svg width='10' height='10' class='icon-circle-x'><use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='/discoveryanalytics/svg-icons/stack/svg/sprite.stack.svg#circle-x'></use></svg></button>");
+            context.component.Output.Append("<button title='Clear filters' onclick='javascript:document.querySelector(\".filters-clear-button input\").click()' style = 'padding: 1px'>"+
+                "   <svg width='10' height='10' class='icon-circle-x'>" +
+                "       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 153.5 122'>"+
+                "           <style>:root&gt;svg{display:none}:root&gt;svg:target{display:block}</style>"+
+                "           <svg id='circle-x' viewBox='0 0 12 12' data-name='Layer 1'>" +
+                "               <title>!svg-icons</title>" +
+                "               <path d='M 6 0 a 6 6 0 1 0 6 6 a 6 6 0 0 0 -6 -6 Z m 3 4.06 L 7.06 6 L 9 7.94 V 9 H 7.94 L 6 7.06 L 4.06 9 H 3 V 7.94 L 4.94 6 L 3 4.06 V 3 h 1.06 L 6 4.94 L 7.94 3 H 9 v 1.06 Z' />" +
+                "           </svg>" +
+                "       </svg>" +
+                "   </svg>"+
+                "</button>");
 
     }
 
