@@ -592,7 +592,7 @@ class Page_dashboard{
 
         var categoriesText = "<script>" +
             "var z = [].slice.call(document.querySelectorAll('.reportal-categories>thead>tr>td[class*=\"_cc\"]'));" +
-            "z.forEach(item => item.innerHTML = '"+currentDictionary['Categories']+"');" +
+            "z.forEach(function(item){item.innerHTML = '"+currentDictionary['Categories']+"}');" +
             "</script>";
 
         var headers;
