@@ -159,8 +159,6 @@ class Page_comments{
                 sortable: false,
                 postfix: selectedCategory
             });
-        }else{
-            htlComments.AddTAColumn({context: context, columnName: "overallsentiment"});
         }
         htlComments.AddTAColumn({context: context, columnName: "verbatim"});
 
@@ -234,11 +232,6 @@ class Page_comments{
         hitlistHeaders["sentiment"].push( {
             name: folder.GetQuestionId("categorysentiment")+"_"+selectedCategory
         } );
-    }else{
-        hitlistHeaders["sentiment"].push( {
-            name: folder.GetQuestionId("overallSentiment"),
-            title: currentDictionary["Overall Sentiment"]
-        });
     }
 
 
