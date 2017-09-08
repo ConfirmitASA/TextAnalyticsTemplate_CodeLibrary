@@ -87,7 +87,7 @@ class TAFilters{
      * }
      * @returns {String}
      */
-    function GetDateFilterExpression(params){
+    static function GetDateFilterExpression(params){
         var fExpr;
 
         var context = params.context;
