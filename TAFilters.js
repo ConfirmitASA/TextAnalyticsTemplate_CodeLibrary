@@ -18,6 +18,8 @@ class TAFilters{
      */
     static function GetSelectedCategoryFilterExpression(params){
         var fExpr;
+
+        var context = params.context;
         var folder = params.folder;
         var selectedCategory = context.state.Parameters.GetString(params.allCategoriesParameterName)
 
