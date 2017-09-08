@@ -3,7 +3,6 @@
  * @classdesc Static class for Reportal Page comments components
  */
 class Page_comments{
-
     /**
      * @memberof Page_comments
      * @function Hide
@@ -47,7 +46,7 @@ class Page_comments{
             subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
         });
 
-    PageRenderer.processSelectedCategoryParameter({
+        PageRenderer.processSelectedCategoryParameter({
             context: context,
             folder: Config.GetTALibrary().GetFolderById(selectedFolder)
         })
@@ -187,7 +186,6 @@ class Page_comments{
             });
         }
 
-    //TODO: configurable range of sentiments
         var sentimentConfig = [
             {
                 sentiment: "positive",
@@ -346,7 +344,7 @@ class Page_comments{
 
     /**
      * @memberof Page_comments
-     * @function txtAttribute_Render
+     * @function txtSentiment_Render
      * @description function to render the sentiment selector label
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -358,67 +356,5 @@ class Page_comments{
         context.component.Output.Append(label);
 
         context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_COMMENTS_SENTIMENT'));
-    }
-
-    static function txtFilterTitle_Hide(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
-
-        return FilterPanel.txtFilterTitle_Hide({
-            context: context,
-            filterComponents: filterComponents,
-            filterNumber: filterNumber
-        });
-
-    }
-
-    /**
-     * @memberof Page_filters
-     * @function txtFilterTitle_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {Number} filterNumber
-     */
-    static function txtFilterTitle_Render(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
-
-        FilterPanel.txtFilterTitle_Render({
-            context: context,
-            filterComponents: filterComponents,
-            filterNumber: filterNumber
-        });
-    }
-
-    /**
-     * @memberof Page_filters
-     * @function lstFilterList_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {Number} filterNumber
-     * @returns {Boolean}
-     */
-    static function lstFilterList_Hide(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
-
-        return FilterPanel.lstFilterList_Hide({
-            context: context,
-            filterComponents: filterComponents,
-            filterNumber: filterNumber
-        });
     }
 }
