@@ -22,7 +22,7 @@ class TAFilters{
         var context = params.context;
         var folder = params.folder;
     context.log.LogDebug("-------5-------");
-        var selectedCategory = context.state.Parameters.GetString(params.allCategoriesParameterName)
+        var selectedCategory = context.state.Parameters.GetString(params.allCategoriesParameter)
     context.log.LogDebug("-------6-------");
         fExpr = (selectedCategory && selectedCategory !=="emptyv") ?('ANY(' + folder.GetQuestionId("categories") + ',"'+selectedCategory+'")'):'NOT ISNULL('+folder.GetQuestionId("overallSentiment")+')';
 
