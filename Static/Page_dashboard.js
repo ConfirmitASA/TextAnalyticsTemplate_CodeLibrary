@@ -25,7 +25,7 @@ class Page_dashboard{
 
         PageRenderer.initiateParameters(context);
 
-        PageRenderer.initializeFilters(context);
+        PageRenderer.initiateFilters(context);
 
         PageRenderer.SetLastVisitedPage(context, "correlation");
 
