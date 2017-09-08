@@ -24,11 +24,10 @@ class Page_filters{
         Config.SetTALibrary(context);
 
         initiateParameters(context);
+        initiateFilters(context)
     }
 
     static function initiateParameters(context){
-
-        //TODO: refactor setting default parameters
         if(context.component.SubmitSource === "lstQuestions") {
             ParameterUtilities.SetDefaultParameterValues(
                 {
@@ -37,7 +36,6 @@ class Page_filters{
                 }
             )
         }
-
 
         ParameterUtilities.SetDefaultParameterValuesForEmpty({
             context: context,
@@ -48,6 +46,18 @@ class Page_filters{
                 }
             )
         });
+    }
+
+    static function initiateFilters(params){
+        var context = params.context;
+
+        if(context.component.SubmitSource === "btnClearFilters" || context.component.SubmitSource === "lstQuestions"){
+            FilterComponents.ClearFilters(context);
+            var dateParameters = DefaultParameters.dateParameters;
+
+            for(var i = 0; i < dateParameters.length; ++i)
+                context.state.Parameters[dateParameters[i]] = null;
+        }
     }
 
     /**

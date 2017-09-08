@@ -25,7 +25,7 @@ class Page_dashboard{
 
         initiateParameters(context);
 
-        initializeFilters({context: context});
+        initializeFilters(context);
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
@@ -72,8 +72,7 @@ class Page_dashboard{
         });
     }
 
-    static function initializeFilters(params){
-        var context = params.context;
+    static function initializeFilters(context){
         //TODO: clarify what to do with filter components
 
         if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "lstQuestions"){
