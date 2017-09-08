@@ -22,16 +22,12 @@ class Page_comments{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
-        context.log.LogDebug("htlrend1");
         Config.SetTALibrary(context);
-    context.log.LogDebug("htlrend2");
+
         PageRenderer.initiateParameters(context);
-    context.log.LogDebug("htlrend3");
         PageRenderer.initiateFilters(context);
-    context.log.LogDebug("htlrend5");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    context.log.LogDebug("htlrend6");
 
         PageRenderer.SetLastVisitedPage(context, "comments");
 
@@ -43,7 +39,6 @@ class Page_comments{
             attributesParameter: "TA_ATTRIBUTES_SINGLE"
 
         });
-    context.log.LogDebug("htlrend7");
 
         TAParameters.ClearSubcategoriesParameters({
             context: context,
@@ -51,75 +46,11 @@ class Page_comments{
             categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
             subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
         });
-    context.log.LogDebug("htlrend8");
-        processSelectedCategoryParameter({
+
+    PageRenderer.processSelectedCategoryParameter({
             context: context,
             folder: Config.GetTALibrary().GetFolderById(selectedFolder)
         })
-    context.log.LogDebug("htlrend9");
-
-    }
-
-    static function initiateParameters(context){
-        //TODO: refactor setting default parameters
-        if(context.component.SubmitSource === "lstQuestions") {
-            ParameterUtilities.SetDefaultParameterValues(
-                {
-                    context: context,
-                    parameterValues: DefaultParameters.values
-                }
-            )
-        }
-
-        ParameterUtilities.SetDefaultParameterValuesForEmpty({
-            context: context,
-            parameterValues: DefaultParameters.values.concat(
-                {
-                    Id: "TA_FOLDERS",
-                    Value: (Config.TAQuestions[0].TAQuestionName+Config.TAQuestions[0].TAModelNo)
-                }
-            )
-        });
-    }
-
-    static function initializeFilters(params){
-        var context = params.context;
-        //TODO: clarify what to do with filter components
-
-        if(context.component.SubmitSource === "ClearFilters"){
-            FilterComponents.ClearFilters(context);
-            var dateParameters = DefaultParameters.dateParameters;
-
-            for(var i = 0; i < dateParameters.length; ++i)
-                context.state.Parameters[dateParameters[i]] = null;
-        }
-    }
-
-    static function processSelectedCategoryParameter(params){
-        var context = params.context;
-        var folder = params.folder;
-        var submitSource = context.component.SubmitSource;
-        var selectedCategory;
-        if(submitSource === "lstCategory" || submitSource === "lstSubCategory" || submitSource === "lstAttribute"){
-            selectedCategory = TAParameters.GetSelectedCategory({
-                context: context,
-                categoriesParameterName: "TA_TOP_CATEGORIES_SINGLE",
-                subCategoriesParameterName: "TA_SUB_CATEGORIES_SINGLE",
-                attributesParameterName: "TA_ATTRIBUTES_SINGLE"
-            });
-
-            context.state.Parameters['TA_ALL_CATEGORIES'] = new ParameterValueResponse(selectedCategory);
-        }else {
-            selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-            TAParameters.SetSelectedCategory({
-                context: context,
-                hierarchy: folder.GetHierarchy(),
-                allCategoriesParameterValue: selectedCategory,
-                categoriesParameterName: "TA_TOP_CATEGORIES_SINGLE",
-                subCategoriesParameterName: "TA_SUB_CATEGORIES_SINGLE",
-                attributesParameterName: "TA_ATTRIBUTES_SINGLE"
-            });
-        }
     }
 
     /**
@@ -140,16 +71,19 @@ class Page_comments{
      * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function htlComments_Render(context){
+        context.log.LogDebug("htlRend1");
         if(!Config.GetTALibrary()){
             Config.SetTALibrary(context);
         }
-
+    context.log.LogDebug("htlRend2");
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+    context.log.LogDebug("htlRend3");
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+    context.log.LogDebug("htlRend4");
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-
+    context.log.LogDebug("htlRend5");
         var htlComments = new TAHitlistUtils({context: context, folder: folder});
-
+    context.log.LogDebug("htlRend6");
         if( selectedCategory && selectedCategory !== "emptyv" ){
             htlComments.AddTAColumn({
                 context: context,
@@ -158,17 +92,21 @@ class Page_comments{
                 postfix: selectedCategory
             });
         }
+    context.log.LogDebug("htlRend7");
         htlComments.AddTAColumn({context: context, columnName: "verbatim"});
-
+    context.log.LogDebug("htlRend8");
         htlComments.AddColumn({
             context: context,
             columnName: folder.GetTimeVariableId(),
             sortable: true
         });
-
+    context.log.LogDebug("htlRend9");
         htlComments.AddTAColumn({context: context, columnName: "overallsentiment"});
+    context.log.LogDebug("htlRend10");
         htlComments.AddTAColumn({context: context, columnName: "categories"});
+    context.log.LogDebug("htlRend11");
         htlComments.AddConfiguredColumns(context);
+    context.log.LogDebug("htlRend12");
     }
 
     /**

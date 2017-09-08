@@ -52,39 +52,13 @@ class Page_correlation{
         subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
     });
 
-    processSelectedCategoryParameter({
+    PageRenderer.processSelectedCategoryParameter({
         context: context,
         folder: Config.GetTALibrary().GetFolderById(selectedFolder)
     });
 }
 
-    static function processSelectedCategoryParameter(params){
-    var context = params.context;
-    var folder = params.folder;
-    var submitSource = context.component.SubmitSource;
-    var selectedCategory;
-    if(submitSource === "lstCategory" || submitSource === "lstSubCategory" || submitSource === "lstAttribute"){
-        selectedCategory = TAParameters.GetSelectedCategory({
-            context: context,
-            categoriesParameterName: "TA_TOP_CATEGORIES_SINGLE",
-            subCategoriesParameterName: "TA_SUB_CATEGORIES_SINGLE",
-            attributesParameterName: "TA_ATTRIBUTES_SINGLE"
-        });
 
-        context.state.Parameters['TA_ALL_CATEGORIES'] = new ParameterValueResponse(selectedCategory);
-    }else {
-        selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-        TAParameters.SetSelectedCategory({
-            context: context,
-            hierarchy: folder.GetHierarchy(),
-            allCategoriesParameterValue: selectedCategory,
-            categoriesParameterName: "TA_TOP_CATEGORIES_SINGLE",
-            subCategoriesParameterName: "TA_SUB_CATEGORIES_SINGLE",
-            attributesParameterName: "TA_ATTRIBUTES_SINGLE"
-        });
-    }
-
-}
     /**
      * @memberof Page_comments
      * @function htlComments_Hide
