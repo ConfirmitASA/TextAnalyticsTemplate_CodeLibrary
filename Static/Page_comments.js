@@ -27,9 +27,7 @@ class Page_comments{
     context.log.LogDebug("htlrend2");
         PageRenderer.initiateParameters(context);
     context.log.LogDebug("htlrend3");
-        var taLibrary = Config.GetTALibrary();
-    context.log.LogDebug("htlrend4");
-        PageRenderer.initiateFilters({context: context, taLibrary: taLibrary});
+        PageRenderer.initiateFilters(context);
     context.log.LogDebug("htlrend5");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
