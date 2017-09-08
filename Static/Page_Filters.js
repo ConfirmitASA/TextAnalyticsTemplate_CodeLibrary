@@ -48,9 +48,7 @@ class Page_filters{
         });
     }
 
-    static function initiateFilters(params){
-        var context = params.context;
-
+    static function initiateFilters(context){
         if(context.component.SubmitSource === "btnClearFilters" || context.component.SubmitSource === "lstQuestions"){
             FilterComponents.ClearFilters(context);
             var dateParameters = DefaultParameters.dateParameters;
