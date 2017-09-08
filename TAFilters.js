@@ -21,9 +21,7 @@ class TAFilters{
 
         var context = params.context;
         var folder = params.folder;
-    context.log.LogDebug("-------5-------");
         var selectedCategory = context.state.Parameters.GetString(params.allCategoriesParameter)
-    context.log.LogDebug("-------6-------");
         fExpr = (selectedCategory && selectedCategory !=="emptyv") ?('ANY(' + folder.GetQuestionId("categories") + ',"'+selectedCategory+'")'):'NOT ISNULL('+folder.GetQuestionId("overallSentiment")+')';
 
         return fExpr;
@@ -47,9 +45,9 @@ class TAFilters{
         var context = params.context;
         var sentimentRanges = params.config.SentimentRange;
         var sentimentParameter = params.sentimentParameter;
-        context.log.LogDebug("-------1-------");
+
         var sentimentParameterValue = context.state.Parameters.GetString(sentimentParameter);
-    context.log.LogDebug("-------2-------");
+
         var sentimentRange = "";
 
         switch( sentimentParameterValue ){
@@ -66,9 +64,7 @@ class TAFilters{
 
         if(sentimentRange.length > 0 ){
             var folder = params.folder;
-            context.log.LogDebug("-------3-------");
             var selectedCategory = context.state.Parameters.GetString(params.allCategoriesParameter)
-            context.log.LogDebug("-------4-------");
             var questionName = (selectedCategory && selectedCategory !== "emptyv")
                 ? (folder.GetQuestionId("categorysentiment")+"_"+selectedCategory)
                 : folder.GetQuestionId("overallsentiment");

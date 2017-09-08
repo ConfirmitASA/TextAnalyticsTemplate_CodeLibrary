@@ -71,19 +71,17 @@ class Page_comments{
      * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function htlComments_Render(context){
-        context.log.LogDebug("htlRend1");
         if(!Config.GetTALibrary()){
             Config.SetTALibrary(context);
         }
-    context.log.LogDebug("htlRend2");
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    context.log.LogDebug("htlRend3");
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    context.log.LogDebug("htlRend4");
+
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-    context.log.LogDebug("htlRend5");
+
         var htlComments = new TAHitlistUtils({context: context, folder: folder});
-    context.log.LogDebug("htlRend6");
+
         if( selectedCategory && selectedCategory !== "emptyv" ){
             htlComments.AddTAColumn({
                 context: context,
@@ -92,21 +90,19 @@ class Page_comments{
                 postfix: selectedCategory
             });
         }
-    context.log.LogDebug("htlRend7");
+
         htlComments.AddTAColumn({context: context, columnName: "verbatim"});
-    context.log.LogDebug("htlRend8");
+
         htlComments.AddColumn({
             context: context,
             columnName: folder.GetTimeVariableId(),
             sortable: true
         });
-    context.log.LogDebug("htlRend9");
+
         htlComments.AddTAColumn({context: context, columnName: "overallsentiment"});
-    context.log.LogDebug("htlRend10");
         htlComments.AddTAColumn({context: context, columnName: "categories"});
-    context.log.LogDebug("htlRend11");
+
         htlComments.AddConfiguredColumns(context);
-    context.log.LogDebug("htlRend12");
     }
 
     /**
