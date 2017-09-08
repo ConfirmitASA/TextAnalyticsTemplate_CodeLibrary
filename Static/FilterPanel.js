@@ -1,5 +1,6 @@
 /**
- * Created by MariaSo on 20/01/2017.
+ * @class FilterPanel
+ * @classdesc static class to work with the filterpanel and filterpage
  */
 class FilterPanel{
 
@@ -29,7 +30,7 @@ class FilterPanel{
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
-        static function btnSave_Hide(context){
+    static function btnSave_Hide(context){
         return false
     }
 
@@ -38,7 +39,7 @@ class FilterPanel{
      * @function btnSave_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-        static function btnSave_Render(context){
+    static function btnSave_Render(context){
         context.component.Label = new Label(context.report.CurrentLanguage,Translations.dictionary(context.report.CurrentLanguage)["Save"]);
     }
 
@@ -48,7 +49,7 @@ class FilterPanel{
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
-        static function btnClearFilters_Hide(context){
+    static function btnClearFilters_Hide(context){
         return false
     }
 
@@ -65,8 +66,11 @@ class FilterPanel{
     /**
      * @memberof FilterPanel
      * @function txtFilterTitle_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {Number} filterNumber
+     * @param {Object} params - {
+     *                              context: {context: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *                              filterComponents: {FilterComponents}
+     *                              filterNumber: {Number}
+     *                           }
      * @returns {Boolean}
      */
     static function txtFilterTitle_Hide(params){
@@ -80,8 +84,11 @@ class FilterPanel{
     /**
      * @memberof FilterPanel
      * @function txtFilterTitle_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {Number} filterNumber
+     * @param {Object} params - {
+     *                              context: {context: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *                              filterComponents: {FilterComponents}
+     *                              filterNumber: {Number}
+     *                           }
      */
     static function txtFilterTitle_Render(params){
         var context = params.context;
@@ -96,8 +103,11 @@ class FilterPanel{
     /**
      * @memberof FilterPanel
      * @function lstFilterList_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {Number} filterNumber
+     * @param {Object} params - {
+     *                              context: {context: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *                              filterComponents: {FilterComponents}
+     *                              filterNumber: {Number}
+     *                           }
      * @returns {Boolean}
      */
     static function lstFilterList_Hide(params){
