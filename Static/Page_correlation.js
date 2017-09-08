@@ -24,10 +24,12 @@ class Page_correlation{
     static function Render(context){
     Config.SetTALibrary(context);
 
-    initiateParameters(context);
+    PageRenderer.initiateParameters(context);
 
-    initializeFilters({context: context});
+    PageRenderer.initiateFilters({context: context});
 
+
+    PageRenderer.SetLastVisitedPage(context, "correlation");
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
     //TODO: refactor Clearing subcategories
@@ -54,41 +56,6 @@ class Page_correlation{
         context: context,
         folder: Config.GetTALibrary().GetFolderById(selectedFolder)
     });
-}
-
-    static function initiateParameters(context){
-    //TODO: refactor setting default parameters
-    if(context.component.SubmitSource === "lstQuestions") {
-        ParameterUtilities.SetDefaultParameterValues(
-            {
-                context: context,
-                parameterValues: DefaultParameters.values
-            }
-        )
-    }
-    TAHelper.SetLastVisitedPage(context, "correlation");
-    ParameterUtilities.SetDefaultParameterValuesForEmpty({
-        context: context,
-        parameterValues: DefaultParameters.values.concat(
-            {
-                Id: "TA_FOLDERS",
-                Value: (Config.TAQuestions[0].TAQuestionName+Config.TAQuestions[0].TAModelNo)
-            }
-        )
-    });
-}
-
-    static function initializeFilters(params){
-    var context = params.context;
-    //TODO: clarify what to do with filter components
-
-    if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "lstQuestions"){
-        FilterComponents.ClearFilters(context);
-        var dateParameters = DefaultParameters.dateParameters;
-
-        for(var i = 0; i < dateParameters.length; ++i)
-            context.state.Parameters[dateParameters[i]] = null;
-    }
 }
 
     static function processSelectedCategoryParameter(params){

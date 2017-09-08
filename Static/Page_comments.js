@@ -25,15 +25,17 @@ class Page_comments{
         context.log.LogDebug("htlrend1");
         Config.SetTALibrary(context);
     context.log.LogDebug("htlrend2");
-        initiateParameters(context);
+        PageRenderer.initiateParameters(context);
     context.log.LogDebug("htlrend3");
         var taLibrary = Config.GetTALibrary();
     context.log.LogDebug("htlrend4");
-        initializeFilters({context: context, taLibrary: taLibrary});
+        PageRenderer.initiateFilters({context: context, taLibrary: taLibrary});
     context.log.LogDebug("htlrend5");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
     context.log.LogDebug("htlrend6");
+
+        PageRenderer.SetLastVisitedPage(context, "comments");
 
         TAParameters.ClearSubcategoriesParameters({
             context: context,
@@ -70,8 +72,6 @@ class Page_comments{
                 }
             )
         }
-
-        TAHelper.SetLastVisitedPage(context, "comments");
 
         ParameterUtilities.SetDefaultParameterValuesForEmpty({
             context: context,

@@ -58,14 +58,4 @@ class TAHelper{
         return result;
     }
 
-    /**
-     * @memberof TAHelper
-     * @function SetLastVisitedPage
-     * @description function to set the last visited page to the parameter
-     * @param {Object} globals
-     * @param {String} pageId
-     */
-    static function SetLastVisitedPage(globals, pageId){
-        globals.state.Parameters["TA_LAST_VISITED_PAGE"] = new ParameterValueResponse(pageId);
-    }
 }

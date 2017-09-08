@@ -23,13 +23,13 @@ class Page_dashboard{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        initiateParameters(context);
+        PageRenderer.initiateParameters(context);
 
-        initializeFilters(context);
+        PageRenderer.initializeFilters(context);
+
+        PageRenderer.SetLastVisitedPage(context, "correlation");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-
-        //TODO: refactor Clearing subcategories
 
         TAParameters.ClearSubcategoriesParameters({
             context: context,
@@ -48,40 +48,6 @@ class Page_dashboard{
             categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
             subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
         });
-    }
-
-    static function initiateParameters(context){
-        //TODO: refactor setting default parameters
-        if(context.component.SubmitSource === "lstQuestions") {
-            ParameterUtilities.SetDefaultParameterValues(
-                {
-                    context: context,
-                    parameterValues: DefaultParameters.values
-                }
-            )
-        }
-        TAHelper.SetLastVisitedPage(context, "dashboard");
-        ParameterUtilities.SetDefaultParameterValuesForEmpty({
-            context: context,
-            parameterValues: DefaultParameters.values.concat(
-                {
-                    Id: "TA_FOLDERS",
-                    Value: (Config.TAQuestions[0].TAQuestionName+Config.TAQuestions[0].TAModelNo)
-                }
-            )
-        });
-    }
-
-    static function initializeFilters(context){
-        //TODO: clarify what to do with filter components
-
-        if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "lstQuestions"){
-            FilterComponents.ClearFilters(context);
-            var dateParameters = DefaultParameters.dateParameters;
-
-            for(var i = 0; i < dateParameters.length; ++i)
-                context.state.Parameters[dateParameters[i]] = null;
-        }
     }
 
     /**

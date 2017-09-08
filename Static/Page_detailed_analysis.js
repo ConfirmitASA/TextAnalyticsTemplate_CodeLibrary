@@ -24,11 +24,9 @@ class Page_detailed_analysis{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        initiateParameters(context);
-
-        var taLibrary = Config.GetTALibrary();
-
-        initializeFilters({context: context, taLibrary: taLibrary});
+        PageRenderer.initiateParameters(context);
+        PageRenderer.initiateFilters(context);
+        PageRenderer.SetLastVisitedPage(context, "detailed_analysis");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
@@ -54,43 +52,6 @@ class Page_detailed_analysis{
             context: context,
             folder: Config.GetTALibrary().GetFolderById(selectedFolder)
         })
-    }
-
-    static function initiateParameters(context){
-        //TODO: refactor setting default parameters
-        if(context.component.SubmitSource === "lstQuestions") {
-            ParameterUtilities.SetDefaultParameterValues(
-                {
-                    context: context,
-                    parameterValues: DefaultParameters.values
-                }
-            )
-        }
-
-        TAHelper.SetLastVisitedPage(context, "detailed_analysis");
-
-        ParameterUtilities.SetDefaultParameterValuesForEmpty({
-            context: context,
-            parameterValues: DefaultParameters.values.concat(
-                {
-                    Id: "TA_FOLDERS",
-                    Value: (Config.TAQuestions[0].TAQuestionName+Config.TAQuestions[0].TAModelNo)
-                }
-            )
-        });
-    }
-
-    static function initializeFilters(params){
-        var context = params.context;
-        //TODO: clarify what to do with filter components
-
-        if(context.component.SubmitSource === "ClearFilters"){
-            FilterComponents.ClearFilters(context);
-            var dateParameters = DefaultParameters.dateParameters;
-
-            for(var i = 0; i < dateParameters.length; ++i)
-                context.state.Parameters[dateParameters[i]] = null;
-        }
     }
 
     static function processSelectedCategoryParameter(params){
