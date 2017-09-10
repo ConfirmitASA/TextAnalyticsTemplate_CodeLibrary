@@ -87,8 +87,8 @@ class ParameterValues {
      */
     static function getParameterValue(state, currentDictionary, parameterID) {
         var parameterValue : ParameterValueResponse = state.Parameters[parameterID];
-        var labels = ParameterValues.getParameterValues(currentDictionary, parameterID);
-        var parameterValueLabel = ParameterValues.findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
+        var labels = ParameterValues._getParameterValues(currentDictionary, parameterID);
+        var parameterValueLabel = ParameterValues._findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
         return _getParameterSpan(': ' + parameterValueLabel);
     }
 
