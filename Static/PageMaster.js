@@ -276,11 +276,7 @@ class PageMaster{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
+        var filterComponents = new FilterComponents(context);
 
         return FilterPanel.txtFilterTitle_Hide({
             context: context,
