@@ -178,7 +178,7 @@ class Parameters{
             {Code: "neg", Label: currentDictionary["Negative"]}
         ];
 
-        //var parameterValues = ParameterValues.getParameterValues(currentDictionary, 'TA_VIEW_SENTIMENT');
+        //var parameterValues = ParameterValues._getParameterValues(currentDictionary, 'TA_VIEW_SENTIMENT');
 
         ParameterUtilities.LoadParameterValues({
             context: context,

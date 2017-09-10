@@ -107,7 +107,6 @@ class Hierarchy {
 
     /**
      * @memberof Hierarchy
-     * @instance
      * @function GetSelfName
      * @description return self name of subcategory from the full name
      * @param {String} name - full name
