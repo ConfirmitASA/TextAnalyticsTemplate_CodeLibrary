@@ -193,10 +193,10 @@ class TACorrelationTable{
      * @private
      * @function _setupConditionalFormatting
      * @description Conditional formatting is used to define key area for each category
-     * issues: categorySentiment <= overallSentiment && correlation > 0
-     * monitor: categorySentiment < overallSentiment && correlation <= 0
-     * strength: categorySentiment > overallSentiment && correlation >0
-     * maintain: ctegorySentiment > overallSentiment && correlation <=0
+     *      1. issues: categorySentiment <= overallSentiment && correlation > 0
+     *      2. monitor: categorySentiment < overallSentiment && correlation <= 0
+     *      3. strength: categorySentiment > overallSentiment && correlation >0
+     *      4. maintain: ctegorySentiment > overallSentiment && correlation <=0
      * conditional formatting applied to the firs column and then used by js fuction to create chart and 4 different tables
      */
     private function _setupConditionalFormatting(){

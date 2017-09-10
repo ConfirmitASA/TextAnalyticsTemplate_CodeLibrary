@@ -10,9 +10,7 @@ class TAFilters{
      * @param {Object} params - {
             context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
             folder: {TAFolder},
-            categoriesParameterName: {String},
-            subCategoriesParameterName: {String},
-            attributesParameterName: {String}
+            allCategoriesParameter: {String}
         }
      * @returns {String}
      */
