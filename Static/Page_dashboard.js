@@ -23,31 +23,10 @@ class Page_dashboard{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        PageRenderer.initiateParameters(context);
-
-        PageRenderer.initiateFilters(context);
-
+        PageRenderer.InitiateParameters(context);
+        PageRenderer.InitiateFilters(context);
         PageRenderer.SetLastVisitedPage(context, "correlation");
-
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-
-        TAParameters.ClearSubcategoriesParameters({
-            context: context,
-            folderId: selectedFolder,
-            value: "emptyv",
-            categoriesParameter: "TA_TOP_CATEGORIES_SINGLE",
-            subcategoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
-            attributesParameter: "TA_ATTRIBUTES_SINGLE"
-
-        });
-
-        TAParameters.ClearSubcategoriesParameters({
-            context: context,
-            folderId: selectedFolder,
-            value: "emptyv",
-            categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
-            subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
-        });
+        PageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
     /**

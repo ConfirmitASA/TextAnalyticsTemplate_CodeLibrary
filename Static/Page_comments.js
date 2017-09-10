@@ -23,33 +23,11 @@ class Page_comments{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        PageRenderer.initiateParameters(context);
-        PageRenderer.initiateFilters(context);
-
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-
+        PageRenderer.InitiateParameters(context);
+        PageRenderer.InitiateFilters(context);
         PageRenderer.SetLastVisitedPage(context, "comments");
-
-        TAParameters.ClearSubcategoriesParameters({
-            context: context,
-            value: "emptyv",
-            categoriesParameter: "TA_TOP_CATEGORIES_SINGLE",
-            subcategoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
-            attributesParameter: "TA_ATTRIBUTES_SINGLE"
-
-        });
-
-        TAParameters.ClearSubcategoriesParameters({
-            context: context,
-            value: "emptyv",
-            categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
-            subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
-        });
-
-        PageRenderer.processSelectedCategoryParameter({
-            context: context,
-            folder: Config.GetTALibrary().GetFolderById(selectedFolder)
-        })
+        PageRenderer.ClearCategoriesParameters(context);
+        PageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
     /**

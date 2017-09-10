@@ -1,5 +1,5 @@
 class PageRenderer{
-    static function initiateParameters(context){
+    static function InitiateParameters(context){
         if(context.component.SubmitSource === "lstQuestions") {
             ParameterUtilities.SetDefaultParameterValues(
                 {
@@ -20,7 +20,7 @@ class PageRenderer{
         });
     }
 
-    static function initiateFilters(context){
+    static function InitiateFilters(context){
         if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "btnClearFilters" || context.component.SubmitSource === "lstQuestions"){
             FilterComponents.ClearFilters(context);
             var dateParameters = DefaultParameters.dateParameters;
@@ -30,9 +30,10 @@ class PageRenderer{
         }
     }
 
-    static function processSelectedCategoryParameter(params){
-        var context = params.context;
-        var folder = params.folder;
+    static function ProcessSelectedCategoryParameter(context){
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(folderId);
+
         var submitSource = context.component.SubmitSource;
         var selectedCategory;
         if(submitSource === "lstCategory" || submitSource === "lstSubCategory" || submitSource === "lstAttribute"){
@@ -59,5 +60,27 @@ class PageRenderer{
 
     static function SetLastVisitedPage(context, pageId){
         context.state.Parameters["TA_LAST_VISITED_PAGE"] = new ParameterValueResponse(pageId);
+    }
+
+    static function ClearCategoriesParameters(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+
+        TAParameters.ClearSubcategoriesParameters({
+            context: context,
+            folderId: selectedFolder,
+            value: "emptyv",
+            categoriesParameter: "TA_TOP_CATEGORIES_SINGLE",
+            subcategoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
+            attributesParameter: "TA_ATTRIBUTES_SINGLE"
+
+        });
+
+        TAParameters.ClearSubcategoriesParameters({
+            context: context,
+            folderId: selectedFolder,
+            value: "emptyv",
+            categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
+            subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
+        });
     }
 }
