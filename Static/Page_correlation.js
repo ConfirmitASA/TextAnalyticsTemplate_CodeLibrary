@@ -12,8 +12,8 @@ class Page_correlation{
      * @returns {Boolean}
      */
     static function Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_correlation
@@ -23,11 +23,11 @@ class Page_correlation{
      */
     static function Render(context){
         Config.SetTALibrary(context);
-
         PageRenderer.InitiateParameters(context);
-        PageRenderer.InitiateFilters({context: context});
+        PageRenderer.InitiateFilters(context);
         PageRenderer.SetLastVisitedPage(context, "correlation");
         PageRenderer.ClearCategoriesParameters(context);
+
         PageRenderer.ProcessSelectedCategoryParameter(context);
     }
 

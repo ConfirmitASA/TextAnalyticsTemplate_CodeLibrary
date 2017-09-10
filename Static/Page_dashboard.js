@@ -25,7 +25,7 @@ class Page_dashboard{
 
         PageRenderer.InitiateParameters(context);
         PageRenderer.InitiateFilters(context);
-        PageRenderer.SetLastVisitedPage(context, "correlation");
+        PageRenderer.SetLastVisitedPage(context, "dashboard");
         PageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
