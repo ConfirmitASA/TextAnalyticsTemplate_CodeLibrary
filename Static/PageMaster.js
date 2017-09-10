@@ -3,19 +3,16 @@
  * @classdesc Static class for Reportal Page master components
  */
 class PageMaster{
-    private static var _filterComponents;
-
-
     /**
      * @memberof PageMaster
-     * @function FiltersButtonHtml_Hide
-     * @description function to hide the Filters button html
+     * @function FiltersButtonHtml_Hid
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
     static function FiltersButtonHtml_Hide(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
         var filterQuestions = folder.GetFilterQuestions()
         return filterQuestions.length < 4
     }
@@ -23,24 +20,23 @@ class PageMaster{
     /**
      * @memberof PageMaster
      * @function FiltersButtonHtml_Render
-     * @description function to render the filters button
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function FiltersButtonHtml_Render(context){
         var htmlText = '<button type="button" class="filter-button" onclick="javascript:document.querySelector(\'.goToFiltersPage input\').click()" title="Filters">'+
-            '<svg width="16" height="12" viewBox="0 0 16 12">'+
-            '<path xmlns="http://www.w3.org/2000/svg" d="M 0 0 l 6 6 v 6 l 4 -1 V 6 l 6 -6 Z"></path>'+
-            '</svg>'+
-            '<svg width="10" height="10" viewBox="0 0 10 10">'+
-            '<path xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd" fill-rule="evenodd" d="M 10 4 H 6 V 0 H 4 v 4 H 0 v 2 h 4 v 4 h 2 V 6 h 4 Z"></path>'+
-            '</svg>'+
+                '<svg width="16" height="12" viewBox="0 0 16 12">'+
+                    '<path xmlns="http://www.w3.org/2000/svg" d="M 0 0 l 6 6 v 6 l 4 -1 V 6 l 6 -6 Z"></path>'+
+                '</svg>'+
+                '<svg width="10" height="10" viewBox="0 0 10 10">'+
+                    '<path xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd" fill-rule="evenodd" d="M 10 4 H 6 V 0 H 4 v 4 H 0 v 2 h 4 v 4 h 2 V 6 h 4 Z"></path>'+
+                '</svg>'+
             '</button>';
         context.component.Output.Append(htmlText);
     }
+
     /**
      * @memberof PageMaster
      * @function Filters_Hide
-     * @description function to hide the Ffilters button
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
@@ -51,7 +47,6 @@ class PageMaster{
     /**
      * @memberof PageMaster
      * @function Filters_Render
-     * @description function to render the filters button
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Filters_Render(context){
@@ -61,7 +56,6 @@ class PageMaster{
     /**
      * @memberof PageMaster
      * @function FilterSummary_Render
-     * @description function to render the filterSummary
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function FilterSummary_Render(context){
@@ -121,7 +115,6 @@ class PageMaster{
     /**
      * @memberof PageMaster
      * @function ClearFilters_Hide
-     * @description function to render the Clear filters button
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
@@ -138,128 +131,212 @@ class PageMaster{
     /**
      * @memberof PageMaster
      * @function ClearFilters_Render
-     * @description function to render the clear filters button
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function ClearFilters_Render(context){
 
     }
 
+    /**
+     * @memberof PageMaster
+     * @function txtQuestion_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtQuestion_Hide(context){
         return false
     }
 
+    /**
+     * @memberof PageMaster
+     * @function txtQuestion_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtQuestion_Render(context){
         var label = Translations.dictionary(context.report.CurrentLanguage)['Question'];
         context.component.Output.Append(label);
     }
 
+    /**
+     * @memberof PageMaster
+     * @function txtDateFrom_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtDateFrom_Hide(context){
         return false
     }
 
+
+    /**
+     * @memberof PageMaster
+     * @function txtDateFrom_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtDateFrom_Render(context){
         var label = Translations.dictionary(context.report.CurrentLanguage)['From'];
         context.component.Output.Append(label);
 
     }
 
+    /**
+     * @memberof PageMaster
+     * @function txtDateTo_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtDateTo_Hide(context){
         return false
 
     }
+
+    /**
+     * @memberof PageMaster
+     * @function txtDateTo_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtDateTo_Render(context){
         var label = Translations.dictionary(context.report.CurrentLanguage)['To'];
         context.component.Output.Append(label);
 
     }
 
+    /**
+     * @memberof PageMaster
+     * @function btnApplyFilters_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function btnApplyFilters_Hide(context){
         return false
     }
+
+    /**
+     * @memberof PageMaster
+     * @function btnApplyFilters_Render
+     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function btnApplyFilters_Render(context){
         FilterPanel.btnSave_Render(context);
     }
 
+    /**
+     * @memberof PageMaster
+     * @function hierarchyComponent_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function hierarchyComponent_Hide(context) {
         return !context.report.PersonalizedQuestion
     }
 
+    /**
+     * @memberof PageMaster
+     * @function txtHierarchyLabel_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtHierarchyLabel_Hide(context) {
         return !context.report.PersonalizedQuestion
     }
 
+    /**
+     * @memberof PageMaster
+     * @function txtHierarchyLabel_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtHierarchyLabel_Render(context) {
         var label = Translations.dictionary(context.report.CurrentLanguage)["Hierarchy"];
         context.component.Output.Append(label);
     }
+
+    /**
+     * @memberof PageMaster
+     * @function txtPageTitle_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtPageTitle_Hide(context){
         return false
     }
+
+    /**
+     * @memberof PageMaster
+     * @function txtPageTitle_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtPageTitle_Render(context){
         var label = Translations.dictionary(context.report.CurrentLanguage)["What people are talking about"];
         context.component.Output.Append(label);
     }
 
+    /**
+     * @memberof PageMaster
+     * @function txtFilterTitle_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtFilterTitle_Hide(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    var filterComponents = new FilterComponents({
-        context: context,
-        filterQuestions: folder.GetFilterQuestions(),
-        dataSource: folder.GetDatasourceId()
-    });
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-    return FilterPanel.txtFilterTitle_Hide({
-        context: context,
-        filterComponents: filterComponents,
-        filterNumber: filterNumber
-    });
-}
+        var filterComponents = new FilterComponents({
+            context: context,
+            filterQuestions: folder.GetFilterQuestions(),
+            dataSource: folder.GetDatasourceId()
+        });
+
+        return FilterPanel.txtFilterTitle_Hide({
+            context: context,
+            filterComponents: filterComponents,
+            filterNumber: filterNumber
+        });
+    }
 
     /**
-     * @memberof Page_filters
+     * @memberof PageMaster
      * @function txtFilterTitle_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @param {Number} filterNumber
      */
     static function txtFilterTitle_Render(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    var filterComponents = new FilterComponents({
-        context: context,
-        filterQuestions: folder.GetFilterQuestions(),
-        dataSource: folder.GetDatasourceId()
-    });
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-    FilterPanel.txtFilterTitle_Render({
-        context: context,
-        filterComponents: filterComponents,
-        filterNumber: filterNumber
-    });
-}
+        var filterComponents = new FilterComponents({
+            context: context,
+            filterQuestions: folder.GetFilterQuestions(),
+            dataSource: folder.GetDatasourceId()
+        });
+
+        FilterPanel.txtFilterTitle_Render({
+            context: context,
+            filterComponents: filterComponents,
+            filterNumber: filterNumber
+        });
+    }
 
     /**
-     * @memberof Page_filters
+     * @memberof PageMaster
      * @function lstFilterList_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @param {Number} filterNumber
      * @returns {Boolean}
      */
     static function lstFilterList_Hide(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    var filterComponents = new FilterComponents({
-        context: context,
-        filterQuestions: folder.GetFilterQuestions(),
-        dataSource: folder.GetDatasourceId()
-    });
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-    return FilterPanel.lstFilterList_Hide({
-        context: context,
-        filterComponents: filterComponents,
-        filterNumber: filterNumber
-    });
-}
+        var filterComponents = new FilterComponents({
+            context: context,
+            filterQuestions: folder.GetFilterQuestions(),
+            dataSource: folder.GetDatasourceId()
+        });
 
+        return FilterPanel.lstFilterList_Hide({
+            context: context,
+            filterComponents: filterComponents,
+            filterNumber: filterNumber
+        });
+    }
 }
