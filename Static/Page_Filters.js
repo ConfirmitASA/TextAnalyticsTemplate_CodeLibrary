@@ -23,8 +23,8 @@ class Page_filters{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        PageRenderer.initiateParameters(context);
-        PageRenderer.initiateFilters(context)
+        PageRenderer.InitiateParameters(context);
+        PageRenderer.InitiateFilters(context)
     }
 
     /**
