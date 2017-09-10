@@ -1,4 +1,14 @@
+/**
+ * @class PageRenderer
+ * @classdesc Class helping building all pages
+ */
 class PageRenderer{
+    /**
+     * @memberof PageRenderer
+     * @function InitiateParameters
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @description Setting default values for parameters in the first run
+     */
     static function InitiateParameters(context){
         if(context.component.SubmitSource === "lstQuestions") {
             ParameterUtilities.SetDefaultParameterValues(
@@ -20,6 +30,12 @@ class PageRenderer{
         });
     }
 
+    /**
+     * @memberof PageRenderer
+     * @function InitiateFilters
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @description clearing filters when necessary
+     */
     static function InitiateFilters(context){
         if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "btnClearFilters" || context.component.SubmitSource === "lstQuestions"){
             FilterComponents.ClearFilters(context);
@@ -30,6 +46,12 @@ class PageRenderer{
         }
     }
 
+    /**
+     * @memberof PageRenderer
+     * @function ProcessSelectedCategoryParameter
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @description synchronizing parameters for top, sub categories and attributes and parameter containing all categories
+     */
     static function ProcessSelectedCategoryParameter(context){
         var folderId = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(folderId);
@@ -58,10 +80,23 @@ class PageRenderer{
         }
     }
 
+    /**
+     * @memberof PageRenderer
+     * @function SetLastVisitedPage
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {String} pageId
+     * @description setting last visited page for the filter page
+     */
     static function SetLastVisitedPage(context, pageId){
         context.state.Parameters["TA_LAST_VISITED_PAGE"] = new ParameterValueResponse(pageId);
     }
 
+    /**
+     * @memberof PageRenderer
+     * @function ClearCategoriesParameters
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @description clearing sub categories and attributes when another parent is selected
+     */
     static function ClearCategoriesParameters(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
