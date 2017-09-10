@@ -118,11 +118,7 @@ class Page_filters{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
+        var filterComponents = new FilterComponents(context);
 
         FilterPanel.txtFilterTitle_Render({
             context: context,
@@ -142,11 +138,8 @@ class Page_filters{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
+        var filterComponents = new FilterComponents(context);
+
         return FilterPanel.lstFilterList_Hide({
             context: context,
             filterComponents: filterComponents,

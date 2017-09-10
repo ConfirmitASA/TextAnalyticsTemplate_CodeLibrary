@@ -1,26 +1,23 @@
 /**
  * @class FilterComponents
- * @classdesc Class to process filters on Filter page
+ * @classdesc Class to process filters on Filter page and Filter Panel
  *
  * @constructs FilterComponents
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {String[]} questionsArray
- * @param {String} dataSource - ds id
+ * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
  */
-
 class FilterComponents{
     private var _filterQuestions;
 
-    function FilterComponents(params){
-        var context = params.context;
+    function FilterComponents(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var questionsArray = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
         var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
+
         _filterQuestions = [];
+
         var project  = context.report.DataSource.GetProject(dataSource);
 
         for( var i = 0; i < questionsArray.length; i++ ){
-
             _filterQuestions.push(project.GetQuestion(questionsArray[i]))
         }
     }
@@ -64,12 +61,16 @@ class FilterComponents{
      * @instance
      * @function GetGlobalsFilterExpression
      * @description function to get filter expression for all selected filters
+     * @params {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {String}
      */
     function GetGlobalsFilterExpression(context){
         var fExpr;
+
         var filterExpressionSegments = [];
+
         var codes = GetAllAnsweredFilterCodes(context)
+
         for (var i = 0; i < codes.length; i++){
             if( codes[i].questionType === QuestionType.Multi ) {
                 filterExpressionSegments.push ('ANY(' + codes[i].questionId + ',"' + codes[i].values.join('","') + '")');
@@ -81,6 +82,7 @@ class FilterComponents{
         }
 
         fExpr = filterExpressionSegments.join(" AND ")
+
         return fExpr
     }
 
@@ -89,10 +91,10 @@ class FilterComponents{
      * @instance
      * @function GetAllAnsweredFilterCodes
      * @description function to get selected filters information
+     * @params {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Object[]} - array of Objects with Filter information and answers like { questionTitle: "Title", questionId: "qId", values: [1,2], texts: ["one", "two"]}
      */
     function GetAllAnsweredFilterCodes(context){
-
         var answeredCodes = [];
         for (var i = 0; i < _filterQuestions.length; i++){
             var codes = GetFilterInformation({
@@ -100,15 +102,11 @@ class FilterComponents{
                 filterNumber: i
             });
 
-            context.log.LogDebug("filtc41 "+i);
-
             if(codes && codes.values.length > 0){
                 answeredCodes.push(codes);
             }
-
-            context.log.LogDebug("filtc51 "+i);
         }
-    context.log.LogDebug("filtc61");
+
         return answeredCodes
     }
 
@@ -117,23 +115,23 @@ class FilterComponents{
      * @instance
      * @function GetFilterInformation
      * @description function to get filter information
-     * @param {Number} filterNumber
+     * @param {Object} params - {
+     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          filterNumber: {Number}
+     *      }
      * @returns {Object} - Object with Filter information and answers like { questionTitle: "Title", questionId: "qId", values: [1,2], texts: ["one", "two"]}
      */
     function GetFilterInformation(params){
         var context = params.context;
-    context.log.LogDebug("filtc1");
         var filterNumber = params.filterNumber;
-    context.log.LogDebug("filtc2");
         var result = false;
-    context.log.LogDebug("filtc3");
+
         var parameterName = 'FILTER' + (filterNumber +1);
-    context.log.LogDebug("filtc4");
+
         var codes = ParameterUtilities.GetParameterCodes({
             context: context,
             parameterName: parameterName
         });
-    context.log.LogDebug("filtc5");
 
         if ( codes.length > 0 ){
             var fTitle = GetFilterTitle(filterNumber);
@@ -153,7 +151,6 @@ class FilterComponents{
             }
         }
 
-    context.log.LogDebug("filtc6");
         return result
     }
 
@@ -164,10 +161,8 @@ class FilterComponents{
      * @description function to set all filter parameters to null
      */
     static function ClearFilters(context){
-
-    var context = context;
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var filterQuestions = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var filterQuestions = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
         for (var i = 0; i < filterQuestions.length; i++){
             context.state.Parameters["FILTER"+(i+1)] = null;
         }
