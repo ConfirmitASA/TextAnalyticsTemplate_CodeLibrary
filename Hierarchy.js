@@ -8,31 +8,22 @@
  *
  */
 class Hierarchy {
-    private var
-    _globals;
-    private var
-    _settings;
+    private var _globals;
+    private var _settings;
 
-    private var
-    _hierarchy = [];
-    private var
-    _levels = [];
-    private var
-    _flat = [];
-    private var
-    _flatObject = {};
+    private var _hierarchy = [];
+    private var _levels = [];
+    private var _flat = [];
+    private var _flatObject = {};
 
-    private var
-    _defaultSettings = {
-        idColumnName: "id",
-        textColumnName: "__l9",
-        relationshipColumnName: "parent",
-        textSeparator: "|"
-    };
+    private var _defaultSettings = {
+            idColumnName: "id",
+            textColumnName: "__l9",
+            relationshipColumnName: "parent",
+            textSeparator: "|"
+        };
 
-    function
-
-    Hierarchy(globals, settings) {
+    function Hierarchy(globals, settings) {
         _globals = globals;
         _settings = _mergeOptions(_defaultSettings, settings);
         var dataTable = _getDataTable();
@@ -53,9 +44,7 @@ class Hierarchy {
      * @param {Object} obj2
      * @returns {Object}
      */
-    private function
-
-    _mergeOptions(obj1, obj2) {
+    private function _mergeOptions(obj1, obj2) {
         var obj3 = {};
         for (var attrname in obj1) {
             obj3[attrname] = obj1[attrname];
@@ -74,9 +63,7 @@ class Hierarchy {
      * @description function to get DataTable from DatabaseDesigner
      * @returns {DataTable}
      */
-    private function
-
-    _getDataTable() {
+    private function _getDataTable() {
         var schema = _globals.confirmit.GetDBDesignerSchema(_settings.schemaId);
         var table = schema.GetDBDesignerTable(_settings.tableName);
         var dataTable = table.GetDataTable();
@@ -91,9 +78,7 @@ class Hierarchy {
      * @description creating list of rows for variable _flat
      * @param {Object[]} rows - list of rows from db table
      */
-    private function
-
-    _generateFlatList(rows) {
+    private function _generateFlatList(rows) {
         for (var i = 0; i < rows.Count; ++i) {
             var flatEntry = _createFlatEntry(rows[i]);
             _flat.push(flatEntry);
@@ -109,9 +94,7 @@ class Hierarchy {
      * @param {Object} row - db table row
      * @returns {Object}
      */
-    private function
-
-    _createFlatEntry(row) {
+    private function _createFlatEntry(row) {
         var name = GetSelfName(row[_settings.textColumnName], _settings.textSeparator, _globals.log);
         var flatEntry = {
             id: row[_settings.idColumnName].toLowerCase(),
@@ -122,6 +105,15 @@ class Hierarchy {
         return flatEntry;
     }
 
+    /**
+     * @memberof Hierarchy
+     * @instance
+     * @function GetSelfName
+     * @description return self name of subcategory from the full name
+     * @param {String} name - full name
+     * @param {String} separator - separation char
+     * @returns {String}
+     */
     static function GetSelfName(name, separator){
         var index = name.lastIndexOf(separator);
         return name.slice((index+1)).Trim();
@@ -134,9 +126,7 @@ class Hierarchy {
      * @description function to get Array of hierarchical objects
      * @returns {Object[]}
      */
-    function
-
-    GetHierarchyArray() {
+    function GetHierarchyArray() {
         return _hierarchy;
     }
 
@@ -149,15 +139,12 @@ class Hierarchy {
      * @param {Number} level
      * @returns {Object[]}
      */
-    function
-
-    GetLevelArray(level) {
+    function GetLevelArray(level) {
         if (_levels.length > level) {
             return _levels[level];
         } else {
             throw new Error(201, "Hierarchy level index is out of range");
         }
-
     }
 
     /**
@@ -167,9 +154,7 @@ class Hierarchy {
      * @description function to get Count of levels in the hierarchy
      * @returns {Number}
      */
-    function
-
-    GetLevelsCount() {
+    function GetLevelsCount() {
         return _levels.length
     }
 
@@ -180,9 +165,7 @@ class Hierarchy {
      * @description function to get Array of rows from db table
      * @returns {Number}
      */
-    function
-
-    GetFlatArray() {
+    function GetFlatArray() {
         return _flat;
     }
 
@@ -194,9 +177,7 @@ class Hierarchy {
      * @param {String} id
      * @returns {Object}
      */
-    function
-
-    GetObjectById(id) {
+    function GetObjectById(id) {
         if (_flatObject[id]) {
             return _flatObject[id];
         } else {
@@ -211,9 +192,7 @@ class Hierarchy {
      * @description function to get text separartor for categories
      * @returns {String}
      */
-    function
-
-    GetTextSeparator() {
+    function GetTextSeparator() {
         return _settings.textSeparator;
     }
 
@@ -226,9 +205,7 @@ class Hierarchy {
      * @param {Number} level
      * @param {Number} parentObj
      */
-    private function
-
-    _setupHierarchy(level, parentObj) {
+    private function _setupHierarchy(level, parentObj) {
         var parentObjId = parentObj ? parentObj.id : "";
 
         for (var i = 0; i < _flat.length; ++i) {
