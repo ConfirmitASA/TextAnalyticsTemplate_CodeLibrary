@@ -251,11 +251,7 @@ class Parameters{
 
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var filterComponents = new FilterComponents({
-            context: context,
-            questionsArray: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
+        var filterComponents = new FilterComponents(context);
 
         var filterQuestion = filterComponents.GetFilterQuestion(filterNumber -1 );
         if(filterQuestion){
