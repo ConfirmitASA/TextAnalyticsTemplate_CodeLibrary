@@ -39,14 +39,17 @@ class Parameters{
             {Code: "yoy", Label: currentDictionary["Current vs Last Year"]}
         ];
 
-        //var parameterValues = ParameterValues.getParameterValues(currentDictionary, 'TA_COMPARE_PERIODS');
-
         ParameterUtilities.LoadParameterValues({
             context: context,
             parameterValues: parameterValues
         });
     }
 
+    /**
+     * @memberof Parameters
+     * @function TA_PERIOD_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function TA_PERIOD_Domain(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
@@ -244,9 +247,9 @@ class Parameters{
      */
     static function FILTER_Domain(context, filterNumber){
         Config.SetTALibrary(context);
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
         var filterComponents = new FilterComponents({
             context: context,
@@ -272,6 +275,11 @@ class Parameters{
         }
     }
 
+    /**
+     * @memberof Parameters
+     * @function TA_TOGGLE_CHART_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function TA_TOGGLE_CHART_Domain(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
