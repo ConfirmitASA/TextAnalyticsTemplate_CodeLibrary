@@ -45,7 +45,6 @@ class JSON
      */
     private static function _escapeEntities(str) {
         var entitiesMap = {
-
             '\"': '\\&quot;',
             '\'':'&amp;apos;'
         };
