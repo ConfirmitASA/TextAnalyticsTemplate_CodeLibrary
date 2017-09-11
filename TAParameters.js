@@ -1,15 +1,10 @@
 /**
  * @class TAParameters
  * @classdesc Class to work with parameters using Text analytics variables
- *
- * @constructs TAParameters
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {TALibrary} library
  */
 class TAParameters{
     /**
      * @memberof TAParameters
-     * @instance
      * @private
      * @function _addEmptyValue
      * @param {String} EmptyValueLabel
@@ -28,10 +23,11 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
-     * @instance
      * @function RenderFoldersParameter
      * @description render parameter with list of TAFoders using in the report
-     * @param {Parameter} parameter
+     * @param {Object} params - {
+     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     *      }
      */
     static function RenderFoldersParameter(params){
         var context = params.context;
@@ -58,6 +54,15 @@ class TAParameters{
         });
     }
 
+    /**
+     * @memberof TAParameters
+     * @function RenderAllCategoriesParameter
+     * @description render parameter with list of all categories, sub categories and attributes
+     * @param {Object} params - {
+     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     *          emptyValueLabel: {String}
+     *      }
+     */
     static function RenderAllCategoriesParameter(params){
         var context = params.context;
         var parameter = context.component;
@@ -87,13 +92,14 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
-     * @instance
      * @function RenderLevelCategoriesParameter
      * @description render parameter with list of categories on the specified level
-     * @param {Parameter} parameter
-     * @param {String} folderId
-     * @param {String} level
-     * @param {String} emptyValueLabel
+     * @param {Object} params -{
+     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          folderId: {String},
+     *          level: {String},
+     *          emptyValueLabel: {String}
+     *      }
      */
     static function RenderLevelCategoriesParameter(params){
         var context = params.context;
@@ -125,13 +131,13 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
-     * @instance
      * @function MaskSelectedCategoryChildren
      * @description masking children for the specified category
-     * @param {Mask} mask
-     * @param {String} folderId
-     * @param {String} category
-     * @param {Boolean} addEmpty
+     * @param {Object} params - {
+     *          context: {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          category: {String},
+     *          addEmpty: {Boolean}
+     * }
      */
     static function MaskSelectedCategoryChildren(params){
         var context = params.context;
@@ -154,12 +160,11 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
-     * @instance
      * @function RenderLevelsParameter
      * @description render parameter with list of levels in the hierarchy
-     * @param {Parameter} parameter
-     * @param {String} folderId
-     * @param {String} emptyValueLabel
+     * @param {Object} params - {
+     *          context: {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * }
      */
     static function RenderLevelsParameter(params){
         var context = params.context;
@@ -185,9 +190,6 @@ class TAParameters{
                 Label: currentDictionary["3rd level (attributes)"]
             }
         ];
-        //var levelValues = ParameterValues.getParameterValues_TA_LEVEL(currentDictionary);
-
-        //var levelValues = ParameterValues.getParameterValues(currentDictionary, 'TA_LEVEL');
 
         var levelsCount = Config.GetTALibrary().
             GetFolderById(folderId).
@@ -207,12 +209,12 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
-     * @instance
      * @function RenderViewByParameter
      * @description render parameter with list of questions for the detailed analysis table
-     * @param {Parameter} parameter
-     * @param {String} folderId
-     * @param {String} emptyValueLabel
+     * @param {Object} params - {
+     *          context: {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          emptyValueLabel: {String}
+     * }
      */
     static function RenderViewByParameter(params){
         var context = params.context;
@@ -243,14 +245,15 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
-     * @instance
      * @function ClearSubcategoriesParameters
      * @description clear subcategories andattributes parameters when another parent selected
-     * @param {String} folderId
-     * @param {String} value - empty value for that parameter "emptyv"
-     * @param {String} categoriesParameter
-     * @param {String} subcategoriesParameter
-     * @param {String} attributesParameter
+     * @param {Object} params - {
+     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          value: {String} - empty value for that parameter "emptyv",
+     *          categoriesParameter: {String},
+     *          subcategoriesParameter: {String},
+     *          attributesParameter: {String}
+     * }
      */
     static function ClearSubcategoriesParameters(params){
         var context = params.context;
@@ -277,10 +280,12 @@ class TAParameters{
      * @memberof TAHelper
      * @function GetSelectedCategory
      * @description function to get id of selected category, subcategory or attribute
-     * @param {ReportState} state
-     * @param {String} categoriesParameterName
-     * @param {String} subCategoriesParameterName
-     * @param {String} attributesParameterName
+     * @param {Object} params - {
+     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          categoriesParameterName: {String},
+     *          subcategoriesParameterName: {String},
+     *          attributesParameterName: {String}
+     * }
      * @returns {String}
      */
     static function GetSelectedCategory(params){
@@ -321,6 +326,19 @@ class TAParameters{
         return selectedCategory;
     }
 
+    /**
+     * @memberof TAHelper
+     * @function SetSelectedCategory
+     * @description function to get set selected category, subcategory or attribute to their parameters based on AllCategoriesParameter and in other direction
+     * @param {Object} params - {
+     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          allCategoriesParameterValue: {String},
+     *          categoriesParameterName: {String},
+     *          subcategoriesParameterName: {String},
+     *          attributesParameterName: {String}
+     * }
+     * @returns {String}
+     */
     static function SetSelectedCategory(params){
         var context = params.context;
         var hierarchy = params.hierarchy;

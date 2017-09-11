@@ -3,12 +3,13 @@
  * @classdesc Class to work with Tiles on the Detailed analysis page
  *
  * @constructs TATiles
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {TAFoldee} folder - Text Analytics folder to build table from
- * @param {Table} table
- * @param {String} sentiment - "total", "neg", "neu", "pos"
- * @param {String} selectedCategory
- * @param {String} distribution - 0 for counts, 1 for percents
+ * @param {Object} params - {
+ *          context: {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+ *          folder: {TAFolder},
+ *          type: { "all" | "neg" | "neu" | "pos" },
+ *          selectedCategory: {String},
+ *          distribution - 0 for counts, 1 for percents
+ *      }
  */
 class TATiles{
     private var _folder: TAFolder;

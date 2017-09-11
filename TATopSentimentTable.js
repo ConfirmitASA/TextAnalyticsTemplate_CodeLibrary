@@ -3,12 +3,15 @@
  * @classdesc Class to work with Most positive and most negative tables on the dashboard page
  *
  * @constructs TATopSentimentTable
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {TAFolder} folder - Text Analytics folder to build table from
- * @param {Table} table
- * @param {String} sentiment - "neg", "pos"
- * @param {String} level - 1, 2 or 3
- * @param {Number} topN
+ * @param {Object} params - {
+ *          context: {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+ *          folder: {TAFolder},
+ *          table: {Table},
+ *          sentiment: {Boolean},
+ *          level: {String} - "1", "2", "3",
+ *          distribution - 0 for counts, 1 for percents,
+ *          topN: {Number}
+ *      }
  */
 class TATopSentimentTable{
     private var _folder: TAFolder;

@@ -61,13 +61,6 @@ class TALibrary{
     /**
      * @memberof TALibrary
      * @instance
-     * @function GetFilterQuestions
-     * @returns {String[]}
-     */
-
-    /**
-     * @memberof TALibrary
-     * @instance
      * @function SetCurrentFolder
      * @param {String} id
      */
@@ -80,6 +73,11 @@ class TALibrary{
         }
     }
 
+    /**
+     * @memberof TALibrary
+     * @function GetTAFoldersParameterValue
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function GetTAFoldersParameterValue(context) {
         var selectedFolder = null;
         try {
