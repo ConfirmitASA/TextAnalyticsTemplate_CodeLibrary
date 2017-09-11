@@ -3,24 +3,6 @@
  * @classdesc Static class for Reportal Page dashboard components
  */
 class Page_dashboard{
-    private static var _folder;
-    private static const _defaultParameters = [
-    {
-        Id: "TA_LEVEL",
-        Value: "0"
-    },
-
-    {
-        Id: "TA_COMPARE_PERIODS",
-        Value: "qoq"
-    },
-
-    {
-        Id: "TA_VIEW_SENTIMENT",
-        Value: "emptyv"
-    }
-];
-
     /**
      * @memberof Page_dashboard
      * @function Hide
@@ -29,8 +11,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -39,70 +21,79 @@ class Page_dashboard{
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Render(context){
-    Config.SetTALibrary(TAHelper.GetGlobals(context));
-    if(context.component.SubmitSource == "ClearFilters"){
-        new FilterComponents(TAHelper.GetGlobals(context), Config.GetTALibrary().GetFilterQuestions(),Config.DS_Main).ClearFilters()
-    }
-    if(context.component.SubmitSource == "btnClearDateFilter"){
-        context.state.Parameters["TA_DATE_FROM"] = null;
-        context.state.Parameters["TA_DATE_TO"] = null;
-    }
-    if(context.component.SubmitSource == "lstQuestions") {
-        context.state.Parameters["TA_ATTRIBUTES_SINGLE"] = null;
-        context.state.Parameters["TA_LEVEL"] = null;
-        context.state.Parameters["TA_SUB_CATEGORIES_SINGLE"] = null;
-        context.state.Parameters["TA_TOP_CATEGORIES_SINGLE"] = null;
-        context.state.Parameters["TA_VIEW_BY"] = null;
-    }
+        Config.SetTALibrary(context);
 
-    TAHelper.SetLastVisitedPage(TAHelper.GetGlobals(context), "dashboard");
-    var paramUtils = new ParameterUtilities(TAHelper.GetGlobals(context));
-    paramUtils.SetDefaultParameterValues(_defaultParameters);
-    var taParams  = new TAParameters(TAHelper.GetGlobals(context), Config.GetTALibrary());
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    /*try {
-        selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
-    }catch(e){
-        selectedFolder = null;
-    }*/
-    _folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-    taParams.ClearSubcategoriesParameters(selectedFolder, "emptyv", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE");
-}
+        PageRenderer.InitiateParameters(context);
+        PageRenderer.InitiateFilters(context);
+        PageRenderer.SetLastVisitedPage(context, "dashboard");
+        PageRenderer.ProcessSelectedCategoryParameter(context);
+    }
 
     /**
      * @memberof Page_dashboard
      * @private
      * @function _renderTblMostSentiment
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {String} sentiment - "neg" or "pos"
+     * @param {Object} params - {
+     *              context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *              sentiment: {Boolean}
+     *          }
      */
-    private static function _renderTblMostSentiment(context, sentiment){
-    var level = context.state.Parameters.IsNull("TA_LEVEL") ? 0 : context.state.Parameters.GetString("TA_LEVEL");
-    var globals = TAHelper.GetGlobals(context);
-    var table = context.component;
-    var topSentimentTable = new TATopSentimentTable(globals, _folder, table, sentiment, level);
-    topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
-    topSentimentTable.GetTATableUtils().ClearTableDistributions();
-}
+    private static function _renderTblMostSentiment(params){
+        var context = params.context;
+        var sentiment = params.sentiment;
+
+        var level = context.state.Parameters.IsNull("TA_LEVEL") ? "0" : context.state.Parameters.GetString("TA_LEVEL");
+        var table = context.component;
+
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        var topSentimentTable = new TATopSentimentTable({
+            context: context,
+            folder: folder,
+            table: table,
+            sentiment: sentiment,
+            level: level
+        });
+
+        topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
+        topSentimentTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES","detailed_analysis, comments");
+        topSentimentTable.GetTATableUtils().ClearTableDistributions();
+    }
 
     /**
      * @memberof Page_dashboard
      * @private
      * @function _renderTblMostChanged
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {String} sentiment - "neg" or "pos"
+     * @param {Object} params - {
+     *              context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *              sentiment: {Boolean}
+     *          }
      */
-    private static function _renderTblMostChanged(context, sentiment){
-    var level = context.state.Parameters.IsNull("TA_LEVEL") ? 0 : context.state.Parameters.GetString("TA_LEVEL");
-    var globals = TAHelper.GetGlobals(context);
-    var table = context.component;
-    var period = context.state.Parameters.IsNull("TA_COMPARE_PERIODS") ? "qoq" : context.state.Parameters.GetString("TA_COMPARE_PERIODS");
+    private static function _renderTblMostChanged(params){
+        var context = params.context;
+        var sentiment = params.sentiment;
 
-    var topChangedTable = new TATopChangedTable(globals, _folder, table, sentiment, level, period);
-    topChangedTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
-    topChangedTable.GetTATableUtils().ClearTableDistributions();
-}
+        var level = context.state.Parameters.IsNull("TA_LEVEL") ? 0 : context.state.Parameters.GetString("TA_LEVEL");
+        var table = context.component;
+        var period = context.state.Parameters.IsNull("TA_COMPARE_PERIODS") ? "qoq" : context.state.Parameters.GetString("TA_COMPARE_PERIODS");
+
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        var topChangedTable = new TATopChangedTable({
+            context: context,
+            folder: folder,
+            table: table,
+            sentiment: sentiment,
+            level: level,
+            period: period
+        });
+
+        topChangedTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
+        topChangedTable.GetTATableUtils().ClearTableDistributions();
+        topChangedTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES","detailed_analysis, comments");
+    }
 
     /**
      * @memberof Page_dashboard
@@ -111,8 +102,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostPositive_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -120,8 +111,8 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblMostPositive_Render(context){
-    _renderTblMostSentiment(context, true);
-}
+        _renderTblMostSentiment({context: context, sentiment: true});
+    }
 
     /**
      * @memberof Page_dashboard
@@ -130,8 +121,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostNegative_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -139,8 +130,8 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblMostNegative_Render(context){
-    _renderTblMostSentiment(context, false);
-}
+        _renderTblMostSentiment({context: context, sentiment: false});
+    }
 
     /**
      * @memberof Page_dashboard
@@ -149,8 +140,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostImproved_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -158,8 +149,8 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblMostImproved_Render(context){
-    _renderTblMostChanged(context, true);
-}
+        _renderTblMostChanged({context: context, sentiment: true});
+    }
 
     /**
      * @memberof Page_dashboard
@@ -168,8 +159,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostDeclined_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -177,8 +168,8 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblMostDeclined_Render(context){
-    _renderTblMostChanged(context, false);
-}
+        _renderTblMostChanged({context: context, sentiment: false});
+    }
 
     /**
      * @memberof Page_dashboard
@@ -187,8 +178,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblThemeDistribution_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -196,16 +187,29 @@ class Page_dashboard{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblThemeDistribution_Render(context){
-    var globals = TAHelper.GetGlobals(context);
-    var table = context.component;
-    var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
+        var table = context.component;
 
-    var themeDistributionTable = new TAThemeDistributionTable(globals, _folder, table, sentiment,Config);
-    themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
-    themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_TOP_CATEGORIES_SINGLE", "detailed_analysis");
-    themeDistributionTable.GetTATableUtils().ClearTableDistributions();
-    themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
-}
+        var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
+
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
+
+        var themeDistributionTable = new TAThemeDistributionTable({
+            context: context,
+            folder: folder,
+            table: table,
+            sentiment: sentiment,
+            config: Config,
+            period: period
+        });
+
+        themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
+        themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "detailed_analysis, comments");
+        themeDistributionTable.GetTATableUtils().ClearTableDistributions();
+        themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -214,8 +218,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtLevel_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -223,9 +227,13 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtLevel_Render(context){
-    var label = "View by";
-    context.component.Output.Append(label);
-}
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary['View by'];
+        context.component.Output.Append(label);
+
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_LEVEL'));
+    }
 
     /**
      * @memberof Page_dashboard
@@ -234,8 +242,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtMostPositive_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -243,9 +251,11 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtMostPositive_Render(context){
-    var label = "Top 5 most positive themes";
-    context.component.Output.Append(label);
-}
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary['Top 5 most positive themes'];
+        context.component.Output.Append(label);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -254,8 +264,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtMostNegative_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -263,9 +273,11 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtMostNegative_Render(context){
-    var label = "Top 5 most negative themes";
-    context.component.Output.Append(label);
-}
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Top 5 most negative themes"];
+        context.component.Output.Append(label);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -274,8 +286,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtComparePeriods_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -283,9 +295,37 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtComparePeriods_Render(context){
-    var label = "Compare";
-    context.component.Output.Append(label);
-}
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Compare"];
+        context.component.Output.Append(label);
+
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_COMPARE_PERIODS'));
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtViewPeriod_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtViewPeriod_Hide(context){
+        return false;
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtViewPeriod_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtViewPeriod_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Compare"];
+        context.component.Output.Append(label);
+
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_PERIOD'));
+    }
 
     /**
      * @memberof Page_dashboard
@@ -294,8 +334,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtMostImproved_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -303,9 +343,11 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtMostImproved_Render(context){
-    var label = "Top 5 most improved themes";
-    context.component.Output.Append(label);
-}
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Top 5 most improved themes"];
+        context.component.Output.Append(label);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -314,8 +356,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtMostChangedInfo_Hide(context){
-    return false
-}
+        return false
+    }
 
     /**
      * @memberof Page_dashboard
@@ -323,9 +365,9 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtMostChangedInfo_Render(context){
-    var label = "Changes that are not statistically significant are marked in grey";
-    context.component.Output.Append(label);
-}
+        var label = "Changes that are not statistically significant are marked in grey";
+        context.component.Output.Append(label);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -334,8 +376,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtMostDeclined_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -343,9 +385,11 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtMostDeclined_Render(context){
-    var label = "Top 5 most declined themes";
-    context.component.Output.Append(label);
-}
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Top 5 most declined themes"];
+        context.component.Output.Append(label);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -354,8 +398,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtThemeDistribution_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -363,9 +407,11 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtThemeDistribution_Render(context){
-    var label = "Theme distribution";
-    context.component.Output.Append(label);
-}
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Theme distribution"];
+        context.component.Output.Append(label);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -374,8 +420,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtViewSentiment_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -383,9 +429,80 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtViewSentiment_Render(context){
-    var label = "View";
-    context.component.Output.Append(label);
-}
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["View"];
+        context.component.Output.Append(label);
+
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_VIEW_SENTIMENT'));
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtPositive_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtPositive_Hide(context){
+        return false;
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtPositive_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtPositive_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Positive"];
+        context.component.Output.Append(label);
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtNeutral_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtNeutral_Hide(context){
+        return false;
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtNeutral_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtNeutral_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Neutral"];
+        context.component.Output.Append(label);
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtNegative_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtNegative_Hide(context){
+        return false;
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtNegative_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtNegative_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var label = currentDictionary["Negative"];
+        context.component.Output.Append(label);
+    }
 
     /**
      * @memberof Page_dashboard
@@ -394,8 +511,8 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtThemeDistributionScript_Hide(context){
-    return false;
-}
+        return false;
+    }
 
     /**
      * @memberof Page_dashboard
@@ -403,25 +520,45 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtThemeDistributionScript_Render(context){
-    var headers;
-    var hierarhy = _folder.GetHierarchy().GetHierarchyArray()
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
 
-    headers = new TATableData(TAHelper.GetGlobals(context), "tblThemeDistribution").GetTableRowHeaders();
-    var upgradeText = "<script type=\"text/javascript\">"+
-        "var upgradedTable = new Reportal.TAhierarchy("+
-        "{"+
-            "source: document.querySelector('table.reportal-hierarchy-table'),"+
-            "blocks: [],"+
-            "search:{},"+
-            "floatingHeader:{},"+
-            "hierarchy:"+JSON.stringify(hierarhy)+","+
-            "rowheaders:"+JSON.stringify(headers)+","+
-            "clearLinks:true"+
-        "}"+
-        ")"+
-        "</script>";
+        var categoriesText = "<script>" +
+            "var z = [].slice.call(document.querySelectorAll('.reportal-categories>thead>tr>td[class*=\"_cc\"]'));" +
+            "z.forEach(function(item){item.innerHTML = '"+currentDictionary['Categories']+"';});" +
+            "</script>";
 
-    context.component.Output.Append(upgradeText);
-    context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
-}
+        var headers;
+
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var hierarhy = folder.GetHierarchy().GetHierarchyArray()
+
+        headers = TATableData.GetTableRowHeaders({
+            context: context,
+            tableName: "tblThemeDistribution"
+        });
+
+        var upgradeText = "<script type=\"text/javascript\">"+
+            "var upgradedTable = new Reportal.AggregatedTable("+
+                "{"+
+                    "table: document.querySelector('table.reportal-hierarchy-table'),"+
+                    "hierarchy: {"+
+                        "blocks: [],"+
+                        "hierarchy:"+JSON.stringify(hierarhy)+","+
+                        "rowheaders:"+JSON.stringify(headers)+","+
+                        "search:{enabled: true},"+
+                        "clearLinks:false"+
+                    "},"+
+                    "search:{},"+
+                    "fixedHeader:{},"+
+                "}"+
+            ")"+
+            "</script>";
+
+        context.component.Output.Append(categoriesText);
+        context.component.Output.Append(upgradeText);
+        context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
+    }
 }

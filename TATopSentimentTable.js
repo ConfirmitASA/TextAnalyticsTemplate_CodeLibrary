@@ -3,34 +3,42 @@
  * @classdesc Class to work with Most positive and most negative tables on the dashboard page
  *
  * @constructs TATopSentimentTable
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {TAFolder} folder - Text Analytics folder to build table from
- * @param {Table} table
- * @param {String} sentiment - "neg", "pos"
- * @param {String} level - 1, 2 or 3
- * @param {Number} topN
+ * @param {Object} params - {
+ *          context: {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+ *          folder: {TAFolder},
+ *          table: {Table},
+ *          sentiment: {Boolean},
+ *          level: {String} - "1", "2", "3",
+ *          distribution - 0 for counts, 1 for percents,
+ *          topN: {Number}
+ *      }
  */
 class TATopSentimentTable{
-    private var _globals;
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
     private var _taMasks: TAMasks;
     private var _table: Table;
     private var _level;
+    private var _currentLanguage;
     private var _topN;
     private var _sentiment;
     private var _distribution;
 
-    function TATopSentimentTable(globals, folder, table, sentiment, level, topN, distribution){
-        _globals = globals;
-        _folder = folder;
-        _taMasks = new TAMasks(globals, folder);
-        _table = table;
-        _taTableUtils = new TATableUtils(globals, folder, table);
-        _sentiment = sentiment ? true : false;
-        _level = parseInt(level);
-        _topN = topN ? topN : 5;
-        _distribution = distribution ? distribution : "0";
+    function TATopSentimentTable(params){
+        var context = params.context;
+        _folder = params.folder;
+        _taMasks = new TAMasks({context: context, folder: _folder});
+        _table = params.table;
+        _taTableUtils = new TATableUtils({
+            context: context,
+            folder: _folder,
+            table: _table
+        });
+        _sentiment = !!(params.sentiment);
+        _level = parseInt(params.level);
+        _topN = params.topN ? params.topN : 5;
+        _distribution = params.distribution ? params.distribution : "0";
+        _currentLanguage = context.report.CurrentLanguage;
         _render();
     }
 
@@ -74,7 +82,7 @@ class TATopSentimentTable{
                 Formula: "cellv(col-1,row)",
                 Color: ( _sentiment ? Config.Colors.NegNeuPosPalette.Positive : Config.Colors.NegNeuPosPalette.Negative )
             }],
-            "Count");
+            Translations.dictionary(_currentLanguage)['Count']);
         _table.ColumnHeaders.Add(chartHeader);
     }
 

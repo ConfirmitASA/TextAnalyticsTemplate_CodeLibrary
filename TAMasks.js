@@ -10,9 +10,9 @@ class TAMasks{
     private var _globals;
     private var _folder: TAFolder;
 
-    function TAMasks(globals, folder){
-        _globals = globals;
-        _folder = folder;
+    function TAMasks(params){
+        _globals = params.context;
+        _folder = params.folder;
     }
 
     /**
@@ -37,7 +37,7 @@ class TAMasks{
      * @instance
      * @function GetChildrenMask
      * @description returns all children ids for the selected category
-     * @param {String} level
+     * @param {String} category
      * @returns {String[]}
      */
     function GetChildrenMask(category){
@@ -55,7 +55,8 @@ class TAMasks{
      * @instance
      * @function GetAllChildrenMask
      * @description returns all children and grand-children ids for the selected category
-     * @param {String} level
+     * @param {String} category
+     * @param {String[]} mask - mask to add values to
      * @returns {String[]}
      */
     function GetAllChildrenMask(category, mask){

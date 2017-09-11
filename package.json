@@ -1,12 +1,12 @@
 {
-  "name": "text-analytics-template-codelibrary",
+  "name": "TextAnalyticsTemplate_CodeLibrary",
   "version": "0.0.120",
   "description": "Text analytics template Codelibrary",
   "main": "index.js",
   "scripts": {
     "test": "",
     "docs": "node_modules/.bin/jsdoc --configure jsdoc.conf --verbose",
-    "docs-commit": "git subtree push --prefix docs/text-analytics-template-codelibrary origin gh-pages"
+    "docs-commit": "git subtree push --prefix docs/TextAnalyticsTemplate_CodeLibrary/0.0.120 origin gh-pages"
   },
   "repository": {
     "type": "git",

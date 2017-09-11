@@ -10,13 +10,11 @@ class TALibrary{
     private var _globals;
     private var _folders = [];
     private var _currentFolder: TAFolder;
-    private var _filterQuestions;
 
 
     function TALibrary(globals,config){
         _globals = globals;
-        var filterQuestions = TAHelper.GetTagsFromSurvey(globals, config.DS_Main, ["ta_filter"]);
-        _filterQuestions = TAHelper.GetConfiguredVariables(globals, null, config.FilterQuestions, filterQuestions, []);
+
         var folder: TAFolder;
         for(var i = 0 ; i < config.TAQuestions.length; i++){
                 folder = new TAFolder(_globals,i, config);
@@ -63,16 +61,6 @@ class TALibrary{
     /**
      * @memberof TALibrary
      * @instance
-     * @function GetFilterQuestions
-     * @returns {String[]}
-     */
-    function GetFilterQuestions(){
-        return _filterQuestions;
-    }
-
-    /**
-     * @memberof TALibrary
-     * @instance
      * @function SetCurrentFolder
      * @param {String} id
      */
@@ -85,6 +73,11 @@ class TALibrary{
         }
     }
 
+    /**
+     * @memberof TALibrary
+     * @function GetTAFoldersParameterValue
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function GetTAFoldersParameterValue(context) {
         var selectedFolder = null;
         try {
