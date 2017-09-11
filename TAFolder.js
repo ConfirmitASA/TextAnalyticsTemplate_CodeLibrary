@@ -4,7 +4,7 @@
  *
  * @constructs TAFolder
  * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {Object} questionObj - Object from Config.TAQuestions[i]
+ * @param {Object} questionIndex - index of question in cofig
  * @param {Object} Config
  */
 class TAFolder{
@@ -109,7 +109,7 @@ class TAFolder{
      */
     function GetHierarchy(){
         return _hierarchy;
-}
+    }
 
     /**
      * @memberof TAFolder

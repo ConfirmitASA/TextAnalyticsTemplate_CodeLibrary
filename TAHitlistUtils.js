@@ -3,9 +3,10 @@
  * @classdesc Class to work with the hitlist
  *
  * @constructs TAHitlistUtils
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {TAFolder} folder
- * @param {Hitlist} hitlist
+ * @param {Object} params - {
+ *          context:  {componet: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+ *          folder: {TAFolder}
+ *      }
  */
 class TAHitlistUtils{
     private var _folder: TAFolder;
@@ -22,9 +23,11 @@ class TAHitlistUtils{
      * @instance
      * @function AddTAColumn
      * @description function to add a text analytics variable to the hitlist
-     * @param {String} columnName - type of the question "overallsentiment" or "os", "categories" or "c", "positivementions" or "positive" or "pm", "negativementions" or "negative" or "nm", "categorysentiment" or "cs"
-     * @param {Boolean} sortable
-     * @param {String} postfix - id of the selected category
+     * @param {Object} params - {
+     *          columnName: {String}  - type of the question "overallsentiment" or "os", "categories" or "c", "positivementions" or "positive" or "pm", "negativementions" or "negative" or "nm", "categorysentiment" or "cs"
+     *          sortable: {Boolean}
+     *          postfix: {String} - id of the selected category
+     *      }
      */
     function AddTAColumn(params){
         var context = params.context;
@@ -54,8 +57,10 @@ class TAHitlistUtils{
      * @instance
      * @function AddColumn
      * @description function to add a not text analytics variable to the hitlist
-     * @param {String} columnName - variable qId
-     * @param {Boolean} sortable
+     * @param {Object} params - {
+     *          columnName: {String} - variable qId
+     *          sortable: {Boolean}
+     *      }
      */
     function AddColumn(params){
         var context = params.context;
@@ -75,6 +80,7 @@ class TAHitlistUtils{
      * @instance
      * @function AddConfiguredColumns
      * @description function to add columns from config
+     * @param {Object} context - {componet: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     function AddConfiguredColumns(context){
         var hitlistColumn: HitListColumn;

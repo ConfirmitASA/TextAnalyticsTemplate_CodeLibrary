@@ -6,8 +6,6 @@
  * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
  * @param {TAFolder} folder
  */
-
-//TODO: Refactor masks
 class TAMasks{
     private var _globals;
     private var _folder: TAFolder;
@@ -39,7 +37,7 @@ class TAMasks{
      * @instance
      * @function GetChildrenMask
      * @description returns all children ids for the selected category
-     * @param {String} level
+     * @param {String} category
      * @returns {String[]}
      */
     function GetChildrenMask(category){
@@ -57,7 +55,8 @@ class TAMasks{
      * @instance
      * @function GetAllChildrenMask
      * @description returns all children and grand-children ids for the selected category
-     * @param {String} level
+     * @param {String} category
+     * @param {String[]} mask - mask to add values to
      * @returns {String[]}
      */
     function GetAllChildrenMask(category, mask){

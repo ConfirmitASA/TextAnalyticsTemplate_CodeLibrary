@@ -3,12 +3,13 @@
  * @classdesc Class to work with tables using Text Analytics variables
  *
  * @constructs TATableUtils
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param  {TAFolder} folder
- * @param {Table} table
+ * @param {Object} params - {
+ *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+ *          folder: {TAFolder},
+ *          table: {Table}
+ *      }
  */
 
-//TODO: refactor
 class TATableUtils{
     private var _globals;
     private var _folder: TAFolder;
@@ -136,6 +137,7 @@ class TATableUtils{
      * @param {Boolean} addMinus - if you want to add minus to negative values
      * @param {Boolean} hideHeader
      * @param {String} distribution - 0 - for counts, 1 - for percents
+     * @param {Object} config
      * @returns {HeaderCollection}
      */
     function GetCategoriesHeader(groupName: String, addMinus, hideHeader, distribution, config){
@@ -219,6 +221,7 @@ class TATableUtils{
      * @param {Boolean} addMinus - if you want to add minus to negative values
      * @param {Boolean} hideHeader
      * @param {String} distribution - 0 - for counts, 1 - for percents
+     * @param {Object} config
      * @returns {String}
      */
     function GetCategoriesExpression( groupName: String, addMinus, hideHeader, distribution, config ){

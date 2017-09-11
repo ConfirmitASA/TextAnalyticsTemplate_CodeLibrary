@@ -5,7 +5,6 @@
 class TAFilters{
     /**
      * @memberof TAFilters
-     * @instance
      * @function GetSelectedCategoryFilterExpression
      * @param {Object} params - {
             context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
@@ -27,7 +26,6 @@ class TAFilters{
 
     /**
      * @memberof TAFilters
-     * @instance
      * @function GetSentimentFilterExpression
      * @param {Object} params - {
      *      context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -75,7 +73,6 @@ class TAFilters{
 
     /**
      * @memberof TAFilters
-     * @instance
      * @function GetDateFilterExpression
      * @param {Object} params - {
      *       context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},

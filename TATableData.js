@@ -1,18 +1,17 @@
 /**
  * @class TATableData
  * @classdesc Class to get Data from built table
- *
- * @constructs TATableData
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {String} tableName
  */
 class TATableData{
 
     /**
      * @memberof TATableData
-     * @instance
      * @function GetTableRowHeaders
      * @description function to get rowheaders with ids
+     * @param {Object} params - {
+     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          tableName: {String}
+     *      }
      * @returns {Object} - object with ids, titles and row indexes
      */
     static function GetTableRowHeaders(params){
@@ -24,9 +23,23 @@ class TATableData{
 
         var rowHeaderTitles = context.report.TableUtils.GetRowHeaderCategoryTitles(tableName);
         var rowHeaderIds = context.report.TableUtils.GetRowHeaderCategoryIds(tableName);
-        //TODO: change styling
+
         for(var i=0; i<rowHeaderIds.length;i++){
-            rowheaders[rowHeaderIds[i][0]+((rowHeaderIds[i].length>1)?("_block"+rowHeaderIds[i][1]):"")] = {title: rowHeaderTitles[i][0], index: i, categoryId: rowHeaderIds[i][0].toLowerCase(), blockId: ((rowHeaderIds[i].length>1)?("block"+rowHeaderIds[i][1]):null)};
+            var rowheaderId = rowHeaderIds[i][0]+
+                ((rowHeaderIds[i].length>1)
+                    ? ("_block"+rowHeaderIds[i][1])
+                    :"");
+
+            var blockId = ((rowHeaderIds[i].length>1)
+                ?("block"+rowHeaderIds[i][1])
+                :null);
+
+            rowheaders[rowheaderId] = {
+                title: rowHeaderTitles[i][0],
+                index: i,
+                categoryId: rowHeaderIds[i][0].toLowerCase(),
+                blockId: blockId
+            };
             rowheaders.length++;
 
         }
@@ -39,6 +52,10 @@ class TATableData{
      * @instance
      * @function GetBlocks
      * @description function to get parent rowheader ids
+     * @param {Object} params - {
+     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          tableName: {String}
+     *      }
      * @returns {String}
      */
     static function GetBlocks(params){

@@ -3,10 +3,14 @@
  * @classdesc Class to work with ThemeDistribution table
  *
  * @constructs TAThemeDistributionTable
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {TAFoldee} folder - Text Analytics folder to build table from
- * @param {Table} table
- * @param {String} sentiment - "emptyv", "neg", "neu", "pos"
+ * @param {Object} params - {
+ *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+ *          table: {Table},
+ *          folder: {TAFolder},
+ *          sentiment: { "emptyv" | "neg" | "neu" | "pos" },
+ *          period: { "m" | "q" | "w" | "y" }
+ *          config: {Object}
+ *      }
  */
 class TAThemeDistributionTable{
     private var _folder: TAFolder;
@@ -67,7 +71,8 @@ class TAThemeDistributionTable{
      * @memberof TAThemeDistributionTable
      * @private
      * @instance
-     * @function _addTimeSeriesColum
+     * @function _addTimeSeriesColumn
+     * @description for columns we use timeseries header with rolling and counts and sentiments(hidden) subheaders
      */
     private function _addTimeSeriesColumn(){
         var headerTimeSeries = _taTableUtils.GetTimePeriodHeader(_period.Unit, _period.From, _period.To);
@@ -86,6 +91,7 @@ class TAThemeDistributionTable{
      * @instance
      * @function _getCountsColumn
      * @returns {HeaderCollection}
+     * @description to calculate counts we use categories header and formula to calculate counts of particular sentiment range
      */
     private function _getCountsColumn(){
         var columnsCollection: HeaderCollection = _taTableUtils.GetCategoriesHeader(_sentiment, false, true, false, Config.SentimentRange);
@@ -96,6 +102,7 @@ class TAThemeDistributionTable{
      * @memberof TAThemeDistributionTable
      * @private
      * @instance
+     * @description to calculate sentiment we use categories header and formula to calculate counts of particular sentiment range and average sentiment of that category
      * @function _getHeaderStatistics
      * @returns {Header}
      */
