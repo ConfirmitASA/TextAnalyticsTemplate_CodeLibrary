@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d8fd937e-45ae-4110-8806-e3519895387d" name="Default" comment="hitlist test" />
+    <ignored path="TextAnalyticsTemplate_CodeLibrary.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="C:\Users\MariaSo\WebstormProjects\TextAnalyticsTemplate_CodeLibrary" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="TextAnalyticsTemplate_CodeLibrary" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-561">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>darkAccentColor</find>
+      <find>lightAccentColor</find>
+      <find>primaryBackgroundColor</find>
+      <find>_folder</find>
+      <find>_currentLanguage</find>
+      <find>_curDictionary</find>
+      <find>_globals</find>
+      <find>_filterComponents</find>
+      <find>_filter</find>
+      <find>filter</find>
+      <find>TAHe</find>
+      <find>TAHE</find>
+      <find>TAH</find>
+      <find>TAHel</find>
+      <find>folder</find>
+      <find>GetFilterQuestions</find>
+      <find>before</find>
+      <find>txtF</find>
+      <find>filt</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Page_comments.js" />
+        <option value="$PROJECT_DIR$/Page_dashboard.js" />
+        <option value="$PROJECT_DIR$/Page_detailed_analysis.js" />
+        <option value="$PROJECT_DIR$/Page_Filters.js" />
+        <option value="$PROJECT_DIR$/TAParameterUtils.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/../../Стажеры/Саша/confirmit-html-test/scripts/data.js" />
+        <option value="$PROJECT_DIR$/JSON.js" />
+        <option value="$PROJECT_DIR$/Languages.js" />
+        <option value="$PROJECT_DIR$/Static/PermissionScript.js" />
+        <option value="$PROJECT_DIR$/Translations.js" />
+        <option value="$PROJECT_DIR$/TATopSentimentTableCategoriesDrilldown.js" />
+        <option value="$PROJECT_DIR$/TATopChangedTableCategoriesDrilldown.js" />
+        <option value="$PROJECT_DIR$/TATopChangedTableByFiscalYear.js" />
+        <option value="$PROJECT_DIR$/TAThemeDistributionTableByFiscalYear.js" />
+        <option value="$PROJECT_DIR$/Static/Config.js" />
+        <option value="$PROJECT_DIR$/Static/DefaultParameters.js" />
+        <option value="$PROJECT_DIR$/Static/FilterPanel.js" />
+        <option value="$PROJECT_DIR$/Static/Page_Correlation.js" />
+        <option value="$PROJECT_DIR$/TAHelper.js" />
+        <option value="$PROJECT_DIR$/Static/Page_comments.js" />
+        <option value="$PROJECT_DIR$/Static/Page_detailed_analysis.js" />
+        <option value="$PROJECT_DIR$/Static/ReportMaster.js" />
+        <option value="$PROJECT_DIR$/FilterComponents.js" />
+        <option value="$PROJECT_DIR$/Static/PageMaster.js" />
+        <option value="$PROJECT_DIR$/Static/Filters.js" />
+        <option value="$PROJECT_DIR$/Static/Page_Filters.js" />
+        <option value="$PROJECT_DIR$/Static/Page_dashboard.js" />
+        <option value="$PROJECT_DIR$/Static/Page_correlation.js" />
+        <option value="$PROJECT_DIR$/PageRenderer.js" />
+        <option value="$PROJECT_DIR$/Hierarchy.js" />
+        <option value="$PROJECT_DIR$/ParameterUtilities.js" />
+        <option value="$PROJECT_DIR$/ParameterValues.js" />
+        <option value="$PROJECT_DIR$/TADetailedAnalysisTable.js" />
+        <option value="$PROJECT_DIR$/jsdoc.conf" />
+        <option value="$PROJECT_DIR$/TACorrelationTable.js" />
+        <option value="$PROJECT_DIR$/TAFilters.js" />
+        <option value="$PROJECT_DIR$/TAFolder.js" />
+        <option value="$PROJECT_DIR$/TAHitlistUtils.js" />
+        <option value="$PROJECT_DIR$/TALibrary.js" />
+        <option value="$PROJECT_DIR$/TAMasks.js" />
+        <option value="$PROJECT_DIR$/Static/Parameters.js" />
+        <option value="$PROJECT_DIR$/TAParameters.js" />
+        <option value="$PROJECT_DIR$/TATableData.js" />
+        <option value="$PROJECT_DIR$/TATableUtils.js" />
+        <option value="$PROJECT_DIR$/TAThemeDistributionTable.js" />
+        <option value="$PROJECT_DIR$/TATiles.js" />
+        <option value="$PROJECT_DIR$/TATopChangedTable.js" />
+        <option value="$PROJECT_DIR$/TATopSentimentTable.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1912" />
+    <option name="y" value="-7" />
+    <option name="width" value="1936" />
+    <option name="height" value="1176" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TextAnalyticsTemplate_CodeLibrary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TextAnalyticsTemplate_CodeLibrary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TextAnalyticsTemplate_CodeLibrary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TextAnalyticsTemplate_CodeLibrary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="270" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="299" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="300" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="968" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="292" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="291" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="961" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\MariaSo\Work\webstorm projects\TextAnalyticsTemplate_CodeLibrary" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\MariaSo\WebstormProjects\TextAnalyticsTemplate_CodeLibrary\Static" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter />
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d8fd937e-45ae-4110-8806-e3519895387d" name="Default" comment="" />
+      <created>1472210106974</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1472210106974</updated>
+      <workItem from="1490360662854" duration="1849000" />
+      <workItem from="1490952326691" duration="7261000" />
+      <workItem from="1491815104338" duration="13767000" />
+      <workItem from="1491919131799" duration="15000" />
+      <workItem from="1491994928212" duration="2491000" />
+      <workItem from="1493119271206" duration="5259000" />
+      <workItem from="1493283653325" duration="1841000" />
+      <workItem from="1493992110509" duration="4337000" />
+      <workItem from="1494851203833" duration="2588000" />
+      <workItem from="1495012887496" duration="1832000" />
+      <workItem from="1495525878980" duration="7777000" />
+      <workItem from="1495789295160" duration="8149000" />
+      <workItem from="1496651848026" duration="5602000" />
+      <workItem from="1497188996573" duration="21346000" />
+      <workItem from="1497861194008" duration="32348000" />
+      <workItem from="1498045058970" duration="12233000" />
+      <workItem from="1499242169916" duration="8934000" />
+      <workItem from="1499341579356" duration="22476000" />
+      <workItem from="1500480735097" duration="1968000" />
+      <workItem from="1500981077918" duration="11518000" />
+      <workItem from="1501751298484" duration="4199000" />
+      <workItem from="1502364900841" duration="3523000" />
+      <workItem from="1503303372551" duration="6524000" />
+      <workItem from="1503648451055" duration="2157000" />
+      <workItem from="1503994251049" duration="12507000" />
+      <workItem from="1504174902161" duration="4744000" />
+      <workItem from="1504258479316" duration="2758000" />
+      <workItem from="1504520856602" duration="36402000" />
+      <workItem from="1505125235277" duration="5975000" />
+      <workItem from="1505134948665" duration="294000" />
+    </task>
+    <task id="LOCAL-00332" summary="hierarchy table search fix">
+      <created>1489590001931</created>
+      <option name="number" value="00332" />
+      <option name="presentableId" value="LOCAL-00332" />
+      <option name="project" value="LOCAL" />
+      <updated>1489590001931</updated>
+    </task>
+    <task id="LOCAL-00333" summary="hierarchy table search fix">
+      <created>1489590846554</created>
+      <option name="number" value="00333" />
+      <option name="presentableId" value="LOCAL-00333" />
+      <option name="project" value="LOCAL" />
+      <updated>1489590846554</updated>
+    </task>
+    <task id="LOCAL-00334" summary="hierarchy table search fix">
+      <created>1489591010271</created>
+      <option name="number" value="00334" />
+      <option name="presentableId" value="LOCAL-00334" />
+      <option name="project" value="LOCAL" />
+      <updated>1489591010271</updated>
+    </task>
+    <task id="LOCAL-00335" summary="hierarchy table search fix">
+      <created>1489652343160</created>
+      <option name="number" value="00335" />
+      <option name="presentableId" value="LOCAL-00335" />
+      <option name="project" value="LOCAL" />
+      <updated>1489652343160</updated>
+    </task>
+    <task id="LOCAL-00336" summary="hierarchy table search fix">
+      <created>1489652733463</created>
+      <option name="number" value="00336" />
+      <option name="presentableId" value="LOCAL-00336" />
+      <option name="project" value="LOCAL" />
+      <updated>1489652733463</updated>
+    </task>
+    <task id="LOCAL-00337" summary="hierarchy table search fix">
+      <created>1489655763946</created>
+      <option name="number" value="00337" />
+      <option name="presentableId" value="LOCAL-00337" />
+      <option name="project" value="LOCAL" />
+      <updated>1489655763946</updated>
+    </task>
+    <task id="LOCAL-00338" summary="hierarchy table search fix">
+      <created>1489657373649</created>
+      <option name="number" value="00338" />
+      <option name="presentableId" value="LOCAL-00338" />
+      <option name="project" value="LOCAL" />
+      <updated>1489657373649</updated>
+    </task>
+    <task id="LOCAL-00339" summary="make filterpanel wider">
+      <created>1490360910918</created>
+      <option name="number" value="00339" />
+      <option name="presentableId" value="LOCAL-00339" />
+      <option name="project" value="LOCAL" />
+      <updated>1490360910919</updated>
+    </task>
+    <task id="LOCAL-00340" summary="separate translations from cl">
+      <created>1490361748683</created>
+      <option name="number" value="00340" />
+      <option name="presentableId" value="LOCAL-00340" />
+      <option name="project" value="LOCAL" />
+      <updated>1490361748683</updated>
+    </task>
+    <task id="LOCAL-00341" summary="fix tiles">
+      <created>1490952681434</created>
+      <option name="number" value="00341" />
+      <option name="presentableId" value="LOCAL-00341" />
+      <option name="project" value="LOCAL" />
+      <updated>1490952681436</updated>
+    </task>
+    <task id="LOCAL-00342" summary="fix tiles">
+      <created>1490953049115</created>
+      <option name="number" value="00342" />
+      <option name="presentableId" value="LOCAL-00342" />
+      <option name="project" value="LOCAL" />
+      <updated>1490953049115</updated>
+    </task>
+    <task id="LOCAL-00343" summary="QA DA page bug">
+      <created>1491815424215</created>
+      <option name="number" value="00343" />
+      <option name="presentableId" value="LOCAL-00343" />
+      <option name="project" value="LOCAL" />
+      <updated>1491815424232</updated>
+    </task>
+    <task id="LOCAL-00344" summary="QA DA page bug">
+      <created>1491816253169</created>
+      <option name="number" value="00344" />
+      <option name="presentableId" value="LOCAL-00344" />
+      <option name="project" value="LOCAL" />
+      <updated>1491816253169</updated>
+    </task>
+    <task id="LOCAL-00345" summary="QA DA page bug">
+      <created>1491817029236</created>
+      <option name="number" value="00345" />
+      <option name="presentableId" value="LOCAL-00345" />
+      <option name="project" value="LOCAL" />
+      <updated>1491817029236</updated>
+    </task>
+    <task id="LOCAL-00346" summary="QA DA page bug">
+      <created>1491817404809</created>
+      <option name="number" value="00346" />
+      <option name="presentableId" value="LOCAL-00346" />
+      <option name="project" value="LOCAL" />
+      <updated>1491817404809</updated>
+    </task>
+    <task id="LOCAL-00347" summary="QA DA page bug">
+      <created>1491817749832</created>
+      <option name="number" value="00347" />
+      <option name="presentableId" value="LOCAL-00347" />
+      <option name="project" value="LOCAL" />
+      <updated>1491817749832</updated>
+    </task>
+    <task id="LOCAL-00348" summary="QA DA page bug">
+      <created>1491818004956</created>
+      <option name="number" value="00348" />
+      <option name="presentableId" value="LOCAL-00348" />
+      <option name="project" value="LOCAL" />
+      <updated>1491818004956</updated>
+    </task>
+    <task id="LOCAL-00349" summary="QA DA page bug">
+      <created>1491818610776</created>
+      <option name="number" value="00349" />
+      <option name="presentableId" value="LOCAL-00349" />
+      <option name="project" value="LOCAL" />
+      <updated>1491818610776</updated>
+    </task>
+    <task id="LOCAL-00350" summary="DividerColor bug">
+      <created>1491835779310</created>
+      <option name="number" value="00350" />
+      <option name="presentableId" value="LOCAL-00350" />
+      <option name="project" value="LOCAL" />
+      <updated>1491835779310</updated>
+    </task>
+    <task id="LOCAL-00351" summary="DividerColor bug">
+      <created>1491835987064</created>
+      <option name="number" value="00351" />
+      <option name="presentableId" value="LOCAL-00351" />
+      <option name="project" value="LOCAL" />
+      <updated>1491835987064</updated>
+    </task>
+    <task id="LOCAL-00352" summary="DividerColor bug">
+      <created>1491836771705</created>
+      <option name="number" value="00352" />
+      <option name="presentableId" value="LOCAL-00352" />
+      <option name="project" value="LOCAL" />
+      <updated>1491836771706</updated>
+    </task>
+    <task id="LOCAL-00353" summary="text colors in hitlist">
+      <created>1491837809976</created>
+      <option name="number" value="00353" />
+      <option name="presentableId" value="LOCAL-00353" />
+      <option name="project" value="LOCAL" />
+      <updated>1491837809976</updated>
+    </task>
+    <task id="LOCAL-00354" summary="text colors in hitlist">
+      <created>1491838129333</created>
+      <option name="number" value="00354" />
+      <option name="presentableId" value="LOCAL-00354" />
+      <option name="project" value="LOCAL" />
+      <updated>1491838129352</updated>
+    </task>
+    <task id="LOCAL-00355" summary="color config">
+      <created>1491911615202</created>
+      <option name="number" value="00355" />
+      <option name="presentableId" value="LOCAL-00355" />
+      <option name="project" value="LOCAL" />
+      <updated>1491911615202</updated>
+    </task>
+    <task id="LOCAL-00356" summary="color config">
+      <created>1491912823304</created>
+      <option name="number" value="00356" />
+      <option name="presentableId" value="LOCAL-00356" />
+      <option name="project" value="LOCAL" />
+      <updated>1491912823304</updated>
+    </task>
+    <task id="LOCAL-00357" summary="color config">
+      <created>1491913394133</created>
+      <option name="number" value="00357" />
+      <option name="presentableId" value="LOCAL-00357" />
+      <option name="project" value="LOCAL" />
+      <updated>1491913394133</updated>
+    </task>
+    <task id="LOCAL-00358" summary="color config">
+      <created>1491913683067</created>
+      <option name="number" value="00358" />
+      <option name="presentableId" value="LOCAL-00358" />
+      <option name="project" value="LOCAL" />
+      <updated>1491913683067</updated>
+    </task>
+    <task id="LOCAL-00359" summary="color config">
+      <created>1491913856391</created>
+      <option name="number" value="00359" />
+      <option name="presentableId" value="LOCAL-00359" />
+      <option name="project" value="LOCAL" />
+      <updated>1491913856391</updated>
+    </task>
+    <task id="LOCAL-00360" summary="color config">
+      <created>1491914509567</created>
+      <option name="number" value="00360" />
+      <option name="presentableId" value="LOCAL-00360" />
+      <option name="project" value="LOCAL" />
+      <updated>1491914509567</updated>
+    </task>
+    <task id="LOCAL-00361" summary="color config">
+      <created>1491914734630</created>
+      <option name="number" value="00361" />
+      <option name="presentableId" value="LOCAL-00361" />
+      <option name="project" value="LOCAL" />
+      <updated>1491914734630</updated>
+    </task>
+    <task id="LOCAL-00362" summary="color config">
+      <created>1491914966384</created>
+      <option name="number" value="00362" />
+      <option name="presentableId" value="LOCAL-00362" />
+      <option name="project" value="LOCAL" />
+      <updated>1491914966384</updated>
+    </task>
+    <task id="LOCAL-00363" summary="color config">
+      <created>1491915223128</created>
+      <option name="number" value="00363" />
+      <option name="presentableId" value="LOCAL-00363" />
+      <option name="project" value="LOCAL" />
+      <updated>1491915223128</updated>
+    </task>
+    <task id="LOCAL-00364" summary="color config">
+      <created>1491915751645</created>
+      <option name="number" value="00364" />
+      <option name="presentableId" value="LOCAL-00364" />
+      <option name="project" value="LOCAL" />
+      <updated>1491915751645</updated>
+    </task>
+    <task id="LOCAL-00365" summary="color config">
+      <created>1491916129295</created>
+      <option name="number" value="00365" />
+      <option name="presentableId" value="LOCAL-00365" />
+      <option name="project" value="LOCAL" />
+      <updated>1491916129295</updated>
+    </task>
+    <task id="LOCAL-00366" summary="color config">
+      <created>1491916331808</created>
+      <option name="number" value="00366" />
+      <option name="presentableId" value="LOCAL-00366" />
+      <option name="project" value="LOCAL" />
+      <updated>1491916331808</updated>
+    </task>
+    <task id="LOCAL-00367" summary="color config">
+      <created>1491917498884</created>
+      <option name="number" value="00367" />
+      <option name="presentableId" value="LOCAL-00367" />
+      <option name="project" value="LOCAL" />
+      <updated>1491917498884</updated>
+    </task>
+    <task id="LOCAL-00368" summary="color config">
+      <created>1491917846350</created>
+      <option name="number" value="00368" />
+      <option name="presentableId" value="LOCAL-00368" />
+      <option name="project" value="LOCAL" />
+      <updated>1491917846350</updated>
+    </task>
+    <task id="LOCAL-00369" summary="color config">
+      <created>1491918196608</created>
+      <option name="number" value="00369" />
+      <option name="presentableId" value="LOCAL-00369" />
+      <option name="project" value="LOCAL" />
+      <updated>1491918196608</updated>
+    </task>
+    <task id="LOCAL-00370" summary="color config">
+      <created>1491918382275</created>
+      <option name="number" value="00370" />
+      <option name="presentableId" value="LOCAL-00370" />
+      <option name="project" value="LOCAL" />
+      <updated>1491918382275</updated>
+    </task>
+    <task id="LOCAL-00371" summary="color config">
+      <created>1491995094616</created>
+      <option name="number" value="00371" />
+      <option name="presentableId" value="LOCAL-00371" />
+      <option name="project" value="LOCAL" />
+      <updated>1491995094616</updated>
+    </task>
+    <task id="LOCAL-00372" summary="color config">
+      <created>1491995586491</created>
+      <option name="number" value="00372" />
+      <option name="presentableId" value="LOCAL-00372" />
+      <option name="project" value="LOCAL" />
+      <updated>1491995586491</updated>
+    </task>
+    <task id="LOCAL-00373" summary="fixing categories text in IE">
+      <created>1494603797666</created>
+      <option name="number" value="00373" />
+      <option name="presentableId" value="LOCAL-00373" />
+      <option name="project" value="LOCAL" />
+      <updated>1494603797667</updated>
+    </task>
+    <task id="LOCAL-00374" summary="fixing categories text in IE">
+      <created>1494603881029</created>
+      <option name="number" value="00374" />
+      <option name="presentableId" value="LOCAL-00374" />
+      <option name="project" value="LOCAL" />
+      <updated>1494603881029</updated>
+    </task>
+    <task id="LOCAL-00375" summary="add period parameter in theme distribution">
+      <created>1495542241402</created>
+      <option name="number" value="00375" />
+      <option name="presentableId" value="LOCAL-00375" />
+      <option name="project" value="LOCAL" />
+      <updated>1495542241404</updated>
+    </task>
+    <task id="LOCAL-00376" summary="add period parameter in theme distribution">
+      <created>1495543053523</created>
+      <option name="number" value="00376" />
+      <option name="presentableId" value="LOCAL-00376" />
+      <option name="project" value="LOCAL" />
+      <updated>1495543053523</updated>
+    </task>
+    <task id="LOCAL-00377" summary="hitlist test">
+      <created>1496148368738</created>
+      <option name="number" value="00377" />
+      <option name="presentableId" value="LOCAL-00377" />
+      <option name="project" value="LOCAL" />
+      <updated>1496148368739</updated>
+    </task>
+    <task id="LOCAL-00378" summary="hitlist fix">
+      <created>1496651965463</created>
+      <option name="number" value="00378" />
+      <option name="presentableId" value="LOCAL-00378" />
+      <option name="project" value="LOCAL" />
+      <updated>1496651965463</updated>
+    </task>
+    <task id="LOCAL-00379" summary="hitlist test">
+      <created>1496921638705</created>
+      <option name="number" value="00379" />
+      <option name="presentableId" value="LOCAL-00379" />
+      <option name="project" value="LOCAL" />
+      <updated>1496921638705</updated>
+    </task>
+    <task id="LOCAL-00380" summary="hitlist test">
+      <created>1496922146150</created>
+      <option name="number" value="00380" />
+      <option name="presentableId" value="LOCAL-00380" />
+      <option name="project" value="LOCAL" />
+      <updated>1496922146150</updated>
+    </task>
+    <option name="localTasksCounter" value="381" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="252674000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1912" y="-7" width="1936" height="1176" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12802951" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13231064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2857143" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933578" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933578" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.300738" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2555024" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25184405" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841328" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Hierarchy table on page dashboard test" />
+    <MESSAGE value="filterpanel processing" />
+    <MESSAGE value="neutrals bug fixing" />
+    <MESSAGE value="hierarchy component" />
+    <MESSAGE value="detailed analysis fix" />
+    <MESSAGE value="detailed analysis add hierarchy levels 2 and 3" />
+    <MESSAGE value="drilldowns from all levels" />
+    <MESSAGE value="config colors" />
+    <MESSAGE value="Translations" />
+    <MESSAGE value="Hitlist with categorization" />
+    <MESSAGE value="Multiple drilldown" />
+    <MESSAGE value="translations" />
+    <MESSAGE value="folders logic" />
+    <MESSAGE value="hierarchy table search fix" />
+    <MESSAGE value="make filterpanel wider" />
+    <MESSAGE value="separate translations from cl" />
+    <MESSAGE value="fix tiles" />
+    <MESSAGE value="QA DA page bug" />
+    <MESSAGE value="DividerColor bug" />
+    <MESSAGE value="text colors in hitlist" />
+    <MESSAGE value="color config" />
+    <MESSAGE value="fixing categories text in IE" />
+    <MESSAGE value="add period parameter in theme distribution" />
+    <MESSAGE value="hitlist fix" />
+    <MESSAGE value="hitlist test" />
+    <option name="LAST_COMMIT_MESSAGE" value="hitlist test" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="4" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Static/Parameters.js" />
+    <entry file="file://$PROJECT_DIR$/Hierarchy.js" />
+    <entry file="file://$USER_HOME$/AppData/Roaming/Skype/My Skype Received Files/temp.js" />
+    <entry file="file://$PROJECT_DIR$/Translations.js" />
+    <entry file="file://$PROJECT_DIR$/TATopChangedTableCategoriesDrilldown.js" />
+    <entry file="file://$PROJECT_DIR$/TATopSentimentTableCategoriesDrilldown.js" />
+    <entry file="file://$PROJECT_DIR$/TADetailedAnalysisTableForDashboard.js" />
+    <entry file="file://$PROJECT_DIR$/TATopChangedTableByFiscalYear.js" />
+    <entry file="file://$PROJECT_DIR$/TAThemeDistributionTableByFiscalYear.js" />
+    <entry file="file://$PROJECT_DIR$/Static/Config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_dz1 (1).zip/dz1/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="22" column="72" lean-forward="true" selection-start-line="22" selection-start-column="72" selection-end-line="22" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TAHelper.js" />
+    <entry file="file://$PROJECT_DIR$/npm-debug.log" />
+    <entry file="file://$PROJECT_DIR$/Static/DefaultParameters.js" />
+    <entry file="file://$PROJECT_DIR$/Static/FilterPanel.js" />
+    <entry file="file://$PROJECT_DIR$/Static/Filters.js" />
+    <entry file="file://$PROJECT_DIR$/Static/Page_comments.js" />
+    <entry file="file://$PROJECT_DIR$/Static/Page_correlation.js" />
+    <entry file="file://$PROJECT_DIR$/Static/Page_dashboard.js" />
+    <entry file="file://$PROJECT_DIR$/Static/Page_detailed_analysis.js" />
+    <entry file="file://$PROJECT_DIR$/Static/Page_Filters.js" />
+    <entry file="file://$PROJECT_DIR$/Static/PageMaster.js" />
+    <entry file="file://$PROJECT_DIR$/Static/ReportMaster.js" />
+    <entry file="file://$PROJECT_DIR$/FilterComponents.js" />
+    <entry file="file://$PROJECT_DIR$/JSON.js" />
+    <entry file="file://$PROJECT_DIR$/PageRenderer.js" />
+    <entry file="file://$PROJECT_DIR$/Hierarchy.js" />
+    <entry file="file://$PROJECT_DIR$/ParameterValues.js" />
+    <entry file="file://$PROJECT_DIR$/docs/TextAnalyticsTemplate_CodeLibrary/0.0.120/index.html" />
+    <entry file="file://$PROJECT_DIR$/TACorrelationTable.js" />
+    <entry file="file://$PROJECT_DIR$/TADetailedAnalysisTable.js" />
+    <entry file="file://$PROJECT_DIR$/TAFilters.js" />
+    <entry file="file://$PROJECT_DIR$/TAHitlistUtils.js" />
+    <entry file="file://$PROJECT_DIR$/TALibrary.js" />
+    <entry file="file://$PROJECT_DIR$/TAMasks.js" />
+    <entry file="file://$PROJECT_DIR$/ParameterUtilities.js" />
+    <entry file="file://$PROJECT_DIR$/Static/Parameters.js" />
+    <entry file="file://$PROJECT_DIR$/TAParameters.js" />
+    <entry file="file://$PROJECT_DIR$/TATableData.js" />
+    <entry file="file://$PROJECT_DIR$/TATableUtils.js" />
+    <entry file="file://$PROJECT_DIR$/TAThemeDistributionTable.js" />
+    <entry file="file://$PROJECT_DIR$/TATopChangedTable.js" />
+    <entry file="file://$PROJECT_DIR$/TATiles.js" />
+    <entry file="file://$PROJECT_DIR$/TATopSentimentTable.js" />
+    <entry file="file://$PROJECT_DIR$/TAFolder.js" />
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/docs/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jsdoc.conf" />
+    <entry file="file://$PROJECT_DIR$/package.json" />
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-561">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
