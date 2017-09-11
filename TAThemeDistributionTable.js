@@ -3,13 +3,16 @@
  * @classdesc Class to work with ThemeDistribution table
  *
  * @constructs TAThemeDistributionTable
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {TAFoldee} folder - Text Analytics folder to build table from
- * @param {Table} table
- * @param {String} sentiment - "emptyv", "neg", "neu", "pos"
+ * @param {Object} params - {
+ *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+ *          table: {Table},
+ *          folder: {TAFolder},
+ *          sentiment: { "emptyv" | "neg" | "neu" | "pos" },
+ *          period: { "m" | "q" | "w" | "y" }
+ *          config: {Object}
+ *      }
  */
 class TAThemeDistributionTable{
-    private var _globals;
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
     private var _taMasks: TAMasks;
@@ -19,20 +22,23 @@ class TAThemeDistributionTable{
     private var _period;
     private var _config;
 
-    function TAThemeDistributionTable(globals, folder, table, sentiment,config){
-        _globals = globals;
-        _folder = folder;
-        _taMasks = new TAMasks(globals, folder);
-        _table = table;
-        _taTableUtils = new TATableUtils(globals, folder, table);
-        _sentiment = sentiment == "emptyv" ? "all" : sentiment;
-
+    function TAThemeDistributionTable(params){
+        var context = params.context;
+        _folder = params.folder;
+        _taMasks = new TAMasks({context: context, folder: _folder});
+        _table = params.table;
+        _taTableUtils = new TATableUtils({
+            context: context,
+            folder: _folder,
+            table: _table
+        });
+        _sentiment = params.sentiment === "emptyv" ? "all" : params.sentiment;
         _period = {
-            Unit: "m",
+            Unit: params.period ? params.period : "m",
             From: -11,
             To: 0
         };
-        _config = config;
+        _config = params.config;
         _render();
     }
 
@@ -65,7 +71,8 @@ class TAThemeDistributionTable{
      * @memberof TAThemeDistributionTable
      * @private
      * @instance
-     * @function _addTimeSeriesColum
+     * @function _addTimeSeriesColumn
+     * @description for columns we use timeseries header with rolling and counts and sentiments(hidden) subheaders
      */
     private function _addTimeSeriesColumn(){
         var headerTimeSeries = _taTableUtils.GetTimePeriodHeader(_period.Unit, _period.From, _period.To);
@@ -84,6 +91,7 @@ class TAThemeDistributionTable{
      * @instance
      * @function _getCountsColumn
      * @returns {HeaderCollection}
+     * @description to calculate counts we use categories header and formula to calculate counts of particular sentiment range
      */
     private function _getCountsColumn(){
         var columnsCollection: HeaderCollection = _taTableUtils.GetCategoriesHeader(_sentiment, false, true, false, Config.SentimentRange);
@@ -94,6 +102,7 @@ class TAThemeDistributionTable{
      * @memberof TAThemeDistributionTable
      * @private
      * @instance
+     * @description to calculate sentiment we use categories header and formula to calculate counts of particular sentiment range and average sentiment of that category
      * @function _getHeaderStatistics
      * @returns {Header}
      */
