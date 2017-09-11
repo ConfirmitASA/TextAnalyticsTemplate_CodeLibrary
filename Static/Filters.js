@@ -1,23 +1,23 @@
 /**
 * @class Filters
-* @classdesc Static class for Reportal Filter Components
+* @classdesc Static class for Reportal Filters Scripting
 */
 class Filters {
     /**
      * @memberof Filters
      * @function TASelectedCategoryFilter
-     * @description function to filtrate only selected category in the hitlist
+     * @description function to create expression that filtrates only selected category in the hitlist
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TASelectedCategoryFilter(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        /*try {
-            selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
-        }catch(e){
-            selectedFolder = null;
-        }*/
 
-        var fExpr = new TAFilters(context, Config.GetTALibrary().GetFolderById(selectedFolder)).GetSelectedCategoryFilterExpression("TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE")
+        var fExpr = TAFilters.GetSelectedCategoryFilterExpression({
+            context: context,
+            folder: Config.GetTALibrary().GetFolderById(selectedFolder),
+            allCategoriesParameter: "TA_ALL_CATEGORIES"
+        });
+
         context.component.Expression = fExpr;
     }
 
@@ -29,13 +29,15 @@ class Filters {
      */
     static function TAHitlistSentimentFilter(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        /*try {
-            selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
-        }catch(e){
-            selectedFolder = null;
-        }*/
 
-        var fExpr = new TAFilters(context, Config.GetTALibrary().GetFolderById(selectedFolder)).GetSentimentFilterExpression("TA_TOP_CATEGORIES_SINGLE", "TA_SUB_CATEGORIES_SINGLE", "TA_ATTRIBUTES_SINGLE","TA_COMMENTS_SENTIMENT");
+        var fExpr = TAFilters.GetSentimentFilterExpression({
+            context: context,
+            config: Config,
+            sentimentParameter: "TA_COMMENTS_SENTIMENT",
+            allCategoriesParameter: "TA_ALL_CATEGORIES",
+            folder: Config.GetTALibrary().GetFolderById(selectedFolder)
+        });
+
         context.component.Expression = fExpr;
     }
 
@@ -47,12 +49,14 @@ class Filters {
      */
     static function DateFilter(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        /*try {
-            selectedFolder = !context.state.Parameters.IsNull("TA_FOLDERS") ? context.state.Parameters.GetString("TA_FOLDERS") : null;
-        }catch(e){
-            selectedFolder = null;
-        }*/
-        var fExpr = new TAFilters(context, Config.GetTALibrary().GetFolderById(selectedFolder)).GetDateFilterExpression("TA_DATE_FROM", "TA_DATE_TO");
+
+        var fExpr = TAFilters.GetDateFilterExpression({
+                context: context,
+                folder: Config.GetTALibrary().GetFolderById(selectedFolder),
+                fromParameter: "TA_DATE_FROM",
+                toParameter: "TA_DATE_TO"
+}       );
+
         context.component.Expression = fExpr;
     }
 
@@ -64,7 +68,7 @@ class Filters {
      */
     static function FilterPageFilter(context){
         var fExpr = "";
-        fExpr = new FilterComponents({context: context}).GetGlobalsFilterExpression(context);
+        fExpr = new FilterComponents(context).GetGlobalsFilterExpression(context);
         context.component.Expression = fExpr
     }
 }

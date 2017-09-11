@@ -23,74 +23,20 @@ class Page_dashboard{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        initiateParameters(context);
-
-        initializeFilters({context: context});
-
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-
-        //TODO: refactor Clearing subcategories
-
-        TAParameters.ClearSubcategoriesParameters({
-            context: context,
-            folderId: selectedFolder,
-            value: "emptyv",
-            categoriesParameter: "TA_TOP_CATEGORIES_SINGLE",
-            subcategoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
-            attributesParameter: "TA_ATTRIBUTES_SINGLE"
-
-        });
-
-        TAParameters.ClearSubcategoriesParameters({
-            context: context,
-            folderId: selectedFolder,
-            value: "emptyv",
-            categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
-            subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
-        });
-    }
-
-    static function initiateParameters(context){
-        //TODO: refactor setting default parameters
-        if(context.component.SubmitSource === "lstQuestions") {
-            ParameterUtilities.SetDefaultParameterValues(
-                {
-                    context: context,
-                    parameterValues: DefaultParameters.values
-                }
-            )
-        }
-        TAHelper.SetLastVisitedPage(context, "dashboard");
-        ParameterUtilities.SetDefaultParameterValuesForEmpty({
-            context: context,
-            parameterValues: DefaultParameters.values.concat(
-                {
-                    Id: "TA_FOLDERS",
-                    Value: (Config.TAQuestions[0].TAQuestionName+Config.TAQuestions[0].TAModelNo)
-                }
-            )
-        });
-    }
-
-    static function initializeFilters(params){
-        var context = params.context;
-        //TODO: clarify what to do with filter components
-
-        if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "lstQuestions"){
-            FilterComponents.ClearFilters(context);
-            var dateParameters = DefaultParameters.dateParameters;
-
-            for(var i = 0; i < dateParameters.length; ++i)
-                context.state.Parameters[dateParameters[i]] = null;
-        }
+        PageRenderer.InitiateParameters(context);
+        PageRenderer.InitiateFilters(context);
+        PageRenderer.SetLastVisitedPage(context, "dashboard");
+        PageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
     /**
      * @memberof Page_dashboard
      * @private
      * @function _renderTblMostSentiment
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {String} sentiment - "neg" or "pos"
+     * @param {Object} params - {
+     *              context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *              sentiment: {Boolean}
+     *          }
      */
     private static function _renderTblMostSentiment(params){
         var context = params.context;
@@ -98,7 +44,7 @@ class Page_dashboard{
 
         var level = context.state.Parameters.IsNull("TA_LEVEL") ? "0" : context.state.Parameters.GetString("TA_LEVEL");
         var table = context.component;
-        //TODO: change selected folder logic
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
@@ -119,8 +65,10 @@ class Page_dashboard{
      * @memberof Page_dashboard
      * @private
      * @function _renderTblMostChanged
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {String} sentiment - "neg" or "pos"
+     * @param {Object} params - {
+     *              context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *              sentiment: {Boolean}
+     *          }
      */
     private static function _renderTblMostChanged(params){
         var context = params.context;
@@ -240,9 +188,12 @@ class Page_dashboard{
      */
     static function tblThemeDistribution_Render(context){
         var table = context.component;
+
         var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
         var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
 
         var themeDistributionTable = new TAThemeDistributionTable({
@@ -275,31 +226,13 @@ class Page_dashboard{
      * @function txtLevel_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-        //TODO: create label creation
     static function txtLevel_Render(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['View by'];
         context.component.Output.Append(label);
 
-        /*var levelValues = {
-            "0": currentDictionary["1st level (category)"],
-            "1": currentDictionary["2nd level (sub-category)"],
-            "2": currentDictionary["3rd level (attributes)"]
-        };*/
-
-        //var parameterValueLabel = levelValues[parameterValue.StringValue];
-        //var labels = ParameterValues.getParameterValues_TA_LEVEL(currentDictionary);
-
-        /*var parameterID = 'TA_LEVEL';
-        var parameterValue : ParameterValueResponse = context.state.Parameters[parameterID];
-        var labels = ParameterValues.getParameterValues(currentDictionary, parameterID);
-        var parameterValueLabel = ParameterValues.findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
-        context.component.Output.Append('<span class="pdfExportVisibleOnly">: ' + parameterValueLabel + '</span>');*/
-
         context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_LEVEL'));
-
-        //context.component.Output.Append('<span class="pdfExportVisibleOnly"></span>');
     }
 
     /**
@@ -506,7 +439,7 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
-     * @function txtViewSentiment_Hide
+     * @function txtPositive_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
@@ -516,7 +449,7 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
-     * @function txtViewSentiment_Render
+     * @function txtPositive_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtPositive_Render(context){
@@ -528,7 +461,7 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
-     * @function txtViewSentiment_Hide
+     * @function txtNeutral_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
@@ -538,7 +471,7 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
-     * @function txtViewSentiment_Render
+     * @function txtNeutral_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtNeutral_Render(context){
@@ -550,7 +483,7 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
-     * @function txtViewSentiment_Hide
+     * @function txtNegative_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
@@ -560,7 +493,7 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
-     * @function txtViewSentiment_Render
+     * @function txtNegative_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtNegative_Render(context){
@@ -592,7 +525,7 @@ class Page_dashboard{
 
         var categoriesText = "<script>" +
             "var z = [].slice.call(document.querySelectorAll('.reportal-categories>thead>tr>td[class*=\"_cc\"]'));" +
-            "z.forEach(item => item.innerHTML = '"+currentDictionary['Categories']+"');" +
+            "z.forEach(function(item){item.innerHTML = '"+currentDictionary['Categories']+"';});" +
             "</script>";
 
         var headers;
@@ -627,88 +560,5 @@ class Page_dashboard{
         context.component.Output.Append(categoriesText);
         context.component.Output.Append(upgradeText);
         context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
-    }
-
-    /**
-     * @memberof Page_dashoboard
-     * @function btnSave_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function btnSave_Hide(context){
-        return FilterPanel.btnSave_Hide(context);
-    }
-
-    /**
-     * @memberof Page_filters
-     * @function btnSave_Render
-     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function btnSave_Render(context){
-        FilterPanel.btnSave_Render(context);
-    }
-
-    static function txtFilterTitle_Hide(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var filterComponents = new FilterComponents({
-            context: context,
-            questionsArray: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
-        return FilterPanel.txtFilterTitle_Hide({
-            context: context,
-            filterNumber: filterNumber,
-            filterComponents: filterComponents
-        });
-    }
-
-    /**
-     * @memberof Page_filters
-     * @function txtFilterTitle_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {Number} filterNumber
-     */
-    static function txtFilterTitle_Render(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
-
-        FilterPanel.txtFilterTitle_Render({
-            context: context,
-            filterComponents: filterComponents,
-            filterNumber: filterNumber
-        });
-
-    }
-
-    /**
-     * @memberof Page_filters
-     * @function lstFilterList_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {Number} filterNumber
-     * @returns {Boolean}
-     */
-    static function lstFilterList_Hide(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
-
-        return FilterPanel.lstFilterList_Hide({
-            context: context,
-            filterComponents: filterComponents,
-            filterNumber: filterNumber
-        });
     }
 }

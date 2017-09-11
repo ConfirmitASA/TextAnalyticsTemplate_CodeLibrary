@@ -24,109 +24,21 @@ class Page_detailed_analysis{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        initiateParameters(context);
-
-        var taLibrary = Config.GetTALibrary();
-
-        initializeFilters({context: context, taLibrary: taLibrary});
-
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-
-        TAParameters.ClearSubcategoriesParameters({
-            context: context,
-            folderId: selectedFolder,
-            value: "emptyv",
-            categoriesParameter: "TA_TOP_CATEGORIES_SINGLE",
-            subcategoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
-            attributesParameter: "TA_ATTRIBUTES_SINGLE"
-
-        });
-
-        TAParameters.ClearSubcategoriesParameters({
-            context: context,
-            folderId: selectedFolder,
-            value: "emptyv",
-            categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
-            subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
-        });
-
-        processSelectedCategoryParameter({
-            context: context,
-            folder: Config.GetTALibrary().GetFolderById(selectedFolder)
-        })
-    }
-
-    static function initiateParameters(context){
-        //TODO: refactor setting default parameters
-        if(context.component.SubmitSource === "lstQuestions") {
-            ParameterUtilities.SetDefaultParameterValues(
-                {
-                    context: context,
-                    parameterValues: DefaultParameters.values
-                }
-            )
-        }
-
-        TAHelper.SetLastVisitedPage(context, "detailed_analysis");
-
-        ParameterUtilities.SetDefaultParameterValuesForEmpty({
-            context: context,
-            parameterValues: DefaultParameters.values.concat(
-                {
-                    Id: "TA_FOLDERS",
-                    Value: (Config.TAQuestions[0].TAQuestionName+Config.TAQuestions[0].TAModelNo)
-                }
-            )
-        });
-    }
-
-    static function initializeFilters(params){
-        var context = params.context;
-        //TODO: clarify what to do with filter components
-
-        if(context.component.SubmitSource === "ClearFilters"){
-            FilterComponents.ClearFilters(context);
-            var dateParameters = DefaultParameters.dateParameters;
-
-            for(var i = 0; i < dateParameters.length; ++i)
-                context.state.Parameters[dateParameters[i]] = null;
-        }
-    }
-
-    static function processSelectedCategoryParameter(params){
-        var context = params.context;
-        var folder = params.folder;
-        var submitSource = context.component.SubmitSource;
-        var selectedCategory;
-        if(submitSource === "lstCategory" || submitSource === "lstSubCategory" || submitSource === "lstAttribute"){
-            selectedCategory = TAParameters.GetSelectedCategory({
-                context: context,
-                categoriesParameterName: "TA_TOP_CATEGORIES_SINGLE",
-                subCategoriesParameterName: "TA_SUB_CATEGORIES_SINGLE",
-                attributesParameterName: "TA_ATTRIBUTES_SINGLE"
-            });
-
-            context.state.Parameters['TA_ALL_CATEGORIES'] = new ParameterValueResponse(selectedCategory);
-        }else {
-            selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-            TAParameters.SetSelectedCategory({
-                context: context,
-                hierarchy: folder.GetHierarchy(),
-                allCategoriesParameterValue: selectedCategory,
-                categoriesParameterName: "TA_TOP_CATEGORIES_SINGLE",
-                subCategoriesParameterName: "TA_SUB_CATEGORIES_SINGLE",
-                attributesParameterName: "TA_ATTRIBUTES_SINGLE"
-            });
-        }
-
+        PageRenderer.InitiateParameters(context);
+        PageRenderer.InitiateFilters(context);
+        PageRenderer.SetLastVisitedPage(context, "detailed_analysis");
+        PageRenderer.ClearCategoriesParameters(context);
+        PageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
     /**
      * @memberof Page_detailed_analysis
      * @private
      * @function _buildTATiles
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {String} type - "all", "neg", "neu", "pos"
+     * @param {Object} params - {
+     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          type: "all"|"neg"|"neu"|"pos"
+     *      }
      */
     static private function _buildTATiles(params){
         var context = params.context;
@@ -194,7 +106,7 @@ class Page_detailed_analysis{
 
     /**
      * @memberof Page_detailed_analysis
-     * @function tblMostPositive_RendertblNeutralCommentsTile_Render
+     * @function tblNeutralCommentsTile_Render
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblNeutralCommentsTile_Render(context){
@@ -241,7 +153,6 @@ class Page_detailed_analysis{
         var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
         var project =  context.report.DataSource.GetProject(folder.GetDatasourceId());
@@ -250,11 +161,14 @@ class Page_detailed_analysis{
 
         if(selectedQuestion && selectedQuestion !== "emptyv")
             selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
+
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
         var hideEmptyRows = ParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_HIDE_EMPTY_ROWS"});
         var toggleChartValue = ParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_TOGGLE_BARCHART"});
         var toggleChart = (toggleChartValue.length > 0);
+
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+
         var detailedAnalysisTable = new TADetailedAnalysisTable({
             context: context,
             folder: folder,
@@ -287,41 +201,44 @@ class Page_detailed_analysis{
      */
     static function txtDetailedAnalysisScript_Render(context){
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var hierarhy = selectedCategory === 'emptyv'? folder.GetHierarchy().GetHierarchyArray() : [folder.GetHierarchy().GetObjectById(selectedCategory)];
+
+        var hierarchy = selectedCategory === 'emptyv'? folder.GetHierarchy().GetHierarchyArray() : [folder.GetHierarchy().GetObjectById(selectedCategory)];
+
         var headers = TATableData.GetTableRowHeaders({context: context, tableName: "tblDetailedAnalysis"});
+
         if( headers.length > 0){
             var blocks = TATableData.GetBlocks({context: context, tableName: "tblDetailedAnalysis"});
 
             var upgradeText = "<script type=\"text/javascript\">"+
                     "var upgradedTable = new Reportal.AggregatedTable("+
-                "{"+
-                "table: document.querySelector('table.reportal-hierarchy-table'),"+
-                "hierarchy: {"+
-                    "hierarchy: "+JSON.stringify(hierarhy)+","+
-                    "rowheaders:"+JSON.stringify(headers)+","+
+                        "{"+
+                            "table: document.querySelector('table.reportal-hierarchy-table'),"+
+                            "hierarchy: {"+
+                                "hierarchy: "+JSON.stringify(hierarchy)+","+
+                                "rowheaders:"+JSON.stringify(headers)+","+
 
-                    "blocks:"+JSON.stringify(blocks)+","+
-                    "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
+                                "blocks:"+JSON.stringify(blocks)+","+
+                                "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
 
-                    "clearLinks: false,"+
-                    "search: {" +
-                    "enabled: true"+
-                "}"+
-                "},"+
-                "sorting:"+
-                "{"+
-                "enabled: true,"+
-                "excludedColumns: [6]"+
-                "},"+
-                "fixedHeader: {}"+
-                "}"+
-                ")"+
+                                "clearLinks: false,"+
+                                "search: {" +
+                                        "enabled: true"+
+                                    "}"+
+                            "},"+
+                            "sorting: {"+
+                                "enabled: true,"+
+                                "excludedColumns: [6]"+
+                            "},"+
+                            "fixedHeader: {}"+
+                        "}"+
+                    ")"+
                 "</script>";
 
             context.component.Output.Append(upgradeText);
-            context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
+            context.component.Output.Append(JSON.print(hierarchy,"hierarchy"));
             context.component.Output.Append(JSON.print(headers,"rowheaders"));
             context.component.Output.Append(JSON.print(blocks,"blocks"));
         }
@@ -373,69 +290,8 @@ class Page_detailed_analysis{
         context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
     }
 
-    static function txtFilterTitle_Hide(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
-
-        return FilterPanel.txtFilterTitle_Hide({
-            context: context,
-            filterComponents: filterComponents,
-            filterNumber: filterNumber
-        });
-    }
-
     /**
-     * @memberof Page_filters
-     * @function txtFilterTitle_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {Number} filterNumber
-     */
-    static function txtFilterTitle_Render(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
-
-        FilterPanel.txtFilterTitle_Render({
-            context: context,
-            filterComponents: filterComponents,
-            filterNumber: filterNumber
-        });
-    }
-
-    /**
-     * @memberof Page_filters
-     * @function lstFilterList_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @param {Number} filterNumber
-     * @returns {Boolean}
-     */
-    static function lstFilterList_Hide(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
-
-        return FilterPanel.lstFilterList_Hide({
-            context: context,
-            filterComponents: filterComponents,
-            filterNumber: filterNumber
-        });
-    }
-
-    /**
-     * @memberof Page_comments
+     * @memberof Page_detailed_analysis
      * @function lstSubCategory_Hide
      * @description function to hide the Sub Category selector
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -450,7 +306,7 @@ class Page_detailed_analysis{
     }
 
     /**
-     * @memberof Page_comments
+     * @memberof Page_detailed_analysis
      * @function lstAttribute_Hide
      * @description function to hide the Attribute selector
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -458,30 +314,30 @@ class Page_detailed_analysis{
      */
     static function lstAttribute_Hide(context){
         var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
         return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
     }
 
 
     /**
-     * @memberof Page_comments
+     * @memberof Page_detailed_analysis
      * @function txtSubCategory_Hide
      * @description function to hide the the sub category list label
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
     static function txtSubCategory_Hide(context){
-    var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-    return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
-}
+        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
+    }
 
     /**
-     * @memberof Page_comments
+     * @memberof Page_detailed_analysis
      * @function txtSubCategory_Render
      * @description function to render the sub Category selector label
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -495,7 +351,7 @@ class Page_detailed_analysis{
     }
 
     /**
-     * @memberof Page_comments
+     * @memberof Page_detailed_analysis
      * @function txtAttribute_Hide
      * @description function to hide the the attributes list label
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -503,14 +359,14 @@ class Page_detailed_analysis{
      */
     static function txtAttribute_Hide(context){
         var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
         return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
     }
 
     /**
-     * @memberof Page_comments
+     * @memberof Page_detailed_analysis
      * @function txtAttribute_Render
      * @description function to render the attributes selector label
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -524,14 +380,19 @@ class Page_detailed_analysis{
     }
 
 
+    /**
+     * @memberof Page_detailed_analysis
+     * @function txtTotalComments_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtTotalComments_Hide(context){
         return false
     }
 
     /**
-     * @memberof Page_comments
-     * @function txtSubCategory_Render
-     * @description function to render the sub Category selector label
+     * @memberof Page_detailed_analysis
+     * @function txtTotalComments_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtTotalComments_Render(context){
@@ -541,14 +402,19 @@ class Page_detailed_analysis{
         context.component.Output.Append(label);
     }
 
+    /**
+     * @memberof Page_detailed_analysis
+     * @function txtPositive_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtPositive_Hide(context){
         return false
     }
 
     /**
-     * @memberof Page_comments
-     * @function txtSubCategory_Render
-     * @description function to render the sub Category selector label
+     * @memberof Page_detailed_analysis
+     * @function txtPositive_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtPositive_Render(context){
@@ -558,14 +424,19 @@ class Page_detailed_analysis{
         context.component.Output.Append(label);
     }
 
+    /**
+     * @memberof Page_detailed_analysis
+     * @function txtNeutral_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtNeutral_Hide(context){
         return false
     }
 
     /**
-     * @memberof Page_comments
-     * @function txtSubCategory_Render
-     * @description function to render the sub Category selector label
+     * @memberof Page_detailed_analysis
+     * @function txtNeutral_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtNeutral_Render(context){
@@ -575,14 +446,19 @@ class Page_detailed_analysis{
         context.component.Output.Append(label);
     }
 
+    /**
+     * @memberof Page_detailed_analysis
+     * @function txtNegative_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtNegative_Hide(context){
         return false
     }
 
     /**
-     * @memberof Page_comments
-     * @function txtSubCategory_Render
-     * @description function to render the sub Category selector label
+     * @memberof Page_detailed_analysis
+     * @function txtNegative_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtNegative_Render(context){

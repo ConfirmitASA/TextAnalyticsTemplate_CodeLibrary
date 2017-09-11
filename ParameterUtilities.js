@@ -1,19 +1,17 @@
 /**
  * @class ParameterUtilities
  * @classdesc Class to work with different parameters
- *
- * @constructs ParameterUtilities
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
  */
 class ParameterUtilities {
-
     /**
      * @memberof ParameterUtilities
-     * @instance
      * @function LoadParameterValues
      * @description function to load possible values to string response parameter
-     * @param {Parameter} parameter
-     * @param {Object[]} parameterValues - array of values like {Code: "AnswerCode", Label: "AnswerText"}
+     * @param {Object} params - {
+     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          parameterValues: {Object][} - array of values like {Code: "AnswerCode", Label: "AnswerText"
+     *      }
+     * @param {Object[]}
      */
     static function LoadParameterValues(params) {
         var context = params.context;
@@ -36,10 +34,12 @@ class ParameterUtilities {
 
     /**
      * @memberof ParameterUtilities
-     * @instance
      * @function GetCheckedValues
      * @description function to get checked values for the multi string response parameter
-     * @param {String} parameterName
+     * @param {Object} params - {
+     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          parameterName: {String}
+     *      }
      * @returns {ParameterValueResponse[]}
      */
     static function GetCheckedValues(params) {
@@ -61,10 +61,12 @@ class ParameterUtilities {
 
     /**
      * @memberof ParameterUtilities
-     * @instance
-     * @function GetCheckedValues
-     * @description function to set default value to parameters if they haven't been selected
-     * @param {Object[]} valuesArray - array of objects like {Id: "ParameterId", Value: "defaultCode"}
+     * @function SetDefaultParameterValues
+     * @description function to set default value to parameters
+     * @param {Object} params - {
+     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          parameterValues: {Object[]} valuesArray - array of objects like {Id: "ParameterId", Value: "defaultCode"}
+     *       }
      */
     static function SetDefaultParameterValues(params) {
         var context = params.context;
@@ -79,6 +81,15 @@ class ParameterUtilities {
         }
     }
 
+    /**
+     * @memberof ParameterUtilities
+     * @function SetDefaultParameterValues
+     * @description function to set default value to parameters only if they haven't been selected
+     * @param {Object} params - {
+     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          parameterValues: {Object[]} valuesArray - array of objects like {Id: "ParameterId", Value: "defaultCode"}
+     *       }
+     */
     static function SetDefaultParameterValuesForEmpty(params) {
         var context = params.context;
         var parameterValues = params.parameterValues;
@@ -95,38 +106,32 @@ class ParameterUtilities {
 
     /**
      * @memberof ParameterUtilities
-     * @instance
-     * @function GetCheckedValues
-     * @description function to get checked codes for the multi string response parameter
-     * @param {String} parameterName
-     * @returns {String[]}
+     * @function GetParameterCodes
+     * @description function to get function to get selected keys from multi parameter
+     * @param {Object} params - {
+     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          parameterValues: {Object[]} valuesArray - array of objects like {Id: "ParameterId", Value: "defaultCode"}
+     *       }
      */
     static function GetParameterCodes(params) {
         var context = params.context;
-    context.log.LogDebug("gpc1");
         var parameterName = params.parameterName;
-    context.log.LogDebug("gpc2");
+
         var parameterValues: ParameterValueMultiSelect = context.state.Parameters[parameterName]
         ? context.state.Parameters[parameterName]
         : ParameterValueMultiSelect(null);
-    context.log.LogDebug("gpc3");
+
         var codes = [];
-    context.log.LogDebug("gpc4");
+
         if (parameterValues != null) {
-            context.log.LogDebug("gpc5");
             for (var enumerator : Enumerator = new Enumerator(parameterValues);
             !enumerator.atEnd();
             enumerator.moveNext()
              ){
-                context.log.LogDebug("gpc6");
                 var parameterValue: ParameterValueResponse = enumerator.item();
-                context.log.LogDebug("gpc7");
                 codes.push(parameterValue.StringKeyValue);
-                context.log.LogDebug("gpc8");
             }
-            context.log.LogDebug("gpc9");
         }
-    context.log.LogDebug("gpc10");
         return codes;
     }
 }

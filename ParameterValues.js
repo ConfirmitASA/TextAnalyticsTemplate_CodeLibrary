@@ -1,5 +1,17 @@
+/**
+ * @class ParameterValues
+ * @classdesc Class to buld parameters with static codes to get them in PDF view
+ */
 class ParameterValues {
-    private static function getParameterValues(currentDictionary, parameterId) {
+    /**
+     * @memberof ParameterValues
+     * @private
+     * @function  _getParameterValues
+     * @param {Object} currentDictionary
+     * @param {String} parameterId
+     * @returns {Object[]}
+     */
+    private static function _getParameterValues(currentDictionary, parameterId) {
         switch(parameterId) {
             case "TA_LEVEL":
                 return [
@@ -21,11 +33,6 @@ class ParameterValues {
                     {Code: "neu", Label: currentDictionary["Neutral"]},
                     {Code: "neg", Label: currentDictionary["Negative"]}
                 ];
-                /*"TA_VIEW_BY": [],
-                 "TA_ALL_CATEGORIES": [],
-                 "TA_TOP_CATEGORIES_SINGLE": [],
-                 "TA_SUB_CATEGORIES_SINGLE": [],
-                 "TA_ATTRIBUTES_SINGLE": [],*/
             case "TA_COMMENTS_SENTIMENT":
                 return [
                     {Code: "emptyv", Label: currentDictionary["All sentiments"]},
@@ -51,7 +58,15 @@ class ParameterValues {
         }
     }
 
-    private static function findValue(array, condition) {
+    /**
+     * @memberof ParameterValues
+     * @private
+     * @function  _findValue
+     * @param {Object[]} array
+     * @param {Function} condition
+     * @returns {Object}
+     */
+    private static function _findValue(array, condition) {
         for(var i = 0; i < array.length; i++) {
             if(condition(array[i])) {
                 return array[i];
@@ -61,13 +76,31 @@ class ParameterValues {
         return null;
     }
 
+    /**
+     * @memberof ParameterValues
+     * @function  getParameterValue
+     * @param {ReportState} state
+     * @param {Object} currentDictionary
+     * @param {String} parameterID
+     *
+     * @returns {String}
+     */
     static function getParameterValue(state, currentDictionary, parameterID) {
         var parameterValue : ParameterValueResponse = state.Parameters[parameterID];
-        var labels = ParameterValues.getParameterValues(currentDictionary, parameterID);
-        var parameterValueLabel = ParameterValues.findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
-        return getParameterSpan(': ' + parameterValueLabel);
+        var labels = ParameterValues._getParameterValues(currentDictionary, parameterID);
+        var parameterValueLabel = ParameterValues._findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
+        return _getParameterSpan(': ' + parameterValueLabel);
     }
 
+    /**
+     * @memberof ParameterValues
+     * @function  getCategoryParameterValue
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {Object} currentDictionary
+     * @param {String} parameterID
+     *
+     * @returns {String}
+     */
     static function getCategoryParameterValue(context, currentDictionary, parameterID) {
         var folderId = TALibrary.GetTAFoldersParameterValue(context);
         var parameterValueID = context.state.Parameters[parameterID].StringValue;
@@ -79,9 +112,17 @@ class ParameterValues {
             parameterValueLabel = currentDictionary["-select-"];
         }
 
-        return getParameterSpan(': ' + parameterValueLabel);
+        return _getParameterSpan(': ' + parameterValueLabel);
     }
 
+    /**
+     * @memberof ParameterValues
+     * @function  getCategoryParameterValue
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {Object} currentDictionary
+     *
+     * @returns {String}
+     */
     static function getViewByParameterValue(context, currentDictionary) {
         var parameterValueLabel = currentDictionary["-select-"];
 
@@ -92,16 +133,24 @@ class ParameterValues {
 
         var parameterValue : ParameterValueResponse = context.state.Parameters['TA_VIEW_BY'];
         for( var i = 0; i < variables.length; i++){
-            if(variables[i] == parameterValue.StringValue) {
+            if(variables[i] === parameterValue.StringValue) {
                 var question: Question = project.GetQuestion( variables[i] );
                 parameterValueLabel = question.Title ? question.Title : variables[i]
             }
         }
 
-        return getParameterSpan(' ' + parameterValueLabel);
+        return _getParameterSpan(' ' + parameterValueLabel);
     }
 
-    private static function getParameterSpan(parameterValueLabel) {
+    /**
+     * @memberof ParameterValues
+     * @private
+     * @function  _getParameterSpan
+     * @param {String} parameterValueLabel
+     *
+     * @returns {String}
+     */
+    private static function _getParameterSpan(parameterValueLabel) {
         return '<span class="pdfExportVisibleOnly">' + parameterValueLabel + '</span>';
     }
 }

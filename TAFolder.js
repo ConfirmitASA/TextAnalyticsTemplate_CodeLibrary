@@ -5,6 +5,7 @@
  * @constructs TAFolder
  * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
  * @param {Object} questionObj - Object from Config.TAQuestions[i]
+ * @param {Object} Config
  */
 class TAFolder{
     private var _globals;
@@ -41,9 +42,9 @@ class TAFolder{
 
         _hitlistColumns = config.TAQuestions[questionIndex].HitlistColumns;
 
-    _filterQuestions = config.TAQuestions[questionIndex].FilterQuestions;
+        _filterQuestions = config.TAQuestions[questionIndex].FilterQuestions;
 
-    _correlationVariableId = config.TAQuestions[questionIndex].CorrelationVariableId;
+        _correlationVariableId = config.TAQuestions[questionIndex].CorrelationVariableId;
 
         _hierarchy = new Hierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
@@ -121,9 +122,16 @@ class TAFolder{
         return _id;
     }
 
+    /**
+     * @memberof TAFolder
+     * @instance
+     * @function GetName
+     * @description function to Get Name configured for the text analytics set
+     * @returns {String}
+     */
     function GetName(){
         return _folderName;
-}
+    }
 
     /**
      * @memberof TAFolder
@@ -169,10 +177,24 @@ class TAFolder{
         return _hitlistColumns;
     }
 
+    /**
+     * @memberof TAFolder
+     * @instance
+     * @function GetFilterQuestions
+     * @description function to Get array of qIds to use as filters
+     * @returns {String[]}
+     */
     function GetFilterQuestions(){
          return _filterQuestions;
     }
 
+    /**
+     * @memberof TAFolder
+     * @instance
+     * @function GetFilterQuestions
+     * @description function to Get qId to use for buildin Impact Analysis page
+     * @returns {String[]}
+     */
     function GetCorrelationVariableId(){
         return _correlationVariableId;
     }

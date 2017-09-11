@@ -3,12 +3,14 @@
  * @classdesc Class to work with Detailed Analysis table
  *
  * @constructs TADetailedAnalysisTable
- * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {TAFoldee} folder - Text Analytics folder to build table from
- * @param {Table} table
- * @param {String} selectedCategory
- * @param {String} selectedQuestion
- * @param {String} distribution - "0" for counts "1" for percents
+ * @param {Object} params - {
+ *          context: {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+ *          folder: {TAFolder},
+ *          category: {String},
+ *          question: {String},
+ *          distribution: "0" for counts "1" for percents,
+ *          questionType: {Boolean} - true for multi, false for single
+ *      }
  */
 class TADetailedAnalysisTable{
     private var _folder: TAFolder;
@@ -25,8 +27,10 @@ class TADetailedAnalysisTable{
 
     function TADetailedAnalysisTable(params){
         var context = params.context;
+
         _currentLanguage = context.report.CurrentLanguage;
         _curDictionary = Translations.dictionary(_currentLanguage);
+
         _folder = params.folder;
         _table = context.component;
 
@@ -83,6 +87,10 @@ class TADetailedAnalysisTable{
      * @private
      * @instance
      * @function _getRowheadersExpression
+     * @description Rowheader for the table are build differently based of selected blocks ad distribution type
+     * If distribution is percent we add overallSentiment header as a first row to calculate percents from its value
+     * if view by variable selected we add it as a top level for all headers and set it "collapsed" if it is multi
+     * then we add categorySentimentHeader with mask by selected category and all its children and subchildren
      */
     private function _getRowheadersExpression(){
         var rowexpr = "";
@@ -93,11 +101,11 @@ class TADetailedAnalysisTable{
 
         var mask = false;
 
-        if(_distribution == "1"){
+        if(_distribution === "1"){
             blockHeader += _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:true") + "+";
         }
 
-        if( _selectedQuestion != "all" ){
+        if( _selectedQuestion !== "all" ){
             blockHeader += _selectedQuestion+'{id:'+_selectedQuestion+';totals:false'
 
             if(_multiQuestion){
@@ -124,6 +132,10 @@ class TADetailedAnalysisTable{
      * @private
      * @instance
      * @function _getColumnheadersExpression
+     * @description for columns we have hidden base column,
+     * formula column  to calculate perentage if necessary,
+     * statistic column to calculate average sentiment,
+     * positive, neutral and negative counts calculation(based on categories column and formula)
      */
     private function _getColumnheadersExpression(){
         var columnexpr = "";
@@ -215,7 +227,6 @@ class TADetailedAnalysisTable{
      * @instance
      * @function _setupConditionalFormatting
      */
-        //TODO: conditional formatting based on config
     private function _setupConditionalFormatting(){
         _taTableUtils.SetupConditionalFormatting(
             [

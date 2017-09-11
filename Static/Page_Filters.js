@@ -23,31 +23,8 @@ class Page_filters{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        initiateParameters(context);
-    }
-
-    static function initiateParameters(context){
-
-        //TODO: refactor setting default parameters
-        if(context.component.SubmitSource === "lstQuestions") {
-            ParameterUtilities.SetDefaultParameterValues(
-                {
-                    context: context,
-                    parameterValues: DefaultParameters.values
-                }
-            )
-        }
-
-
-        ParameterUtilities.SetDefaultParameterValuesForEmpty({
-            context: context,
-            parameterValues: DefaultParameters.values.concat(
-                {
-                    Id: "TA_FOLDERS",
-                    Value: (Config.TAQuestions[0].TAQuestionName+Config.TAQuestions[0].TAModelNo)
-                }
-            )
-        });
+        PageRenderer.InitiateParameters(context);
+        PageRenderer.InitiateFilters(context)
     }
 
     /**
@@ -115,13 +92,10 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function txtFilterTitle_Hide(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        var filterComponents = new FilterComponents(context);
 
         return FilterPanel.lstFilterList_Hide({
             context: context,
@@ -137,13 +111,10 @@ class Page_filters{
      * @param {Number} filterNumber
      */
     static function txtFilterTitle_Render(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        var filterComponents = new FilterComponents(context);
 
         FilterPanel.txtFilterTitle_Render({
             context: context,
@@ -160,13 +131,11 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function lstFilterList_Hide(context, filterNumber){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var filterComponents = new FilterComponents({
-            context: context,
-            filterQuestions: folder.GetFilterQuestions(),
-            dataSource: folder.GetDatasourceId()
-        });
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        var filterComponents = new FilterComponents(context);
+
         return FilterPanel.lstFilterList_Hide({
             context: context,
             filterComponents: filterComponents,
@@ -174,11 +143,22 @@ class Page_filters{
         });
     }
 
+    /**
+     * @memberof Page_filters
+     * @function txtQuestion_Hide
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtQuestion_Hide(context){
         return false
 
     }
 
+    /**
+     * @memberof Page_filters
+     * @function txtQuestion_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtQuestion_Render(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
@@ -188,10 +168,22 @@ class Page_filters{
 
     }
 
+    /**
+     * @memberof Page_filters
+     * @function txtDateFrom_Hide
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtDateFrom_Hide(context){
         return false
 
     }
+
+    /**
+     * @memberof Page_filters
+     * @function txtDateFrom_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtDateFrom_Render(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
@@ -201,11 +193,22 @@ class Page_filters{
 
     }
 
+    /**
+     * @memberof Page_filters
+     * @function txtDateTo_Hide
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
     static function txtDateTo_Hide(context){
         return false
 
     }
 
+    /**
+     * @memberof Page_filters
+     * @function txtDateTo_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtDateTo_Render(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
