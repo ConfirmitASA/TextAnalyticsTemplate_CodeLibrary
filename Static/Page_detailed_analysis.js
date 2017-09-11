@@ -149,7 +149,6 @@ class Page_detailed_analysis{
      */
     static function tblDetailedAnalysis_Render(context){
         context.component.Caching.Enabled = false;
-
         var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);

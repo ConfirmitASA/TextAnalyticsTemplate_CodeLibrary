@@ -51,7 +51,6 @@ class Page_comments{
         if(!Config.GetTALibrary()){
             Config.SetTALibrary(context);
         }
-
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
@@ -80,6 +79,7 @@ class Page_comments{
         htlComments.AddTAColumn({context: context, columnName: "categories"});
 
         htlComments.AddConfiguredColumns(context);
+
     }
 
     /**
@@ -145,9 +145,11 @@ class Page_comments{
             title: currentDictionary["Date"]
         }];
 
+
             hitlistHeaders["categories"] = [{
                 name: folder.GetQuestionId("categories")
             }];
+
 
         hitlistHeaders["sentiment"].push( {
             name: folder.GetQuestionId("overallSentiment"),
