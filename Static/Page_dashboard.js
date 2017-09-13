@@ -241,13 +241,14 @@ class Page_dashboard{
         var table = context.component;
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var periodRange = context.state.Parameters.GetString('TA_FISCAL_PERIODS').split('_');
 
         var themeDistributionTable = new TAThemeDistributionTableByFiscalYear({
             context: context,
             folder: folder,
             table: table,
             config: Config,
-            period: {question: "fiscal_year", range: ["FY2015","FY2016", "FY2017", "FY2018"]}
+            period: {question: "fiscal_year", range: periodRange}
         });
 
         themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
