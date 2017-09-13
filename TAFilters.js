@@ -107,4 +107,39 @@ class TAFilters{
 
         return fExpr
     }
+
+    /**
+     * @memberof TAFilters
+     * @instance
+     * @function GetRemoveUncategorizedCommentsFilterExpression
+     * @returns {String}
+     */
+    function GetRemoveUncategorizedCommentsFilterExpression() {
+        var fExpr;
+
+        var selectedCategory = findItem(
+            _folder.GetHierarchy().GetFlatArray(),
+            function(item) {
+                return item.name == "Uncategorized Comments";
+            }
+        ).id;
+
+        fExpr = selectedCategory ?('NOT ANY(' + _folder.GetQuestionId("categories") + ',"'+selectedCategory+'")') : '';
+
+        return fExpr;
+
+
+
+        function findItem(arr, isFound) {
+            for (var i = 0; i < arr.length; i++) {
+                var item = arr[i];
+
+                if(isFound(item)) {
+                    return item;
+                }
+            }
+
+            return null;
+        }
+    }
 }

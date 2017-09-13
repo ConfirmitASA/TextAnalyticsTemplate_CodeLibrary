@@ -67,4 +67,18 @@ class Filters {
         fExpr = new FilterComponents({context: context}).GetGlobalsFilterExpression(context);
         context.component.Expression = fExpr
     }
+
+
+    /**
+     * @memberof Filters
+     * @function TARemoveUncategorizedCommentsFilter
+     * @description function to filtrate only categorized comments
+     * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TARemoveUncategorizedCommentsFilter(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+
+        var fExpr = new TAFilters(context, Config.GetTALibrary().GetFolderById(selectedFolder)).GetSelectedCategoryFilterExpression();
+        context.component.Expression = fExpr;
+    }
 }
