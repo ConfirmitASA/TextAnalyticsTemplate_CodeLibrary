@@ -451,4 +451,23 @@ class Page_correlation{
         var label = currentDictionary["Maintain"];
         context.component.Output.Append(label);
     }
+
+    /**
+     * @memberof Page_correlation
+     * @function txtHelp_Render
+     * @description function to render helping text
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+
+    static function txtHelp_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var text = '<div id="quadrant-table">'+
+                        currentDictionary["quadrant-table-text"]+
+                    '</div>'+
+                    '<div id="quadrant-chart">'+
+                        currentDictionary["quadrant-chart-text"]+
+                    '</div>'
+        context.component.Output.Append(text);
+    }
 }
