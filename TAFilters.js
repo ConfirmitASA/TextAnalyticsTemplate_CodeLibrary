@@ -122,9 +122,9 @@ class TAFilters{
             function(item) {
                 return item.name == "Uncategorized Comments";
             }
-        ).id;
+        );
 
-        fExpr = selectedCategory ?('NOT ANY(' + _folder.GetQuestionId("categories") + ',"'+selectedCategory+'")') : '';
+        fExpr = selectedCategory ?('NOT ANY(' + _folder.GetQuestionId("categories") + ',"'+ selectedCategory.id +'")') : '';
 
         return fExpr;
 
