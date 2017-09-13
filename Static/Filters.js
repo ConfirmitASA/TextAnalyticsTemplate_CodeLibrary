@@ -79,7 +79,6 @@ class Filters {
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
         var fExpr = new TAFilters(context, Config.GetTALibrary().GetFolderById(selectedFolder)).GetRemoveUncategorizedCommentsFilterExpression();
-        context.log.LogDebug('TARemoveUncategorizedCommentsFilter: ' + fExpr);
 
         context.component.Expression = fExpr;
     }
