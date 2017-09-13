@@ -45,7 +45,7 @@ class DefaultParameters {
             Value: "m"
         },
         {
-            Id: "TA_COMPARE_PERIODS",
+            Id: "TA_FISCAL_PERIODS",
             Value: "FY2017_FY2018"
         }
     ];
