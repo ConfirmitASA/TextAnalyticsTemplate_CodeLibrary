@@ -243,6 +243,40 @@ class Page_detailed_analysis{
         }
     }
 
+    static function txtDetailedAnalysisScriptTest_Render(context){
+    var headers;
+    var hierarhy = _folder.GetHierarchy().GetHierarchyArray();
+    var taTableData = new TATableData(TAHelper.GetGlobals(context), "tblDetailedAnalysis");
+    var headers = taTableData.GetTableRowHeaders();
+    if( headers.length > 0){
+        var blocks = taTableData.GetBlocks();
+
+        var upgradeText = "<script type=\"text/javascript\">"+
+            "var upgradedTable = new Reportal.TAhierarchy("+
+            "{"+
+            "source: document.querySelector('table.reportal-hierarchy-table'),"+
+            "hierarchy: "+JSON.stringify(hierarhy)+","+
+            "rowheaders:"+JSON.stringify(headers)+","+
+            "search:{},"+
+            "blocks:"+JSON.stringify(blocks)+","+
+            "floatingHeader: {},"+
+            "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
+            "sorting:"+
+            "{"+
+            "enabled: true,"+
+            "excludedColumns: [6]"+
+            "},"+
+            "}"+
+            ")"+
+            "</script>";
+
+        context.component.Output.Append(upgradeText);
+        context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
+        context.component.Output.Append(JSON.print(headers,"rowheaders"));
+        context.component.Output.Append(JSON.print(blocks,"blocks"));
+        context.component.Output.Append(JSON.stringify(headers));
+    }
+}
     /**
      * @memberof Page_detailed_analysis
      * @function txtViewBy_Hide
@@ -466,5 +500,77 @@ class Page_detailed_analysis{
         var label = currentDictionary['Negative'];
         context.component.Output.Append(label);
     }
+
+    /**
+     * @memberof Page_comments
+     * @function lstSubCategory_Hide
+     * @description function to hide the Sub Category selector
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstSubCategory_Hide(context){
+    var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
+    return ((! parameterValue) || parameterValue == "emptyv" || _folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
+}
+
+    /**
+     * @memberof Page_comments
+     * @function lstAttribute_Hide
+     * @description function to hide the Attribute selector
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstAttribute_Hide(context){
+    var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
+    return ((! parameterValue) || parameterValue == "emptyv" || _folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
+}
+
+
+
+    /**
+     * @memberof Page_comments
+     * @function txtSubCategory_Hide
+     * @description function to hide the the sub category list label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtSubCategory_Hide(context){
+    var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
+    return ((! parameterValue) || parameterValue == "emptyv" || _folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
+}
+
+    /**
+     * @memberof Page_comments
+     * @function txtSubCategory_Render
+     * @description function to render the sub Category selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtSubCategory_Render(context){
+    var label = "Sub category";
+    context.component.Output.Append(label);
+}
+
+    /**
+     * @memberof Page_comments
+     * @function txtAttribute_Hide
+     * @description function to hide the the attributes list label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtAttribute_Hide(context){
+    var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
+    return ((! parameterValue) || parameterValue == "emptyv" || _folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
+}
+
+    /**
+     * @memberof Page_comments
+     * @function txtAttribute_Render
+     * @description function to render the attributes selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtAttribute_Render(context){
+    var label = "Attribute";
+    context.component.Output.Append(label);
+}
 }
 
