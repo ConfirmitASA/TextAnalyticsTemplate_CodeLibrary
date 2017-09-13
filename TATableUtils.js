@@ -3,26 +3,19 @@
  * @classdesc Class to work with tables using Text Analytics variables
  *
  * @constructs TATableUtils
- * @param {Object} params - {
- *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- *          folder: {TAFolder},
- *          table: {Table}
- *      }
+ * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+ * @param  {TAFolder} folder
+ * @param {Table} table
  */
-
 class TATableUtils{
     private var _globals;
     private var _folder: TAFolder;
     private var _table: Table;
-    private var _currentLanguage;
-    private var _curDictionary;
 
-    function TATableUtils(params){
-        _globals = params.context;
-        _currentLanguage = _globals.report.CurrentLanguage;
-        _curDictionary = Translations.dictionary(_currentLanguage);
-        _folder = params.folder;
-        _table = params.table;
+    function TATableUtils(globals, folder, table){
+        _globals = globals;
+        _folder = folder;
+        _table = table;
     }
 
     /**
@@ -137,7 +130,6 @@ class TATableUtils{
      * @param {Boolean} addMinus - if you want to add minus to negative values
      * @param {Boolean} hideHeader
      * @param {String} distribution - 0 - for counts, 1 - for percents
-     * @param {Object} config
      * @returns {HeaderCollection}
      */
     function GetCategoriesHeader(groupName: String, addMinus, hideHeader, distribution, config){
@@ -176,19 +168,19 @@ class TATableUtils{
                 case "neg":
                     headerCategories.Mask.Codes = configuration.Negative.join(",");
                     headerFormula.Expression = _getSumOfCells(configuration.Negative.length)+(addMinus?"*(-1)":"");
-                    categoryTitle = new Label(_currentLanguage, _curDictionary["Negative"]);
+                    categoryTitle = new Label(9, "Negative");
                     break;
 
                 case "neu":
                     headerCategories.Mask.Codes = configuration.Neutral.join(",");
                     headerFormula.Expression = _getSumOfCells(configuration.Neutral.length);
-                    categoryTitle = new Label(_currentLanguage, _curDictionary["Neutral"]);
+                    categoryTitle = new Label(9, "Neutral");
                     break;
 
                 case "pos":
                     headerCategories.Mask.Codes = configuration.Positive.join(",");
                     headerFormula.Expression = _getSumOfCells(configuration.Positive.length);
-                    categoryTitle = new Label(_currentLanguage, _curDictionary["Positive"]);
+                    categoryTitle = new Label(9, "Positive");
                     break;
             }
 
@@ -221,7 +213,6 @@ class TATableUtils{
      * @param {Boolean} addMinus - if you want to add minus to negative values
      * @param {Boolean} hideHeader
      * @param {String} distribution - 0 - for counts, 1 - for percents
-     * @param {Object} config
      * @returns {String}
      */
     function GetCategoriesExpression( groupName: String, addMinus, hideHeader, distribution, config ){
@@ -246,17 +237,17 @@ class TATableUtils{
             switch(groupName.toLowerCase()){
                 case "neg":
                     formulaExpression = _getSumOfCells(configuration.Negative.length, (configuration.Positive.length+configuration.Neutral.length))+(addMinus?'*(-1)':'');
-                    categoryLabel = '"'+_curDictionary['Negative']+'"';
+                    categoryLabel = '"Negative"';
                     break;
 
                 case "neu":
                     formulaExpression = _getSumOfCells(configuration.Neutral.length,(configuration.Positive.length));
-                    categoryLabel = '"'+_curDictionary['Neutral']+'"';
+                    categoryLabel = '"Neutral"';
                     break;
 
                 case "pos":
                     formulaExpression = _getSumOfCells(configuration.Positive.length,0);
-                    categoryLabel = '"'+_curDictionary['Positive']+'"';
+                    categoryLabel = '"Positive"';
                     break;
             }
 
@@ -293,7 +284,7 @@ class TATableUtils{
         chartHeader.Thickness = "80%";
         chartHeader.CssClass = "chart-header";
         chartHeader.ShowTitle = true;
-        chartHeader.Title = new Label(_currentLanguage, title?title:_curDictionary["Chart"]);
+        chartHeader.Title = new Label(9, title?title:"Chart");
 
         var chartValue: ChartComboValue;
         for(var i = 0; i< formulas.length; i++) {

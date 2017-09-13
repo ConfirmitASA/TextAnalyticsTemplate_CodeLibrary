@@ -4,15 +4,13 @@
  *
  * @constructs TAFolder
  * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
- * @param {Object} questionIndex - index of question in cofig
- * @param {Object} Config
+ * @param {Object} questionObj - Object from Config.TAQuestions[i]
  */
 class TAFolder{
     private var _globals;
 
     //TA Fields
     private var _id: String;
-    private var _folderName;
     private var _qName: String;
     private var _modelNo: String;
 
@@ -21,36 +19,29 @@ class TAFolder{
     private var _datasourceId: String;
     private var _variablesToViewBy;
     private var _hitlistColumns;
-    private var _filterQuestions;
-    private var _correlationVariableId;
 
     private var _hierarchy: Hierarchy;
 
 
-
     function TAFolder(globals, questionIndex, config){
         _globals = globals;
-        _id = config.TAQuestions[questionIndex].TAQuestionName+config.TAQuestions[questionIndex].TAModelNo;
-        _folderName = config.TAQuestions[questionIndex].TAFolderId;
+        _id = config.TAQuestions[questionIndex].TAFolderId;
         _qName = config.TAQuestions[questionIndex].TAQuestionName;
         _modelNo = config.TAQuestions[questionIndex].TAModelNo;
-        _timeVariableId = config.TAQuestions[questionIndex].TimeVariableId;
+        _timeVariableId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].TimeVariableId], [config.TimeVariableId], null, ["interview_start"])[0];
 
-        _datasourceId = config.TAQuestions[questionIndex].DatasourceId;
+        _datasourceId = TAHelper.GetConfiguredVariables(globals,[config.TAQuestions[questionIndex].DatasourceId], [config.DS_Main], null, ["ds0"])[0];
 
-        _variablesToViewBy = config.TAQuestions[questionIndex].VariablesToViewBy;
+        var variablesToViewBy = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_viewby"]);
+        _variablesToViewBy = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].VariablesToViewBy, config.VariablesToViewBy, variablesToViewBy, []);
 
-        _hitlistColumns = config.TAQuestions[questionIndex].HitlistColumns;
-
-        _filterQuestions = config.TAQuestions[questionIndex].FilterQuestions;
-
-        _correlationVariableId = config.TAQuestions[questionIndex].CorrelationVariableId;
+        var hitlistColumns = TAHelper.GetTagsFromSurvey(globals, _datasourceId, ["ta_hitlist"]);
+        _hitlistColumns = TAHelper.GetConfiguredVariables(globals, config.TAQuestions[questionIndex].HitlistColumns, config.HitlistColumns, hitlistColumns, []);
 
         _hierarchy = new Hierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
             tableName: config.TAQuestions[questionIndex].DatabaseTableName,
             relationshipColumnName: config.TAQuestions[questionIndex].RelationshipColumnName,
-            textColumnName: "__l"+globals.report.CurrentLanguage,
             textSeparator: config.TAQuestions[questionIndex].TextSeparator != "" ? config.TAQuestions[questionIndex].TextSeparator: null
         });
     }
@@ -109,7 +100,7 @@ class TAFolder{
      */
     function GetHierarchy(){
         return _hierarchy;
-    }
+}
 
     /**
      * @memberof TAFolder
@@ -120,17 +111,6 @@ class TAFolder{
      */
     function GetId(){
         return _id;
-    }
-
-    /**
-     * @memberof TAFolder
-     * @instance
-     * @function GetName
-     * @description function to Get Name configured for the text analytics set
-     * @returns {String}
-     */
-    function GetName(){
-        return _folderName;
     }
 
     /**
@@ -175,27 +155,5 @@ class TAFolder{
      */
     function GetHitlistColumns(){
         return _hitlistColumns;
-    }
-
-    /**
-     * @memberof TAFolder
-     * @instance
-     * @function GetFilterQuestions
-     * @description function to Get array of qIds to use as filters
-     * @returns {String[]}
-     */
-    function GetFilterQuestions(){
-         return _filterQuestions;
-    }
-
-    /**
-     * @memberof TAFolder
-     * @instance
-     * @function GetFilterQuestions
-     * @description function to Get qId to use for buildin Impact Analysis page
-     * @returns {String[]}
-     */
-    function GetCorrelationVariableId(){
-        return _correlationVariableId;
     }
 }
