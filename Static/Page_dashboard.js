@@ -132,13 +132,20 @@ class Page_dashboard{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
+        var selectedPeriod;
+        if(!context.state.Parameters.IsNull('TA_FISCAL_PERIODS')) {
+            selectedPeriod = context.state.Parameters.GetString('TA_FISCAL_PERIODS');
+        }
+
+        var range = (selectedPeriod && selectedPeriod != 'null' && selectedPeriod != "emptyv") ? selectedPeriod.split('_') : ["FY2017", "FY2018"];
+
         var topChangedTable = new TATopChangedTableByFiscalYear({
             context: context,
             folder: folder,
             table: table,
             sentiment: sentiment,
             level: level,
-            period: {question: "fiscal_year", range: ["FY2016", "FY2017"]}
+            period: {question: "fiscal_year", range: range}
         });
 
         topChangedTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
@@ -241,19 +248,13 @@ class Page_dashboard{
         var table = context.component;
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var selectedPeriod;
-        if(!context.state.Parameters.IsNull('TA_FISCAL_PERIODS')) {
-            selectedPeriod = context.state.Parameters.GetString('TA_FISCAL_PERIODS');
-        }
-
-        var range = (selectedPeriod && selectedPeriod != 'null' && selectedPeriod != "emptyv") ? selectedPeriod.split('_') : ["FY2017", "FY2018"];
 
         var themeDistributionTable = new TAThemeDistributionTableByFiscalYear({
             context: context,
             folder: folder,
             table: table,
             config: Config,
-            period: {question: "fiscal_year", range: range}
+            period: {question: "fiscal_year", range: ["FY2015", "FY2016", "FY2017", "FY2018"]}
         });
 
         themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
