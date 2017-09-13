@@ -248,7 +248,7 @@ class Page_dashboard{
 
         context.log.LogDebug('SELECTED PERIOD: ' + selectedPeriod);
 
-        var range = (selectedPeriod && selectedPeriod != 'null' && selectedPeriod != "emptyv") ? selectedPeriod.split('_') : ["FY2017", "FY2018"];
+        var range = (selectedPeriod && selectedPeriod != 'null' && selectedPeriod != "emptyv" && selectedPeriod != "FY18 vs FY17") ? selectedPeriod.split('_') : ["FY2017", "FY2018"];
 
         var themeDistributionTable = new TAThemeDistributionTableByFiscalYear({
             context: context,
