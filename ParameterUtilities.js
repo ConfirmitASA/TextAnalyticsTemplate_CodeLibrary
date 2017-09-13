@@ -1,29 +1,32 @@
 /**
  * @class ParameterUtilities
  * @classdesc Class to work with different parameters
+ *
+ * @constructs ParameterUtilities
+ * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
  */
 class ParameterUtilities {
+    private var _globals;
+
+    function ParameterUtilities(globals) {
+        _globals=globals
+    }
+
     /**
      * @memberof ParameterUtilities
+     * @instance
      * @function LoadParameterValues
      * @description function to load possible values to string response parameter
-     * @param {Object} params - {
-     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
-     *          parameterValues: {Object][} - array of values like {Code: "AnswerCode", Label: "AnswerText"
-     *      }
-     * @param {Object[]}
+     * @param {Parameter} parameter
+     * @param {Object[]} parameterValues - array of values like {Code: "AnswerCode", Label: "AnswerText"}
      */
-    static function LoadParameterValues(params) {
-        var context = params.context;
-        var parameter = context.component;
-        var parameterValues = params.parameterValues;
-
-        for (var i = 0; i < parameterValues.length; ++i) {
-            var parameterValueResponse: ParameterValueResponse = new ParameterValueResponse();
+    function LoadParameterValues(parameter, parameterValues) {
+        for (var i=0; i<parameterValues.length; ++i) {
+            var parameterValueResponse : ParameterValueResponse = new ParameterValueResponse();
             parameterValueResponse.StringKeyValue = parameterValues[i].Code;
 
-            var labels: LanguageTextCollection = new LanguageTextCollection();
-            labels.Add(new LanguageText(context.report.CurrentLanguage, parameterValues[i].Label));
+            var labels : LanguageTextCollection = new LanguageTextCollection();
+            labels.Add(new LanguageText(_globals.report.CurrentLanguage, parameterValues[i].Label));
 
             parameterValueResponse.LocalizedLabel = new Label(labels);
             parameterValueResponse.StringValue = parameterValues[i].Label;
@@ -34,23 +37,19 @@ class ParameterUtilities {
 
     /**
      * @memberof ParameterUtilities
+     * @instance
      * @function GetCheckedValues
      * @description function to get checked values for the multi string response parameter
-     * @param {Object} params - {
-     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
-     *          parameterName: {String}
-     *      }
+     * @param {String} parameterName
      * @returns {ParameterValueResponse[]}
      */
-    static function GetCheckedValues(params) {
-        var context = params.context;
-        var parameterName = params.parameterName;
-
+    function GetCheckedValues(parameterName){
         var values = []
-        if (!context.state.Parameters.IsNull(parameterName)) {
-            var selected: ParameterValueMultiSelect = context.state.Parameters[parameterName],
-                response: ParameterValueResponse;
-            for (var i = 0; i < selected.Count; i++)
+        if(!_globals.state.Parameters.IsNull(parameterName))
+        {
+            var selected:ParameterValueMultiSelect = _globals.state.Parameters[parameterName],
+            response: ParameterValueResponse;
+            for(var i=0;i<selected.Count;i++) // add selected columns to the new column set
             {
                 response = selected[i];
                 values.push(response);
@@ -61,76 +60,39 @@ class ParameterUtilities {
 
     /**
      * @memberof ParameterUtilities
-     * @function SetDefaultParameterValues
-     * @description function to set default value to parameters
-     * @param {Object} params - {
-     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
-     *          parameterValues: {Object[]} valuesArray - array of objects like {Id: "ParameterId", Value: "defaultCode"}
-     *       }
+     * @instance
+     * @function GetCheckedValues
+     * @description function to set default value to parameters if they haven't been selected
+     * @param {Object[]} valuesArray - array of objects like {Id: "ParameterId", Value: "defaultCode"}
      */
-    static function SetDefaultParameterValues(params) {
-        var context = params.context;
-        var parameterValues = params.parameterValues;
-
-        for (var i = 0; i < parameterValues.length; i++) {
+    function SetDefaultParameterValues(valuesArray){
+        for( var i = 0; i < valuesArray.length; i++ ){
             try {
-                context.state.Parameters[parameterValues[i].Id] = new ParameterValueResponse(parameterValues[i].Value);
-            } catch (e) {
-                context.log.LogDebug(e);
+                if (!_globals.state.Parameters.GetString(valuesArray[i].Id))
+                    _globals.state.Parameters[valuesArray[i].Id] = new ParameterValueResponse(valuesArray[i].Value);
+            }catch(e){
+                _globals.log.LogDebug(e);
             }
         }
     }
 
     /**
      * @memberof ParameterUtilities
-     * @function SetDefaultParameterValues
-     * @description function to set default value to parameters only if they haven't been selected
-     * @param {Object} params - {
-     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
-     *          parameterValues: {Object[]} valuesArray - array of objects like {Id: "ParameterId", Value: "defaultCode"}
-     *       }
+     * @instance
+     * @function GetCheckedValues
+     * @description function to get checked codes for the multi string response parameter
+     * @param {String} parameterName
+     * @returns {String[]}
      */
-    static function SetDefaultParameterValuesForEmpty(params) {
-        var context = params.context;
-        var parameterValues = params.parameterValues;
-        for (var i = 0; i < parameterValues.length; i++) {
-            try {
-                if (!context.state.Parameters.GetString(parameterValues[i].Id)) {
-                    context.state.Parameters[parameterValues[i].Id] = new ParameterValueResponse(parameterValues[i].Value);
-                }
-            } catch (e) {
-                context.log.LogDebug(e);
-            }
-        }
-    }
-
-    /**
-     * @memberof ParameterUtilities
-     * @function GetParameterCodes
-     * @description function to get function to get selected keys from multi parameter
-     * @param {Object} params - {
-     *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
-     *          parameterValues: {Object[]} valuesArray - array of objects like {Id: "ParameterId", Value: "defaultCode"}
-     *       }
-     */
-    static function GetParameterCodes(params) {
-        var context = params.context;
-        var parameterName = params.parameterName;
-
-        var parameterValues: ParameterValueMultiSelect = context.state.Parameters[parameterName]
-        ? context.state.Parameters[parameterName]
-        : ParameterValueMultiSelect(null);
-
+    function GetParameterCodes(parameterName) {
+        var parameterValues : ParameterValueMultiSelect = _globals.state.Parameters[parameterName] ? _globals.state.Parameters[parameterName]: ParameterValueMultiSelect(null);
         var codes = [];
-
-        if (parameterValues != null) {
-            for (var enumerator : Enumerator = new Enumerator(parameterValues);
-            !enumerator.atEnd();
-            enumerator.moveNext()
-             ){
-                var parameterValue: ParameterValueResponse = enumerator.item();
+        if(parameterValues != null) {
+            for (var enumerator : Enumerator = new Enumerator(parameterValues) ; !enumerator.atEnd(); enumerator.moveNext()) {
+                var parameterValue : ParameterValueResponse = enumerator.item();
                 codes.push(parameterValue.StringKeyValue);
             }
+
         }
         return codes;
     }

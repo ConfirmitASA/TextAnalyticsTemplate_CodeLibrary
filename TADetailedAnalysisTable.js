@@ -3,16 +3,15 @@
  * @classdesc Class to work with Detailed Analysis table
  *
  * @constructs TADetailedAnalysisTable
- * @param {Object} params - {
- *          context: {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
- *          folder: {TAFolder},
- *          category: {String},
- *          question: {String},
- *          distribution: "0" for counts "1" for percents,
- *          questionType: {Boolean} - true for multi, false for single
- *      }
+ * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+ * @param {TAFoldee} folder - Text Analytics folder to build table from
+ * @param {Table} table
+ * @param {String} selectedCategory
+ * @param {String} selectedQuestion
+ * @param {String} distribution - "0" for counts "1" for percents
  */
 class TADetailedAnalysisTable{
+    private var _globals;
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
     private var _taMasks: TAMasks;
@@ -21,37 +20,17 @@ class TADetailedAnalysisTable{
     private var _selectedQuestion;
     private var _distribution;
     private var _multiQuestion;
-    private var _currentLanguage;
-    private var _curDictionary;
-    private var _bar100;
 
-    function TADetailedAnalysisTable(params){
-        var context = params.context;
-
-        _currentLanguage = context.report.CurrentLanguage;
-        _curDictionary = Translations.dictionary(_currentLanguage);
-
-        _folder = params.folder;
-        _table = context.component;
-
-        _taMasks = new TAMasks({
-            context: context,
-            folder: _folder
-        });
-
-        _table = context.component;
-        _taTableUtils = new TATableUtils({
-            context: context,
-            folder: _folder,
-            table: _table
-        });
-
-        _selectedCategory = params.category && params.category !== "emptyv" ? params.category : "all";
-        _selectedQuestion = params.question && params.question !== "emptyv" ? params.question : "all";
-        _distribution = params.distribution ? params.distribution : "0";
-        _multiQuestion = params.questionType;
-        _bar100 = params.toggleChart ? params.toggleChart : false;
-
+    function TADetailedAnalysisTable(globals, folder, table, selectedCategory, selectedQuestion, distribution, multiQuestion){
+        _globals = globals;
+        _folder = folder;
+        _taMasks = new TAMasks(globals, folder);
+        _table = table;
+        _taTableUtils = new TATableUtils(globals, folder, table);
+        _selectedCategory = selectedCategory && selectedCategory != "emptyv" ? selectedCategory : "all";
+        _selectedQuestion = selectedQuestion && selectedQuestion != "emptyv" ? selectedQuestion : "all";
+        _distribution = distribution ? distribution : "0";
+        _multiQuestion = multiQuestion;
         _render();
     }
 
@@ -87,10 +66,6 @@ class TADetailedAnalysisTable{
      * @private
      * @instance
      * @function _getRowheadersExpression
-     * @description Rowheader for the table are build differently based of selected blocks ad distribution type
-     * If distribution is percent we add overallSentiment header as a first row to calculate percents from its value
-     * if view by variable selected we add it as a top level for all headers and set it "collapsed" if it is multi
-     * then we add categorySentimentHeader with mask by selected category and all its children and subchildren
      */
     private function _getRowheadersExpression(){
         var rowexpr = "";
@@ -101,11 +76,11 @@ class TADetailedAnalysisTable{
 
         var mask = false;
 
-        if(_distribution === "1"){
+        if(_distribution == "1"){
             blockHeader += _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:true") + "+";
         }
 
-        if( _selectedQuestion !== "all" ){
+        if( _selectedQuestion != "all" ){
             blockHeader += _selectedQuestion+'{id:'+_selectedQuestion+';totals:false'
 
             if(_multiQuestion){
@@ -132,10 +107,6 @@ class TADetailedAnalysisTable{
      * @private
      * @instance
      * @function _getColumnheadersExpression
-     * @description for columns we have hidden base column,
-     * formula column  to calculate perentage if necessary,
-     * statistic column to calculate average sentiment,
-     * positive, neutral and negative counts calculation(based on categories column and formula)
      */
     private function _getColumnheadersExpression(){
         var columnexpr = "";
@@ -160,8 +131,8 @@ class TADetailedAnalysisTable{
      */
     private function _getColumnFormulaExpression(){
         var countformulaexpression;
-        var countformula = '[FORMULA]{decimals:0;label:"'+_curDictionary['Comments']+'";hideheader:true';
-        if( _distribution === "1"){
+        var countformula = '[FORMULA]{decimals:0;label:"Comments";hideheader:true';
+        if( _distribution == "1"){
             countformula += ";percent:true";
             countformulaexpression = '"IF((cellv(1,1)>0),(cellv(col-1,row)/cellv(1,1)),EMPTYV())"';
         }else{
@@ -184,7 +155,7 @@ class TADetailedAnalysisTable{
         _table.Distribution.Enabled = true;
         _table.Distribution.VerticalPercents = false;
 
-        if(_distribution === "1"){
+        if(_distribution == "1"){
             _table.Distribution.HorizontalPercents = true;
             _table.Distribution.Count = false;
         }else{
@@ -200,9 +171,8 @@ class TADetailedAnalysisTable{
      * @function _addChartColumn
      */
     private function _addChartColumn(){
-    var chartType = _bar100 ? ChartComboType.Bar100 : ChartComboType.Bar
         var chartHeader =  _taTableUtils.GetChartHeader(
-            chartType,
+            ChartComboType.Bar100,
             [
                 {
                     Formula: "cellv(col-25,row)",
@@ -230,19 +200,21 @@ class TADetailedAnalysisTable{
     private function _setupConditionalFormatting(){
         _taTableUtils.SetupConditionalFormatting(
             [
-                {
-                    expression: 'cellv(col, row)<('+(Config.SentimentRange.Neutral[0] - 6)+') AND cellv(col,row)<>EMPTYV() ',
-                    style: 'negative'
-                },
+                [
+                    {
+                        expression: 'cellv(col, row)<('+(Config.SentimentRange.Neutral[0] - 6)+') AND cellv(col,row)<>EMPTYV() ',
+                        style: 'negative'
+                    },
 
-                {
-                    expression: '(cellv(col, row)>=('+(Config.SentimentRange.Neutral[0] - 6)+')) AND (cellv(col, row)<='+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+') AND cellv(col,row)<>EMPTYV()',
-                    style: 'neutral'
-                },
-                {
-                    expression: 'cellv(col, row)>'+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+' AND cellv(col,row)<>EMPTYV()',
-                    style: 'positive'
-                }
+                    {
+                        expression: '(cellv(col, row)>=('+(Config.SentimentRange.Neutral[0] - 6)+')) AND (cellv(col, row)<='+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+') AND cellv(col,row)<>EMPTYV()',
+                        style: 'neutral'
+                    },
+                    {
+                        expression: 'cellv(col, row)>'+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+' AND cellv(col,row)<>EMPTYV()',
+                        style: 'positive'
+                    }
+                ]
             ],
             "NegNeuPos",
             {
@@ -276,7 +248,7 @@ class TADetailedAnalysisTable{
                 },
 
             ],
-            "Neutral",
+            "Negative",
             {
                 axis: Area.Columns,
                 direction: Area.Left,
@@ -292,7 +264,7 @@ class TADetailedAnalysisTable{
                 },
 
             ],
-            "Positive",
+            "Negative",
             {
                 axis: Area.Columns,
                 direction: Area.Left,

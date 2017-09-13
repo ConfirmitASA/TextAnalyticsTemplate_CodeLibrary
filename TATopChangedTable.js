@@ -3,17 +3,16 @@
  * @classdesc Class to work with Most improved and most declined tables on the dashboard page
  *
  * @constructs TATopChangedTable
- * @param {Object} params - {
- *          context: {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
- *          folder: {TAFolder},
- *          table: {Table},
- *          sentiment: {Boolean},
- *          level: {String} - "1", "2", "3",
- *          period: { "m" | "y" | "d" | "w" | "q" },
- *          topN: {Number}
- *      }
+ * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+ * @param {TAFolder} folder - Text Analytics folder to build table from
+ * @param {Table} table
+ * @param {String} sentiment - "neg", "pos"
+ * @param {String} level - 1, 2 or 3
+ * @param {String} period - m, y, d, w, q
+ * @param {Number} topN
  */
 class TATopChangedTable{
+    private var _globals;
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
     private var _taMasks: TAMasks;
@@ -23,27 +22,21 @@ class TATopChangedTable{
     private var _sentiment;
     private var _percents;
     private var _period;
-    private var _currentLanguage;
 
-    function TATopChangedTable(params){
-        var context = params.context;
-        _folder = params.folder;
-        _taMasks = new TAMasks({context: context, folder: _folder});
-        _table = params.table;
-        _taTableUtils = new TATableUtils({
-            context: context,
-            folder: _folder,
-            table: _table
-        });
-        _sentiment = !!params.sentiment;
-        _level = parseInt(params.level);
-        _topN = params.topN ? params.topN : 5;
+    function TATopChangedTable(globals, folder, table, sentiment, level, period, topN){
+        _globals = globals;
+        _folder = folder;
+        _taMasks = new TAMasks(globals, folder);
+        _table = table;
+        _taTableUtils = new TATableUtils(globals, folder, table);
+        _sentiment = sentiment ? true : false;
+        _level = parseInt(level);
+        _topN = topN ? topN : 5;
         _period = {
-            Unit: params.period.toLowerCase().substr(0,1),
+            Unit: period.toLowerCase().substr(0,1),
             From: -1,
             To: 0
         };
-        _currentLanguage = context.report.CurrentLanguage;
 
         _render();
     }
@@ -71,7 +64,6 @@ class TATopChangedTable{
         _taTableUtils.CreateTableFromExpression(rowexpr);
 
         _addTimeSeriesColumn();
-
         _addDifferenceColumn();
         _addChartColumn();
         _setupSorting();
@@ -84,14 +76,13 @@ class TATopChangedTable{
      * @function _addTimeSeriesColumn
      */
     private function _addTimeSeriesColumn(){
-    var headerTimeSeries = _taTableUtils.GetTimePeriodHeader(_period.Unit, _period.From, _period.To);
-    var headerStatistics: HeaderStatistics = new HeaderStatistics();
-    headerStatistics.HideHeader = true;
-    headerStatistics.Statistics.Avg = true;
-    headerStatistics.SubHeaders.Add(headerTimeSeries);
-    _table.ColumnHeaders.Add(headerStatistics);
-}
-
+        var headerTimeSeries = _taTableUtils.GetTimePeriodHeader(_period.Unit, _period.From, _period.To);
+        var headerStatistics: HeaderStatistics = new HeaderStatistics();
+        headerStatistics.HideHeader = true;
+        headerStatistics.Statistics.Avg = true;
+        headerStatistics.SubHeaders.Add(headerTimeSeries);
+        _table.ColumnHeaders.Add(headerStatistics);
+    }
 
     /**
      * @memberof TATopChangedTable
@@ -104,8 +95,7 @@ class TATopChangedTable{
         headerFormula.Type = FormulaType.Expression;
         headerFormula.HideData = false;
         headerFormula.Decimals = 1;
-        var sign = _sentiment ? ">" : "<";
-        headerFormula.Expression = "IF((cellv(col-1,row)-cellv(col-2,row))"+sign+"0,(cellv(col-1,row)-cellv(col-2,row)),EMPTYV())";
+        headerFormula.Expression = "cellv(col-1,row)-cellv(col-2,row)";
         headerFormula.Title = new Label(9, " ");
         headerFormula.HideHeader = true;
 
@@ -125,7 +115,7 @@ class TATopChangedTable{
                 Formula: "cellv(col-1,row)",
                 Color: ( _sentiment ? Config.Colors.NegNeuPosPalette.Positive : Config.Colors.NegNeuPosPalette.Negative )
             }],
-            Translations.dictionary(_currentLanguage)['Change in avg. score']);
+            "Change in avg. score");
         _table.ColumnHeaders.Add(chartHeader);
     }
 

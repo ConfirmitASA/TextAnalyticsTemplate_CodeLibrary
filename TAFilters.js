@@ -1,110 +1,93 @@
 /**
  * @class TAFilters
- * @classdesc Class to create TA filters Expression
+ * @classdesc Class to work with Text Analytics filters
+ *
+ * @constructs TAFilters
+ * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+ * @param {TAFolder} folder - Text Analytics folder to build table from
  */
 class TAFilters{
+    private var _globals;
+    private var _folder: TAFolder;
+    private var _parameterUtilities: ParameterUtilities;
+
+    function TAFilters(globals, folder){
+        _globals = globals;
+        _folder = folder;
+    }
+
     /**
      * @memberof TAFilters
+     * @instance
      * @function GetSelectedCategoryFilterExpression
-     * @param {Object} params - {
-            context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
-            folder: {TAFolder},
-            allCategoriesParameter: {String}
-        }
+     * @param {String} categoriesParameter
+     * @param {String} subCategoriesParameter
+     * @param {String} attributesParameter
      * @returns {String}
      */
-    static function GetSelectedCategoryFilterExpression(params){
+    function GetSelectedCategoryFilterExpression(categoriesParameter, subCategoriesParameter, attributesParameter){
         var fExpr;
+        var selectedCategory = TAHelper.GetSelectedCategory(_globals.state, categoriesParameter, subCategoriesParameter, attributesParameter);
 
-        var context = params.context;
-        var folder = params.folder;
-        var selectedCategory = context.state.Parameters.GetString(params.allCategoriesParameter)
-        fExpr = (selectedCategory && selectedCategory !=="emptyv") ?('ANY(' + folder.GetQuestionId("categories") + ',"'+selectedCategory+'")'):'NOT ISNULL('+folder.GetQuestionId("overallSentiment")+')';
+        fExpr = selectedCategory ?('ANY(' + _folder.GetQuestionId("categories") + ',"'+selectedCategory+'")'):'NOT ISNULL('+_folder.GetQuestionId("overallSentiment")+')';
 
         return fExpr;
     }
 
     /**
      * @memberof TAFilters
+     * @instance
      * @function GetSentimentFilterExpression
-     * @param {Object} params - {
-     *      context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     *      config: {Object}
-     *      sentimentParameter: {String}
-     *      allCategoriesParameter: {String}
-     *      folder: {TAFolder}
-     * }
+     * @param {String} categoriesParameter
+     * @param {String} subCategoriesParameter
+     * @param {String} attributesParameter
+     * @param {String} sentimentParameter
      * @returns {String}
      */
-    static function GetSentimentFilterExpression(params){
-        var fExpr = "";
-        var context = params.context;
-        var sentimentRanges = params.config.SentimentRange;
-        var sentimentParameter = params.sentimentParameter;
-
-        var sentimentParameterValue = context.state.Parameters.GetString(sentimentParameter);
-
-        var sentimentRange = "";
-
+    function GetSentimentFilterExpression(categoriesParameter, subCategoriesParameter, attributesParameter, sentimentParameter){
+        var fExpr;
+        var selectedCategory = TAHelper.GetSelectedCategory(_globals.state, categoriesParameter, subCategoriesParameter, attributesParameter);
+        var sentimentParameterValue = _globals.state.Parameters.GetString(sentimentParameter);
+        var sentimentRange = false;
         switch( sentimentParameterValue ){
             case "pos":
-                sentimentRange ='"'+sentimentRanges.Positive.join('","')+'"';
+                sentimentRange ='"'+Config.SentimentRange.Positive.join('","')+'"';
                 break;
             case "neu":
-                sentimentRange ='"'+ sentimentRanges.Neutral.join('","') +'"';
+                sentimentRange ='"'+ Config.SentimentRange.Neutral.join('","') +'"';
                 break;
             case "neg":
-                sentimentRange ='"' + sentimentRanges.Negative.join('","')+'"';
+                sentimentRange ='"' + Config.SentimentRange.Negative.join('","')+'"';
                 break;
         }
-
-        if(sentimentRange.length > 0 ){
-            var folder = params.folder;
-            var selectedCategory = context.state.Parameters.GetString(params.allCategoriesParameter)
-            var questionName = (selectedCategory && selectedCategory !== "emptyv")
-                ? (folder.GetQuestionId("categorysentiment")+"_"+selectedCategory)
-                : folder.GetQuestionId("overallsentiment");
-
-            fExpr = 'IN(' + questionName + ','+sentimentRange+')'
-        }
-
+        var questionName = selectedCategory ? (_folder.GetQuestionId("categorysentiment")+"_"+selectedCategory) : _folder.GetQuestionId("overallsentiment");
+        fExpr = sentimentRange ?('IN(' + questionName + ','+sentimentRange+')') : '';
         return fExpr;
     }
 
     /**
      * @memberof TAFilters
+     * @instance
      * @function GetDateFilterExpression
-     * @param {Object} params - {
-     *       context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
-     *       folder: {TAFolder},
-     *       fromParameter: {String},
-     *       toParameter: {String};
-     * }
+     * @param {String} fromParameter
+     * @param {String} toParameter
      * @returns {String}
      */
-    static function GetDateFilterExpression(params){
+    function GetDateFilterExpression(fromParameter, toParameter){
         var fExpr;
-
-        var context = params.context;
-        var folder = params.folder;
-        var fromParameter = params.fromParameter;
-        var toParameter = params.toParameter;
-
-        var isFrom = context.state.Parameters.IsNull(fromParameter);
-        var isTo = context.state.Parameters.IsNull(toParameter);
-
+        var isFrom = _globals.state.Parameters.IsNull(fromParameter);
+        var isTo = _globals.state.Parameters.IsNull(toParameter);
         var fromExpr;
         var toExpr;
         var resultArray = [];
-
         if(!isFrom)
         {
-            fromExpr = folder.GetTimeVariableId() + ' >= PValDate("' +fromParameter+'")';
+            fromExpr = _folder.GetTimeVariableId() + ' >= PValDate("' +fromParameter+'")';
             resultArray.push(fromExpr);
         }
 
         if(!isTo){
-            toExpr = folder.GetTimeVariableId() + ' <= PValDate("' +toParameter+'")';
+            toExpr = _folder.GetTimeVariableId() + ' <= PValDate("' +toParameter+'")';
             resultArray.push(toExpr);
         }
 
