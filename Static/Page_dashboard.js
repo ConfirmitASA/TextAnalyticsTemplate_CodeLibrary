@@ -241,14 +241,19 @@ class Page_dashboard{
         var table = context.component;
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var periodRange = context.state.Parameters.GetString('TA_FISCAL_PERIODS').split('_');
+        var selectedPeriod;
+        if(!context.state.Parameters.IsNull('TA_FISCAL_PERIODS')) {
+            selectedPeriod = context.state.Parameters.GetString('TA_FISCAL_PERIODS');
+        }
+
+        var range = (selectedPeriod && selectedPeriod != 'null' && selectedPeriod != "emptyv") ? selectedPeriod.split('_') : ["FY2017", "FY2018"];
 
         var themeDistributionTable = new TAThemeDistributionTableByFiscalYear({
             context: context,
             folder: folder,
             table: table,
             config: Config,
-            period: {question: "fiscal_year", range: periodRange}
+            period: {question: "fiscal_year", range: range}
         });
 
         themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
