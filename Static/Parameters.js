@@ -45,6 +45,25 @@ class Parameters{
         });
     }
 
+    /**
+     * @memberof Parameters
+     * @function TA_FISCAL_PERIODS_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_FISCAL_PERIODS_Domain(context){
+        var currentLanguage = context.report.CurrentLanguage;
+
+        var parameterValues = [
+            {Code: "FY2017_FY2018", Label: "FY18 vs FY17"},
+            {Code: "FY2016_FY2017", Label: "FY17 vs FY16"}
+        ];
+
+        ParameterUtilities.LoadParameterValues({
+            context: context,
+            parameterValues: parameterValues
+        });
+    }
+
     static function TA_PERIOD_Domain(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
