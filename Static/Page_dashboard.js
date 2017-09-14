@@ -111,7 +111,7 @@ class Page_dashboard{
         });
 
         topSentimentTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
-        topSentimentTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES","detailed_analysis, comments");
+        topSentimentTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES","ta_detailed_analysis, ta_comments");
         topSentimentTable.GetTATableUtils().ClearTableDistributions();
     }
 
@@ -150,7 +150,7 @@ class Page_dashboard{
 
         topChangedTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-barchart", "reportal-barchart-header"]);
         topChangedTable.GetTATableUtils().ClearTableDistributions();
-        topChangedTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES","detailed_analysis, comments");
+        topChangedTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES","ta_detailed_analysis, ta_comments");
     }
 
     /**
