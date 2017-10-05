@@ -575,6 +575,10 @@ class Page_dashboard{
                         "clearLinks:false"+
                     "},"+
                     "search:{},"+
+                    "sorting:"+
+                    "{"+
+                        "enabled: true,"+
+                    "},"+
                     "fixedHeader:{},"+
                 "}"+
             ")"+
