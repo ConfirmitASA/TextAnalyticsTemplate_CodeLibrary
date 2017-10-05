@@ -254,7 +254,7 @@ class Page_dashboard{
             folder: folder,
             table: table,
             config: Config,
-            period: {question: "fiscal_year", range: ["FY2015", "FY2016", "FY2017", "FY2018"]}
+            period: {question: "fiscal_year", range: ["FY2016", "FY2017", "FY2018"]}
         });
 
         themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
