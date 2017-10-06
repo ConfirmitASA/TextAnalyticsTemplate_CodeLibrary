@@ -119,9 +119,9 @@ class TATopChangedTableByFiscalYear{
         headerFormula.Title = new Label(9, " ");
         headerFormula.HideHeader = true;
 
-        /*_table.ColumnHeaders.Add(headerFormula);
+        _table.ColumnHeaders.Add(headerFormula);
 
-        var sign = !_sentiment ? ">" : "<";
+        /*var sign = !_sentiment ? ">" : "<";
         _taTableUtils.SetupConditionalFormatting(
             [
                 {
