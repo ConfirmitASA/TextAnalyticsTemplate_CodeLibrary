@@ -113,7 +113,7 @@ class TATopChangedTableByFiscalYear{
         headerFormula.Type = FormulaType.Expression;
         headerFormula.HideData = false;
         headerFormula.Decimals = 1;
-        var sign = _sentiment ? ">" : "<";
+        //var sign = _sentiment ? ">" : "<";
         // headerFormula.Expression = "IF((cellv(col-1,row)-cellv(col-2,row))"+sign+"0,(cellv(col-1,row)-cellv(col-2,row)),EMPTYV())";
         headerFormula.Expression = "(cellv(col-1,row)-cellv(col-2,row))";
         headerFormula.Title = new Label(9, " ");
@@ -121,6 +121,7 @@ class TATopChangedTableByFiscalYear{
 
         _table.ColumnHeaders.Add(headerFormula);
 
+        var sign = !_sentiment ? ">" : "<";
         _taTableUtils.SetupConditionalFormatting(
             [
                 {
