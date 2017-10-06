@@ -83,9 +83,17 @@ class TAHitlistUtils{
         var columns = _folder.GetHitlistColumns();
 
         for( var i = 0; i < columns.length; i++){
-            hitlistColumn = new HitListColumn();
-            hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columns[i]);
-            _hitlist.Columns.Add(hitlistColumn);
+            if(columns[i] == 'client_first_name' || columns[i] == 'client_last_name') {
+                if(!context.user.HasRole('Ops Support')) {
+                    hitlistColumn = new HitListColumn();
+                    hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columns[i]);
+                    _hitlist.Columns.Add(hitlistColumn);
+                }
+            } else {
+                hitlistColumn = new HitListColumn();
+                hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columns[i]);
+                _hitlist.Columns.Add(hitlistColumn);
+            }
         }
     }
 }
