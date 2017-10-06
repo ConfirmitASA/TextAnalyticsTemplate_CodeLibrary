@@ -113,13 +113,13 @@ class TATopChangedTableByFiscalYear{
         headerFormula.Type = FormulaType.Expression;
         headerFormula.HideData = false;
         headerFormula.Decimals = 1;
-        //var sign = _sentiment ? ">" : "<";
-        // headerFormula.Expression = "IF((cellv(col-1,row)-cellv(col-2,row))"+sign+"0,(cellv(col-1,row)-cellv(col-2,row)),EMPTYV())";
-        headerFormula.Expression = "(cellv(col-1,row)-cellv(col-2,row))";
+        var sign = _sentiment ? ">" : "<";
+        headerFormula.Expression = "IF((cellv(col-1,row)-cellv(col-2,row))"+sign+"0,(cellv(col-1,row)-cellv(col-2,row)),EMPTYV())";
+        //headerFormula.Expression = "(cellv(col-1,row)-cellv(col-2,row))";
         headerFormula.Title = new Label(9, " ");
         headerFormula.HideHeader = true;
 
-        _table.ColumnHeaders.Add(headerFormula);
+        /*_table.ColumnHeaders.Add(headerFormula);
 
         var sign = !_sentiment ? ">" : "<";
         _taTableUtils.SetupConditionalFormatting(
@@ -135,7 +135,7 @@ class TATopChangedTableByFiscalYear{
                 direction: Area.Top,
                 indexes: "1-999"
             }
-        );
+        );*/
     }
 
     /**
