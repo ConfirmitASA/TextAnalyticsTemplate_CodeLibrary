@@ -120,6 +120,21 @@ class TATopChangedTableByFiscalYear{
         headerFormula.HideHeader = true;
 
         _table.ColumnHeaders.Add(headerFormula);
+
+        _taTableUtils.SetupConditionalFormatting(
+            [
+                {
+                    expression: 'cellv(3, row)'+sign+'0',
+                    style: 'hidden-table-row'
+                }
+            ],
+            "hiddenTableRow",
+            {
+                axis: Area.Rows,
+                direction: Area.Top,
+                indexes: "1-999"
+            }
+        );
     }
 
     /**
