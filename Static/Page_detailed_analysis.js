@@ -319,8 +319,11 @@ class Page_detailed_analysis{
             "</script>";
 
             context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
+            context.component.Output.Append('<br>');
             context.component.Output.Append(JSON.print(headers,"rowheaders"));
+            context.component.Output.Append('<br>');
             context.component.Output.Append(JSON.print(blocks,"blocks"));
+            context.component.Output.Append('<br>');
             context.component.Output.Append(upgradeText);
         }
     }
