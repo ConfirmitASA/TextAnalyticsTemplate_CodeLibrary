@@ -295,35 +295,33 @@ class Page_detailed_analysis{
             var blocks = TATableData.GetBlocks({context: context, tableName: "tblDetailedAnalysis"});
 
             var upgradeText = "<script type=\"text/javascript\">"+
-                    "var upgradedTable = new Reportal.AggregatedTable("+
+                "var upgradedTable = new Reportal.AggregatedTable("+
                 "{"+
-                "table: document.querySelector('table.reportal-hierarchy-table'),"+
-                "hierarchy: {"+
-                    "hierarchy: "+JSON.stringify(hierarhy)+","+
-                    "rowheaders:"+JSON.stringify(headers)+","+
+                    "table: document.querySelector('table.reportal-hierarchy-table'),"+
+                    "hierarchy: {"+
+                        "hierarchy: hierarchy,"+
+                        "rowheaders: rowheaders,"+
+                        "blocks: blocks,"+
+                        "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
 
-                    "blocks:"+JSON.stringify(blocks)+","+
-                    "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
-
-                    "clearLinks: false,"+
-                    "search: {" +
-                    "enabled: true"+
+                        "clearLinks: false,"+
+                        "search: {" +
+                            "enabled: true"+
+                        "}"+
+                    "},"+
+                    "sorting: {"+
+                        "enabled: true,"+
+                        "excludedColumns: [6]"+
+                    "},"+
+                    "fixedHeader: {}"+
                 "}"+
-                "},"+
-                "sorting:"+
-                "{"+
-                "enabled: true,"+
-                "excludedColumns: [6]"+
-                "},"+
-                "fixedHeader: {}"+
-                "}"+
-                ")"+
-                "</script>";
+            ")"+
+            "</script>";
 
-            context.component.Output.Append(upgradeText);
             context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
             context.component.Output.Append(JSON.print(headers,"rowheaders"));
             context.component.Output.Append(JSON.print(blocks,"blocks"));
+            context.component.Output.Append(upgradeText);
         }
     }
 
