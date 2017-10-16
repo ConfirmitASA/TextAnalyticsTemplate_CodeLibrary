@@ -24,7 +24,7 @@ class PageRenderer{
             parameterValues: DefaultParameters.values.concat(
                 {
                     Id: "TA_FOLDERS",
-                    Value: (Config.TAQuestions[0].TAQuestionName+Config.TAQuestions[0].TAModelNo)
+                    Value: (Config.TAQuestions[0].DatasourceId + Config.TAQuestions[0].TAQuestionName + Config.TAQuestions[0].TAModelNo)
                 }
             )
         });

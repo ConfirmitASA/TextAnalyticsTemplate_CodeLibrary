@@ -30,7 +30,7 @@ class TAFolder{
 
     function TAFolder(globals, questionIndex, config){
         _globals = globals;
-        _id = config.TAQuestions[questionIndex].TAQuestionName + config.TAQuestions[questionIndex].TAModelNo + '_' + config.TAQuestions[questionIndex].DatasourceId;
+        _id = config.TAQuestions[questionIndex].DatasourceId + config.TAQuestions[questionIndex].TAQuestionName + config.TAQuestions[questionIndex].TAModelNo;
         _folderName = config.TAQuestions[questionIndex].TAFolderId;
         _qName = config.TAQuestions[questionIndex].TAQuestionName;
         _modelNo = config.TAQuestions[questionIndex].TAModelNo;
