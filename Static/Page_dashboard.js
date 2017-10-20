@@ -386,6 +386,18 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
+     * @function textHideByRole_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function textHideByRole_Render(context){
+        if(_hideForSpecificRoles(context)) {
+            context.component.Output.Append('<div class="hide-by-user-role"></div>');
+        }
+    }
+
+    /**
+     * @memberof Page_dashboard
      * @function txtComparePeriods_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
