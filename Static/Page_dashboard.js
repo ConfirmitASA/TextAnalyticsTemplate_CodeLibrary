@@ -390,7 +390,7 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
-    static function textHideByRole_Render(context){
+    static function txtHideByRole_Render(context){
         if(_hideForSpecificRoles(context)) {
             context.component.Output.Append('<div class="hide-by-user-role"></div>');
         }
