@@ -183,7 +183,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostPositive_Hide(context){
-        return _hideForSpecificRoles(context);
+        return false;
     }
 
     /**
@@ -202,7 +202,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostNegative_Hide(context){
-        return _hideForSpecificRoles(context);
+        return false;
     }
 
     /**
@@ -221,7 +221,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostImproved_Hide(context){
-        return false;
+        return _hideForSpecificRoles(context);
     }
 
     /**
@@ -240,7 +240,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostDeclined_Hide(context){
-        return false;
+        return _hideForSpecificRoles(context);
     }
 
     /**
@@ -327,7 +327,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtMostPositive_Hide(context){
-        return _hideForSpecificRoles(context);
+        return false;
     }
 
     /**
@@ -349,7 +349,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtMostNegative_Hide(context){
-        return _hideForSpecificRoles(context);
+        return false;
     }
 
     /**
@@ -393,7 +393,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtMostImproved_Hide(context){
-        return false;
+        return _hideForSpecificRoles(context);
     }
 
     /**
@@ -435,7 +435,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtMostDeclined_Hide(context){
-        return false;
+        return _hideForSpecificRoles(context);
     }
 
     /**
