@@ -46,7 +46,6 @@ class TAHitlistUtils{
 
         sortable ? (hitlistColumn.IsSortable = true) : null;
 
-        hitlistColumn.IsSearchable = true;
         _hitlist.Columns.Add(hitlistColumn);
     }
 
@@ -68,7 +67,6 @@ class TAHitlistUtils{
 
         hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columnName);
         sortable ? (hitlistColumn.IsSortable = true) : null;
-        hitlistColumn.IsSearchable = true;
         _hitlist.Columns.Add(hitlistColumn);
     }
 
@@ -85,7 +83,6 @@ class TAHitlistUtils{
         var columns = _folder.GetHitlistColumns();
 
         for( var i = 0; i < columns.length; i++){
-            hitlistColumn.IsSearchable = true;
             if(columns[i] == 'client_first_name' || columns[i] == 'client_last_name') {
                 if(!context.user.HasRole('Ops Support')) {
                     hitlistColumn = new HitListColumn();
