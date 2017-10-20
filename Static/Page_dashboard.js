@@ -327,7 +327,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtMostPositive_Hide(context){
-        return false;
+        return _hideForSpecificRoles(context);
     }
 
     /**
