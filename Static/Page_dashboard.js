@@ -371,7 +371,17 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtComparePeriods_Hide(context){
-        return false;
+        return _hideForSpecificRoles(context);
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function lstComparePeriods_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstComparePeriods_Hide(context){
+        return _hideForSpecificRoles(context);
     }
 
     /**
