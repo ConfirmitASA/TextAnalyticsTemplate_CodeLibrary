@@ -293,7 +293,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtLevel_Hide(context){
-        return _hideForSpecificRoles(context);
+        return false;
     }
 
     /**
@@ -317,7 +317,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
         static function lstLevel_Hide(context){
-        return _hideForSpecificRoles(context);
+        return false;
     }
 
     /**
