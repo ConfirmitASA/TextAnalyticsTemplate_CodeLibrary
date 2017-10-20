@@ -115,6 +115,29 @@ class Page_dashboard{
         topSentimentTable.GetTATableUtils().ClearTableDistributions();
     }
 
+
+
+    /**
+     * @memberof Page_dashboard
+     * @private
+     * @function _hideForSpecificRoles
+     */
+    private static function _hideForSpecificRoles(context){
+        return !(
+            context.user.HasRole('Power User') ||
+            context.user.HasRole('Executive') ||
+            context.user.HasRole('Executive, Corporate') ||
+            context.user.HasRole('Executive, Energy') ||
+            context.user.HasRole('Executive, Government') ||
+            context.user.HasRole('Executive, Hospitals') ||
+            context.user.HasRole('Executive, Schools') ||
+            context.user.HasRole('Executive, Seniors') ||
+            context.user.HasRole('Executive, SL') ||
+            context.user.HasRole('Executive, Universities')
+        );
+    }
+
+
     /**
      * @memberof Page_dashboard
      * @private
@@ -160,7 +183,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostPositive_Hide(context){
-        return false;
+        return _hideForSpecificRoles(context);
     }
 
     /**
@@ -179,7 +202,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function tblMostNegative_Hide(context){
-        return false;
+        return _hideForSpecificRoles(context);
     }
 
     /**
@@ -270,7 +293,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtLevel_Hide(context){
-        return false;
+        return _hideForSpecificRoles(context);
     }
 
     /**
@@ -284,6 +307,17 @@ class Page_dashboard{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['View by'];
         context.component.Output.Append(label);
+    }
+
+
+    /**
+     * @memberof Page_dashboard
+     * @function lstLevel_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+        static function lstLevel_Hide(context){
+        return _hideForSpecificRoles(context);
     }
 
     /**
@@ -315,7 +349,7 @@ class Page_dashboard{
      * @returns {Boolean}
      */
     static function txtMostNegative_Hide(context){
-        return false;
+        return _hideForSpecificRoles(context);
     }
 
     /**
