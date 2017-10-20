@@ -171,6 +171,8 @@ class Page_comments{
 
         // htlComments.AddTAColumn({context: context, columnName: "categories"});
         htlComments.AddConfiguredColumns(context);
+
+        context.hitlist.AllowSearching = true;
     }
 
     /**
