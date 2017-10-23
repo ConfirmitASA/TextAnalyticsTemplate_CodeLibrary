@@ -13,9 +13,9 @@ class PageMaster{
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
-    static function FiltersButtonHtml_Hide(context){
-        var filterQuestions = Config.GetTALibrary().GetFilterQuestions()
-        return filterQuestions.length == 0
+    static function FiltersButtonHtml_Hide(context) {
+        var filterQuestions = Config.GetTALibrary().GetFilterQuestions();
+        return filterQuestions.length < 4;
     }
 
     /**
