@@ -134,7 +134,7 @@ class Page_dashboard{
             context.user.HasRole('Executive, Seniors') ||
             context.user.HasRole('Executive, SL') ||
             context.user.HasRole('Executive, Universities') ||
-            context.user.UserType != ReportUserType.EndUser
+            context.user.UserType != ReportUserType.Enduser
         );
     }
 
