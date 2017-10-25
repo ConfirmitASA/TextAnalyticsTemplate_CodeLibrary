@@ -1,10 +1,10 @@
 /**
- * @class TAParameters
+ * @class TAParametersBuilder
  * @classdesc Class to work with parameters using Text analytics variables
  */
-class TAParameters{
+class TAParametersBuilder{
     /**
-     * @memberof TAParameters
+     * @memberof TAParametersBuilder
      * @private
      * @function _addEmptyValue
      * @param {String} EmptyValueLabel
@@ -22,7 +22,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof TAParametersBuilder
      * @function RenderFoldersParameter
      * @description render parameter with list of TAFoders using in the report
      * @param {Object} params - {
@@ -47,7 +47,7 @@ class TAParameters{
             });
         }
 
-        ParameterUtilities.LoadParameterValues({
+        TAParameterUtilities.LoadParameterValues({
             context: context,
             parameter: parameter,
             parameterValues: parameterValues
@@ -55,7 +55,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof TAParametersBuilder
      * @function RenderAllCategoriesParameter
      * @description render parameter with list of all categories, sub categories and attributes
      * @param {Object} params - {
@@ -83,7 +83,7 @@ class TAParameters{
             })
         }
 
-        ParameterUtilities.LoadParameterValues({
+        TAParameterUtilities.LoadParameterValues({
             context: context,
             parameter: parameter,
             parameterValues: parameterValues
@@ -91,7 +91,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof TAParametersBuilder
      * @function RenderLevelCategoriesParameter
      * @description render parameter with list of categories on the specified level
      * @param {Object} params -{
@@ -122,7 +122,7 @@ class TAParameters{
             })
         }
 
-        ParameterUtilities.LoadParameterValues({
+        TAParameterUtilities.LoadParameterValues({
             context: context,
             parameter: parameter,
             parameterValues: parameterValues
@@ -130,7 +130,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof TAParametersBuilder
      * @function MaskSelectedCategoryChildren
      * @description masking children for the specified category
      * @param {Object} params - {
@@ -159,7 +159,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof TAParametersBuilder
      * @function RenderLevelsParameter
      * @description render parameter with list of levels in the hierarchy
      * @param {Object} params - {
@@ -200,7 +200,7 @@ class TAParameters{
             parameterValues.push( levelValues[i] );
         }
 
-        ParameterUtilities.LoadParameterValues({
+        TAParameterUtilities.LoadParameterValues({
             context: context,
             parameter: parameter,
             parameterValues: parameterValues
@@ -208,7 +208,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof TAParametersBuilder
      * @function RenderViewByParameter
      * @description render parameter with list of questions for the detailed analysis table
      * @param {Object} params - {
@@ -236,7 +236,7 @@ class TAParameters{
             });
         }
 
-        ParameterUtilities.LoadParameterValues({
+        TAParameterUtilities.LoadParameterValues({
             context: context,
             parameter: parameter,
             parameterValues: parameterValues
@@ -244,7 +244,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof TAParametersBuilder
      * @function ClearSubcategoriesParameters
      * @description clear subcategories andattributes parameters when another parent selected
      * @param {Object} params - {

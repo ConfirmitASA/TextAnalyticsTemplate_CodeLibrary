@@ -23,12 +23,12 @@ class Page_correlation{
      */
     static function Render(context){
         Config.SetTALibrary(context);
-        PageRenderer.InitiateParameters(context);
-        PageRenderer.InitiateFilters(context);
-        PageRenderer.SetLastVisitedPage(context, "correlation");
-        PageRenderer.ClearCategoriesParameters(context);
+        TAPageRenderer.InitiateParameters(context);
+        TAPageRenderer.InitiateFilters(context);
+        TAPageRenderer.SetLastVisitedPage(context, "correlation");
+        TAPageRenderer.ClearCategoriesParameters(context);
 
-        PageRenderer.ProcessSelectedCategoryParameter(context);
+        TAPageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
 

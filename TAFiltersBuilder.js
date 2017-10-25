@@ -1,10 +1,10 @@
 /**
- * @class TAFilters
+ * @class TAFiltersBuilder
  * @classdesc Class to create TA filters Expression
  */
-class TAFilters{
+class TAFiltersBuilder{
     /**
-     * @memberof TAFilters
+     * @memberof TAFiltersBuilder
      * @function GetSelectedCategoryFilterExpression
      * @param {Object} params - {
             context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
@@ -25,7 +25,7 @@ class TAFilters{
     }
 
     /**
-     * @memberof TAFilters
+     * @memberof TAFiltersBuilder
      * @function GetSentimentFilterExpression
      * @param {Object} params - {
      *      context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -72,7 +72,7 @@ class TAFilters{
     }
 
     /**
-     * @memberof TAFilters
+     * @memberof TAFiltersBuilder
      * @function GetDateFilterExpression
      * @param {Object} params - {
      *       context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},

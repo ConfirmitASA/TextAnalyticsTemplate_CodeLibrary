@@ -1,10 +1,10 @@
 /**
-* @class Filters
-* @classdesc Static class for Reportal Filters Scripting
+* @class TAFilters
+* @classdesc Static class for Reportal TAFilters Scripting
 */
-class Filters {
+class TAFilters {
     /**
-     * @memberof Filters
+     * @memberof TAFilters
      * @function TASelectedCategoryFilter
      * @description function to create expression that filtrates only selected category in the hitlist
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -12,7 +12,7 @@ class Filters {
     static function TASelectedCategoryFilter(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
-        var fExpr = TAFilters.GetSelectedCategoryFilterExpression({
+        var fExpr = TAFiltersBuilder.GetSelectedCategoryFilterExpression({
             context: context,
             folder: Config.GetTALibrary().GetFolderById(selectedFolder),
             allCategoriesParameter: "TA_ALL_CATEGORIES"
@@ -22,7 +22,7 @@ class Filters {
     }
 
     /**
-     * @memberof Filters
+     * @memberof TAFilters
      * @function TAHitlistSentimentFilter
      * @description function to filtrate only selected sentiment in the hitlist
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -30,7 +30,7 @@ class Filters {
     static function TAHitlistSentimentFilter(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
-        var fExpr = TAFilters.GetSentimentFilterExpression({
+        var fExpr = TAFiltersBuilder.GetSentimentFilterExpression({
             context: context,
             config: Config,
             sentimentParameter: "TA_COMMENTS_SENTIMENT",
@@ -42,7 +42,7 @@ class Filters {
     }
 
     /**
-     * @memberof Filters
+     * @memberof TAFilters
      * @function DateFilter
      * @description function to filtrate selected dates
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -50,7 +50,7 @@ class Filters {
     static function DateFilter(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
-        var fExpr = TAFilters.GetDateFilterExpression({
+        var fExpr = TAFiltersBuilder.GetDateFilterExpression({
                 context: context,
                 folder: Config.GetTALibrary().GetFolderById(selectedFolder),
                 fromParameter: "TA_DATE_FROM",
@@ -61,14 +61,14 @@ class Filters {
     }
 
     /**
-     * @memberof Filters
+     * @memberof TAFilters
      * @function FilterPageFilter
      * @description function to filtrate selected values on the filterpage
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function FilterPageFilter(context){
         var fExpr = "";
-        fExpr = new FilterComponents(context).GetGlobalsFilterExpression(context);
+        fExpr = new TAFilterComponents(context).GetGlobalsFilterExpression(context);
         context.component.Expression = fExpr
     }
 }

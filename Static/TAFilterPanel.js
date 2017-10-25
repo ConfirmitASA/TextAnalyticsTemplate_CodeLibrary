@@ -1,11 +1,11 @@
 /**
- * @class FilterPanel
+ * @class TAFilterPanel
  * @classdesc static class to work with the filterpanel and filterpage
  */
-class FilterPanel{
+class TAFilterPanel{
 
     /**
-     * @memberof FilterPanel
+     * @memberof TAFilterPanel
      * @function btnSaveReturn_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -15,7 +15,7 @@ class FilterPanel{
     }
 
     /**
-     * @memberof FilterPanel
+     * @memberof TAFilterPanel
      * @function btnSaveReturn_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -25,7 +25,7 @@ class FilterPanel{
     }
 
     /**
-     * @memberof FilterPanel
+     * @memberof TAFilterPanel
      * @function btnSave_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -35,7 +35,7 @@ class FilterPanel{
     }
 
     /**
-     * @memberof FilterPanel
+     * @memberof TAFilterPanel
      * @function btnSave_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -44,7 +44,7 @@ class FilterPanel{
     }
 
     /**
-     * @memberof FilterPanel
+     * @memberof TAFilterPanel
      * @function btnClearFilters_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -54,7 +54,7 @@ class FilterPanel{
     }
 
     /**
-     * @memberof FilterPanel
+     * @memberof TAFilterPanel
      * @function btnClearFilters_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -64,11 +64,11 @@ class FilterPanel{
     }
 
     /**
-     * @memberof FilterPanel
+     * @memberof TAFilterPanel
      * @function txtFilterTitle_Hide
      * @param {Object} params - {
      *                              context: {context: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
-     *                              filterComponents: {FilterComponents}
+     *                              filterComponents: {TAFilterComponents}
      *                              filterNumber: {Number}
      *                           }
      * @returns {Boolean}
@@ -82,11 +82,11 @@ class FilterPanel{
     }
 
     /**
-     * @memberof FilterPanel
+     * @memberof TAFilterPanel
      * @function txtFilterTitle_Render
      * @param {Object} params - {
      *                              context: {context: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
-     *                              filterComponents: {FilterComponents}
+     *                              filterComponents: {TAFilterComponents}
      *                              filterNumber: {Number}
      *                           }
      */
@@ -101,11 +101,11 @@ class FilterPanel{
     }
 
     /**
-     * @memberof FilterPanel
+     * @memberof TAFilterPanel
      * @function lstFilterList_Hide
      * @param {Object} params - {
      *                              context: {context: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
-     *                              filterComponents: {FilterComponents}
+     *                              filterComponents: {TAFilterComponents}
      *                              filterNumber: {Number}
      *                           }
      * @returns {Boolean}
