@@ -1,10 +1,10 @@
 /**
- * @class ParameterUtilities
+ * @class TAParameterUtilities
  * @classdesc Class to work with different parameters
  */
-class ParameterUtilities {
+class TAParameterUtilities {
     /**
-     * @memberof ParameterUtilities
+     * @memberof TAParameterUtilities
      * @function LoadParameterValues
      * @description function to load possible values to string response parameter
      * @param {Object} params - {
@@ -33,7 +33,7 @@ class ParameterUtilities {
     }
 
     /**
-     * @memberof ParameterUtilities
+     * @memberof TAParameterUtilities
      * @function GetCheckedValues
      * @description function to get checked values for the multi string response parameter
      * @param {Object} params - {
@@ -60,7 +60,7 @@ class ParameterUtilities {
     }
 
     /**
-     * @memberof ParameterUtilities
+     * @memberof TAParameterUtilities
      * @function SetDefaultParameterValues
      * @description function to set default value to parameters
      * @param {Object} params - {
@@ -82,7 +82,7 @@ class ParameterUtilities {
     }
 
     /**
-     * @memberof ParameterUtilities
+     * @memberof TAParameterUtilities
      * @function SetDefaultParameterValues
      * @description function to set default value to parameters only if they haven't been selected
      * @param {Object} params - {
@@ -105,7 +105,7 @@ class ParameterUtilities {
     }
 
     /**
-     * @memberof ParameterUtilities
+     * @memberof TAParameterUtilities
      * @function GetParameterCodes
      * @description function to get function to get selected keys from multi parameter
      * @param {Object} params - {
