@@ -394,7 +394,7 @@ class Page_correlation{
             "   buttonsContainer: 'chart-tables-switcher'," +
             "   table: document.querySelector('.correlation-table')," +
             "   palette: palette," +
-            "   questionName: '" + correlationQuestion.Title || correlationVariableId + "'," +
+            "   questionName: '" + (correlationQuestion.Title || correlationVariableId) + "'," +
             "   translations: translations" +
             "});"+
             "</script>";
