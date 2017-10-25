@@ -375,7 +375,6 @@ class Page_correlation{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var correlationVariableId = folder.GetCorrelationVariableId();
-        var correlationVariableName = folder.GetCorrelationVariableShownName();
         var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
         var project  = context.report.DataSource.GetProject(dataSource);
         var correlationQuestion = project.GetQuestion(correlationVariableId);
@@ -395,7 +394,7 @@ class Page_correlation{
             "   buttonsContainer: 'chart-tables-switcher'," +
             "   table: document.querySelector('.correlation-table')," +
             "   palette: palette," +
-            "   questionName: '" + (correlationVariableName || correlationQuestion.Title || correlationVariableId) + "'," +
+            "   questionName: '" + (correlationQuestion.Title || correlationVariableId) + "'," +
             "   translations: translations" +
             "});"+
             "</script>";

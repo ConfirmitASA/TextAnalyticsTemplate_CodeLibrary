@@ -23,7 +23,6 @@ class TAFolder{
     private var _hitlistColumns;
     private var _filterQuestions;
     private var _correlationVariableId;
-    private var _correlationVariableShownName;
 
     private var _hierarchy: Hierarchy;
 
@@ -46,8 +45,6 @@ class TAFolder{
         _filterQuestions = config.TAQuestions[questionIndex].FilterQuestions;
 
         _correlationVariableId = config.TAQuestions[questionIndex].CorrelationVariableId;
-
-        _correlationVariableShownName = config.TAQuestions[questionIndex].CorrelationVariableShownName;
 
         _hierarchy = new Hierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
@@ -194,22 +191,11 @@ class TAFolder{
     /**
      * @memberof TAFolder
      * @instance
-     * @function GetCorrelationVariableId
-     * @description function to Get qId to use for building Impact Analysis page
+     * @function GetFilterQuestions
+     * @description function to Get qId to use for buildin Impact Analysis page
      * @returns {String[]}
      */
     function GetCorrelationVariableId(){
         return _correlationVariableId;
-    }
-
-    /**
-     * @memberof TAFolder
-     * @instance
-     * @function GetCorrelationVariableShownName
-     * @description function to Get shown question name to use for building Impact Analysis page
-     * @returns {String[]}
-     */
-    function GetCorrelationVariableShownName(){
-        return _correlationVariableShownName;
     }
 }
