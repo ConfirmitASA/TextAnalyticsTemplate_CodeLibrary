@@ -1,10 +1,10 @@
 /**
- * @class TAPageMaster
+ * @class PageMaster
  * @classdesc Static class for Reportal Page master components
  */
-class TAPageMaster{
+class PageMaster{
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function FiltersButtonHtml_Hid
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -18,12 +18,12 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function FiltersButtonHtml_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function FiltersButtonHtml_Render(context){
-        var htmlText = '<button type="button" class="filter-button" onclick="javascript:document.querySelector(\'.goToFiltersPage input\').click()" title="TAFilters">'+
+        var htmlText = '<button type="button" class="filter-button" onclick="javascript:document.querySelector(\'.goToFiltersPage input\').click()" title="Filters">'+
                 '<svg width="16" height="12" viewBox="0 0 16 12">'+
                     '<path xmlns="http://www.w3.org/2000/svg" d="M 0 0 l 6 6 v 6 l 4 -1 V 6 l 6 -6 Z"></path>'+
                 '</svg>'+
@@ -35,7 +35,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function Filters_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -45,7 +45,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function Filters_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -54,7 +54,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function FilterSummary_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -64,7 +64,7 @@ class TAPageMaster{
 
         Config.SetTALibrary();
 
-        var filterComponents = new TAFilterComponents(context);
+        var filterComponents = new FilterComponents(context);
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
@@ -111,21 +111,21 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function ClearFilters_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
     static function ClearFilters_Hide(context){
         var hideButton = true;
-        var filterComponents = new TAFilterComponents(context);
+        var filterComponents = new FilterComponents(context);
         hideButton = !filterComponents.GetAllAnsweredFilterCodes(context).length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");
 
         return hideButton
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function ClearFilters_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -134,7 +134,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtQuestion_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -144,7 +144,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtQuestion_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -154,7 +154,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtDateFrom_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -165,7 +165,7 @@ class TAPageMaster{
 
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtDateFrom_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -176,7 +176,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtDateTo_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -187,7 +187,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtDateTo_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -198,7 +198,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function btnApplyFilters_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -208,16 +208,16 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function btnApplyFilters_Render
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnApplyFilters_Render(context){
-        TAFilterPanel.btnSave_Render(context);
+        FilterPanel.btnSave_Render(context);
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function hierarchyComponent_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -227,7 +227,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtHierarchyLabel_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -237,17 +237,17 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtHierarchyLabel_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtHierarchyLabel_Render(context) {
-        var label = Translations.dictionary(context.report.CurrentLanguage)["TAHierarchy"];
+        var label = Translations.dictionary(context.report.CurrentLanguage)["Hierarchy"];
         context.component.Output.Append(label);
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtPageTitle_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -257,7 +257,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtPageTitle_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -267,7 +267,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtFilterTitle_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -276,9 +276,9 @@ class TAPageMaster{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var filterComponents = new TAFilterComponents(context);
+        var filterComponents = new FilterComponents(context);
 
-        return TAFilterPanel.txtFilterTitle_Hide({
+        return FilterPanel.txtFilterTitle_Hide({
             context: context,
             filterComponents: filterComponents,
             filterNumber: filterNumber
@@ -286,7 +286,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function txtFilterTitle_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @param {Number} filterNumber
@@ -295,9 +295,9 @@ class TAPageMaster{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var filterComponents = new TAFilterComponents(context);
+        var filterComponents = new FilterComponents(context);
 
-        TAFilterPanel.txtFilterTitle_Render({
+        FilterPanel.txtFilterTitle_Render({
             context: context,
             filterComponents: filterComponents,
             filterNumber: filterNumber
@@ -305,7 +305,7 @@ class TAPageMaster{
     }
 
     /**
-     * @memberof TAPageMaster
+     * @memberof PageMaster
      * @function lstFilterList_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @param {Number} filterNumber
@@ -315,9 +315,9 @@ class TAPageMaster{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var filterComponents = new TAFilterComponents(context);
+        var filterComponents = new FilterComponents(context);
 
-        return TAFilterPanel.lstFilterList_Hide({
+        return FilterPanel.lstFilterList_Hide({
             context: context,
             filterComponents: filterComponents,
             filterNumber: filterNumber

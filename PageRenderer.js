@@ -1,27 +1,27 @@
 /**
- * @class TAPageRenderer
+ * @class PageRenderer
  * @classdesc Class helping building all pages
  */
-class TAPageRenderer{
+class PageRenderer{
     /**
-     * @memberof TAPageRenderer
+     * @memberof PageRenderer
      * @function InitiateParameters
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @description Setting default values for parameters in the first run
      */
     static function InitiateParameters(context){
         if(context.component.SubmitSource === "lstQuestions") {
-            TAParameterUtilities.SetDefaultParameterValues(
+            ParameterUtilities.SetDefaultParameterValues(
                 {
                     context: context,
-                    parameterValues: TADefaultParameters.values
+                    parameterValues: DefaultParameters.values
                 }
             )
         }
 
-        TAParameterUtilities.SetDefaultParameterValuesForEmpty({
+        ParameterUtilities.SetDefaultParameterValuesForEmpty({
             context: context,
-            parameterValues: TADefaultParameters.values.concat(
+            parameterValues: DefaultParameters.values.concat(
                 {
                     Id: "TA_FOLDERS",
                     Value: (Config.TAQuestions[0].DatasourceId + Config.TAQuestions[0].TAQuestionName + Config.TAQuestions[0].TAModelNo)
@@ -31,15 +31,15 @@ class TAPageRenderer{
     }
 
     /**
-     * @memberof TAPageRenderer
+     * @memberof PageRenderer
      * @function InitiateFilters
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @description clearing filters when necessary
      */
     static function InitiateFilters(context){
         if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "btnClearFilters" || context.component.SubmitSource === "lstQuestions"){
-            TAFilterComponents.ClearFilters(context);
-            var dateParameters = TADefaultParameters.dateParameters;
+            FilterComponents.ClearFilters(context);
+            var dateParameters = DefaultParameters.dateParameters;
 
             for(var i = 0; i < dateParameters.length; ++i)
                 context.state.Parameters[dateParameters[i]] = null;
@@ -47,7 +47,7 @@ class TAPageRenderer{
     }
 
     /**
-     * @memberof TAPageRenderer
+     * @memberof PageRenderer
      * @function ProcessSelectedCategoryParameter
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @description synchronizing parameters for top, sub categories and attributes and parameter containing all categories
@@ -81,7 +81,7 @@ class TAPageRenderer{
     }
 
     /**
-     * @memberof TAPageRenderer
+     * @memberof PageRenderer
      * @function SetLastVisitedPage
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @param {String} pageId
@@ -92,7 +92,7 @@ class TAPageRenderer{
     }
 
     /**
-     * @memberof TAPageRenderer
+     * @memberof PageRenderer
      * @function ClearCategoriesParameters
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @description clearing sub categories and attributes when another parent is selected

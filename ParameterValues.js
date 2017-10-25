@@ -1,10 +1,10 @@
 /**
- * @class TAParameterValues
+ * @class ParameterValues
  * @classdesc Class to buld parameters with static codes to get them in PDF view
  */
-class TAParameterValues {
+class ParameterValues {
     /**
-     * @memberof TAParameterValues
+     * @memberof ParameterValues
      * @private
      * @function  _getParameterValues
      * @param {Object} currentDictionary
@@ -59,7 +59,7 @@ class TAParameterValues {
     }
 
     /**
-     * @memberof TAParameterValues
+     * @memberof ParameterValues
      * @private
      * @function  _findValue
      * @param {Object[]} array
@@ -77,7 +77,7 @@ class TAParameterValues {
     }
 
     /**
-     * @memberof TAParameterValues
+     * @memberof ParameterValues
      * @function  getParameterValue
      * @param {ReportState} state
      * @param {Object} currentDictionary
@@ -87,13 +87,13 @@ class TAParameterValues {
      */
     static function getParameterValue(state, currentDictionary, parameterID) {
         var parameterValue : ParameterValueResponse = state.Parameters[parameterID];
-        var labels = TAParameterValues._getParameterValues(currentDictionary, parameterID);
-        var parameterValueLabel = TAParameterValues._findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
+        var labels = ParameterValues._getParameterValues(currentDictionary, parameterID);
+        var parameterValueLabel = ParameterValues._findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
         return _getParameterSpan(': ' + parameterValueLabel);
     }
 
     /**
-     * @memberof TAParameterValues
+     * @memberof ParameterValues
      * @function  getCategoryParameterValue
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @param {Object} currentDictionary
@@ -116,7 +116,7 @@ class TAParameterValues {
     }
 
     /**
-     * @memberof TAParameterValues
+     * @memberof ParameterValues
      * @function  getCategoryParameterValue
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @param {Object} currentDictionary
@@ -143,7 +143,7 @@ class TAParameterValues {
     }
 
     /**
-     * @memberof TAParameterValues
+     * @memberof ParameterValues
      * @private
      * @function  _getParameterSpan
      * @param {String} parameterValueLabel

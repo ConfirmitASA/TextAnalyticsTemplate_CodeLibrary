@@ -1,10 +1,10 @@
 /**
- * @class TAParameters
+ * @class Parameters
  * @classdesc Static class for Reportal parameter components
  */
-class TAParameters{
+class Parameters{
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_FOLDERS_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -15,7 +15,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_LEVEL_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -24,7 +24,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_COMPARE_PERIODS_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -39,14 +39,14 @@ class TAParameters{
             {Code: "yoy", Label: currentDictionary["Current vs Last Year"]}
         ];
 
-        TAParameterUtilities.LoadParameterValues({
+        ParameterUtilities.LoadParameterValues({
             context: context,
             parameterValues: parameterValues
         });
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_PERIOD_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -61,14 +61,14 @@ class TAParameters{
             {Code: "y", Label: currentDictionary["Years"]}
         ];
 
-        TAParameterUtilities.LoadParameterValues({
+        ParameterUtilities.LoadParameterValues({
             context: context,
             parameterValues: parameterValues
         });
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_TOP_CATEGORIES_SINGLE_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -83,7 +83,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_TOP_CATEGORIES_SINGLE_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -99,7 +99,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_SUB_CATEGORIES_SINGLE_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -115,7 +115,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_ATTRIBUTES_SINGLE_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -131,7 +131,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_SUB_CATEGORIES_SINGLE_Mask
      * @param {Object} context - {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -147,7 +147,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_ATTRIBUTES_SINGLE_Mask
      * @param {Object} context - {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -163,7 +163,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_VIEW_SENTIMENT_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -178,16 +178,16 @@ class TAParameters{
             {Code: "neg", Label: currentDictionary["Negative"]}
         ];
 
-        //var parameterValues = TAParameterValues._getParameterValues(currentDictionary, 'TA_VIEW_SENTIMENT');
+        //var parameterValues = ParameterValues._getParameterValues(currentDictionary, 'TA_VIEW_SENTIMENT');
 
-        TAParameterUtilities.LoadParameterValues({
+        ParameterUtilities.LoadParameterValues({
             context: context,
             parameterValues: parameterValues
         });
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_DISTRIBUTION_TOGGLE_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -199,14 +199,14 @@ class TAParameters{
             {Code: 1, Label: "%"}
         ];
 
-        TAParameterUtilities.LoadParameterValues({
+        ParameterUtilities.LoadParameterValues({
             context: context,
             parameterValues: parameterValues
         });
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_VIEW_BY_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -221,7 +221,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_HIDE_EMPTY_ROWS_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -233,14 +233,14 @@ class TAParameters{
             {Code: "hide", Label: currentDictionary["Hide categories with no hits"]}
         ];
 
-        TAParameterUtilities.LoadParameterValues({
+        ParameterUtilities.LoadParameterValues({
             context: context,
             parameterValues: parameterValues
         });
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function FILTER_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @param {Number} filterNumber
@@ -251,7 +251,7 @@ class TAParameters{
 
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var filterComponents = new TAFilterComponents(context);
+        var filterComponents = new FilterComponents(context);
 
         var filterQuestion = filterComponents.GetFilterQuestion(filterNumber -1 );
         if(filterQuestion){
@@ -264,7 +264,7 @@ class TAParameters{
                 });
             }
 
-            TAParameterUtilities.LoadParameterValues({
+            ParameterUtilities.LoadParameterValues({
                 context: context,
                 parameterValues: parameterValues
             });
@@ -272,7 +272,7 @@ class TAParameters{
     }
 
     /**
-     * @memberof TAParameters
+     * @memberof Parameters
      * @function TA_TOGGLE_CHART_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -284,7 +284,7 @@ class TAParameters{
             {Code: "toggle", Label: currentDictionary["Toggle chart view"]}
         ];
 
-        TAParameterUtilities.LoadParameterValues({
+        ParameterUtilities.LoadParameterValues({
             context: context,
             parameterValues: parameterValues
         });

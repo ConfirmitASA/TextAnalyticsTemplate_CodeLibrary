@@ -24,11 +24,11 @@ class Page_detailed_analysis{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        TAPageRenderer.InitiateParameters(context);
-        TAPageRenderer.InitiateFilters(context);
-        TAPageRenderer.SetLastVisitedPage(context, "detailed_analysis");
-        TAPageRenderer.ClearCategoriesParameters(context);
-        TAPageRenderer.ProcessSelectedCategoryParameter(context);
+        PageRenderer.InitiateParameters(context);
+        PageRenderer.InitiateFilters(context);
+        PageRenderer.SetLastVisitedPage(context, "detailed_analysis");
+        PageRenderer.ClearCategoriesParameters(context);
+        PageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
     /**
@@ -162,8 +162,8 @@ class Page_detailed_analysis{
             selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
 
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
-        var hideEmptyRows = TAParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_HIDE_EMPTY_ROWS"});
-        var toggleChartValue = TAParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_TOGGLE_BARCHART"});
+        var hideEmptyRows = ParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_HIDE_EMPTY_ROWS"});
+        var toggleChartValue = ParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_TOGGLE_BARCHART"});
         var toggleChart = (toggleChartValue.length > 0);
 
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
@@ -263,7 +263,7 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['View by:'];
         context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getViewByParameterValue(context, currentDictionary));
+        context.component.Output.Append(ParameterValues.getViewByParameterValue(context, currentDictionary));
     }
 
     /**
@@ -286,7 +286,7 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['Category'];
         context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
+        context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
     }
 
     /**
@@ -346,7 +346,7 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['Sub category'];
         context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_SUB_CATEGORIES_SINGLE'));
+        context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_SUB_CATEGORIES_SINGLE'));
     }
 
     /**
@@ -375,7 +375,7 @@ class Page_detailed_analysis{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary['Attribute'];
         context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_ATTRIBUTES_SINGLE'));
+        context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_ATTRIBUTES_SINGLE'));
     }
 
 

@@ -1,10 +1,10 @@
 /**
-* @class TAFilters
-* @classdesc Static class for Reportal TAFilters Scripting
+* @class Filters
+* @classdesc Static class for Reportal Filters Scripting
 */
-class TAFilters {
+class Filters {
     /**
-     * @memberof TAFilters
+     * @memberof Filters
      * @function TASelectedCategoryFilter
      * @description function to create expression that filtrates only selected category in the hitlist
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -22,7 +22,7 @@ class TAFilters {
     }
 
     /**
-     * @memberof TAFilters
+     * @memberof Filters
      * @function TAHitlistSentimentFilter
      * @description function to filtrate only selected sentiment in the hitlist
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -42,7 +42,7 @@ class TAFilters {
     }
 
     /**
-     * @memberof TAFilters
+     * @memberof Filters
      * @function DateFilter
      * @description function to filtrate selected dates
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -61,14 +61,14 @@ class TAFilters {
     }
 
     /**
-     * @memberof TAFilters
+     * @memberof Filters
      * @function FilterPageFilter
      * @description function to filtrate selected values on the filterpage
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function FilterPageFilter(context){
         var fExpr = "";
-        fExpr = new TAFilterComponents(context).GetGlobalsFilterExpression(context);
+        fExpr = new FilterComponents(context).GetGlobalsFilterExpression(context);
         context.component.Expression = fExpr
     }
 }

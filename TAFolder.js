@@ -25,7 +25,7 @@ class TAFolder{
     private var _correlationVariableId;
     private var _correlationVariableShownName;
 
-    private var _hierarchy: TAHierarchy;
+    private var _hierarchy: Hierarchy;
 
 
 
@@ -49,7 +49,7 @@ class TAFolder{
 
         _correlationVariableShownName = config.TAQuestions[questionIndex].CorrelationVariableShownName;
 
-        _hierarchy = new TAHierarchy(globals, {
+        _hierarchy = new Hierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
             tableName: config.TAQuestions[questionIndex].DatabaseTableName,
             relationshipColumnName: config.TAQuestions[questionIndex].RelationshipColumnName,
@@ -107,8 +107,8 @@ class TAFolder{
      * @memberof TAFolder
      * @instance
      * @function GetHierarchy
-     * @description function to Get TAHierarchy for the text analytics set
-     * @returns {TAHierarchy}
+     * @description function to Get Hierarchy for the text analytics set
+     * @returns {Hierarchy}
      */
     function GetHierarchy(){
         return _hierarchy;

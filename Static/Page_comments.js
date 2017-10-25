@@ -23,11 +23,11 @@ class Page_comments{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        TAPageRenderer.InitiateParameters(context);
-        TAPageRenderer.InitiateFilters(context);
-        TAPageRenderer.SetLastVisitedPage(context, "comments");
-        TAPageRenderer.ClearCategoriesParameters(context);
-        TAPageRenderer.ProcessSelectedCategoryParameter(context);
+        PageRenderer.InitiateParameters(context);
+        PageRenderer.InitiateFilters(context);
+        PageRenderer.SetLastVisitedPage(context, "comments");
+        PageRenderer.ClearCategoriesParameters(context);
+        PageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
     /**
@@ -249,7 +249,7 @@ class Page_comments{
 
         var label = currentDictionary["Category"];
         context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
+        context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
     }
 
 
@@ -279,7 +279,7 @@ class Page_comments{
 
         var label = currentDictionary["Sub category"];
         context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_SUB_CATEGORIES_SINGLE'));
+        context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_SUB_CATEGORIES_SINGLE'));
     }
 
     /**
@@ -308,7 +308,7 @@ class Page_comments{
 
         var label = currentDictionary["Attribute"];
         context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_ATTRIBUTES_SINGLE'));
+        context.component.Output.Append(ParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_ATTRIBUTES_SINGLE'));
     }
 
     /**
@@ -335,6 +335,6 @@ class Page_comments{
         var label = currentDictionary["Sentiment"];
         context.component.Output.Append(label);
 
-        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_COMMENTS_SENTIMENT'));
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_COMMENTS_SENTIMENT'));
     }
 }

@@ -23,10 +23,10 @@ class Page_dashboard{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        TAPageRenderer.InitiateParameters(context);
-        TAPageRenderer.InitiateFilters(context);
-        TAPageRenderer.SetLastVisitedPage(context, "dashboard");
-        TAPageRenderer.ProcessSelectedCategoryParameter(context);
+        PageRenderer.InitiateParameters(context);
+        PageRenderer.InitiateFilters(context);
+        PageRenderer.SetLastVisitedPage(context, "dashboard");
+        PageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
     /**
@@ -232,7 +232,7 @@ class Page_dashboard{
         var label = currentDictionary['View by'];
         context.component.Output.Append(label);
 
-        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_LEVEL'));
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_LEVEL'));
     }
 
     /**
@@ -300,7 +300,7 @@ class Page_dashboard{
         var label = currentDictionary["Compare"];
         context.component.Output.Append(label);
 
-        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_COMPARE_PERIODS'));
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_COMPARE_PERIODS'));
     }
 
     /**
@@ -324,7 +324,7 @@ class Page_dashboard{
         var label = currentDictionary["Compare"];
         context.component.Output.Append(label);
 
-        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_PERIOD'));
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_PERIOD'));
     }
 
     /**
@@ -434,7 +434,7 @@ class Page_dashboard{
         var label = currentDictionary["View"];
         context.component.Output.Append(label);
 
-        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_VIEW_SENTIMENT'));
+        context.component.Output.Append(ParameterValues.getParameterValue(context.state, currentDictionary, 'TA_VIEW_SENTIMENT'));
     }
 
     /**

@@ -1,11 +1,11 @@
 /**
- * @class TAFilterComponents
+ * @class FilterComponents
  * @classdesc Class to process filters on Filter page and Filter Panel
  *
- * @constructs TAFilterComponents
+ * @constructs FilterComponents
  * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
  */
-class TAFilterComponents{
+class FilterComponents{
     private var _filterQuestions;
 
     function FilterComponents(context){
@@ -23,7 +23,7 @@ class TAFilterComponents{
     }
 
     /**
-     * @memberof TAFilterComponents
+     * @memberof FilterComponents
      * @instance
      * @function GetFilterQuestion
      * @description function to get Question object for the particular filter
@@ -40,7 +40,7 @@ class TAFilterComponents{
     }
 
     /**
-     * @memberof TAFilterComponents
+     * @memberof FilterComponents
      * @instance
      * @function GetFilterTitle
      * @description function to get Title for the particular filter
@@ -57,7 +57,7 @@ class TAFilterComponents{
     }
 
     /**
-     * @memberof TAFilterComponents
+     * @memberof FilterComponents
      * @instance
      * @function GetGlobalsFilterExpression
      * @description function to get filter expression for all selected filters
@@ -87,7 +87,7 @@ class TAFilterComponents{
     }
 
     /**
-     * @memberof TAFilterComponents
+     * @memberof FilterComponents
      * @instance
      * @function GetAllAnsweredFilterCodes
      * @description function to get selected filters information
@@ -111,7 +111,7 @@ class TAFilterComponents{
     }
 
     /**
-     * @memberof TAFilterComponents
+     * @memberof FilterComponents
      * @instance
      * @function GetFilterInformation
      * @description function to get filter information
@@ -128,7 +128,7 @@ class TAFilterComponents{
 
         var parameterName = 'FILTER' + (filterNumber +1);
 
-        var codes = TAParameterUtilities.GetParameterCodes({
+        var codes = ParameterUtilities.GetParameterCodes({
             context: context,
             parameterName: parameterName
         });
@@ -155,7 +155,7 @@ class TAFilterComponents{
     }
 
     /**
-     * @memberof TAFilterComponents
+     * @memberof FilterComponents
      * @instance
      * @function ClearFilters
      * @description function to set all filter parameters to null

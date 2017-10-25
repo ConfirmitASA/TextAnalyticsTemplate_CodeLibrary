@@ -1,8 +1,8 @@
 /**
- * @class TADefaultParameters
+ * @class DefaultParameters
  * @classdesc static class containing default values for all parameters that is used in the report and should be setup in the first run
  */
-class TADefaultParameters {
+class DefaultParameters {
     static var values = [
         {
             Id: "TA_LEVEL",

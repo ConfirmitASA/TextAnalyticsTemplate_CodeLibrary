@@ -23,8 +23,8 @@ class Page_filters{
     static function Render(context){
         Config.SetTALibrary(context);
 
-        TAPageRenderer.InitiateParameters(context);
-        TAPageRenderer.InitiateFilters(context)
+        PageRenderer.InitiateParameters(context);
+        PageRenderer.InitiateFilters(context)
     }
 
     /**
@@ -34,7 +34,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnSaveReturn_Hide(context){
-        return TAFilterPanel.btnSaveReturn_Hide(context);
+        return FilterPanel.btnSaveReturn_Hide(context);
     }
 
     /**
@@ -43,7 +43,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSaveReturn_Render(context){
-        TAFilterPanel.btnSaveReturn_Render(context)
+        FilterPanel.btnSaveReturn_Render(context)
     }
 
     /**
@@ -53,7 +53,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnSave_Hide(context){
-        return TAFilterPanel.btnSave_Hide(context);
+        return FilterPanel.btnSave_Hide(context);
     }
 
     /**
@@ -62,7 +62,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnSave_Render(context){
-        TAFilterPanel.btnSave_Render(context);
+        FilterPanel.btnSave_Render(context);
     }
 
     /**
@@ -72,7 +72,7 @@ class Page_filters{
      * @returns {Boolean}
      */
     static function btnClearFilters_Hide(context){
-        return TAFilterPanel.btnClearFilters_Hide(context);
+        return FilterPanel.btnClearFilters_Hide(context);
     }
 
     /**
@@ -81,7 +81,7 @@ class Page_filters{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnClearFilters_Render(context){
-        TAFilterPanel.btnClearFilters_Render(context);
+        FilterPanel.btnClearFilters_Render(context);
     }
 
     /**
@@ -95,9 +95,9 @@ class Page_filters{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var filterComponents = new TAFilterComponents(context);
+        var filterComponents = new FilterComponents(context);
 
-        return TAFilterPanel.lstFilterList_Hide({
+        return FilterPanel.lstFilterList_Hide({
             context: context,
             filterComponents: filterComponents,
             filterNumber: filterNumber
@@ -114,9 +114,9 @@ class Page_filters{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var filterComponents = new TAFilterComponents(context);
+        var filterComponents = new FilterComponents(context);
 
-        TAFilterPanel.txtFilterTitle_Render({
+        FilterPanel.txtFilterTitle_Render({
             context: context,
             filterComponents: filterComponents,
             filterNumber: filterNumber
@@ -134,9 +134,9 @@ class Page_filters{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var filterComponents = new TAFilterComponents(context);
+        var filterComponents = new FilterComponents(context);
 
-        return TAFilterPanel.lstFilterList_Hide({
+        return FilterPanel.lstFilterList_Hide({
             context: context,
             filterComponents: filterComponents,
             filterNumber: filterNumber

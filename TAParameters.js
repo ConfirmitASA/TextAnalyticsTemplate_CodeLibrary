@@ -47,7 +47,7 @@ class TAParameters{
             });
         }
 
-        TAParameterUtilities.LoadParameterValues({
+        ParameterUtilities.LoadParameterValues({
             context: context,
             parameter: parameter,
             parameterValues: parameterValues
@@ -83,7 +83,7 @@ class TAParameters{
             })
         }
 
-        TAParameterUtilities.LoadParameterValues({
+        ParameterUtilities.LoadParameterValues({
             context: context,
             parameter: parameter,
             parameterValues: parameterValues
@@ -122,7 +122,7 @@ class TAParameters{
             })
         }
 
-        TAParameterUtilities.LoadParameterValues({
+        ParameterUtilities.LoadParameterValues({
             context: context,
             parameter: parameter,
             parameterValues: parameterValues
@@ -200,7 +200,7 @@ class TAParameters{
             parameterValues.push( levelValues[i] );
         }
 
-        TAParameterUtilities.LoadParameterValues({
+        ParameterUtilities.LoadParameterValues({
             context: context,
             parameter: parameter,
             parameterValues: parameterValues
@@ -236,7 +236,7 @@ class TAParameters{
             });
         }
 
-        TAParameterUtilities.LoadParameterValues({
+        ParameterUtilities.LoadParameterValues({
             context: context,
             parameter: parameter,
             parameterValues: parameterValues

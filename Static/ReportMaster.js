@@ -1,10 +1,10 @@
 /**
- * @class TAReportMaster
+ * @class ReportMaster
  * @classdesc Static class for Report Master components
  */
-class TAReportMaster {
+class ReportMaster {
     /**
-     * @memberof TAReportMaster
+     * @memberof ReportMaster
      * @function CustomerLogo_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
@@ -14,7 +14,7 @@ class TAReportMaster {
     }
 
     /**
-     * @memberof TAReportMaster
+     * @memberof ReportMaster
      * @function CustomerLogo_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -25,7 +25,7 @@ class TAReportMaster {
     }
 
     /**
-     * @memberof TAReportMaster
+     * @memberof ReportMaster
      * @function txtRewriteStyles_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */

@@ -1,13 +1,13 @@
 /**
- * @class TAHierarchy
+ * @class Hierarchy
  * @classdesc Class to create Hierarchical structure from database table
  *
- * @constructs TAHierarchy
+ * @constructs Hierarchy
  * @param {Object} globals - object of global report variables {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
  * @param {Object} settings - object containing idColumnName, textColumnName, relationshipColumnName, textSeparator
  *
  */
-class TAHierarchy {
+class Hierarchy {
     private var _globals;
     private var _settings;
 
@@ -35,7 +35,7 @@ class TAHierarchy {
     }
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @private
      * @instance
      * @function _mergeOptions
@@ -56,7 +56,7 @@ class TAHierarchy {
     }
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @private
      * @instance
      * @function _getDataTable
@@ -71,7 +71,7 @@ class TAHierarchy {
     }
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @private
      * @instance
      * @function _generateFlatList
@@ -86,7 +86,7 @@ class TAHierarchy {
     }
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @private
      * @instance
      * @function _createFlatEntry
@@ -106,7 +106,7 @@ class TAHierarchy {
     }
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @function GetSelfName
      * @description return self name of subcategory from the full name
      * @param {String} name - full name
@@ -119,7 +119,7 @@ class TAHierarchy {
     }
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @instance
      * @function GetHierarchyArray
      * @description function to get Array of hierarchical objects
@@ -131,7 +131,7 @@ class TAHierarchy {
 
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @instance
      * @function GetLevelArray
      * @description function to get Array of hierarchical objects of particular level
@@ -142,12 +142,12 @@ class TAHierarchy {
         if (_levels.length > level) {
             return _levels[level];
         } else {
-            throw new Error(201, "TAHierarchy level index is out of range");
+            throw new Error(201, "Hierarchy level index is out of range");
         }
     }
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @instance
      * @function GetLevelsCount
      * @description function to get Count of levels in the hierarchy
@@ -158,7 +158,7 @@ class TAHierarchy {
     }
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @instance
      * @function GetFlatArray
      * @description function to get Array of rows from db table
@@ -169,7 +169,7 @@ class TAHierarchy {
     }
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @instance
      * @function GetObjectById
      * @description function to get particular row from db table
@@ -180,12 +180,12 @@ class TAHierarchy {
         if (_flatObject[id]) {
             return _flatObject[id];
         } else {
-            throw new Error(201, "TAHierarchy object id doesn't exist");
+            throw new Error(201, "Hierarchy object id doesn't exist");
         }
     }
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @instance
      * @function GetTextSeparator
      * @description function to get text separartor for categories
@@ -196,7 +196,7 @@ class TAHierarchy {
     }
 
     /**
-     * @memberof TAHierarchy
+     * @memberof Hierarchy
      * @private
      * @instance
      * @function _setupHierarchy
