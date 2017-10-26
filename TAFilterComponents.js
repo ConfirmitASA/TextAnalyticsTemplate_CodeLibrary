@@ -8,7 +8,7 @@
 class TAFilterComponents{
     private var _filterQuestions;
 
-    function FilterComponents(context){
+    function TAFilterComponents(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var questionsArray = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
         var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
