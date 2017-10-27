@@ -139,6 +139,7 @@ class TAHierarchy {
      * @returns {Object[]}
      */
     function GetLevelArray(level) {
+        _globals.log.LogDebug('level:'+level);
         if (_levels.length > level) {
             return _levels[level];
         } else {
