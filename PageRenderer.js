@@ -10,7 +10,7 @@ class PageRenderer{
      * @description Setting default values for parameters in the first run
      */
     static function InitiateParameters(context){
-        if(context.component.SubmitSource === "lstQuestions") {
+        if(context.component.SubmitSource === "lstQuestion") {
             var folderId = TALibrary.GetTAFoldersParameterValue(context);
             var folder = Config.GetTALibrary().GetFolderById(folderId);
             var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
@@ -48,7 +48,7 @@ class PageRenderer{
      * @description clearing filters when necessary
      */
     static function InitiateFilters(context){
-        if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "btnClearFilters" || context.component.SubmitSource === "lstQuestions"){
+        if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "btnClearFilters" || context.component.SubmitSource === "lstQuestion"){
             FilterComponents.ClearFilters(context);
             var dateParameters = DefaultParameters.dateParameters;
 
