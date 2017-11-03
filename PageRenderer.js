@@ -11,7 +11,7 @@ class PageRenderer{
      */
     static function InitiateParameters(context){
         if(context.component.SubmitSource === "lstQuestion") {
-            var folderId = TALibrary.GetTAFoldersParameterValue(context);
+            /*var folderId = TALibrary.GetTAFoldersParameterValue(context);
             var folder = Config.GetTALibrary().GetFolderById(folderId);
             var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
 
@@ -20,7 +20,7 @@ class PageRenderer{
                 context.state.Parameters['TA_TOP_CATEGORIES_SINGLE'] = new ParameterValueResponse('emptyv');
                 context.state.Parameters['TA_SUB_CATEGORIES_SINGLE'] = new ParameterValueResponse('emptyv');
                 context.state.Parameters['TA_ATTRIBUTES_SINGLE'] = new ParameterValueResponse('emptyv');
-            }
+            }*/
 
             ParameterUtilities.SetDefaultParameterValues(
                 {

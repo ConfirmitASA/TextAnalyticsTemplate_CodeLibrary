@@ -192,9 +192,9 @@ class Hierarchy {
      * @param {String} id
      * @returns {Boolean}
      */
-    function DoesObjectExist(id) {
+    /*function DoesObjectExist(id) {
         return !!_flatObject[id];
-    }
+    }*/
 
     /**
      * @memberof Hierarchy
