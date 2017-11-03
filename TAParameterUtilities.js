@@ -83,7 +83,7 @@ class TAParameterUtilities {
 
     /**
      * @memberof TAParameterUtilities
-     * @function SetDefaultParameterValues
+     * @function SetDefaultParameterValuesForEmpty
      * @description function to set default value to parameters only if they haven't been selected
      * @param {Object} params - {
      *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
