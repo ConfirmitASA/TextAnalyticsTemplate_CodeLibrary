@@ -246,7 +246,7 @@ class TAParameters{
     /**
      * @memberof TAParameters
      * @function ClearSubcategoriesParameters
-     * @description clear subcategories andattributes parameters when another parent selected
+     * @description clear subcategories and attributes parameters when another parent selected
      * @param {Object} params - {
      *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
      *          value: {String} - empty value for that parameter "emptyv",

@@ -187,6 +187,18 @@ class Hierarchy {
     /**
      * @memberof Hierarchy
      * @instance
+     * @function DoesObjectExist
+     * @description function to check if such object exists in the hierarchy
+     * @param {String} id
+     * @returns {Boolean}
+     */
+    function DoesObjectExist(id) {
+        return !!_flatObject[id];
+    }
+
+    /**
+     * @memberof Hierarchy
+     * @instance
      * @function GetTextSeparator
      * @description function to get text separartor for categories
      * @returns {String}

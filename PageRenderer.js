@@ -11,6 +11,17 @@ class PageRenderer{
      */
     static function InitiateParameters(context){
         if(context.component.SubmitSource === "lstQuestions") {
+            var folderId = TALibrary.GetTAFoldersParameterValue(context);
+            var folder = Config.GetTALibrary().GetFolderById(folderId);
+            var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+
+            if(!folder.GetHierarchy().DoesObjectExist(selectedCategory)) {
+                context.state.Parameters['TA_ALL_CATEGORIES'] = new ParameterValueResponse('emptyv');
+                context.state.Parameters['TA_TOP_CATEGORIES_SINGLE'] = new ParameterValueResponse('emptyv');
+                context.state.Parameters['TA_SUB_CATEGORIES_SINGLE'] = new ParameterValueResponse('emptyv');
+                context.state.Parameters['TA_ATTRIBUTES_SINGLE'] = new ParameterValueResponse('emptyv');
+            }
+
             ParameterUtilities.SetDefaultParameterValues(
                 {
                     context: context,
