@@ -10,7 +10,7 @@ class TAPageRenderer{
      * @description Setting default values for parameters in the first run
      */
     static function InitiateParameters(context){
-        if(context.component.SubmitSource === "lstQuestions") {
+        if(context.component.SubmitSource === "lstQuestion") {
             TAParameterUtilities.SetDefaultParameterValues(
                 {
                     context: context,
@@ -37,7 +37,7 @@ class TAPageRenderer{
      * @description clearing filters when necessary
      */
     static function InitiateFilters(context){
-        if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "btnClearFilters" || context.component.SubmitSource === "lstQuestions"){
+        if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "btnClearFilters" || context.component.SubmitSource === "lstQuestion"){
             TAFilterComponents.ClearFilters(context);
             var dateParameters = TADefaultParameters.dateParameters;
 
