@@ -249,5 +249,6 @@ class TACorrelationTable{
      */
         private function _setupSorting(){
         _taTableUtils.SetupRowsTableSorting(false, 4);
+        _table.Sorting.Rows.FixedFromStart = 1;
     }
 }
