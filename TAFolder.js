@@ -172,6 +172,17 @@ class TAFolder{
     /**
      * @memberof TAFolder
      * @instance
+     * @function GetViewByVariables
+     * @description function to Get array of qIds to use in the detailed analysis table
+     * @returns {String[]}
+     */
+    function GetCorrelationVariables(){
+        return _correlationVariableId;
+    }
+
+    /**
+     * @memberof TAFolder
+     * @instance
      * @function GetHitlistColumns
      * @description function to Get array of qIds to use in the end of the hitlist
      * @returns {String[]}

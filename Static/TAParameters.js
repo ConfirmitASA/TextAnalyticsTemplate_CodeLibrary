@@ -222,6 +222,17 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
+     * @function TA_CORRELATION_QUESTION_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_CORRELATION_QUESTION_Domain(context){
+        TAParametersBuilder.RenderCorrelationQuestionParameter({
+            context: context
+        });
+    }
+
+    /**
+     * @memberof TAParameters
      * @function TA_HIDE_EMPTY_ROWS_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */

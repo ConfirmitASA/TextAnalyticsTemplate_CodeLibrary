@@ -245,6 +245,40 @@ class TAParametersBuilder{
 
     /**
      * @memberof TAParametersBuilder
+     * @function RenderCorrelationQuestionParameter
+     * @description render parameter with list of questions for the detailed analysis table
+     * @param {Object} params - {
+     *          context: {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * }
+     */
+    static function RenderCorrelationQuestionParameter(params){
+        var context = params.context;
+        var parameter = context.component;
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+
+        var parameterValues = [];
+        var folder = Config.GetTALibrary().GetFolderById(folderId);
+        var variables = folder.GetCorrelationVariables();
+        var project = context.report.DataSource.GetProject(folder.GetDatasourceId());
+        var question: Question;
+
+        for( var i = 0; i < variables.length; i++){
+            question = project.GetQuestion( variables[i] );
+            parameterValues.push({
+                Code: variables[i],
+                Label: question.Title ? question.Title : variables[i]
+            });
+        }
+
+        TAParameterUtilities.LoadParameterValues({
+            context: context,
+            parameter: parameter,
+            parameterValues: parameterValues
+        });
+    }
+
+    /**
+     * @memberof TAParametersBuilder
      * @function ClearSubcategoriesParameters
      * @description clear subcategories andattributes parameters when another parent selected
      * @param {Object} params - {

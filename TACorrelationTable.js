@@ -16,6 +16,7 @@ class TACorrelationTable{
     private var _taMasks: TAMasks;
     private var _table: Table;
     private var _selectedCategory;
+    private var _selectedQuestion;
     private var _currentLanguage;
     private var _curDictionary;
 
@@ -26,6 +27,7 @@ class TACorrelationTable{
         _curDictionary = Translations.dictionary(_currentLanguage);
         _folder = params.folder;
         _table = context.component;
+        _selectedQuestion = params.question;
 
         _taMasks = new TAMasks({
             context: context,
@@ -151,7 +153,7 @@ class TACorrelationTable{
 
         var project = _globals.report.DataSource.GetProject(folder.GetDatasourceId());
 
-        var questionnaireElement: QuestionnaireElement = project.CreateQuestionnaireElement(folder.GetCorrelationVariableId());
+        var questionnaireElement: QuestionnaireElement = project.CreateQuestionnaireElement(_selectedQuestion);
 
         var headerCorrelation : HeaderCorrelation = new HeaderCorrelation(CorrelationType.Correlation, questionnaireElement);
 

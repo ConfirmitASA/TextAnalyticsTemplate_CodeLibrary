@@ -351,11 +351,12 @@ class Page_correlation{
      */
     static function tblCorrelation_Render(context){
         context.component.Caching.Enabled = false;
+        var selectedQuestion = context.state.Parameters.GetString("TA_CORRELATION_QUESTION");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-        var correlationTable = new TACorrelationTable({context: context, folder: folder, category: selectedCategory});
+        var correlationTable = new TACorrelationTable({context: context, folder: folder, category: selectedCategory, question: selectedQuestion});
 
         correlationTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
         correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
