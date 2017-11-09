@@ -28,6 +28,16 @@ class TAPageRenderer{
                 }
             )
         });
+
+        TAParameterUtilities.SetDefaultParameterValuesForEmpty({
+            context: context,
+            parameterValues: TADefaultParameters.values.concat(
+                {
+                    Id: "TA_CORRELATION_QUESTION",
+                    Value: Config.TAQuestions[0].CorrelationVariableId[0]
+                }
+            )
+        });
     }
 
     /**
