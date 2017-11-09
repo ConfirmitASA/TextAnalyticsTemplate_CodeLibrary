@@ -375,7 +375,8 @@ class Page_correlation{
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var correlationVariableId = folder.GetCorrelationVariableId();
+
+        var correlationVariableId = context.state.Parameters.GetString("TA_CORRELATION_QUESTION");
         var correlationVariableName = folder.GetCorrelationVariableShownName();
         var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
         var project  = context.report.DataSource.GetProject(dataSource);
