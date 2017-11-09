@@ -11,7 +11,7 @@ class TAPageRenderer{
      */
     static function InitiateParameters(context){
         if(context.component.SubmitSource === "lstQuestion") {
-            var selectedFolder = TALibrary.GetTAFoldersParameterValue(_globals);
+            var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
             var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
             TAParameterUtilities.SetDefaultParameterValues(
