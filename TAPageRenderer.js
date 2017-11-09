@@ -11,10 +11,18 @@ class TAPageRenderer{
      */
     static function InitiateParameters(context){
         if(context.component.SubmitSource === "lstQuestion") {
+            var selectedFolder = TALibrary.GetTAFoldersParameterValue(_globals);
+            var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
             TAParameterUtilities.SetDefaultParameterValues(
                 {
                     context: context,
-                    parameterValues: TADefaultParameters.values
+                    parameterValues: TADefaultParameters.values.concat(
+                        {
+                            Id: "TA_CORRELATION_QUESTION",
+                            Value: folder.GetCorrelationVariables()[0]
+                        }
+                    )
                 }
             )
         }
