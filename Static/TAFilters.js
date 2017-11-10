@@ -69,7 +69,7 @@ class TAFilters {
     static function UncategorizedCommentsFilter(context){
     var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
-    var fExpr = TAFiltersBuilder.GetSelectedCategoryFilterExpression({
+    var fExpr = TAFiltersBuilder.GetUncategorizedCommentsFilterExpression({
         context: context,
         folder: Config.GetTALibrary().GetFolderById(selectedFolder),
         allCategoriesParameter: "TA_ALL_CATEGORIES"
