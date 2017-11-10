@@ -43,7 +43,7 @@ class TAFiltersBuilder{
         //fExpr = (selectedCategory && selectedCategory !=="emptyv") ?('ANY(' + folder.GetQuestionId("categories") + ',"'+selectedCategory+'")'):'NOT ISNULL('+folder.GetQuestionId("overallSentiment")+')';
 
         fExpr = 'NOT ANY(' + folder.GetQuestionId("categories") + ',"uc' + folder.GetModelNumber() + '")';
-
+        context.log.LogDebug('uc fexpr: ' + fExpr);
         return fExpr;
     }
 
