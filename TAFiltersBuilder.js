@@ -26,6 +26,29 @@ class TAFiltersBuilder{
 
     /**
      * @memberof TAFiltersBuilder
+     * @function GetSelectedCategoryFilterExpression
+     * @param {Object} params - {
+            context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+            folder: {TAFolder},
+            allCategoriesParameter: {String}
+        }
+     * @returns {String}
+     */
+    static function GetUncategorizedCommentsFilterExpression(params){
+        var fExpr;
+
+        var context = params.context;
+        var folder = params.folder;
+        //var selectedCategory = context.state.Parameters.GetString(params.allCategoriesParameter)
+        //fExpr = (selectedCategory && selectedCategory !=="emptyv") ?('ANY(' + folder.GetQuestionId("categories") + ',"'+selectedCategory+'")'):'NOT ISNULL('+folder.GetQuestionId("overallSentiment")+')';
+
+        fExpr = 'NOT ANY(' + folder.GetQuestionId("categories") + ',"uc' + folder.GetModelNumber() + '")';
+
+        return fExpr;
+    }
+
+    /**
+     * @memberof TAFiltersBuilder
      * @function GetSentimentFilterExpression
      * @param {Object} params - {
      *      context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}

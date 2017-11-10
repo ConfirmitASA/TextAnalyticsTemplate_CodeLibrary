@@ -139,6 +139,17 @@ class TAFolder{
     /**
      * @memberof TAFolder
      * @instance
+     * @function GetModelNumber
+     * @description function to Get Model Number configured for the text analytics set
+     * @returns {String}
+     */
+    function GetModelNumber(){
+        return _modelNo;
+    }
+
+    /**
+     * @memberof TAFolder
+     * @instance
      * @function GetTimeVariableId
      * @description function to Get qId of time variable for the set
      * @returns {String}

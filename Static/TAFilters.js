@@ -62,6 +62,24 @@ class TAFilters {
 
     /**
      * @memberof TAFilters
+     * @function UncategorizedCommentsFilter
+     * @description function to filter out uncategorized comments
+     * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function UncategorizedCommentsFilter(context){
+    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+
+    var fExpr = TAFiltersBuilder.GetSelectedCategoryFilterExpression({
+        context: context,
+        folder: Config.GetTALibrary().GetFolderById(selectedFolder),
+        allCategoriesParameter: "TA_ALL_CATEGORIES"
+    });
+
+    context.component.Expression = fExpr;
+    }
+
+    /**
+     * @memberof TAFilters
      * @function FilterPageFilter
      * @description function to filtrate selected values on the filterpage
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
