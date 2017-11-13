@@ -238,8 +238,16 @@ class TACorrelationTable{
      * @function _setupSupressing
      */
     private function _setupSupressing(){
-        _table.SuppressData.BaseLessThan = 10;
+        /*_table.SuppressData.BaseLessThan = 10;
         _table.SuppressData.BaseDisplay = BaseDisplayOption.Hide;
+        _table.SuppressData.SuppressData = true;*/
+
+        var suppressingBase = _folder.GetCorrelationSuppressingBase();
+        _table.SuppressData.CellLimit = _table.SuppressData.BaseLessThan = suppressingBase  || 0;
+        _table.SuppressData.CellDisplay = _table.SuppressData.BaseDisplay = BaseDisplayOption.Hide;
+        _table.SuppressData.Statistic = StatisticType.Count;
+        _table.SuppressData.CellStatistic = CellStatisticType.Count;
+        _table.SuppressData.DistributionMeasure = DistributionMeasureType.InnermostRow;
         _table.SuppressData.SuppressData = true;
     }
 

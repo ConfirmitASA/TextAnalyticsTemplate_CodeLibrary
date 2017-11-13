@@ -23,6 +23,7 @@ class TAFolder{
     private var _hitlistColumns;
     private var _filterQuestions;
     private var _correlationVariableId;
+    private var _correlationSuppressingBase;
     private var _correlationVariableShownName;
 
     private var _hierarchy: TAHierarchy;
@@ -46,6 +47,8 @@ class TAFolder{
         _filterQuestions = config.TAQuestions[questionIndex].FilterQuestions;
 
         _correlationVariableId = config.TAQuestions[questionIndex].CorrelationVariableId;
+
+        _correlationSuppressingBase = config.TAQuestions[questionIndex].CorrelationSuppressingBase;
 
         _correlationVariableShownName = config.TAQuestions[questionIndex].CorrelationVariableShownName;
 
@@ -183,12 +186,23 @@ class TAFolder{
     /**
      * @memberof TAFolder
      * @instance
-     * @function GetViewByVariables
-     * @description function to Get array of qIds to use in the detailed analysis table
+     * @function GetCorrelationVariables
+     * @description function to Get array of qIds to use in the correlation table
      * @returns {String[]}
      */
     function GetCorrelationVariables(){
         return _correlationVariableId;
+    }
+
+    /**
+     * @memberof TAFolder
+     * @instance
+     * @function GetCorrelationSuppressingBase
+     * @description function to Get the suppressing base for correlation table
+     * @returns {String[]}
+     */
+    function GetCorrelationSuppressingBase(){
+        return _correlationSuppressingBase;
     }
 
     /**
