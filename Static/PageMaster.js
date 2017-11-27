@@ -62,7 +62,7 @@ class PageMaster{
         var filterSummary ;
         var summarySegments = [];
 
-        Config.SetTALibrary();
+        Config.SetTALibrary(context);
 
         var filterComponents = new FilterComponents(context);
 
