@@ -389,7 +389,15 @@ class Page_wordcloud{
             table: table
         });
 
-        var blockHeader = taTableUtils.GetTAQuestionExpression("overallsentiment",false,"");
+        var blockHeader;
+        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+
+        if( selectedCategory && selectedCategory !== "emptyv" ){
+            blockHeader = taTableUtils.GetTAQuestionExpression("categorysentiment",false,"");
+        } else {
+            blockHeader = taTableUtils.GetTAQuestionExpression("overallsentiment",false,"");
+        }
+
         taTableUtils.CreateTableFromExpression('', blockHeader);
 
         var project : Project = context.report.DataSource.GetProject(folder.GetDatasourceId());
