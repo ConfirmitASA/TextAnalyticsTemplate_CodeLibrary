@@ -89,4 +89,21 @@ class TAFilters {
         fExpr = new TAFilterComponents(context).GetGlobalsFilterExpression(context);
         context.component.Expression = fExpr
     }
+
+    /**
+     * @memberof TAFilters
+     * @function WordCloudFilter
+     * @description function to filtrate by word from word cloud
+     * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function WordCloudFilter(context){
+        var fExpr = "";
+
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var TAQuestion = folder.GetQuestionId();
+
+        var selectedWord = context.state.Parameters.GetString("TA_WORD_CLOUD");
+        context.component.Expression = (selectedWord && selectedWord !=="emptyv") ? 'IN(word_' + TAQuestion + ', PValStr("TA_WORD_CLOUD"))' : 'NOT ISNULL(word_' + TAQuestion + ') AND NOT ISNULL('+folder.GetQuestionId("overallSentiment")+')';
+    }
 }
