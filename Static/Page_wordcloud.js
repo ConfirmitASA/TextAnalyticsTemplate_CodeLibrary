@@ -1,11 +1,11 @@
 /**
- * @class Page_correlation
+ * @class Page_wordcloud
  * @classdesc Static class for Reportal Page Impact Analysis components
  */
-class Page_correlation{
+class Page_wordcloud{
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function Hide
      * @description function to hide the page
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -16,7 +16,7 @@ class Page_correlation{
     }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function Render
      * @description function to render the page
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -25,7 +25,7 @@ class Page_correlation{
         Config.SetTALibrary(context);
         TAPageRenderer.InitiateParameters(context);
         TAPageRenderer.InitiateFilters(context);
-        TAPageRenderer.SetLastVisitedPage(context, "correlation");
+        TAPageRenderer.SetLastVisitedPage(context, "word_cloud");
         TAPageRenderer.ClearCategoriesParameters(context);
 
         TAPageRenderer.ProcessSelectedCategoryParameter(context);
@@ -33,7 +33,7 @@ class Page_correlation{
 
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function htlComments_Hide
      * @description function to hide the hitlist
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -44,7 +44,7 @@ class Page_correlation{
     }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function htlComments_Render
      * @description function to render the hitlist
      * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -82,7 +82,7 @@ class Page_correlation{
     }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function txtCommentsScript_Hide
      * @description function to hide the text
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -93,7 +93,7 @@ class Page_correlation{
     }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function txtCommentsScript_Render
      * @description function to render the script which processes hitlist
      * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -185,7 +185,7 @@ class Page_correlation{
 
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function lstCategory_Hide
      * @description function to hide the Category selector
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -196,7 +196,7 @@ class Page_correlation{
 }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function lstSubCategory_Hide
      * @description function to hide the Sub Category selector
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -210,7 +210,7 @@ class Page_correlation{
 }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function lstAttribute_Hide
      * @description function to hide the Attribute selector
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -225,7 +225,7 @@ class Page_correlation{
 }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function txtCategory_Hide
      * @description function to hide the Category selector label
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -236,7 +236,7 @@ class Page_correlation{
     }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function txtCategory_Render
      * @description function to render the Category selector label
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -251,7 +251,7 @@ class Page_correlation{
 
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function txtSubCategory_Hide
      * @description function to hide the the sub category list label
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -265,7 +265,7 @@ class Page_correlation{
     }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function txtSubCategory_Render
      * @description function to render the sub Category selector label
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -279,7 +279,7 @@ class Page_correlation{
     }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function txtAttribute_Hide
      * @description function to hide the the attributes list label
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -294,7 +294,7 @@ class Page_correlation{
     }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function txtAttribute_Render
      * @description function to render the attributes selector label
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -308,7 +308,7 @@ class Page_correlation{
     }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function txtSentiment_Hide
      * @description function to hide the the sentiment list label
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -319,7 +319,7 @@ class Page_correlation{
     }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function txtAttribute_Render
      * @description function to render the sentiment selector label
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -332,178 +332,122 @@ class Page_correlation{
         context.component.Output.Append(label);
     }
 
+
     /**
-     * @memberof Page_correlation
-     * @function txtCorrelationQuestion_Hide
+     * @memberof Page_wordcloud
+     * @function txtWordCloud_Hide
      * @description function to hide the the correlation variable selector label
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
-    static function txtCorrelationQuestion_Hide(context){
+    static function txtWordCloud_Hide(context){
         return false
-}
+    }
 
     /**
-     * @memberof Page_correlation
-     * @function txtCorrelationQuestion_Render
+     * @memberof Page_wordcloud
+     * @function txtWordCloud_Render
      * @description function to render the correlation variable selector label
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function txtCorrelationQuestion_Render(context){
+    static function txtWordCloud_Render(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
 
-        var label = currentDictionary["Correlation variable"];
+        var label = currentDictionary["Selected word"];
         context.component.Output.Append(label);
     }
 
     /**
-     * @memberof Page_correlation
-     * @function tblCorrelation_Hide
+     * @memberof Page_wordcloud
+     * @function tblWordCloud_Hide
      * @description function to render the sentiment selector label
      * @param {Object} context - {pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
-    static function tblCorrelation_Hide(context){
+    static function tblWordCloud_Hide(context){
         return false
     }
 
     /**
-     * @memberof Page_correlation
-     * @function tblCorrelation_Render
+     * @memberof Page_wordcloud
+     * @function tblWordCloud_Render
      * @description function to render the sentiment selector label
      * @param {Object} context - {component: table, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function tblCorrelation_Render(context){
-        context.component.Caching.Enabled = false;
-        var selectedQuestion = context.state.Parameters.GetString("TA_CORRELATION_QUESTION");
+    static function tblWordCloud_Render(context){
+        var table = context.component;
+        table.Caching.Enabled = false;
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-        var correlationTable = new TACorrelationTable({context: context, folder: folder, category: selectedCategory, question: selectedQuestion});
+        var TAQuestion = folder.GetQuestionId();
 
-        correlationTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
-        correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
-        correlationTable.GetTATableUtils().SetupHideEmptyRows(true);
+        var taTableUtils = new TATableUtils({
+            context: context,
+            folder: folder,
+            table: table
+        });
+
+        var blockHeader = taTableUtils.GetTAQuestionExpression("overallsentiment",false,"");
+        taTableUtils.CreateTableFromExpression('', blockHeader);
+
+        var project : Project = context.report.DataSource.GetProject(folder.GetDatasourceId());
+
+        var question_word = project.CreateQuestionnaireElement('word', TAQuestion);
+        var questionHeader_word : HeaderQuestion = new HeaderQuestion(question_word);
+        questionHeader_word.Sorting.Enabled = true;
+        questionHeader_word.Sorting.Direction = TableSortDirection.Descending;
+        questionHeader_word.Sorting.SortByHeaderId = 'frequency';
+        questionHeader_word.Sorting.Precode = TAQuestion;
+        questionHeader_word.Sorting.TopN = 150;
+        questionHeader_word.ShowTotals = false;
+
+        var question_frequency = project.CreateQuestionnaireElement('frequency', TAQuestion);
+        var questionHeader_frequency : HeaderQuestion = new HeaderQuestion(question_frequency);
+        questionHeader_frequency.IsCollapsed = true;
+        questionHeader_frequency.DefaultStatistic = StatisticsType.Sum;
+        questionHeader_frequency.Preaggregation = StatisticsType.Sum;
+
+
+        table.RowHeaders.Add(questionHeader_word);
+        table.ColumnHeaders.Insert(0, questionHeader_frequency);
+        table.Use1000Separator = false;
     }
 
     /**
-     * @memberof Page_correlation
+     * @memberof Page_wordcloud
      * @function txtCorrelationScript_Render
      * @description function to render the sentiment selector label
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function txtCorrelationScript_Render(context){
-        var chartColors = Config.Colors.ChartPalette;
-        var areasColors = Config.Colors.AreasPalette;
+    static function txtWordCloudScript_Render(context){
+        var wc_limiters = [-5, Config.SentimentRange.Neutral[0] - 7, Config.SentimentRange.Positive[0] - 6, 5];
 
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var wc_colors = [
+            Config.Colors.NegNeuPosPalette.Negative,
+            Config.Colors.NegNeuPosPalette.Neutral,
+            Config.Colors.NegNeuPosPalette.Positive
+        ];
 
-        var correlationVariableId = context.state.Parameters.GetString("TA_CORRELATION_QUESTION");
-        var correlationVariableName = folder.GetCorrelationVariableShownName();
-        var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
-        var project  = context.report.DataSource.GetProject(dataSource);
-        var correlationQuestion = project.GetQuestion(correlationVariableId);
-
-        var palette = {
-            chartColors: chartColors,
-            areasColors: areasColors
-        };
-
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var chartInit = "<script>"+
-            "new Reportal.CorrelationView({" +
-            "   chartContainer: 'correlation-chart'," +
-            "   tableContainer: 'correlation-tables-view'," +
-            "   buttonsContainer: 'chart-tables-switcher'," +
-            "   table: document.querySelector('.correlation-table')," +
-            "   palette: palette," +
-            "   questionName: '" + (correlationVariableName || correlationQuestion.Title || correlationVariableId) + "'," +
-            "   translations: translations" +
-            "});"+
+        var wcInit = "<script>" +
+            "var ta_wc = new Reportal.WordCloud({" +
+            "                elementFromId: \"confirmit_agg_table\"," +
+            "                elementToId: \"cloud\"," +
+            "                countId: 1," +
+            "				sentimentId: 2," +
+            "                clickFunc: function(e) {" +
+            "                    var select = document.getElementById(\"select-word\").querySelector('select'); select.value = \"r:s:\" + e.target.innerHTML.toUpperCase();select.onchange();" +
+            "                }," +
+            "                colorConfig: {" +
+            "                    limiters: wc_limiters," +
+            "                    colors: wc_colors" +
+            "                }" +
+            "            });" +
             "</script>";
 
-        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
-        context.component.Output.Append(JSON.print(palette,"palette"));
-        context.component.Output.Append(chartInit);
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtPriorityIssues_Render
-     * @description function to render the sentiment selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtPriorityIssues_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Priority Issues"];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtStrength_Render
-     * @description function to render the sentiment selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtStrength_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Strength"];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtMonitor_Render
-     * @description function to render the sentiment selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtMonitor_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Monitor and Improve"];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtMaintain_Render
-     * @description function to render the sentiment selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtMaintain_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Maintain"];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtHelp_Render
-     * @description function to render helping text
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-
-    static function txtHelp_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-        var text = '<div id="quadrant-table">'+
-                        currentDictionary["quadrant-table-text"]+
-                    '</div>'+
-                    '<div id="quadrant-chart">'+
-                        currentDictionary["quadrant-chart-text"]+
-                    '</div>'
-        context.component.Output.Append(text);
+        context.component.Output.Append(JSON.print(wc_limiters,"wc_limiters"));
+        context.component.Output.Append(JSON.print(wc_colors,"wc_colors"));
+        context.component.Output.Append(wcInit);
     }
 }

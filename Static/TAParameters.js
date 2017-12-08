@@ -188,6 +188,33 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
+     * @function TA_WORD_CLOUD_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_WORD_CLOUD_Domain(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        // Get option ids and labels from hidden table
+        var tableName = "tblWordCloud";
+        var value_codes = context.report.TableUtils.GetRowHeaderCategoryIds(tableName);
+        var value_labels = context.report.TableUtils.GetRowHeaderCategoryTitles(tableName);
+        var parameterValues = [{Code: "emptyv", Label: currentDictionary["All words"]}];
+
+        for(var i = 0; i < value_codes.length; i++) {
+            parameterValues.push({Code: value_codes[i], Label: value_labels[i]})
+        }
+
+        TAParameterUtilities.LoadParameterValues({
+            context: context,
+            parameterValues: parameterValues
+        });
+    }
+
+
+
+    /**
+     * @memberof TAParameters
      * @function TA_DISTRIBUTION_TOGGLE_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
