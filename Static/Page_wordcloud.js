@@ -393,7 +393,7 @@ class Page_wordcloud{
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
 
         if( selectedCategory && selectedCategory !== "emptyv" ){
-            blockHeader = taTableUtils.GetTAQuestionExpression("categorysentiment",false,"");
+            blockHeader = taTableUtils.GetTAQuestionExpression("categorysentiment",[selectedCategory],"");
         } else {
             blockHeader = taTableUtils.GetTAQuestionExpression("overallsentiment",false,"");
         }
