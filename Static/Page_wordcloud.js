@@ -453,6 +453,7 @@ class Page_wordcloud{
             "                    colors: wc_colors" +
             "                }" +
             "            });" +
+            "document.getElementById('restartCloud').onclick = function() { ta_wc.restart(); }" +
             "</script>";
 
         context.component.Output.Append(JSON.print(wc_limiters,"wc_limiters"));
