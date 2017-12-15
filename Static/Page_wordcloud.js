@@ -442,8 +442,9 @@ class Page_wordcloud{
             "var ta_wc = new Reportal.WordCloud({" +
             "                elementFromId: \"confirmit_agg_table\"," +
             "                elementToId: \"cloud\"," +
+            "                exceptionsFromId: \"wc_exceptions\"," +
             "                countId: 1," +
-            "				sentimentId: 2," +
+            "				 sentimentId: 2," +
             "                clickFunc: function(e) {" +
             "                    var select = document.getElementById(\"select-word\").querySelector('select'); select.value = \"r:s:\" + e.target.innerHTML.toUpperCase();select.onchange();" +
             "                }," +
