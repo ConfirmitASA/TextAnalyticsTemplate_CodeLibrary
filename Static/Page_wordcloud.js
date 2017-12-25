@@ -430,7 +430,7 @@ class Page_wordcloud{
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtWordCloudScript_Render(context){
-        var wc_limiters = [-5, Config.SentimentRange.Neutral[0] - 7, Config.SentimentRange.Positive[0] - 6, 5];
+        var wc_limiters = [-5, Config.SentimentRange.Neutral[0] - 6 - 0.0001, Config.SentimentRange.Positive[0] - 1 - 6 + 0.0001, 5];
 
         var wc_colors = [
             Config.Colors.NegNeuPosPalette.Negative,
