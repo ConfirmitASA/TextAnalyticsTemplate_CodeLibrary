@@ -404,11 +404,7 @@ class Page_wordcloud{
 
         var question_word = project.CreateQuestionnaireElement('word', TAQuestion);
         var questionHeader_word : HeaderQuestion = new HeaderQuestion(question_word);
-        questionHeader_word.Sorting.Enabled = true;
-        questionHeader_word.Sorting.Direction = TableSortDirection.Descending;
-        questionHeader_word.Sorting.SortByHeaderId = 'frequency';
-        questionHeader_word.Sorting.Precode = TAQuestion;
-        questionHeader_word.Sorting.TopN = 150;
+        questionHeader_word.Sorting.Enabled = false;
         questionHeader_word.ShowTotals = false;
 
         var question_frequency = project.CreateQuestionnaireElement('frequency', TAQuestion);
@@ -421,7 +417,9 @@ class Page_wordcloud{
         table.RowHeaders.Add(questionHeader_word);
         table.ColumnHeaders.Insert(0, questionHeader_frequency);
         table.Use1000Separator = false;
-    }
+
+        taTableUtils.SetupRowsTableSorting(false, 1, 150);
+}
 
     /**
      * @memberof Page_wordcloud
