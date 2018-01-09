@@ -104,6 +104,6 @@ class TAFilters {
         var TAQuestion = folder.GetQuestionId();
 
         var selectedWord = context.state.Parameters.GetString("TA_WORD_CLOUD");
-        context.component.Expression = (selectedWord && selectedWord !=="emptyv") ? 'IN(word_' + TAQuestion + ', PValStr("TA_WORD_CLOUD"))' : 'NOT ISNULL(word_' + TAQuestion + ') AND NOT ISNULL('+folder.GetQuestionId("overallSentiment")+')';
+        context.component.Expression = (selectedWord && selectedWord !=="emptyv") ? 'IN(word_' + TAQuestion + ', PValStr("TA_WORD_CLOUD"))' : '';
     }
 }
