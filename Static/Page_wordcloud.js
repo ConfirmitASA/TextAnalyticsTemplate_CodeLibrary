@@ -451,7 +451,6 @@ class Page_wordcloud{
             "                    colors: wc_colors" +
             "                }" +
             "            });" +
-            // "document.getElementById('restartCloud').onclick = function() { ta_wc.restart(); }" +
             "document.getElementById('wc_exceptions').querySelector('select').onchange = function() { ta_wc.restart(); }" +
             "</script>";
 
