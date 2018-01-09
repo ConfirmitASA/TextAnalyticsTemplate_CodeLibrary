@@ -423,11 +423,12 @@ class Page_wordcloud{
 
     /**
      * @memberof Page_wordcloud
-     * @function txtCorrelationScript_Render
-     * @description function to render the sentiment selector label
+     * @function txtWordCloudScript_Render
+     * @description function to render word cloud script
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtWordCloudScript_Render(context){
+        // 0.0001 - hack to make wc work
         var wc_limiters = [-5, Config.SentimentRange.Neutral[0] - 6 - 0.0001, Config.SentimentRange.Positive[0] - 1 - 6 + 0.0001, 5];
 
         var wc_colors = [
@@ -456,6 +457,23 @@ class Page_wordcloud{
 
         context.component.Output.Append(JSON.print(wc_limiters,"wc_limiters"));
         context.component.Output.Append(JSON.print(wc_colors,"wc_colors"));
+        context.component.Output.Append(wcInit);
+    }
+
+    /**
+     * @memberof Page_wordcloud
+     * @function txtSelect2Styles_Render
+     * @description function to render the select2 style for Excluded words
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtSelect2Styles_Render(context){
+        var wcInit = "<script src=\"https://code.jquery.com/jquery-3.2.1.min.js\" integrity=\"sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=\" crossorigin=\"anonymous\"></script>" +
+            "<link href=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css\" rel=\"stylesheet\">" +
+            "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>  " +
+            "<script>" +
+            "$(\"#wc_exceptions select\").select2();" +
+            "</script>";
+
         context.component.Output.Append(wcInit);
     }
 }
