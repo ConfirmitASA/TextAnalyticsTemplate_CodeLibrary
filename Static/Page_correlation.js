@@ -372,6 +372,13 @@ class Page_correlation{
         var chartColors = Config.Colors.ChartPalette;
         var areasColors = Config.Colors.AreasPalette;
 
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var correlationVariableId = folder.GetCorrelationVariableId();
+        var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
+        var project  = context.report.DataSource.GetProject(dataSource);
+        var correlationQuestion = project.GetQuestion(correlationVariableId);
+
         var palette = {
             chartColors: chartColors,
             areasColors: areasColors
@@ -387,6 +394,7 @@ class Page_correlation{
             "   buttonsContainer: 'chart-tables-switcher'," +
             "   table: document.querySelector('.correlation-table')," +
             "   palette: palette," +
+            "   questionName: '" + (correlationQuestion.Title || correlationVariableId) + "'," +
             "   translations: translations" +
             "});"+
             "</script>";
