@@ -23,7 +23,7 @@ class TAPageMaster{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function FiltersButtonHtml_Render(context){
-        var htmlText = '<button type="button" class="filter-button" onclick="javascript:document.querySelector(\'.goToFiltersPage input\').click()" title="TAFilters">'+
+        var htmlText = '<button type="button" class="filter-button" onclick="javascript:document.querySelector(\'.goToFiltersPage input\').click()" title="Filters">'+
                 '<svg width="16" height="12" viewBox="0 0 16 12">'+
                     '<path xmlns="http://www.w3.org/2000/svg" d="M 0 0 l 6 6 v 6 l 4 -1 V 6 l 6 -6 Z"></path>'+
                 '</svg>'+
@@ -242,7 +242,7 @@ class TAPageMaster{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtHierarchyLabel_Render(context) {
-        var label = Translations.dictionary(context.report.CurrentLanguage)["TAHierarchy"];
+        var label = Translations.dictionary(context.report.CurrentLanguage)["Hierarchy"];
         context.component.Output.Append(label);
     }
 
