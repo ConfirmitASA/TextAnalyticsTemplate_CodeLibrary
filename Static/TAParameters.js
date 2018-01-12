@@ -196,7 +196,7 @@ class TAParameters{
         var currentDictionary = Translations.dictionary(currentLanguage);
 
         // Get option ids and labels from hidden table
-        var tableName = "tblWordCloud";
+        var tableName = "tblWordCloud_parameter";
         var value_codes = context.report.TableUtils.GetRowHeaderCategoryIds(tableName);
         var value_labels = context.report.TableUtils.GetRowHeaderCategoryTitles(tableName);
         var parameterValues = [{Code: "emptyv", Label: currentDictionary["All words"]}];
