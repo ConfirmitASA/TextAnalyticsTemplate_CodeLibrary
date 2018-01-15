@@ -151,7 +151,7 @@ class TAParameterValues {
      * @returns {String}
      */
     static function getCorrelationQuestionParameterValue(context, currentDictionary) {
-        var parameterValueLabel = currentDictionary["-select-"];
+        var parameterValueLabel = '';
 
         var folderId = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(folderId);
@@ -166,7 +166,7 @@ class TAParameterValues {
             }
         }
 
-        return _getParameterSpan(' ' + parameterValueLabel);
+        return _getParameterSpan(': ' + parameterValueLabel);
     }
 
     /**
