@@ -247,6 +247,7 @@ class Page_wordcloud{
 
         var label = currentDictionary["Category"];
         context.component.Output.Append(label);
+        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
     }
 
 
@@ -276,6 +277,7 @@ class Page_wordcloud{
 
         var label = currentDictionary["Sub category"];
         context.component.Output.Append(label);
+        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_SUB_CATEGORIES_SINGLE'));
     }
 
     /**
@@ -305,6 +307,7 @@ class Page_wordcloud{
 
         var label = currentDictionary["Attribute"];
         context.component.Output.Append(label);
+        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_ATTRIBUTES_SINGLE'));
     }
 
     /**
@@ -320,7 +323,7 @@ class Page_wordcloud{
 
     /**
      * @memberof Page_wordcloud
-     * @function txtAttribute_Render
+     * @function txtSentiment_Render
      * @description function to render the sentiment selector label
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -330,6 +333,7 @@ class Page_wordcloud{
 
         var label = currentDictionary["Sentiment"];
         context.component.Output.Append(label);
+        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_COMMENTS_SENTIMENT'));
     }
 
 
@@ -356,6 +360,7 @@ class Page_wordcloud{
 
         var label = currentDictionary["Selected word"];
         context.component.Output.Append(label);
+        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_WORD_CLOUD'));
     }
 
     /**

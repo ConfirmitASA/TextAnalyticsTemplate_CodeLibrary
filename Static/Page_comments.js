@@ -334,7 +334,6 @@ class Page_comments{
 
         var label = currentDictionary["Sentiment"];
         context.component.Output.Append(label);
-
         context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_COMMENTS_SENTIMENT'));
     }
 }
