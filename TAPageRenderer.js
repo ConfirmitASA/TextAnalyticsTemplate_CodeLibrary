@@ -34,12 +34,7 @@ class TAPageRenderer{
                     Id: "TA_FOLDERS",
                     Value: (Config.TAQuestions[0].DatasourceId + Config.TAQuestions[0].TAQuestionName + Config.TAQuestions[0].TAModelNo)
                 }
-            )
-        });
-
-        TAParameterUtilities.SetDefaultParameterValuesForEmpty({
-            context: context,
-            parameterValues: TADefaultParameters.values.concat(
+            ).concat(
                 {
                     Id: "TA_CORRELATION_QUESTION",
                     Value: Config.TAQuestions[0].CorrelationVariableId[0]
