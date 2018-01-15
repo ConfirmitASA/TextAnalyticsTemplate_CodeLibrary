@@ -85,10 +85,10 @@ class TAParameterValues {
      *
      * @returns {String}
      */
-    static function getParameterValue(state, currentDictionary, parameterID) {
+    static function getParameterValue(state, currentDictionary, parameterID, log) {
         var parameterValue : ParameterValueResponse = state.Parameters[parameterID];
         var labels = TAParameterValues._getParameterValues(currentDictionary, parameterID);
-        var parameterValueLabel = TAParameterValues._findValue(labels, function(item) { return item.Code == parameterValue.StringValue }).Label;
+        var parameterValueLabel = TAParameterValues._findValue(labels, function(item) { return item.Code == parameterValue.StringKeyValue }).Label;
         return _getParameterSpan(': ' + parameterValueLabel);
     }
 
@@ -103,7 +103,7 @@ class TAParameterValues {
      */
     static function getCategoryParameterValue(context, currentDictionary, parameterID) {
         var folderId = TALibrary.GetTAFoldersParameterValue(context);
-        var parameterValueID = context.state.Parameters[parameterID].StringValue;
+        var parameterValueID = context.state.Parameters[parameterID].StringKeyValue;
 
         var parameterValueLabel;
         try {
@@ -117,7 +117,7 @@ class TAParameterValues {
 
     /**
      * @memberof TAParameterValues
-     * @function  getCategoryParameterValue
+     * @function  getViewByParameterValue
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @param {Object} currentDictionary
      *
@@ -133,7 +133,34 @@ class TAParameterValues {
 
         var parameterValue : ParameterValueResponse = context.state.Parameters['TA_VIEW_BY'];
         for( var i = 0; i < variables.length; i++){
-            if(variables[i] === parameterValue.StringValue) {
+            if(variables[i] === parameterValue.StringKeyValue) {
+                var question: Question = project.GetQuestion( variables[i] );
+                parameterValueLabel = question.Title ? question.Title : variables[i]
+            }
+        }
+
+        return _getParameterSpan(' ' + parameterValueLabel);
+    }
+
+    /**
+     * @memberof TAParameterValues
+     * @function  getCorrelationQuestionParameterValue
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {Object} currentDictionary
+     *
+     * @returns {String}
+     */
+    static function getCorrelationQuestionParameterValue(context, currentDictionary) {
+        var parameterValueLabel = currentDictionary["-select-"];
+
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(folderId);
+        var variables = folder.GetCorrelationVariables();
+        var project = context.report.DataSource.GetProject(folder.GetDatasourceId());
+
+        var parameterValue : ParameterValueResponse = context.state.Parameters['TA_CORRELATION_QUESTION'];
+        for( var i = 0; i < variables.length; i++){
+            if(variables[i] === parameterValue.StringKeyValue) {
                 var question: Question = project.GetQuestion( variables[i] );
                 parameterValueLabel = question.Title ? question.Title : variables[i]
             }
