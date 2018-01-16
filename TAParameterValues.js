@@ -173,6 +173,20 @@ class TAParameterValues {
 
     /**
      * @memberof TAParameterValues
+     * @function  getWordCloudParameterValue
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {Object} currentDictionary
+     *
+     * @returns {String}
+     */
+    static function getWordCloudParameterValue(context, currentDictionary) {
+        var parameterValueId = context.state.Parameters['TA_WORD_CLOUD'].StringKeyValue || context.state.Parameters.GetString('TA_WORD_CLOUD');
+        var parameterValueLabel = (parameterValueId === 'emptyv') ? currentDictionary["All words"] : parameterValueId;
+        return _getParameterSpan(': ' + parameterValueLabel);
+    }
+
+    /**
+     * @memberof TAParameterValues
      * @private
      * @function  _getParameterSpan
      * @param {String} parameterValueLabel
