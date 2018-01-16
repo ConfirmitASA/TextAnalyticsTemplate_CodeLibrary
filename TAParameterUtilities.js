@@ -76,7 +76,7 @@ class TAParameterUtilities {
             try {
                 context.state.Parameters[parameterValues[i].Id] = new ParameterValueResponse(parameterValues[i].Value);
             } catch (e) {
-                context.log.LogDebug(e);
+                context.log.LogDebug(e + 'HERE');
             }
         }
     }
