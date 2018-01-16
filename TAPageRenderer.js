@@ -13,6 +13,7 @@ class TAPageRenderer{
         if(context.component.SubmitSource === "lstQuestion") {
             var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
             var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+            context.state.Parameters["TA_EXCLUDE_WORDS"] = null;
 
             TAParameterUtilities.SetDefaultParameterValues(
                 {

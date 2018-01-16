@@ -51,10 +51,6 @@ class TADefaultParameters {
         {
             Id: "TA_WORD_CLOUD",
             Value: "emptyv"
-        },
-        {
-            Id: "TA_EXCLUDE_WORDS",
-            Value: ""
         }
     ];
 
