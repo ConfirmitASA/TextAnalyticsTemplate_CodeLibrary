@@ -54,7 +54,7 @@ class TADefaultParameters {
         },
         {
             Id: "TA_EXCLUDE_WORDS",
-            Value: null
+            Value: ""
         }
     ];
 
