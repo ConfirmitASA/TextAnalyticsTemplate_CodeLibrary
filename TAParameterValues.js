@@ -159,7 +159,9 @@ class TAParameterValues {
         var project = context.report.DataSource.GetProject(folder.GetDatasourceId());
 
         var parameterValue : ParameterValueResponse = context.state.Parameters['TA_CORRELATION_QUESTION'];
+        context.log.LogDebug('parameterValue: ' + parameterValue.StringKeyValue);
         for( var i = 0; i < variables.length; i++){
+            context.log.LogDebug('var[' + i + ']: ' + variables[i]);
             if(variables[i] === parameterValue.StringKeyValue) {
                 var question: Question = project.GetQuestion( variables[i] );
                 parameterValueLabel = question.Title ? question.Title : variables[i]
