@@ -363,6 +363,33 @@ class Page_wordcloud{
         context.component.Output.Append(TAParameterValues.getWordCloudParameterValue(context, currentDictionary));
     }
 
+
+    /**
+     * @memberof Page_wordcloud
+     * @function txtExcludedWords_Hide
+     * @description function to hide the the correlation variable selector label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtExcludedWords_Hide(context){
+        return false
+    }
+
+    /**
+     * @memberof Page_wordcloud
+     * @function txtExcludedWords_Render
+     * @description function to render the correlation variable selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtExcludedWords_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var label = currentDictionary["Exclude words"];
+        context.component.Output.Append(label);
+        context.component.Output.Append(TAParameterValues.getExcludeWordsParameterValue(context, currentDictionary));
+    }
+
     /**
      * @memberof Page_wordcloud
      * @function tblWordCloud_Hide

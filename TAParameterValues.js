@@ -187,6 +187,31 @@ class TAParameterValues {
 
     /**
      * @memberof TAParameterValues
+     * @function  getExcludeWordsParameterValue
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {Object} currentDictionary
+     *
+     * @returns {String}
+     */
+    static function getExcludeWordsParameterValue(context, currentDictionary) {
+        var multiResponse : ParameterValueMultiSelect = context.state.Parameters["TA_EXCLUDE_WORDS"];
+        var response : ParameterValueResponse;
+
+        var parameterValueIds = [];
+
+        if(!context.state.Parameters.IsNull("TA_EXCLUDE_WORDS")) {
+            for(var i = 0; i < multiResponse.Count; i++) {
+                response = multiResponse[i];
+                parameterValueIds.push(response.StringKeyValue);
+            }
+        }
+
+        var parameterValueLabel = (parameterValueIds.length === 0) ? currentDictionary["-select-"] : parameterValueIds.join(', ');
+        return _getParameterSpan(': ' + parameterValueLabel);
+    }
+
+    /**
+     * @memberof TAParameterValues
      * @private
      * @function  _getParameterSpan
      * @param {String} parameterValueLabel
