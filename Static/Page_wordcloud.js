@@ -360,7 +360,7 @@ class Page_wordcloud{
 
         var label = currentDictionary["Selected word"];
         context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getWordCloudParameterValue(context.state, currentDictionary));
+        context.component.Output.Append(TAParameterValues.getWordCloudParameterValue(context, currentDictionary));
     }
 
     /**
