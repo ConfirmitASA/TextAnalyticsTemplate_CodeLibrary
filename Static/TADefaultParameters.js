@@ -47,9 +47,14 @@ class TADefaultParameters {
         {
             Id: "TA_PERIOD",
             Value: "m"
-        },{
+        },
+        {
             Id: "TA_WORD_CLOUD",
             Value: "emptyv"
+        },
+        {
+            Id: "TA_EXCLUDE_WORDS",
+            Value: null
         }
     ];
 

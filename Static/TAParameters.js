@@ -211,6 +211,28 @@ class TAParameters{
         });
     }
 
+    /**
+     * @memberof TAParameters
+     * @function TA_EXCLUDE_WORDS_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_EXCLUDE_WORDS_Domain(context){
+        // Get option ids and labels from hidden table
+        var tableName = "tblWordCloud_parameter";
+        var value_codes = context.report.TableUtils.GetRowHeaderCategoryIds(tableName);
+        var value_labels = context.report.TableUtils.GetRowHeaderCategoryTitles(tableName);
+        var parameterValues = [];
+
+        for(var i = 0; i < value_codes.length; i++) {
+            parameterValues.push({Code: value_codes[i], Label: value_labels[i]})
+        }
+
+        TAParameterUtilities.LoadParameterValues({
+            context: context,
+            parameterValues: parameterValues
+        });
+    }
+
 
 
     /**
