@@ -359,7 +359,7 @@ class Page_correlation{
 
         var label = currentDictionary["Correlation variable"];
         context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCorrelationQuestionParameterValue(context, currentDictionary));
+        context.component.Output.Append(TAParameterValues.getCorrelationQuestionParameterValue(context));
     }
 
     /**
