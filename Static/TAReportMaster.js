@@ -81,7 +81,7 @@ class TAReportMaster {
                 "\n;}.icon-face-negative,.cf_negative {fill: " + negativeColor +
                 "\n;}.cf_negative {color: " + negativeColor +
                 "\n;}.filter-bar div,.toggle input:checked + label {background: " + secondaryTextColor +
-                "\n;}.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label,[type=radio] + label, [type=checkbox] + label,[type=radio]:disabled:checked + label:after, [type=checkbox]:disabled:checked + label:after,[type=\"checkbox\"] + label:after,.toggle input:not(checked) + label,.dd-target-button .dd-target-button-arrow, .dd-target-button .dd-target-button-text {color: " + secondaryTextColor +
+                "\n;}.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label,[type=radio] + label, [type=checkbox] + label,[type=radio]:disabled:checked + label:after, [type=checkbox]:disabled:checked + label:after,[type=\"checkbox\"] + label:after,.toggle input:not(checked) + label,.dd-target-button .dd-target-button-arrow, .dd-target-button .dd-target-button-text,.no-data-label {color: " + secondaryTextColor +
                 "\n;}[type=radio] + label:after {background-color: " + secondaryTextColor +
                 "\n;}.toggle input:checked + label,.toggle input:not(checked) + label {border-color: " + secondaryTextColor +
                 "\n;}.legend .cf_positive:before,.reportal-table>tbody>tr>td.cf_positive:after {background: " + positiveColor +
@@ -113,6 +113,7 @@ class TAReportMaster {
                 "\n !important;}.hitlist-dropdown-button:hover,.hitlist-export-button.hitlist-btn:hover {background: " + dividerColor +
                 "\n !important;}.hitlist-dropdown-panel,.yui-calcontainer .yui-cal-nav {border-color: " + dividerColor +
                 "\n !important;}.yui-ac-bd>ul>li.yui-ac-highlight,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-filter-apply,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear:hover,.hitlist-nav-button,.hitlist-nav-page,.yui-calcontainer>table td.calcell.selected>a,.yui-calcontainer>table .calnav:hover {color: " + buttonTextColor +
+                "\n !important;}.hitlist-dropdown-panel {-webkit-box-shadow: 0 2px 8px " + lightDividerColor +
                 "\n !important;}.hitlist-dropdown-panel {box-shadow: 0 2px 8px " + lightDividerColor +
                 "\n !important;}.hitlist-dropdown-panel {background-color: " + tableColumnColor +
                 "\n !important;}.hitlist-dropdown-panel .hitlist-filter-item>label,.yui-calcontainer>table .calweekdaycell,.yui-calcontainer>table .calnav {color: " + secondaryTextColor +
@@ -136,8 +137,8 @@ class TAReportMaster {
                 "\n;}.correlation-header--maintain {background-color: " + maintain +
                 "\n;}.correlation-list--maintain>tr>td:first-child {color: " + maintain +
                 "\n;}#chart-tables-switcher svg {fill: " + primaryTextColor +
-                "\n;}#chart-tables-switcher .selected svg {fill: " + buttonMainColor +
-                "\n;}table>thead td.sortable:not(.hierarchy-search-visible):after {color: " + primaryTextColor +
+                "\n;}#chart-tables-switcher .selected svg,#correlation-help:hover>svg {fill: " + buttonMainColor +
+                "\n;}#correlation-help-text {border: 1px solid " + dividerColor +
                 "\n;}";
 
             str += "</style>";
