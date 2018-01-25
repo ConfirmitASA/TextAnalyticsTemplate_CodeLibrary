@@ -490,7 +490,14 @@ class Page_wordcloud{
         questionHeader_word.Sorting.Enabled = false;
         questionHeader_word.ShowTotals = false;
 
+        var question_frequency = project.CreateQuestionnaireElement('frequency', TAQuestion);
+        var questionHeader_frequency : HeaderQuestion = new HeaderQuestion(question_frequency);
+        questionHeader_frequency.IsCollapsed = true;
+        questionHeader_frequency.DefaultStatistic = StatisticsType.Sum;
+        questionHeader_frequency.Preaggregation = StatisticsType.Sum;
+
         table.RowHeaders.Add(questionHeader_word);
+        table.ColumnHeaders.Add(questionHeader_frequency);
         table.Use1000Separator = false;
 
         taTableUtils.SetupRowsTableSorting(false, 1);
