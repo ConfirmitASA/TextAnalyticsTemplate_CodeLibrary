@@ -451,7 +451,39 @@ class Page_wordcloud{
         table.Use1000Separator = false;
 
         taTableUtils.SetupRowsTableSorting(false, 1, 150);
-}
+    }
+
+    /**
+     * @memberof Page_wordcloud
+     * @function tblWordCloud_Render
+     * @description function to render the sentiment selector label
+     * @param {Object} context - {component: table, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function tblWordCloud_parameter_Render(context){
+        var table = context.component;
+        table.Caching.Enabled = true;
+
+        var taTableUtils = new TATableUtils({
+            context: context,
+            folder: folder,
+            table: table
+        });
+
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var TAQuestion = folder.GetQuestionId();
+        var project : Project = context.report.DataSource.GetProject(folder.GetDatasourceId());
+
+        var question_word = project.CreateQuestionnaireElement('word', TAQuestion);
+        var questionHeader_word : HeaderQuestion = new HeaderQuestion(question_word);
+        questionHeader_word.Sorting.Enabled = false;
+        questionHeader_word.ShowTotals = false;
+
+        table.RowHeaders.Add(questionHeader_word);
+        table.Use1000Separator = false;
+
+        taTableUtils.SetupRowsTableSorting(false, 1);
+    }
 
     /**
      * @memberof Page_wordcloud
