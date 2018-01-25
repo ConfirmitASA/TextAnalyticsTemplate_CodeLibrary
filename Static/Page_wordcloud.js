@@ -455,7 +455,18 @@ class Page_wordcloud{
 
     /**
      * @memberof Page_wordcloud
-     * @function tblWordCloud_Render
+     * @function tblWordCloud_parameter_Hide
+     * @description function to render the sentiment selector label
+     * @param {Object} context - {pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function tblWordCloud_parameter_Hide(context){
+        return true
+    }
+
+    /**
+     * @memberof Page_wordcloud
+     * @function tblWordCloud_parameter_Render
      * @description function to render the sentiment selector label
      * @param {Object} context - {component: table, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
