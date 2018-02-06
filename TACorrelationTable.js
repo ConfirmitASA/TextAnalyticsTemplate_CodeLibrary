@@ -210,7 +210,7 @@ class TACorrelationTable{
                 },
 
                 {
-                    expression: 'cellv(col + 1, row)<=0 AND cellv(col,row) <= cellv(col, 1) ',
+                    expression: '(cellv(col + 1, row) = EMPTYV() OR cellv(col + 1, row)<=0) AND cellv(col,row) <= cellv(col, 1) ',
                     style: 'monitor'
                 },
                 {
@@ -218,7 +218,7 @@ class TACorrelationTable{
                     style: 'strength'
                 },
                 {
-                    expression: 'cellv(col + 1, row)<=0 AND cellv(col,row) > cellv(col, 1) ',
+                    expression: '(cellv(col + 1, row) = EMPTYV() OR cellv(col + 1, row)<=0) AND cellv(col,row) > cellv(col, 1) ',
                     style: 'maintain'
                 }
             ],
