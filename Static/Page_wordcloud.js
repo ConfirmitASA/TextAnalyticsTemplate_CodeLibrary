@@ -553,7 +553,10 @@ class Page_wordcloud{
             "<link href=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css\" rel=\"stylesheet\">" +
             "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>  " +
             "<script>" +
+            "$(function() {" +
             "$(\"#wc_exceptions select\").select2();" +
+            "$(\"#select-word select\").select2();" +
+            "});" +
             "</script>";
 
         context.component.Output.Append(wcInit);
