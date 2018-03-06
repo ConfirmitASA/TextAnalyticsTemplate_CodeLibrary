@@ -11,7 +11,7 @@ class TAArrayUtils {
 
     static function find(arr, func) {
         for(var i = 0; i < arr.length; i++) {
-            if(arr[i] === func(arr[i], i, arr)) {
+            if(func(arr[i], i, arr)) {
                 return arr[i];
             }
         }
