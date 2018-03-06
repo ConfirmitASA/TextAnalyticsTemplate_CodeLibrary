@@ -52,15 +52,14 @@ class TAPageRenderer{
      */
     static function InitiateFilters(context){
         if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "btnClearFilters" || context.component.SubmitSource === "lstQuestion"){
-            context.log.LogDebug('cj clear filters');
             TAFilterComponents.ClearFilters(context);
-            context.log.LogDebug('cj clear filters 2');
 
             var cjParameterInfo = TAArrayUtils.find(TADefaultParameters.values, function(item) {return item.Id === "TA_CJ_CARDS"});
-            context.log.LogDebug(cjParameterInfo.Id + ': ' + cjParameterInfo.Value);
-            context.state.Parameters[cjParameterInfo.Id] = new ParameterValueResponse(cjParameterInfo.Value);
+            TAParameterUtilities.SetDefaultParameterValues({
+                context: context,
+                parameterValues: [cjParameterInfo]
+            });
 
-            context.log.LogDebug('cj clear filters 3');
             var dateParameters = TADefaultParameters.dateParameters;
 
             for(var i = 0; i < dateParameters.length; ++i)
