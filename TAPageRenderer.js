@@ -56,7 +56,7 @@ class TAPageRenderer{
             TAFilterComponents.ClearFilters(context);
             context.log.LogDebug('cj clear filters 2');
 
-            var cjParameterInfo = TAArrayUtils.find(TADefaultParameters, function(item) {return item.Id === "TA_CJ_CARDS"});
+            var cjParameterInfo = TAArrayUtils.find(TADefaultParameters.values, function(item) {return item.Id === "TA_CJ_CARDS"});
             context.log.LogDebug(cjParameterInfo.Id + ': ' + cjParameterInfo.Value);
             context.state.Parameters[cjParameterInfo.Id] = new ParameterValueResponse(cjParameterInfo.Value);
 
