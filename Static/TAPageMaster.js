@@ -132,7 +132,7 @@ class TAPageMaster{
     static function ClearFilters_Hide(context){
         var hideButton = true;
         var filterComponents = new TAFilterComponents(context);
-        hideButton = !filterComponents.GetAllAnsweredFilterCodes(context).length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO");
+        hideButton = !filterComponents.GetAllAnsweredFilterCodes(context).length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO") && context.state.Parameters.IsNull("TA_CJ_CARDS");
 
         return hideButton
     }
