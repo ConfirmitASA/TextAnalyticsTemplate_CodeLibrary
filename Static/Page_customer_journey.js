@@ -69,7 +69,7 @@ class Page_customer_journey{
      * @memberof Page_customer_journey
      * @function txtCustomerJourneyTrendScript_Render
      * @description function to render Customer Journey Trend Chart
-     * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtCustomerJourneyTrendScript_Render(context){
         var trendLineColors = Config.Colors.TrendLinePalette;
@@ -88,6 +88,88 @@ class Page_customer_journey{
             "</script>";
         context.component.Output.Append(JSON.print(currentDictionary,"translations"));
         context.component.Output.Append(JSON.print(palette,"palette"));
+        context.component.Output.Append(chartInit);
+    }
+
+    /**
+     * @memberof Page_customer_journey
+     * @function tblCustomerJourneyCards_Hide
+     * @description function to render table for Customer Journey Trend Chart
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function tblCustomerJourneyCards_Hide(context){
+        return false
+    }
+
+    /**
+     * @memberof Page_customer_journey
+     * @function tblCustomerJourneyCards_Render
+     * @description function to render table for Customer Journey Trend Chart
+     * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function tblCustomerJourneyCards_Render(context){
+    }
+
+    /**
+     * @memberof Page_customer_journey
+     * @function lstCustomerJourneyCards_Hide
+     * @description function to render table for Customer Journey Trend Chart
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstCustomerJourneyCards_Hide(context){
+        return false
+    }
+
+    /**
+     * @memberof Page_customer_journey
+     * @function btnCustomerJourneyCards_Hide
+     * @description function to render table for Customer Journey Trend Chart
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function btnCustomerJourneyCards_Hide(context){
+        return false
+    }
+
+    /**
+     * @memberof Page_customer_journey
+     * @function btnCustomerJourneyCards_Render
+     * @description function to render table for Customer Journey Trend Chart
+     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function btnCustomerJourneyCards_Render(context){
+        context.component.TargetPage = 'correlation';
+    }
+
+    /**
+     * @memberof Page_customer_journey
+     * @function txtCustomerJourneyCardsScript_Hide
+     * @description function to render Customer Journey Trend Chart
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtCustomerJourneyCardsScript_Hide(context){
+        return false
+    }
+
+    /**
+     * @memberof Page_customer_journey
+     * @function txtCustomerJourneyCardsScript_Render
+     * @description function to render Customer Journey Trend Chart
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtCustomerJourneyCardsScript_Render(context){
+        var chartInit = "<script>" +
+            "new Reportal.CustomerJourneyCards({" +
+            "tableId:'confirmit_agg_table'," +
+            "drilldownId:'cj_drilldown'," +
+            "cardContainerId: 'cj_cards'," +
+            "CJ_options: CJ_options});" +
+            "</script>";
+
+        context.component.Output.Append(JSON.print(context.pageContext.Items['options'], 'CJ_options'));
         context.component.Output.Append(chartInit);
     }
 }
