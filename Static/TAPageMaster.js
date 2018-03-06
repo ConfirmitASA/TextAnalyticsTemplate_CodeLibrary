@@ -85,6 +85,19 @@ class TAPageMaster{
             summarySegments.push(("<div>"+curDictionary['End date']+" = " + endDate + "</div>"));
         }
 
+        var cj_parameter = !context.state.Parameters.IsNull("TA_CJ_CARDS") &&
+            context.state.Parameters.GetString("TA_CJ_CARDS") !== 'emptyv' &&
+            context.state.Parameters.GetString("TA_CJ_CARDS");
+
+        if(cj_parameter){
+            var indexOfAsterisk = cj_parameter.indexOf('*');
+            summarySegments.push(("<div>" + (
+                indexOfAsterisk >= 0 ?
+                    (cj_parameter.substr(0, indexOfAsterisk) + ' = ' +  cj_parameter.substr(indexOfAsterisk + 1)) :
+                    (cj_parameter + ' is answered')
+            ) + "</div>"));
+        }
+
         var codes = filterComponents.GetAllAnsweredFilterCodes(context);
 
         for( var i = 0 ; i < codes.length; i++){
@@ -95,7 +108,7 @@ class TAPageMaster{
 
         context.component.Output.Append(filterSummary);
 
-        if( codes.length > 0 || startDate || endDate)
+        if( codes.length > 0 || startDate || endDate || cj_parameter)
             context.component.Output.Append("<button title='Clear filters' onclick='javascript:document.querySelector(\".filters-clear-button input\").click()' style = 'padding: 1px'>"+
                 "   <svg width='10' height='10' class='icon-circle-x'>" +
                 "       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 153.5 122'>"+
