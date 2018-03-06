@@ -54,8 +54,8 @@ class TAPageRenderer{
         if(context.component.SubmitSource === "ClearFilters" || context.component.SubmitSource === "btnClearFilters" || context.component.SubmitSource === "lstQuestion"){
             TAFilterComponents.ClearFilters(context);
 
-            var cjParameterInfo = TAArrayUtils.find(TADefaultParameters, function(item) {return item.Id === "TA_CJ_CARDS"});
-            context.state.Parameters[cjParameterInfo.Id] = cjParameterInfo.Value;
+            //var cjParameterInfo = TAArrayUtils.find(TADefaultParameters, function(item) {return item.Id === "TA_CJ_CARDS"});
+            context.state.Parameters["TA_CJ_CARDS"] = null;
 
             var dateParameters = TADefaultParameters.dateParameters;
 
