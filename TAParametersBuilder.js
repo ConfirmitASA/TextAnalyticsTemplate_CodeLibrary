@@ -163,7 +163,7 @@ class TAParametersBuilder{
      * @function RenderLevelsParameter
      * @description render parameter with list of levels in the hierarchy
      * @param {Object} params - {
-     *          context: {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * }
      */
     static function RenderLevelsParameter(params){
@@ -212,7 +212,7 @@ class TAParametersBuilder{
      * @function RenderViewByParameter
      * @description render parameter with list of questions for the detailed analysis table
      * @param {Object} params - {
-     *          context: {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
      *          emptyValueLabel: {String}
      * }
      */
@@ -245,10 +245,63 @@ class TAParametersBuilder{
 
     /**
      * @memberof TAParametersBuilder
+     * @function RenderCustomerJourneyCardsParameter
+     * @description render parameter for CJ cards
+     * @param {Object} params - {
+     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          emptyValueLabel: {String}
+     * }
+     */
+    static function RenderCustomerJourneyCardsParameter(params){
+        var context = params.context;
+        var parameter = context.component;
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(folderId);
+
+        var emptyValueLabel = params.emptyValueLabel;
+        var parameterValues = _addEmptyValue(emptyValueLabel);
+
+        var project = context.report.DataSource.GetProject(folder.GetDatasourceId());
+
+        for(var i = 0; i < Config.CustomerJourneyQuestions.length; i++){
+            var currentOptions = Config.CustomerJourneyQuestions[i];
+
+            if(currentOptions.DatasourceId !== folder.GetDatasourceId()) {
+                continue;
+            }
+
+            var questionId = currentOptions.QuestionId.replace('.', '_');
+
+            if(currentOptions.IsCollapsed) {
+                parameterValues.push({
+                    Code: questionId,
+                    Label: questionId
+                });
+            } else {
+                var answers = project.GetQuestion(currentOptions.QuestionId).GetAnswers();
+
+                for(var j = 0; j < answers.length; j++) {
+                    parameterValues.push({
+                        Code: questionId + '*' + answers[j].Precode,
+                        Label: questionId + '*' + answers[j].Precode
+                    });
+                }
+            }
+        }
+
+        TAParameterUtilities.LoadParameterValues({
+            context: context,
+            parameter: parameter,
+            parameterValues: parameterValues
+        });
+    }
+
+    /**
+     * @memberof TAParametersBuilder
      * @function RenderCorrelationQuestionParameter
      * @description render parameter with list of questions for the detailed analysis table
      * @param {Object} params - {
-     *          context: {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * }
      */
     static function RenderCorrelationQuestionParameter(params){
@@ -280,7 +333,7 @@ class TAParametersBuilder{
     /**
      * @memberof TAParametersBuilder
      * @function ClearSubcategoriesParameters
-     * @description clear subcategories andattributes parameters when another parent selected
+     * @description clear subcategories and attributes parameters when another parent selected
      * @param {Object} params - {
      *          context: {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
      *          value: {String} - empty value for that parameter "emptyv",

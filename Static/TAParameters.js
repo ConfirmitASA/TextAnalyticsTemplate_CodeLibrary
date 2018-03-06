@@ -349,4 +349,21 @@ class TAParameters{
             parameterValues: parameterValues
         });
     }
+
+
+
+    /**
+     * @memberof TAParameters
+     * @function TA_CJ_CARDS_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_CJ_CARDS_Domain(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        TAParametersBuilder.RenderCustomerJourneyCardsParameter({
+            context: context,
+            emptyValueLabel: currentDictionary["-select-"]
+        });
+    }
 }
