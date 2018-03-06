@@ -20,7 +20,7 @@ class TAPageMaster{
     /**
      * @memberof TAPageMaster
      * @function FiltersButtonHtml_Render
-     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function FiltersButtonHtml_Render(context){
         var htmlText = '<button type="button" class="filter-button" onclick="javascript:document.querySelector(\'.goToFiltersPage input\').click()" title="Filters">'+
