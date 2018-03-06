@@ -51,6 +51,10 @@ class TADefaultParameters {
         {
             Id: "TA_WORD_CLOUD",
             Value: "emptyv"
+        },
+        {
+            Id: "TA_CJ_CARDS",
+            Value: "emptyv"
         }
     ];
 
