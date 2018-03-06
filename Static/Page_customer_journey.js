@@ -109,6 +109,10 @@ class Page_customer_journey{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblCustomerJourneyCards_Render(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var cardsTable = new TACustomerJourneyCardsTable({folder:folder, config:Config, context:context});
+        cardsTable.GetTATableUtils().ClearTableDistributions();
     }
 
     /**
