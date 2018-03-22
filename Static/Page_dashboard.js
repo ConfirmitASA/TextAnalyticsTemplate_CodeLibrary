@@ -329,6 +329,30 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
+     * @function txtSentimentToggle_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtSentimentToggle_Hide(context){
+        return false;
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtSentimentToggle_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtSentimentToggle_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["View by"];
+        context.component.Output.Append(label);
+
+        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_SIG_TESTING_TOGGLE'));
+    }
+
+    /**
+     * @memberof Page_dashboard
      * @function txtMostImproved_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
