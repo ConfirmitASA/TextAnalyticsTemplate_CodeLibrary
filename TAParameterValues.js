@@ -42,13 +42,13 @@ class TAParameterValues {
                 ];
             case "TA_SIG_TESTING_TOGGLE":
                 return [
-                    {Code: 0, Label: currentDictionary["Count"]},
-                    {Code: 1, Label: currentDictionary["Sentiment"]}
+                    {Code: "0", Label: currentDictionary["Count"]},
+                    {Code: "1", Label: currentDictionary["Sentiment"]}
                 ];
             case "TA_DISTRIBUTION_TOGGLE":
                 return [
-                    {Code: 0, Label: currentDictionary["Count"]},
-                    {Code: 1, Label: "%"}
+                    {Code: "0", Label: currentDictionary["Count"]},
+                    {Code: "1", Label: "%"}
                 ];
             case "TA_PERIOD":
                 return [
