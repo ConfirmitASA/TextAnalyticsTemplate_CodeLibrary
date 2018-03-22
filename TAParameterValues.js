@@ -40,6 +40,11 @@ class TAParameterValues {
                     {Code: "neu", Label: currentDictionary["Neutral"]},
                     {Code: "neg", Label: currentDictionary["Negative"]}
                 ];
+            case "TA_SIG_TESTING_TOGGLE":
+                return [
+                    {Code: 0, Label: currentDictionary["Count"]},
+                    {Code: 1, Label: currentDictionary["Sentiment"]}
+                ];
             case "TA_DISTRIBUTION_TOGGLE":
                 return [
                     {Code: 0, Label: currentDictionary["Count"]},
