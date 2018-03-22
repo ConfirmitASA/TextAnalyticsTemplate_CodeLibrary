@@ -98,7 +98,7 @@ class TAParameterValues {
     log.LogDebug('sig test 6.2');
         var labels = TAParameterValues._getParameterValues(currentDictionary, parameterID);
 
-    log.LogDebug('sig test 6.3');
+    log.LogDebug('sig test 6.3 labels = ' + labels);
         var parameterValueLabel = TAParameterValues._findValue(labels, function(item) { return item.Code === parameterValueId }).Label;
 
     log.LogDebug('sig test 6.4');
