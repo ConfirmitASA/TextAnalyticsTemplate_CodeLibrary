@@ -86,10 +86,22 @@ class TAParameterValues {
      * @returns {String}
      */
     static function getParameterValue(state, currentDictionary, parameterID, log) {
+
+    log.LogDebug('sig test 6.1');
         var parameterValueId = state.Parameters[parameterID].StringKeyValue ||  state.Parameters.GetString(parameterID);
+
+    log.LogDebug('sig test 6.2');
         var labels = TAParameterValues._getParameterValues(currentDictionary, parameterID);
+
+    log.LogDebug('sig test 6.3');
         var parameterValueLabel = TAParameterValues._findValue(labels, function(item) { return item.Code === parameterValueId }).Label;
-        return _getParameterSpan(': ' + parameterValueLabel);
+
+    log.LogDebug('sig test 6.4');
+    var span = _getParameterSpan(': ' + parameterValueLabel);
+
+    log.LogDebug('sig test 6.5');
+        return span;
+
     }
 
     /**
