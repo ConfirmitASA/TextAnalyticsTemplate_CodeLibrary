@@ -254,6 +254,27 @@ class TAParameters{
         });
     }
 
+
+
+    /**
+     * @memberof TAParameters
+     * @function TA_SIG_TESTING_TOGGLE_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_SIG_TESTING_TOGGLE_Domain(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var parameterValues = [
+            {Code: 0, Label: currentDictionary["Count"]},
+            {Code: 1, Label: currentDictionary["Sentiment"]}
+        ];
+
+        TAParameterUtilities.LoadParameterValues({
+            context: context,
+            parameterValues: parameterValues
+        });
+    }
+
     /**
      * @memberof TAParameters
      * @function TA_VIEW_BY_Domain
