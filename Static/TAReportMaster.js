@@ -91,7 +91,7 @@ class TAReportMaster {
                 "\n;}.reportal-branding-panel .page-title {color: " + headerTextColor +
                 "\n;}.yui3-menu-horizontal {background-color: " + headerBackgroundColor +
                 "\n;}.yui3-menu-horizontal ul > li > *:nth-last-child(2):after {border-left: 1px solid " + secondaryTextColor +
-                "\n;}[type=radio]:checked:focus + label:before,[type=radio]:not(:checked):focus + label:before,[type=checkbox]:checked:focus + label:before,[type=checkbox]:not(:checked):focus + label:before {border: 1px solid " + secondaryTextColor +
+                "\n;}[type=radio]:checked:focus + label:before,[type=radio]:not(:checked):focus + label:before,[type=checkbox]:checked:focus + label:before,[type=checkbox]:not(:checked):focus + label:before,.cj-card:hover {border: 1px solid " + secondaryTextColor +
                 "\n;}.yui3-menu-horizontal ul > li > *:nth-last-child(2):before,.reportal-select.reportal-dropdown>span:after,.hitlist-dropdown-button:after {border-color: " + primaryTextColor +
                 "\n transparent transparent;}.yui3-menu-horizontal ul > li > a,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-clear,.hitlist-dropdown-panel .hitlist-dropdown-panel-buttons>.hitlist-dropdown-cancel,.reportal-hitlist-container .yui3-datatable-cell,.reportal-hitlist-container .yui3-datatable-cell:hover,.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {color: " + primaryTextColor +
                 "\n !important;}.yui-calcontainer>table td.calcell.calcellhover>a {background: " + primaryTextColor +
@@ -103,8 +103,9 @@ class TAReportMaster {
                 "\n;}[type=radio]:disabled + label, [type=checkbox]:disabled + label {color: " + disabledTextColor +
                 "\n;}.toggle label,.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {border: solid 1px " + dividerColor +
                 "\n;}table>thead td.sortable:not(.hierarchy-search-visible):after {color: " + primaryTextColor +
-                "\n;}.reportal-table>tbody>tr>td {border-bottom: 1px solid " + lightDividerColor +
-                "\n;}.reportal-hierarchy-table>tbody>tr>td[class*=_dc]:nth-last-child(even) {background: " + tableColumnColor +
+                "\n;}.reportal-table>tbody>tr>td,.cj-card__title,.cj-card__card-row:not(:last-child) {border-bottom: 1px solid " + lightDividerColor +
+                "\n;}.cj-card {border: 1px solid " + lightDividerColor +
+                "\n;}.striped-columns>tbody>tr>td[class*=_dc]:nth-last-child(even) {background: " + tableColumnColor +
                 "\n;}.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {background-color: " + tableColumnColor +
                 "\n;}.reportal-hierarchy-table tr.firstInBlock:not(:first-child)>td {border-top: 3px " + dividerColor +
                 "\n double !important;}.reportal-collapsed-row .reportal-collapse-button:before,.reportal-uncollapsed-row .reportal-collapse-button:before,.hitlist-dropdown-button:after,.dd-target-button.dd-button-selected .dd-target-button-arrow {border-color: " + secondaryTextColor +
