@@ -329,20 +329,20 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
-     * @function txtSentimentToggle_Hide
+     * @function txtSigTest_Hide
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
-    static function txtSentimentToggle_Hide(context){
+    static function txtSigTest_Hide(context){
         return false;
     }
 
     /**
      * @memberof Page_dashboard
-     * @function txtSentimentToggle_Render
+     * @function txtSigTest_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function txtSentimentToggle_Render(context){
+    static function txtSigTest_Render(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary["Type"];
