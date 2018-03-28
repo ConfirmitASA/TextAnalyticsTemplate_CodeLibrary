@@ -94,7 +94,7 @@ class Page_customer_journey{
     /**
      * @memberof Page_customer_journey
      * @function tblCustomerJourneyCards_Hide
-     * @description function to render table for Customer Journey Trend Chart
+     * @description function to hide table for Customer Journey cards
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
@@ -105,7 +105,7 @@ class Page_customer_journey{
     /**
      * @memberof Page_customer_journey
      * @function tblCustomerJourneyCards_Render
-     * @description function to render table for Customer Journey Trend Chart
+     * @description function to render table for Customer Journey cards
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblCustomerJourneyCards_Render(context){
@@ -118,7 +118,7 @@ class Page_customer_journey{
     /**
      * @memberof Page_customer_journey
      * @function lstCustomerJourneyCards_Hide
-     * @description function to render table for Customer Journey Trend Chart
+     * @description function to hide list with all CJ items
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
@@ -129,7 +129,7 @@ class Page_customer_journey{
     /**
      * @memberof Page_customer_journey
      * @function btnCustomerJourneyCards_Hide
-     * @description function to render table for Customer Journey Trend Chart
+     * @description function to hide button that leads to the Correlation page after clicking on a CJ card
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
@@ -140,7 +140,7 @@ class Page_customer_journey{
     /**
      * @memberof Page_customer_journey
      * @function btnCustomerJourneyCards_Render
-     * @description function to render table for Customer Journey Trend Chart
+     * @description function to render button that leads to the Correlation page after clicking on a CJ card
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnCustomerJourneyCards_Render(context){
@@ -150,7 +150,7 @@ class Page_customer_journey{
     /**
      * @memberof Page_customer_journey
      * @function txtCustomerJourneyCardsScript_Hide
-     * @description function to render Customer Journey Trend Chart
+     * @description function to hide Customer Journey cards script
      * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * @returns {Boolean}
      */
@@ -161,11 +161,11 @@ class Page_customer_journey{
     /**
      * @memberof Page_customer_journey
      * @function txtCustomerJourneyCardsScript_Render
-     * @description function to render Customer Journey Trend Chart
+     * @description function to print Customer Journey cards script
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtCustomerJourneyCardsScript_Render(context){
-        var chartInit = "<script>" +
+        var cardsInit = "<script>" +
             "new Reportal.CustomerJourneyCards({" +
             "tableId:'confirmit_agg_table'," +
             "drilldownId:'cj_drilldown'," +
