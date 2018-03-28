@@ -44,6 +44,8 @@ class TAReportMaster {
             var disabledTextColor = Config.Design.disabledTextColor;
             var dividerColor = Config.Design.dividerColor;
             var lightDividerColor = Config.Design.lightDividerColor;
+            var increasing = Config.Design.increasing;
+            var decreasing = Config.Design.decreasing;
             var positiveColor = Config.Design.positiveColor;
             var neutralColor = Config.Design.neutralColor;
             var negativeColor = Config.Design.negativeColor;
@@ -140,6 +142,8 @@ class TAReportMaster {
                 "\n;}#chart-tables-switcher svg {fill: " + primaryTextColor +
                 "\n;}#chart-tables-switcher .selected svg,#correlation-help:hover>svg {fill: " + buttonMainColor +
                 "\n;}#correlation-help-text {border: 1px solid " + dividerColor +
+                "\n;}.reportal-table>tbody>tr>td.increasing {background: " + increasing +
+                "\n;}.reportal-table>tbody>tr>td.decreasing {background: " + decreasing +
                 "\n;}.alert-card__decreasing {color: " + issues +
                 "\n;}.alert-card__increasing {color: " + strength +
                 "\n;}";
