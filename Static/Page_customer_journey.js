@@ -174,6 +174,6 @@ class Page_customer_journey{
             "</script>";
 
         context.component.Output.Append(JSON.print(context.pageContext.Items['options'], 'CJ_options'));
-        context.component.Output.Append(chartInit);
+        context.component.Output.Append(cardsInit);
     }
 }
