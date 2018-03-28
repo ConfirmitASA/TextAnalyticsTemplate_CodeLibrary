@@ -18,9 +18,12 @@ class TAThemeDistributionTable{
     private var _taMasks: TAMasks;
     private var _table: Table;
     private var _sentiment;
+    private var _sigTestingUseCounts;
+    private var _sigTestingAlertsTable;
     private var _percents;
     private var _period;
     private var _config;
+    private var _gap = 2;
 
     function TAThemeDistributionTable(params){
         var context = params.context;
@@ -33,9 +36,12 @@ class TAThemeDistributionTable{
             table: _table
         });
         _sentiment = params.sentiment === "emptyv" ? "all" : params.sentiment;
+        _sigTestingUseCounts = params.sigTestingUseCounts;
+        _sigTestingAlertsTable = params.sigTestingAlertsTable;
+
         _period = {
             Unit: params.period ? params.period : "m",
-            From: -11,
+            From: _sigTestingAlertsTable ? -1 : -11,
             To: 0
         };
         _config = params.config;
@@ -59,13 +65,28 @@ class TAThemeDistributionTable{
      * @function _render
      */
     private function _render(){
-        var qType = "categorysentiment";
-        var rowexpr = _taTableUtils.GetTAQuestionExpression(qType);
+        var rowexpr = _getRowheadersExpression();
 
         _taTableUtils.CreateTableFromExpression(rowexpr);
         _addTimeSeriesColumn();
         _setupConditionalFormatting();
     }
+
+    /**
+     * @memberof TAThemeDistributionTable
+     * @private
+     * @instance
+     * @function _getRowheadersExpression
+     */
+    private function _getRowheadersExpression(){
+        var overallQuestion = _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:true");
+        var categoryQuestion = _taTableUtils.GetTAQuestionExpression("categorysentiment");
+
+        var rowexpr = overallQuestion + "+" + categoryQuestion;
+
+        return rowexpr;
+    }
+
 
     /**
      * @memberof TAThemeDistributionTable
@@ -108,13 +129,11 @@ class TAThemeDistributionTable{
      */
     private function _getHeaderStatistics(){
         var headerStatistics;
-        if( _sentiment == "all"){
 
+        if( _sentiment == "all"){
             headerStatistics = new HeaderStatistics();
             headerStatistics.Statistics.Avg = true;
-
         }else{
-
             headerStatistics = new HeaderFormula();
             headerStatistics.Type = FormulaType.Expression;
             headerStatistics.Decimals = 0;
@@ -123,14 +142,17 @@ class TAThemeDistributionTable{
             switch (_sentiment) {
                 case "neg":
                     headerStatistics.Expression = "-6";
+                    _gap += _config.SentimentRange.Negative.length;
                     break;
 
                 case "neu":
                     headerStatistics.Expression = "0";
+                    _gap += _config.SentimentRange.Neutral.length;
                     break;
 
                 case "pos":
                     headerStatistics.Expression = "6";
+                    _gap += _config.SentimentRange.Positive.length;
                     break;
             }
         }
@@ -147,21 +169,8 @@ class TAThemeDistributionTable{
      */
     private function _setupConditionalFormatting(){
         _taTableUtils.SetupConditionalFormatting(
-            [
-                {
-                    expression: 'cellv(col+1, row)<('+(_config.SentimentRange.Neutral[0] - 6)+') AND cellv(col,row)<>EMPTYV() ',
-                    style: 'negative'
-                },
-
-                {
-                    expression: '(cellv(col+1, row)>=('+(_config.SentimentRange.Neutral[0] - 6)+')) AND (cellv(col+1, row)<='+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 6)+') AND cellv(col,row)<>EMPTYV()',
-                    style: 'neutral'
-                },
-                {
-                    expression: 'cellv(col+1, row)>'+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 6)+' AND cellv(col,row)<>EMPTYV()',
-                    style: 'positive'
-                }
-            ],
+            _getConditions()
+            ,
             "NegNeuPos",
             {
                 axis: Area.Columns,
@@ -169,5 +178,123 @@ class TAThemeDistributionTable{
                 indexes: "1-1000"
             }
         )
+    }
+
+    /**
+     * @memberof TAThemeDistributionTable
+     * @private
+     * @instance
+     * @function _getConditions
+     */
+    private function _getConditions(){
+        var negNeuPostConditions = [
+            {
+                expression: 'cellv(col+1, row)<('+(_config.SentimentRange.Neutral[0] - 6)+') AND cellv(col,row)<>EMPTYV() ',
+                style: 'negative'
+            },
+
+            {
+                expression: '(cellv(col+1, row)>=('+(_config.SentimentRange.Neutral[0] - 6)+')) AND (cellv(col+1, row)<='+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 6)+') AND cellv(col,row)<>EMPTYV()',
+                style: 'neutral'
+            },
+            {
+                expression: 'cellv(col+1, row)>'+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 6)+' AND cellv(col,row)<>EMPTYV()',
+                style: 'positive'
+            }
+        ];
+
+        var sigTestCountsConditions = [
+            {
+                expression: 'cellv(col,row) >= 5 AND cellv(col-' + _gap + ',row) >= 5 AND ' +
+                            '((cellv(col,row)/cellv(col,1) - cellv(col-' + _gap + ',row)/cellv(col-' + _gap + ',1)) / ' +
+                            'SQRT(' +
+                                '(cellv(col-' + _gap + ',row) + cellv(col,row))/(cellv(col-' + _gap + ',1) + cellv(col,1))*' +
+                                '(1 - (cellv(col-' + _gap + ',row) + cellv(col,row))/(cellv(col-' + _gap + ',1) + cellv(col,1)))*' +
+                                '(1/cellv(col,1) + 1/cellv(col-' + _gap + ',1))' +
+                            ')) < -1.96',
+                style: 'decreasing'
+            },
+            {
+                expression: 'cellv(col,row) >= 5 AND cellv(col-' + _gap + ',row) >= 5 AND ' +
+                            '((cellv(col,row)/cellv(col,1) - cellv(col-' + _gap + ',row)/cellv(col-' + _gap + ',1)) / ' +
+                            'SQRT(' +
+                                '(cellv(col-' + _gap + ',row) + cellv(col,row))/(cellv(col-' + _gap + ',1) + cellv(col,1))*' +
+                                '(1 - (cellv(col-' + _gap + ',row) + cellv(col,row))/(cellv(col-' + _gap + ',1) + cellv(col,1)))*' +
+                                '(1/cellv(col,1) + 1/cellv(col-' + _gap + ',1))' +
+                            ')) > 1.96',
+                style: 'increasing'
+            },
+            {
+                expression: 'true',
+                style: ''
+            }
+        ];
+
+        var sigTestSentimentConditions = [
+            {
+                expression: 'cellv(col,row) >= 5 AND cellv(col-' + _gap + ',row) >= 5 AND ' +
+                            '((cellv(col +1,row)/cellv(col+1,1) - cellv(col+1-' + _gap + ',row)/cellv(col+1-' + _gap + ',1)) / ' +
+                            'SQRT(' +
+                                '(cellv(col+1-' + _gap + ',row) + cellv(col+1,row))/(cellv(col+1-' + _gap + ',1) + cellv(col+1,1))*' +
+                                '(1 - (cellv(col+1-' + _gap + ',row) + cellv(col+1,row))/(cellv(col+1-' + _gap + ',1) + cellv(col+1,1)))*' +
+                                '(1/cellv(col+1,1) + 1/cellv(col+1-' + _gap + ',1))' +
+                            ')) < -1.96',
+                style: 'decreasing'
+            },
+            {
+                expression: 'cellv(col,row) >= 5 AND cellv(col-' + _gap + ',row) >= 5 AND ' +
+                            '((cellv(col+1,row)/cellv(col+1,1) - cellv(col+1-' + _gap + ',row)/cellv(col+1-' + _gap + ',1)) / ' +
+                            'SQRT(' +
+                                '(cellv(col+1-' + _gap + ',row) + cellv(col+1,row))/(cellv(col+1-' + _gap + ',1) + cellv(col+1,1))*' +
+                                '(1 - (cellv(col+1-' + _gap + ',row) + cellv(col+1,row))/(cellv(col+1-' + _gap + ',1) + cellv(col+1,1)))*' +
+                                '(1/cellv(col+1,1) + 1/cellv(col+1-' + _gap + ',1))' +
+                            ')) > 1.96',
+                style: 'increasing'
+            },
+            {
+                expression: 'true',
+                style: ''
+            }
+        ];
+
+        var combinedConditions = [];
+
+        if(_sigTestingAlertsTable) {
+            for(var i = 0; i < negNeuPostConditions.length; i++) {
+                var negNeuPosItem = negNeuPostConditions[i];
+
+                for(var j = 0; j < sigTestCountsConditions.length; j++) {
+                    var sigTestCountsItem = sigTestCountsConditions[j];
+
+                    for(var k = 0; k < sigTestSentimentConditions.length; k++) {
+                        var sigTestSentimentItem = sigTestSentimentConditions[k];
+                        var item = {};
+
+                        item.expression = negNeuPosItem.expression + ' AND ' + sigTestCountsItem.expression + ' AND ' + sigTestSentimentItem.expression;
+                        item.style = negNeuPosItem.style + ' ' + sigTestCountsItem.style + 'C ' + sigTestSentimentItem.style + 'S ';
+
+                        combinedConditions.push(item);
+                    }
+                }
+            }
+        } else {
+            var arrayToCombineWith = _sigTestingUseCounts ? sigTestCountsConditions : sigTestSentimentConditions;
+
+            for(var i = 0; i < negNeuPostConditions.length; i++) {
+                var negNeuPosItem = negNeuPostConditions[i];
+
+                for(var j = 0; j < arrayToCombineWith.length; j++) {
+                    var sigTestItem = arrayToCombineWith[j];
+                    var item = {};
+
+                    item.expression = negNeuPosItem.expression + ' AND ' + sigTestItem.expression;
+                    item.style = negNeuPosItem.style + ' ' + sigTestItem.style;
+
+                    combinedConditions.push(item);
+                }
+            }
+        }
+
+        return combinedConditions;
     }
 }

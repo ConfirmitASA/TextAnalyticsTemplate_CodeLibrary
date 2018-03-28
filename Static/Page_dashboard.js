@@ -193,7 +193,7 @@ class Page_dashboard{
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
+        var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_TOGGLE") == '1' ? false : true;
         var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
 
         var themeDistributionTable = new TAThemeDistributionTable({
@@ -201,11 +201,13 @@ class Page_dashboard{
             folder: folder,
             table: table,
             sentiment: sentiment,
+            sigTestingUseCounts: sigTestingUseCounts,
+            sigTestingAlertsTable: false,
             config: Config,
             period: period
         });
 
-        themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "striped-columns", "reportal-hierarchy-table"]);
+        themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-hierarchy-table"]);
         themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "detailed_analysis, comments");
         themeDistributionTable.GetTATableUtils().ClearTableDistributions();
         themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
