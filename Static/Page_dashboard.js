@@ -587,4 +587,73 @@ class Page_dashboard{
         context.component.Output.Append(upgradeText);
         context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
     }
+
+    /**
+     * @memberof Page_dashboard
+     * @function tblSignificantChangeAlerts_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function tblSignificantChangeAlerts_Hide(context){
+        return false;
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function tblSignificantChangeAlerts_Render
+     * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function tblSignificantChangeAlerts_Render(context){
+        var table = context.component;
+
+        var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_TOGGLE") == '1' ? false : true;
+
+        var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
+
+        var themeDistributionTable = new TAThemeDistributionTable({
+            context: context,
+            folder: folder,
+            table: table,
+            sentiment: sentiment,
+            sigTestingUseCounts: sigTestingUseCounts,
+            sigTestingAlertsTable: true,
+            config: Config,
+            period: period
+        });
+
+        themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-hierarchy-table"]);
+        themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "word_cloud");
+        themeDistributionTable.GetTATableUtils().ClearTableDistributions();
+        themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtSignificantChangeAlertsScript_Hide
+     * @description function to render Alerts for Significant Changes
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtSignificantChangeAlertsScript_Hide(context){
+        return false
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtSignificantChangeAlertsScript_Render
+     * @description function to render Alerts for Significant Changes
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtSignificantChangeAlertsScript_Render(context){
+        var alertstInit = "<script>" +
+            "new Reportal.SignificantChangesAlerts({" +
+            "tableId:'alerts-table'," +
+            "containerId:'alerts-container'});" +
+            "</script>";
+        context.component.Output.Append(alertstInit);
+    }
 }
