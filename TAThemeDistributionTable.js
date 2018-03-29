@@ -66,10 +66,40 @@ class TAThemeDistributionTable{
      */
     private function _render(){
         var rowexpr = _getRowheadersExpression();
-
         _taTableUtils.CreateTableFromExpression(rowexpr);
+
+        _setScaleMask();
         _addTimeSeriesColumn();
         _setupConditionalFormatting();
+    }
+
+    /**
+     * @memberof TAThemeDistributionTable
+     * @private
+     * @instance
+     * @function _setScaleMask
+     */
+    private function _setScaleMask(){
+        if(_sentiment != 'all') {
+            var header : HeaderQuestion =  _table.RowHeaders.Item(1);
+            var mask : MaskFlat = new MaskFlat();
+            mask.IsInclusive = true;
+
+            switch (_sentiment) {
+                case "neg":
+                    mask.Codes.AddRange(_config.SentimentRange.Negative);
+                    break;
+                case "neu":
+                    mask.Codes.AddRange(_config.SentimentRange.Neutral);
+                    break;
+                case "pos":
+                    mask.Codes.AddRange(_config.SentimentRange.Positive);
+                    break;
+            }
+
+            header.ScaleMask = mask;
+            header.FilterByMask = true;
+        }
     }
 
     /**
@@ -81,7 +111,6 @@ class TAThemeDistributionTable{
     private function _getRowheadersExpression(){
         var overallQuestion = _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:true");
         var categoryQuestion = _taTableUtils.GetTAQuestionExpression("categorysentiment");
-
         var rowexpr = overallQuestion + "+" + categoryQuestion;
 
         return rowexpr;
@@ -97,12 +126,7 @@ class TAThemeDistributionTable{
      */
     private function _addTimeSeriesColumn(){
         var headerTimeSeries = _taTableUtils.GetTimePeriodHeader(_period.Unit, _period.From, _period.To);
-        var columnsCollection: HeaderCollection = new HeaderCollection();
-
-        columnsCollection.AddRange(_getCountsColumn());
-        columnsCollection.Add(_getHeaderStatistics());
-
-        headerTimeSeries.SubHeaders.AddRange(columnsCollection);
+        headerTimeSeries.SubHeaders.AddRange(_getHeaderStatistics());
         _table.ColumnHeaders.Add(headerTimeSeries);
     }
 
@@ -110,55 +134,28 @@ class TAThemeDistributionTable{
      * @memberof TAThemeDistributionTable
      * @private
      * @instance
-     * @function _getCountsColumn
-     * @returns {HeaderCollection}
-     * @description to calculate counts we use categories header and formula to calculate counts of particular sentiment range
-     */
-    private function _getCountsColumn(){
-        var columnsCollection: HeaderCollection = _taTableUtils.GetCategoriesHeader(_sentiment, false, true, false, Config.SentimentRange);
-        return columnsCollection
-    }
-
-    /**
-     * @memberof TAThemeDistributionTable
-     * @private
-     * @instance
-     * @description to calculate sentiment we use categories header and formula to calculate counts of particular sentiment range and average sentiment of that category
+     * @description to calculate count, avg.sentiment and stdev we use statistics header, data is filtered by scale mast in rowheaders
      * @function _getHeaderStatistics
      * @returns {Header}
      */
     private function _getHeaderStatistics(){
-        var headerStatistics;
+        var columnsCollection: HeaderCollection = new HeaderCollection();
 
-        if( _sentiment == "all"){
-            headerStatistics = new HeaderStatistics();
-            headerStatistics.Statistics.Avg = true;
-        }else{
-            headerStatistics = new HeaderFormula();
-            headerStatistics.Type = FormulaType.Expression;
-            headerStatistics.Decimals = 0;
-            headerStatistics.Priority = 0;
+        var countHeader : HeaderStatistics = new HeaderStatistics();
+        countHeader.Statistics.Count = true;
+        countHeader.Decimals = 0;
+        countHeader.HideHeader = true;
+        columnsCollection.Add(countHeader);
 
-            switch (_sentiment) {
-                case "neg":
-                    headerStatistics.Expression = "-6";
-                    _gap += _config.SentimentRange.Negative.length;
-                    break;
+        var avgAndStdevHeader : HeaderStatistics = new HeaderStatistics();
+        avgAndStdevHeader.Statistics.Avg = true;
+        avgAndStdevHeader.Statistics.StdevP = true;
+        avgAndStdevHeader.Decimals = 4;
+        avgAndStdevHeader.HideHeader = true;
+        avgAndStdevHeader.HideData = true;
+        columnsCollection.Add(avgAndStdevHeader);
 
-                case "neu":
-                    headerStatistics.Expression = "0";
-                    _gap += _config.SentimentRange.Neutral.length;
-                    break;
-
-                case "pos":
-                    headerStatistics.Expression = "6";
-                    _gap += _config.SentimentRange.Positive.length;
-                    break;
-            }
-        }
-        headerStatistics.HideHeader = true;
-        headerStatistics.HideData = true;
-        return headerStatistics
+        return columnsCollection;
     }
 
     /**
@@ -203,24 +200,34 @@ class TAThemeDistributionTable{
             }
         ];
 
+        var prevTotal = 'cellv(col-' + _gap + ',1)';
+        var curTotal = 'cellv(col,1)';
+        var prevCount = 'cellv(col-' + _gap + ',row)';
+        var curCount = 'cellv(col,row)';
+        var prevAvg = 'cellv(col+1-' + _gap + ',row)';
+        var curAvg = 'cellv(col+1,row)';
+        var prevStdev = 'cellv(col+2-' + _gap + ',row)';
+        var curStdev = 'cellv(col+2,row)';
+
+
         var sigTestCountsConditions = [
             {
-                expression: 'cellv(col,row) >= 5 AND cellv(col-' + _gap + ',row) >= 5 AND ' +
-                            '((cellv(col,row)/cellv(col,1) - cellv(col-' + _gap + ',row)/cellv(col-' + _gap + ',1)) / ' +
+                expression: '' + curCount + ' >= 5 AND ' + prevCount + ' >= 5 AND ' +
+                            '((' + curCount + '/' + curTotal + ' - ' + prevCount + '/' + prevTotal + ') / ' +
                             'SQRT(' +
-                                '(cellv(col-' + _gap + ',row) + cellv(col,row))/(cellv(col-' + _gap + ',1) + cellv(col,1))*' +
-                                '(1 - (cellv(col-' + _gap + ',row) + cellv(col,row))/(cellv(col-' + _gap + ',1) + cellv(col,1)))*' +
-                                '(1/cellv(col,1) + 1/cellv(col-' + _gap + ',1))' +
+                                '(' + prevCount + ' + ' + curCount + ')/(' + prevTotal + ' + ' + curTotal + ')*' +
+                                '(1 - (' + prevCount + ' + ' + curCount + ')/(' + prevTotal + ' + ' + curTotal + '))*' +
+                                '(1/' + curTotal + ' + 1/' + prevTotal + ')' +
                             ')) < -1.96',
                 style: 'decreasing'
             },
             {
-                expression: 'cellv(col,row) >= 5 AND cellv(col-' + _gap + ',row) >= 5 AND ' +
-                            '((cellv(col,row)/cellv(col,1) - cellv(col-' + _gap + ',row)/cellv(col-' + _gap + ',1)) / ' +
+                expression: '' + curCount + ' >= 5 AND ' + prevCount + ' >= 5 AND ' +
+                            '((' + curCount + '/' + curTotal + ' - ' + prevCount + '/' + prevTotal + ') / ' +
                             'SQRT(' +
-                                '(cellv(col-' + _gap + ',row) + cellv(col,row))/(cellv(col-' + _gap + ',1) + cellv(col,1))*' +
-                                '(1 - (cellv(col-' + _gap + ',row) + cellv(col,row))/(cellv(col-' + _gap + ',1) + cellv(col,1)))*' +
-                                '(1/cellv(col,1) + 1/cellv(col-' + _gap + ',1))' +
+                                '(' + prevCount + ' + ' + curCount + ')/(' + prevTotal + ' + ' + curTotal + ')*' +
+                                '(1 - (' + prevCount + ' + ' + curCount + ')/(' + prevTotal + ' + ' + curTotal + '))*' +
+                                '(1/' + curTotal + ' + 1/' + prevTotal + ')' +
                             ')) > 1.96',
                 style: 'increasing'
             },
@@ -232,22 +239,22 @@ class TAThemeDistributionTable{
 
         var sigTestSentimentConditions = [
             {
-                expression: 'cellv(col,row) >= 5 AND cellv(col-' + _gap + ',row) >= 5 AND ' +
-                            '((cellv(col +1,row)/cellv(col+1,1) - cellv(col+1-' + _gap + ',row)/cellv(col+1-' + _gap + ',1)) / ' +
+                expression: prevCount + ' >= 10 AND ' + curCount + ' >= 10 AND ' +
+                            '((' + curAvg + ' - ' + prevAvg + ') / ' +
                             'SQRT(' +
-                                '(cellv(col+1-' + _gap + ',row) + cellv(col+1,row))/(cellv(col+1-' + _gap + ',1) + cellv(col+1,1))*' +
-                                '(1 - (cellv(col+1-' + _gap + ',row) + cellv(col+1,row))/(cellv(col+1-' + _gap + ',1) + cellv(col+1,1)))*' +
-                                '(1/cellv(col+1,1) + 1/cellv(col+1-' + _gap + ',1))' +
+                                '(1/' + prevCount + ' + 1/' + curCount + ') * ' +
+                                '((' + prevCount + ' - 1)*POWER(' + prevStdev + ', 2) + (' + curCount + ' - 1)*POWER(' + curStdev + ', 2)) / '+
+                                '(' + prevCount + ' + ' + curCount + ' - 2)' +
                             ')) < -1.96',
                 style: 'decreasing'
             },
             {
-                expression: 'cellv(col,row) >= 5 AND cellv(col-' + _gap + ',row) >= 5 AND ' +
-                            '((cellv(col+1,row)/cellv(col+1,1) - cellv(col+1-' + _gap + ',row)/cellv(col+1-' + _gap + ',1)) / ' +
+                expression: prevCount + ' >= 10 AND ' + curCount + ' >= 10 AND ' +
+                            '((' + curAvg + ' - ' + prevAvg + ') / ' +
                             'SQRT(' +
-                                '(cellv(col+1-' + _gap + ',row) + cellv(col+1,row))/(cellv(col+1-' + _gap + ',1) + cellv(col+1,1))*' +
-                                '(1 - (cellv(col+1-' + _gap + ',row) + cellv(col+1,row))/(cellv(col+1-' + _gap + ',1) + cellv(col+1,1)))*' +
-                                '(1/cellv(col+1,1) + 1/cellv(col+1-' + _gap + ',1))' +
+                                '(1/' + prevCount + ' + 1/' + curCount + ') * ' +
+                                '((' + prevCount + ' - 1)*POWER(' + prevStdev + ', 2) + (' + curCount + ' - 1)*POWER(' + curStdev + ', 2)) / '+
+                                '(' + prevCount + ' + ' + curCount + ' - 2)' +
                             ')) > 1.96',
                 style: 'increasing'
             },
