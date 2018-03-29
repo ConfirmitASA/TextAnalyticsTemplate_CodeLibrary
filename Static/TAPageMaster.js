@@ -336,4 +336,14 @@ class TAPageMaster{
             filterNumber: filterNumber
         });
     }
+
+    /**
+     * @memberof TAPageMaster
+     * @function rbDistributionToggle_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function rbDistributionToggle_Hide(context){
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') !== 'detailed_analysis';
+    }
 }
