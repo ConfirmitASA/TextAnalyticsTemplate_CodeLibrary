@@ -176,4 +176,26 @@ class Page_customer_journey{
         context.component.Output.Append(JSON.print(context.pageContext.Items['options'], 'CJ_options'));
         context.component.Output.Append(cardsInit);
     }
+
+    /**
+     * @memberof Page_customer_journey
+     * @function txtCustomerJourneyTrendTitle_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtCustomerJourneyTrendTitle_Hide(context){
+        return false;
+    }
+
+    /**
+     * @memberof Page_customer_journey
+     * @function txtCustomerJourneyTrendTitle_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtCustomerJourneyTrendTitle_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Trend chart"];
+        context.component.Output.Append(label);
+    }
 }
