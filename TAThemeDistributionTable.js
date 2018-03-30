@@ -23,7 +23,7 @@ class TAThemeDistributionTable{
     private var _percents;
     private var _period;
     private var _config;
-    private var _gap = 2;
+    private var _gap = 3;
 
     function TAThemeDistributionTable(params){
         var context = params.context;
@@ -162,7 +162,7 @@ class TAThemeDistributionTable{
      * @memberof TAThemeDistributionTable
      * @private
      * @instance
-     * @function _setupConditionalFormatting}
+     * @function _setupConditionalFormatting
      */
     private function _setupConditionalFormatting(){
         _taTableUtils.SetupConditionalFormatting(
