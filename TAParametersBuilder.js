@@ -266,7 +266,7 @@ class TAParametersBuilder{
         var tableHeaders, parameterLabels = [];
         var parameterLabelsIndex = 0;
         try {
-            tableHeaders = report.TableUtils.GetRowHeaderCategoryTitles('tiles:tblCustomerJourneyTrend');
+            tableHeaders = context.report.TableUtils.GetRowHeaderCategoryTitles('tiles:tblCustomerJourneyTrend');
             for (var i = 0; i < tableHeaders.length; i++){
                 if(tableHeaders[i] != 'Empty Header'){
                     parameterLabels.push(tableHeaders[i]);
