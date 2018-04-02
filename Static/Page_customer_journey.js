@@ -167,7 +167,7 @@ class Page_customer_journey{
     static function txtCustomerJourneyCardsScript_Render(context){
         var cardsInit = "<script>" +
             "new Reportal.CustomerJourneyCards({" +
-            "tableId:'confirmit_agg_table'," +
+            "tableId:'cj_drilldown'," +
             "drilldownId:'cj_drilldown'," +
             "cardContainerId: 'cj_cards'," +
             "CJ_options: CJ_options});" +
