@@ -346,4 +346,24 @@ class TAPageMaster{
     static function rbDistributionToggle_Hide(context){
         return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') !== 'detailed_analysis';
     }
+
+    /**
+     * @memberof TAPageMaster
+     * @function txtCustomerJourney_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtCustomerJourney_Hide(context){
+        return false
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function txtCustomerJourney_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtCustomerJourney_Render(context){
+        var label = Translations.dictionary(context.report.CurrentLanguage)['Customer Journey Point'];
+        context.component.Output.Append(label);
+    }
 }

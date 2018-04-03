@@ -263,6 +263,19 @@ class TAParametersBuilder{
 
         var project = context.report.DataSource.GetProject(folder.GetDatasourceId());
 
+        var tableHeaders, parameterLabels = [];
+        var parameterLabelsIndex = 0;
+        try {
+            tableHeaders = context.report.TableUtils.GetRowHeaderCategoryTitles('tiles:tblCustomerJourneyTrend');
+            for (var i = 0; i < tableHeaders.length; i++){
+                if(tableHeaders[i] != 'Empty Header'){
+                    parameterLabels.push(tableHeaders[i]);
+                }
+            }
+        }
+        catch(e) {
+            parameterLabels = [];
+        }
         for(var i = 0; i < Config.CustomerJourneyQuestions.length; i++){
             var currentOptions = Config.CustomerJourneyQuestions[i];
 
@@ -275,16 +288,18 @@ class TAParametersBuilder{
             if(currentOptions.IsCollapsed) {
                 parameterValues.push({
                     Code: questionId,
-                    Label: questionId
+                    Label: parameterLabels[parameterLabelsIndex] ? parameterLabels[parameterLabelsIndex]: questionId
                 });
+                parameterLabelsIndex++;
             } else {
                 var answers = project.GetQuestion(currentOptions.QuestionId).GetAnswers();
 
                 for(var j = 0; j < answers.length; j++) {
                     parameterValues.push({
                         Code: questionId + '*' + answers[j].Precode,
-                        Label: questionId + '*' + answers[j].Precode
+                        Label: parameterLabels[parameterLabelsIndex] ? parameterLabels[parameterLabelsIndex]: questionId
                     });
+                    parameterLabelsIndex++;
                 }
             }
         }
