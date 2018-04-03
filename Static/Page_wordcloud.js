@@ -521,7 +521,7 @@ class Page_wordcloud{
 
         var wcInit = "<script>" +
             "var ta_wc = new Reportal.WordCloud({" +
-            "                elementFromId: \"confirmit_agg_table_1\"," +
+            "                elementFromId: \"wc-table\"," +
             "                elementToId: \"cloud\"," +
             "                exceptionsFromId: \"wc_exceptions\"," +
             "                countId: 1," +
