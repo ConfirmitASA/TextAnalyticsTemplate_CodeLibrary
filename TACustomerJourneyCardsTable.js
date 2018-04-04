@@ -146,7 +146,7 @@ class TACustomerJourneyCardsTable{
         }
     }
 
-    if(!optionsToSave.KeyMetricId) {
+    if(optionsToSave.KeyMetricId == undefined) {
         optionsToSave.KeyMetricId = currentOptions.KeyMetricId;
     }
 
