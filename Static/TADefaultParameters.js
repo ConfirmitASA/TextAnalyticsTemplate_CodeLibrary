@@ -46,7 +46,7 @@ class TADefaultParameters {
         },
         {
             Id: "TA_SIG_TESTING_TOGGLE",
-            Value: "0"
+            Value: "1"
         },
         {
             Id: "TA_PERIOD",
