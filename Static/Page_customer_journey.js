@@ -50,8 +50,8 @@ class Page_customer_journey{
     static function tblCustomerJourneyTrend_Render(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var themeDistributionTable = new TACustomerJourneyTrendTable({folder:folder, config:Config, context:context});
-        themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories"]);
+        var customerJourneyTrendTable = new TACustomerJourneyTrendTable({folder:folder, config:Config, context:context});
+        customerJourneyTrendTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories"]);
     }
 
     /**
