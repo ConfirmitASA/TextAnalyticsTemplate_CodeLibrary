@@ -358,7 +358,7 @@ class Page_wordcloud{
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
 
-        var label = currentDictionary["Selected word"];
+        var label = currentDictionary["Include words"];
         context.component.Output.Append(label);
         context.component.Output.Append(TAParameterValues.getWordCloudParameterValue(context, currentDictionary));
     }
@@ -565,4 +565,18 @@ class Page_wordcloud{
 
         context.component.Output.Append(wcInit);
     }
+
+    /**
+     * @memberof Page_wordcloud
+     * @function txtWordsFilterType_Render
+     * @description function to render the sentiment selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtWordsFilterType_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Matching"];
+        context.component.Output.Append(label);
+    }
+
 }
