@@ -393,7 +393,7 @@ class TAParameters{
      * @function TA_VIEW_SENTIMENT_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function TA_WORDS_FILTER_TYPE_Domain_Domain(context){
+    static function TA_WORDS_FILTER_TYPE_Domain(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
 
