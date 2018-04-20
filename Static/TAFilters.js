@@ -92,7 +92,7 @@ class TAFilters {
 
     /**
      * @memberof TAFilters
-     * @function WordFilter
+     * @function WordsFilter
      * @description function to filter Hitlist by words from word cloud
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -124,5 +124,29 @@ class TAFilters {
             expressionParts.push('(' + excludedWordsExpr.join(" " + (ParameterValueResponse)(context.state.Parameters("TA_EXCLUDE_WORDS_FILTER_TYPE")).StringKeyValue + " ")  + ')');
         }
         context.component.Expression = expressionParts.join(  " AND " );
+    }
+
+    /**
+     * @memberof TAFilters
+     * @function CJParameter
+     * @description function to filter Report by selected value for CJ_CARDS parameter (clicking by card on the CJ page)
+     * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function CJParameter(context){
+        var cj_parameter = !context.state.Parameters.IsNull("TA_CJ_CARDS") &&
+            context.state.Parameters.GetString("TA_CJ_CARDS") !== 'emptyv' &&
+            context.state.Parameters.GetString("TA_CJ_CARDS");
+
+        var expr = '';
+
+        if(cj_parameter){
+            var indexOfAsterisk = cj_parameter.indexOf('*');
+            if(indexOfAsterisk >= 0) {
+                expr = cj_parameter.substr(0, indexOfAsterisk) + ' = "' +  cj_parameter.substr(indexOfAsterisk + 1) + '"';
+            } else {
+                expr = 'NOT ISNULL(' + cj_parameter + ')'
+            }
+        }
+        context.component.Expression = expr;
     }
 }
