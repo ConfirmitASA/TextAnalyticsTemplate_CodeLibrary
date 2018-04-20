@@ -102,6 +102,18 @@ class Page_wordcloud{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var textSeparator = folder.GetHierarchy().GetTextSeparator();
+        var selectedWords;
+
+        if ( !state.Parameters.IsNull("TA_INCLUDE_WORDS") ){
+            var wordCloudFilterWords : ParameterValueMultiSelect = state.Parameters["TA_INCLUDE_WORDS"];
+            var words = [];
+
+            for(var i = 0; i < wordCloudFilterWords.Count; i++) {
+                var word : ParameterValueResponse = wordCloudFilterWords[i];
+                words.push(word.StringKeyValue);
+            }
+            selectedWords = words.join("|")
+        }
 
         var hitlistInit = "<script>"+
             "Y.Global.on('hitlistloaded', function (e) {  "+
@@ -109,7 +121,8 @@ class Page_wordcloud{
             "hitlist: document.querySelector('.reportal-hitlist-container'),"+
             "separator: '" + (textSeparator ? textSeparator : "") + "',"+
             "headers: hitlistHeaders,"+
-            "sentimentConfig: sentimentConfig,"+
+            "sentimentConfig: sentimentConfig," +
+            "selectedWords: '" + selectedWords + "',"+
             "currentCategory: currentCategory"+
             "});"+
             "});"+
@@ -360,7 +373,7 @@ class Page_wordcloud{
 
         var label = currentDictionary["Include words"];
         context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getWordCloudParameterValue(context, currentDictionary));
+       // context.component.Output.Append(TAParameterValues.getWordCloudParameterValue(context, currentDictionary));
     }
 
 
@@ -558,8 +571,8 @@ class Page_wordcloud{
             "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>  " +
             "<script>" +
             "$(function() {" +
-            "$(\"#wc_exceptions select\").select2();" +
-            "$(\"#select-word select\").select2();" +
+            "$(\"#wc_exceptions .reportal-select:not(:first-child) select\").select2();" +
+            "$(\"#select-word .reportal-select:not(:first-child) select\").select2();" +
             "});" +
             "</script>";
 
