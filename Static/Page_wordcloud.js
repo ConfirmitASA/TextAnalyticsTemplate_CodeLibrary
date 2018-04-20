@@ -104,8 +104,8 @@ class Page_wordcloud{
         var textSeparator = folder.GetHierarchy().GetTextSeparator();
         var selectedWords;
 
-        if ( !state.Parameters.IsNull("TA_INCLUDE_WORDS") ){
-            var wordCloudFilterWords : ParameterValueMultiSelect = state.Parameters["TA_INCLUDE_WORDS"];
+        if ( !context.state.Parameters.IsNull("TA_INCLUDE_WORDS") ){
+            var wordCloudFilterWords : ParameterValueMultiSelect = context.state.Parameters["TA_INCLUDE_WORDS"];
             var words = [];
 
             for(var i = 0; i < wordCloudFilterWords.Count; i++) {
