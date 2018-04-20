@@ -92,18 +92,37 @@ class TAFilters {
 
     /**
      * @memberof TAFilters
-     * @function WordCloudFilter
-     * @description function to filtrate by word from word cloud
+     * @function WordFilter
+     * @description function to filter Hitlist by words from word cloud
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function WordCloudFilter(context){
-        var fExpr = "";
-
+    static function WordsFilter(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var TAQuestion = folder.GetQuestionId();
+        var includeWordsExpr = [];
+        var excludedWordsExpr = [];
+        var expressionParts = [];
 
-        var selectedWord = context.state.Parameters.GetString("TA_WORD_CLOUD");
-        context.component.Expression = (selectedWord && selectedWord !=="emptyv") ? 'IN(word_' + TAQuestion + ', PValStr("TA_WORD_CLOUD"))' : 'NOT ISNULL('+folder.GetQuestionId("overallSentiment")+')';
+        if(!context.state.Parameters.IsNull('TA_INCLUDE_WORDS')) {
+            var wordCloudIncWords : ParameterValueMultiSelect = state.Parameters["TA_INCLUDE_WORDS"];
+
+            for(var i = 0; i < wordCloudIncWords.Count; i++) {
+                var word : ParameterValueResponse = wordCloudIncWords[i];
+                includeWordsExpr.push('IN(word_' + TAQuestion + ', "' + word.StringKeyValue + '")');
+            }
+            expressionParts.push('(' + includeWordsExpr.join(" " + (ParameterValueResponse)(state.Parameters("TA_INCLUDE_WORDS_FILTER_TYPE")).StringKeyValue + " ")+')');
+        }
+
+        if(!context.state.Parameters.IsNull('TA_EXCLUDE_WORDS')) {
+            var wordCloudIExcWords : ParameterValueMultiSelect = state.Parameters["TA_EXCLUDE_WORDS"];
+
+            for(var i = 0; i < wordCloudIExcWords.Count; i++) {
+                word = wordCloudIExcWords[i];
+                excludedWordsExpr.push('NOT IN(word_' + TAQuestion + ', "' + word.StringKeyValue + '")');
+            }
+            expressionParts.push('(' + excludedWordsExpr.join(" " + (ParameterValueResponse)(state.Parameters("TA_EXCLUDE_WORDS_FILTER_TYPE")).StringKeyValue + " ")  + ')');
+        }
+        context.component.Expression = expressionParts.join(  " AND " );
     }
 }
