@@ -105,23 +105,23 @@ class TAFilters {
         var expressionParts = [];
 
         if(!context.state.Parameters.IsNull('TA_INCLUDE_WORDS')) {
-            var wordCloudIncWords : ParameterValueMultiSelect = state.Parameters["TA_INCLUDE_WORDS"];
+            var wordCloudIncWords : ParameterValueMultiSelect = context.state.Parameters["TA_INCLUDE_WORDS"];
 
             for(var i = 0; i < wordCloudIncWords.Count; i++) {
                 var word : ParameterValueResponse = wordCloudIncWords[i];
                 includeWordsExpr.push('IN(word_' + TAQuestion + ', "' + word.StringKeyValue + '")');
             }
-            expressionParts.push('(' + includeWordsExpr.join(" " + (ParameterValueResponse)(state.Parameters("TA_INCLUDE_WORDS_FILTER_TYPE")).StringKeyValue + " ")+')');
+            expressionParts.push('(' + includeWordsExpr.join(" " + (ParameterValueResponse)(context.state.Parameters("TA_INCLUDE_WORDS_FILTER_TYPE")).StringKeyValue + " ")+')');
         }
 
         if(!context.state.Parameters.IsNull('TA_EXCLUDE_WORDS')) {
-            var wordCloudIExcWords : ParameterValueMultiSelect = state.Parameters["TA_EXCLUDE_WORDS"];
+            var wordCloudIExcWords : ParameterValueMultiSelect = context.state.Parameters["TA_EXCLUDE_WORDS"];
 
             for(var i = 0; i < wordCloudIExcWords.Count; i++) {
                 word = wordCloudIExcWords[i];
                 excludedWordsExpr.push('NOT IN(word_' + TAQuestion + ', "' + word.StringKeyValue + '")');
             }
-            expressionParts.push('(' + excludedWordsExpr.join(" " + (ParameterValueResponse)(state.Parameters("TA_EXCLUDE_WORDS_FILTER_TYPE")).StringKeyValue + " ")  + ')');
+            expressionParts.push('(' + excludedWordsExpr.join(" " + (ParameterValueResponse)(context.state.Parameters("TA_EXCLUDE_WORDS_FILTER_TYPE")).StringKeyValue + " ")  + ')');
         }
         context.component.Expression = expressionParts.join(  " AND " );
     }
