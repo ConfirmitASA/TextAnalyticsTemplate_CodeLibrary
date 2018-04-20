@@ -398,8 +398,8 @@ class TAParameters{
         var currentDictionary = Translations.dictionary(currentLanguage);
 
         var parameterValues = [
-            {Code: "AND", Label: currentDictionary["Any of the following"]},
-            {Code: "OR", Label: currentDictionary["All of the following"]}
+            {Code: "OR", Label: currentDictionary["Any of the following"]},
+            {Code: "AND", Label: currentDictionary["All of the following"]}
         ];
 
         TAParameterUtilities.LoadParameterValues({
