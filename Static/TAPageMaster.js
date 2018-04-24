@@ -94,7 +94,7 @@ class TAPageMaster{
             var indexOfAsterisk = cj_parameter.indexOf('*');
             summarySegments.push(("<div>" + (
                 indexOfAsterisk >= 0 ?
-                    (cj_parameter.substr(0, indexOfAsterisk) + ' = ' +  cj_parameter.substr(indexOfAsterisk + 1)) :
+                    (cj_parameter.substr(0, indexOfAsterisk) + ' = ' +   (ParameterValueResponse)(state.Parameters['TA_CJ_CARDS']).DisplayValue) :
                     (cj_parameter + ' is answered')
             ) + "</div>"));
         }

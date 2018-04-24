@@ -52,10 +52,9 @@ class TADefaultParameters {
             Id: "TA_PERIOD",
             Value: "m"
         },
-        {
-            Id: "TA_WORD_CLOUD",
-            Value: "emptyv"
-        },
+        //     Id: "TA_WORD_CLOUD",
+        //     Value: "emptyv"
+        // },
         {
             Id: "TA_CJ_CARDS",
             Value: "emptyv"
