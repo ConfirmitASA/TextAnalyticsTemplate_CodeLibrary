@@ -12,13 +12,13 @@ class TACustomerJourneyCardsTable{
     private var _rowItems = [];
     private var _columnItems = [];
     private var _statisticItems = [];
-
+    private var _log;
     function TACustomerJourneyCardsTable(params){
     var context = params.context;
     _table = context.component;
     _report = context.report;
     _pageContext = context.pageContext;
-
+        _log = context.log;
     _folder = params.folder;
     _taTableUtils = new TATableUtils({
         context: context,
@@ -50,7 +50,8 @@ class TACustomerJourneyCardsTable{
     //_table.Use1000Separator = false;
     createRowsAndCols();
     _taTableUtils.CreateTableFromExpression(_rowItems.join('+'), _columnItems.join('+'));
-
+        _log.LogDebug("rowItems: " + _rowItems.join('+'));
+        _log.LogDebug("columnItems: " + _columnItems.join('+'));
     _table.RowNesting = TableRowNestingType.AsLines;
     _pageContext.Items.Add('options', _options);
 }
