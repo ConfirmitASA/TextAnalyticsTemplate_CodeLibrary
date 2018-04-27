@@ -50,7 +50,8 @@ class Page_customer_journey{
     static function tblCustomerJourneyTrend_Render(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var customerJourneyTrendTable = new TACustomerJourneyTrendTable({folder:folder, config:Config, context:context});
+        var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
+        var customerJourneyTrendTable = new TACustomerJourneyTrendTable({folder:folder, config:Config, context:context, period: period});
         customerJourneyTrendTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories"]);
     }
 
