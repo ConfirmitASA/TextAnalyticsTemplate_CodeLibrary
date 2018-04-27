@@ -283,7 +283,36 @@ class TAPageMaster{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtPageTitle_Render(context){
-        var label = Translations.dictionary(context.report.CurrentLanguage)["What people are talking about"];
+        var pageId = state.Parameters.IsNull('TA_LAST_VISITED_PAGE') ? '' : state.Parameters.GetString('TA_LAST_VISITED_PAGE');
+        var label = '';
+        switch(pageId) {
+            case 'customer_journey':
+                label = 'Here are your key touchpoints. You can click on any of the touchpoints to filter your text analytics report and understand where the key pain points are.';
+                break;
+
+            case 'correlation':
+                var cj_parameter = !context.state.Parameters.IsNull("TA_CJ_CARDS") &&
+                    context.state.Parameters.GetString("TA_CJ_CARDS") !== 'emptyv' &&
+                    context.state.Parameters.GetString("TA_CJ_CARDS");
+
+                if(cj_parameter){
+                    label = (ParameterValueResponse)(context.state.Parameters['TA_CJ_CARDS']).DisplayValue + ": " + "What people are talking about";
+                }
+                break;
+
+            case 'dashboard':
+                label = 'What has changed in the data?';
+                break;
+
+            case 'detailed_analysis':
+                label = 'Determine sentiment levels overall and within themes.';
+                break;
+
+            case 'comments':
+                label = 'What are customers talking about.';
+                break;
+        }
+
         context.component.Output.Append(label);
     }
 

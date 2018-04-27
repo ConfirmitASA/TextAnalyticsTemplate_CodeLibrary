@@ -50,8 +50,6 @@ class TACustomerJourneyCardsTable{
     //_table.Use1000Separator = false;
     createRowsAndCols();
     _taTableUtils.CreateTableFromExpression(_rowItems.join('+'), _columnItems.join('+'));
-        _log.LogDebug("rowItems: " + _rowItems.join('+'));
-        _log.LogDebug("columnItems: " + _columnItems.join('+'));
     _table.RowNesting = TableRowNestingType.AsLines;
     _pageContext.Items.Add('options', _options);
 }
