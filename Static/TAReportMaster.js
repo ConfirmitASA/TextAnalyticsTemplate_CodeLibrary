@@ -83,7 +83,7 @@ class TAReportMaster {
                 "\n;}.icon-face-negative,.cf_negative {fill: " + negativeColor +
                 "\n;}.cf_negative {color: " + negativeColor +
                 "\n;}.filter-bar div,.toggle input:checked + label {background: " + secondaryTextColor +
-                "\n;}.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label,[type=radio] + label, [type=checkbox] + label,[type=radio]:disabled:checked + label:after, [type=checkbox]:disabled:checked + label:after,[type=\"checkbox\"] + label:after,.toggle input:not(checked) + label,.dd-target-button .dd-target-button-arrow, .dd-target-button .dd-target-button-text,.no-data-label {color: " + secondaryTextColor +
+                "\n;}.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label,[type=radio] + label, [type=checkbox] + label,[type=radio]:disabled:checked + label:after, [type=checkbox]:disabled:checked + label:after,[type=\"checkbox\"] + label:after,.dd-target-button .dd-target-button-arrow, .dd-target-button .dd-target-button-text,.no-data-label {color: " + secondaryTextColor +
                 "\n;}[type=radio] + label:after {background-color: " + secondaryTextColor +
                 "\n;}.toggle input:checked + label,.toggle input:not(checked) + label {border-color: " + secondaryTextColor +
                 "\n;}.legend .cf_positive:before,.reportal-table>tbody>tr>td.cf_positive:after {background: " + positiveColor +
@@ -102,7 +102,7 @@ class TAReportMaster {
                 "\n;}.reportal-table .btn.hierarchy-search.visible {border-bottom: 1px solid " + dividerColor +
                 "\n;}[type=radio]:disabled:not(:checked) + label:before,[type=radio]:disabled:checked + label:before,[type=checkbox]:disabled:not(:checked) + label:before,[type=checkbox]:disabled:checked + label:before {border-color: " + dividerColor +
                 "\n;}[type=radio]:disabled:not(:checked) + label:before,[type=radio]:disabled:checked + label:before,[type=checkbox]:disabled:not(:checked) + label:before,[type=checkbox]:disabled:checked + label:before {background-color: " + lightDividerColor +
-                "\n;}[type=radio]:disabled + label, [type=checkbox]:disabled + label {color: " + disabledTextColor +
+                "\n;}[type=radio]:disabled + label, [type=checkbox]:disabled + label,.toggle input:not(checked) + label {color: " + disabledTextColor +
                 "\n;}.toggle label,.reportal-hitlist-container .hitlist-tags-container .hitlist-tag {border: solid 1px " + dividerColor +
                 "\n;}table>thead td.sortable:not(.hierarchy-search-visible):after {color: " + primaryTextColor +
                 "\n;}.reportal-table>tbody>tr>td,.cj-card__title,.cj-card__card-row:not(:last-child),.alert-card__title {border-bottom: 1px solid " + lightDividerColor +
