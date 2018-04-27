@@ -265,7 +265,7 @@ class TAParameters{
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
         var parameterValues = [
-            {Code: 0, Label: currentDictionary["Count"]},
+            {Code: 0, Label: currentDictionary["Comment volume"]},
             {Code: 1, Label: currentDictionary["Sentiment"]}
         ];
 

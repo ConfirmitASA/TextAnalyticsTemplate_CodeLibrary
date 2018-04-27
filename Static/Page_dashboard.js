@@ -347,7 +347,7 @@ class Page_dashboard{
     static function txtSigTest_Render(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
-        var label = currentDictionary["Type"];
+        var label = currentDictionary["Significance test"];
         context.component.Output.Append(label);
 
         context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_SIG_TESTING_TOGGLE'));
