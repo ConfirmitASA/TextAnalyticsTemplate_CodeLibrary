@@ -18,7 +18,7 @@ class TACustomerJourneyTrendTable{
             table: _table
         });
         _period = {
-            Unit: "m",
+            Unit: params.period ? params.period : "m",
             From: -11,
             To: 0
         };
