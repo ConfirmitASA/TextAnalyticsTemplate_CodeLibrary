@@ -86,6 +86,8 @@ class TAReportMaster {
                 "\n;}.reportal-checkbox > label, .reportal-radio > label, .reportal-select > label, .reportal-input > label, .reportal-datepicker > label, .reportal-hierarchy > label,[type=radio] + label, [type=checkbox] + label,[type=radio]:disabled:checked + label:after, [type=checkbox]:disabled:checked + label:after,[type=\"checkbox\"] + label:after,.dd-target-button .dd-target-button-arrow, .dd-target-button .dd-target-button-text,.no-data-label {color: " + secondaryTextColor +
                 "\n;}[type=radio] + label:after {background-color: " + secondaryTextColor +
                 "\n;}.toggle input:checked + label,.toggle input:not(checked) + label {border-color: " + secondaryTextColor +
+                "\n;}.legend .increasing,.reportal-table>tbody>tr>td.increasing {background: " + increasing +
+                "\n;}.legend .decreasing,.reportal-table>tbody>tr>td.decreasing {background: " + decreasing +
                 "\n;}.legend .cf_positive:before,.reportal-table>tbody>tr>td.cf_positive:after {background: " + positiveColor +
                 "\n;}.legend .cf_neutral:before,.reportal-table>tbody>tr>td.cf_neutral:after {background: " + neutralColor +
                 "\n;}.legend .cf_negative:before,.reportal-table>tbody>tr>td.cf_negative:after {background: " + negativeColor +
@@ -142,8 +144,6 @@ class TAReportMaster {
                 "\n;}#chart-tables-switcher svg {fill: " + primaryTextColor +
                 "\n;}#chart-tables-switcher .selected svg,#correlation-help:hover>svg {fill: " + buttonMainColor +
                 "\n;}#correlation-help-text {border: 1px solid " + dividerColor +
-                "\n;}.reportal-table>tbody>tr>td.increasing {background: " + increasing +
-                "\n;}.reportal-table>tbody>tr>td.decreasing {background: " + decreasing +
                 "\n;}.alert-card__decreasing {color: " + issues +
                 "\n;}.alert-card__increasing {color: " + strength +
                 "\n;}";
