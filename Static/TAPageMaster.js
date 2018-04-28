@@ -283,11 +283,12 @@ class TAPageMaster{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtPageTitle_Render(context){
-        var pageId = context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') ? '' : context.state.Parameters.GetString('TA_LAST_VISITED_PAGE');
+        var context = {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log};
+        var pageId = state.Parameters.IsNull('TA_LAST_VISITED_PAGE') ? '' : state.Parameters.GetString('TA_LAST_VISITED_PAGE');
         var label = '';
         switch(pageId) {
             case 'customer_journey':
-                label = 'Here are your key touchpoints. You can click on any of the touchpoints to filter your text analytics report and understand where the key pain points are.';
+                label = 'Here are your key touchpoints. <div style="font-size:16px"> You can click on any of the touchpoints to filter your text analytics report and understand where the key pain points are.</div>';
                 break;
 
             case 'correlation':
@@ -301,7 +302,8 @@ class TAPageMaster{
                 break;
 
             case 'dashboard':
-                label = 'What has changed in the data?';
+                var timePeriod = context.state.Parameters.GetString("TA_PERIOD") == 'm' ? 'Months' :  (ParameterValueResponse)(context.state.Parameters["TA_PERIOD"]).DisplayValue;
+                label = 'What has significantly changed in the last ' + timePeriod.substr(0, timePeriod.length - 1) + '?';
                 break;
 
             case 'detailed_analysis':

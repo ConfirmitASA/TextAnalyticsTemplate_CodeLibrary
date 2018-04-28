@@ -52,6 +52,10 @@ class TADefaultParameters {
             Id: "TA_PERIOD",
             Value: "m"
         },
+        {
+            Id: "TA_TREND_LINE_PERIOD",
+            Value: "m"
+        },
         //     Id: "TA_WORD_CLOUD",
         //     Value: "emptyv"
         // },
