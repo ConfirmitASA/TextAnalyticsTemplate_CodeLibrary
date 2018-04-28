@@ -283,7 +283,7 @@ class TAPageMaster{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtPageTitle_Render(context){
-        var pageId = state.Parameters.IsNull('TA_LAST_VISITED_PAGE') ? '' : state.Parameters.GetString('TA_LAST_VISITED_PAGE');
+        var pageId = context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') ? '' : state.Parameters.GetString('TA_LAST_VISITED_PAGE');
         var label = '';
         switch(pageId) {
             case 'customer_journey':
