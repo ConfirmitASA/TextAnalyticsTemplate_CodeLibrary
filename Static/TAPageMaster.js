@@ -302,7 +302,7 @@ class TAPageMaster{
 
             case 'dashboard':
                 var timePeriod = context.state.Parameters.GetString("TA_PERIOD") == 'm' ? 'Months' :  (ParameterValueResponse)(context.state.Parameters["TA_PERIOD"]).DisplayValue;
-                label = Translations.dictionary(context.report.CurrentLanguage)['dashboard page title'] + timePeriod.substr(0, timePeriod.length - 1) + '?';
+                label = Translations.dictionary(context.report.CurrentLanguage)['dashboard page title'] + '?';
                 break;
 
             case 'detailed_analysis':
