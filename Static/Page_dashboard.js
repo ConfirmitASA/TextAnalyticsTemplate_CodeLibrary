@@ -667,6 +667,7 @@ class Page_dashboard{
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
 
+        var text = currentDictionary["Theme Distribution Table Explanation"];
         context.component.Output.Append(text);
     }
 }
