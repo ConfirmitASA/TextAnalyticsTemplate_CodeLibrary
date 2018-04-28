@@ -656,4 +656,17 @@ class Page_dashboard{
             "</script>";
         context.component.Output.Append(alertstInit);
     }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtThemeDistributionExplanation_Render
+     * @description function to render explanation of Theme Distribution Table
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtThemeDistributionExplanation_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        context.component.Output.Append(text);
+    }
 }
