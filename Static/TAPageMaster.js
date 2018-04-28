@@ -287,7 +287,7 @@ class TAPageMaster{
         var label = '';
         switch(pageId) {
             case 'customer_journey':
-                label = 'Here are your key touchpoints. <div style="font-size:16px"> You can click on any of the touchpoints to filter your text analytics report and understand where the key pain points are.</div>';
+                label = Translations.dictionary(context.report.CurrentLanguage)['customer_journey page title'];
                 break;
 
             case 'correlation':
@@ -296,21 +296,21 @@ class TAPageMaster{
                     context.state.Parameters.GetString("TA_CJ_CARDS");
 
                 if(cj_parameter){
-                    label = (ParameterValueResponse)(context.state.Parameters['TA_CJ_CARDS']).DisplayValue + ": " + "What people are talking about";
+                    label = (ParameterValueResponse)(context.state.Parameters['TA_CJ_CARDS']).DisplayValue + ": " + Translations.dictionary(context.report.CurrentLanguage)['correlation page title'];
                 }
                 break;
 
             case 'dashboard':
                 var timePeriod = context.state.Parameters.GetString("TA_PERIOD") == 'm' ? 'Months' :  (ParameterValueResponse)(context.state.Parameters["TA_PERIOD"]).DisplayValue;
-                label = 'What has significantly changed in the last ' + timePeriod.substr(0, timePeriod.length - 1) + '?';
+                label = Translations.dictionary(context.report.CurrentLanguage)['dashboard page title'] + timePeriod.substr(0, timePeriod.length - 1) + '?';
                 break;
 
             case 'detailed_analysis':
-                label = 'Determine sentiment levels overall and within themes.';
+                label = Translations.dictionary(context.report.CurrentLanguage)['detailed_analysis page title'];
                 break;
 
             case 'comments':
-                label = 'What are customers talking about.';
+                label = Translations.dictionary(context.report.CurrentLanguage)['comments page title'];
                 break;
         }
 
