@@ -71,7 +71,7 @@ class TAPageMaster{
         var currentLaguage = context.report.CurrentLanguage;
         var curDictionary = Translations.dictionary(currentLaguage);
 
-        summarySegments.push(("<div>"+curDictionary['Selected question']+" = "+(selectedFolder ? selectedFolder : Config.GetTALibrary().GetFolderById(selectedFolder).GetName()) +"</div>"));
+        summarySegments.push(("<div>"+curDictionary['Selected question']+" = "+(!selectedFolder ? '' : Config.GetTALibrary().GetFolderById(selectedFolder).GetName()) +"</div>"));
 
         var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
 
