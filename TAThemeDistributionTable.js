@@ -41,8 +41,8 @@ class TAThemeDistributionTable{
 
         _period = {
             Unit: params.period ? params.period : "m",
-            From: _sigTestingAlertsTable ? -1 : -11,
-            To: 0
+            From: _sigTestingAlertsTable ? -2 : -11,
+            To: _sigTestingAlertsTable ? -1 : 0
         };
         _config = params.config;
         _render();
