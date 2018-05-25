@@ -649,9 +649,12 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtSignificantChangeAlertsScript_Render(context){
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var textSeparator = folder.GetHierarchy().GetTextSeparator();
         var alertstInit = "<script>" +
             "new Reportal.SignificantChangesAlerts({" +
             "tableId:'alerts-table'," +
+            "separator: '" + (textSeparator ? textSeparator : "") + "',"+
             "containerId:'alerts-container'});" +
             "</script>";
         context.component.Output.Append(alertstInit);
