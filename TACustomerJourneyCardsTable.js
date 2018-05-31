@@ -163,7 +163,7 @@ class TACustomerJourneyCardsTable{
             for (var j = 0; j < _options[i].MetricIds.length; j++) {
                 var currentMetric = _options[i].MetricIds[j];
                 var keyMetric = _options[i].KeyMetricId;
-                var indexOfStats = TAArrayUtils.indexOf(_statisticIDs, currentMetric);
+                var indexOfStats = TAArrayUtils.indexOf(_statisticItems, currentMetric);
                 var updatedIndex = indexOfStats + _columnIDs.length;
 
                 if(indexOfStats >= 0) {
