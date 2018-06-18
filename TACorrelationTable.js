@@ -157,6 +157,8 @@ class TACorrelationTable{
 
         var headerCorrelation : HeaderCorrelation = new HeaderCorrelation(CorrelationType.Correlation, questionnaireElement);
 
+        headerCorrelation.Decimals = 3;
+
         return headerCorrelation
     }
 
