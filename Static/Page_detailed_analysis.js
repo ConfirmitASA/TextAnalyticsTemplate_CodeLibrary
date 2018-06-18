@@ -229,7 +229,7 @@ class Page_detailed_analysis{
                             "},"+
                             "sorting: {"+
                                 "enabled: true,"+
-                                "excludedColumns: [6]"+
+                                "excluded: [6]"+
                             "},"+
                             "fixedHeader: {}"+
                         "}"+
