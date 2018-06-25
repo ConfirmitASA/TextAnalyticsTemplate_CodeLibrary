@@ -156,6 +156,8 @@ class TACustomerJourneyCardsTable{
     }
 
     private function addStatisticHeader() {
+        this._fixStatisticsOrder();
+
         var statExpression = '[STAT]{statistics: ' + _statisticItems.join(',') + '}';
         _columnItems.push(statExpression);
 
@@ -175,5 +177,22 @@ class TACustomerJourneyCardsTable{
                 }
             }
         }
+    }
+
+    /**
+     * Function to align added statistics to the header order, specified in _statisticsIDs
+     */
+    private _fixStatisticsOrder() {
+        var fixedArray = [];
+
+        for(var i = 0, length = _statisticIDs.length; i < length; i++) {
+            var currentStat = _statisticIDs[i];
+
+            if(TAArrayUtils.indexOf(_statisticItems, currentStat) >= 0) {
+                fixedArray.push(currentStat);
+            }
+        }
+
+        _statisticItems = fixedArray;
     }
 }
