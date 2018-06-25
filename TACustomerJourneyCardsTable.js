@@ -156,7 +156,7 @@ class TACustomerJourneyCardsTable{
     }
 
     private function addStatisticHeader() {
-        this._fixStatisticsOrder();
+        _fixStatisticsOrder();
 
         var statExpression = '[STAT]{statistics: ' + _statisticItems.join(',') + '}';
         _columnItems.push(statExpression);
