@@ -168,11 +168,16 @@ class Page_customer_journey{
     static function txtCustomerJourneyCardsScript_Render(context){
         var cardsInit = "<script>" +
             "new Reportal.CustomerJourneyCards({" +
+            "translations: translations," +
             "tableContainerId:'cj_drilldown'," +
             "drilldownId:'cj_drilldown'," +
             "cardContainerId: 'cj_cards'," +
             "CJ_options: CJ_options});" +
             "</script>";
+
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
 
         context.component.Output.Append(JSON.print(context.pageContext.Items['options'], 'CJ_options'));
         context.component.Output.Append(cardsInit);
