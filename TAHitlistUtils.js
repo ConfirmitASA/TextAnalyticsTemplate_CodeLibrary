@@ -91,6 +91,7 @@ class TAHitlistUtils{
         for( var i = 0; i < columns.length; i++){
             hitlistColumn = new HitListColumn();
             hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columns[i]);
+            hitlistColumn.IsSortable = true;
             _hitlist.Columns.Add(hitlistColumn);
         }
     }

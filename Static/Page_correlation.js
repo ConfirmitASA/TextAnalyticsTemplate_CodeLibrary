@@ -64,11 +64,11 @@ class Page_correlation{
             htlComments.AddTAColumn({
                 context: context,
                 columnName:"categorysentiment",
-                sortable: false,
+                sortable: true,
                 postfix: selectedCategory
             });
         }
-        htlComments.AddTAColumn({context: context, columnName: "verbatim"});
+        htlComments.AddTAColumn({context: context, columnName: "verbatim", sortable: true});
 
         htlComments.AddColumn({
             context: context,
@@ -76,7 +76,7 @@ class Page_correlation{
             sortable: true
         });
 
-        htlComments.AddTAColumn({context: context, columnName: "overallsentiment"});
+        htlComments.AddTAColumn({context: context, columnName: "overallsentiment", sortable: true});
         htlComments.AddTAColumn({context: context, columnName: "categories"});
         htlComments.AddConfiguredColumns(context);
     }
