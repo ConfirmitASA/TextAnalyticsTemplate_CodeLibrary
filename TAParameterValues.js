@@ -58,6 +58,14 @@ class TAParameterValues {
                     {Code: "y", Label: currentDictionary["Years"]}
                 ];
 
+            case "TA_TREND_LINE_VIEW_BY":
+                return [
+                    {Code: "total_percent", Label: currentDictionary["% volume"]},
+                    {Code: "avg_sentiment", Label: currentDictionary["Mean sentiment"]},
+                    {Code: "positive_percent", Label: currentDictionary["% positive sentiment"]},
+                    {Code: "negative_percent", Label: currentDictionary["% negative sentiment"]}
+                ];
+
             default:
                 return [];
         }

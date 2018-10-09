@@ -237,7 +237,7 @@ class Page_customer_journey{
         var label = currentDictionary["Compare"];
         context.component.Output.Append(label);
 
-        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_TREND_LINE_PERIOD'));
+        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_PERIOD'));
     }
 
     /**
