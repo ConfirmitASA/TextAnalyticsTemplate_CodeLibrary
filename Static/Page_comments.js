@@ -41,6 +41,19 @@ class Page_comments{
         return false
     }
 
+
+    /**
+     * @memberof Page_comments
+     * @function txtCommentsTitle_Render
+     * @description function to render the hitlist title
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtCommentsTitle_Render(context) {
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        context.component.Output.Append(currentDictionary['Comments']);
+    }
+
     /**
      * @memberof Page_comments
      * @function htlComments_Render
