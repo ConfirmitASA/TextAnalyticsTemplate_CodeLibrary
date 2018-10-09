@@ -237,6 +237,20 @@ class Page_customer_journey{
         var label = currentDictionary["Compare"];
         context.component.Output.Append(label);
 
+        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_TREND_LINE_PERIOD'));
+    }
+
+    /**
+     * @memberof Page_customer_journey
+     * @function txtViewBy_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtViewBy_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary['View by:'];
+        context.component.Output.Append(label);
+
         context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_TREND_LINE_VIEW_BY'));
     }
 }
