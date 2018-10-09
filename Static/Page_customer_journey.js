@@ -214,4 +214,29 @@ class Page_customer_journey{
         var label = currentDictionary["Trend chart"];
         context.component.Output.Append(label);
     }
+
+
+    /**
+     * @memberof Page_customer_journey
+     * @function btnDetailedAnalysisDrilldown_Render
+     * @description function to render button that leads to the Detailed Analysis page after clicking on a CJ card
+     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function btnDetailedAnalysisDrilldown_Render(context){
+        context.component.TargetPage = 'detailed_analysis';
+    }
+
+    /**
+     * @memberof Page_customer_journey
+     * @function txtComparePeriods_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtComparePeriods_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Compare"];
+        context.component.Output.Append(label);
+
+        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_TREND_LINE_VIEW_BY'));
+    }
 }
