@@ -55,9 +55,14 @@ class TAPageRenderer{
             TAFilterComponents.ClearFilters(context);
 
             var cjParameterInfo = TAArrayUtils.find(TADefaultParameters.values, function(item) {return item.Id === "TA_CJ_CARDS"});
+            var sentimentParameterInfo = TAArrayUtils.find(TADefaultParameters.values, function(item) {return item.Id === "TA_COMMENTS_SENTIMENT"});
+            var allCategoriesParameterInfo = TAArrayUtils.find(TADefaultParameters.values, function(item) {return item.Id === "TA_ALL_CATEGORIES"});
+            var categoryParameterInfo = TAArrayUtils.find(TADefaultParameters.values, function(item) {return item.Id === "TA_TOP_CATEGORIES_SINGLE"});
+            var subCategoryParameterInfo = TAArrayUtils.find(TADefaultParameters.values, function(item) {return item.Id === "TA_SUB_CATEGORIES_SINGLE"});
+            var attributeParameterInfo = TAArrayUtils.find(TADefaultParameters.values, function(item) {return item.Id === "TA_ATTRIBUTES_SINGLE"});
             TAParameterUtilities.SetDefaultParameterValues({
                 context: context,
-                parameterValues: [cjParameterInfo]
+                parameterValues: [cjParameterInfo, sentimentParameterInfo, allCategoriesParameterInfo, categoryParameterInfo, subCategoryParameterInfo, attributeParameterInfo]
             });
 
             var dateParameters = TADefaultParameters.dateParameters;
