@@ -62,6 +62,14 @@ class TADefaultParameters {
         {
             Id: "TA_CJ_CARDS",
             Value: "emptyv"
+        },
+        {
+            Id: "TA_FRONTPAGE_PERIOD",
+            Value: "m"
+        },
+        {
+            Id: "TA_TREND_LINE_VIEW_BY",
+            Value: "avg_sentiment"
         }
     ];
 
