@@ -51,7 +51,8 @@ class Page_customer_journey{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var period = context.state.Parameters.IsNull("TA_TREND_LINE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_TREND_LINE_PERIOD");
-        var customerJourneyTrendTable = new TACustomerJourneyTrendTable({folder:folder, config:Config, context:context, period: period});
+        var viewBy = context.state.Parameters.IsNull("TA_TREND_LINE_VIEW_BY") ? "avg_sentiment" : context.state.Parameters.GetString("TA_TREND_LINE_VIEW_BY");
+        var customerJourneyTrendTable = new TACustomerJourneyTrendTable({folder:folder, config:Config, context:context, period: period, viewBy: viewBy});
         customerJourneyTrendTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories"]);
     }
 
@@ -80,13 +81,22 @@ class Page_customer_journey{
             chartColors: trendLineColors
         };
 
+        var viewBy = context.state.Parameters.IsNull("TA_TREND_LINE_VIEW_BY") ? "avg_sentiment" : context.state.Parameters.GetString("TA_TREND_LINE_VIEW_BY");
+        var showPercent = viewBy !== "avg_sentiment";
+        var period = context.state.Parameters.IsNull("TA_TREND_LINE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_TREND_LINE_PERIOD");
+
         var chartInit = "<script>" +
-            "new Reportal.TrendChart({" +
+            "var trendChart = new Reportal.TrendChart({" +
             "chartContainer:'trend-chart'," +
             "tableContainer:'trend-table'," +
+            "drilldownButtonContainer:'trend-table'," +
+            "drilldownSelectContainer:'cj_drilldown'," +
             "palette: palette," +
+            "period: '" + period + "'," +
+            "showPercent: " + showPercent + "," +
             "translations: translations});" +
             "</script>";
+
         context.component.Output.Append(JSON.print(currentDictionary,"translations"));
         context.component.Output.Append(JSON.print(palette,"palette"));
         context.component.Output.Append(chartInit);
