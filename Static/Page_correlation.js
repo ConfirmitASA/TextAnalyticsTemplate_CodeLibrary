@@ -511,4 +511,28 @@ class Page_correlation{
                     '</div>'
         context.component.Output.Append(text);
     }
+
+    /**
+     * @memberof Page_correlation_dev
+     * @function txtInfoIconScript_Render
+     * @description function to render Page Info text
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtInfoIconScript_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var infoText = currentDictionary['correlation info text'];
+
+        var infoInit = "<script>" +
+            "var title = document.querySelector('.dashboard__widget.dashboard__widget--large.r2i-widget');" +
+            "title.style.position = 'relative';" +
+            "var correlationIcon = new Reportal.InfoIcon({" +
+            "container: title," +
+            "infoText: '" + infoText + "'});" +
+            "correlationIcon.infoIcon.style.right = '16px';" +
+            "correlationIcon.infoIcon.style.top = '16px';" +
+            "</script>";
+
+        context.component.Output.Append(infoInit);
+    }
 }
