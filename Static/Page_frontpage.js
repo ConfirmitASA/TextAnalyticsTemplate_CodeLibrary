@@ -5,17 +5,6 @@
 class Page_frontpage{
     /**
      * @memberof Page_frontpage
-     * @function Hide
-     * @description function to hide the page
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function Hide(context){
-        return false;
-    }
-
-    /**
-     * @memberof Page_frontpage
      * @function Render
      * @description function to render the page
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -30,6 +19,33 @@ class Page_frontpage{
         TAPageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
+    /**
+     * @memberof Page_frontpage
+     * @function txtTitle_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtTitle_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["frontpage title"] + ": ";
+        context.component.Output.Append(label);
+    }
+
+    /**
+     * @memberof Page_frontpage
+     * @function btnJourneyWidget_Render
+     * @description function to render button that leads to the Customer Journey page
+     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function btnJourneyWidget_Render(context){
+        context.component.TargetPage = 'customer_journey';
+    }
+
+    /**
+     * @memberof Page_frontpage
+     * @function txtJourneyWidgetScript_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtJourneyWidgetScript_Render(context) {
         var widgetInit = "<script>" +
             "new Reportal.JourneyWidget({" +
@@ -46,7 +62,6 @@ class Page_frontpage{
         context.component.Output.Append(JSON.print(context.pageContext.Items['options'], 'CJ_options'));
         context.component.Output.Append(widgetInit);
     }
-
 
     /**
      * @memberof Page_correlation
@@ -68,6 +83,21 @@ class Page_frontpage{
         correlationTable.GetTATableUtils().SetupHideEmptyRows(true);
     }
 
+    /**
+     * @memberof Page_frontpage
+     * @function btnImpactAnalysisWidget_Render
+     * @description function to render button that leads to the Impact Analysys page
+     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function btnImpactAnalysisWidget_Render(context){
+        context.component.TargetPage = 'correlation';
+    }
+
+    /**
+     * @memberof Page_frontpage
+     * @function txtImpactAnalysisWidgetScript_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtImpactAnalysisWidgetScript_Render(context) {
         var widgetInit = "<script>" +
             "new Reportal.ImpactAnalysisWidget({" +
@@ -96,7 +126,6 @@ class Page_frontpage{
         context.component.Output.Append(widgetInit2);
     }
 
-
     /**
      * @memberof Page_frontpage
      * @function tblOverallSentimentChange_Render
@@ -121,6 +150,21 @@ class Page_frontpage{
         osatTable.GetTATableUtils().ClearTableDistributions();
     }
 
+    /**
+     * @memberof Page_frontpage
+     * @function btnOSATWidget_Render
+     * @description function to render button that leads to the Detailed Analysis page
+     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function btnOSATWidget_Render(context){
+        context.component.TargetPage = 'detailed_analysis';
+    }
+
+    /**
+     * @memberof Page_frontpage
+     * @function txtOSATWidgetScript_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtOSATWidgetScript_Render(context)  {
         // 0.0001 - hack to make coloring work
         var sentimentConfig = [
@@ -159,10 +203,8 @@ class Page_frontpage{
         context.component.Output.Append(widgetInit);
     }
 
-
-
     /**
-     * @memberof Page_dashboard
+     * @memberof Page_frontpage
      * @function tblSignificantChangeAlerts_Render
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -194,6 +236,21 @@ class Page_frontpage{
         themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
     }
 
+    /**
+     * @memberof Page_frontpage
+     * @function btnSignificantChangeWidget_Render
+     * @description function to render button that leads to the Dashboard page
+     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function btnSignificantChangeWidget_Render(context){
+        context.component.TargetPage = 'dashboard';
+    }
+
+    /**
+     * @memberof Page_frontpage
+     * @function txtSignificantChangeWidgetScript_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
     static function txtSignificantChangeWidgetScript_Render(context)  {
         var widgetInit = "<script>" +
             "new Reportal.SignificantChangeWidget({" +
@@ -220,58 +277,5 @@ class Page_frontpage{
         context.component.Output.Append(JSON.print(currentDictionary,"translations"));
         context.component.Output.Append(widgetInit);
         context.component.Output.Append(widgetInit2);
-    }
-
-
-    /**
-     * @memberof Page_frontpage
-     * @function txtTitle_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtTitle_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-        var label = currentDictionary["frontpage title"] + ": ";
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_frontpage
-     * @function btnJourneyWidget_Render
-     * @description function to render button that leads to the Customer Journey page
-     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function btnJourneyWidget_Render(context){
-        context.component.TargetPage = 'customer_journey';
-    }
-
-    /**
-     * @memberof Page_frontpage
-     * @function btnImpactAnalysisWidget_Render
-     * @description function to render button that leads to the Impact Analysys page
-     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function btnImpactAnalysisWidget_Render(context){
-        context.component.TargetPage = 'correlation';
-    }
-
-    /**
-     * @memberof Page_frontpage
-     * @function btnOSATWidget_Render
-     * @description function to render button that leads to the Detailed Analysis page
-     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function btnOSATWidget_Render(context){
-        context.component.TargetPage = 'detailed_analysis';
-    }
-
-    /**
-     * @memberof Page_frontpage
-     * @function btnSignificantChangeWidget_Render
-     * @description function to render button that leads to the Dashboard page
-     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function btnSignificantChangeWidget_Render(context){
-        context.component.TargetPage = 'dashboard';
     }
 }
