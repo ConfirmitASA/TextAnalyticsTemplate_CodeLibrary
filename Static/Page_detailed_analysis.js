@@ -466,5 +466,63 @@ class Page_detailed_analysis{
         var label = currentDictionary['Negative'];
         context.component.Output.Append(label);
     }
+
+    /**
+     * @memberof Page_detailed_analysis
+     * @function txtInfoIconScript_Render
+     * @description function to render Page Info text
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtInfoIconScript_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var infoText = currentDictionary['sentiment info text'];
+
+        var infoInit = "<script>" +
+            "var title = document.querySelector('.r2-title-view__name').parentNode.parentNode.parentNode;" +
+            "title.style.position = 'relative';" +
+            "var detailedAnalysisIcon = new Reportal.InfoIcon({" +
+            "container: title," +
+            "infoText: '" + infoText + "'});" +
+            "detailedAnalysisIcon.infoIcon.style.right = '8px';" +
+            "detailedAnalysisIcon.infoText.style.top = '-16px';" +
+            "detailedAnalysisIcon.infoText.style.right = '32px';" +
+            "</script>";
+
+        context.component.Output.Append(infoInit);
+    }
+
+    /**
+     * @memberof Page_detailed_analysis
+     * @function txtRespondentNumberWidgetScript_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtRespondentNumberWidgetScript_Hide(context){
+        return false;
+    }
+
+    /**
+     * @memberof Page_detailed_analysis
+     * @function txtRespondentNumberWidgetScript_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtRespondentNumberWidgetScript_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var respondentNumberWidgetInit = "<script>" +
+            "var respondentNumberWidget = new Reportal.RespondentNumberWidget({" +
+            "totalCommentsTableContainerId: 'total-comments-tile'," +
+            "positiveCommentsTableContainerId: 'positive-comments-tile'," +
+            "neutralCommentsTableContainerId: 'neutral-comments-tile'," +
+            "negativeCommentsTableContainerId: 'negative-comments-tile'," +
+            "cardContainerId: 'respondent-number-widget'," +
+            "translations: translations});" +
+            "</script>";
+
+        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
+        context.component.Output.Append(respondentNumberWidgetInit);
+    }
 }
 

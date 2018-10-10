@@ -784,9 +784,6 @@ class Page_dashboard{
         context.component.Output.Append(chartInit);
     }
 
-
-
-
     /**
      * @memberof Page_dashboard
      * @function btnWordCloudDrilldown_Render
