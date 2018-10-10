@@ -103,7 +103,6 @@ class Page_frontpage{
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblOverallSentimentChange_Render(context) {
-        // var level = "0";
         var table = context.component;
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
@@ -115,7 +114,6 @@ class Page_frontpage{
             context: context,
             folder: folder,
             table: table,
-            // level: level,
             config: Config,
             period: period
         });
