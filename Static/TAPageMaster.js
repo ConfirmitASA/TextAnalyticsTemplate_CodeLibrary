@@ -50,7 +50,8 @@ class TAPageMaster{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function Filters_Render(context){
-        context.component.TargetPage = "filters"
+        context.component.TargetPage = "filters";
+        context.component.Label = new Label(context.report.CurrentLanguage,Translations.dictionary(context.report.CurrentLanguage)["filter page button"]);
     }
 
     /**
@@ -73,20 +74,25 @@ class TAPageMaster{
 
         summarySegments.push(("<div>"+curDictionary['Selected question']+" = "+(!selectedFolder ? '' : Config.GetTALibrary().GetFolderById(selectedFolder).GetName()) +"</div>"));
 
-        var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
+        var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") &&
+            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
 
         if(startDate){
             summarySegments.push(("<div>"+curDictionary['Start date']+" = " + startDate + "</div>"));
         }
 
-        var endDate = !context.state.Parameters.IsNull("TA_DATE_TO") && context.state.Parameters.GetDate("TA_DATE_TO").ToShortDateString();
+        var endDate = !context.state.Parameters.IsNull("TA_DATE_TO") &&
+            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            context.state.Parameters.GetDate("TA_DATE_TO").ToShortDateString();
 
         if(endDate){
             summarySegments.push(("<div>"+curDictionary['End date']+" = " + endDate + "</div>"));
         }
 
         var cj_parameter = !context.state.Parameters.IsNull("TA_CJ_CARDS") &&
-            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey') &&
+            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey'
+                || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
             context.state.Parameters.GetString("TA_CJ_CARDS") !== 'emptyv' &&
             context.state.Parameters.GetString("TA_CJ_CARDS");
 
@@ -105,26 +111,50 @@ class TAPageMaster{
             summarySegments.push(( "<div>" + codes[i].questionTitle + " = "+ codes[i].texts.join(" | ")+"</div>"));
         }
 
+        var sentiment = !context.state.Parameters.IsNull("TA_COMMENTS_SENTIMENT") &&
+            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            context.state.Parameters.GetString("TA_COMMENTS_SENTIMENT") !== 'emptyv' &&
+            context.state.Parameters.GetString("TA_COMMENTS_SENTIMENT");
+
+        if(sentiment){
+            summarySegments.push(("<div>"+curDictionary['Sentiment']+" = " + (ParameterValueResponse)(context.state.Parameters['TA_COMMENTS_SENTIMENT']).DisplayValue + "</div>"));
+        }
+
+        var category = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_TOP_CATEGORIES_SINGLE");
+        category = category && category.replace(/<span.*>: /, '');
+        category = category && category.replace(/<\/span>/, '');
+
+        var subCategory = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_SUB_CATEGORIES_SINGLE");
+        subCategory = subCategory && subCategory.replace(/<span.*>: /, '');
+        subCategory = subCategory && subCategory.replace(/<\/span>/, '');
+
+        var attribute = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_ATTRIBUTES_SINGLE");
+        attribute = attribute && attribute.replace(/<span.*>: /, '');
+        attribute = attribute && attribute.replace(/<\/span>/, '');
+
+        if(category && category != curDictionary['-select-']) {
+            summarySegments.push(("<div>"+curDictionary['Category']+" = " + category + "</div>"));
+        }
+
+        if(subCategory && subCategory != curDictionary['-select-']) {
+            summarySegments.push(("<div>"+curDictionary['Sub category']+" = " + subCategory + "</div>"));
+        }
+
+        if(attribute && attribute != curDictionary['-select-']) {
+            summarySegments.push(("<div>"+curDictionary['Attribute']+" = " + attribute + "</div>"));
+        }
+
         filterSummary = summarySegments.join("<span>AND</span>");
 
         context.component.Output.Append(filterSummary);
 
-
-        /*        if( codes.length > 0 || startDate || endDate || cj_parameter)
-                    context.component.Output.Append("<button title='Clear filters' onclick='javascript:document.querySelector(\".filters-clear-button input\").click()' style = 'padding: 1px'>"+
-                        "   <svg width='10' height='10' class='icon-circle-x'>" +
-                        "       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 153.5 122'>"+
-                        "           <style>:root&gt;svg{display:none}:root&gt;svg:target{display:block}</style>"+
-                        "           <svg id='circle-x' viewBox='0 0 12 12' data-name='Layer 1'>" +
-                        "               <title>!svg-icons</title>" +
-                        "               <path d='M 6 0 a 6 6 0 1 0 6 6 a 6 6 0 0 0 -6 -6 Z m 3 4.06 L 7.06 6 L 9 7.94 V 9 H 7.94 L 6 7.06 L 4.06 9 H 3 V 7.94 L 4.94 6 L 3 4.06 V 3 h 1.06 L 6 4.94 L 7.94 3 H 9 v 1.06 Z' />" +
-                        "           </svg>" +
-                        "       </svg>" +
-                        "   </svg>"+
-                        "</button>");
-        */
-
-        if( codes.length > 0 || startDate || endDate || cj_parameter)
+        if( codes.length > 0 || startDate || endDate || cj_parameter || sentiment
+            || category && category != curDictionary['-select-']
+            || subCategory && subCategory != curDictionary['-select-']
+            || attribute && attribute != curDictionary['-select-'])
             context.component.Output.Append("<button title='Clear filters'  onclick='javascript:document.querySelector(\".filters-clear-button input\").click()' class='btn btn-primary'>"+
                 "Clear Filters"+
                 "</button>");
@@ -140,9 +170,16 @@ class TAPageMaster{
     static function ClearFilters_Hide(context){
         var hideButton = true;
         var filterComponents = new TAFilterComponents(context);
-        hideButton = !filterComponents.GetAllAnsweredFilterCodes(context).length > 0 && context.state.Parameters.IsNull("TA_DATE_FROM") && context.state.Parameters.IsNull("TA_DATE_TO") && context.state.Parameters.IsNull("TA_CJ_CARDS");
+        hideButton = !filterComponents.GetAllAnsweredFilterCodes(context).length > 0
+            && context.state.Parameters.IsNull("TA_DATE_FROM")
+            && context.state.Parameters.IsNull("TA_DATE_TO")
+            && context.state.Parameters.IsNull("TA_CJ_CARDS")
+            && context.state.Parameters.IsNull("TA_TOP_CATEGORIES_SINGLE")
+            && context.state.Parameters.IsNull("TA_SUB_CATEGORIES_SINGLE")
+            && context.state.Parameters.IsNull("TA_ATTRIBUTES_SINGLE")
+            && context.state.Parameters.IsNull("TA_COMMENTS_SENTIMENT");
 
-        return hideButton
+        return hideButton;
     }
 
     /**
@@ -181,7 +218,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function txtDateFrom_Hide(context){
-        return false
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
     }
 
 
@@ -203,8 +240,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function txtDateTo_Hide(context){
-        return false
-
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
     }
 
     /**
@@ -216,6 +252,26 @@ class TAPageMaster{
         var label = Translations.dictionary(context.report.CurrentLanguage)['To'];
         context.component.Output.Append(label);
 
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function cldDateFrom_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function cldDateFrom_Hide(context){
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function cldDateTo_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function cldDateTo_Hide(context){
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
     }
 
     /**
@@ -314,7 +370,12 @@ class TAPageMaster{
                 break;
         }
 
-        context.component.Output.Append(label);
+        context.component.Output.Append(label ? '<div class="r2i-row r2i-row--max-width">' +
+            '<div class="r2-title-widget">' +
+            '<div class="r2-title-view">' +
+            '<div class="r2-title-view__name">' +
+            label +
+            '</div></div></div></div>' : '');
     }
 
     /**
@@ -392,7 +453,8 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function txtCustomerJourney_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey'
+            || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
     }
 
     /**
@@ -405,7 +467,6 @@ class TAPageMaster{
         context.component.Output.Append(label);
     }
 
-
     /**
      * @memberof TAPageMaster
      * @function lstCustomerJourney_Hide
@@ -413,6 +474,109 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function lstCustomerJourney_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey'
+            || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function txtSentiment_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtSentiment_Hide(context){
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function lstSentiment_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstSentiment_Hide(context){
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function txtCategory_Hide
+     * @description function to hide the Category selector label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtCategory_Hide(context){
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function txtSubCategory_Hide
+     * @description function to hide the the sub category list label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtSubCategory_Hide(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
+        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
+            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function txtAttribute_Hide
+     * @description function to hide the the attributes list label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtAttribute_Hide(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
+        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
+            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function lstCategory_Hide
+     * @description function to hide the Category selector label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstCategory_Hide(context){
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function lstSubCategory_Hide
+     * @description function to hide the the sub category list label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstSubCategory_Hide(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
+        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
+            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function lstAttribute_Hide
+     * @description function to hide the the attributes list label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstAttribute_Hide(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
+        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
+            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
     }
 }
