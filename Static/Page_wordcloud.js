@@ -31,67 +31,6 @@ class Page_wordcloud{
         TAPageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
-
-    /**
-     * @memberof Page_wordcloud
-     * @function htlComments_Hide
-     * @description function to hide the hitlist
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function htlComments_Hide(context){
-        return false
-    }
-
-    /**
-     * @memberof Page_wordcloud
-     * @function htlComments_Render
-     * @description function to render the hitlist
-     * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function htlComments_Render(context){
-        if(!Config.GetTALibrary()){
-            Config.SetTALibrary(context);
-        }
-
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-
-        var htlComments = new TAHitlistUtils({context: context, folder: folder});
-
-        if( selectedCategory && selectedCategory !== "emptyv" ){
-            htlComments.AddTAColumn({
-                context: context,
-                columnName:"categorysentiment",
-                sortable: true,
-                postfix: selectedCategory
-            });
-        }
-        htlComments.AddTAColumn({context: context, columnName: "verbatim", sortable: true});
-
-        htlComments.AddColumn({
-            context: context,
-            columnName: folder.GetTimeVariableId(),
-            sortable: true
-        });
-
-        htlComments.AddTAColumn({context: context, columnName: "overallsentiment", sortable: true});
-        htlComments.AddTAColumn({context: context, columnName: "categories"});
-        htlComments.AddConfiguredColumns(context);
-    }
-
-    /**
-     * @memberof Page_wordcloud
-     * @function txtCommentsScript_Hide
-     * @description function to hide the text
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtCommentsScript_Hide(context){
-        return false
-    }
-
     /**
      * @memberof Page_wordcloud
      * @function txtCommentsScript_Render
