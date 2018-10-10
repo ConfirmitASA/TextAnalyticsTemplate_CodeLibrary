@@ -783,4 +783,17 @@ class Page_dashboard{
         context.component.Output.Append(JSON.print(categoryOptions,"categoryOptions"));
         context.component.Output.Append(chartInit);
     }
+
+
+
+
+    /**
+     * @memberof Page_dashboard
+     * @function btnWordCloudDrilldown_Render
+     * @description function to render button that leads to the Word Cloud page
+     * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function btnWordCloudDrilldown_Render(context){
+        context.component.TargetPage = 'word_cloud';
+    }
 }
