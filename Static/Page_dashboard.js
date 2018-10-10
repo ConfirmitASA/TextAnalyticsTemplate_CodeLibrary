@@ -189,7 +189,7 @@ class Page_dashboard{
     static function tblThemeDistribution_Render(context){
         var table = context.component;
 
-        var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
+        var sentiment = context.state.Parameters.IsNull("TA_COMMENTS_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_COMMENTS_SENTIMENT");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
@@ -652,12 +652,20 @@ class Page_dashboard{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var textSeparator = folder.GetHierarchy().GetTextSeparator();
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
+
         var alertstInit = "<script>" +
             "new Reportal.SignificantChangesAlerts({" +
+            "translations:translations," +
+            "period:'" + period + "'," +
             "tableId:'alerts-table'," +
             "separator: '" + (textSeparator ? textSeparator : "") + "',"+
             "containerId:'alerts-container'});" +
             "</script>";
+
+        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
         context.component.Output.Append(alertstInit);
     }
 
@@ -673,5 +681,106 @@ class Page_dashboard{
 
         var text = currentDictionary["Theme Distribution Table Explanation"];
         context.component.Output.Append(text);
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtInfoIconScript_Render
+     * @description function to render Page Info text
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtInfoIconScript_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var infoText = currentDictionary['recent changes info text'];
+
+        var infoInit = "<script>" +
+            "var title = document.querySelector('.r2-title-view__name').parentNode.parentNode.parentNode;" +
+            "title.style.position = 'relative';" +
+            "var dashboardIcon = new Reportal.InfoIcon({" +
+            "container: title," +
+            "infoText: '" + infoText + "'});" +
+            "dashboardIcon.infoIcon.style.right = '8px';" +
+            "dashboardIcon.infoText.style.top = '-16px';" +
+            "dashboardIcon.infoText.style.right = '32px';" +
+            "</script>";
+
+        context.component.Output.Append(infoInit);
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtThemeDistribution_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtThemeDistributionChart_Hide(context){
+        return false;
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtThemeDistribution_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtThemeDistributionChart_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Theme distribution chart"];
+
+        var isParameterEmpty = context.state.Parameters.IsNull("TA_ALL_CATEGORIES") ||
+            context.state.Parameters.GetString("TA_ALL_CATEGORIES") === 'emptyv';
+
+        if(!isParameterEmpty) {
+            var folderId = TALibrary.GetTAFoldersParameterValue(context);
+            var parameterValueID = context.state.Parameters["TA_ALL_CATEGORIES"].StringKeyValue || context.state.Parameters.GetString("TA_ALL_CATEGORIES");
+
+            var parameterValueLabel = Config.GetTALibrary().GetFolderById(folderId).GetHierarchy().GetObjectById(parameterValueID).name;
+            label += ": " + parameterValueLabel;
+        }
+
+        context.component.Output.Append(label);
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtThemeDistributionChartScript_Render
+     * @description function to render Theme Distribution Trend Chart
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtThemeDistributionChartScript_Render(context){
+        var trendLineColors = Config.Colors.TrendLinePalette;
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var palette = {
+            chartColors: trendLineColors
+        };
+
+
+        var viewBy = context.state.Parameters.IsNull("TA_TREND_LINE_VIEW_BY") ? "avg_sentiment" : context.state.Parameters.GetString("TA_TREND_LINE_VIEW_BY");
+        var showPercent = viewBy !== "avg_sentiment";
+        var period = context.state.Parameters.IsNull("TA_TREND_LINE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_TREND_LINE_PERIOD");
+
+        var categoryOptions = {
+            category: TAParameterValues.getCategoryParameterValue(context, currentDictionary, "TA_TOP_CATEGORIES_SINGLE"),
+            subCategory: TAParameterValues.getCategoryParameterValue(context, currentDictionary, "TA_SUB_CATEGORIES_SINGLE"),
+            attribute: TAParameterValues.getCategoryParameterValue(context, currentDictionary, "TA_ATTRIBUTES_SINGLE")
+        };
+
+        var chartInit = "<script>" +
+            "var themeDistributionChart = new Reportal.ThemeDistributionChart({" +
+            "chartContainer:'theme-distribution-chart'," +
+            "tableContainer: document.querySelector('#theme-distribution .aggregatedTableContainer > table')," +
+            "categoryOptions: categoryOptions," +
+            "drilldownButtonContainer: 'drilldown-button-container'," +
+            "palette: palette," +
+            "period: '" + period + "'," +
+            "translations: translations});" +
+            "</script>";
+
+        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
+        context.component.Output.Append(JSON.print(palette,"palette"));
+        context.component.Output.Append(JSON.print(categoryOptions,"categoryOptions"));
+        context.component.Output.Append(chartInit);
     }
 }

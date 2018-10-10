@@ -109,7 +109,7 @@ class TAThemeDistributionTable{
      * @function _getRowheadersExpression
      */
     private function _getRowheadersExpression(){
-        var overallQuestion = _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:true");
+        var overallQuestion = _taTableUtils.GetTAQuestionExpression("overallsentiment");
         var categoryQuestion = _taTableUtils.GetTAQuestionExpression("categorysentiment");
         var rowexpr = overallQuestion + "+" + categoryQuestion;
 
@@ -147,13 +147,18 @@ class TAThemeDistributionTable{
         countHeader.HideHeader = true;
         columnsCollection.Add(countHeader);
 
-        var avgAndStdevHeader : HeaderStatistics = new HeaderStatistics();
-        avgAndStdevHeader.Statistics.Avg = true;
-        avgAndStdevHeader.Statistics.StdevP = true;
-        avgAndStdevHeader.Decimals = 4;
-        avgAndStdevHeader.HideHeader = true;
-        avgAndStdevHeader.HideData = true;
-        columnsCollection.Add(avgAndStdevHeader);
+        var avgHeader : HeaderStatistics = new HeaderStatistics();
+        avgHeader.Statistics.Avg = true;
+        avgHeader.Decimals = 4;
+        avgHeader.HideHeader = true;
+        columnsCollection.Add(avgHeader);
+
+        var stdevHeader : HeaderStatistics = new HeaderStatistics();
+        stdevHeader.Statistics.StdevP = true;
+        stdevHeader.Decimals = 4;
+        stdevHeader.HideHeader = true;
+        stdevHeader.HideData = true;
+        columnsCollection.Add(stdevHeader);
 
         return columnsCollection;
     }
