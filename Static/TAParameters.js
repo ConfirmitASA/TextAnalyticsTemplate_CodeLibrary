@@ -407,4 +407,26 @@ class TAParameters{
             parameterValues: parameterValues
         });
     }
+
+    /**
+     * @memberof TAParameters
+     * @function TA_TREND_LINE_VIEW_BY_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_TREND_LINE_VIEW_BY_Domain(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var parameterValues = [
+            {Code: "total_percent", Label: currentDictionary["% volume"]},
+            {Code: "avg_sentiment", Label: currentDictionary["Mean sentiment"]},
+            {Code: "positive_percent", Label: currentDictionary["% positive sentiment"]},
+            {Code: "negative_percent", Label: currentDictionary["% negative sentiment"]}
+        ];
+
+        TAParameterUtilities.LoadParameterValues({
+            context: context,
+            parameterValues: parameterValues
+        });
+    }
 }
