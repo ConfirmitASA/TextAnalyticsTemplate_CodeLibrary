@@ -109,7 +109,7 @@ class TAThemeDistributionTable{
      * @function _getRowheadersExpression
      */
     private function _getRowheadersExpression(){
-        var overallQuestion = _taTableUtils.GetTAQuestionExpression("overallsentiment");
+        var overallQuestion = _taTableUtils.GetTAQuestionExpression("overallsentiment",false,_sigTestingAlertsTable ? "hidedata:true" : "");
         var categoryQuestion = _taTableUtils.GetTAQuestionExpression("categorysentiment");
         var rowexpr = overallQuestion + "+" + categoryQuestion;
 
