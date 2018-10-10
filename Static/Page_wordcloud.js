@@ -536,26 +536,27 @@ class Page_wordcloud{
             Config.Colors.NegNeuPosPalette.Positive
         ];
 
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
         var wcInit = "<script>" +
             "var ta_wc = new Reportal.WordCloud({" +
             "                elementFromId: \"wc-table\"," +
             "                elementToId: \"cloud\"," +
-        //    "                exceptionsFromId: \"wc_exceptions\"," +
             "                countId: 1," +
             "				 sentimentId: 2," +
-         /*   "                clickFunc: function(e) {" +
-            "                    var select = document.getElementById(\"select-word\").querySelector('select'); select.value = \"r:s:\" + e.target.innerHTML.toUpperCase();select.onchange();" +
-            "                }," +
-         */   "                colorConfig: {" +
+            "                colorConfig: {" +
             "                    limiters: wc_limiters," +
             "                    colors: wc_colors" +
-            "                }" +
+            "                }," +
+            "				 translations: translations" +
             "            });" +
             "document.getElementById('wc_exceptions').querySelector('select').onchange = function() { ta_wc.restart(); }" +
             "</script>";
 
         context.component.Output.Append(JSON.print(wc_limiters,"wc_limiters"));
         context.component.Output.Append(JSON.print(wc_colors,"wc_colors"));
+        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
         context.component.Output.Append(wcInit);
     }
 
