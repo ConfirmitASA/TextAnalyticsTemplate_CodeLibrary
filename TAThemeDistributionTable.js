@@ -151,6 +151,9 @@ class TAThemeDistributionTable{
         avgHeader.Statistics.Avg = true;
         avgHeader.Decimals = 4;
         avgHeader.HideHeader = true;
+        if(_sigTestingAlertsTable) {
+            avgHeader.HideData = true;
+        }
         columnsCollection.Add(avgHeader);
 
         var stdevHeader : HeaderStatistics = new HeaderStatistics();
