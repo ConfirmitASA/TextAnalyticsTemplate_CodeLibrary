@@ -69,7 +69,8 @@ class TAHitlistComponent {
             "separator: '" + (textSeparator ? textSeparator : "") + "',"+
             "headers: hitlistHeaders,"+
             "sentimentConfig: sentimentConfig,"+
-            "currentCategory: currentCategory"+
+            "currentCategory: currentCategory,"+
+            "translations: translations"+
             "});"+
             "});"+
             "</script>";
@@ -139,6 +140,7 @@ class TAHitlistComponent {
         context.component.Output.Append(JSON.print(hitlistHeaders, "hitlistHeaders"));
         context.component.Output.Append(JSON.print(sentimentConfig,"sentimentConfig"));
         context.component.Output.Append(JSON.print(currentCategory,"currentCategory"));
+        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
         context.component.Output.Append(hitlistInit);
     }
 }
