@@ -6,17 +6,6 @@ class Page_correlation{
 
     /**
      * @memberof Page_correlation
-     * @function Hide
-     * @description function to hide the page
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function Hide(context){
-        return false;
-    }
-
-    /**
-     * @memberof Page_correlation
      * @function Render
      * @description function to render the page
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
