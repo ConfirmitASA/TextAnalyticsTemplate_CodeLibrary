@@ -46,7 +46,7 @@ class DefaultParameters {
         },
         {
             Id: "TA_FISCAL_PERIODS",
-            Value: "FY2017_FY2018"
+            Value: "FY2018_FY2019"
         }
     ];
 
