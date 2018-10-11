@@ -33,169 +33,6 @@ class Page_correlation{
 
     /**
      * @memberof Page_correlation
-     * @function lstCategory_Hide
-     * @description function to hide the Category selector
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function lstCategory_Hide(context){
-        return false
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function lstSubCategory_Hide
-     * @description function to hide the Sub Category selector
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function lstSubCategory_Hide(context){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-    var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
-    return ((! parameterValue) || parameterValue == "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
-}
-
-    /**
-     * @memberof Page_correlation
-     * @function lstAttribute_Hide
-     * @description function to hide the Attribute selector
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function lstAttribute_Hide(context){
-    var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-    var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
-    var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
-    return ((! parameterValue) || parameterValue == "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
-}
-
-    /**
-     * @memberof Page_correlation
-     * @function txtCategory_Hide
-     * @description function to hide the Category selector label
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtCategory_Hide(context){
-        return false
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtCategory_Render
-     * @description function to render the Category selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtCategory_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Category"];
-        context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
-    }
-
-
-    /**
-     * @memberof Page_correlation
-     * @function txtSubCategory_Hide
-     * @description function to hide the the sub category list label
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtSubCategory_Hide(context){
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
-        return ((! parameterValue) || parameterValue == "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtSubCategory_Render
-     * @description function to render the sub Category selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtSubCategory_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Sub category"];
-        context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_SUB_CATEGORIES_SINGLE'));
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtAttribute_Hide
-     * @description function to hide the the attributes list label
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtAttribute_Hide(context){
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
-        var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
-        return ((! parameterValue) || parameterValue == "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length == 0)
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtAttribute_Render
-     * @description function to render the attributes selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtAttribute_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Attribute"];
-        context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_ATTRIBUTES_SINGLE'));
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtSentiment_Hide
-     * @description function to hide the the sentiment list label
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtSentiment_Hide(context){
-        return false
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtSentiment_Render
-     * @description function to render the sentiment selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtSentiment_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Sentiment"];
-        context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_COMMENTS_SENTIMENT'));
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtCorrelationQuestion_Hide
-     * @description function to hide the the correlation variable selector label
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtCorrelationQuestion_Hide(context){
-        return false
-}
-
-    /**
-     * @memberof Page_correlation
      * @function txtCorrelationQuestion_Render
      * @description function to render the correlation variable selector label
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -207,17 +44,6 @@ class Page_correlation{
         var label = currentDictionary["Correlation variable"];
         context.component.Output.Append(label);
         context.component.Output.Append(TAParameterValues.getCorrelationQuestionParameterValue(context));
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function tblCorrelation_Hide
-     * @description function to render the sentiment selector label
-     * @param {Object} context - {pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function tblCorrelation_Hide(context){
-        return false
     }
 
     /**
@@ -238,6 +64,80 @@ class Page_correlation{
         correlationTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
         correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
         correlationTable.GetTATableUtils().SetupHideEmptyRows(true);
+    }
+
+    /**
+     * @memberof Page_correlation
+     * @function txtHelp_Render
+     * @description function to render helping text
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtHelp_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var text = '<div id="quadrant-table">'+
+            currentDictionary["quadrant-table-text"]+
+            '</div>'+
+            '<div id="quadrant-chart">'+
+            currentDictionary["quadrant-chart-text"]+
+            '</div>';
+        context.component.Output.Append(text);
+    }
+
+    /**
+     * @memberof Page_correlation
+     * @function txtPriorityIssues_Render
+     * @description function to render the sentiment selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtPriorityIssues_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var label = currentDictionary["Priority Issues"];
+        context.component.Output.Append(label);
+    }
+
+    /**
+     * @memberof Page_correlation
+     * @function txtStrength_Render
+     * @description function to render the sentiment selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtStrength_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var label = currentDictionary["Strength"];
+        context.component.Output.Append(label);
+    }
+
+    /**
+     * @memberof Page_correlation
+     * @function txtMonitor_Render
+     * @description function to render the sentiment selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtMonitor_Render(context) {
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var label = currentDictionary["Monitor and Improve"];
+        context.component.Output.Append(label);
+    }
+
+    /**
+     * @memberof Page_correlation
+     * @function txtMaintain_Render
+     * @description function to render the sentiment selector label
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtMaintain_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var label = currentDictionary["Maintain"];
+        context.component.Output.Append(label);
     }
 
     /**
@@ -282,81 +182,6 @@ class Page_correlation{
         context.component.Output.Append(JSON.print(currentDictionary,"translations"));
         context.component.Output.Append(JSON.print(palette,"palette"));
         context.component.Output.Append(chartInit);
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtPriorityIssues_Render
-     * @description function to render the sentiment selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtPriorityIssues_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Priority Issues"];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtStrength_Render
-     * @description function to render the sentiment selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtStrength_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Strength"];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtMonitor_Render
-     * @description function to render the sentiment selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtMonitor_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Monitor and Improve"];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtMaintain_Render
-     * @description function to render the sentiment selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtMaintain_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var label = currentDictionary["Maintain"];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_correlation
-     * @function txtHelp_Render
-     * @description function to render helping text
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-
-    static function txtHelp_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-        var text = '<div id="quadrant-table">'+
-                        currentDictionary["quadrant-table-text"]+
-                    '</div>'+
-                    '<div id="quadrant-chart">'+
-                        currentDictionary["quadrant-chart-text"]+
-                    '</div>'
-        context.component.Output.Append(text);
     }
 
     /**
