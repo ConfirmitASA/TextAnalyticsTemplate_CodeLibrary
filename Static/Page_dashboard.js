@@ -161,7 +161,7 @@ class Page_dashboard{
             selectedPeriod = context.state.Parameters.GetString('TA_FISCAL_PERIODS');
         }
 
-        var range = (selectedPeriod && selectedPeriod != 'null' && selectedPeriod != "emptyv") ? selectedPeriod.split('_') : ["FY2017", "FY2018"];
+        var range = (selectedPeriod && selectedPeriod != 'null' && selectedPeriod != "emptyv") ? selectedPeriod.split('_') : ["FY2018", "FY2019"];
 
         var topChangedTable = new TATopChangedTableByFiscalYear({
             context: context,
