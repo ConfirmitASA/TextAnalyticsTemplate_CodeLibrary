@@ -56,9 +56,6 @@ class TADefaultParameters {
             Id: "TA_TREND_LINE_PERIOD",
             Value: "m"
         },
-        //     Id: "TA_WORD_CLOUD",
-        //     Value: "emptyv"
-        // },
         {
             Id: "TA_CJ_CARDS",
             Value: "emptyv"
@@ -70,6 +67,14 @@ class TADefaultParameters {
         {
             Id: "TA_TREND_LINE_VIEW_BY",
             Value: "avg_sentiment"
+        },
+        {
+            Id: "TA_INCLUDE_WORDS_FILTER_TYPE",
+            Value: "OR"
+        },
+        {
+            Id: "TA_EXCLUDE_WORDS_FILTER_TYPE",
+            Value: "OR"
         }
     ];
 
