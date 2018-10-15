@@ -62,7 +62,8 @@ class Page_wordcloud{
             "headers: hitlistHeaders,"+
             "sentimentConfig: sentimentConfig," +
             "selectedWords: '" + selectedWords + "',"+
-            "currentCategory: currentCategory"+
+            "currentCategory: currentCategory,"+
+            "translations: translations"+
             "});"+
             "});"+
             "</script>";
@@ -132,6 +133,7 @@ class Page_wordcloud{
         context.component.Output.Append(JSON.print(hitlistHeaders, "hitlistHeaders"));
         context.component.Output.Append(JSON.print(sentimentConfig,"sentimentConfig"));
         context.component.Output.Append(JSON.print(currentCategory,"currentCategory"));
+        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
         context.component.Output.Append(hitlistInit);
     }
 
