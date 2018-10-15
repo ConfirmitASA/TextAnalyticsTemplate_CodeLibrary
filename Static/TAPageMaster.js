@@ -579,4 +579,18 @@ class TAPageMaster{
         return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
             || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
     }
+
+    /**
+     * @memberof TAPageMaster
+     * @function txtParametersExplanation_Render
+     * @description function to render explanation of Filter Panel auto applying parameters
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtParametersExplanation_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var text = currentDictionary["Filter Panel auto applying parameters explanation"];
+        context.component.Output.Append(text);
+    }
 }
