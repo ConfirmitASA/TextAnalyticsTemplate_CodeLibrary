@@ -6,17 +6,6 @@ class Page_detailed_analysis{
 
     /**
      * @memberof Page_detailed_analysis
-     * @function Hide
-     * @description function to hide the page
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function Hide(context){
-        return false;
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
      * @function Render
      * @description function to render the page
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -58,12 +47,14 @@ class Page_detailed_analysis{
 
     /**
      * @memberof Page_detailed_analysis
-     * @function tblTotalCommentsTile_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
+     * @function txtTotalComments_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function tblTotalCommentsTile_Hide(context){
-        return false;
+    static function txtTotalComments_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary['Total comments'];
+        context.component.Output.Append(label);
     }
 
     /**
@@ -77,12 +68,14 @@ class Page_detailed_analysis{
 
     /**
      * @memberof Page_detailed_analysis
-     * @function tblPositiveCommentsTile_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
+     * @function txtPositive_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function tblPositiveCommentsTile_Hide(context){
-        return false;
+    static function txtPositive_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary['Positive'];
+        context.component.Output.Append(label);
     }
 
     /**
@@ -96,12 +89,14 @@ class Page_detailed_analysis{
 
     /**
      * @memberof Page_detailed_analysis
-     * @function tblNeutralCommentsTile_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
+     * @function txtNeutral_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function tblNeutralCommentsTile_Hide(context){
-        return false;
+    static function txtNeutral_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary['Neutral'];
+        context.component.Output.Append(label);
     }
 
     /**
@@ -115,12 +110,14 @@ class Page_detailed_analysis{
 
     /**
      * @memberof Page_detailed_analysis
-     * @function tblNegativeCommentsTile_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
+     * @function txtNegative_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function tblNegativeCommentsTile_Hide(context){
-        return false;
+    static function txtNegative_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary['Negative'];
+        context.component.Output.Append(label);
     }
 
     /**
@@ -134,12 +131,38 @@ class Page_detailed_analysis{
 
     /**
      * @memberof Page_detailed_analysis
-     * @function tblDetailedAnalysis_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
+     * @function txtRespondentNumberWidgetScript_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function tblDetailedAnalysis_Hide(context){
-        return false;
+    static function txtRespondentNumberWidgetScript_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var respondentNumberWidgetInit = "<script>" +
+            "var respondentNumberWidget = new Reportal.RespondentNumberWidget({" +
+            "totalCommentsTableContainerId: 'total-comments-tile'," +
+            "positiveCommentsTableContainerId: 'positive-comments-tile'," +
+            "neutralCommentsTableContainerId: 'neutral-comments-tile'," +
+            "negativeCommentsTableContainerId: 'negative-comments-tile'," +
+            "cardContainerId: 'respondent-number-widget'," +
+            "translations: translations});" +
+            "</script>";
+
+        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
+        context.component.Output.Append(respondentNumberWidgetInit);
+    }
+
+    /**
+     * @memberof Page_detailed_analysis
+     * @function txtViewBy_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtViewBy_Render(context) {
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary['View by:'];
+        context.component.Output.Append(label);
+        context.component.Output.Append(TAParameterValues.getViewByParameterValue(context, currentDictionary));
     }
 
     /**
@@ -181,16 +204,6 @@ class Page_detailed_analysis{
         detailedAnalysisTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table", "striped-columns", "reportal-barchart", "detailed-analysis-table"]);
         detailedAnalysisTable.GetTATableUtils().SetupHideEmptyRows((hideEmptyRows.length >0));
         detailedAnalysisTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "comments");
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtDetailedAnalysisScript_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtDetailedAnalysisScript_Hide(context){
-        return false
     }
 
     /**
@@ -245,230 +258,6 @@ class Page_detailed_analysis{
 
     /**
      * @memberof Page_detailed_analysis
-     * @function txtViewBy_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtViewBy_Hide(context){
-        return false;
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtViewBy_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtViewBy_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-        var label = currentDictionary['View by:'];
-        context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getViewByParameterValue(context, currentDictionary));
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtCategory_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtCategory_Hide(context){
-        return false;
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtCategory_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtCategory_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-        var label = currentDictionary['Category'];
-        context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_TOP_CATEGORIES_SINGLE'));
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function lstSubCategory_Hide
-     * @description function to hide the Sub Category selector
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function lstSubCategory_Hide(context){
-        var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
-        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function lstAttribute_Hide
-     * @description function to hide the Attribute selector
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function lstAttribute_Hide(context){
-        var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
-        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
-    }
-
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtSubCategory_Hide
-     * @description function to hide the the sub category list label
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtSubCategory_Hide(context){
-        var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
-        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtSubCategory_Render
-     * @description function to render the sub Category selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtSubCategory_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-        var label = currentDictionary['Sub category'];
-        context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_SUB_CATEGORIES_SINGLE'));
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtAttribute_Hide
-     * @description function to hide the the attributes list label
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtAttribute_Hide(context){
-        var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
-        return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtAttribute_Render
-     * @description function to render the attributes selector label
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtAttribute_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-        var label = currentDictionary['Attribute'];
-        context.component.Output.Append(label);
-        context.component.Output.Append(TAParameterValues.getCategoryParameterValue(context, currentDictionary, 'TA_ATTRIBUTES_SINGLE'));
-    }
-
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtTotalComments_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtTotalComments_Hide(context){
-        return false
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtTotalComments_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtTotalComments_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-        var label = currentDictionary['Total comments'];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtPositive_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtPositive_Hide(context){
-        return false
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtPositive_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtPositive_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-        var label = currentDictionary['Positive'];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtNeutral_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtNeutral_Hide(context){
-        return false
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtNeutral_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtNeutral_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-        var label = currentDictionary['Neutral'];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtNegative_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtNegative_Hide(context){
-        return false
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtNegative_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtNegative_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-        var label = currentDictionary['Negative'];
-        context.component.Output.Append(label);
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
      * @function txtInfoIconScript_Render
      * @description function to render Page Info text
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -490,39 +279,6 @@ class Page_detailed_analysis{
             "</script>";
 
         context.component.Output.Append(infoInit);
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtRespondentNumberWidgetScript_Hide
-     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * @returns {Boolean}
-     */
-    static function txtRespondentNumberWidgetScript_Hide(context){
-        return false;
-    }
-
-    /**
-     * @memberof Page_detailed_analysis
-     * @function txtRespondentNumberWidgetScript_Render
-     * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function txtRespondentNumberWidgetScript_Render(context){
-        var currentLanguage = context.report.CurrentLanguage;
-        var currentDictionary = Translations.dictionary(currentLanguage);
-
-        var respondentNumberWidgetInit = "<script>" +
-            "var respondentNumberWidget = new Reportal.RespondentNumberWidget({" +
-            "totalCommentsTableContainerId: 'total-comments-tile'," +
-            "positiveCommentsTableContainerId: 'positive-comments-tile'," +
-            "neutralCommentsTableContainerId: 'neutral-comments-tile'," +
-            "negativeCommentsTableContainerId: 'negative-comments-tile'," +
-            "cardContainerId: 'respondent-number-widget'," +
-            "translations: translations});" +
-            "</script>";
-
-        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
-        context.component.Output.Append(respondentNumberWidgetInit);
     }
 }
 
