@@ -121,18 +121,19 @@ class TACustomerJourneyCardsTable{
 
         for (var j = 0; j < currentOptions.MetricIds.length; j++) {
             var currentMetric = currentOptions.MetricIds[j];
+            var loweredCurrentMetric = currentMetric.ToLower();
             var currentMetricIndex = TAArrayUtils.indexOf(_columnIDs, currentMetric);
 
             if(currentMetricIndex < 0) {
-                if(TAArrayUtils.indexOf(_statisticIDs, currentMetric) >= 0) {
-                    if(currentMetric != "count") {
+                if(TAArrayUtils.indexOf(_statisticIDs, loweredCurrentMetric) >= 0) {
+                    if(loweredCurrentMetric != "count") {
                         isSomeStatisticUsed = true;
                     }
 
-                    if(TAArrayUtils.indexOf(_statisticItems, currentMetric) < 0) {
-                        _statisticItems.push(currentMetric);
+                    if(TAArrayUtils.indexOf(_statisticItems, loweredCurrentMetric) < 0) {
+                        _statisticItems.push(loweredCurrentMetric);
                     }
-                    currentMetricIndex = currentMetric;
+                    currentMetricIndex = loweredCurrentMetric;
                 } else {
                     var columnQuestion = currentMetric + '{collapsed:true;totals:false;defaultstatistics:avg}';
                     currentMetricIndex = _columnIDs.length;
