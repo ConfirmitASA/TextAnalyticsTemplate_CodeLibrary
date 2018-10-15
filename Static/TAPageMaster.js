@@ -74,6 +74,42 @@ class TAPageMaster{
 
         summarySegments.push(("<div>"+curDictionary['Selected question']+" = "+(!selectedFolder ? '' : Config.GetTALibrary().GetFolderById(selectedFolder).GetName()) +"</div>"));
 
+        var category = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_TOP_CATEGORIES_SINGLE");
+        category = category && category.replace(/<span.*>: /, '');
+        category = category && category.replace(/<\/span>/, '');
+
+        if(category && category != curDictionary['-select-']) {
+            summarySegments.push(("<div>"+curDictionary['Category']+" = " + category + "</div>"));
+        }
+
+        var subCategory = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_SUB_CATEGORIES_SINGLE");
+        subCategory = subCategory && subCategory.replace(/<span.*>: /, '');
+        subCategory = subCategory && subCategory.replace(/<\/span>/, '');
+
+        if(subCategory && subCategory != curDictionary['-select-']) {
+            summarySegments.push(("<div>"+curDictionary['Sub category']+" = " + subCategory + "</div>"));
+        }
+
+        var attribute = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_ATTRIBUTES_SINGLE");
+        attribute = attribute && attribute.replace(/<span.*>: /, '');
+        attribute = attribute && attribute.replace(/<\/span>/, '');
+
+        if(attribute && attribute != curDictionary['-select-']) {
+            summarySegments.push(("<div>"+curDictionary['Attribute']+" = " + attribute + "</div>"));
+        }
+
+        var sentiment = !context.state.Parameters.IsNull("TA_COMMENTS_SENTIMENT") &&
+            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            context.state.Parameters.GetString("TA_COMMENTS_SENTIMENT") !== 'emptyv' &&
+            context.state.Parameters.GetString("TA_COMMENTS_SENTIMENT");
+
+        if(sentiment){
+            summarySegments.push(("<div>"+curDictionary['Sentiment']+" = " + (ParameterValueResponse)(context.state.Parameters['TA_COMMENTS_SENTIMENT']).DisplayValue + "</div>"));
+        }
+
         var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") &&
             !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
             context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
@@ -109,42 +145,6 @@ class TAPageMaster{
 
         for( var i = 0 ; i < codes.length; i++){
             summarySegments.push(( "<div>" + codes[i].questionTitle + " = "+ codes[i].texts.join(" | ")+"</div>"));
-        }
-
-        var sentiment = !context.state.Parameters.IsNull("TA_COMMENTS_SENTIMENT") &&
-            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
-            context.state.Parameters.GetString("TA_COMMENTS_SENTIMENT") !== 'emptyv' &&
-            context.state.Parameters.GetString("TA_COMMENTS_SENTIMENT");
-
-        if(sentiment){
-            summarySegments.push(("<div>"+curDictionary['Sentiment']+" = " + (ParameterValueResponse)(context.state.Parameters['TA_COMMENTS_SENTIMENT']).DisplayValue + "</div>"));
-        }
-
-        var category = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
-            TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_TOP_CATEGORIES_SINGLE");
-        category = category && category.replace(/<span.*>: /, '');
-        category = category && category.replace(/<\/span>/, '');
-
-        var subCategory = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
-            TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_SUB_CATEGORIES_SINGLE");
-        subCategory = subCategory && subCategory.replace(/<span.*>: /, '');
-        subCategory = subCategory && subCategory.replace(/<\/span>/, '');
-
-        var attribute = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
-            TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_ATTRIBUTES_SINGLE");
-        attribute = attribute && attribute.replace(/<span.*>: /, '');
-        attribute = attribute && attribute.replace(/<\/span>/, '');
-
-        if(category && category != curDictionary['-select-']) {
-            summarySegments.push(("<div>"+curDictionary['Category']+" = " + category + "</div>"));
-        }
-
-        if(subCategory && subCategory != curDictionary['-select-']) {
-            summarySegments.push(("<div>"+curDictionary['Sub category']+" = " + subCategory + "</div>"));
-        }
-
-        if(attribute && attribute != curDictionary['-select-']) {
-            summarySegments.push(("<div>"+curDictionary['Attribute']+" = " + attribute + "</div>"));
         }
 
         filterSummary = summarySegments.join("<span>AND</span>");
