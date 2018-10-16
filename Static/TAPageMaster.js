@@ -150,15 +150,6 @@ class TAPageMaster{
         filterSummary = summarySegments.join("<span>AND</span>");
 
         context.component.Output.Append(filterSummary);
-
-        if( codes.length > 0 || startDate || endDate || cj_parameter || sentiment
-            || category && category != curDictionary['-select-']
-            || subCategory && subCategory != curDictionary['-select-']
-            || attribute && attribute != curDictionary['-select-'])
-            context.component.Output.Append("<button title='Clear filters'  onclick='javascript:document.querySelector(\".filters-clear-button input\").click()' class='btn btn-primary'>"+
-                "Clear Filters"+
-                "</button>");
-
     }
 
     /**
@@ -592,5 +583,16 @@ class TAPageMaster{
 
         var text = currentDictionary["Filter Panel auto applying parameters explanation"];
         context.component.Output.Append(text);
+    }
+
+    /**
+     * @memberof TAPageMaster
+     * @function txtClearButton_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtClearButton_Render(context){
+        context.component.Output.Append("<button title='Clear filters'  onclick='javascript:document.querySelector(\".filters-clear-button input\").click()' class='btn btn-primary'>"+
+            "Clear Filters"+
+            "</button>");
     }
 }
