@@ -297,15 +297,11 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtThemeDistributionChartScript_Render(context){
-        var trendLineColors = Config.Colors.TrendLinePalette;
+        var themeDistributionChartColors = Config.Colors.ThemeDistributionChartPalette;
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
-        var palette = {
-            chartColors: trendLineColors
-        };
+        var palette = themeDistributionChartColors;
 
-        var viewBy = context.state.Parameters.IsNull("TA_TREND_LINE_VIEW_BY") ? "avg_sentiment" : context.state.Parameters.GetString("TA_TREND_LINE_VIEW_BY");
-        var showPercent = viewBy !== "avg_sentiment";
         var period = context.state.Parameters.IsNull("TA_TREND_LINE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_TREND_LINE_PERIOD");
 
         var categoryOptions = {
