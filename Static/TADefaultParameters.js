@@ -62,7 +62,7 @@ class TADefaultParameters {
         },
         {
             Id: "TA_FRONTPAGE_PERIOD",
-            Value: "m"
+            Value: "q"
         },
         {
             Id: "TA_TREND_LINE_VIEW_BY",

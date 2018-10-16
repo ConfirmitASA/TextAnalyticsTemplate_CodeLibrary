@@ -137,7 +137,7 @@ class Page_frontpage{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var period = context.state.Parameters.IsNull("TA_FRONTPAGE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_FRONTPAGE_PERIOD");
+        var period = context.state.Parameters.IsNull("TA_FRONTPAGE_PERIOD") ? "q" : context.state.Parameters.GetString("TA_FRONTPAGE_PERIOD");
 
         var osatTable = new TAOverallSentimentChangeTable({
             context: context,
@@ -182,7 +182,7 @@ class Page_frontpage{
             }
         ];
 
-        var period = context.state.Parameters.IsNull("TA_FRONTPAGE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_FRONTPAGE_PERIOD");
+        var period = context.state.Parameters.IsNull("TA_FRONTPAGE_PERIOD") ? "q" : context.state.Parameters.GetString("TA_FRONTPAGE_PERIOD");
 
         var widgetInit = "<script>" +
             "new Reportal.OSATWidget({" +
@@ -217,7 +217,7 @@ class Page_frontpage{
 
         var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_TOGGLE") == '1' ? false : true;
 
-        var period = context.state.Parameters.IsNull("TA_FRONTPAGE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_FRONTPAGE_PERIOD");
+        var period = context.state.Parameters.IsNull("TA_FRONTPAGE_PERIOD") ? "q" : context.state.Parameters.GetString("TA_FRONTPAGE_PERIOD");
 
         var themeDistributionTable = new TAThemeDistributionTable({
             context: context,
