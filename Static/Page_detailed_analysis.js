@@ -189,12 +189,9 @@ class Page_detailed_analysis{
         var toggleChartValue = TAParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_TOGGLE_BARCHART"});
         var toggleChart = (toggleChartValue.length > 0);
 
-        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-
-        var detailedAnalysisTable = new TADetailedAnalysisTable({
+        var detailedAnalysisTable = new TADetailedAnalysisTable_dev({
             context: context,
             folder: folder,
-            category: selectedCategory,
             question: selectedQuestion,
             distribution: distribution,
             questionType: (selectedQuestionType === QuestionType.Multi),
@@ -212,12 +209,10 @@ class Page_detailed_analysis{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtDetailedAnalysisScript_Render(context){
-        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
-
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var hierarchy = selectedCategory === 'emptyv'? folder.GetHierarchy().GetHierarchyArray() : [folder.GetHierarchy().GetObjectById(selectedCategory)];
+        var hierarchy = folder.GetHierarchy().GetHierarchyArray();
 
         var headers = TATableData.GetTableRowHeaders({context: context, tableName: "tblDetailedAnalysis"});
 
@@ -225,28 +220,28 @@ class Page_detailed_analysis{
             var blocks = TATableData.GetBlocks({context: context, tableName: "tblDetailedAnalysis"});
 
             var upgradeText = "<script type=\"text/javascript\">"+
-                    "var upgradedTable = new Reportal.AggregatedTable("+
-                        "{"+
-                            "table: document.querySelector('table.reportal-hierarchy-table'),"+
-                            "hierarchy: {"+
-                                "hierarchy: "+JSON.stringify(hierarchy)+","+
-                                "rowheaders:"+JSON.stringify(headers)+","+
+                "var upgradedTable = new Reportal.AggregatedTable("+
+                "{"+
+                "table: document.querySelector('table.reportal-hierarchy-table'),"+
+                "hierarchy: {"+
+                "hierarchy: "+JSON.stringify(hierarchy)+","+
+                "rowheaders:"+JSON.stringify(headers)+","+
 
-                                "blocks:"+JSON.stringify(blocks)+","+
-                                "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
+                "blocks:"+JSON.stringify(blocks)+","+
+                "column:"+ ( blocks.length > 0 ? 1 : 0 ) +","+
 
-                                "clearLinks: false,"+
-                                "search: {" +
-                                        "enabled: true"+
-                                    "}"+
-                            "},"+
-                            "sorting: {"+
-                                "enabled: true,"+
-                                "excluded: [6]"+
-                            "},"+
-                            "fixedHeader: {}"+
-                        "}"+
-                    ")"+
+                "clearLinks: false,"+
+                "search: {" +
+                "enabled: true"+
+                "}"+
+                "},"+
+                "sorting: {"+
+                "enabled: true,"+
+                "excluded: [6]"+
+                "},"+
+                "fixedHeader: {}"+
+                "}"+
+                ")"+
                 "</script>";
 
             context.component.Output.Append(upgradeText);

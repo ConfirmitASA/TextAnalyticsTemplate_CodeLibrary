@@ -99,8 +99,6 @@ class TADetailedAnalysisTable{
         var qType = "categorysentiment";
         var categoryHeader = "(";
 
-        var mask = false;
-
         if(_distribution === "1"){
             blockHeader += _taTableUtils.GetTAQuestionExpression("overallsentiment",false,"hidedata:true") + "+";
         }
@@ -115,12 +113,7 @@ class TADetailedAnalysisTable{
             blockHeader += "}/";
         }
 
-        if( _selectedCategory != "all" ){
-            mask = _taMasks.GetAllChildrenMask(_selectedCategory);
-            mask.push(_selectedCategory)
-        }
-
-        categoryHeader += _taTableUtils.GetTAQuestionExpression(qType, mask) + ")";
+        categoryHeader += _taTableUtils.GetTAQuestionExpression(qType) + ")";
 
         rowexpr += blockHeader + categoryHeader;
 
