@@ -189,7 +189,7 @@ class Page_detailed_analysis{
         var toggleChartValue = TAParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_TOGGLE_BARCHART"});
         var toggleChart = (toggleChartValue.length > 0);
 
-        var detailedAnalysisTable = new TADetailedAnalysisTable_dev({
+        var detailedAnalysisTable = new TADetailedAnalysisTable({
             context: context,
             folder: folder,
             question: selectedQuestion,
