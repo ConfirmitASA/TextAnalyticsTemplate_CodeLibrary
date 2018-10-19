@@ -162,7 +162,7 @@ class TAFilters {
         var fExpr = TAFiltersBuilder.GetSentimentFilterExpression({
             context: context,
             config: Config,
-            setimentValues: [-5],
+            sentimentValues: [-5],
             allCategoriesParameter: "TA_ALL_CATEGORIES",
             folder: Config.GetTALibrary().GetFolderById(selectedFolder)
         });
