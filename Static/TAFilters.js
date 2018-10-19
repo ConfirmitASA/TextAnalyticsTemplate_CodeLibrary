@@ -153,7 +153,7 @@ class TAFilters {
     /**
      * @memberof TAFilters
      * @function TAHitlistMostNegativeSentimentFilter
-     * @description function to filtrate only selected sentiment in the hitlist
+     * @description function to filtrate most negative sentiment in the hitlist
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TAHitlistMostNegativeSentimentFilter(context){

@@ -65,7 +65,7 @@ class TAFiltersBuilder{
         var sentimentParameter = params.sentimentParameter;
 
         var sentimentParameterValue = context.state.Parameters.GetString(sentimentParameter);
-        var setimentValues = params.setimentValues;
+        var setimentValues = params.sentimentValues;
         var sentimentRange = "";
 
         if (setimentValues.length > 0) {
