@@ -442,7 +442,7 @@ class TATableUtils{
 
         switch (unit.toLowerCase()){
             case "d":
-                headerTimeSeries.TimeSeries.Time1 = TimeseriesTimeUnitType.Day;
+                headerTimeSeries.TimeSeries.Time1 = TimeseriesTimeUnitType.DayOfMonth;
                 break;
             case "w":
                 headerTimeSeries.TimeSeries.Time1 = TimeseriesTimeUnitType.Week;
