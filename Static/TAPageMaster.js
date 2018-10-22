@@ -102,7 +102,8 @@ class TAPageMaster{
         }
 
         var sentiment = !context.state.Parameters.IsNull("TA_COMMENTS_SENTIMENT") &&
-            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage'
+                || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'comments_alert') &&
             context.state.Parameters.GetString("TA_COMMENTS_SENTIMENT") !== 'emptyv' &&
             context.state.Parameters.GetString("TA_COMMENTS_SENTIMENT");
 
@@ -476,7 +477,8 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function txtSentiment_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'comments_alert'
+            || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
     }
 
     /**
@@ -486,7 +488,8 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function lstSentiment_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'comments_alert'
+            || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
     }
 
     /**
