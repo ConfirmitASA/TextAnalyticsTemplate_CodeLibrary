@@ -25,7 +25,7 @@ class Page_comments{
 
         TAPageRenderer.InitiateParameters(context);
         TAPageRenderer.InitiateFilters(context);
-        TAPageRenderer.SetLastVisitedPage(context, "comments");
+        TAPageRenderer.SetLastVisitedPage(context, "comments_alert");
         TAPageRenderer.ClearCategoriesParameters(context);
         TAPageRenderer.ProcessSelectedCategoryParameter(context);
     }
