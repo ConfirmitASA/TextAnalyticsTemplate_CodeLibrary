@@ -282,7 +282,7 @@ class Page_frontpage{
     /**
      * @memberof Page_correlation
      * @function tblCorrelation_Render
-     * @description function to render the sentiment selector label
+     * @description function to render table with sentiment trend for 3 previous years
      * @param {Object} context - {component: table, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function tblPreviousYearsTrend_Render(context){
@@ -290,7 +290,7 @@ class Page_frontpage{
         var table = context.component;
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var trendTable = new TACorrelationTable({context: context, folder: folder, table:table});
+        var trendTable = new TAPreviousYearsTrendTable({context: context, folder: folder, table:table});
 
         trendTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
     }
