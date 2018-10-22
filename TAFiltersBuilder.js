@@ -68,7 +68,7 @@ class TAFiltersBuilder{
         var setimentValues = params.sentimentValues;
         var sentimentRange = "";
 
-        if (setimentValues.length > 0) {
+        if (setimentValues && setimentValues.length > 0) {
             sentimentRange ='"'+setimentValues.join('","')+'"';
         }
         else {
