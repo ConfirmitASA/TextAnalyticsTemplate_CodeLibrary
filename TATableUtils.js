@@ -422,4 +422,43 @@ class TATableUtils{
         _table.SuppressData.CellDisplay = BaseDisplayOption.Hide;
         _table.SuppressData.CellLimit = 1;
     }
+
+    /**
+     * @memberof TATableUtils
+     * @instance
+     * @function GetTimePeriodHeaderWithotRolling
+     * @description function to get Header for time period variable with certain type
+     * @param {String} unit - type  "d" - for days, "w" - for weeks, "m" - for months, "q" - for quarters, "y" - for years
+     * @returns {HeaderQuestion}
+     */
+    function GetTimePeriodHeaderWithotRolling(unit){
+        var project = _globals.report.DataSource.GetProject(_folder.GetDatasourceId());
+        var questionnaireElement: QuestionnaireElement = project.CreateQuestionnaireElement(_folder.GetTimeVariableId());
+        var headerTimeSeries: HeaderQuestion;
+
+        headerTimeSeries = new HeaderQuestion(questionnaireElement);
+        headerTimeSeries.TimeSeries.FlatLayout = true;
+        headerTimeSeries.TimeSeries.RollingTimeseries.Enabled = true;
+
+        switch (unit.toLowerCase()){
+            case "d":
+                headerTimeSeries.TimeSeries.Time1 = TimeseriesTimeUnitType.DayOfMonth;
+                break;
+            case "w":
+                headerTimeSeries.TimeSeries.Time1 = TimeseriesTimeUnitType.Week;
+                break;
+            case "m":
+                headerTimeSeries.TimeSeries.Time1 = TimeseriesTimeUnitType.Month;
+                break;
+            case "q":
+                headerTimeSeries.TimeSeries.Time1 = TimeseriesTimeUnitType.Quarter;
+                break;
+            case "y":
+            default:
+                headerTimeSeries.TimeSeries.Time1 = RollingUnitType.Year;
+                break;
+        }
+        headerTimeSeries.ShowTotals = false;
+        return headerTimeSeries
+    }
 }

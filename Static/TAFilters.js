@@ -149,4 +149,25 @@ class TAFilters {
         }
         context.component.Expression = expr;
     }
+
+    /**
+     * @memberof TAFilters
+     * @function TAHitlistMostNegativeSentimentFilter
+     * @description function to filtrate most negative sentiment in the hitlist
+     * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TAHitlistMostNegativeSentimentFilter(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+
+        var fExpr = TAFiltersBuilder.GetSentimentFilterExpression({
+            context: context,
+            config: Config,
+            sentimentValues: [Config.SentimentRange.Negative[0]],
+            allCategoriesParameter: "TA_ALL_CATEGORIES",
+            folder: Config.GetTALibrary().GetFolderById(selectedFolder)
+        });
+
+        context.component.Expression = fExpr;
+    }
+
 }

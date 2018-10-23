@@ -64,20 +64,25 @@ class TAFiltersBuilder{
         var sentimentRanges = params.config.SentimentRange;
         var sentimentParameter = params.sentimentParameter;
 
-        var sentimentParameterValue = context.state.Parameters.GetString(sentimentParameter);
-
+        var sentimentParameterValue = sentimentParameter ? context.state.Parameters.GetString(sentimentParameter) : "";
+        var setimentValues = params.sentimentValues;
         var sentimentRange = "";
 
-        switch( sentimentParameterValue ){
-            case "pos":
-                sentimentRange ='"'+sentimentRanges.Positive.join('","')+'"';
-                break;
-            case "neu":
-                sentimentRange ='"'+ sentimentRanges.Neutral.join('","') +'"';
-                break;
-            case "neg":
-                sentimentRange ='"' + sentimentRanges.Negative.join('","')+'"';
-                break;
+        if (setimentValues && setimentValues.length > 0) {
+            sentimentRange ='"'+setimentValues.join('","')+'"';
+        }
+        else {
+            switch (sentimentParameterValue) {
+                case "pos":
+                    sentimentRange = '"' + sentimentRanges.Positive.join('","') + '"';
+                    break;
+                case "neu":
+                    sentimentRange = '"' + sentimentRanges.Neutral.join('","') + '"';
+                    break;
+                case "neg":
+                    sentimentRange = '"' + sentimentRanges.Negative.join('","') + '"';
+                    break;
+            }
         }
 
         if(sentimentRange.length > 0 ){
