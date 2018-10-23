@@ -297,10 +297,10 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtThemeDistributionChartScript_Render(context){
-        var themeDistributionChartColors = Config.Colors.ThemeDistributionChartPalette;
+        var significantTestingColors = Config.Colors.SignificantTestingPalette;
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
-        var palette = themeDistributionChartColors;
+        var palette = significantTestingColors;
 
         var period = context.state.Parameters.IsNull("TA_TREND_LINE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_TREND_LINE_PERIOD");
 
