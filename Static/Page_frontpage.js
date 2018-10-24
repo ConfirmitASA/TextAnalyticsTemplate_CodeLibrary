@@ -295,4 +295,30 @@ class Page_frontpage{
         trendTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
     }
 
+    /**
+     * @memberof Page_frontpage
+     * @function txtPreviousYearsTrendChartScript_Render
+     * @description function to render 3 years Trend Chart
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtCustomerJourneyTrendScript_Render(context){
+        var trendLineColors = Config.Colors.YearsTrendLinePalette;
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var palette = {
+            chartColors: trendLineColors
+        };
+
+        var chartInit = "<script>" +
+            "var trendChart = new Reportal.Previous3YearsTrendChart({" +
+            "chartContainer:'trend-chart'," +
+            "tableContainer:'trend-table'," +
+            "palette: palette," +
+            "translations: translations});" +
+            "</script>";
+
+        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
+        context.component.Output.Append(JSON.print(palette,"palette"));
+        context.component.Output.Append(chartInit);
+    }
 }
