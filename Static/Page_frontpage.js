@@ -310,7 +310,7 @@ class Page_frontpage{
         };
 
         var chartInit = "<script>" +
-            "var trendChart = new Reportal.Previous3YearsTrendChart({" +
+            "var trendChart = new Reportal.ThreeYearsTrendChart({" +
             "chartContainer:'trend-chart'," +
             "tableContainer:'trend-table'," +
             "palette: palette," +
