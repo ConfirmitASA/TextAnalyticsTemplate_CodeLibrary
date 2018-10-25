@@ -81,7 +81,7 @@ class TAPageMaster{
 
         if(category && category != curDictionary['-select-']) {
             summarySegments.push(("<div>"+curDictionary['Category']+" = " + category +
-                TAPageMaster_dev.CreateFilterBarDeleteButton("TA_TOP_CATEGORIES_SINGLE") +
+                CreateFilterBarDeleteButton("TA_TOP_CATEGORIES_SINGLE") +
                 "</div>"));
         }
 
@@ -92,7 +92,7 @@ class TAPageMaster{
 
         if(subCategory && subCategory != curDictionary['-select-']) {
             summarySegments.push(("<div>"+curDictionary['Sub category']+" = " + subCategory +
-                TAPageMaster_dev.CreateFilterBarDeleteButton("TA_SUB_CATEGORIES_SINGLE") +
+                CreateFilterBarDeleteButton("TA_SUB_CATEGORIES_SINGLE") +
                 "</div>"));
         }
 
@@ -103,7 +103,7 @@ class TAPageMaster{
 
         if(attribute && attribute != curDictionary['-select-']) {
             summarySegments.push(("<div>"+curDictionary['Attribute']+" = " + attribute +
-                TAPageMaster_dev.CreateFilterBarDeleteButton("TA_ATTRIBUTES_SINGLE") +
+                CreateFilterBarDeleteButton("TA_ATTRIBUTES_SINGLE") +
                 "</div>"));
         }
 
@@ -115,7 +115,7 @@ class TAPageMaster{
 
         if(sentiment){
             summarySegments.push(("<div>"+curDictionary['Sentiment']+" = " + (ParameterValueResponse)(context.state.Parameters['TA_COMMENTS_SENTIMENT']).DisplayValue +
-                TAPageMaster_dev.CreateFilterBarDeleteButton("TA_COMMENTS_SENTIMENT") +
+                CreateFilterBarDeleteButton("TA_COMMENTS_SENTIMENT") +
                 "</div>"));
         }
 
@@ -125,7 +125,7 @@ class TAPageMaster{
 
         if(startDate){
             summarySegments.push(("<div>"+curDictionary['Start date']+" = " + startDate +
-                TAPageMaster_dev.CreateFilterBarDeleteButton("TA_DATE_FROM") +
+                CreateFilterBarDeleteButton("TA_DATE_FROM") +
                 "</div>"));
         }
 
@@ -135,7 +135,7 @@ class TAPageMaster{
 
         if(endDate){
             summarySegments.push(("<div>"+curDictionary['End date']+" = " + endDate +
-                TAPageMaster_dev.CreateFilterBarDeleteButton("TA_DATE_TO") +
+                CreateFilterBarDeleteButton("TA_DATE_TO") +
                 "</div>"));
         }
 
@@ -151,7 +151,7 @@ class TAPageMaster{
                     indexOfAsterisk >= 0 ?
                         (cj_parameter.substr(0, indexOfAsterisk) + ' = ' +   (ParameterValueResponse)(context.state.Parameters['TA_CJ_CARDS']).DisplayValue) :
                         (cj_parameter + ' is answered')
-                ) + TAPageMaster_dev.CreateFilterBarDeleteButton("TA_CJ_CARDS") +
+                ) + CreateFilterBarDeleteButton("TA_CJ_CARDS") +
                 "</div>"));
         }
 
@@ -167,7 +167,7 @@ class TAPageMaster{
 
             if(codes && codes.values.length > 0){
                 summarySegments.push(("<div>" + codes.questionTitle + " = " + codes.texts.join(" | ") +
-                    TAPageMaster_dev.CreateFilterBarDeleteButton("FILTER" + (i + 1)) +
+                    CreateFilterBarDeleteButton("FILTER" + (i + 1)) +
                     "</div>"));
             }
         }
