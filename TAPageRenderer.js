@@ -43,6 +43,33 @@ class TAPageRenderer{
                 }
             )
         });
+
+        var filterToClear = context.state.Parameters.GetString("TA_FILTER_TO_CLEAR");
+        if(filterToClear) {
+            if(filterToClear !== "TA_DATE_FROM" && filterToClear !== "TA_DATE_TO" && !filterToClear.Contains("FILTER")) {
+                var filtersToClear = [];
+
+                if(filterToClear === "TA_SUB_CATEGORIES_SINGLE" || filterToClear === "TA_TOP_CATEGORIES_SINGLE") {
+                    filtersToClear.push("TA_ATTRIBUTES_SINGLE");
+                }
+                if(filterToClear === "TA_TOP_CATEGORIES_SINGLE") {
+                    filtersToClear.push("TA_SUB_CATEGORIES_SINGLE");
+                }
+                filtersToClear.push(filterToClear);
+
+                var filtersToClearInfo = [];
+                for(var i = 0; i < filtersToClear.length; i++) {
+                    filtersToClearInfo.push(TAArrayUtils.find(TADefaultParameters.values, function(item) {return item.Id === filtersToClear[i]}));
+                }
+                TAParameterUtilities.SetDefaultParameterValues({
+                    context: context,
+                    parameterValues: filtersToClearInfo
+                });
+            } else {
+                context.state.Parameters[filterToClear] = null;
+            }
+        }
+        context.state.Parameters["TA_FILTER_TO_CLEAR"] = null;
     }
 
     /**
@@ -85,7 +112,8 @@ class TAPageRenderer{
 
         var submitSource = context.component.SubmitSource;
         var selectedCategory;
-        if(submitSource === "lstCategory" || submitSource === "lstSubCategory" || submitSource === "lstAttribute"){
+        if(submitSource === "lstCategory" || submitSource === "lstSubCategory" || submitSource === "lstAttribute"
+            || submitSource === "btnSaveClearedFilter"){
             selectedCategory = TAParametersBuilder.GetSelectedCategory({
                 context: context,
                 categoriesParameterName: "TA_TOP_CATEGORIES_SINGLE",
