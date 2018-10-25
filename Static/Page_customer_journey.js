@@ -148,6 +148,7 @@ class Page_customer_journey{
         var viewBy = context.state.Parameters.IsNull("TA_TREND_LINE_VIEW_BY") ? "avg_sentiment" : context.state.Parameters.GetString("TA_TREND_LINE_VIEW_BY");
         var showPercent = viewBy !== "avg_sentiment";
         var period = context.state.Parameters.IsNull("TA_TREND_LINE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_TREND_LINE_PERIOD");
+        var showByType = TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_TREND_LINE_VIEW_BY').replace(/<span.*>: /, '').replace(/<\/span>/, '');
 
         var chartInit = "<script>" +
             "var trendChart = new Reportal.TrendChart({" +
@@ -158,6 +159,7 @@ class Page_customer_journey{
             "palette: palette," +
             "period: '" + period + "'," +
             "showPercent: " + showPercent + "," +
+            "showByType: '" + showByType + "'," +
             "translations: translations});" +
             "</script>";
 

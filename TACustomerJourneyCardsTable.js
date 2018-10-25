@@ -5,6 +5,7 @@ class TACustomerJourneyCardsTable{
     private var _period;
     private var _config;
     private var _report;
+    private var _state;
     private var _pageContext;
     private var _options = [];
     private var _statisticIDs = ["count", "avg", "max", "min", "sum"];
@@ -18,8 +19,8 @@ class TACustomerJourneyCardsTable{
         var context = params.context;
         _table = context.component;
         _report = context.report;
+        _state = context.state;
         _pageContext = context.pageContext;
-            _log = context.log;
         _folder = params.folder;
         _taTableUtils = new TATableUtils({
             context: context,
@@ -135,7 +136,17 @@ class TACustomerJourneyCardsTable{
                     }
                     currentMetricIndex = loweredCurrentMetric;
                 } else {
-                    var columnQuestion = currentMetric + '{collapsed:true;totals:false;defaultstatistics:avg}';
+                    var questionName = currentMetric;
+
+                    if(loweredCurrentMetric == 'ta_sentiment') {
+                        var selectedCategory = _state.Parameters.GetString("TA_ALL_CATEGORIES");
+
+                        questionName = (selectedCategory && selectedCategory !== "emptyv")
+                            ? (_folder.GetQuestionId("categorysentiment")+"."+selectedCategory)
+                            : _folder.GetQuestionId("overallsentiment");
+                    }
+
+                    var columnQuestion = questionName + '{collapsed:true;totals:false;defaultstatistics:avg}';
                     currentMetricIndex = _columnIDs.length;
                     _columnItems.push(columnQuestion);
                     _columnIDs.push(currentMetric);
