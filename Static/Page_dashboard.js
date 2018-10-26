@@ -286,8 +286,12 @@ class Page_dashboard{
      * @description function to render button that leads to the Word Cloud page
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function btnWordCloudDrilldown_Render(context){
-        context.component.TargetPage = 'word_cloud';
+    static function btnThemeDistributionChartDrilldown_Render(context){
+        if(!context.state.Parameters.IsNull("TA_CORRELATION_QUESTION") && context.state.Parameters.GetString("TA_CORRELATION_QUESTION").length > 0) {
+            context.component.TargetPage = 'correlation';
+        } else {
+            context.component.TargetPage = 'detailed_analysis';
+        }
     }
 
     /**
@@ -355,7 +359,11 @@ class Page_dashboard{
         });
 
         themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-hierarchy-table"]);
-        themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "word_cloud");
+        if(!context.state.Parameters.IsNull("TA_CORRELATION_QUESTION") && context.state.Parameters.GetString("TA_CORRELATION_QUESTION").length > 0) {
+            themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
+        } else {
+            themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "detailed_analysis");
+        }
         themeDistributionTable.GetTATableUtils().ClearTableDistributions();
         themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
     }
@@ -373,6 +381,11 @@ class Page_dashboard{
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
         var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
+        var drilldownPage = "Sentiment";
+
+        if(!context.state.Parameters.IsNull("TA_CORRELATION_QUESTION") && context.state.Parameters.GetString("TA_CORRELATION_QUESTION").length > 0) {
+            drilldownPage = "Impact Analysis";
+        }
 
         var alertstInit = "<script>" +
             "new Reportal.SignificantChangesAlerts({" +
@@ -380,7 +393,8 @@ class Page_dashboard{
             "period:'" + period + "'," +
             "tableId:'alerts-table'," +
             "separator: '" + (textSeparator ? textSeparator : "") + "',"+
-            "containerId:'alerts-container'});" +
+            "containerId:'alerts-container'," +
+            "drilldownPage: '"+ drilldownPage + "'});" +
             "</script>";
 
         context.component.Output.Append(JSON.print(currentDictionary,"translations"));
