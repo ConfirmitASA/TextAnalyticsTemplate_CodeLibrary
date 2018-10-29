@@ -159,7 +159,7 @@ class Page_dashboard{
         var label = currentDictionary["Significance test"];
         context.component.Output.Append(label);
 
-        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_SIG_TESTING_TOGGLE'));
+        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_SIG_TESTING_SINGLE'));
     }
 
     /**
@@ -174,7 +174,7 @@ class Page_dashboard{
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_TOGGLE") == '1' ? false : true;
+        var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_SINGLE") == '1' ? false : true;
         var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
 
         var themeDistributionTable = new TAThemeDistributionTable({
@@ -343,7 +343,7 @@ class Page_dashboard{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_TOGGLE") == '1' ? false : true;
+        var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_SINGLE") == '1' ? false : true;
 
         var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
 

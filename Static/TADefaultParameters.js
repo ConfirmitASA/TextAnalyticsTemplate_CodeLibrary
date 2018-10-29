@@ -45,7 +45,7 @@ class TADefaultParameters {
             Value: "0"
         },
         {
-            Id: "TA_SIG_TESTING_TOGGLE",
+            Id: "TA_SIG_TESTING_SINGLE",
             Value: "1"
         },
         {

@@ -215,7 +215,7 @@ class Page_frontpage{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_TOGGLE") == '1' ? false : true;
+        var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_SINGLE") == '1' ? false : true;
 
         var period = context.state.Parameters.IsNull("TA_FRONTPAGE_PERIOD") ? "q" : context.state.Parameters.GetString("TA_FRONTPAGE_PERIOD");
 
