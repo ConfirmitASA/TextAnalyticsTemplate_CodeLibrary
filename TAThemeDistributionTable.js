@@ -228,7 +228,7 @@ class TAThemeDistributionTable{
             },
             {
                 expression: '' + curCount + ' >= 5 AND ' + prevCount + ' >= 5 AND ' +
-                            '((' + curCount + '/' + curTotal + ' - ' + prevCount + '/' + prevTotal + ') / ' +
+                            '((' + curCount + '/' + prevCount + ' - ' + prevCount + '/' + prevTotal + ') / ' +
                             'SQRT(' +
                                 '(' + prevCount + ' + ' + curCount + ')/(' + prevTotal + ' + ' + curTotal + ')*' +
                                 '(1 - (' + prevCount + ' + ' + curCount + ')/(' + prevTotal + ' + ' + curTotal + '))*' +

@@ -258,15 +258,16 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
-     * @function TA_SIG_TESTING_TOGGLE_Domain
+     * @function TA_SIG_TESTING_SINGLE_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function TA_SIG_TESTING_TOGGLE_Domain(context){
+    static function TA_SIG_TESTING_SINGLE_Domain(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
         var parameterValues = [
+            {Code: 2, Label: currentDictionary["Volume Percent"]},
             {Code: 1, Label: currentDictionary["Sentiment"]},
-            {Code: 0, Label: currentDictionary["Comment volume"]}
+            {Code: 0, Label: currentDictionary["Volume Count"]}
         ];
 
         TAParameterUtilities.LoadParameterValues({
