@@ -158,8 +158,6 @@ class Page_dashboard{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary["Significance test"];
         context.component.Output.Append(label);
-
-        //context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_SIG_TESTING_SINGLE'));
     }
 
     /**
