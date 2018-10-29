@@ -70,7 +70,7 @@ class TAThemeDistributionTable{
 
         _setScaleMask();
         _addTimeSeriesColumn();
-        _setupConditionalFormatting();
+   //     _setupConditionalFormatting();
     }
 
     /**
@@ -149,15 +149,20 @@ class TAThemeDistributionTable{
 
         var avgHeader : HeaderStatistics = new HeaderStatistics();
         avgHeader.Statistics.Avg = true;
-        avgHeader.Decimals = 4;
+        avgHeader.Decimals = 2;
         avgHeader.HideHeader = true;
         columnsCollection.Add(avgHeader);
+
+        var percentVolumeHeader : HeaderFormula = new HeaderFormula();
+        percentVolumeHeader.Type = FormulaType.Expression;
+        percentVolumeHeader.Expression = "cellv(col-2, row)/cellv(col-2,1)";
+        percentVolumeHeader.Percent = true;
+        percentVolumeHeader.Decimals = 2;
+        columnsCollection.Add(percentVolumeHeader);
 
         var stdevHeader : HeaderStatistics = new HeaderStatistics();
         stdevHeader.Statistics.StdevP = true;
         stdevHeader.Decimals = 4;
-        stdevHeader.HideHeader = true;
-        stdevHeader.HideData = true;
         columnsCollection.Add(stdevHeader);
 
         return columnsCollection;

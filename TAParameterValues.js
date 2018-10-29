@@ -42,9 +42,9 @@ class TAParameterValues {
                 ];
             case "TA_SIG_TESTING_SINGLE":
                 return [
-                    {Code: 2, Label: currentDictionary["Volume Percent"]},
+                    {Code: 2, Label: currentDictionary["VolumePercent"]},
                     {Code: 1, Label: currentDictionary["Sentiment"]},
-                    {Code: 0, Label: currentDictionary["Volume Count"]}
+                    {Code: 0, Label: currentDictionary["VolumeCount"]}
                 ];
             case "TA_DISTRIBUTION_TOGGLE":
                 return [
