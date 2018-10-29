@@ -255,6 +255,7 @@ class Page_dashboard{
                 range: {min: (Config.SentimentRange.Negative[0]-6), max: (Config.SentimentRange.Negative[Config.SentimentRange.Negative.length - 1]-6)}
             }
         ];
+
         context.component.Output.Append(JSON.print(sentimentConfig,"sentimentConfig"));
         context.component.Output.Append(categoriesText);
         context.component.Output.Append(upgradeText);
