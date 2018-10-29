@@ -159,7 +159,7 @@ class Page_dashboard{
         var label = currentDictionary["Significance test"];
         context.component.Output.Append(label);
 
-        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_SIG_TESTING_SINGLE'));
+        //context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_SIG_TESTING_SINGLE'));
     }
 
     /**
@@ -234,7 +234,13 @@ class Page_dashboard{
             "search:{},"+
             "fixedHeader:{},"+
             "}"+
-            ")"+
+            ");"+
+            "var significantTesting = new Reportal.ThemeDistributionTable("+
+            "{"+
+            "tableContainerId:'theme-distribution',"+
+            "parameterContainerId:'sigTestingType'"+
+            "}"+
+            ");"+
             "</script>";
 
         context.component.Output.Append(categoriesText);
