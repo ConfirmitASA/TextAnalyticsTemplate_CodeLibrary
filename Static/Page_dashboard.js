@@ -414,6 +414,7 @@ class Page_dashboard{
             "tableId:'alerts-table'," +
             "separator: '" + (textSeparator ? textSeparator : "") + "',"+
             "containerId:'alerts-container'," +
+            "drilldownButtonContainer:'drilldown-button-container'," +
             "drilldownPage: '"+ drilldownPage + "'});" +
             "</script>";
 
