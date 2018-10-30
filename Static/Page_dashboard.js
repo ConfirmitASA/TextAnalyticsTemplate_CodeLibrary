@@ -412,7 +412,7 @@ class Page_dashboard{
             "new Reportal.SignificantChangesAlerts({" +
             "translations:translations," +
             "period:'" + period + "'," +
-            "tableId:'alerts-table'," +
+            "table: document.querySelector('#theme-distribution .aggregatedTableContainer > table')," +
             "separator: '" + (textSeparator ? textSeparator : "") + "',"+
             "containerId:'alerts-container'," +
             "drilldownButtonContainer:'drilldown-button-container'," +
