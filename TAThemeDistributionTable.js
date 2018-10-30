@@ -15,20 +15,14 @@
 class TAThemeDistributionTable{
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
-    private var _taMasks: TAMasks;
     private var _table: Table;
     private var _sentiment;
-    private var _sigTestingUseCounts;
-    private var _sigTestingAlertsTable;
-    private var _percents;
     private var _period;
     private var _config;
-    private var _gap = 3;
 
     function TAThemeDistributionTable(params){
         var context = params.context;
         _folder = params.folder;
-        _taMasks = new TAMasks({context: context, folder: _folder});
         _table = params.table;
         _taTableUtils = new TATableUtils({
             context: context,
@@ -36,13 +30,11 @@ class TAThemeDistributionTable{
             table: _table
         });
         _sentiment = params.sentiment === "emptyv" ? "all" : params.sentiment;
-        _sigTestingUseCounts = params.sigTestingUseCounts;
-        _sigTestingAlertsTable = params.sigTestingAlertsTable;
 
         _period = {
             Unit: params.period ? params.period : "m",
-            From: _sigTestingAlertsTable ? -2 : -11,
-            To: _sigTestingAlertsTable ? -1 : 0
+            From: -11,
+            To: 0
         };
         _config = params.config;
         _render();
@@ -70,7 +62,6 @@ class TAThemeDistributionTable{
 
         _setScaleMask();
         _addTimeSeriesColumn();
-   //     _setupConditionalFormatting();
     }
 
     /**
@@ -81,7 +72,7 @@ class TAThemeDistributionTable{
      */
     private function _setScaleMask(){
         if(_sentiment != 'all') {
-            var header : HeaderQuestion =  _table.RowHeaders.Item(1);
+            var header : HeaderQuestion = _table.RowHeaders.Item(1);
             var mask : MaskFlat = new MaskFlat();
             mask.IsInclusive = true;
 
@@ -109,7 +100,7 @@ class TAThemeDistributionTable{
      * @function _getRowheadersExpression
      */
     private function _getRowheadersExpression(){
-        var overallQuestion = _taTableUtils.GetTAQuestionExpression("overallsentiment",false,_sigTestingAlertsTable ? "hidedata:true" : "");
+        var overallQuestion = _taTableUtils.GetTAQuestionExpression("overallsentiment");
         var categoryQuestion = _taTableUtils.GetTAQuestionExpression("categorysentiment");
         var rowexpr = overallQuestion + "+" + categoryQuestion;
 
@@ -155,7 +146,7 @@ class TAThemeDistributionTable{
 
         var percentVolumeHeader : HeaderFormula = new HeaderFormula();
         percentVolumeHeader.Type = FormulaType.Expression;
-        percentVolumeHeader.Expression = "cellv(col-2, row)/cellv(col-2,1)";
+        percentVolumeHeader.Expression = "cellv(col-2, row)/cellv(col-2, 1)";
         percentVolumeHeader.Percent = true;
         percentVolumeHeader.Decimals = 2;
         columnsCollection.Add(percentVolumeHeader);
@@ -166,152 +157,5 @@ class TAThemeDistributionTable{
         columnsCollection.Add(stdevHeader);
 
         return columnsCollection;
-    }
-
-    /**
-     * @memberof TAThemeDistributionTable
-     * @private
-     * @instance
-     * @function _setupConditionalFormatting
-     */
-    private function _setupConditionalFormatting(){
-        _taTableUtils.SetupConditionalFormatting(
-            _getConditions()
-            ,
-            "NegNeuPos",
-            {
-                axis: Area.Columns,
-                direction: Area.Left,
-                indexes: "1-1000"
-            }
-        )
-    }
-
-    /**
-     * @memberof TAThemeDistributionTable
-     * @private
-     * @instance
-     * @function _getConditions
-     */
-    private function _getConditions(){
-        var negNeuPostConditions = [
-            {
-                expression: 'cellv(col+1, row)<('+(_config.SentimentRange.Neutral[0] - 6)+') AND cellv(col,row)<>EMPTYV() ',
-                style: 'negative'
-            },
-
-            {
-                expression: '(cellv(col+1, row)>=('+(_config.SentimentRange.Neutral[0] - 6)+')) AND (cellv(col+1, row)<='+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 6)+') AND cellv(col,row)<>EMPTYV()',
-                style: 'neutral'
-            },
-            {
-                expression: 'cellv(col+1, row)>'+(_config.SentimentRange.Neutral[_config.SentimentRange.Neutral.length - 1] - 6)+' AND cellv(col,row)<>EMPTYV()',
-                style: 'positive'
-            }
-        ];
-
-        var prevTotal = 'cellv(col-' + _gap + ',1)';
-        var curTotal = 'cellv(col,1)';
-        var prevCount = 'cellv(col-' + _gap + ',row)';
-        var curCount = 'cellv(col,row)';
-        var prevAvg = 'cellv(col+1-' + _gap + ',row)';
-        var curAvg = 'cellv(col+1,row)';
-        var prevStdev = 'cellv(col+2-' + _gap + ',row)';
-        var curStdev = 'cellv(col+2,row)';
-
-
-        var sigTestCountsConditions = [
-            {
-                expression: '' + curCount + ' >= 5 AND ' + prevCount + ' >= 5 AND ' +
-                            '((' + curCount + '/' + curTotal + ' - ' + prevCount + '/' + prevTotal + ') / ' +
-                            'SQRT(' +
-                                '(' + prevCount + ' + ' + curCount + ')/(' + prevTotal + ' + ' + curTotal + ')*' +
-                                '(1 - (' + prevCount + ' + ' + curCount + ')/(' + prevTotal + ' + ' + curTotal + '))*' +
-                                '(1/' + curTotal + ' + 1/' + prevTotal + ')' +
-                            ')) < -1.96',
-                style: 'decreasing'
-            },
-            {
-                expression: '' + curCount + ' >= 5 AND ' + prevCount + ' >= 5 AND ' +
-                            '((' + curCount + '/' + prevCount + ' - ' + prevCount + '/' + prevTotal + ') / ' +
-                            'SQRT(' +
-                                '(' + prevCount + ' + ' + curCount + ')/(' + prevTotal + ' + ' + curTotal + ')*' +
-                                '(1 - (' + prevCount + ' + ' + curCount + ')/(' + prevTotal + ' + ' + curTotal + '))*' +
-                                '(1/' + curTotal + ' + 1/' + prevTotal + ')' +
-                            ')) > 1.96',
-                style: 'increasing'
-            },
-            {
-                expression: 'true',
-                style: ''
-            }
-        ];
-
-        var sigTestSentimentConditions = [
-            {
-                expression: prevCount + ' >= 10 AND ' + curCount + ' >= 10 AND ' +
-                            '((' + curAvg + ' - ' + prevAvg + ') / ' +
-                            'SQRT(' +
-                                '(1/' + prevCount + ' + 1/' + curCount + ') * ' +
-                                '((' + prevCount + ' - 1)*POWER(' + prevStdev + ', 2) + (' + curCount + ' - 1)*POWER(' + curStdev + ', 2)) / '+
-                                '(' + prevCount + ' + ' + curCount + ' - 2)' +
-                            ')) < -1.96',
-                style: 'decreasing'
-            },
-            {
-                expression: prevCount + ' >= 10 AND ' + curCount + ' >= 10 AND ' +
-                            '((' + curAvg + ' - ' + prevAvg + ') / ' +
-                            'SQRT(' +
-                                '(1/' + prevCount + ' + 1/' + curCount + ') * ' +
-                                '((' + prevCount + ' - 1)*POWER(' + prevStdev + ', 2) + (' + curCount + ' - 1)*POWER(' + curStdev + ', 2)) / '+
-                                '(' + prevCount + ' + ' + curCount + ' - 2)' +
-                            ')) > 1.96',
-                style: 'increasing'
-            },
-            {
-                expression: 'true',
-                style: ''
-            }
-        ];
-
-        var combinedConditions = [];
-
-        if(_sigTestingAlertsTable) {
-            for(var i = 0; i < negNeuPostConditions.length; i++) {
-                var negNeuPosItem = negNeuPostConditions[i];
-
-                for(var j = 0; j < sigTestCountsConditions.length; j++) {
-                    var sigTestCountsItem = sigTestCountsConditions[j];
-
-                    for(var k = 0; k < sigTestSentimentConditions.length; k++) {
-                        var sigTestSentimentItem = sigTestSentimentConditions[k];
-                        var item = {};
-
-                        item.expression = negNeuPosItem.expression + ' AND ' + sigTestCountsItem.expression + ' AND ' + sigTestSentimentItem.expression;
-                        item.style = negNeuPosItem.style + ' ' + sigTestCountsItem.style + 'C ' + sigTestSentimentItem.style + 'S ';
-
-                        combinedConditions.push(item);
-                    }
-                }
-            }
-        } else {
-            var arrayToCombineWith = _sigTestingUseCounts ? sigTestCountsConditions : sigTestSentimentConditions;
-
-            for(var i = 0; i < negNeuPostConditions.length; i++) {
-                var negNeuPosItem = negNeuPostConditions[i];
-
-                for(var j = 0; j < arrayToCombineWith.length; j++) {
-                    var sigTestItem = arrayToCombineWith[j];
-                    var item = {};
-
-                    item.expression = negNeuPosItem.expression + ' AND ' + sigTestItem.expression;
-                    item.style = negNeuPosItem.style + ' ' + sigTestItem.style;
-
-                    combinedConditions.push(item);
-                }
-            }
-        }
-
-        return combinedConditions;
     }
 }

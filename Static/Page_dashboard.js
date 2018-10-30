@@ -173,7 +173,6 @@ class Page_dashboard{
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_SINGLE") == '1' ? false : true;
         var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
 
         var themeDistributionTable = new TAThemeDistributionTable({
@@ -181,8 +180,6 @@ class Page_dashboard{
             folder: folder,
             table: table,
             sentiment: sentiment,
-            sigTestingUseCounts: sigTestingUseCounts,
-            sigTestingAlertsTable: false,
             config: Config,
             period: period
         });
@@ -212,7 +209,7 @@ class Page_dashboard{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var hierarhy = folder.GetHierarchy().GetHierarchyArray()
+        var hierarchy = folder.GetHierarchy().GetHierarchyArray();
 
         headers = TATableData.GetTableRowHeaders({
             context: context,
@@ -225,7 +222,7 @@ class Page_dashboard{
             "table: document.querySelector('table.reportal-hierarchy-table'),"+
             "hierarchy: {"+
             "blocks: [],"+
-            "hierarchy:"+JSON.stringify(hierarhy)+","+
+            "hierarchy:"+JSON.stringify(hierarchy)+","+
             "rowheaders:"+JSON.stringify(headers)+","+
             "search:{enabled: true},"+
             "clearLinks:false"+
@@ -260,7 +257,6 @@ class Page_dashboard{
         context.component.Output.Append(JSON.print(sentimentConfig,"sentimentConfig"));
         context.component.Output.Append(categoriesText);
         context.component.Output.Append(upgradeText);
-        context.component.Output.Append(JSON.print(hierarhy,"hierarchy"));
     }
 
     /**
@@ -354,43 +350,6 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
-     * @function tblSignificantChangeAlerts_Render
-     * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function tblSignificantChangeAlerts_Render(context){
-        var table = context.component;
-
-        var sentiment = context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
-        var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_SINGLE") == '1' ? false : true;
-
-        var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
-
-        var themeDistributionTable = new TAThemeDistributionTable({
-            context: context,
-            folder: folder,
-            table: table,
-            sentiment: sentiment,
-            sigTestingUseCounts: sigTestingUseCounts,
-            sigTestingAlertsTable: true,
-            config: Config,
-            period: period
-        });
-
-        themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-hierarchy-table"]);
-        if(!context.state.Parameters.IsNull("TA_CORRELATION_QUESTION") && context.state.Parameters.GetString("TA_CORRELATION_QUESTION").length > 0) {
-            themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
-        } else {
-            themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "detailed_analysis");
-        }
-        themeDistributionTable.GetTATableUtils().ClearTableDistributions();
-        themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
-    }
-
-    /**
-     * @memberof Page_dashboard
      * @function txtSignificantChangeAlertsScript_Render
      * @description function to render Alerts for Significant Changes
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -402,8 +361,8 @@ class Page_dashboard{
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
         var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
-        var drilldownPage = "Sentiment";
 
+        var drilldownPage = "Sentiment";
         if(!context.state.Parameters.IsNull("TA_CORRELATION_QUESTION") && context.state.Parameters.GetString("TA_CORRELATION_QUESTION").length > 0) {
             drilldownPage = "Impact Analysis";
         }
