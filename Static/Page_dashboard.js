@@ -16,6 +16,7 @@ class Page_dashboard{
         TAPageRenderer.InitiateParameters(context);
         TAPageRenderer.InitiateFilters(context);
         TAPageRenderer.SetLastVisitedPage(context, "dashboard");
+        TAPageRenderer.ClearCategoriesParameters(context);
         TAPageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
