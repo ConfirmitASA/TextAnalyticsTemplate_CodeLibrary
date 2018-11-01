@@ -58,13 +58,19 @@ class TAParameterValues {
                     {Code: "q", Label: currentDictionary["Quarters"]},
                     {Code: "y", Label: currentDictionary["Years"]}
                 ];
-
             case "TA_TREND_LINE_VIEW_BY":
                 return [
                     {Code: "total_percent", Label: currentDictionary["% volume"]},
                     {Code: "avg_sentiment", Label: currentDictionary["Mean sentiment"]},
                     {Code: "positive_percent", Label: currentDictionary["% positive sentiment"]},
                     {Code: "negative_percent", Label: currentDictionary["% negative sentiment"]}
+                ];
+            case "TA_FRONTPAGE_PERIOD":
+                return [
+                    {Code: "w", Label: currentDictionary["Weeks"]},
+                    {Code: "m", Label: currentDictionary["Months"]},
+                    {Code: "q", Label: currentDictionary["Quarters"]},
+                    {Code: "y", Label: currentDictionary["Years"]}
                 ];
 
             default:
