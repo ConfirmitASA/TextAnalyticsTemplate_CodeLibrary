@@ -375,6 +375,7 @@ class Page_dashboard{
             "separator: '" + (textSeparator ? textSeparator : "") + "',"+
             "containerId:'alerts-container'," +
             "drilldownButtonContainer:'drilldown-button-container'," +
+            "drilldownParameterContainer:'alerts-drilldown-parameter'," +
             "drilldownPage: '"+ drilldownPage + "'});" +
             "</script>";
 
