@@ -159,6 +159,7 @@ class Page_dashboard{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var label = currentDictionary["Significance test"];
         context.component.Output.Append(label);
+        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_SIG_TESTING_SINGLE'));
     }
 
     /**
@@ -216,6 +217,8 @@ class Page_dashboard{
             tableName: "tblThemeDistribution"
         });
 
+        var toggleStatus = context.state.Parameters.GetString("TA_SIG_TESTING_SINGLE");
+
         var upgradeText = "<script type=\"text/javascript\">"+
             "var upgradedTable = new Reportal.AggregatedTable("+
             "{"+
@@ -234,7 +237,7 @@ class Page_dashboard{
             "var significantTesting = new Reportal.ThemeDistributionTable("+
             "{"+
             "tableContainerId:'theme-distribution',"+
-            "parameterContainerId:'sigTestingType'"+
+            "toggleStatus:'" + toggleStatus + "'" +
             "}"+
             ");"+
             "</script>";
