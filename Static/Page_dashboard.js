@@ -239,7 +239,7 @@ class Page_dashboard{
             "var significantTesting = new Reportal.ThemeDistributionTable("+
             "{"+
             "tableContainerId:'theme-distribution',"+
-            "toggleStatus:'" + toggleStatus + "'" +
+            "toggleStatus:'" + toggleStatus + "'," +
             "significantTestScore:'" + significantTestScore + "'" +
             "}"+
             ");"+
