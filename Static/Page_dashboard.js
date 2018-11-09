@@ -219,6 +219,8 @@ class Page_dashboard{
 
         var toggleStatus = context.state.Parameters.GetString("TA_SIG_TESTING_SINGLE");
 
+        var significantTestScore = folder.GetSignificantTestScore();
+
         var upgradeText = "<script type=\"text/javascript\">"+
             "var upgradedTable = new Reportal.AggregatedTable("+
             "{"+
@@ -238,6 +240,7 @@ class Page_dashboard{
             "{"+
             "tableContainerId:'theme-distribution',"+
             "toggleStatus:'" + toggleStatus + "'" +
+            "significantTestScore:'" + significantTestScore + "'" +
             "}"+
             ");"+
             "</script>";

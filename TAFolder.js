@@ -24,6 +24,7 @@ class TAFolder{
     private var _filterQuestions;
     private var _correlationVariableId;
     private var _correlationSuppressingBase;
+    private var _significantTestScore;
     private var _correlationVariableShownName;
 
     private var _hierarchy: TAHierarchy;
@@ -49,6 +50,8 @@ class TAFolder{
         _correlationVariableId = config.TAQuestions[questionIndex].CorrelationVariableId;
 
         _correlationSuppressingBase = config.TAQuestions[questionIndex].CorrelationSuppressingBase;
+
+        _significantTestScore = config.TAQuestions[questionIndex].SignificantTestScore;
 
         _correlationVariableShownName = config.TAQuestions[questionIndex].CorrelationVariableShownName;
 
@@ -203,6 +206,17 @@ class TAFolder{
      */
     function GetCorrelationSuppressingBase(){
         return _correlationSuppressingBase;
+    }
+
+    /**
+     * @memberof TAFolder
+     * @instance
+     * @function GetSignificantTestScore
+     * @description function to Get the significant test score for theme distribution table
+     * @returns {String[]}
+     */
+    function GetSignificantTestScore(){
+        return _significantTestScore;
     }
 
     /**
