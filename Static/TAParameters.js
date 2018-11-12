@@ -265,9 +265,9 @@ class TAParameters{
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
         var parameterValues = [
-            {Code: 2, Label: currentDictionary["VolumePercent"]},
             {Code: 1, Label: currentDictionary["Sentiment"]},
-            {Code: 0, Label: currentDictionary["VolumeCount"]}
+            {Code: 0, Label: currentDictionary["VolumeCount"]},
+            {Code: 2, Label: currentDictionary["VolumePercent"]}
         ];
 
         TAParameterUtilities.LoadParameterValues({
