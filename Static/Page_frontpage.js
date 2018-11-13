@@ -213,12 +213,10 @@ class Page_frontpage{
     static function tblSignificantChangeAlerts_Render(context){
         var table = context.component;
 
-        var sentiment = "emptyv"; //context.state.Parameters.IsNull("TA_VIEW_SENTIMENT") ? "emptyv" : context.state.Parameters.GetString("TA_VIEW_SENTIMENT");
+        var sentiment = "emptyv";
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
-        var sigTestingUseCounts = context.state.Parameters.GetString("TA_SIG_TESTING_SINGLE") == '1' ? false : true;
-
         var period = context.state.Parameters.IsNull("TA_FRONTPAGE_PERIOD") ? "q" : context.state.Parameters.GetString("TA_FRONTPAGE_PERIOD");
 
         var themeDistributionTable = new TAThemeDistributionTable({
@@ -226,8 +224,7 @@ class Page_frontpage{
             folder: folder,
             table: table,
             sentiment: sentiment,
-            sigTestingUseCounts: sigTestingUseCounts,
-            sigTestingAlertsTable: true,
+            sigTestingWidgetTable: true,
             config: Config,
             period: period
         });
