@@ -254,13 +254,11 @@ class Page_frontpage{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var significantTestScore = folder.GetSignificantTestScore();
-        var toggleStatus = "0";
 
         var tableInit =  "<script type=\"text/javascript\">"+
             "var significantTesting = new Reportal.ThemeDistributionTable("+
             "{"+
             "tableContainerId:'sig-change-table',"+
-            "toggleStatus:'" + toggleStatus + "'," +
             "significantTestScore:'" + significantTestScore + "'" +
             "}"+
             ");"+
