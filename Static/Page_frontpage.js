@@ -254,6 +254,21 @@ class Page_frontpage{
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtSignificantChangeWidgetScript_Render(context)  {
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var significantTestScore = folder.GetSignificantTestScore();
+        var toggleStatus = "0";
+
+        var tableInit =  "<script type=\"text/javascript\">"+
+            "var significantTesting = new Reportal.ThemeDistributionTable("+
+            "{"+
+            "tableContainerId:'sig-change-table',"+
+            "toggleStatus:'" + toggleStatus + "'," +
+            "significantTestScore:'" + significantTestScore + "'" +
+            "}"+
+            ");"+
+            "</script>";
+
         var widgetInit = "<script>" +
             "new Reportal.SignificantChangeWidget({" +
             "translations: translations," +
@@ -277,6 +292,7 @@ class Page_frontpage{
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
         context.component.Output.Append(JSON.print(currentDictionary,"translations"));
+        context.component.Output.Append(tableInit);
         context.component.Output.Append(widgetInit);
         context.component.Output.Append(widgetInit2);
     }
