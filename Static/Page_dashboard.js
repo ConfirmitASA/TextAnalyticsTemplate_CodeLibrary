@@ -310,10 +310,15 @@ class Page_dashboard{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnThemeDistributionChartDrilldown_Render(context){
-        if(!context.state.Parameters.IsNull("TA_CORRELATION_QUESTION") && context.state.Parameters.GetString("TA_CORRELATION_QUESTION").length > 0) {
-            context.component.TargetPage = 'correlation';
-        } else {
-            context.component.TargetPage = 'detailed_analysis';
+        context.component.TargetPage = 'correlation';
+
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        if(selectedFolder) {
+            var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+            var correlationVariables = folder.GetCorrelationVariables();
+            if(!correlationVariables || correlationVariables.length <= 0) {
+                context.component.TargetPage = 'detailed_analysis';
+            }
         }
     }
 
