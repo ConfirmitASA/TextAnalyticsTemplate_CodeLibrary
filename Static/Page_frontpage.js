@@ -324,8 +324,8 @@ class Page_frontpage{
 
         var chartInit = "<script>" +
             "var trendChart = new Reportal.ThreeYearsTrendChart({" +
-            "chartContainer:'trend-chart'," +
-            "tableContainer:'trend-table'," +
+            "chartContainer:'years-trend-chart'," +
+            "tableContainer:'years-trend-table'," +
             "palette: palette," +
             "translations: translations});" +
             "</script>";
