@@ -305,8 +305,8 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
-     * @function btnWordCloudDrilldown_Render
-     * @description function to render button that leads to the Word Cloud page
+     * @function btnThemeDistributionChartDrilldown_Render
+     * @description function to render button that leads to the Impact Analysis or Sentiment page
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnThemeDistributionChartDrilldown_Render(context){
@@ -373,9 +373,10 @@ class Page_dashboard{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
 
-        var drilldownPage = "Sentiment";
-        if(!context.state.Parameters.IsNull("TA_CORRELATION_QUESTION") && context.state.Parameters.GetString("TA_CORRELATION_QUESTION").length > 0) {
-            drilldownPage = "Impact Analysis";
+        var drilldownPage = "correlation";
+        var correlationVariables = folder.GetCorrelationVariables();
+        if(!correlationVariables || correlationVariables.length <= 0) {
+            drilldownPage = "detailed_analysis";
         }
 
         var alertstInit = "<script>" +
