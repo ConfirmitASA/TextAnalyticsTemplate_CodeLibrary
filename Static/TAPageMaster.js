@@ -72,7 +72,7 @@ class TAPageMaster{
         var currentLaguage = context.report.CurrentLanguage;
         var curDictionary = Translations.dictionary(currentLaguage);
 
-        summarySegments.push(("<div>"+curDictionary['Selected question']+" = "+(!selectedFolder ? '' : Config.GetTALibrary().GetFolderById(selectedFolder).GetName()) + "</div>"));
+        summarySegments.push(("<div style=\"padding: 8px;\">"+curDictionary['Selected question']+" = "+(!selectedFolder ? '' : Config.GetTALibrary().GetFolderById(selectedFolder).GetName()) + "</div>"));
 
         var category = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
             TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_TOP_CATEGORIES_SINGLE");
@@ -80,7 +80,7 @@ class TAPageMaster{
         category = category && category.replace(/<\/span>/, '');
 
         if(category && category != curDictionary['-select-']) {
-            summarySegments.push(("<div>"+curDictionary['Category']+" = " + category +
+            summarySegments.push(("<div><span>"+curDictionary['Category']+" = " + category + "</span>" +
                 CreateFilterBarDeleteButton("TA_TOP_CATEGORIES_SINGLE") +
                 "</div>"));
         }
@@ -91,7 +91,7 @@ class TAPageMaster{
         subCategory = subCategory && subCategory.replace(/<\/span>/, '');
 
         if(subCategory && subCategory != curDictionary['-select-']) {
-            summarySegments.push(("<div>"+curDictionary['Sub category']+" = " + subCategory +
+            summarySegments.push(("<div><span>"+curDictionary['Sub category']+" = " + subCategory + "</span>" +
                 CreateFilterBarDeleteButton("TA_SUB_CATEGORIES_SINGLE") +
                 "</div>"));
         }
@@ -102,7 +102,7 @@ class TAPageMaster{
         attribute = attribute && attribute.replace(/<\/span>/, '');
 
         if(attribute && attribute != curDictionary['-select-']) {
-            summarySegments.push(("<div>"+curDictionary['Attribute']+" = " + attribute +
+            summarySegments.push(("<div><span>"+curDictionary['Attribute']+" = " + attribute + "</span>" +
                 CreateFilterBarDeleteButton("TA_ATTRIBUTES_SINGLE") +
                 "</div>"));
         }
@@ -114,7 +114,7 @@ class TAPageMaster{
             context.state.Parameters.GetString("TA_COMMENTS_SENTIMENT");
 
         if(sentiment){
-            summarySegments.push(("<div>"+curDictionary['Sentiment']+" = " + (ParameterValueResponse)(context.state.Parameters['TA_COMMENTS_SENTIMENT']).DisplayValue +
+            summarySegments.push(("<div><span>"+curDictionary['Sentiment']+" = " + (ParameterValueResponse)(context.state.Parameters['TA_COMMENTS_SENTIMENT']).DisplayValue + "</span>" +
                 CreateFilterBarDeleteButton("TA_COMMENTS_SENTIMENT") +
                 "</div>"));
         }
@@ -124,7 +124,7 @@ class TAPageMaster{
             context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
 
         if(startDate){
-            summarySegments.push(("<div>"+curDictionary['Start date']+" = " + startDate +
+            summarySegments.push(("<div><span>"+curDictionary['Start date']+" = " + startDate + "</span>" +
                 CreateFilterBarDeleteButton("TA_DATE_FROM") +
                 "</div>"));
         }
@@ -134,7 +134,7 @@ class TAPageMaster{
             context.state.Parameters.GetDate("TA_DATE_TO").ToShortDateString();
 
         if(endDate){
-            summarySegments.push(("<div>"+curDictionary['End date']+" = " + endDate +
+            summarySegments.push(("<div><span>"+curDictionary['End date']+" = " + endDate + "</span>" +
                 CreateFilterBarDeleteButton("TA_DATE_TO") +
                 "</div>"));
         }
@@ -147,11 +147,11 @@ class TAPageMaster{
 
         if(cj_parameter){
             var indexOfAsterisk = cj_parameter.indexOf('*');
-            summarySegments.push(("<div>" + (
+            summarySegments.push(("<div><span>" + (
                     indexOfAsterisk >= 0 ?
                         (cj_parameter.substr(0, indexOfAsterisk) + ' = ' +   (ParameterValueResponse)(context.state.Parameters['TA_CJ_CARDS']).DisplayValue) :
                         (cj_parameter + ' is answered')
-                ) + CreateFilterBarDeleteButton("TA_CJ_CARDS") +
+                ) + "</span>" + CreateFilterBarDeleteButton("TA_CJ_CARDS") +
                 "</div>"));
         }
 
@@ -166,7 +166,7 @@ class TAPageMaster{
             });
 
             if(codes && codes.values.length > 0){
-                summarySegments.push(("<div>" + codes.questionTitle + " = " + codes.texts.join(" | ") +
+                summarySegments.push(("<div><span>" + codes.questionTitle + " = " + codes.texts.join(" | ") + "</span>" +
                     CreateFilterBarDeleteButton("FILTER" + (i + 1)) +
                     "</div>"));
             }
