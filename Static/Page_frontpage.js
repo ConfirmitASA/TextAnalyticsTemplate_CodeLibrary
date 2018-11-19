@@ -314,7 +314,7 @@ class Page_frontpage{
      * @description function to render 3 years Trend Chart
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function txtCustomerJourneyTrendScript_Render(context){
+    static function txtPreviousYearsTrendChartScript_Render(context){
         var trendLineColors = Config.Colors.YearsTrendLinePalette;
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
