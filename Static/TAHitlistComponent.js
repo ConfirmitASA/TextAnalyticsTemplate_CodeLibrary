@@ -62,6 +62,9 @@ class TAHitlistComponent {
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var textSeparator = folder.GetHierarchy().GetTextSeparator();
 
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
         var hitlistInit = "<script>"+
             "Y.Global.on('hitlistloaded', function (e) {  "+
             "var upgradedHitlist = new Reportal.Hitlist({"+
@@ -70,7 +73,7 @@ class TAHitlistComponent {
             "headers: hitlistHeaders,"+
             "sentimentConfig: sentimentConfig,"+
             "currentCategory: currentCategory,"+
-            "translations: translations"+
+            "infoText: '" +  currentDictionary["hitlist info text"]; + "'"+
             "});"+
             "});"+
             "</script>";
@@ -88,10 +91,6 @@ class TAHitlistComponent {
                 name: folder.GetQuestionId("categorysentiment")+"_"+selectedCategory
             } );
         }
-
-        var currentLanguage = context.report.CurrentLanguage;
-
-        var currentDictionary = Translations.dictionary(currentLanguage);
 
         hitlistHeaders["verbatim"] = [{
             name: folder.GetQuestionId(),
@@ -140,7 +139,6 @@ class TAHitlistComponent {
         context.component.Output.Append(JSON.print(hitlistHeaders, "hitlistHeaders"));
         context.component.Output.Append(JSON.print(sentimentConfig,"sentimentConfig"));
         context.component.Output.Append(JSON.print(currentCategory,"currentCategory"));
-        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
         context.component.Output.Append(hitlistInit);
     }
 }
