@@ -57,7 +57,7 @@ class TAHitlistComponent {
      * @description function to render the script which processes hitlist
      * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function txtCommentsScript_Render(context){
+    static function txtCommentsScript_Render(context, isAlertsHitlist){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var textSeparator = folder.GetHierarchy().GetTextSeparator();
@@ -73,7 +73,7 @@ class TAHitlistComponent {
             "headers: hitlistHeaders,"+
             "sentimentConfig: sentimentConfig,"+
             "currentCategory: currentCategory,"+
-            "infoText: '" +  currentDictionary["hitlist info text"]; + "'"+
+            "infoText: '" +  (isAlertsHitlist ? currentDictionary["hitlist alerts text"] : currentDictionary["hitlist info text"]) + "'"+
             "});"+
             "});"+
             "</script>";
