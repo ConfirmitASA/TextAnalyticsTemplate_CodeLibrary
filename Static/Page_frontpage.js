@@ -334,4 +334,15 @@ class Page_frontpage{
         context.component.Output.Append(JSON.print(palette,"palette"));
         context.component.Output.Append(chartInit);
     }
+
+    /**
+     * @memberof Page_frontpage
+     * @function txtPreviousYearsTrendChartTitle_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtPreviousYearsTrendChartTitle_Render(context){
+    var currentLanguage = context.report.CurrentLanguage;
+    var currentDictionary = Translations.dictionary(currentLanguage);
+    var label = currentDictionary["Previous Years Trend Chart"];
+    c
 }
