@@ -170,4 +170,18 @@ class TAFilters {
         context.component.Expression = fExpr;
     }
 
+    /**
+     * @memberof TAFilters
+     * @function TAOverallSentimentIsNotEmpty
+     * @description function to create expression that filtrates respondents who have answered selected TA Question
+     * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TAOverallSentimentIsNotEmpty(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+
+        var fExpr = 'NOT ISNULL('+selectedFolder.GetQuestionId("overallSentiment")+')'
+
+        context.component.Expression = fExpr;
+    }
+
 }

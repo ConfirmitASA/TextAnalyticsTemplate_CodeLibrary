@@ -18,7 +18,7 @@ class TAFiltersBuilder{
 
         var context = params.context;
         var folder = params.folder;
-        var selectedCategory = context.state.Parameters.GetString(params.allCategoriesParameter)
+        var selectedCategory = context.state.Parameters.GetString(params.allCategoriesParameter);
         fExpr = (selectedCategory && selectedCategory !=="emptyv") ?('ANY(' + folder.GetQuestionId("categories") + ',"'+selectedCategory+'")'):'NOT ISNULL('+folder.GetQuestionId("overallSentiment")+')';
 
         return fExpr;
