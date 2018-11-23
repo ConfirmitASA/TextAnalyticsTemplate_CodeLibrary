@@ -178,8 +178,8 @@ class TAFilters {
      */
     static function TAOverallSentimentIsNotEmpty(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-
-        var fExpr = 'NOT ISNULL('+selectedFolder.GetQuestionId("overallSentiment")+')'
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder)
+        var fExpr = 'NOT ISNULL('+folder.GetQuestionId("overallSentiment")+')';
 
         context.component.Expression = fExpr;
     }
