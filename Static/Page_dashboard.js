@@ -334,7 +334,7 @@ class Page_dashboard{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var palette = significantTestingColors;
 
-        var period = context.state.Parameters.IsNull("TA_TREND_LINE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_TREND_LINE_PERIOD");
+        var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
 
         var categoryOptions = {
             category: TAParameterValues.getCategoryParameterValue(context, currentDictionary, "TA_TOP_CATEGORIES_SINGLE"),
