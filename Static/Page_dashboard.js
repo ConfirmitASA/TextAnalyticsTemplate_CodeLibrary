@@ -310,14 +310,16 @@ class Page_dashboard{
      * @param {Object} context - {component: button, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function btnThemeDistributionChartDrilldown_Render(context){
-        context.component.TargetPage = 'correlation';
+        if(context.state.ReportExecutionMode != ReportExecutionMode.PdfExport) {
+            context.component.TargetPage = 'correlation';
 
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        if(selectedFolder) {
-            var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-            var correlationVariables = folder.GetCorrelationVariables();
-            if(!correlationVariables || correlationVariables.length <= 0) {
-                context.component.TargetPage = 'detailed_analysis';
+            var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+            if (selectedFolder) {
+                var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+                var correlationVariables = folder.GetCorrelationVariables();
+                if (!correlationVariables || correlationVariables.length <= 0) {
+                    context.component.TargetPage = 'detailed_analysis';
+                }
             }
         }
     }
