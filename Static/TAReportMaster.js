@@ -110,6 +110,11 @@ class TAReportMaster {
                 "\n;}.comd-button___studio:hover,.comd-button___studio:hover .comd-button__content___studio,.comd-button___studio:active,.comd-button___studio:active .comd-button__content___studio,a:hover, .link:hover,.r2i-blue-color {color: " + buttonHoverColor +
                 "\n;}* {outline-color: " + buttonHoverColor +
                 "\n;}.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.dd-wrapper .dd-button-menu button:hover {background-color: " + buttonHoverColor +
+                "\n;}.yui3-menuitem.css-menu-topitem,.css-menu-toplabel,.dark-blue ul ul .yui3-menuitem-active a, .dark-blue ul ul .yui3-menu-label-active, .dark-blue ul ul .yui3-menu-label-menuvisible,.dark-blue .css-menu-topitem.css-menu-child-selected > a:link, .dark-blue .css-menu-topitem.css-menu-child-selected > a:visited,.css-menu-subitem a:link, .css-menu-subitem a:visited {color: " + headerTextColor +
+                "\n;}.dark-blue > div > ul > li > a:hover,.dark-blue > div > ul > li > a.yui3-menu-label-menuvisible {color: " + headerTextColor +
+                "\n !important;}.reportal-horizontal-menu>.yui3-menu .css-menu-topitem.css-menu-selected,.reportal-horizontal-menu>.yui3-menu .css-menu-topitem:hover,.css-menu-selected.css-menu-topitem,.reportal-horizontal-menu>.yui3-menu .css-menu-child-selected.css-menu-topitem,.css-menu-topitem:hover {border-bottom: .143rem solid " + buttonMainColor +
+                "\n !important;}.dark-blue .css-menu-sublabel.yui3-menu-label-active,.dark-blue .css-menu-sublabel.yui3-menu-label-menuvisible,.dark-blue .css-menu-sublabel.yui3-menu-item-active,.dark-blue .css-menu-subitem.yui3-menuitem-active:hover,.dark-blue .css-menu-subitem.css-menu-selected {border-left: 2px solid " + buttonMainColor +
+                "\n;}.reportal-filterpanel .reportal-select:nth-child(6) {border-top: 2px solid " + buttonMainColor +
                 "\n;}.btn.btn-primary, button.btn-primary,.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.filter-bar div,.toggle input:checked + label {color: " + buttonTextColor +
                 "\n;}.toggle input:not(checked) + label {background: " + buttonTextColor +
                 "\n;}.icon-face-positive,.cf_positive {fill: " + positiveColor +
@@ -166,7 +171,6 @@ class TAReportMaster {
                 "\n;}#correlation-help-text {border: 1px solid " + dividerColor +
                 "\n;}.alert-card__decreasing,.ta-sig-change-widget__decreasing,.ta-impact-analysis-widget__item--issues {color: " + issues +
                 "\n;}.alert-card__increasing,.ta-sig-change-widget__increasing,.ta-impact-analysis-widget__item--strength {color: " + strength +
-                "\n;}.reportal-filterpanel .reportal-select:nth-child(5) {border-top: 2px solid " + buttonMainColor +
                 "\n;}";
 
             str += "</style>";
