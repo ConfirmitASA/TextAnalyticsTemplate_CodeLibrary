@@ -73,10 +73,13 @@ class TAHitlistComponent {
             "headers: hitlistHeaders,"+
             "sentimentConfig: sentimentConfig,"+
             "currentCategory: currentCategory,"+
-            "infoText: '" +  (isAlertsHitlist ? currentDictionary["hitlist alerts text"] : currentDictionary["hitlist info text"]) + "'"+
+            "infoText: '" +  (isAlertsHitlist ? currentDictionary["hitlist alerts text"] : currentDictionary["hitlist info text"]) + "',"+
+            "filterInfoText: \"" + currentDictionary["filter info text"] + "\""+
             "});"+
             "});"+
             "</script>";
+
+        context.log.LogDebug(currentDictionary["filter info text"])
 
         var hitlistHeaders = {};
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');

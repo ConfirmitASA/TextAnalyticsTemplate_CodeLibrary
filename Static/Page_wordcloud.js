@@ -201,6 +201,9 @@ class Page_wordcloud{
         var textSeparator = folder.GetHierarchy().GetTextSeparator();
         var selectedWords;
 
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
         if ( !context.state.Parameters.IsNull("TA_INCLUDE_WORDS") ){
             var wordCloudFilterWords : ParameterValueMultiSelect = context.state.Parameters["TA_INCLUDE_WORDS"];
             var words = [];
@@ -220,8 +223,8 @@ class Page_wordcloud{
             "headers: hitlistHeaders,"+
             "sentimentConfig: sentimentConfig," +
             "selectedWords: '" + selectedWords + "',"+
-            "currentCategory: currentCategory,"+
-            "translations: translations"+
+            "infoText: '" +  currentDictionary["hitlist info text"] + "',"+
+            "filterInfoText: \"" + currentDictionary["filter info text"] + "\""+
             "});"+
             "});"+
             "</script>";
@@ -239,10 +242,6 @@ class Page_wordcloud{
                 name: folder.GetQuestionId("categorysentiment")+"_"+selectedCategory
             } );
         }
-
-        var currentLanguage = context.report.CurrentLanguage;
-
-        var currentDictionary = Translations.dictionary(currentLanguage);
 
         hitlistHeaders["verbatim"] = [{
             name: folder.GetQuestionId(),
