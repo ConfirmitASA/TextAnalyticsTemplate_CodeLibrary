@@ -79,8 +79,6 @@ class TAHitlistComponent {
             "});"+
             "</script>";
 
-        context.log.LogDebug(currentDictionary["filter info text"])
-
         var hitlistHeaders = {};
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
         var currentCategory = "";
