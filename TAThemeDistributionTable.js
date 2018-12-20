@@ -140,7 +140,7 @@ class TAThemeDistributionTable{
 
         var avgHeader : HeaderStatistics = new HeaderStatistics();
         avgHeader.Statistics.Avg = true;
-        avgHeader.Decimals = 2;
+        avgHeader.Decimals = 1;
         avgHeader.HideHeader = true;
         columnsCollection.Add(avgHeader);
 
@@ -148,7 +148,7 @@ class TAThemeDistributionTable{
         percentVolumeHeader.Type = FormulaType.Expression;
         percentVolumeHeader.Expression = "cellv(col-2, row)/cellv(col-2, 1)";
         percentVolumeHeader.Percent = true;
-        percentVolumeHeader.Decimals = 2;
+        percentVolumeHeader.Decimals = 1;
         columnsCollection.Add(percentVolumeHeader);
 
         var stdevHeader : HeaderStatistics = new HeaderStatistics();
