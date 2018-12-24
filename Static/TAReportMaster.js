@@ -114,7 +114,7 @@ class TAReportMaster {
                 "\n;}.dark-blue > div > ul > li > a:hover,.dark-blue > div > ul > li > a.yui3-menu-label-menuvisible {color: " + headerTextColor +
                 "\n !important;}.reportal-horizontal-menu>.yui3-menu .css-menu-topitem.css-menu-selected,.reportal-horizontal-menu>.yui3-menu .css-menu-topitem:hover,.css-menu-selected.css-menu-topitem,.reportal-horizontal-menu>.yui3-menu .css-menu-child-selected.css-menu-topitem,.css-menu-topitem:hover {border-bottom: .143rem solid " + buttonMainColor +
                 "\n !important;}.dark-blue .css-menu-sublabel.yui3-menu-label-active,.dark-blue .css-menu-sublabel.yui3-menu-label-menuvisible,.dark-blue .css-menu-sublabel.yui3-menu-item-active,.dark-blue .css-menu-subitem.yui3-menuitem-active:hover,.dark-blue .css-menu-subitem.css-menu-selected {border-left: 2px solid " + buttonMainColor +
-                "\n;}.reportal-filterpanel .reportal-select:nth-child(6) {border-top: 2px solid " + buttonMainColor +
+                "\n;}.reportal-filterpanel .reportal-select:nth-child(5) {border-bottom: 2px solid " + buttonMainColor +
                 "\n;}.btn.btn-primary, button.btn-primary,.btn.btn-primary:hover,      .btn.btn-primary:active,      .btn.btn-primary:focus,      button.btn-primary:hover,      button.btn-primary:active,      button.btn-primary:focus,.filter-bar div,.toggle input:checked + label {color: " + buttonTextColor +
                 "\n;}.toggle input:not(checked) + label {background: " + buttonTextColor +
                 "\n;}.icon-face-positive,.cf_positive {fill: " + positiveColor +
