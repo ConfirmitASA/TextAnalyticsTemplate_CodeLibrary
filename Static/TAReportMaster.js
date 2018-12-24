@@ -33,6 +33,7 @@ class TAReportMaster {
         if(Config.Design) {
             var backgroundColor = Config.Design.backgroundColor;
             var headerBackgroundColor = Config.Design.headerBackgroundColor;
+            var filterPanelBackgroundColor = Config.Design.filterPanelBackgroundColor;
             var widgetBackgroundColor = Config.Design.widgetBackgroundColor;
             var headerTextColor = Config.Design.headerTextColor;
             var lightPrimaryColor = Config.Design.lightPrimaryColor;
@@ -82,7 +83,7 @@ class TAReportMaster {
                 "\n;}.widget__header--shadow {-webkit-box-shadow: 0 .286rem .571rem 0 " + lightPrimaryHoverColor +
                 "\n;}.widget__header--shadow {box-shadow: 0 .286rem .571rem 0 " + lightPrimaryHoverColor +
                 "\n;}.comd-button___studio:disabled,[type=radio]:disabled + label, [type=checkbox]:disabled + label,.toggle input:not(checked) + label {color: " + disabledTextColor +
-                "\n;}.dashboard__sidebar,.filter__header,.filter-options-panel {background-color: " + headerBackgroundColor +
+                "\n;}.dashboard__sidebar,.filter__header,.filter-options-panel {background-color: " + filterPanelBackgroundColor +
                 "\n;} {border-right: .071rem solid " + dividerColor +
                 "\n;}@media screen and (min-width: 600px) {.dashboard__sidebar {border-right: .071rem solid " + dividerColor +
                 "\n;}}.filter__header,.filter-options-panel__item--hierarchy,.filter-search-navigation__wrapper {border-bottom: .071rem solid " + dividerColor +
