@@ -89,6 +89,7 @@ class TACustomerJourneyTrendTable{
                     headerExpressions.push( '[SEG]{label:"Empty Header";expression:"NOT ISNULL(' + questions[i].QuestionId.replace('.', '_') + ')"}' );
 
                 } else {
+                    totalHeaderExpressions.push( questions[i].QuestionId + '{collapsed:' + questions[i].IsCollapsed  + ';totals:false;hidedata:true;hideheader:true}');
                     headerExpressions.push( questions[i].QuestionId + '{collapsed:' + questions[i].IsCollapsed  + ';totals:false}');
                 }
             }
