@@ -316,9 +316,11 @@ class Page_dashboard{
             var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
             if (selectedFolder) {
                 var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-                var correlationVariables = folder.GetCorrelationVariables();
-                if (!correlationVariables || correlationVariables.length <= 0) {
-                    context.component.TargetPage = 'detailed_analysis';
+                if (folder) {
+                    var correlationVariables = folder.GetCorrelationVariables();
+                    if (!correlationVariables || correlationVariables.length <= 0) {
+                        context.component.TargetPage = 'detailed_analysis';
+                    }
                 }
             }
         }
