@@ -314,7 +314,7 @@ class Page_dashboard{
             context.component.TargetPage = 'correlation';
 
             var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-            if (selectedFolder) {
+            if (selectedFolder && Config.GetTALibrary()) {
                 var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
                 if (folder) {
                     var correlationVariables = folder.GetCorrelationVariables();
