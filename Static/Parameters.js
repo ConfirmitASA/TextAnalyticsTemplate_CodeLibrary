@@ -54,8 +54,7 @@ class Parameters{
         var currentLanguage = context.report.CurrentLanguage;
 
         var parameterValues = [
-            {Code: "FY2018_FY2019", Label: "FY19 vs FY18"},
-            {Code: "FY2017_FY2018", Label: "FY18 vs FY17"}
+            {Code: "FY2017_FY2019", Label: "FY19 vs FY17"}
         ];
 
         ParameterUtilities.LoadParameterValues({
