@@ -637,7 +637,7 @@ class TAPageMaster{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtClearButton_Render(context){
-        context.component.Output.Append("<button title='Clear filters'  onclick='javascript:document.querySelector(\".filters-clear-button input\").click()' class='btn btn-primary'>"+
+        context.component.Output.Append("<button type='button' title='Clear filters'  onclick='javascript:document.querySelector(\".filters-clear-button input\").click()' class='btn btn-primary'>"+
             "Clear Filters"+
             "</button>");
     }
