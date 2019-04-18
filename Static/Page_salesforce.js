@@ -161,7 +161,7 @@ class Page_salesforce{
         previousSentiment = isNaN(previousSentiment) ? "" : previousSentiment;
         currentSentiment = isNaN(currentSentiment) ? "" : currentSentiment;
 
-        var selectParameter = state.Parameters.GetString("TA_SALESFORCE_EXPORT");
+        var selectParameter = state.Parameters.GetString("TA_SALESFORCE_QUESTION");
         selectParameter = selectParameter ? selectParameter : "Other";
 
         var surveyId = Config.Salesforce.SurveyId;
