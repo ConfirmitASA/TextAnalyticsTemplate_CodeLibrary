@@ -65,7 +65,7 @@ class TADefaultParameters {
             Value: "q"
         },
         {
-            Id: "TA_FRONTPAGE_PERIOD",
+            Id: "TA_SALESFORCE_PERIOD",
             Value: Config.Salesforce.TimePeriod
         },
         {
