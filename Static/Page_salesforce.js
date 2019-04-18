@@ -50,7 +50,7 @@ class Page_salesforce{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var period = context.state.Parameters.IsNull("TA_FRONTPAGE_PERIOD") ? "q" : context.state.Parameters.GetString("TA_FRONTPAGE_PERIOD");
+        var period = context.state.Parameters.IsNull("TA_SALESFORCE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_SALESFORCE_PERIOD");
 
         var osatTable = new TAOverallSentimentChangeTable({
             context: context,
@@ -75,7 +75,7 @@ class Page_salesforce{
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var period = context.state.Parameters.IsNull("TA_FRONTPAGE_PERIOD") ? "q" : context.state.Parameters.GetString("TA_FRONTPAGE_PERIOD");
+        var period = context.state.Parameters.IsNull("TA_SALESFORCE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_SALESFORCE_PERIOD");
 
         var themeDistributionTable = new TAThemeDistributionTable({
             context: context,
@@ -164,7 +164,7 @@ class Page_salesforce{
         var selectParameter = state.Parameters.GetString("TA_SALESFORCE_EXPORT");
         selectParameter = selectParameter ? selectParameter : "Other";
 
-        var surveyId = Config.SalesforceSurveyId;
+        var surveyId = Config.Salesforce.SurveyId;
 
         if (surveyId) {
             text.Output.Append("<div style=\"word-break: break-all;\">http://survey.euro.confirmit.com/wix/" + surveyId + ".aspx?"

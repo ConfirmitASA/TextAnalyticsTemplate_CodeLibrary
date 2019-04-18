@@ -65,6 +65,10 @@ class TADefaultParameters {
             Value: "q"
         },
         {
+            Id: "TA_FRONTPAGE_PERIOD",
+            Value: Config.Salesforce.TimePeriod
+        },
+        {
             Id: "TA_TREND_LINE_VIEW_BY",
             Value: "avg_sentiment"
         },
