@@ -386,7 +386,7 @@ class TAParametersBuilder{
      *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * }
      */
-    static function RenderSalesforceQuestionParameter(context){
+    static function RenderSalesforceQuestionParameter(params){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
