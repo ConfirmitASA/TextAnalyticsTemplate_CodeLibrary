@@ -118,7 +118,6 @@ class Page_salesforce{
         var rowsCount = Math.max(improvementsArr.length, strengthArr.length, sentimentChangesNegArr.length,
             sentimentChangesPosArr.length, volumeChangesNegArr.length, volumeChangesPosArr.length, 1);
 
-
         for (var i = 0; i < rowsCount; i++) {
             var headerContent: HeaderContent = new HeaderContent();
             headerContent.SetCellValue(0, improvementsArr[i]);
@@ -144,6 +143,18 @@ class Page_salesforce{
         var state = context.state;
         var text = context.component;
 
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        if (!folder.Salesforce) {
+            return;
+        }
+
+        var selectParameter = state.Parameters.GetString("TA_SALESFORCE_QUESTION");
+        selectParameter = selectParameter ? selectParameter : "Other";
+
+        var surveyId = folder.Salesforce.SurveyId;
+
         var correlationData = SalesforceUtil.GetCorrelationData(context);
         var improvementsArr = correlationData.improvementsArr;
         var strengthArr = correlationData.strengthArr;
@@ -160,13 +171,6 @@ class Page_salesforce{
 
         previousSentiment = isNaN(previousSentiment) ? "" : previousSentiment;
         currentSentiment = isNaN(currentSentiment) ? "" : currentSentiment;
-
-        var selectParameter = state.Parameters.GetString("TA_SALESFORCE_QUESTION");
-        selectParameter = selectParameter ? selectParameter : "Other";
-
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var surveyId = folder.Salesforce.SurveyId;
 
         if (surveyId) {
             text.Output.Append("<div style=\"word-break: break-all;\">http://survey.euro.confirmit.com/wix/" + surveyId + ".aspx?"

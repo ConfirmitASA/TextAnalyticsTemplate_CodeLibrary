@@ -29,17 +29,19 @@ class TAPageRenderer{
             );
         }
 
-        TAParameterUtilities.SetDefaultParameterValues(
-            {
-                context: context,
-                parameterValues: [
-                    {
-                        Id: "TA_SALESFORCE_PERIOD",
-                        Value: Config.Salesforce.TimePeriod
-                    }
-                ]
-            }
-        );
+        if (folder.Salesforce) {
+            TAParameterUtilities.SetDefaultParameterValues(
+                {
+                    context: context,
+                    parameterValues: [
+                        {
+                            Id: "TA_SALESFORCE_PERIOD",
+                            Value: folder.Salesforce.TimePeriod
+                        }
+                    ]
+                }
+            );
+        }
 
         TAParameterUtilities.SetDefaultParameterValuesForEmpty({
             context: context,

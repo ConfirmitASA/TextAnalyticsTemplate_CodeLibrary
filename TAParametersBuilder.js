@@ -388,10 +388,16 @@ class TAParametersBuilder{
      */
     static function RenderSalesforceQuestionParameter(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        if (!folder.Salesforce) {
+            return;
+        }
+
+        var dataSource = folder.GetDatasourceId();
         var project  = context.report.DataSource.GetProject(dataSource);
 
-        var salesforceQuestionId = Config.Salesforce.IteratedQuestionId;
+        var salesforceQuestionId = folder.Salesforce.IteratedQuestionId;
         var salesforceQuestion = project.GetQuestion(salesforceQuestionId);
 
         if(salesforceQuestion){
