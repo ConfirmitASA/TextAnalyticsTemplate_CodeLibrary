@@ -146,14 +146,15 @@ class Page_salesforce{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        if (!folder.Salesforce) {
+        var salesforceParameters = folder.GetSalesforceParameters();
+        if (!salesforceParameters) {
             return;
         }
 
         var selectParameter = state.Parameters.GetString("TA_SALESFORCE_QUESTION");
         selectParameter = selectParameter ? selectParameter : "Other";
 
-        var surveyId = folder.Salesforce.SurveyId;
+        var surveyId = salesforceParameters.SurveyId;
 
         var correlationData = SalesforceUtil.GetCorrelationData(context);
         var improvementsArr = correlationData.improvementsArr;

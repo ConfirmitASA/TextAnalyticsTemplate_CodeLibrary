@@ -390,14 +390,15 @@ class TAParametersBuilder{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        if (!folder.Salesforce) {
+        var salesforceParameters = folder.GetSalesforceParameters();
+        if (!salesforceParameters) {
             return;
         }
 
         var dataSource = folder.GetDatasourceId();
         var project  = context.report.DataSource.GetProject(dataSource);
 
-        var salesforceQuestionId = folder.Salesforce.IteratedQuestionId;
+        var salesforceQuestionId = salesforceParameters.IteratedQuestionId;
         var salesforceQuestion = project.GetQuestion(salesforceQuestionId);
 
         if(salesforceQuestion){

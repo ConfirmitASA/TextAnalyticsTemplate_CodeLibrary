@@ -26,6 +26,7 @@ class TAFolder{
     private var _correlationSuppressingBase;
     private var _significantTestScore;
     private var _correlationVariableShownName;
+    private var _salesforceParameters;
 
     private var _hierarchy: TAHierarchy;
 
@@ -54,6 +55,7 @@ class TAFolder{
         _significantTestScore = config.TAQuestions[questionIndex].SignificantTestScore;
 
         _correlationVariableShownName = config.TAQuestions[questionIndex].CorrelationVariableShownName;
+        _salesforceParameters = config.TAQuestions[questionIndex].Salesforce;
 
         _hierarchy = new TAHierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
@@ -261,5 +263,16 @@ class TAFolder{
      */
     function GetCorrelationVariableShownName(){
         return _correlationVariableShownName;
+    }
+
+    /**
+     * @memberof TAFolder
+     * @instance
+     * @function GetSalesforceParameters
+     * @description function to salesforce parameters to use for Salesforce page
+     * @returns {Object}
+     */
+    function GetSalesforceParameters(){
+        return _salesforceParameters;
     }
 }
