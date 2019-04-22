@@ -10,9 +10,10 @@ class TAPageRenderer{
      * @description Setting default values for parameters in the first run
      */
     static function InitiateParameters(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
         if(context.component.SubmitSource === "lstQuestion") {
-            var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-            var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
             context.state.Parameters["TA_INCLUDE_WORDS"] = null;
             context.state.Parameters["TA_EXCLUDE_WORDS"] = null;
 

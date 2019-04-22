@@ -55,6 +55,7 @@ class TAFolder{
         _significantTestScore = config.TAQuestions[questionIndex].SignificantTestScore;
 
         _correlationVariableShownName = config.TAQuestions[questionIndex].CorrelationVariableShownName;
+
         _salesforceParameters = config.TAQuestions[questionIndex].Salesforce;
 
         _hierarchy = new TAHierarchy(globals, {
