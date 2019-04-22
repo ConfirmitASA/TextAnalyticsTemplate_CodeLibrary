@@ -164,7 +164,9 @@ class Page_salesforce{
         var selectParameter = state.Parameters.GetString("TA_SALESFORCE_QUESTION");
         selectParameter = selectParameter ? selectParameter : "Other";
 
-        var surveyId = Config.Salesforce.SurveyId;
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var surveyId = folder.Salesforce.SurveyId;
 
         if (surveyId) {
             text.Output.Append("<div style=\"word-break: break-all;\">http://survey.euro.confirmit.com/wix/" + surveyId + ".aspx?"

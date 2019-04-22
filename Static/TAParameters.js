@@ -437,27 +437,8 @@ class TAParameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_SALESFORCE_QUESTION_Domain(context){
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var dataSource =  Config.GetTALibrary().GetFolderById(selectedFolder).GetDatasourceId();
-        var project  = context.report.DataSource.GetProject(dataSource);
-
-        var salesforceQuestionId = Config.Salesforce.IteratedQuestionId;
-        var salesforceQuestion = project.GetQuestion(salesforceQuestionId);
-
-        if(salesforceQuestion){
-            var parameterValues = [];
-            var answers = salesforceQuestion.GetAnswers();
-            for(var i = 0; i < answers.length; i++){
-                parameterValues.push({
-                    Code: answers[i].Precode,
-                    Label: answers[i].Text
-                });
-            }
-
-            TAParameterUtilities.LoadParameterValues({
-                context: context,
-                parameterValues: parameterValues
-            });
-        }
+        TAParametersBuilder.RenderSalesforceQuestionParameter({
+            context: context
+        });
     }
 }
