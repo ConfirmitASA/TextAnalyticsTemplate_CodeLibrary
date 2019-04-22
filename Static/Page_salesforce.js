@@ -173,9 +173,12 @@ class Page_salesforce{
         previousSentiment = isNaN(previousSentiment) ? "" : previousSentiment;
         currentSentiment = isNaN(currentSentiment) ? "" : currentSentiment;
 
+        var TAQuestionName = folder.GetQuestionId() + folder.GetModelNumber();
+
         if (surveyId) {
             text.Output.Append("<div style=\"word-break: break-all;\">http://survey.euro.confirmit.com/wix/" + surveyId + ".aspx?"
-                + "improvements=" + improvementsArr.join("|")
+                + "TAQuestionName=" + TAQuestionName
+                + "&improvements=" + improvementsArr.join("|")
                 + "&strength=" + strengthArr.join("|")
                 + "&sentimentChangesNeg=" + sentimentChangesNegArr.join("|")
                 + "&sentimentChangesPos=" + sentimentChangesPosArr.join("|")
@@ -186,7 +189,8 @@ class Page_salesforce{
                 + "&selectParameter=" + selectParameter
                 + "</div>");
             text.Output.Append("<img src='http://survey.euro.confirmit.com/wix/" + surveyId + ".aspx?"
-                + "improvements=" + improvementsArr.join("|")
+                + "TAQuestionName=" + TAQuestionName
+                + "&improvements=" + improvementsArr.join("|")
                 + "&strength=" + strengthArr.join("|")
                 + "&sentimentChangesNeg=" + sentimentChangesNegArr.join("|")
                 + "&sentimentChangesPos=" + sentimentChangesPosArr.join("|")
