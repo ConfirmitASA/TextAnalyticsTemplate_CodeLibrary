@@ -101,15 +101,15 @@ class Page_salesforce{
     static function tblSalesforce_Render(context) {
         var table = context.component;
 
-        var correlationData = SalesforceUtil.GetCorrelationData(context);
+        var correlationData = SalesforceUtil.GetCorrelationData(context, false);
         var improvementsArr = correlationData.improvementsArr;
         var strengthArr = correlationData.strengthArr;
 
-        var OSATData = SalesforceUtil.GetOSATData(context);
+        var OSATData = SalesforceUtil.GetOSATData(context, false);
         var previousSentiment = OSATData.previousSentiment;
         var currentSentiment = OSATData.currentSentiment;
 
-        var sigChangesData = SalesforceUtil.GetSignificantChangesData(context);
+        var sigChangesData = SalesforceUtil.GetSignificantChangesData(context, false);
         var sentimentChangesNegArr = sigChangesData.sentimentChangesNegArr;
         var sentimentChangesPosArr = sigChangesData.sentimentChangesPosArr;
         var volumeChangesNegArr = sigChangesData.volumeChangesNegArr;
@@ -156,15 +156,15 @@ class Page_salesforce{
 
         var surveyId = salesforceParameters.SurveyId;
 
-        var correlationData = SalesforceUtil.GetCorrelationData(context);
+        var correlationData = SalesforceUtil.GetCorrelationData(context, true);
         var improvementsArr = correlationData.improvementsArr;
         var strengthArr = correlationData.strengthArr;
 
-        var OSATData = SalesforceUtil.GetOSATData(context);
+        var OSATData = SalesforceUtil.GetOSATData(context, true);
         var previousSentiment = OSATData.previousSentiment;
         var currentSentiment = OSATData.currentSentiment;
 
-        var sigChangesData = SalesforceUtil.GetSignificantChangesData(context);
+        var sigChangesData = SalesforceUtil.GetSignificantChangesData(context, true);
         var sentimentChangesNegArr = sigChangesData.sentimentChangesNegArr;
         var sentimentChangesPosArr = sigChangesData.sentimentChangesPosArr;
         var volumeChangesNegArr = sigChangesData.volumeChangesNegArr;

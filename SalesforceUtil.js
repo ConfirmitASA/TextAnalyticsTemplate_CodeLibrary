@@ -1,10 +1,10 @@
 class SalesforceUtil{
-    static function GetCorrelationData(context){
+    static function GetCorrelationData(context, returnIds){
         var report = context.report;
 
         var sentValues = report.TableUtils.GetColumnValues('tblCorrelation', 1);
         var corrValues = report.TableUtils.GetColumnValues('tblCorrelation', 2);
-        var labels = report.TableUtils.GetRowHeaderCategoryTitles('tblCorrelation');
+        var labels = returnIds ? report.TableUtils.GetRowHeaderCategoryIds('tblCorrelation') : report.TableUtils.GetRowHeaderCategoryTitles('tblCorrelation');
 
         var improvementsArr = [];
         var strengthArr = [];
@@ -35,7 +35,7 @@ class SalesforceUtil{
         return {previousSentiment: previousSentiment, currentSentiment: currentSentiment};
     }
 
-    static function GetSignificantChangesData(context){
+    static function GetSignificantChangesData(context, returnIds){
         var report = context.report;
 
         var currentCountValues = report.TableUtils.GetColumnValues('tblSignificantChangeAlerts', 5);
@@ -46,7 +46,7 @@ class SalesforceUtil{
         var previousAvgValues = report.TableUtils.GetColumnValues('tblSignificantChangeAlerts', 2);
         var currentTotal = report.TableUtils.GetCellValue('tblSignificantChangeAlerts', 1, 5).Value;
         var previousTotal = report.TableUtils.GetCellValue('tblSignificantChangeAlerts', 1, 1).Value;
-        var labels = report.TableUtils.GetRowHeaderCategoryTitles('tblSignificantChangeAlerts');
+        var labels = returnIds ? report.TableUtils.GetRowHeaderCategoryIds('tblSignificantChangeAlerts') : report.TableUtils.GetRowHeaderCategoryTitles('tblSignificantChangeAlerts');
 
         var sentimentChangesNegArr = [];
         var sentimentChangesPosArr = [];
