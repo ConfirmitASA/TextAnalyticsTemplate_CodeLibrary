@@ -389,6 +389,8 @@ class TAParametersBuilder{
     static function RenderSalesforceQuestionParameter(params){
         var context = params.context;
 
+        Config.SetTALibrary(context);
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
