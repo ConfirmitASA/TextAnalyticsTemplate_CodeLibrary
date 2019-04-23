@@ -151,8 +151,8 @@ class Page_salesforce{
             return;
         }
 
-        var selectParameter = state.Parameters.GetString("TA_SALESFORCE_QUESTION");
-        selectParameter = selectParameter ? selectParameter : "Other";
+        var selectParameter = state.Parameters["TA_SALESFORCE_QUESTION"].StringKeyValue;
+        selectParameter = selectParameter ? selectParameter : "1";
 
         var surveyId = salesforceParameters.SurveyId;
 
