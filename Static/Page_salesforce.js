@@ -95,6 +95,18 @@ class Page_salesforce{
 
     /**
      * @memberof Page_salesforce
+     * @function tblSalesforce_Hide
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function tblSalesforce_Hide(context) {
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        return !folder.GetSalesforceParameters();
+    }
+
+    /**
+     * @memberof Page_salesforce
      * @function tblSalesforce_Render
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
