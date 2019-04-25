@@ -112,8 +112,8 @@ class Page_salesforce{
      */
     static function tblSalesforce_Render(context) {
         var table = context.component;
-        var report = context.component;
-        var state = context.component;
+        var report = context.report;
+        var state = context.state;
 
         var currentLanguage = report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
@@ -130,7 +130,6 @@ class Page_salesforce{
             currentDictionary["salesforce table - positive significant changes in volume"]
         ];
 
-        var columns = table.ColumnHeaders;
         for (var i = 0; i < headerTitles.length; i++) {
             var column: HeaderContent = table.ColumnHeaders[i];
             column.Title.Texts.Add(new LanguageText(currentLanguage, headerTitles[i]));
