@@ -112,10 +112,12 @@ class Page_salesforce{
      */
     static function tblSalesforce_Render(context) {
         var table = context.component;
+        var report = context.component;
+        var state = context.component;
 
-        var currentLanguage = context.report.CurrentLanguage;
+        var currentLanguage = report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
-        var period = context.state.Parameters.IsNull("TA_SALESFORCE_PERIOD") ? "m" : state.Parameters.GetString("TA_SALESFORCE_PERIOD");
+        var period = state.Parameters.IsNull("TA_SALESFORCE_PERIOD") ? "m" : state.Parameters.GetString("TA_SALESFORCE_PERIOD");
 
         var headerTitles = [
             currentDictionary["impact analysis widget title issues"],
