@@ -136,6 +136,18 @@ class Page_salesforce{
 
     /**
      * @memberof Page_salesforce
+     * @function txtImgExport_Hide
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtImgExport_Hide(context) {
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        return !folder.GetSalesforceParameters();
+    }
+
+    /**
+     * @memberof Page_salesforce
      * @function txtImgExport_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
