@@ -113,6 +113,27 @@ class Page_salesforce{
     static function tblSalesforce_Render(context) {
         var table = context.component;
 
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var period = context.state.Parameters.IsNull("TA_SALESFORCE_PERIOD") ? "m" : state.Parameters.GetString("TA_SALESFORCE_PERIOD");
+
+        var headerTitles = [
+            currentDictionary["impact analysis widget title issues"],
+            currentDictionary["impact analysis widget title strength"],
+            currentDictionary["osat widget title"] + " - " + currentDictionary["osat widget previous period"] + " " + currentDictionary[period],
+            currentDictionary["osat widget title"] + " - " + currentDictionary["osat widget current period"] + " " + currentDictionary[period],
+            currentDictionary["salesforce table - negative significant changes in sentiment"],
+            currentDictionary["salesforce table - positive significant changes in sentiment"],
+            currentDictionary["salesforce table - negative significant changes in volume"],
+            currentDictionary["salesforce table - positive significant changes in volume"]
+        ];
+
+        var columns = table.ColumnHeaders;
+        for (var i = 0; i < headerTitles.length; i++) {
+            var column: HeaderContent = table.ColumnHeaders[i];
+            column.Title.Texts.Add(new LanguageText(currentLanguage, headerTitles[i]));
+        }
+
         var correlationData = SalesforceUtil.GetCorrelationData(context, false);
         var improvementsArr = correlationData.improvementsArr;
         var strengthArr = correlationData.strengthArr;
@@ -142,8 +163,8 @@ class Page_salesforce{
         }
 
         var firstRow : HeaderContent = table.RowHeaders[0];
-        firstRow.SetCellValue(2, previousSentiment);
-        firstRow.SetCellValue(3, currentSentiment);
+        firstRow.SetCellValue(2, !previousSentiment.Equals(Double.NaN) ? previousSentiment : "");
+        firstRow.SetCellValue(3, !currentSentiment.Equals(Double.NaN) ? currentSentiment : "");
     }
 
     /**
