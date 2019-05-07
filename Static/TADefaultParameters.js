@@ -10,7 +10,7 @@ class TADefaultParameters {
         },
         {
             Id: "TA_COMPARE_PERIODS",
-            Value: "qoq"
+            Value: "mom"
         },
         {
             Id: "TA_VIEW_SENTIMENT",
@@ -62,7 +62,7 @@ class TADefaultParameters {
         },
         {
             Id: "TA_FRONTPAGE_PERIOD",
-            Value: "q"
+            Value: "m"
         },
         {
             Id: "TA_TREND_LINE_VIEW_BY",

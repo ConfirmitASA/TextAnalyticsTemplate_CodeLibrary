@@ -18,7 +18,7 @@ class TAFilterComponents{
         var project  = context.report.DataSource.GetProject(dataSource);
 
         for( var i = 0; i < questionsArray.length; i++ ){
-            _filterQuestions.push(project.GetQuestion(questionsArray[i]))
+            _filterQuestions.push(project.GetQuestion(questionsArray[i].split('*')[0]))
         }
     }
 
