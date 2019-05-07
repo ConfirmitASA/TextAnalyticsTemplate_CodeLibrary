@@ -112,7 +112,7 @@ class Page_filters{
      */
     static function txtFilterTitle_Render(context, filterNumber){
         if (filterNumber == 1) {
-            TAPageMaster.AppendSortingFilterQuestions(context);
+            Page_filters.AppendSortingFilterQuestions(context);
         }
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
