@@ -111,6 +111,10 @@ class Page_filters{
      * @param {Number} filterNumber
      */
     static function txtFilterTitle_Render(context, filterNumber){
+        if (filterNumber == 1) {
+            TAPageMaster.AppendSortingFilterQuestions(context);
+        }
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
@@ -121,6 +125,20 @@ class Page_filters{
             filterComponents: filterComponents,
             filterNumber: filterNumber
         })
+    }
+
+    static private function AppendSortingFilterQuestions(context) {
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var questionsArray = Config.GetTALibrary().GetFolderById(selectedFolder).GetFilterQuestions();
+
+        var sortingFilterQuestionIds = [];
+        for (var i = 0; i < questionsArray.length; i++) {
+            if(questionsArray[i].split('*')[1] == "s") {
+                sortingFilterQuestionIds.push(i);
+            }
+        }
+
+        context.component.Output.Append(JSON.print(sortingFilterQuestionIds, "sortingFilterQuestionIds"));
     }
 
     /**
