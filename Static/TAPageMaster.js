@@ -72,7 +72,7 @@ class TAPageMaster{
         var currentLaguage = context.report.CurrentLanguage;
         var curDictionary = Translations.dictionary(currentLaguage);
 
-        summarySegments.push(("<div style=\"padding: 8px;\">"+curDictionary['Selected question']+" = "+(!selectedFolder ? '' : Config.GetTALibrary().GetFolderById(selectedFolder).GetName()) + "</div>"));
+        //summarySegments.push(("<div style=\"padding: 8px;\">"+curDictionary['Selected question']+" = "+(!selectedFolder ? '' : Config.GetTALibrary().GetFolderById(selectedFolder).GetName()) + "</div>"));
 
         var category = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
             TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_TOP_CATEGORIES_SINGLE");
