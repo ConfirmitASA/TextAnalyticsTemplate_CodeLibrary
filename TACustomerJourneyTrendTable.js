@@ -20,7 +20,7 @@ class TACustomerJourneyTrendTable{
         });
         _period = {
             Unit: params.period ? params.period : "m",
-            From: -11,
+            From: -12,
             To: 0
         };
         _viewBy = params.viewBy;
