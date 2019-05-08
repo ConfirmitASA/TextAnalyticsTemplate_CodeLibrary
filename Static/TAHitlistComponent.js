@@ -52,7 +52,7 @@ class TAHitlistComponent {
             sortable: true
         });
 
-        htlComments.AddTAColumn({context: context, columnName: "overallsentiment", sortable: true, notSearchable: false});
+        htlComments.AddTAColumn({context: context, columnName: "overallsentiment", sortable: true, notSearchable: true});
         htlComments.AddTAColumn({context: context, columnName: "categories"});
 
         htlComments.AddConfiguredColumns(context);
