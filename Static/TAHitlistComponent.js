@@ -55,13 +55,13 @@ class TAHitlistComponent {
         htlComments.AddTAColumn({context: context, columnName: "overallsentiment", sortable: true, searchable: false});
         htlComments.AddTAColumn({context: context, columnName: "categories"});
 
+        htlComments.AddConfiguredColumns(context);
+
         htlComments.AddColumn({
             context: context,
             columnName: "Rep_Channel",
             sortable: true
         });
-
-        htlComments.AddConfiguredColumns(context);
     }
 
     /**
