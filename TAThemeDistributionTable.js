@@ -33,7 +33,7 @@ class TAThemeDistributionTable{
 
         _period = {
             Unit: params.period ? params.period : "m",
-            From: params.sigTestingWidgetTable ? -2 : -11,
+            From: params.sigTestingWidgetTable ? -2 : -12,
             To: params.sigTestingWidgetTable ? -1 : 0
         };
         _config = params.config;
