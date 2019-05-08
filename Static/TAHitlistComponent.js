@@ -24,18 +24,18 @@ class TAHitlistComponent {
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+        //var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
 
         var htlComments = new TAHitlistUtils({context: context, folder: folder});
 
-        if( selectedCategory && selectedCategory !== "emptyv" ){
+        /*if( selectedCategory && selectedCategory !== "emptyv" ){
             htlComments.AddTAColumn({
                 context: context,
                 columnName:"categorysentiment",
                 sortable: true,
                 postfix: selectedCategory
             });
-        }
+        }*/
 
         // custom question - Property Name
         htlComments.AddColumn({
