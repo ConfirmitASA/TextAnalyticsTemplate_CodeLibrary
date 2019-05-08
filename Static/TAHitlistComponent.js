@@ -37,6 +37,13 @@ class TAHitlistComponent {
             });
         }
 
+        // custom question - Property Name
+        htlComments.AddColumn({
+            context: context,
+            columnName: "property_name",
+            sortable: true
+        });
+
         htlComments.AddTAColumn({context: context, columnName: "verbatim", sortable: true});
 
         htlComments.AddColumn({
@@ -45,8 +52,14 @@ class TAHitlistComponent {
             sortable: true
         });
 
-        htlComments.AddTAColumn({context: context, columnName: "overallsentiment", sortable: true});
+        htlComments.AddTAColumn({context: context, columnName: "overallsentiment", sortable: true, searchable: false});
         htlComments.AddTAColumn({context: context, columnName: "categories"});
+
+        htlComments.AddColumn({
+            context: context,
+            columnName: "Rep_Channel",
+            sortable: true
+        });
 
         htlComments.AddConfiguredColumns(context);
     }

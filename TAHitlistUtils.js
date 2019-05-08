@@ -66,12 +66,14 @@ class TAHitlistUtils{
         var context = params.context;
         var columnName = params.columnName;
         var sortable = params.sortable;
+        var searchable = params.searchable;
 
         var hitlistColumn: HitListColumn = new HitListColumn();
         var project : Project = context.report.DataSource.GetProject(_folder.GetDatasourceId());
 
         hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columnName);
         sortable ? (hitlistColumn.IsSortable = true) : null;
+        !searchable ? (hitlistColumn.IsSearchable = false) : null;
         _hitlist.Columns.Add(hitlistColumn);
     }
 
