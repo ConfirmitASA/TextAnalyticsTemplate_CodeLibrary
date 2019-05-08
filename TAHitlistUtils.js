@@ -33,6 +33,7 @@ class TAHitlistUtils{
         var context = params.context;
         var columnName = params.columnName;
         var sortable = params.sortable;
+        var notSearchable = params.notSearchable;
         var postfix = params.postfix;
 
         var hitlistColumn: HitListColumn = new HitListColumn();
@@ -48,6 +49,7 @@ class TAHitlistUtils{
             : project.CreateQuestionnaireElement(columnId);
 
         sortable ? (hitlistColumn.IsSortable = true) : null;
+        notSearchable ? (hitlistColumn.IsSearchable = YesNoDefaultValue.No) : null;
 
         _hitlist.Columns.Add(hitlistColumn);
     }
@@ -66,14 +68,14 @@ class TAHitlistUtils{
         var context = params.context;
         var columnName = params.columnName;
         var sortable = params.sortable;
-        var searchable = params.searchable;
+        var notSearchable = params.notSearchable;
 
         var hitlistColumn: HitListColumn = new HitListColumn();
         var project : Project = context.report.DataSource.GetProject(_folder.GetDatasourceId());
 
         hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columnName);
         sortable ? (hitlistColumn.IsSortable = YesNoDefaultValue.Yes) : null;
-        !searchable ? (hitlistColumn.IsSearchable = YesNoDefaultValue.No) : null;
+        notSearchable ? (hitlistColumn.IsSearchable = YesNoDefaultValue.No) : null;
         _hitlist.Columns.Add(hitlistColumn);
     }
 
