@@ -72,8 +72,8 @@ class TAHitlistUtils{
         var project : Project = context.report.DataSource.GetProject(_folder.GetDatasourceId());
 
         hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columnName);
-        sortable ? (hitlistColumn.IsSortable = true) : null;
-        !searchable ? (hitlistColumn.IsSearchable = false) : null;
+        sortable ? (hitlistColumn.IsSortable = YesNoDefaultValue.Yes) : null;
+        !searchable ? (hitlistColumn.IsSearchable = YesNoDefaultValue.No) : null;
         _hitlist.Columns.Add(hitlistColumn);
     }
 
