@@ -184,4 +184,19 @@ class TAFilters {
         context.component.Expression = fExpr;
     }
 
+    /**
+     * @memberof TAFilters
+     * @function TASalesforceFilter
+     * @description function to create expression that filtrates Salesforce page by salesforce parameter
+     * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TASalesforceFilter(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        var salesforceParameters = folder.GetSalesforceParameters();
+        var salesforceQuestionId = salesforceParameters.IteratedQuestionId;
+
+        filter.Expression = 'IN(' + salesforceQuestionId + ', PValStr("TA_SALESFORCE_QUESTION"))';
+    }
 }
