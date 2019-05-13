@@ -197,6 +197,6 @@ class TAFilters {
         var salesforceParameters = folder.GetSalesforceParameters();
         var salesforceQuestionId = salesforceParameters.IteratedQuestionId;
 
-        context.filter.Expression = 'IN(' + salesforceQuestionId + ', PValStr("TA_SALESFORCE_QUESTION"))';
+        context.component.Expression = 'IN(' + salesforceQuestionId + ', PValStr("TA_SALESFORCE_QUESTION"))';
     }
 }
