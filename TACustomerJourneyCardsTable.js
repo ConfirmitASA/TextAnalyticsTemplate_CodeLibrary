@@ -146,7 +146,7 @@ class TACustomerJourneyCardsTable{
                             : _folder.GetQuestionId("overallsentiment");
                     }
 
-                    var columnQuestion = questionName + '{collapsed:true;totals:false;defaultstatistics:count;mask:1,2,3}';
+                    var columnQuestion = questionName + '{collapsed:false;totals:false;defaultstatistics:count;mask:' + Config.SentimentRange.Positive.join(",") + '}';
                     currentMetricIndex = _columnIDs.length;
                     _columnItems.push(columnQuestion);
                     _columnIDs.push(currentMetric);
