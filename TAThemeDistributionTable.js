@@ -144,6 +144,13 @@ class TAThemeDistributionTable{
         avgHeader.HideHeader = true;
         columnsCollection.Add(avgHeader);
 
+        var categoriesHeader : HeaderCategories =  new HeaderCategories();
+        var positiveCodesMask : GenericCodeMask = new GenericCodeMask();
+        positiveCodesMask.type = MaskType.ShowCodes;
+        positiveCodesMask.Codes = Config.SentimentRange.Positive.join(",");
+        categoriesHeader.Mask = positiveCodesMask;
+        columnsCollection.Add(categoriesHeader);
+
         var percentVolumeHeader : HeaderFormula = new HeaderFormula();
         percentVolumeHeader.Type = FormulaType.Expression;
         percentVolumeHeader.Expression = "cellv(col-2, row)/cellv(col-2, 1)";
