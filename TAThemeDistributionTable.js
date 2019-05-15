@@ -158,7 +158,7 @@ class TAThemeDistributionTable{
         for(var i = 0; i < Config.SentimentRange.Positive.length; i++)
             cellsExpression += "cellv(col - " + i + ", row) +"
         cellsExpression += "0";
-        topBoxFormulaHeader.Expression = "if(cellv(col- " + Config.SentimentRange.Positive.length + 2 + ", row) > 0, (cellsExpression)/cellv(col- " + Config.SentimentRange.Positive.length + 2 + ", row), emptyv())";
+        topBoxFormulaHeader.Expression = "if(cellv(col- " + Config.SentimentRange.Positive.length + 2 + ", row) > 0, ( " + cellsExpression + ")/cellv(col- " + Config.SentimentRange.Positive.length + 2 + ", row), emptyv())";
         topBoxFormulaHeader.Percent = true;
         topBoxFormulaHeader.Decimals = 0;
         columnsCollection.Add(topBoxFormulaHeader);
