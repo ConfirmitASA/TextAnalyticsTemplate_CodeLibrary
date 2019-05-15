@@ -146,8 +146,9 @@ class TAThemeDistributionTable{
 
         var categoriesHeader : HeaderCategories =  new HeaderCategories();
         var positiveCodesMask : GenericCodeMask = new GenericCodeMask();
-        positiveCodesMask.type = MaskType.ShowCodes;
-        positiveCodesMask.Codes = Config.SentimentRange.Positive.join(",");
+        positiveCodesMask.Type = MaskType.ShowCodes;
+        //positiveCodesMask.Codes = Config.SentimentRange.Positive.join(",");
+        positiveCodesMask.Codes = "8,9,10";
         categoriesHeader.Mask = positiveCodesMask;
         columnsCollection.Add(categoriesHeader);
 
