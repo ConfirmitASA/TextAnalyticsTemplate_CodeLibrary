@@ -80,7 +80,8 @@ class TAFolder{
         switch(questionType.toLowerCase()){
             case "overallsentiment":
             case "os":
-                return "osatSentiment";
+                postfix = "OverallSentiment";
+                break;
             case "categories":
             case "c":
                 postfix = "Categories";
@@ -97,7 +98,8 @@ class TAFolder{
                 break;
             case "categorysentiment":
             case "cs":
-                return "osatSentiment";
+                postfix = "CategorySentiment"
+                break;
             case "verbatim":
             default:
                 postfix = false;

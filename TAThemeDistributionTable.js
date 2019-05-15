@@ -147,10 +147,21 @@ class TAThemeDistributionTable{
         var categoriesHeader : HeaderCategories =  new HeaderCategories();
         var positiveCodesMask : GenericCodeMask = new GenericCodeMask();
         positiveCodesMask.Type = MaskType.ShowCodes;
-        //positiveCodesMask.Codes = Config.SentimentRange.Positive.join(",");
-        positiveCodesMask.Codes = "8,9,10";
+        positiveCodesMask.Codes = Config.SentimentRange.Positive.join(",");
+        //positiveCodesMask.Codes = "8,9,10";
         categoriesHeader.Mask = positiveCodesMask;
         columnsCollection.Add(categoriesHeader);
+
+        var topBoxFormulaHeader : HeaderFormula = new HeaderFormula();
+        topBoxFormulaHeader.Type = FormulaType.Expression;
+        var cellsExpression = "";
+        for(var i = 0; i < Config.SentimentRange.Positive.length; i++)
+            cellsExpression += "cellv(col - " + i + ", row) +"
+        cellsExpression += "0";
+        topBoxFormulaHeader.Expression = "if(cellv(col- " + Config.SentimentRange.Positive.length + 2 + ", row) > 0, (cellsExpression)/cellv(col- " + Config.SentimentRange.Positive.length + 2 + ", row), emptyv())";
+        topBoxFormulaHeader.Percent = true;
+        topBoxFormulaHeader.Decimals = 0;
+        columnsCollection.Add(topBoxFormulaHeader);
 
         var percentVolumeHeader : HeaderFormula = new HeaderFormula();
         percentVolumeHeader.Type = FormulaType.Expression;
