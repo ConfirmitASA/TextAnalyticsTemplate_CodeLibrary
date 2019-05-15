@@ -231,16 +231,16 @@ class TADetailedAnalysisTable{
         _taTableUtils.SetupConditionalFormatting(
             [
                 {
-                    expression: 'cellv(col, row)<('+Config.SentimentScoreLimits.Neutral+') AND cellv(col,row)<>EMPTYV() ',
+                    expression: 'cellv(col, row)<('+(Config.SentimentRange.Neutral[0] - 6)+') AND cellv(col,row)<>EMPTYV() ',
                     style: 'negative'
                 },
 
                 {
-                    expression: '(cellv(col, row)>=('+(Config.SentimentScoreLimits.Neutral)+')) AND (cellv(col, row)<'+(Config.SentimentScoreLimits.Positive)+') AND cellv(col,row)<>EMPTYV()',
+                    expression: '(cellv(col, row)>=('+(Config.SentimentRange.Neutral[0] - 6)+')) AND (cellv(col, row)<='+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+') AND cellv(col,row)<>EMPTYV()',
                     style: 'neutral'
                 },
                 {
-                    expression: 'cellv(col, row)>='+(Config.SentimentScoreLimits.Positive)+' AND cellv(col,row)<>EMPTYV()',
+                    expression: 'cellv(col, row)>'+(Config.SentimentRange.Neutral[Config.SentimentRange.Neutral.length - 1] - 6)+' AND cellv(col,row)<>EMPTYV()',
                     style: 'positive'
                 }
             ],
