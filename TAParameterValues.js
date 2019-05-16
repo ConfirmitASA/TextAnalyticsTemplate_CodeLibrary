@@ -65,6 +65,11 @@ class TAParameterValues {
                     {Code: "positive_percent", Label: currentDictionary["% positive sentiment"]},
                     {Code: "negative_percent", Label: currentDictionary["% negative sentiment"]}
                 ];
+            case "TA_TREND_LINE_SCALE":
+                return [
+                    {Code: "full", Label: currentDictionary["Full range"]},
+                    {Code: "auto", Label: currentDictionary["Auto scale"]}
+                ];
             case "TA_FRONTPAGE_PERIOD":
                 return [
                     {Code: "w", Label: currentDictionary["Weeks"]},
