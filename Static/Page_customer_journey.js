@@ -133,6 +133,20 @@ class Page_customer_journey{
 
     /**
      * @memberof Page_customer_journey
+     * @function txtScale_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtScale_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary['View in'];
+        context.component.Output.Append(label);
+
+        context.component.Output.Append(TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_TREND_LINE_SCALE'));
+    }
+
+    /**
+     * @memberof Page_customer_journey
      * @function txtCustomerJourneyTrendScript_Render
      * @description function to render Customer Journey Trend Chart
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -149,6 +163,8 @@ class Page_customer_journey{
         var showPercent = viewBy !== "avg_sentiment";
         var period = context.state.Parameters.IsNull("TA_TREND_LINE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_TREND_LINE_PERIOD");
         var showByType = TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_TREND_LINE_VIEW_BY').replace(/<span.*>: /, '').replace(/<\/span>/, '');
+        var viewByScale = context.state.Parameters.IsNull("TA_TREND_LINE_SCALE") ? "full" : context.state.Parameters.GetString("TA_TREND_LINE_SCALE");
+        var showAutoScale = viewByScale === "auto";
 
         var chartInit = "<script>" +
             "var trendChart = new Reportal.TrendChart({" +
@@ -160,6 +176,7 @@ class Page_customer_journey{
             "period: '" + period + "'," +
             "showPercent: " + showPercent + "," +
             "showByType: '" + showByType + "'," +
+            "showAutoScale: " + showAutoScale + "," +
             "translations: translations});" +
             "</script>";
 

@@ -433,6 +433,26 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
+     * @function TA_TREND_LINE_SCALE_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_TREND_LINE_SCALE_Domain(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var parameterValues = [
+            {Code: "full", Label: currentDictionary["Full range"]},
+            {Code: "auto", Label: currentDictionary["Auto scale"]}
+        ];
+
+        TAParameterUtilities.LoadParameterValues({
+            context: context,
+            parameterValues: parameterValues
+        });
+    }
+
+    /**
+     * @memberof TAParameters
      * @function TA_SALESFORCE_QUESTION_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
