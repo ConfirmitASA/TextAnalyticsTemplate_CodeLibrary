@@ -66,7 +66,7 @@ class TADefaultParameters {
         },
         {
             Id: "TA_TREND_LINE_VIEW_BY",
-            Value: "avg_sentiment"
+            Value: "total_percent"
         },
         {
             Id: "TA_INCLUDE_WORDS_FILTER_TYPE",

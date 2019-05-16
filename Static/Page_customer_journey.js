@@ -76,7 +76,7 @@ class Page_customer_journey{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var period = context.state.Parameters.IsNull("TA_TREND_LINE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_TREND_LINE_PERIOD");
-        var viewBy = context.state.Parameters.IsNull("TA_TREND_LINE_VIEW_BY") ? "avg_sentiment" : context.state.Parameters.GetString("TA_TREND_LINE_VIEW_BY");
+        var viewBy = context.state.Parameters.IsNull("TA_TREND_LINE_VIEW_BY") ? "total_percent" : context.state.Parameters.GetString("TA_TREND_LINE_VIEW_BY");
         var customerJourneyTrendTable = new TACustomerJourneyTrendTable({folder:folder, config:Config, context:context, period: period, viewBy: viewBy});
         customerJourneyTrendTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories"]);
     }
@@ -145,7 +145,7 @@ class Page_customer_journey{
             chartColors: trendLineColors
         };
 
-        var viewBy = context.state.Parameters.IsNull("TA_TREND_LINE_VIEW_BY") ? "avg_sentiment" : context.state.Parameters.GetString("TA_TREND_LINE_VIEW_BY");
+        var viewBy = context.state.Parameters.IsNull("TA_TREND_LINE_VIEW_BY") ? "total_percent" : context.state.Parameters.GetString("TA_TREND_LINE_VIEW_BY");
         var showPercent = viewBy !== "avg_sentiment";
         var period = context.state.Parameters.IsNull("TA_TREND_LINE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_TREND_LINE_PERIOD");
         var showByType = TAParameterValues.getParameterValue(context.state, currentDictionary, 'TA_TREND_LINE_VIEW_BY').replace(/<span.*>: /, '').replace(/<\/span>/, '');
