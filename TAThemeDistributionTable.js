@@ -160,7 +160,7 @@ class TAThemeDistributionTable{
             cellsExpression += "if (cellv(col - " + (i + 1) + ", row) > 0, cellv(col - " + (i + 1) + ", row), 0) + "
         cellsExpression += "0";
         topBoxFormulaHeader.Expression = "if(cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row) > 0," +
-            "( " + cellsExpression + ")/cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row), cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row))";
+            "( " + cellsExpression + ")/cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row), emptyv())";
         topBoxFormulaHeader.Percent = true;
         topBoxFormulaHeader.Decimals = 0;
         columnsCollection.Add(topBoxFormulaHeader);

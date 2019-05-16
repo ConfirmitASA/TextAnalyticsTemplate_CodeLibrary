@@ -137,6 +137,7 @@ class TACustomerJourneyCardsTable{
                     currentMetricIndex = loweredCurrentMetric;
                 } else {
                     var questionName = currentMetric;
+                    var columnQuestion = questionName + '{collapsed:true;totals:false;defaultstatistics:avg}';
 
                     if(loweredCurrentMetric == 'ta_sentiment') {
                         var selectedCategory = _state.Parameters.GetString("TA_ALL_CATEGORIES");
@@ -144,9 +145,17 @@ class TACustomerJourneyCardsTable{
                         questionName = (selectedCategory && selectedCategory !== "emptyv")
                             ? (_folder.GetQuestionId("categorysentiment")+"."+selectedCategory)
                             : _folder.GetQuestionId("overallsentiment");
-                    }
+                        columnQuestion = questionName + '{collapsed:false;totals:true;defaultstatistics:count;hidedata:true;hideheader:true;mask:' + Config.SentimentRange.Positive.join(",") + '}';
 
-                    var columnQuestion = questionName + '{collapsed:false;totals:false;defaultstatistics:count;mask:' + Config.SentimentRange.Positive.join(",") + '}';
+                        var cellsExpression = "";
+                        for(var i = 0; i < Config.SentimentRange.Positive.length; i++)
+                            cellsExpression += "if (cellv(col - " + (i + 2) + ", row) > 0, cellv(col - " + (i + 2) + ", row), 0) + "
+                        cellsExpression += "0";
+                        var formulaExpression = "if(cellv(col- 1, row) > 0," +
+                            "100*( " + cellsExpression + ")/cellv(col- 1, row), " +
+                            "emptyv())";
+                        columnQuestion += '+ [FORMULA]{expression:"' + formulaExpression + '";percent:false;decimals:0;label:"% 2 top boxes"}'
+                    }
                     currentMetricIndex = _columnIDs.length;
                     _columnItems.push(columnQuestion);
                     _columnIDs.push(currentMetric);
