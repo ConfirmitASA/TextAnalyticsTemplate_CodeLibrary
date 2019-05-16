@@ -420,7 +420,7 @@ class TAParameters{
 
         var parameterValues = [
             {Code: "total_percent", Label: currentDictionary["% volume"]},
-            {Code: "avg_sentiment", Label: currentDictionary["Mean sentiment"]},
+            //{Code: "avg_sentiment", Label: currentDictionary["Mean sentiment"]},
             {Code: "positive_percent", Label: currentDictionary["% positive sentiment"]},
             {Code: "negative_percent", Label: currentDictionary["% negative sentiment"]}
         ];
