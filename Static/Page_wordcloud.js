@@ -321,7 +321,7 @@ class Page_wordcloud{
             "				 sentimentId: 2," +
             "                colorConfig: {" +
             "                    limiters: wc_limiters," +
-            "                    colors: ['#54504b', '#54504b', '#54504b'] +
+            "                    colors: [#54504b, #54504b, #54504b] +
             "                }," +
             "				 translations: translations" +
             "            });" +
