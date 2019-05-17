@@ -305,9 +305,9 @@ class Page_wordcloud{
         var wc_limiters = [-5, Config.SentimentRange.Neutral[0] - 6 - 0.0001, Config.SentimentRange.Positive[0] - 1 - 6 + 0.0001, 5];
 
         var wc_colors = [
-            Config.Colors.NegNeuPosPalette.Negative,
-            Config.Colors.NegNeuPosPalette.Neutral,
-            Config.Colors.NegNeuPosPalette.Positive
+            "#54504b",
+            "#54504b",
+            "#54504b"
         ];
 
         var currentLanguage = context.report.CurrentLanguage;
@@ -321,7 +321,7 @@ class Page_wordcloud{
             "				 sentimentId: 2," +
             "                colorConfig: {" +
             "                    limiters: wc_limiters," +
-            "                    colors: [#54504b, #54504b, #54504b] +
+            "                    colors: wc_colors +
             "                }," +
             "				 translations: translations" +
             "            });" +
