@@ -84,6 +84,7 @@ class TAHitlistComponent {
             "hitlist: document.querySelector('.reportal-hitlist-container'),"+
             "separator: '" + (textSeparator ? textSeparator : "") + "',"+
             "headers: hitlistHeaders,"+
+            "selectedWordsContainerId: '" + folder.GetQuestionId() + "',"+
             "sentimentConfig: sentimentConfig,"+
             "currentCategory: currentCategory,"+
             "infoText: '" +  (isAlertsHitlist ? currentDictionary["hitlist alerts text"] : currentDictionary["hitlist info text"]) + "',"+
@@ -153,6 +154,7 @@ class TAHitlistComponent {
         context.component.Output.Append(JSON.print(hitlistHeaders, "hitlistHeaders"));
         context.component.Output.Append(JSON.print(sentimentConfig,"sentimentConfig"));
         context.component.Output.Append(JSON.print(currentCategory,"currentCategory"));
+        context.component.Output.Append(JSON.print(currentDictionary,"translations"));
         context.component.Output.Append(hitlistInit);
     }
 }
