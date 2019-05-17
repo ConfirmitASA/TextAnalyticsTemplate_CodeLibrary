@@ -13,6 +13,18 @@ class TAPageRenderer{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
+        //set current month values to date filters
+        if (context.state.Parameters.IsNull("TA_LAST_VISITED_PAGE")) {
+            var currentDate = DateTime.Today;
+            var dateFromParameter: ParameterValueResponse = new ParameterValueResponse();
+            var dateToParameter: ParameterValueResponse = new ParameterValueResponse();
+            dateFromParameter.DateValue = new DateTime(currentDate.Year, currentDate.Month, 1);
+            dateToParameter.DateValue = currentDate;
+            context.state.Parameters["TA_DATE_FROM"] = dateFromParameter;
+            context.state.Parameters["TA_DATE_TO"] = dateToParameter;
+        }
+
+
         if(context.component.SubmitSource === "lstQuestion") {
             context.state.Parameters["TA_INCLUDE_WORDS"] = null;
             context.state.Parameters["TA_EXCLUDE_WORDS"] = null;
