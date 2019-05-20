@@ -154,7 +154,7 @@ class TACustomerJourneyCardsTable{
                         var formulaExpression = "if(cellv(col- 1, row) > 0," +
                             "100*( " + cellsExpression + ")/cellv(col- 1, row), " +
                             "emptyv())";
-                        columnQuestion += '+ [FORMULA]{expression:"' + formulaExpression + '";percent:false;decimals:0;label:"% 2 top boxes"}'
+                        columnQuestion += '+ [FORMULA]{expression:"' + formulaExpression + '";percent:false;decimals:0;label:"' + Translations.dictionary(_currentLanguage)['Gauges OSAT title']) + '"}'
                     }
                     currentMetricIndex = _columnIDs.length;
                     _columnItems.push(columnQuestion);
