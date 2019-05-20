@@ -24,12 +24,12 @@ class TAPageMaster{
      */
     static function FiltersButtonHtml_Render(context){
         var htmlText = '<button type="button" class="filter-button" onclick="javascript:document.querySelector(\'.goToFiltersPage input\').click()" title="Filters">'+
-                '<svg width="16" height="12" viewBox="0 0 16 12">'+
-                    '<path xmlns="http://www.w3.org/2000/svg" d="M 0 0 l 6 6 v 6 l 4 -1 V 6 l 6 -6 Z"></path>'+
-                '</svg>'+
-                '<svg width="10" height="10" viewBox="0 0 10 10">'+
-                    '<path xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd" fill-rule="evenodd" d="M 10 4 H 6 V 0 H 4 v 4 H 0 v 2 h 4 v 4 h 2 V 6 h 4 Z"></path>'+
-                '</svg>'+
+            '<svg width="16" height="12" viewBox="0 0 16 12">'+
+            '<path xmlns="http://www.w3.org/2000/svg" d="M 0 0 l 6 6 v 6 l 4 -1 V 6 l 6 -6 Z"></path>'+
+            '</svg>'+
+            '<svg width="10" height="10" viewBox="0 0 10 10">'+
+            '<path xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd" fill-rule="evenodd" d="M 10 4 H 6 V 0 H 4 v 4 H 0 v 2 h 4 v 4 h 2 V 6 h 4 Z"></path>'+
+            '</svg>'+
             '</button>';
         context.component.Output.Append(htmlText);
     }
@@ -561,7 +561,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function txtCategory_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE');
     }
 
     /**
@@ -576,7 +576,7 @@ class TAPageMaster{
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
         return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
-            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE');
     }
 
     /**
@@ -591,7 +591,7 @@ class TAPageMaster{
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
         return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
-            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE');
     }
 
     /**
@@ -602,7 +602,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function lstCategory_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE');
     }
 
     /**
@@ -617,7 +617,7 @@ class TAPageMaster{
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE");
         return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
-            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE');
     }
 
     /**
@@ -632,7 +632,7 @@ class TAPageMaster{
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
         return ((! parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0)
-            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+            || context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE');
     }
 
     /**

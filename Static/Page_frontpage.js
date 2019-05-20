@@ -86,6 +86,86 @@ class Page_frontpage{
     }
 
     /**
+     * @memberof Page_correlation
+     * @function tblThemeCorrelation_Render
+     * @param {Object} context - {component: table, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function tblThemeCorrelation_Render(context){
+        context.component.Caching.Enabled = false;
+        var selectedQuestion = context.state.Parameters.GetString("TA_CORRELATION_QUESTION");
+
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var selectedCategory = context.state.Parameters.GetString('TA_TOP_CATEGORIES_SINGLE');
+        var showOwnCategory = selectedCategory && selectedCategory !== "emptyv";
+        var correlationTable = new TAFrontpageCorrelationTable({context: context, folder: folder, category: selectedCategory, showOwnCategory: showOwnCategory, question: selectedQuestion});
+
+        correlationTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
+        correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
+        correlationTable.GetTATableUtils().SetupHideEmptyRows(true);
+    }
+
+    /**
+     * @memberof Page_correlation
+     * @function tblSubCategoryCorrelation_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function tblSubCategoryCorrelation_Hide(context){
+        return !context.state.Parameters.GetString('TA_TOP_CATEGORIES_SINGLE') || context.state.Parameters.GetString('TA_TOP_CATEGORIES_SINGLE') === "emptyv"}
+
+    /**
+     * @memberof Page_correlation
+     * @function tblSubCategoryCorrelation_Render
+     * @param {Object} context - {component: table, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function tblSubCategoryCorrelation_Render(context){
+        context.component.Caching.Enabled = false;
+        var selectedQuestion = context.state.Parameters.GetString("TA_CORRELATION_QUESTION");
+
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var selectedCategory = context.state.Parameters.GetString('TA_SUB_CATEGORIES_SINGLE');
+        var showOwnCategory = selectedCategory && selectedCategory !== "emptyv";
+        selectedCategory = showOwnCategory ? selectedCategory : context.state.Parameters.GetString('TA_TOP_CATEGORIES_SINGLE');
+        var correlationTable = new TAFrontpageCorrelationTable({context: context, folder: folder, category: selectedCategory, showOwnCategory: showOwnCategory, question: selectedQuestion});
+
+        correlationTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
+        correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
+        correlationTable.GetTATableUtils().SetupHideEmptyRows(true);
+    }
+
+    /**
+     * @memberof Page_correlation
+     * @function tblAttributeCorrelation_Hide
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function tblAttributeCorrelation_Hide(context) {
+        return !context.state.Parameters.GetString('TA_SUB_CATEGORIES_SINGLE') || context.state.Parameters.GetString('TA_SUB_CATEGORIES_SINGLE') === "emptyv"
+    }
+    /**
+     * @memberof Page_correlation
+     * @function tblAttributeCorrelation_Render
+     * @param {Object} context - {component: table, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function tblAttributeCorrelation_Render(context){
+        context.component.Caching.Enabled = false;
+        var selectedQuestion = context.state.Parameters.GetString("TA_CORRELATION_QUESTION");
+
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var selectedCategory = context.state.Parameters.GetString('TA_ATTRIBUTES_SINGLE');
+        var showOwnCategory = selectedCategory && selectedCategory !== "emptyv";
+        selectedCategory = showOwnCategory ? selectedCategory : context.state.Parameters.GetString('TA_SUB_CATEGORIES_SINGLE') ;
+        var correlationTable = new TAFrontpageCorrelationTable({context: context, folder: folder, category: selectedCategory, showOwnCategory: showOwnCategory, question: selectedQuestion});
+
+        correlationTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
+        correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
+        correlationTable.GetTATableUtils().SetupHideEmptyRows(true);
+    }
+
+    /**
      * @memberof Page_frontpage
      * @function btnImpactAnalysisWidget_Render
      * @description function to render button that leads to the Impact Analysys page
