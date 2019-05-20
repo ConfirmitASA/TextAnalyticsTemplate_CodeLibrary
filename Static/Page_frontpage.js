@@ -181,31 +181,90 @@ class Page_frontpage{
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtImpactAnalysisWidgetScript_Render(context) {
-        var widgetInit = "<script>" +
-            "new Reportal.ImpactAnalysisWidget({" +
-            "translations: translations," +
-            "areaId: 'issues'," +
-            "tableContainerId:'impact-analysis-table'," +
-            "drilldownId:'impact-analysis-table'," +
-            "cardContainerId: 'cards-container-first-row'," +
-            "});" +
-            "</script>";
-
-        var widgetInit2 = "<script>" +
-            "new Reportal.ImpactAnalysisWidget({" +
-            "translations: translations," +
-            "areaId: 'strength'," +
-            "tableContainerId:'impact-analysis-table'," +
-            "drilldownId:'impact-analysis-table'," +
-            "cardContainerId: 'cards-container-first-row'," +
-            "});" +
-            "</script>";
-
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
         context.component.Output.Append(JSON.print(currentDictionary,"translations"));
-        context.component.Output.Append(widgetInit);
-        context.component.Output.Append(widgetInit2);
+
+        var widgetThemeInit = "<script>" +
+            "new Reportal.ImpactAnalysisWidget({" +
+            "translations: translations," +
+            "areaId: 'issues'," +
+            "levelName: 'theme'," +
+            "tableContainerId:'theme-table'," +
+            "drilldownId:'drilldown-btn'," +
+            "cardContainerId: 'cards-container-first-row'," +
+            "});" +
+            "</script>";
+
+        var widgetThemeInit2 = "<script>" +
+            "new Reportal.ImpactAnalysisWidget({" +
+            "translations: translations," +
+            "areaId: 'strength'," +
+            "levelName: 'theme'," +
+            "tableContainerId:'theme-table'," +
+            "drilldownId:'drilldown-btn'," +
+            "cardContainerId: 'cards-container-first-row'," +
+            "});" +
+            "</script>";
+
+        context.component.Output.Append(widgetThemeInit);
+        context.component.Output.Append(widgetThemeInit2);
+
+        var isCategoryChosen = context.state.Parameters.GetString('TA_TOP_CATEGORIES_SINGLE') && context.state.Parameters.GetString('TA_TOP_CATEGORIES_SINGLE') !== "emptyv";
+        if (isCategoryChosen) {
+            var widgetSubCategoryInit = "<script>" +
+                "new Reportal.ImpactAnalysisWidget({" +
+                "translations: translations," +
+                "areaId: 'issues'," +
+                "levelName: 'subcategory'," +
+                "tableContainerId:'sub-category-table'," +
+                "drilldownId:'drilldown-btn'," +
+                "cardContainerId: 'cards-container-second-row'," +
+                "});" +
+                "</script>";
+
+            var widgetSubCategoryInit2 = "<script>" +
+                "new Reportal.ImpactAnalysisWidget({" +
+                "translations: translations," +
+                "areaId: 'strength'," +
+                "levelName: 'subcategory'," +
+                "tableContainerId:'sub-category-table'," +
+                "drilldownId:'drilldown-btn'," +
+                "cardContainerId: 'cards-container-second-row'," +
+                "});" +
+                "</script>";
+
+            context.component.Output.Append(widgetSubCategoryInit);
+            context.component.Output.Append(widgetSubCategoryInit2);
+        }
+
+        var isSubcategoryChosen = context.state.Parameters.GetString('TA_SUB_CATEGORIES_SINGLE') && context.state.Parameters.GetString('TA_SUB_CATEGORIES_SINGLE') !== "emptyv";
+        if (isSubcategoryChosen) {
+            var widgetAttributeInit = "<script>" +
+                "new Reportal.ImpactAnalysisWidget({" +
+                "translations: translations," +
+                "areaId: 'issues'," +
+                "levelName: 'attribute'," +
+                "tableContainerId:'attribute-table'," +
+                "drilldownId:'drilldown-btn'," +
+                "cardContainerId: 'cards-container-third-row'," +
+                "});" +
+                "</script>";
+
+            var widgetAttributeInit2 = "<script>" +
+                "new Reportal.ImpactAnalysisWidget({" +
+                "translations: translations," +
+                "areaId: 'strength'," +
+                "levelName: 'attribute'," +
+                "tableContainerId:'attribute-table'," +
+                "drilldownId:'drilldown-btn'," +
+                "cardContainerId: 'cards-container-third-row'," +
+                "});" +
+                "</script>";
+
+            context.component.Output.Append(widgetAttributeInit);
+            context.component.Output.Append(widgetAttributeInit2);
+        }
     }
 
     /**
