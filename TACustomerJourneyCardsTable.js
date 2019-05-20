@@ -7,6 +7,7 @@ class TACustomerJourneyCardsTable{
     private var _report;
     private var _state;
     private var _pageContext;
+    private var _currentLanguage;
     private var _options = [];
     private var _statisticIDs = ["count", "avg", "max", "min", "sum"];
     private var _columnIDs = [];
@@ -22,6 +23,7 @@ class TACustomerJourneyCardsTable{
         _state = context.state;
         _pageContext = context.pageContext;
         _folder = params.folder;
+        _currentLanguage = params.currentLanguage;
         _taTableUtils = new TATableUtils({
             context: context,
             folder: _folder,

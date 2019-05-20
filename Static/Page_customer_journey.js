@@ -28,7 +28,8 @@ class Page_customer_journey{
     static function tblCustomerJourneyCards_Render(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var cardsTable = new TACustomerJourneyCardsTable({folder:folder, config:Config, context:context});
+        var currentLanguage = context.report.CurrentLanguage;
+        var cardsTable = new TACustomerJourneyCardsTable({folder:folder, config:Config, context:contex, currentLanguage: currentLanguage});
         cardsTable.GetTATableUtils().ClearTableDistributions();
     }
 
