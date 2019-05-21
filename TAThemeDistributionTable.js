@@ -155,6 +155,10 @@ class TAThemeDistributionTable{
 
         var topBoxPrecentFormulaHeader : HeaderFormula = new HeaderFormula();
         topBoxPrecentFormulaHeader.Type = FormulaType.Expression;
+        var cellsExpression = "";
+        for(var i = 0; i < Config.SentimentRange.Positive.length; i++)
+            cellsExpression += "if (cellv(col - " + (i + 1) + ", row) > 0, cellv(col - " + (i + 1) + ", row), 0) + "
+        cellsExpression += "0";
         topBoxPrecentFormulaHeader.Expression = "if(cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row) > 0," +
             "( " + cellsExpression + ")/cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row), emptyv())";
         topBoxPrecentFormulaHeader.Percent = true;
@@ -172,7 +176,7 @@ class TAThemeDistributionTable{
         topBoxCountFormulaHeader.Type = FormulaType.Expression;
         cellsExpression = "";
         for(var i = 0; i < Config.SentimentRange.Positive.length; i++)
-            cellsExpression += "if (cellv(col - " + (i + 2) + ", row) > 0, cellv(col - " + (i + 2) + ", row), 0) + "
+            cellsExpression += "if (cellv(col - " + (i + 3) + ", row) > 0, cellv(col - " + (i + 3) + ", row), 0) + "
         cellsExpression += "0";
         topBoxCountFormulaHeader.Expression = cellsExpression;
         columnsCollection.Add(topBoxCountFormulaHeader);
