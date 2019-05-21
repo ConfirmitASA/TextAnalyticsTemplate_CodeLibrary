@@ -164,15 +164,15 @@ class TAThemeDistributionTable{
 
         var topBoxPrecentFormulaHeader : HeaderFormula = new HeaderFormula();
         topBoxPrecentFormulaHeader.Type = FormulaType.Expression;
-        topBoxPrecentFormulaHeader.Expression = "if(cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row) > 0," +
-            "( cellv(col-1, row))/cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row), emptyv())";
+        topBoxPrecentFormulaHeader.Expression = "if(cellv(col- " + (Config.SentimentRange.Positive.length + 2) + ", row) > 0," +
+            "( cellv(col-1, row))/cellv(col- " + (Config.SentimentRange.Positive.length + 2) + ", row), emptyv())";
         topBoxPrecentFormulaHeader.Percent = true;
         topBoxPrecentFormulaHeader.Decimals = 0;
         columnsCollection.Add(topBoxPrecentFormulaHeader);
 
         var percentVolumeHeader : HeaderFormula = new HeaderFormula();
         percentVolumeHeader.Type = FormulaType.Expression;
-        percentVolumeHeader.Expression = "cellv(col- " + (Config.SentimentRange.Positive.length + 2) +", row)/cellv(col-" + (Config.SentimentRange.Positive.length + 2) +", 1)";
+        percentVolumeHeader.Expression = "cellv(col- " + (Config.SentimentRange.Positive.length + 3) +", row)/cellv(col-" + (Config.SentimentRange.Positive.length + 3) +", 1)";
         percentVolumeHeader.Percent = true;
         percentVolumeHeader.Decimals = 1;
         columnsCollection.Add(percentVolumeHeader);
