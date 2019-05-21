@@ -153,17 +153,21 @@ class TAThemeDistributionTable{
         categoriesHeader.HideData = true;
         columnsCollection.Add(categoriesHeader);
 
-        var topBoxFormulaHeader : HeaderFormula = new HeaderFormula();
-        topBoxFormulaHeader.Type = FormulaType.Expression;
+        var topBoxCountFormulaHeader : HeaderFormula = new HeaderFormula();
+        topBoxCountFormulaHeader.Type = FormulaType.Expression;
         var cellsExpression = "";
         for(var i = 0; i < Config.SentimentRange.Positive.length; i++)
             cellsExpression += "if (cellv(col - " + (i + 1) + ", row) > 0, cellv(col - " + (i + 1) + ", row), 0) + "
         cellsExpression += "0";
-        topBoxFormulaHeader.Expression = "if(cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row) > 0," +
-            "( " + cellsExpression + ")/cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row), emptyv())";
-        topBoxFormulaHeader.Percent = true;
-        topBoxFormulaHeader.Decimals = 0;
-        columnsCollection.Add(topBoxFormulaHeader);
+        columnsCollection.Add(topBoxCountFormulaHeader);
+
+        var topBoxPrecentFormulaHeader : HeaderFormula = new HeaderFormula();
+        topBoxPrecentFormulaHeader.Type = FormulaType.Expression;
+                topBoxPrecentFormulaHeader.Expression = "if(cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row) > 0," +
+            "( cellv(col-1, row))/cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row), emptyv())";
+        topBoxPrecentFormulaHeader.Percent = true;
+        topBoxPrecentFormulaHeader.Decimals = 0;
+        columnsCollection.Add(topBoxPrecentFormulaHeader);
 
         var percentVolumeHeader : HeaderFormula = new HeaderFormula();
         percentVolumeHeader.Type = FormulaType.Expression;
@@ -172,10 +176,12 @@ class TAThemeDistributionTable{
         percentVolumeHeader.Decimals = 1;
         columnsCollection.Add(percentVolumeHeader);
 
+        /*
         var stdevHeader : HeaderStatistics = new HeaderStatistics();
         stdevHeader.Statistics.StdevP = true;
         stdevHeader.Decimals = 4;
         columnsCollection.Add(stdevHeader);
+        */
 
         return columnsCollection;
     }
