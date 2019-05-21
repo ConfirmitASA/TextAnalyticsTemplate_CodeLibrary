@@ -159,11 +159,12 @@ class TAThemeDistributionTable{
         for(var i = 0; i < Config.SentimentRange.Positive.length; i++)
             cellsExpression += "if (cellv(col - " + (i + 1) + ", row) > 0, cellv(col - " + (i + 1) + ", row), 0) + "
         cellsExpression += "0";
+        topBoxCountFormulaHeader.Expression = cellsExpression;
         columnsCollection.Add(topBoxCountFormulaHeader);
 
         var topBoxPrecentFormulaHeader : HeaderFormula = new HeaderFormula();
         topBoxPrecentFormulaHeader.Type = FormulaType.Expression;
-                topBoxPrecentFormulaHeader.Expression = "if(cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row) > 0," +
+        topBoxPrecentFormulaHeader.Expression = "if(cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row) > 0," +
             "( cellv(col-1, row))/cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row), emptyv())";
         topBoxPrecentFormulaHeader.Percent = true;
         topBoxPrecentFormulaHeader.Decimals = 0;
