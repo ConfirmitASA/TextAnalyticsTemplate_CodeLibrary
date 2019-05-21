@@ -153,30 +153,29 @@ class TAThemeDistributionTable{
         categoriesHeader.HideData = true;
         columnsCollection.Add(categoriesHeader);
 
-        var topBoxCountFormulaHeader : HeaderFormula = new HeaderFormula();
-        topBoxCountFormulaHeader.Type = FormulaType.Expression;
-        var cellsExpression = "";
-        for(var i = 0; i < Config.SentimentRange.Positive.length; i++)
-            cellsExpression += "if (cellv(col - " + (i + 1) + ", row) > 0, cellv(col - " + (i + 1) + ", row), 0) + "
-        cellsExpression += "0";
-        topBoxCountFormulaHeader.Expression = cellsExpression;
-        columnsCollection.Add(topBoxCountFormulaHeader);
-
         var topBoxPrecentFormulaHeader : HeaderFormula = new HeaderFormula();
         topBoxPrecentFormulaHeader.Type = FormulaType.Expression;
-        topBoxPrecentFormulaHeader.Expression = "if(cellv(col- " + (Config.SentimentRange.Positive.length + 2) + ", row) > 0," +
-            "( cellv(col-1, row))/cellv(col- " + (Config.SentimentRange.Positive.length + 2) + ", row), emptyv())";
+        topBoxPrecentFormulaHeader.Expression = "if(cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row) > 0," +
+            "( " + cellsExpression + ")/cellv(col- " + (Config.SentimentRange.Positive.length + 1) + ", row), emptyv())";
         topBoxPrecentFormulaHeader.Percent = true;
         topBoxPrecentFormulaHeader.Decimals = 0;
         columnsCollection.Add(topBoxPrecentFormulaHeader);
 
         var percentVolumeHeader : HeaderFormula = new HeaderFormula();
         percentVolumeHeader.Type = FormulaType.Expression;
-        percentVolumeHeader.Expression = "cellv(col- " + (Config.SentimentRange.Positive.length + 3) +", row)/cellv(col-" + (Config.SentimentRange.Positive.length + 3) +", 1)";
+        percentVolumeHeader.Expression = "cellv(col- " + (Config.SentimentRange.Positive.length + 2) +", row)/cellv(col-" + (Config.SentimentRange.Positive.length + 2) +", 1)";
         percentVolumeHeader.Percent = true;
         percentVolumeHeader.Decimals = 1;
         columnsCollection.Add(percentVolumeHeader);
 
+        var topBoxCountFormulaHeader : HeaderFormula = new HeaderFormula();
+        topBoxCountFormulaHeader.Type = FormulaType.Expression;
+        cellsExpression = "";
+        for(var i = 0; i < Config.SentimentRange.Positive.length; i++)
+            cellsExpression += "if (cellv(col - " + (i + 2) + ", row) > 0, cellv(col - " + (i + 2) + ", row), 0) + "
+        cellsExpression += "0";
+        topBoxCountFormulaHeader.Expression = cellsExpression;
+        columnsCollection.Add(topBoxCountFormulaHeader);
         /*
         var stdevHeader : HeaderStatistics = new HeaderStatistics();
         stdevHeader.Statistics.StdevP = true;
