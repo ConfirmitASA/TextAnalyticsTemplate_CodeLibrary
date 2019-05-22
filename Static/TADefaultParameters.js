@@ -49,6 +49,10 @@ class TADefaultParameters {
             Value: "1"
         },
         {
+            Id: "TA_SIG_CHANGES_ALERTS_VIEW_BY",
+            Value: "0"
+        },
+        {
             Id: "TA_PERIOD",
             Value: "m"
         },
