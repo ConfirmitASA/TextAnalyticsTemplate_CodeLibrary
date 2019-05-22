@@ -333,34 +333,34 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtThemeDistributionChartScript_Render(context){
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var textSeparator = folder.GetHierarchy().GetTextSeparator();
+        var significantTestingColors = Config.Colors.SignificantTestingPalette;
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
+        var palette = significantTestingColors;
+
         var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
 
-        var drilldownPage = "correlation";
-        var correlationVariables = folder.GetCorrelationVariables();
-        if(!correlationVariables || correlationVariables.length <= 0) {
-            drilldownPage = "detailed_analysis";
-        }
+        var categoryOptions = {
+            category: TAParameterValues.getCategoryParameterValue(context, currentDictionary, "TA_TOP_CATEGORIES_SINGLE"),
+            subCategory: TAParameterValues.getCategoryParameterValue(context, currentDictionary, "TA_SUB_CATEGORIES_SINGLE"),
+            attribute: TAParameterValues.getCategoryParameterValue(context, currentDictionary, "TA_ATTRIBUTES_SINGLE")
+        };
 
-        var alertstInit = "<script>" +
-            "new Reportal.SignificantChangesAlerts({" +
-            "translations:translations," +
-            "period:'" + period + "'," +
-            "table: document.querySelector('#theme-distribution .aggregatedTableContainer > table')," +
-            "separator: '" + (textSeparator ? textSeparator : "") + "',"+
-            "containerId:'alerts-container'," +
-            "viewByContainerId:'sig-changes-view-by'," +
-            "drilldownButtonContainer:'drilldown-button-container'," +
-            "drilldownParameterContainer:'alerts-drilldown-parameter'," +
-            "drilldownPage: '"+ drilldownPage + "'});" +
+        var chartInit = "<script>" +
+            "var themeDistributionChart = new Reportal.ThemeDistributionChart({" +
+            "chartContainer:'theme-distribution-chart'," +
+            "tableContainer: document.querySelector('#theme-distribution .aggregatedTableContainer > table')," +
+            "categoryOptions: categoryOptions," +
+            "drilldownButtonContainer: 'drilldown-button-container'," +
+            "palette: palette," +
+            "period: '" + period + "'," +
+            "translations: translations});" +
             "</script>";
 
         context.component.Output.Append(JSON.print(currentDictionary,"translations"));
-        context.component.Output.Append(alertstInit);
+        context.component.Output.Append(JSON.print(palette,"palette"));
+        context.component.Output.Append(JSON.print(categoryOptions,"categoryOptions"));
+        context.component.Output.Append(chartInit);
     }
 
     /**
