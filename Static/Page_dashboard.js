@@ -390,6 +390,7 @@ class Page_dashboard{
             "table: document.querySelector('#theme-distribution .aggregatedTableContainer > table')," +
             "separator: '" + (textSeparator ? textSeparator : "") + "',"+
             "containerId:'alerts-container'," +
+            "viewByContainerId:'sig-changes-view-by'," +
             "drilldownButtonContainer:'drilldown-button-container'," +
             "drilldownParameterContainer:'alerts-drilldown-parameter'," +
             "drilldownPage: '"+ drilldownPage + "'});" +
