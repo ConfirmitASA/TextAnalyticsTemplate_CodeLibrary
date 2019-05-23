@@ -78,7 +78,7 @@ class TADetailedAnalysisTable{
         _taTableUtils.CreateTableFromExpression(rowexpr, colexpr);
         _setupTableDistribution();
         _table.RowNesting = TableRowNestingType.Nesting;
-        //_setupConditionalFormatting();
+        _setupConditionalFormatting();
         _addChartColumn();
     }
 
