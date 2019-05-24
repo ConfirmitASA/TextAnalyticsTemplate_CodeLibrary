@@ -199,7 +199,7 @@ class Page_wordcloud{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var textSeparator = folder.GetHierarchy().GetTextSeparator();
-        var selectedWords;
+        var selectedWCWords;
 
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
@@ -212,7 +212,7 @@ class Page_wordcloud{
                 var word : ParameterValueResponse = wordCloudFilterWords[i];
                 words.push(word.StringKeyValue);
             }
-            selectedWords = words.join("|")
+            selectedWCWords = words.join("|")
         }
 
         var hitlistInit = "<script>"+
@@ -222,7 +222,8 @@ class Page_wordcloud{
             "separator: '" + (textSeparator ? textSeparator : "") + "',"+
             "headers: hitlistHeaders,"+
             "sentimentConfig: sentimentConfig," +
-            "selectedWords: '" + selectedWords + "',"+
+            "selectedWCWord: '" + selectedWCWords + "',"+
+            "selectedWordsContainerId: '" + folder.GetQuestionId() + "',"+
             "infoText: '" +  currentDictionary["hitlist info text"] + "',"+
             "filterInfoText: \"" + currentDictionary["filter info text"] + "\""+
             "});"+
@@ -314,6 +315,15 @@ class Page_wordcloud{
         var currentDictionary = Translations.dictionary(currentLanguage);
 
         var wcInit = "<script>" +
+            "var wcClickFunc = function(e) {" +
+            "   var wordsSelect = document.querySelectorAll('#select-word select')[1];" +
+            "   var wordsSelectOptions = wordsSelect.querySelectorAll('option');" +
+            "   for (var i = 0; i < wordsSelectOptions.length; i++) {" +
+            "       wordsSelectOptions[i].selected = e.target.innerHTML.toLowerCase() === wordsSelectOptions[i].innerText.toLowerCase();" +
+            "   }" +
+            "   var saveBtn = document.querySelector('#wc-filter-save-btn input');" +
+            "   saveBtn.click();" +
+            "};" +
             "var ta_wc = new Reportal.WordCloud({" +
             "                elementFromId: \"wc-table\"," +
             "                elementToId: \"cloud\"," +
@@ -323,9 +333,10 @@ class Page_wordcloud{
             "                    limiters: wc_limiters," +
             "                    colors: wc_colors" +
             "                }," +
+            "                clickFunc: wcClickFunc," +
             "				 translations: translations" +
             "            });" +
-            "document.getElementById('wc_exceptions').querySelector('select').onchange = function() { ta_wc.restart(); }" +
+            //"document.getElementById('wc_exceptions').querySelector('select').onchange = function() { ta_wc.restart(); }" +
             "</script>";
 
         context.component.Output.Append(JSON.print(wc_limiters,"wc_limiters"));
