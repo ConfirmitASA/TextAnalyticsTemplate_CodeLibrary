@@ -139,6 +139,15 @@ class TAPageMaster{
                 "</div>"));
         }
 
+        var commentsOnlyParameter = !context.state.Parameters.IsNull("pCommentsOnly") &&
+            context.state.Parameters.GetString("pCommentsOnly") !== 'emptyv' &&
+            context.state.Parameters.GetString("pCommentsOnly");
+
+        if(commentsOnlyParameter){
+            summarySegments.push(("<div><span>"+ "With comments only = " + commentsOnlyParameter + "</span>" +
+                "</div>"));
+        }
+
         var cj_parameter = !context.state.Parameters.IsNull("TA_CJ_CARDS") &&
             !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey'
                 || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
