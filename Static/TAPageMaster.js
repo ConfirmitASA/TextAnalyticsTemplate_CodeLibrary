@@ -144,7 +144,7 @@ class TAPageMaster{
             context.state.Parameters.GetString("pCommentsOnly");
 
         if(commentsOnlyParameter){
-            summarySegments.push(("<div><span>"+ "With comments only = " + commentsOnlyParameter + "</span>" +
+            summarySegments.push(("<div style='white-space: nowrap; padding: 8px''><span>"+ "With comments only = " + commentsOnlyParameter + "</span>" +
                 "</div>"));
         }
 
