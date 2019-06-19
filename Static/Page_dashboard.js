@@ -401,6 +401,18 @@ class Page_dashboard{
 
     /**
      * @memberof Page_dashboard
+     * @function txtTop5_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtTop5_Render(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary["Top 5"];
+        context.component.Output.Append(label);
+    }
+
+    /**
+     * @memberof Page_dashboard
      * @function txtLevel_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
