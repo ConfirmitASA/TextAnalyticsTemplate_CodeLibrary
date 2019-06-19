@@ -111,7 +111,7 @@ class TAFilters {
                 var word : ParameterValueResponse = wordCloudIncWords[i];
                 includeWordsExpr.push('IN(word_' + TAQuestion + ', "' + word.StringKeyValue + '")');
             }
-            expressionParts.push('(' + includeWordsExpr.join(" " + (ParameterValueResponse)(context.state.Parameters("TA_INCLUDE_WORDS_FILTER_TYPE")).StringKeyValue + " ")+')');
+            expressionParts.push('(' + includeWordsExpr.join(" " + (ParameterValueResponse)(context.state.Parameters("TA_INCLUDE_WORDS_FILTER_TYPE")).StringValue + " ")+')');
         }
 
         if(!context.state.Parameters.IsNull('TA_EXCLUDE_WORDS')) {
@@ -121,7 +121,7 @@ class TAFilters {
                 word = wordCloudIExcWords[i];
                 excludedWordsExpr.push('NOT IN(word_' + TAQuestion + ', "' + word.StringKeyValue + '")');
             }
-            expressionParts.push('(' + excludedWordsExpr.join(" " + (ParameterValueResponse)(context.state.Parameters("TA_EXCLUDE_WORDS_FILTER_TYPE")).StringKeyValue + " ")  + ')');
+            expressionParts.push('(' + excludedWordsExpr.join(" " + (ParameterValueResponse)(context.state.Parameters("TA_EXCLUDE_WORDS_FILTER_TYPE")).StringValue + " ")  + ')');
         }
         context.component.Expression = expressionParts.join(  " AND " );
     }
