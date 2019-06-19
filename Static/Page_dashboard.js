@@ -409,7 +409,7 @@ class Page_dashboard{
     static function top5_Hide(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        return !folder.ShowTop5Section;
+        return folder.ShowTop5Section;
     }
 
     /**
