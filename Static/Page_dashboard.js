@@ -406,7 +406,7 @@ class Page_dashboard{
      * @function txtTop5_Hide
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function txtTop5_Hide(context){
+    static function top5_Hide(context){
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         return !folder.ShowTop5Section;
     }
