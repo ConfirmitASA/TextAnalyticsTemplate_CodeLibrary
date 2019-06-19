@@ -197,6 +197,8 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtThemeDistributionScript_Render(context){
+        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
 
@@ -210,7 +212,7 @@ class Page_dashboard{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var hierarchy = folder.GetHierarchy().GetHierarchyArray();
+        var hierarchy = selectedCategory === 'emptyv'? folder.GetHierarchy().GetHierarchyArray() : [folder.GetHierarchy().GetObjectById(selectedCategory)];
 
         headers = TATableData.GetTableRowHeaders({
             context: context,
