@@ -409,7 +409,7 @@ class Page_dashboard{
     static function txtTop5HideScript(context) {
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var hideTop5SectionValue = folder.GetHierarchy().GetHideTop5Section();
+        var hideTop5SectionValue = folder.GetHideTop5Section();
         if (hideTop5SectionValue) {
             var hideTop5Script = "<script>" +
                 "var top5SectionElements = document.querySelectorAll('.top5');" +
