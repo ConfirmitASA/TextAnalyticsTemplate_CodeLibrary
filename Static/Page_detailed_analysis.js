@@ -257,7 +257,7 @@ class Page_detailed_analysis{
         var moveToggleText = "<script>"+
             "var toggle = document.querySelector('.toggle.percentCountToggle').parentNode.parentNode;"+
             "var row = document.querySelector('.r2i-row');"+
-            "row.appendChild(toggle);";
+            "row.appendChild(toggle);" +
             "</script>";
         context.component.Output.Append(moveToggleText);
     }
