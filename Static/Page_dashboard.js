@@ -406,19 +406,19 @@ class Page_dashboard{
      * @function txtTop5_Hide
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function txtTop5Hide_Script(context){
+    static function txtTop5HideScript(context) {
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var hideTop5Section = folder.GetHierarchy().GetHideTop5Section();
-
-        var hideTop5Script = "<script>" +
-            "var top5SectionElements = document.querySelectorAll('.top5');" +
-            "for (var i = 0; i < top5SectionElements.length; i++) {" +
-            "top5SectionElements[i].style.display = 'none'" +
-            "}" +
-            "</script>";
-
-        context.component.Output.Append(hideTop5Script);
+        var hideTop5SectionValue = folder.GetHierarchy().GetHideTop5Section();
+        if (hideTop5SectionValue) {
+            var hideTop5Script = "<script>" +
+                "var top5SectionElements = document.querySelectorAll('.top5');" +
+                "for (var i = 0; i < top5SectionElements.length; i++) {" +
+                "top5SectionElements[i].style.display = 'none'" +
+                "}" +
+                "</script>";
+            context.component.Output.Append(hideTop5Script);
+        }
     }
 
     /**
