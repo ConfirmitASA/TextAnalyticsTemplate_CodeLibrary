@@ -222,7 +222,10 @@ class Page_salesforce{
         var TAQuestionName = folder.GetQuestionId() + folder.GetModelNumber();
 
         if (surveyId) {
-            text.Output.Append("<div style=\"word-break: break-all;\">http://survey.euro.confirmit.com/wix/" + surveyId + ".aspx?"
+            text.Output.Append("<script> " +
+                 " var serverLink = window.location.href.replace('reportal', 'survey').slice(0, window.location.href.replace('reportal', 'survey').indexOf('reportal'))" +
+                "</script>");
+            text.Output.Append("<div style=\"word-break: break-all;\">" + serverLink + "wix/" + surveyId + ".aspx?"
                 + "TAQuestionName=" + TAQuestionName
                 + "&improvements=" + improvementsArr.join("|")
                 + "&strength=" + strengthArr.join("|")
@@ -234,7 +237,7 @@ class Page_salesforce{
                 + "&currSentiment=" + currentSentiment
                 + "&selectParameter=" + selectParameter
                 + "</div>");
-            text.Output.Append("<img src='http://survey.euro.confirmit.com/wix/" + surveyId + ".aspx?"
+            text.Output.Append("<img src='" + serverLink + "wix/" + surveyId + ".aspx?"
                 + "TAQuestionName=" + TAQuestionName
                 + "&improvements=" + improvementsArr.join("|")
                 + "&strength=" + strengthArr.join("|")
