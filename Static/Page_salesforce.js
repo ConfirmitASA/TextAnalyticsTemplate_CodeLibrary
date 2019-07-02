@@ -223,10 +223,9 @@ class Page_salesforce{
 
         if (surveyId) {
             text.Output.Append("<script> " +
-                 " var serverLink = window.location.href.replace('reportal', 'survey').slice(0, window.location.href.replace('reportal', 'survey').indexOf('reportal'))" +
-                "</script>");
-            var serverLink = "https://survey.euro.confirmit.com/";
-            text.Output.Append("<div style=\"word-break: break-all;\">" + serverLink + "wix/" + surveyId + ".aspx?"
+                 " var serverLink = window.location.href.replace('reportal', 'survey').slice(0, window.location.href.replace('reportal', 'survey').indexOf('reportal'));" +
+                 " </script>");
+            /*text.Output.Append("<div style=\"word-break: break-all;\"> + serverLink + wix/" + surveyId + ".aspx?"
                 + "TAQuestionName=" + TAQuestionName
                 + "&improvements=" + improvementsArr.join("|")
                 + "&strength=" + strengthArr.join("|")
@@ -238,7 +237,8 @@ class Page_salesforce{
                 + "&currSentiment=" + currentSentiment
                 + "&selectParameter=" + selectParameter
                 + "</div>");
-            text.Output.Append("<img src='" + serverLink + "wix/" + surveyId + ".aspx?"
+            */
+            text.Output.Append("<img id='surveyLink' src=' + serverLink + wix/" + surveyId + ".aspx?"
                 + "TAQuestionName=" + TAQuestionName
                 + "&improvements=" + improvementsArr.join("|")
                 + "&strength=" + strengthArr.join("|")
