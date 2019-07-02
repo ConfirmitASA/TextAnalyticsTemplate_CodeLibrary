@@ -238,7 +238,7 @@ class Page_salesforce{
                 + "&selectParameter=" + selectParameter
                 + "</div>");
             */
-            text.Output.Append("<img id='surveyLink' src=' + serverLink + wix/" + surveyId + ".aspx?"
+            text.Output.Append("<img id='surveyLink' src='serverLinkwix/" + surveyId + ".aspx?"
                 + "TAQuestionName=" + TAQuestionName
                 + "&improvements=" + improvementsArr.join("|")
                 + "&strength=" + strengthArr.join("|")
@@ -250,6 +250,12 @@ class Page_salesforce{
                 + "&currSentiment=" + currentSentiment
                 + "&selectParameter=" + selectParameter
                 + "' />");
+            text.Output.Append("<script> " +
+                " var serverLink = window.location.href.replace('reportal', 'survey').slice(0, window.location.href.replace('reportal', 'survey').indexOf('reportal'));" +
+                " var surveyLinkImg = document.querySelector('#surveyLink'); " +
+                " var updatedLink = serverLink + surveyLinkImg.src.slice(surveyLinkImg.src.indexOf('serverLink') + 10);" +
+                " surveyLinkImg.src = updatedLink;" +
+                " </script>");
         }
     }
 }
