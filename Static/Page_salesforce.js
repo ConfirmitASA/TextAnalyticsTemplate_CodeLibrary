@@ -223,7 +223,7 @@ class Page_salesforce{
 
         if (surveyId) {
             var surveyLink = "https://survey." + server + ".confirmit.com/wix/";
-            if (surveyId.ToUpper == "AU")
+            if (server.ToUpper == "AU")
                 surveyLink = "https://survey.confirmit.com.au/wix/"
             text.Output.Append("<img src='https://survey." + server + ".confirmit.com/wix/" + surveyId + ".aspx?"
                 + "TAQuestionName=" + TAQuestionName
