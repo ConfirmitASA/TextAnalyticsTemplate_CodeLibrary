@@ -201,7 +201,7 @@ class Page_salesforce{
         selectParameter = selectParameter ? selectParameter : "1";
 
         var surveyId = salesforceParameters.SurveyId;
-
+        var server = Config.ServerId;
         var correlationData = SalesforceUtil.GetCorrelationData(context, true);
         var improvementsArr = correlationData.improvementsArr;
         var strengthArr = correlationData.strengthArr;
@@ -222,23 +222,7 @@ class Page_salesforce{
         var TAQuestionName = folder.GetQuestionId() + folder.GetModelNumber();
 
         if (surveyId) {
-            text.Output.Append("<script> " +
-                 " var serverLink = window.location.href.replace('reportal', 'survey').slice(0, window.location.href.replace('reportal', 'survey').indexOf('reportal'));" +
-                 " </script>");
-            /*text.Output.Append("<div style=\"word-break: break-all;\"> + serverLink + wix/" + surveyId + ".aspx?"
-                + "TAQuestionName=" + TAQuestionName
-                + "&improvements=" + improvementsArr.join("|")
-                + "&strength=" + strengthArr.join("|")
-                + "&sentimentChangesNeg=" + sentimentChangesNegArr.join("|")
-                + "&sentimentChangesPos=" + sentimentChangesPosArr.join("|")
-                + "&volumeChangesNeg=" + volumeChangesNegArr.join("|")
-                + "&volumeChangesPos=" + volumeChangesPosArr.join("|")
-                + "&prevSentiment=" + previousSentiment
-                + "&currSentiment=" + currentSentiment
-                + "&selectParameter=" + selectParameter
-                + "</div>");
-            */
-            text.Output.Append("<img id='surveyLink' src='serverLinkwix/" + surveyId + ".aspx?"
+            text.Output.Append("<img src='https://survey." + server + ".confirmit.com/wix/" + surveyId + ".aspx?"
                 + "TAQuestionName=" + TAQuestionName
                 + "&improvements=" + improvementsArr.join("|")
                 + "&strength=" + strengthArr.join("|")
@@ -250,12 +234,6 @@ class Page_salesforce{
                 + "&currSentiment=" + currentSentiment
                 + "&selectParameter=" + selectParameter
                 + "' />");
-            text.Output.Append("<script> " +
-                " var serverLink = window.location.href.replace('reportal', 'survey').slice(0, window.location.href.replace('reportal', 'survey').indexOf('reportal'));" +
-                " var surveyLinkImg = document.querySelector('#surveyLink'); " +
-                " var updatedLink = serverLink + surveyLinkImg.src.slice(surveyLinkImg.src.indexOf('serverLink') + 10);" +
-                " surveyLinkImg.src = updatedLink;" +
-                " </script>");
         }
     }
 }
