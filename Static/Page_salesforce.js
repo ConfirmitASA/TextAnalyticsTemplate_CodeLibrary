@@ -222,6 +222,9 @@ class Page_salesforce{
         var TAQuestionName = folder.GetQuestionId() + folder.GetModelNumber();
 
         if (surveyId) {
+            var surveyLink = "https://survey." + server + ".confirmit.com/wix/";
+            if (surveyId.ToUpper == "AU")
+                surveyLink = "https://survey.confirmit.com.au/wix/"
             text.Output.Append("<img src='https://survey." + server + ".confirmit.com/wix/" + surveyId + ".aspx?"
                 + "TAQuestionName=" + TAQuestionName
                 + "&improvements=" + improvementsArr.join("|")
