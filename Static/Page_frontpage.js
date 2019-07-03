@@ -101,7 +101,7 @@ class Page_frontpage{
         var correlationTable = new TAFrontpageCorrelationTable({context: context, folder: folder, category: selectedCategory, showOwnCategory: showOwnCategory, question: selectedQuestion});
 
         correlationTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
-        correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
+        correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "frontpage");
         correlationTable.GetTATableUtils().SetupHideEmptyRows(true);
     }
 
@@ -131,7 +131,7 @@ class Page_frontpage{
         var correlationTable = new TAFrontpageCorrelationTable({context: context, folder: folder, category: selectedCategory, showOwnCategory: showOwnCategory, question: selectedQuestion});
 
         correlationTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
-        correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
+        correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "frontpage");
         correlationTable.GetTATableUtils().SetupHideEmptyRows(true);
     }
 
@@ -161,7 +161,7 @@ class Page_frontpage{
         var correlationTable = new TAFrontpageCorrelationTable({context: context, folder: folder, category: selectedCategory, showOwnCategory: showOwnCategory, question: selectedQuestion});
 
         correlationTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
-        correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
+        correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "frontpage");
         correlationTable.GetTATableUtils().SetupHideEmptyRows(true);
     }
 
