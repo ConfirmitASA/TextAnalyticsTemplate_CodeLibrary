@@ -74,7 +74,7 @@ class TAPageMaster{
 
         //summarySegments.push(("<div style=\"padding: 8px;\">"+curDictionary['Selected question']+" = "+(!selectedFolder ? '' : Config.GetTALibrary().GetFolderById(selectedFolder).GetName()) + "</div>"));
 
-        var category = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+        var category = !context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') &&
             TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_TOP_CATEGORIES_SINGLE");
         category = category && category.replace(/<span.*>: /, '');
         category = category && category.replace(/<\/span>/, '');
@@ -85,7 +85,7 @@ class TAPageMaster{
                 "</div>"));
         }
 
-        var subCategory = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+        var subCategory = !context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') &&
             TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_SUB_CATEGORIES_SINGLE");
         subCategory = subCategory && subCategory.replace(/<span.*>: /, '');
         subCategory = subCategory && subCategory.replace(/<\/span>/, '');
@@ -96,7 +96,7 @@ class TAPageMaster{
                 "</div>"));
         }
 
-        var attribute = !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+        var attribute = !context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') &&
             TAParameterValues.getCategoryParameterValue(context, curDictionary, "TA_ATTRIBUTES_SINGLE");
         attribute = attribute && attribute.replace(/<span.*>: /, '');
         attribute = attribute && attribute.replace(/<\/span>/, '');
@@ -120,7 +120,7 @@ class TAPageMaster{
         }
 
         var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") &&
-            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            !context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') &&
             context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
 
         if(startDate){
@@ -130,7 +130,7 @@ class TAPageMaster{
         }
 
         var endDate = !context.state.Parameters.IsNull("TA_DATE_TO") &&
-            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            !context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') &&
             context.state.Parameters.GetDate("TA_DATE_TO").ToShortDateString();
 
         if(endDate){
@@ -142,6 +142,7 @@ class TAPageMaster{
         var cj_parameter = !context.state.Parameters.IsNull("TA_CJ_CARDS") &&
             !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey'
                 || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            context.state.Parameters.GetString("TA_CJ_CARDS") !== 'emptyv' &&
             context.state.Parameters.GetString("TA_CJ_CARDS") !== 'emptyv' &&
             context.state.Parameters.GetString("TA_CJ_CARDS");
 
@@ -253,7 +254,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function txtDateFrom_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE');
     }
 
 
@@ -275,7 +276,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function txtDateTo_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE');
     }
 
     /**
@@ -296,7 +297,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function cldDateFrom_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE');
     }
 
     /**
@@ -306,7 +307,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function cldDateTo_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE');
     }
 
     /**
@@ -440,7 +441,7 @@ class TAPageMaster{
      */
     static function txtFilterTitle_Render(context, filterNumber){
         if (filterNumber == 1) {
-            TAPageMaster.AppendSortingFilterQuestions(context);
+            AppendSortingFilterQuestions(context);
         }
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
