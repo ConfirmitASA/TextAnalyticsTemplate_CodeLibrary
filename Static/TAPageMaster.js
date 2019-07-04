@@ -507,8 +507,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function txtCustomerJourney_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey'
-            || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey';
     }
 
     /**
@@ -528,8 +527,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function lstCustomerJourney_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey'
-            || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey';
     }
 
     /**
