@@ -140,8 +140,7 @@ class TAPageMaster{
         }
 
         var cj_parameter = !context.state.Parameters.IsNull("TA_CJ_CARDS") &&
-            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey'
-                || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
+            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'customer_journey') &&
             context.state.Parameters.GetString("TA_CJ_CARDS") !== 'emptyv' &&
             context.state.Parameters.GetString("TA_CJ_CARDS") !== 'emptyv' &&
             context.state.Parameters.GetString("TA_CJ_CARDS");
@@ -150,7 +149,8 @@ class TAPageMaster{
             var indexOfAsterisk = cj_parameter.indexOf('*');
             summarySegments.push(("<div><span>" + (
                     indexOfAsterisk >= 0 ?
-                        (cj_parameter.substr(0, indexOfAsterisk) + ' = ' +   (ParameterValueResponse)(context.state.Parameters['TA_CJ_CARDS']).DisplayValue) :
+                        //(cj_parameter.substr(0, indexOfAsterisk) + ' = ' +   (ParameterValueResponse)(context.state.Parameters['TA_CJ_CARDS']).DisplayValue) :
+                        ('Customer Journey Point' + ' = ' + (ParameterValueResponse)(context.state.Parameters['TA_CJ_CARDS']).DisplayValue) :
                         (cj_parameter + ' is answered')
                 ) + "</span>" + CreateFilterBarDeleteButton("TA_CJ_CARDS") +
                 "</div>"));
