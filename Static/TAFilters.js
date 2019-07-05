@@ -184,4 +184,17 @@ class TAFilters {
         context.component.Expression = fExpr;
     }
 
+    /**
+     * @memberof TAFilters
+     * @function TANotEmptyCommentsFilter
+     * @description function to create expression that filtrates respondents who have answered selected TA Question when OverallSentiment question is rewritten
+     * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TANotEmptyCommentsFilter(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder)
+        var fExpr = '('+folder.GetQuestionId()+ '!= "")';
+
+        context.component.Expression = fExpr;
+    }
 }
