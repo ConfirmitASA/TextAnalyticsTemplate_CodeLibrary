@@ -55,12 +55,19 @@ class SalesforceUtil{
 
         for(var i = 0; i < currentCountValues.length; i++) {
             var label : String = labels[i];
-            if (currentCountValues[i].Value >= 10 && previousCountValues[i].Value >=10)  {
-                var result = (currentAvgValues[i].Value -  previousAvgValues[i].Value) /
+            var prevCount = previousCountValues[i].Value;
+            var prevStDev = (previousStDevValues[i].Value).toFixed(4);
+            var prevAvg = (previousAvgValues[i].Value).toFixed(1);
+            var currCount = currentCountValues[i].Value;
+            var currStDev = (currentStDevValues[i].Value).toFixed(4);
+            var currAvg = (currentAvgValues[i].Value).toFixed(1);
+
+            if (currCount >= 10 && prevCount >=10)  {
+                var result = (currAvg -  prevAvg) /
                     Math.sqrt(
-                        (1/previousCountValues[i].Value + 1/currentCountValues[i].Value) *
-                        ((previousCountValues[i].Value - 1)*Math.pow(previousStDevValues[i].Value, 2) + (currentCountValues[i].Value - 1)*Math.pow(currentStDevValues[i].Value, 2)) /
-                        (previousCountValues[i].Value + currentCountValues[i].Value - 2)
+                        (1/prevCount + 1/currCount) *
+                        ((prevCount - 1)*Math.pow(prevStDev, 2) + (currCount - 1)*Math.pow(currStDev, 2)) /
+                        (prevCount + currCount - 2)
                     );
                 if (result < -1.96)
                     sentimentChangesNegArr.push(label);
@@ -68,11 +75,11 @@ class SalesforceUtil{
                     sentimentChangesPosArr.push(label);
             }
 
-            if (currentCountValues[i].Value >= 5 && previousCountValues[i].Value >=5)  {
-                result = (currentCountValues[i].Value / currentTotal  - previousCountValues[i].Value / previousTotal ) /
+            if (currCount >= 5 && prevCount >=5)  {
+                result = (currCount / currentTotal  - prevCount / previousTotal ) /
                     Math.sqrt(
-                        ( previousCountValues[i].Value  + currentCountValues[i].Value )/( previousTotal + currentTotal )*
-                        (1 - ( previousCountValues[i].Value + currentCountValues[i].Value )/(previousTotal + currentTotal ))*
+                        ( prevCount  + currCount )/( previousTotal + currentTotal )*
+                        (1 - ( prevCount + currCount )/(previousTotal + currentTotal ))*
                         (1/currentTotal + 1/previousTotal )
                     );
 
