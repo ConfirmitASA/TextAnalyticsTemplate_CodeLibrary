@@ -108,6 +108,7 @@ class TATopChangedTable{
         headerFormula.Expression = "IF((cellv(col-1,row)-cellv(col-2,row))"+sign+"0,(cellv(col-1,row)-cellv(col-2,row)),EMPTYV())";
         headerFormula.Title = new Label(9, " ");
         headerFormula.HideHeader = true;
+        headerFormula.HideData = true;
 
         _table.ColumnHeaders.Add(headerFormula);
     }

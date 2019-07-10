@@ -120,7 +120,6 @@ class TAPageMaster{
         }
 
         var startDate = !context.state.Parameters.IsNull("TA_DATE_FROM") &&
-            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
             context.state.Parameters.GetDate("TA_DATE_FROM").ToShortDateString();
 
         if(startDate){
@@ -130,7 +129,6 @@ class TAPageMaster{
         }
 
         var endDate = !context.state.Parameters.IsNull("TA_DATE_TO") &&
-            !(context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage') &&
             context.state.Parameters.GetDate("TA_DATE_TO").ToShortDateString();
 
         if(endDate){
@@ -253,7 +251,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function txtDateFrom_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return false;
     }
 
 
@@ -275,7 +273,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function txtDateTo_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return false;
     }
 
     /**
@@ -296,7 +294,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function cldDateFrom_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return false;
     }
 
     /**
@@ -306,7 +304,7 @@ class TAPageMaster{
      * @returns {Boolean}
      */
     static function cldDateTo_Hide(context){
-        return context.state.Parameters.IsNull('TA_LAST_VISITED_PAGE') || context.state.Parameters.GetString('TA_LAST_VISITED_PAGE') == 'frontpage';
+        return false;
     }
 
     /**

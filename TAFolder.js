@@ -27,6 +27,7 @@ class TAFolder{
     private var _significantTestScore;
     private var _correlationVariableShownName;
     private var _salesforceParameters;
+    private var _hideTop5Section;
 
     private var _hierarchy: TAHierarchy;
 
@@ -57,6 +58,8 @@ class TAFolder{
         _correlationVariableShownName = config.TAQuestions[questionIndex].CorrelationVariableShownName;
 
         _salesforceParameters = config.TAQuestions[questionIndex].Salesforce;
+
+        _hideTop5Section = config.TAQuestions[questionIndex].ShowTop5Section == true ? false : true;
 
         _hierarchy = new TAHierarchy(globals, {
             schemaId: config.TAQuestions[questionIndex].DatabaseSchemaId,
@@ -275,5 +278,16 @@ class TAFolder{
      */
     function GetSalesforceParameters(){
         return _salesforceParameters;
+    }
+
+    /**
+     * @memberof TAFolder
+     * @instance
+     * @function GetHideTop5Section
+     * @description function to get value for hiding/showing Top5 section on the 'Recent Changes' tab
+     * @returns {Object}
+     */
+    function GetHideTop5Section(){
+        return _hideTop5Section;
     }
 }

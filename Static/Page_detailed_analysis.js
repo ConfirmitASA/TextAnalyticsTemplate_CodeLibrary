@@ -254,6 +254,13 @@ class Page_detailed_analysis{
             context.component.Output.Append(JSON.print(headers,"rowheaders"));
             context.component.Output.Append(JSON.print(blocks,"blocks"));
         }
+        var moveToggleText = "<script>"+
+            "var toggle = document.querySelector('.toggle.percentCountToggle').parentNode.parentNode;"+
+            "var row = document.querySelector('.r2i-row');"+
+            "row.appendChild(toggle);" +
+            "row.querySelector('.r2-title-view__name').style.marginRight = '13.1rem'" +
+            "</script>";
+        context.component.Output.Append(moveToggleText);
     }
 
     /**

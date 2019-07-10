@@ -197,6 +197,8 @@ class Page_dashboard{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtThemeDistributionScript_Render(context){
+        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
 
@@ -210,7 +212,7 @@ class Page_dashboard{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var hierarchy = folder.GetHierarchy().GetHierarchyArray();
+        var hierarchy = selectedCategory === 'emptyv'? folder.GetHierarchy().GetHierarchyArray() : [folder.GetHierarchy().GetObjectById(selectedCategory)];
 
         headers = TATableData.GetTableRowHeaders({
             context: context,
@@ -397,6 +399,26 @@ class Page_dashboard{
 
         context.component.Output.Append(JSON.print(currentDictionary,"translations"));
         context.component.Output.Append(alertstInit);
+    }
+
+    /**
+     * @memberof Page_dashboard
+     * @function txtTop5_Hide
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtTop5HideScript(context) {
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var hideTop5SectionValue = folder.GetHideTop5Section();
+        if (hideTop5SectionValue) {
+            var hideTop5Script = "<script>" +
+                "var top5SectionElements = document.querySelectorAll('.top5');" +
+                "for (var i = 0; i < top5SectionElements.length; i++) {" +
+                "top5SectionElements[i].style.display = 'none'" +
+                "}" +
+                "</script>";
+            context.component.Output.Append(hideTop5Script);
+        }
     }
 
     /**
