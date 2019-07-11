@@ -15,8 +15,10 @@
 class TAThemeDistributionTable{
     private var _folder: TAFolder;
     private var _taTableUtils: TATableUtils;
+    private var _taMasks: TAMasks;
     private var _table: Table;
     private var _sentiment;
+    private var _selectedCategory;
     private var _period;
     private var _config;
 
@@ -29,7 +31,14 @@ class TAThemeDistributionTable{
             folder: _folder,
             table: _table
         });
+
+        _taMasks = new TAMasks({
+            context: context,
+            folder: _folder
+        });
+
         _sentiment = params.sentiment === "emptyv" ? "all" : params.sentiment;
+        _selectedCategory = params.category && params.category !== "emptyv" ? params.category : "all";
 
         _period = {
             Unit: params.period ? params.period : "m",
@@ -100,9 +109,22 @@ class TAThemeDistributionTable{
      * @function _getRowheadersExpression
      */
     private function _getRowheadersExpression(){
-        var overallQuestion = _taTableUtils.GetTAQuestionExpression("overallsentiment");
-        var categoryQuestion = _taTableUtils.GetTAQuestionExpression("categorysentiment");
-        var rowexpr = overallQuestion + "+" + categoryQuestion;
+        var rowexpr = "";
+
+        var overallHeader = _taTableUtils.GetTAQuestionExpression("overallsentiment");
+        var qType = "categorysentiment";
+        var categoryHeader = "(";
+
+        var mask = false;
+
+        if( _selectedCategory != "all" ){
+            mask = _taMasks.GetAllChildrenMask(_selectedCategory);
+            mask.push(_selectedCategory)
+        }
+
+        categoryHeader += _taTableUtils.GetTAQuestionExpression(qType, mask) + ")";
+
+        rowexpr += overallHeader + "+" + categoryHeader;
 
         return rowexpr;
     }

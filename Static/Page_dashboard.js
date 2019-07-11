@@ -176,11 +176,14 @@ class Page_dashboard{
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var period = context.state.Parameters.IsNull("TA_PERIOD") ? "m" : context.state.Parameters.GetString("TA_PERIOD");
 
+        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+
         var themeDistributionTable = new TAThemeDistributionTable({
             context: context,
             folder: folder,
             table: table,
             sentiment: sentiment,
+            category: selectedCategory,
             config: Config,
             period: period
         });
