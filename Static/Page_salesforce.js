@@ -134,7 +134,7 @@ class Page_salesforce{
         for (var i = 0; i < headerTitles.length; i++) {
             var column: HeaderContent = new HeaderContent();
             column.Title.Texts.Add(new LanguageText(currentLanguage, headerTitles[i]));
-            table.Columns.Add(column);
+            table.ColumnHeaders.Add(column);
         }
 
         var correlationData = SalesforceUtil.GetCorrelationData(context, false);
