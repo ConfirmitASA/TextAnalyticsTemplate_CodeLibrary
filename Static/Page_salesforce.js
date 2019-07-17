@@ -119,6 +119,7 @@ class Page_salesforce{
         var currentDictionary = Translations.dictionary(currentLanguage);
         var period = state.Parameters.IsNull("TA_SALESFORCE_PERIOD") ? "m" : state.Parameters.GetString("TA_SALESFORCE_PERIOD");
 
+
         var headerTitles = [
             currentDictionary["impact analysis widget title issues"],
             currentDictionary["impact analysis widget title strength"],
@@ -131,8 +132,9 @@ class Page_salesforce{
         ];
 
         for (var i = 0; i < headerTitles.length; i++) {
-            var column: HeaderContent = table.ColumnHeaders[i];
+            var column: HeaderContent = new HeaderContent();
             column.Title.Texts.Add(new LanguageText(currentLanguage, headerTitles[i]));
+            table.Columns.Add(column);
         }
 
         var correlationData = SalesforceUtil.GetCorrelationData(context, false);
