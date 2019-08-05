@@ -191,6 +191,66 @@ class Page_wordcloud{
 
     /**
      * @memberof Page_wordcloud
+     * @function htlComments_Render
+     * @description function to render the hitlist
+     * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function htlComments_Render(context){
+        if(!Config.GetTALibrary()){
+            Config.SetTALibrary(context);
+        }
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        //var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+
+        var htlComments = new TAHitlistUtils({context: context, folder: folder});
+
+        /*if( selectedCategory && selectedCategory !== "emptyv" ){
+            htlComments.AddTAColumn({
+                context: context,
+                columnName:"categorysentiment",
+                sortable: true,
+                postfix: selectedCategory
+            });
+        }*/
+
+        // custom question - Property Name
+        htlComments.AddColumn({
+            context: context,
+            columnName: "property_name",
+            sortable: true
+        });
+
+        // custom question - Apartment Number
+        htlComments.AddColumn({
+            context: context,
+            columnName: "apartment_number",
+            sortable: true
+        });
+
+        htlComments.AddTAColumn({context: context, columnName: "verbatim", sortable: true});
+
+        htlComments.AddColumn({
+            context: context,
+            columnName: folder.GetTimeVariableId(),
+            sortable: true
+        });
+
+        htlComments.AddTAColumn({context: context, columnName: "overallsentiment", sortable: true, notSearchable: true});
+        htlComments.AddTAColumn({context: context, columnName: "categories"});
+
+        htlComments.AddConfiguredColumns(context);
+
+        htlComments.AddColumn({
+            context: context,
+            columnName: "Rep_Channel",
+            sortable: true
+        });
+    }
+
+    /**
+     * @memberof Page_wordcloud
      * @function txtCommentsScript_Render
      * @description function to render the script which processes hitlist
      * @param {Object} context - {component: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
