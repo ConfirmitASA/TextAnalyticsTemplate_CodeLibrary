@@ -226,7 +226,8 @@ class Page_wordcloud{
         htlComments.AddColumn({
             context: context,
             columnName: "apartment_number",
-            sortable: true
+            sortable: true,
+            notSearchable: true
         });
 
         htlComments.AddTAColumn({context: context, columnName: "verbatim", sortable: true});
