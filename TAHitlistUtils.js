@@ -137,8 +137,8 @@ class TAHitlistUtils{
         for( var i = 0; i < columns.length; i++){
             hitlistColumn = new HitListColumn();
             hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columns[i]);
-            hitlistColumn.IsSortable = false;
-            hitlistColumn.IsSearchable = false;
+            hitlistColumn.IsSortable = YesNoDefaultValue.No;
+            hitlistColumn.IsSearchable = YesNoDefaultValue.No;
             _hitlist.Columns.Add(hitlistColumn);
         }
     }
