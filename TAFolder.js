@@ -20,6 +20,8 @@ class TAFolder{
     private var _timeVariableId: String;
     private var _datasourceId: String;
     private var _variablesToViewBy;
+    private var _hitlistColumnsBeforeComment;
+    private var _wordCloudExportHitlistColumnsBeforeComment;
     private var _hitlistColumns;
     private var _filterQuestions;
     private var _correlationVariableId;
@@ -220,6 +222,28 @@ class TAFolder{
      */
     function GetSignificantTestScore(){
         return _significantTestScore;
+    }
+
+    /**
+     * @memberof TAFolder
+     * @instance
+     * @function GetHitlistColumnsBeforeComment
+     * @description function to Get array of qIds to use before column with the comments in the hitlist
+     * @returns {String[]}
+     */
+    function GetHitlistColumnsBeforeComment(){
+        return _hitlistColumnsBeforeComment;
+    }
+
+    /**
+     * @memberof TAFolder
+     * @instance
+     * @function GetWordCloudExportHitlistColumnsBeforeComment
+     * @description function to Get array of qIds to use before column with the comments and after HitlistColumnsBeforeComment in the hitlist
+     * @returns {String[]}
+     */
+    function GetWordCloudExportHitlistColumnsBeforeComment(){
+        return _wordCloudExportHitlistColumnsBeforeComment;
     }
 
     /**

@@ -99,4 +99,47 @@ class TAHitlistUtils{
             _hitlist.Columns.Add(hitlistColumn);
         }
     }
+
+    /**
+     * @memberof TAHitlistUtils
+     * @instance
+     * @function AddHitlistColumnsBeforeComment
+     * @description function to add HitlistColumnsBeforeComment from config
+     * @param {Object} context - {componet: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    function AddHitlistColumnsBeforeComment(context){
+        var hitlistColumn: HitListColumn;
+        var project : Project = context.report.DataSource.GetProject(_folder.GetDatasourceId());
+
+        var columns = _folder.GetHitlistColumnsBeforeComment();
+
+        for( var i = 0; i < columns.length; i++){
+            hitlistColumn = new HitListColumn();
+            hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columns[i]);
+            hitlistColumn.IsSortable = true;
+            _hitlist.Columns.Add(hitlistColumn);
+        }
+    }
+
+    /**
+     * @memberof TAHitlistUtils
+     * @instance
+     * @function AddWordCloudExportHitlistColumnsBeforeComment
+     * @description function to add WordCloudExportitlistColumnsBeforeComment from config
+     * @param {Object} context - {componet: hitlist, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    function AddWordCloudExportHitlistColumnsBeforeComment(context){
+        var hitlistColumn: HitListColumn;
+        var project : Project = context.report.DataSource.GetProject(_folder.GetDatasourceId());
+
+        var columns = _folder.GetWordCloudExportHitlistColumnsBeforeComment();
+
+        for( var i = 0; i < columns.length; i++){
+            hitlistColumn = new HitListColumn();
+            hitlistColumn.QuestionnaireElement = project.CreateQuestionnaireElement(columns[i]);
+            hitlistColumn.IsSortable = false;
+            hitlistColumn.IsSearchable = false;
+            _hitlist.Columns.Add(hitlistColumn);
+        }
+    }
 }

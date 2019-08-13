@@ -215,20 +215,9 @@ class Page_wordcloud{
             });
         }*/
 
-        // custom question - Property Name
-        htlComments.AddColumn({
-            context: context,
-            columnName: "property_name",
-            sortable: true
-        });
+        htlComments.AddHitlistColumnsBeforeComment(context);
 
-        // custom question - Apartment Number
-        htlComments.AddColumn({
-            context: context,
-            columnName: "apartment_number",
-            sortable: true,
-            notSearchable: true
-        });
+        htlComments.AddWordCloudExportHitlistColumnsBeforeComment(context);
 
         htlComments.AddTAColumn({context: context, columnName: "verbatim", sortable: true});
 

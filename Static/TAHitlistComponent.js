@@ -37,12 +37,7 @@ class TAHitlistComponent {
             });
         }*/
 
-        // custom question - Property Name
-        htlComments.AddColumn({
-            context: context,
-            columnName: "property_name",
-            sortable: true
-        });
+        htlComments.AddHitlistColumnsBeforeComment(context);
 
         htlComments.AddTAColumn({context: context, columnName: "verbatim", sortable: true});
 
