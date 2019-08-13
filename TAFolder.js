@@ -46,6 +46,10 @@ class TAFolder{
 
         _variablesToViewBy = config.TAQuestions[questionIndex].VariablesToViewBy;
 
+        _hitlistColumnsBeforeComment = config.TAQuestions[questionIndex].HitlistColumnsBeforeComment;
+
+        _wordCloudExportHitlistColumnsBeforeComment = config.TAQuestions[questionIndex].WordCloudExportHitlistColumnsBeforeComment;
+
         _hitlistColumns = config.TAQuestions[questionIndex].HitlistColumns;
 
         _filterQuestions = config.TAQuestions[questionIndex].FilterQuestions;
