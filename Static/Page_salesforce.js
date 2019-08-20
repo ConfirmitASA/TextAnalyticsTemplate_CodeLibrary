@@ -107,6 +107,19 @@ class Page_salesforce{
 
     /**
      * @memberof Page_salesforce
+     * @function txtSalesforceQuestion_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtSalesforceQuestion_Render(context){
+        var state = context.state;
+        var text = context.component;
+
+        var val = (ParameterValueResponse)(state.Parameters["TA_SALESFORCE_QUESTION"]).StringKeyValue;
+        text.Output.Append(val);
+    }
+
+    /**
+     * @memberof Page_salesforce
      * @function tblSalesforce_Render
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
