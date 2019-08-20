@@ -114,7 +114,7 @@ class Page_salesforce{
         var state = context.state;
         var text = context.component;
 
-        var val = (ParameterValueResponse)(state.Parameters["TA_SALESFORCE_QUESTION"]).StringKeyValue;
+        var val = (ParameterValueResponse)(state.Parameters["TA_SALESFORCE_QUESTION"]).StringValue;
         text.Output.Append(val);
     }
 
