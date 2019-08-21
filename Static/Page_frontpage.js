@@ -229,7 +229,6 @@ class Page_frontpage{
             period: period
         });
 
-        themeDistributionTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-hierarchy-table"]);
         themeDistributionTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "word_cloud");
         themeDistributionTable.GetTATableUtils().ClearTableDistributions();
         themeDistributionTable.GetTATableUtils().SetupDataSupressing(1);
