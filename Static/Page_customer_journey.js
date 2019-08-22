@@ -50,6 +50,8 @@ class Page_customer_journey{
      */
     static function txtCustomerJourneyCardsScript_Render(context){
         var cardsInit = "<script>" +
+        "const log = document.querySelector('#log');" +
+        "log.innerHTML += 'code library<br>';" +
             "new Reportal.CustomerJourneyCards({" +
             "translations: translations," +
             "tableContainerId:'cj_drilldown'," +
