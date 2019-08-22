@@ -51,8 +51,8 @@ class Page_frontpage{
     static function txtJourneyWidgetScript_Render(context) {
         var widgetInit = "<script>" +
             "new Reportal.JourneyWidget({" +
-            "tableContainerId:'customer-journey-table'," +
-            "drilldownId:'customer-journey-table'," +
+            "tableContainerId:'cj_drilldown'," +
+            "drilldownId:'cj_drilldown'," +
             "translations: translations," +
             "cardContainerId: 'cards-container-first-row'," +
             "CJ_options: CJ_options});" +
