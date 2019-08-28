@@ -53,7 +53,7 @@ class SalesforceUtil{
         var volumeChangesNegArr = [];
         var volumeChangesPosArr = [];
 
-        for(var i = 0; i < currentCountValues.length; i++) {
+        for(var i = 1; i < currentCountValues.length; i++) {
             var label : String = labels[i];
             var prevCount = previousCountValues[i].Value;
             var prevStDev = (previousStDevValues[i].Value).toFixed(4);

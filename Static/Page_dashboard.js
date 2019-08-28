@@ -229,16 +229,16 @@ class Page_dashboard{
         var upgradeText = "<script type=\"text/javascript\">"+
             "var upgradedTable = new Reportal.AggregatedTable("+
             "{"+
-            "table: document.querySelector('table.reportal-hierarchy-table'),"+
+            "table: document.querySelector('#theme-distribution table.reportal-hierarchy-table'),"+
             "hierarchy: {"+
             "blocks: [],"+
             "hierarchy:"+JSON.stringify(hierarchy)+","+
             "rowheaders:"+JSON.stringify(headers)+","+
-            "search:{enabled: true},"+
+            "search:{enabled: " + !(context.state.ReportExecutionMode === ReportExecutionMode.PdfExport) + "},"+
             "clearLinks:false"+
             "},"+
             "search:{},"+
-            "fixedHeader:{},"+
+            "fixedHeader:" + (context.state.ReportExecutionMode === ReportExecutionMode.PdfExport ? "''" :"{}") +
             "}"+
             ");"+
             "var significantTesting = new Reportal.ThemeDistributionTable("+
@@ -354,7 +354,7 @@ class Page_dashboard{
         var chartInit = "<script>" +
             "var themeDistributionChart = new Reportal.ThemeDistributionChart({" +
             "chartContainer:'theme-distribution-chart'," +
-            "tableContainer: document.querySelector('#theme-distribution .aggregatedTableContainer > table')," +
+            "tableContainer: document.querySelector('#theme-distribution table')," +
             "categoryOptions: categoryOptions," +
             "drilldownButtonContainer: 'drilldown-button-container'," +
             "palette: palette," +
@@ -392,7 +392,7 @@ class Page_dashboard{
             "new Reportal.SignificantChangesAlerts({" +
             "translations:translations," +
             "period:'" + period + "'," +
-            "table: document.querySelector('#theme-distribution .aggregatedTableContainer > table')," +
+            "table: document.querySelector('#theme-distribution table')," +
             "separator: '" + (textSeparator ? textSeparator : "") + "',"+
             "containerId:'alerts-container'," +
             "drilldownButtonContainer:'drilldown-button-container'," +
