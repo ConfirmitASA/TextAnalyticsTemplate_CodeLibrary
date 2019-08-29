@@ -417,7 +417,7 @@ class Page_dashboard{
             var hideTop5Script = "<script>" +
                 "var top5SectionElements = document.querySelectorAll('.top5');" +
                 "for (var i = 0; i < top5SectionElements.length; i++) {" +
-                "top5SectionElements[i].style.display = 'none!important'" +
+                "top5SectionElements[i].classList += ' top5_hidden'" +
                 "}" +
                 "</script>";
             context.component.Output.Append(hideTop5Script);
