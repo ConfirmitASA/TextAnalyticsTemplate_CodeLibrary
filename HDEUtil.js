@@ -1,4 +1,4 @@
-class SalesforceUtil{
+class HDEUtil{
     static function GetCorrelationData(context, returnIds){
         var report = context.report;
 

@@ -186,17 +186,17 @@ class TAFilters {
 
     /**
      * @memberof TAFilters
-     * @function TASalesforceFilter
-     * @description function to create expression that filtrates Salesforce page by salesforce parameter
+     * @function TAHDEFilter
+     * @description function to create expression that filtrates Headlines Data Export page by headlines data export parameter
      * @param {Object} context - {component: filter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function TASalesforceFilter(context){
+    static function TAHDEFilter(context){
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var salesforceParameters = folder.GetSalesforceParameters();
-        var salesforceQuestionId = salesforceParameters.IteratedQuestionId;
+        var hdeParameters = folder.GetHDEParameters();
+        var hdeQuestionId = hdeParameters.IteratedQuestionId;
 
-        context.component.Expression = 'IN(' + salesforceQuestionId + ', PValStr("TA_SALESFORCE_QUESTION"))';
+        context.component.Expression = 'IN(' + hdeQuestionId + ', PValStr("TA_HDE_QUESTION"))';
     }
 }

@@ -26,7 +26,7 @@ class TAFolder{
     private var _correlationSuppressingBase;
     private var _significantTestScore;
     private var _correlationVariableShownName;
-    private var _salesforceParameters;
+    private var _hdeParameters;
     private var _hideTop5Section;
 
     private var _hierarchy: TAHierarchy;
@@ -57,7 +57,7 @@ class TAFolder{
 
         _correlationVariableShownName = config.TAQuestions[questionIndex].CorrelationVariableShownName;
 
-        _salesforceParameters = config.TAQuestions[questionIndex].Salesforce;
+        _hdeParameters = config.TAQuestions[questionIndex].HeadlinesDataExport;
 
         _hideTop5Section = config.TAQuestions[questionIndex].ShowTop5Section == true ? false : true;
 
@@ -272,12 +272,12 @@ class TAFolder{
     /**
      * @memberof TAFolder
      * @instance
-     * @function GetSalesforceParameters
-     * @description function to salesforce parameters to use for Salesforce page
+     * @function GetHDEParameters
+     * @description function to get Headlines Data Export parameters to use for Headlines Data Export page
      * @returns {Object}
      */
-    function GetSalesforceParameters(){
-        return _salesforceParameters;
+    function GetHDEParameters(){
+        return _hdeParameters;
     }
 
     /**
