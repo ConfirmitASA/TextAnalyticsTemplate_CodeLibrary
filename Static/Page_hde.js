@@ -1,10 +1,10 @@
 /**
- * @class Page_salesforce
- * @classdesc Static class for Reportal Salesforce components
+ * @class Page_hde
+ * @classdesc Static class for Reportal Headlines Data Export components
  */
-class Page_salesforce{
+class Page_hde{
     /**
-     * @memberof Page_salesforce
+     * @memberof Page_hde
      * @function Render
      * @description function to render the page
      * @param {Object} context - {component: page, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -14,13 +14,13 @@ class Page_salesforce{
 
         TAPageRenderer.InitiateParameters(context);
         TAPageRenderer.InitiateFilters(context);
-        TAPageRenderer.SetLastVisitedPage(context, "salesforce");
+        TAPageRenderer.SetLastVisitedPage(context, "hde");
         TAPageRenderer.ClearCategoriesParameters(context);
         TAPageRenderer.ProcessSelectedCategoryParameter(context);
     }
 
     /**
-     * @memberof Page_salesforce
+     * @memberof Page_hde
      * @function tblCorrelation_Render
      * @description function to render the sentiment selector label
      * @param {Object} context - {component: table, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
@@ -40,7 +40,7 @@ class Page_salesforce{
     }
 
     /**
-     * @memberof Page_salesforce
+     * @memberof Page_hde
      * @function tblOverallSentimentChange_Render
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -50,7 +50,7 @@ class Page_salesforce{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var period = context.state.Parameters.IsNull("TA_SALESFORCE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_SALESFORCE_PERIOD");
+        var period = context.state.Parameters.IsNull("TA_HDE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_HDE_PERIOD");
 
         var osatTable = new TAOverallSentimentChangeTable({
             context: context,
@@ -64,7 +64,7 @@ class Page_salesforce{
     }
 
     /**
-     * @memberof Page_salesforce
+     * @memberof Page_hde
      * @function tblSignificantChangeAlerts_Render
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -75,7 +75,7 @@ class Page_salesforce{
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-        var period = context.state.Parameters.IsNull("TA_SALESFORCE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_SALESFORCE_PERIOD");
+        var period = context.state.Parameters.IsNull("TA_HDE_PERIOD") ? "m" : context.state.Parameters.GetString("TA_HDE_PERIOD");
 
         var themeDistributionTable = new TAThemeDistributionTable({
             context: context,
@@ -94,43 +94,43 @@ class Page_salesforce{
     }
 
     /**
-     * @memberof Page_salesforce
-     * @function tblSalesforce_Hide
+     * @memberof Page_hde
+     * @function tblHDE_Hide
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function tblSalesforce_Hide(context) {
+    static function tblHDE_Hide(context) {
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        return !folder.GetSalesforceParameters();
+        return !folder.GetHDEParameters();
     }
 
     /**
-     * @memberof Page_salesforce
-     * @function txtSalesforceQuestion_Render
+     * @memberof Page_hde
+     * @function txtHDEQuestion_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function txtSalesforceQuestion_Render(context){
+    static function txtHDEQuestion_Render(context){
         var state = context.state;
         var text = context.component;
 
-        var val = (ParameterValueResponse)(state.Parameters["TA_SALESFORCE_QUESTION"]).StringValue;
+        var val = (ParameterValueResponse)(state.Parameters["TA_HDE_QUESTION"]).StringValue;
         text.Output.Append(val);
     }
 
     /**
-     * @memberof Page_salesforce
-     * @function tblSalesforce_Render
+     * @memberof Page_hde
+     * @function tblHDE_Render
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
-    static function tblSalesforce_Render(context) {
+    static function tblHDE_Render(context) {
         var table = context.component;
         var report = context.report;
         var state = context.state;
 
         var currentLanguage = report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
-        var period = state.Parameters.IsNull("TA_SALESFORCE_PERIOD") ? "m" : state.Parameters.GetString("TA_SALESFORCE_PERIOD");
+        var period = state.Parameters.IsNull("TA_HDE_PERIOD") ? "m" : state.Parameters.GetString("TA_HDE_PERIOD");
 
 
         var headerTitles = [
@@ -138,10 +138,10 @@ class Page_salesforce{
             currentDictionary["impact analysis widget title strength"],
             currentDictionary["osat widget title"] + " - " + currentDictionary["osat widget previous period"] + " " + currentDictionary[period],
             currentDictionary["osat widget title"] + " - " + currentDictionary["osat widget current period"] + " " + currentDictionary[period],
-            currentDictionary["salesforce table - negative significant changes in sentiment"],
-            currentDictionary["salesforce table - positive significant changes in sentiment"],
-            currentDictionary["salesforce table - negative significant changes in volume"],
-            currentDictionary["salesforce table - positive significant changes in volume"]
+            currentDictionary["hde table - negative significant changes in sentiment"],
+            currentDictionary["hde table - positive significant changes in sentiment"],
+            currentDictionary["hde table - negative significant changes in volume"],
+            currentDictionary["hde table - positive significant changes in volume"]
         ];
 
         for (var i = 0; i < headerTitles.length; i++) {
@@ -150,15 +150,15 @@ class Page_salesforce{
             table.ColumnHeaders.Add(column);
         }
 
-        var correlationData = SalesforceUtil.GetCorrelationData(context, false);
+        var correlationData = HDEUtil.GetCorrelationData(context, false);
         var improvementsArr = correlationData.improvementsArr;
         var strengthArr = correlationData.strengthArr;
 
-        var OSATData = SalesforceUtil.GetOSATData(context, false);
+        var OSATData = HDEUtil.GetOSATData(context, false);
         var previousSentiment = OSATData.previousSentiment;
         var currentSentiment = OSATData.currentSentiment;
 
-        var sigChangesData = SalesforceUtil.GetSignificantChangesData(context, false);
+        var sigChangesData = HDEUtil.GetSignificantChangesData(context, false);
         var sentimentChangesNegArr = sigChangesData.sentimentChangesNegArr;
         var sentimentChangesPosArr = sigChangesData.sentimentChangesPosArr;
         var volumeChangesNegArr = sigChangesData.volumeChangesNegArr;
@@ -184,7 +184,7 @@ class Page_salesforce{
     }
 
     /**
-     * @memberof Page_salesforce
+     * @memberof Page_hde
      * @function txtImgExport_Hide
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -192,11 +192,11 @@ class Page_salesforce{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        return !folder.GetSalesforceParameters();
+        return !folder.GetHDEParameters();
     }
 
     /**
-     * @memberof Page_salesforce
+     * @memberof Page_hde
      * @function txtImgExport_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -207,25 +207,25 @@ class Page_salesforce{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var salesforceParameters = folder.GetSalesforceParameters();
-        if (!salesforceParameters) {
+        var hdeParameters = folder.GetHDEParameters();
+        if (!hdeParameters) {
             return;
         }
 
-        var selectParameter = state.Parameters["TA_SALESFORCE_QUESTION"].StringKeyValue;
+        var selectParameter = state.Parameters["TA_HDE_QUESTION"].StringKeyValue;
         selectParameter = selectParameter ? selectParameter : "1";
 
-        var surveyId = salesforceParameters.SurveyId;
+        var surveyId = hdeParameters.SurveyId;
         var server = Config.ServerId;
-        var correlationData = SalesforceUtil.GetCorrelationData(context, true);
+        var correlationData = HDEUtil.GetCorrelationData(context, true);
         var improvementsArr = correlationData.improvementsArr;
         var strengthArr = correlationData.strengthArr;
 
-        var OSATData = SalesforceUtil.GetOSATData(context, true);
+        var OSATData = HDEUtil.GetOSATData(context, true);
         var previousSentiment = OSATData.previousSentiment;
         var currentSentiment = OSATData.currentSentiment;
 
-        var sigChangesData = SalesforceUtil.GetSignificantChangesData(context, true);
+        var sigChangesData = HDEUtil.GetSignificantChangesData(context, true);
         var sentimentChangesNegArr = sigChangesData.sentimentChangesNegArr;
         var sentimentChangesPosArr = sigChangesData.sentimentChangesPosArr;
         var volumeChangesNegArr = sigChangesData.volumeChangesNegArr;

@@ -30,15 +30,15 @@ class TAPageRenderer{
             );
         }
 
-        var salesforceParameters = folder.GetSalesforceParameters();
-        if (salesforceParameters) {
+        var hdeParameters = folder.GetHDEParameters();
+        if (hdeParameters) {
             TAParameterUtilities.SetDefaultParameterValues(
                 {
                     context: context,
                     parameterValues: [
                         {
-                            Id: "TA_SALESFORCE_PERIOD",
-                            Value: salesforceParameters.TimePeriod
+                            Id: "TA_HDE_PERIOD",
+                            Value: hdeParameters.TimePeriod
                         }
                     ]
                 }

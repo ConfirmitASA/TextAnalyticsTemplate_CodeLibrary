@@ -380,13 +380,13 @@ class TAParametersBuilder{
 
     /**
      * @memberof TAParametersBuilder
-     * @function RenderSalesforceQuestionParameter
-     * @description render parameter for salesforce
+     * @function RenderHDEQuestionParameter
+     * @description render parameter for Headlines Data Export
      * @param {Object} params - {
      *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      * }
      */
-    static function RenderSalesforceQuestionParameter(params){
+    static function RenderHDEQuestionParameter(params){
         var context = params.context;
 
         Config.SetTALibrary(context);
@@ -394,20 +394,20 @@ class TAParametersBuilder{
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
-        var salesforceParameters = folder.GetSalesforceParameters();
-        if (!salesforceParameters) {
+        var hdeParameters = folder.GetHDEParameters();
+        if (!hdeParameters) {
             return;
         }
 
         var dataSource = folder.GetDatasourceId();
         var project  = context.report.DataSource.GetProject(dataSource);
 
-        var salesforceQuestionId = salesforceParameters.IteratedQuestionId;
-        var salesforceQuestion = project.GetQuestion(salesforceQuestionId);
+        var hdeQuestionId = hdeParameters.IteratedQuestionId;
+        var hdeQuestion = project.GetQuestion(hdeQuestionId);
 
-        if(salesforceQuestion){
+        if(hdeQuestion){
             var parameterValues = [];
-            var answers = salesforceQuestion.GetAnswers();
+            var answers = hdeQuestion.GetAnswers();
             for(var i = 0; i < answers.length; i++){
                 parameterValues.push({
                     Code: answers[i].Precode,
