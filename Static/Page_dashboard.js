@@ -423,6 +423,15 @@ class Page_dashboard{
                 "</script>";
             context.component.Output.Append(hideTop5Script);
         }
+        else {
+            var removePageBreakScript = "<script>" +
+                "var top5SectionElements = document.querySelectorAll('.top5');" +
+                "for (var i = 0; i < top5SectionElements.length; i++) {" +
+                "top5SectionElements[i].classList.remove('page-break');" +
+                "}" +
+                "</script>";
+            context.component.Output.Append(removePageBreakScript);
+        }
     }
 
     /**
