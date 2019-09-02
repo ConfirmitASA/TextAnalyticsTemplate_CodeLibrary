@@ -379,50 +379,6 @@ class TAParametersBuilder{
     }
 
     /**
-     * @memberof TAParametersBuilder
-     * @function RenderSalesforceQuestionParameter
-     * @description render parameter for salesforce
-     * @param {Object} params - {
-     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     * }
-     */
-    static function RenderSalesforceQuestionParameter(params){
-        var context = params.context;
-
-        Config.SetTALibrary(context);
-
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
-
-        var salesforceParameters = folder.GetSalesforceParameters();
-        if (!salesforceParameters) {
-            return;
-        }
-
-        var dataSource = folder.GetDatasourceId();
-        var project  = context.report.DataSource.GetProject(dataSource);
-
-        var salesforceQuestionId = salesforceParameters.IteratedQuestionId;
-        var salesforceQuestion = project.GetQuestion(salesforceQuestionId);
-
-        if(salesforceQuestion){
-            var parameterValues = [];
-            var answers = salesforceQuestion.GetAnswers();
-            for(var i = 0; i < answers.length; i++){
-                parameterValues.push({
-                    Code: answers[i].Precode,
-                    Label: answers[i].Text
-                });
-            }
-
-            TAParameterUtilities.LoadParameterValues({
-                context: context,
-                parameterValues: parameterValues
-            });
-        }
-    }
-
-    /**
      * @memberof TAHelper
      * @function GetSelectedCategory
      * @description function to get id of selected category, subcategory or attribute

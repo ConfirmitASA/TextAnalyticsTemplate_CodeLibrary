@@ -469,15 +469,4 @@ class TAParameters{
             parameterValues: parameterValues
         });
     }
-
-    /**
-     * @memberof TAParameters
-     * @function TA_SALESFORCE_QUESTION_Domain
-     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
-     */
-    static function TA_SALESFORCE_QUESTION_Domain(context){
-        TAParametersBuilder.RenderSalesforceQuestionParameter({
-            context: context
-        });
-    }
 }

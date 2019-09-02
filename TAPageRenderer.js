@@ -42,21 +42,6 @@ class TAPageRenderer{
             );
         }
 
-        var salesforceParameters = folder.GetSalesforceParameters();
-        if (salesforceParameters) {
-            TAParameterUtilities.SetDefaultParameterValues(
-                {
-                    context: context,
-                    parameterValues: [
-                        {
-                            Id: "TA_SALESFORCE_PERIOD",
-                            Value: salesforceParameters.TimePeriod
-                        }
-                    ]
-                }
-            );
-        }
-
         TAParameterUtilities.SetDefaultParameterValuesForEmpty({
             context: context,
             parameterValues: TADefaultParameters.values.concat(
