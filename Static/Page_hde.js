@@ -213,7 +213,7 @@ class Page_hde{
         }
 
         var selectParameter = state.Parameters["TA_HDE_QUESTION"].StringKeyValue;
-        selectParameter = selectParameter ? selectParameter : "1";
+        selectParameter = selectParameter ? selectParameter : "headlinesexporterror";
 
         var surveyId = hdeParameters.SurveyId;
         var server = Config.ServerId;
