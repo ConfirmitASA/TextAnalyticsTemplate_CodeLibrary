@@ -161,7 +161,7 @@ class Page_correlation{
             "   chartContainer: 'correlation-chart'," +
             "   tableContainer: 'correlation-tables-view'," +
             "   buttonsContainer: 'chart-tables-switcher'," +
-            "   table: document.querySelector('article .correlation-table')," +
+            "   table: document.querySelector('.r2i-widget .correlation-table')," +
             "   palette: palette," +
             "   questionName: '" + (correlationVariableName || correlationQuestion.Title || correlationVariableId) + "'," +
             "   translations: translations" +
