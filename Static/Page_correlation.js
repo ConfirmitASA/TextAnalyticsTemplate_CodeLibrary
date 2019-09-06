@@ -50,7 +50,7 @@ class Page_correlation{
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
         var correlationTable = new TACorrelationTable({context: context, folder: folder, category: selectedCategory, question: selectedQuestion});
 
-        correlationTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table"]);
+        correlationTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "correlation-table", "correlation-table-correlation-page"]);
         correlationTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "correlation");
         correlationTable.GetTATableUtils().SetupHideEmptyRows(true);
     }
@@ -161,7 +161,7 @@ class Page_correlation{
             "   chartContainer: 'correlation-chart'," +
             "   tableContainer: 'correlation-tables-view'," +
             "   buttonsContainer: 'chart-tables-switcher'," +
-            "   table: document.querySelectorAll('.correlation-table')[document.querySelectorAll('.correlation-table').length -1 ]," +
+            "   table: document.querySelector('correlation-table-correlation-page')," +
             "   palette: palette," +
             "   questionName: '" + (correlationVariableName || correlationQuestion.Title || correlationVariableId) + "'," +
             "   translations: translations" +
