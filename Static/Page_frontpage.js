@@ -185,6 +185,11 @@ class Page_frontpage{
         var currentDictionary = Translations.dictionary(currentLanguage);
         context.component.Output.Append(JSON.print(currentDictionary,"translations"));
 
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+
+        var textSeparator = folder.GetHierarchy().GetTextSeparator();
+
         var widgetThemeInit = "<script>" +
             "new Reportal.ImpactAnalysisWidget({" +
             "translations: translations," +
@@ -192,6 +197,7 @@ class Page_frontpage{
             "levelName: 'theme'," +
             "tableContainerId:'theme-table'," +
             "drilldownId:'drilldown-btn'," +
+            "textSeparator:'" + textSeparator + "'," +
             "cardContainerId: 'cards-container-first-row'," +
             "});" +
             "</script>";
@@ -203,6 +209,7 @@ class Page_frontpage{
             "levelName: 'theme'," +
             "tableContainerId:'theme-table'," +
             "drilldownId:'drilldown-btn'," +
+            "textSeparator:'" + textSeparator + "'," +
             "cardContainerId: 'cards-container-first-row'," +
             "});" +
             "</script>";
@@ -219,6 +226,7 @@ class Page_frontpage{
                 "levelName: 'subcategory'," +
                 "tableContainerId:'sub-category-table'," +
                 "drilldownId:'drilldown-btn'," +
+                "textSeparator:'" + textSeparator + "'," +
                 "cardContainerId: 'cards-container-second-row'," +
                 "});" +
                 "</script>";
@@ -230,6 +238,7 @@ class Page_frontpage{
                 "levelName: 'subcategory'," +
                 "tableContainerId:'sub-category-table'," +
                 "drilldownId:'drilldown-btn'," +
+                "textSeparator:'" + textSeparator + "'," +
                 "cardContainerId: 'cards-container-second-row'," +
                 "});" +
                 "</script>";
@@ -247,6 +256,7 @@ class Page_frontpage{
                 "levelName: 'attribute'," +
                 "tableContainerId:'attribute-table'," +
                 "drilldownId:'drilldown-btn'," +
+                "textSeparator:'" + textSeparator + "'," +
                 "cardContainerId: 'cards-container-third-row'," +
                 "});" +
                 "</script>";
@@ -258,6 +268,7 @@ class Page_frontpage{
                 "levelName: 'attribute'," +
                 "tableContainerId:'attribute-table'," +
                 "drilldownId:'drilldown-btn'," +
+                "textSeparator:'" + textSeparator + "'," +
                 "cardContainerId: 'cards-container-third-row'," +
                 "});" +
                 "</script>";

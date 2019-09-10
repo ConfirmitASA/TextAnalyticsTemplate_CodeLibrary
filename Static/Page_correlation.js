@@ -156,6 +156,8 @@ class Page_correlation{
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
 
+        var textSeparator = folder.GetHierarchy().GetTextSeparator();
+
         var chartInit = "<script>"+
             "new Reportal.CorrelationView({" +
             "   chartContainer: 'correlation-chart'," +
@@ -164,6 +166,7 @@ class Page_correlation{
             "   table: document.querySelector('.correlation-table')," +
             "   palette: palette," +
             "   questionName: '" + (correlationVariableName || correlationQuestion.Title || correlationVariableId) + "'," +
+            "   textSeparator: '" + textSeparator + "'," +
             "   translations: translations" +
             "});"+
             "</script>";
