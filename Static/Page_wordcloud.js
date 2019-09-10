@@ -231,12 +231,6 @@ class Page_wordcloud{
         htlComments.AddTAColumn({context: context, columnName: "categories"});
 
         htlComments.AddConfiguredColumns(context);
-
-        htlComments.AddColumn({
-            context: context,
-            columnName: "Rep_Channel",
-            sortable: true
-        });
     }
 
     /**
