@@ -300,7 +300,7 @@ class TATableUtils{
         var chartValue: ChartComboValue;
         for(var i = 0; i< formulas.length; i++) {
             chartValue = new ChartComboValue();
-            chartValue.CssClass = "chart-value";
+            chartValue.CssClass = "chart-value" + " " + formulas[i].CssClass;
             chartValue.Expression = formulas[i].Formula;
             chartValue.BaseColor = new ChartComboColorSet([formulas[i].Color]);
             chartValues.push(chartValue);

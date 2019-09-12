@@ -206,15 +206,18 @@ class TADetailedAnalysisTable{
             [
                 {
                     Formula: "cellv(col-25,row)",
-                    Color: (Config.Colors.NegNeuPosPalette.Positive)
+                    Color: (Config.Colors.NegNeuPosPalette.Positive),
+                    CssClass: 'cf_positive'
                 },
                 {
                     Formula: "cellv(col-13,row)",
-                    Color: (Config.Colors.NegNeuPosPalette.Neutral)
+                    Color: (Config.Colors.NegNeuPosPalette.Neutral),
+                    CssClass: 'cf_neutral'
                 },
                 {
                     Formula: "cellv(col-1,row)",
-                    Color: (Config.Colors.NegNeuPosPalette.Negative)
+                    Color: (Config.Colors.NegNeuPosPalette.Negative),
+                    CssClass: 'cf_negative'
                 }
             ],
             " ");
