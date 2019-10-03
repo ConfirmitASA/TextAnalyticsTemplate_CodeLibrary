@@ -31,8 +31,8 @@ class TAPreviousYearsTrendTable{
         };
         _period_years = {
             Unit: "y",
-            From: -2,
-            To: 0
+            From: params.period && params.period.From ? params.period.From : -2,
+            To: params.period && params.period.To ? params.period.To : 0
         };
         _render();
     }
