@@ -37,6 +37,9 @@ class HDEUtil{
 
     static function GetSignificantChangesData(context, returnIds){
         var report = context.report;
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var confidencelLevelScore = folder.GetSignificantTestScore();
 
         var currentCountValues = report.TableUtils.GetColumnValues('tblSignificantChangeAlerts', 5);
         var previousCountValues = report.TableUtils.GetColumnValues('tblSignificantChangeAlerts', 1);
@@ -69,9 +72,9 @@ class HDEUtil{
                         ((prevCount - 1)*Math.pow(prevStDev, 2) + (currCount - 1)*Math.pow(currStDev, 2)) /
                         (prevCount + currCount - 2)
                     );
-                if (result < -1.96)
+                if (result < -confidencelLevelScore)
                     sentimentChangesNegArr.push(label);
-                else if (result > 1.96)
+                else if (result > confidencelLevelScore)
                     sentimentChangesPosArr.push(label);
             }
 
@@ -83,9 +86,9 @@ class HDEUtil{
                         (1/currentTotal + 1/previousTotal )
                     );
 
-                if (result < -1.96)
+                if (result < -confidencelLevelScore)
                     volumeChangesNegArr.push(label);
-                else if (result > 1.96)
+                else if (result > confidencelLevelScore)
                     volumeChangesPosArr.push(label);
             }
         }
