@@ -127,6 +127,8 @@ class Page_hde{
         var table = context.component;
         var report = context.report;
         var state = context.state;
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
         var currentLanguage = report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
@@ -158,7 +160,7 @@ class Page_hde{
         var previousSentiment = OSATData.previousSentiment;
         var currentSentiment = OSATData.currentSentiment;
 
-        var sigChangesData = HDEUtil.GetSignificantChangesData(context, false);
+        var sigChangesData = HDEUtil.GetSignificantChangesData(context, folder, false);
         var sentimentChangesNegArr = sigChangesData.sentimentChangesNegArr;
         var sentimentChangesPosArr = sigChangesData.sentimentChangesPosArr;
         var volumeChangesNegArr = sigChangesData.volumeChangesNegArr;
@@ -225,7 +227,7 @@ class Page_hde{
         var previousSentiment = OSATData.previousSentiment;
         var currentSentiment = OSATData.currentSentiment;
 
-        var sigChangesData = HDEUtil.GetSignificantChangesData(context, true);
+        var sigChangesData = HDEUtil.GetSignificantChangesData(context, folder, true);
         var sentimentChangesNegArr = sigChangesData.sentimentChangesNegArr;
         var sentimentChangesPosArr = sigChangesData.sentimentChangesPosArr;
         var volumeChangesNegArr = sigChangesData.volumeChangesNegArr;

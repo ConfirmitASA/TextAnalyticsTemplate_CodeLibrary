@@ -35,10 +35,8 @@ class HDEUtil{
         return {previousSentiment: previousSentiment, currentSentiment: currentSentiment};
     }
 
-    static function GetSignificantChangesData(context, returnIds){
+    static function GetSignificantChangesData(context, folder, returnIds){
         var report = context.report;
-        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
-        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
         var confidencelLevelScore = folder.GetSignificantTestScore();
 
         var currentCountValues = report.TableUtils.GetColumnValues('tblSignificantChangeAlerts', 5);
