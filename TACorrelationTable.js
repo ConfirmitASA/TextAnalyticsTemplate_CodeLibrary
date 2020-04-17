@@ -185,7 +185,7 @@ class TACorrelationTable{
     private function _getFormulaColumn(){
         var headerFormula: HeaderFormula = new HeaderFormula();
         headerFormula.Type = FormulaType.Expression;
-        headerFormula.Expression = "(IF(cellv(col-3,row)<cellv(col-3,1), (10 - (cellv(col-3,row) + 5)), (cellv(col-3,row) + 5))) * cellv(col-2,row) * cellv(col-1, row)";
+        headerFormula.Expression = "(IF(cellv(1,row)<cellv(1,1), (10 - (cellv(1,row) + 5)), (cellv(1,row) + 5))) * cellv(2,row) * cellv(col-1, row)";
         headerFormula.HideData = false;
 
         return headerFormula
