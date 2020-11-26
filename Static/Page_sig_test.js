@@ -167,6 +167,19 @@ class Page_sig_test{
 
     /**
      * @memberof Page_sig_test
+     * @function txtSigLevel_Render
+     * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function txtSigLevel_Render(context) {
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var label = currentDictionary['Confidence Level'];
+        context.component.Output.Append(label);
+        context.component.Output.Append(TAParameterValues.getViewByParameterValue(context, currentDictionary));
+    }
+
+    /**
+     * @memberof Page_sig_test
      * @function tblDetailedAnalysis_Render
      * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
