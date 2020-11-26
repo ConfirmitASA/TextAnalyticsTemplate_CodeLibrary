@@ -212,7 +212,7 @@ class Page_sig_test{
             distribution: distribution,
             questionType: (selectedQuestionType === QuestionType.Multi),
             toggleChart: toggleChart
-        });
+        }, true);
 
         detailedAnalysisTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table", "striped-columns", "reportal-barchart", "detailed-analysis-table"]);
         detailedAnalysisTable.GetTATableUtils().SetupHideEmptyRows((hideEmptyRows.length >0));

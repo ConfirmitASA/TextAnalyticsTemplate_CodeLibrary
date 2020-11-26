@@ -25,7 +25,7 @@ class TADetailedAnalysisTable{
     private var _curDictionary;
     private var _bar100;
 
-    function TADetailedAnalysisTable(params){
+    function TADetailedAnalysisTable(params, isSigTesting){
         var context = params.context;
 
         _currentLanguage = context.report.CurrentLanguage;
@@ -52,7 +52,7 @@ class TADetailedAnalysisTable{
         _multiQuestion = params.questionType;
         _bar100 = params.toggleChart ? params.toggleChart : false;
 
-        _render();
+        _render(isSigTesting);
     }
 
     /**
@@ -71,7 +71,7 @@ class TADetailedAnalysisTable{
      * @instance
      * @function _render
      */
-    private function _render(){
+    private function _render(isSigTesting){
         var rowexpr = _getRowheadersExpression();
         var colexpr = _getColumnheadersExpression();
 
@@ -79,7 +79,9 @@ class TADetailedAnalysisTable{
         _setupTableDistribution();
         _table.RowNesting = TableRowNestingType.Nesting;
         _setupConditionalFormatting();
-        _addChartColumn();
+        if (!isSigTesting) {
+            _addChartColumn();
+        }
     }
 
     /**
