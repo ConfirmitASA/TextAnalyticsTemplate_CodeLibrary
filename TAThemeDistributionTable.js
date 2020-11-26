@@ -138,7 +138,7 @@ class TAThemeDistributionTable{
      * @description for columns we use timeseries header with rolling and counts and sentiments(hidden) subheaders
      */
     private function _addTimeSeriesColumn(){
-        var headerTimeSeries = _taTableUtils.GetTimePeriodHeader(_period.Unit, _period.From, _period.To);
+        var headerTimeSeries = _taTableUtils.GetTimePeriodHeaderWithFiltering(_period.Unit, _period.From, _period.To);
         headerTimeSeries.SubHeaders.AddRange(_getHeaderStatistics());
         _table.ColumnHeaders.Add(headerTimeSeries);
     }

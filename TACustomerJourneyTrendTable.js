@@ -142,7 +142,7 @@ class TACustomerJourneyTrendTable{
      * @function _addTimeSeriesColum
      */
     private function _addTimeSeriesColumn(){
-        var headerTimeSeries : HeaderQuestion = _taTableUtils.GetTimePeriodHeader(_period.Unit, _period.From, _period.To);
+        var headerTimeSeries : HeaderQuestion = _taTableUtils.GetTimePeriodHeaderWithFiltering(_period.Unit, _period.From, _period.To);
         _table.ColumnHeaders.Add(headerTimeSeries);
 
         if(_viewBy == "avg_sentiment") {

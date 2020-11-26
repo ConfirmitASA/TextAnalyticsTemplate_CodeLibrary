@@ -380,6 +380,90 @@ class TATableUtils{
     /**
      * @memberof TATableUtils
      * @instance
+     * @function GetTimePeriodHeaderWithFiltering
+     * @description function to get Header for certain time period with filtering by From and To filters
+     * @param {String} unit - breaking by  "d" - for days, "w" - for weeks, "m" - for months, "q" - for quarters, "y" - for years
+     * @param {Number} from - rolling from
+     * @param {Number} to - rolling to
+     * @returns {HeaderQuestion}
+     */
+    function GetTimePeriodHeaderWithFiltering(unit, from, to){
+        var project = _globals.report.DataSource.GetProject(_folder.GetDatasourceId());
+        var questionnaireElement: QuestionnaireElement = project.CreateQuestionnaireElement(_folder.GetTimeVariableId());
+        var headerTimeSeries: HeaderQuestion;
+
+        headerTimeSeries = new HeaderQuestion(questionnaireElement);
+        headerTimeSeries.TimeSeries.FlatLayout = true;
+        headerTimeSeries.TimeSeries.RollingTimeseries.Enabled = true;
+
+        headerTimeSeries.TimeSeries.Time1 = TimeseriesTimeUnitType.Year;
+        switch (unit.toLowerCase()){
+            case "d":
+                headerTimeSeries.TimeSeries.Time2 = TimeseriesTimeUnitType.Month;
+                headerTimeSeries.TimeSeries.Time3 = TimeseriesTimeUnitType.DayOfMonth;
+                headerTimeSeries.TimeSeries.RollingTimeseries.Unit = RollingUnitType.Day;
+                break;
+            case "w":
+                headerTimeSeries.TimeSeries.Time2 = TimeseriesTimeUnitType.Week;
+                headerTimeSeries.TimeSeries.RollingTimeseries.Unit = RollingUnitType.Week;
+                break;
+            case "m":
+                headerTimeSeries.TimeSeries.Time2 = TimeseriesTimeUnitType.Month
+                headerTimeSeries.TimeSeries.RollingTimeseries.Unit = RollingUnitType.Month;;
+                break;
+            case "q":
+                headerTimeSeries.TimeSeries.Time2 = TimeseriesTimeUnitType.Quarter
+                headerTimeSeries.TimeSeries.RollingTimeseries.Unit = RollingUnitType.Quarter;
+                break;
+            case "y":
+            default:
+                headerTimeSeries.TimeSeries.RollingTimeseries.Unit = RollingUnitType.Year;
+                break;
+        }
+        headerTimeSeries.ShowTotals = false;
+        headerTimeSeries.TimeSeries.RollingTimeseries.From = from;
+        headerTimeSeries.TimeSeries.RollingTimeseries.To = to;
+
+        var startDate: DateTime = !_globals.state.Parameters.IsNull("TA_DATE_FROM") &&
+            _globals.state.Parameters.GetDate("TA_DATE_FROM");
+        var endDate: DateTime = !_globals.state.Parameters.IsNull("TA_DATE_TO") &&
+            _globals.state.Parameters.GetDate("TA_DATE_TO");
+        var today: DateTime = DateTime.Today;
+
+        if (startDate || endDate) {
+            if (startDate && endDate && DateTime.Compare(startDate, endDate) > 0) {
+                return headerTimeSeries;
+            }
+
+            headerTimeSeries.TimeSeries.RollingTimeseries.Enabled = false;
+
+            if (startDate) {
+                headerTimeSeries.TimeSeries.StartDate = startDate;
+            } else {
+                if (DateTime.Compare(endDate, today) > 0) {
+                    headerTimeSeries.TimeSeries.StartDate = today;
+                } else {
+                    headerTimeSeries.TimeSeries.StartDate = endDate;
+                }
+            }
+
+            if (endDate) {
+                headerTimeSeries.TimeSeries.EndDate = endDate;
+            } else {
+                if (DateTime.Compare(startDate, today) < 0) {
+                    headerTimeSeries.TimeSeries.EndDate = today;
+                } else {
+                    headerTimeSeries.TimeSeries.EndDate = startDate;
+                }
+            }
+        }
+
+        return headerTimeSeries
+    }
+
+    /**
+     * @memberof TATableUtils
+     * @instance
      * @function CreateTableFromExpression
      * @description function to create table from columns and rows expression
      * @param {String} rowHeaders
