@@ -214,7 +214,7 @@ class Page_sig_test{
             toggleChart: toggleChart
         }, true);
 
-        detailedAnalysisTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table", "striped-columns", "reportal-barchart", "detailed-analysis-table"]);
+        detailedAnalysisTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table", "striped-columns", "reportal-barchart", "detailed-analysis-table-with-sig-test"]);
         detailedAnalysisTable.GetTATableUtils().SetupHideEmptyRows((hideEmptyRows.length >0));
         detailedAnalysisTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "word_cloud");
     }
