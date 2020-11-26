@@ -209,6 +209,46 @@ class TAParametersBuilder{
 
     /**
      * @memberof TAParametersBuilder
+     * @function RenderSigLevelsParameter
+     * @description render parameter with list of confidence levels for significance testing
+     * @param {Object} params - {
+     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * }
+     */
+    static function RenderSigLevelsParameter(params){
+        var context = params.context;
+        var parameter = context.component;
+
+        var parameterValues = [];
+
+        var levelValues = [
+            {
+                Code: "0",
+                Label: "99%"
+            },
+            {
+                Code: "1",
+                Label: "95%"
+            },
+            {
+                Code: "2",
+                Label: "90%"
+            }
+        ];
+
+        for (var i = 0; i < levelValues.length; i++) {
+            parameterValues.push( levelValues[i] );
+        }
+
+        TAParameterUtilities.LoadParameterValues({
+            context: context,
+            parameter: parameter,
+            parameterValues: parameterValues
+        });
+    }
+
+    /**
+     * @memberof TAParametersBuilder
      * @function RenderViewByParameter
      * @description render parameter with list of questions for the detailed analysis table
      * @param {Object} params - {

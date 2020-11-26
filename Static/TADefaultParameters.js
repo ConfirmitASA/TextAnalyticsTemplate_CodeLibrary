@@ -9,6 +9,10 @@ class TADefaultParameters {
             Value: "0"
         },
         {
+            Id: "TA_SIG_LEVEL",
+            Value: "1"
+        },
+        {
             Id: "TA_COMPARE_PERIODS",
             Value: "qoq"
         },

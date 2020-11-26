@@ -25,6 +25,15 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
+     * @function TA_SIG_LEVEL_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_SIG_LEVEL_Domain(context){
+        TAParametersBuilder.RenderSigLevelsParameter({context: context});
+    }
+
+    /**
+     * @memberof TAParameters
      * @function TA_COMPARE_PERIODS_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */

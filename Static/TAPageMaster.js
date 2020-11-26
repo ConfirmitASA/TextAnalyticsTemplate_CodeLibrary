@@ -401,6 +401,10 @@ class TAPageMaster{
             case 'comments':
                 label = Translations.dictionary(context.report.CurrentLanguage)['comments page title'];
                 break;
+
+            case 'sig test':
+                label = Translations.dictionary(context.report.CurrentLanguage)['sig_test page title'];
+                break;
         }
 
         context.component.Output.Append(label ? '<div class="r2i-row r2i-row--max-width">' +
