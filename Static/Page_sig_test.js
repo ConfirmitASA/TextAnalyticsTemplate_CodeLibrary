@@ -131,6 +131,62 @@ class Page_sig_test{
 
     /**
      * @memberof Page_sig_test
+     * @function txtSigSubCategory_Hide
+     * @description function to hide the the sub category list label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtSigSubCategory_Hide(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE_SIG");
+        return (!parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0;
+    }
+
+    /**
+     * @memberof Page_sig_test
+     * @function txtSigAttribute_Hide
+     * @description function to hide the the attribute list label
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function txtSigAttribute_Hide(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE_SIG");
+        return (!parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0;
+    }
+
+    /**
+     * @memberof Page_sig_test
+     * @function lstSigSubCategory_Hide
+     * @description function to hide the the sub category list
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstSigSubCategory_Hide(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var parameterValue = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE_SIG");
+        return (!parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0;
+    }
+
+    /**
+     * @memberof Page_sig_test
+     * @function lstSigAttribute_Hide
+     * @description function to hide the the attribute list
+     * @param {Object} context - {pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     * @returns {Boolean}
+     */
+    static function lstSigAttribute_Hide(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var parameterValue = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE_SIG");
+        return (!parameterValue) || parameterValue === "emptyv" || folder.GetHierarchy().GetObjectById(parameterValue).subcells.length === 0;
+    }
+
+    /**
+     * @memberof Page_sig_test
      * @function txtRespondentNumberWidgetScript_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext,report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
