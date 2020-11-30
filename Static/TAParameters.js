@@ -157,11 +157,43 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
+     * @function TA_SUB_CATEGORIES_SINGLE_SIG_Mask
+     * @param {Object} context - {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_SUB_CATEGORIES_SINGLE_SIG_Mask(context){
+        var category = context.state.Parameters.GetString("TA_TOP_CATEGORIES_SINGLE_SIG");
+
+        if(category && category !== "emptyv")
+            TAParametersBuilder.MaskSelectedCategoryChildren({
+                context: context,
+                category: category,
+                addEmpty: true
+            });
+    }
+
+    /**
+     * @memberof TAParameters
      * @function TA_ATTRIBUTES_SINGLE_Mask
      * @param {Object} context - {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_ATTRIBUTES_SINGLE_Mask(context){
         var category = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE");
+
+        if(category && category !== "emptyv")
+            TAParametersBuilder.MaskSelectedCategoryChildren({
+                context: context,
+                category: category,
+                addEmpty: true
+            });
+    }
+
+    /**
+     * @memberof TAParameters
+     * @function TA_ATTRIBUTES_SINGLE_SIG_Mask
+     * @param {Object} context - {component: mask, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_ATTRIBUTES_SINGLE_SIG_Mask(context){
+        var category = context.state.Parameters.GetString("TA_SUB_CATEGORIES_SINGLE_SIG");
 
         if(category && category !== "emptyv")
             TAParametersBuilder.MaskSelectedCategoryChildren({
