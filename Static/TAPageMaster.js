@@ -402,7 +402,7 @@ class TAPageMaster{
                 label = Translations.dictionary(context.report.CurrentLanguage)['comments page title'];
                 break;
 
-            case 'sig test':
+            case 'sig_test':
                 label = Translations.dictionary(context.report.CurrentLanguage)['sig_test page title'];
                 break;
         }
