@@ -258,7 +258,7 @@ class Page_sig_test{
         var toggleChartValue = TAParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_TOGGLE_BARCHART"});
         var toggleChart = (toggleChartValue.length > 0);
 
-        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES_SIG');
 
         var detailedAnalysisTable = new TADetailedAnalysisTable({
             context: context,
@@ -272,7 +272,7 @@ class Page_sig_test{
 
         detailedAnalysisTable.GetTATableUtils().AddClasses(["reportal-table","reportal-categories", "reportal-fixed-header", "reportal-hierarchy-table", "striped-columns", "reportal-barchart", "detailed-analysis-table-with-sig-test"]);
         detailedAnalysisTable.GetTATableUtils().SetupHideEmptyRows((hideEmptyRows.length >0));
-        detailedAnalysisTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES", "word_cloud");
+        //detailedAnalysisTable.GetTATableUtils().SetupDrilldown("TA_ALL_CATEGORIES_SIG", "word_cloud");
     }
 
     /**

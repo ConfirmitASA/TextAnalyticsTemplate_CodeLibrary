@@ -71,6 +71,12 @@ class TAPageRenderer{
                 if(filterToClear === "TA_TOP_CATEGORIES_SINGLE") {
                     filtersToClear.push("TA_SUB_CATEGORIES_SINGLE");
                 }
+                if(filterToClear === "TA_SUB_CATEGORIES_SINGLE_SIG" || filterToClear === "TA_TOP_CATEGORIES_SINGLE_SIG") {
+                    filtersToClear.push("TA_ATTRIBUTES_SINGLE_SIG");
+                }
+                if(filterToClear === "TA_TOP_CATEGORIES_SINGLE_SIG") {
+                    filtersToClear.push("TA_SUB_CATEGORIES_SINGLE_SIG");
+                }
                 filtersToClear.push(filterToClear);
 
                 var filtersToClearInfo = [];
@@ -129,7 +135,7 @@ class TAPageRenderer{
         var submitSource = context.component.SubmitSource;
         var selectedCategory;
         if(submitSource === "lstCategory" || submitSource === "lstSubCategory" || submitSource === "lstAttribute"
-            || submitSource === "btnSaveClearedFilter"){
+            || submitSource === "btnSaveClearedFilter") {
             selectedCategory = TAParametersBuilder.GetSelectedCategory({
                 context: context,
                 categoriesParameterName: "TA_TOP_CATEGORIES_SINGLE",
@@ -138,7 +144,17 @@ class TAPageRenderer{
             });
 
             context.state.Parameters['TA_ALL_CATEGORIES'] = new ParameterValueResponse(selectedCategory);
-        }else {
+        } else if(submitSource === "lstSigCategory" || submitSource === "lstSigSubCategory" || submitSource === "lstSigAttribute"
+            || submitSource === "btnSaveSigSettings") {
+            selectedCategory = TAParametersBuilder.GetSelectedCategory({
+                context: context,
+                categoriesParameterName: "TA_TOP_CATEGORIES_SINGLE_SIG",
+                subCategoriesParameterName: "TA_SUB_CATEGORIES_SINGLE_SIG",
+                attributesParameterName: "TA_ATTRIBUTES_SINGLE_SIG"
+            });
+
+            context.state.Parameters['TA_ALL_CATEGORIES_SIG'] = new ParameterValueResponse(selectedCategory);
+        } else {
             selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
             TAParametersBuilder.SetSelectedCategory({
                 context: context,
@@ -178,7 +194,14 @@ class TAPageRenderer{
             categoriesParameter: "TA_TOP_CATEGORIES_SINGLE",
             subcategoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
             attributesParameter: "TA_ATTRIBUTES_SINGLE"
-
+        });
+        TAParametersBuilder.ClearSubcategoriesParameters({
+            context: context,
+            folderId: selectedFolder,
+            value: "emptyv",
+            categoriesParameter: "TA_TOP_CATEGORIES_SINGLE_SIG",
+            subcategoriesParameter: "TA_SUB_CATEGORIES_SINGLE_SIG",
+            attributesParameter: "TA_ATTRIBUTES_SINGLE_SIG"
         });
 
         TAParametersBuilder.ClearSubcategoriesParameters({
@@ -187,6 +210,13 @@ class TAPageRenderer{
             value: "emptyv",
             categoriesParameter: "TA_SUB_CATEGORIES_SINGLE",
             subcategoriesParameter: "TA_ATTRIBUTES_SINGLE"
+        });
+        TAParametersBuilder.ClearSubcategoriesParameters({
+            context: context,
+            folderId: selectedFolder,
+            value: "emptyv",
+            categoriesParameter: "TA_SUB_CATEGORIES_SINGLE_SIG",
+            subcategoriesParameter: "TA_ATTRIBUTES_SINGLE_SIG"
         });
     }
 }

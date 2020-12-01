@@ -29,6 +29,10 @@ class TADefaultParameters {
             Value: "emptyv"
         },
         {
+            Id: "TA_ALL_CATEGORIES_SIG",
+            Value: "emptyv"
+        },
+        {
             Id: "TA_TOP_CATEGORIES_SINGLE",
             Value: "emptyv"
         },

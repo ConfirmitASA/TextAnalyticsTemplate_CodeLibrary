@@ -78,10 +78,25 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
-     * @function TA_TOP_CATEGORIES_SINGLE_Domain
+     * @function TA_ALL_CATEGORIES_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_ALL_CATEGORIES_Domain(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        TAParametersBuilder.RenderAllCategoriesParameter({
+            context: context,
+            emptyValueLabel: currentDictionary["-select-"]
+        });
+    }
+
+    /**
+     * @memberof TAParameters
+     * @function TA_ALL_CATEGORIES_SIG_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_ALL_CATEGORIES_SIG_Domain(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
 
