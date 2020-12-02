@@ -281,7 +281,7 @@ class Page_sig_test{
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function txtDetailedAnalysisScript_Render(context){
-        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES');
+        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES_SIG');
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
