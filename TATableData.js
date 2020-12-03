@@ -58,14 +58,15 @@ class TATableData{
      *      }
      * @returns {String}
      */
-    static function GetBlocks(params){
+    static function GetBlocks(params, isSigTable){
         var context = params.context;
         var tableName = params.tableName;
         var blocks = [];
         var rowHeaderIds = context.report.TableUtils.GetRowHeaderCategoryIds(tableName);
         var blockExists = false;
-        if(rowHeaderIds.length >0 && rowHeaderIds[0].length > 1){
-            for(var i=0; i<rowHeaderIds.length; i++){
+        if(rowHeaderIds.length >0 && (!isSigTable && rowHeaderIds[0].length > 1 || isSigTable && rowHeaderIds[1].length > 1)){
+            var firstRowHeaderIndex = !isSigTable ? 0 : 1;
+            for(var i=firstRowHeaderIndex; i<rowHeaderIds.length; i++){
                 blockExists = false;
                 for(var j = 0; j < blocks.length; j++){
                     if( ("block"+rowHeaderIds[i][1]) === blocks[j]){

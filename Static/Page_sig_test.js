@@ -288,10 +288,10 @@ class Page_sig_test{
 
         var hierarchy = selectedCategory === 'emptyv'? folder.GetHierarchy().GetHierarchyArray() : [folder.GetHierarchy().GetObjectById(selectedCategory)];
 
-        var headers = TATableData.GetTableRowHeaders({context: context, tableName: "tblDetailedAnalysis"});
+        var headers = TATableData.GetTableRowHeaders({context: context, tableName: "tblDetailedAnalysisSig"});
 
         if( headers.length > 0){
-            var blocks = TATableData.GetBlocks({context: context, tableName: "tblDetailedAnalysis"});
+            var blocks = TATableData.GetBlocks({context: context, tableName: "tblDetailedAnalysisSig"}, true);
 
             var upgradeText = "<script type=\"text/javascript\">"+
                 "var upgradedTable = new Reportal.AggregatedTable("+

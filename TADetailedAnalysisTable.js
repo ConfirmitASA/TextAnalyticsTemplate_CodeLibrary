@@ -72,8 +72,8 @@ class TADetailedAnalysisTable{
      * @function _render
      */
     private function _render(isSigTesting){
-        var rowexpr = _getRowheadersExpression();
-        var colexpr = _getColumnheadersExpression();
+        var rowexpr = _getRowheadersExpression(isSigTesting);
+        var colexpr = _getColumnheadersExpression(isSigTesting);
 
         _taTableUtils.CreateTableFromExpression(rowexpr, colexpr);
         _setupTableDistribution();
@@ -94,8 +94,10 @@ class TADetailedAnalysisTable{
      * if view by variable selected we add it as a top level for all headers and set it "collapsed" if it is multi
      * then we add categorySentimentHeader with mask by selected category and all its children and subchildren
      */
-    private function _getRowheadersExpression(){
+    private function _getRowheadersExpression(isSigTesting){
         var rowexpr = "";
+
+        var overallHeader = _taTableUtils.GetTAQuestionExpression("overallsentiment");
 
         var blockHeader = "";
         var qType = "categorysentiment";
@@ -124,6 +126,7 @@ class TADetailedAnalysisTable{
 
         categoryHeader += _taTableUtils.GetTAQuestionExpression(qType, mask) + ")";
 
+        rowexpr += overallHeader + "+";
         rowexpr += blockHeader + categoryHeader;
 
         return rowexpr
@@ -139,18 +142,23 @@ class TADetailedAnalysisTable{
      * statistic column to calculate average sentiment,
      * positive, neutral and negative counts calculation(based on categories column and formula)
      */
-    private function _getColumnheadersExpression(){
+    private function _getColumnheadersExpression(isSigTesting){
         var columnexpr = "";
         var columnbase = "[N]{hideheader:true;hidedata:true}";
 
         var countformula = _getColumnFormulaExpression();
 
-        var columnstatistic = "[STATISTICS]{statistics:avg}";
+        var columnAVGstatistic = "[STATISTICS]{statistics:avg}";
+        var columnSTDEVstatistic = "[STATISTICS]{statistics:stdev}";
         var positivecolumn = _taTableUtils.GetCategoriesExpression( "pos", false, false, _distribution, Config.SentimentRange );
         var neutralcolumn = _taTableUtils.GetCategoriesExpression( "neu", false, false, _distribution, Config.SentimentRange );
         var negativecolumn = _taTableUtils.GetCategoriesExpression( "neg", false, false, _distribution, Config.SentimentRange );
 
-        columnexpr = [columnbase, countformula, columnstatistic, positivecolumn, neutralcolumn, negativecolumn].join("+");
+        if (isSigTesting) {
+            columnexpr = [columnbase, countformula, columnAVGstatistic, columnSTDEVstatistic, positivecolumn, neutralcolumn, negativecolumn].join("+");
+        } else {
+            [columnbase, countformula, columnAVGstatistic, positivecolumn, neutralcolumn, negativecolumn].join("+");
+        }
         return columnexpr
     }
 
