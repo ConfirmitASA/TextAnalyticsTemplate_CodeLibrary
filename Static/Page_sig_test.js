@@ -196,11 +196,11 @@ class Page_sig_test{
 
         var respondentNumberWidgetInit = "<script>" +
             "var respondentNumberWidget = new Reportal.RespondentNumberWidget({" +
-            "totalCommentsTableContainerId: 'total-comments-tile'," +
-            "positiveCommentsTableContainerId: 'positive-comments-tile'," +
-            "neutralCommentsTableContainerId: 'neutral-comments-tile'," +
-            "negativeCommentsTableContainerId: 'negative-comments-tile'," +
-            "cardContainerId: 'respondent-number-widget'," +
+            "totalCommentsTableContainerId: 'sig-total-comments-tile'," +
+            "positiveCommentsTableContainerId: 'sig-positive-comments-tile'," +
+            "neutralCommentsTableContainerId: 'sig-neutral-comments-tile'," +
+            "negativeCommentsTableContainerId: 'sig-negative-comments-tile'," +
+            "cardContainerId: 'sig-respondent-number-widget'," +
             "translations: translations});" +
             "</script>";
 
@@ -296,7 +296,7 @@ class Page_sig_test{
             var upgradeText = "<script type=\"text/javascript\">"+
                 "var upgradedTable = new Reportal.AggregatedTable("+
                 "{"+
-                "table: document.querySelector('#sentiment-table table.reportal-hierarchy-table'),"+
+                "table: document.querySelector('#sig-sentiment-table table.reportal-hierarchy-table'),"+
                 "hierarchy: {"+
                 "hierarchy: "+JSON.stringify(hierarchy)+","+
                 "rowheaders:"+JSON.stringify(headers)+","+
