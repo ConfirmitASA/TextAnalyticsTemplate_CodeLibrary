@@ -283,6 +283,14 @@ class Page_sig_test{
     static function txtDetailedAnalysisScript_Render(context){
         var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES_SIG');
 
+        var sigLevelValue = context.state.Parameters.GetString('TA_SIG_LEVEL');
+        var levelValues = {
+            0: 2.576, // 99%
+            1: 1.96, // 95%
+            2: 1.645 // 90%
+        };
+        var significantTestScore = sigLevelValue ? levelValues[sigLevelValue] : levelValues[1];
+
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
 
@@ -315,7 +323,13 @@ class Page_sig_test{
                 "},"+
                 "fixedHeader: {}"+
                 "}"+
-                ")"+
+                ");"+
+                "var significantTesting = new Reportal.SigTestingTable("+
+                "{"+
+                "tableContainerId:'sig-sentiment-table',"+
+                "significantTestScore:'" + significantTestScore + "'" +
+                "}"+
+                ");"+
                 "</script>";
 
             context.component.Output.Append(upgradeText);
