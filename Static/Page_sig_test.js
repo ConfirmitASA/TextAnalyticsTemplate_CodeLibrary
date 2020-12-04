@@ -241,7 +241,7 @@ class Page_sig_test{
      */
     static function tblDetailedAnalysis_Render(context){
         context.component.Caching.Enabled = false;
-        var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY");
+        var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY_SIG");
 
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
         var folder = Config.GetTALibrary().GetFolderById(selectedFolder);

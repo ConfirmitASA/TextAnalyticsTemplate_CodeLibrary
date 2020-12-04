@@ -285,6 +285,42 @@ class TAParametersBuilder{
 
     /**
      * @memberof TAParametersBuilder
+     * @function RenderViewBySigParameter
+     * @description render parameter with list of questions for the detailed analysis table
+     * @param {Object} params - {
+     *          context: {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log},
+     *          emptyValueLabel: {String}
+     * }
+     */
+    static function RenderViewBySigParameter(params){
+        var context = params.context;
+        var parameter = context.component;
+        var folderId = TALibrary.GetTAFoldersParameterValue(context);
+        var emptyValueLabel = params.emptyValueLabel;
+
+        var parameterValues = _addEmptyValue(emptyValueLabel);
+        var folder = Config.GetTALibrary().GetFolderById(folderId);
+        var variables = folder.GetViewByVariables();
+        var project = context.report.DataSource.GetProject(folder.GetDatasourceId());
+        var question: Question;
+
+        for( var i = 0; i < variables.length; i++){
+            question = project.GetQuestion( variables[i] );
+            parameterValues.push({
+                Code: variables[i],
+                Label: question.Title ? question.Title : variables[i]
+            });
+        }
+
+        TAParameterUtilities.LoadParameterValues({
+            context: context,
+            parameter: parameter,
+            parameterValues: parameterValues
+        });
+    }
+
+    /**
+     * @memberof TAParametersBuilder
      * @function RenderCustomerJourneyCardsParameter
      * @description render parameter for CJ cards
      * @param {Object} params - {

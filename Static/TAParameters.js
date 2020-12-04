@@ -349,6 +349,21 @@ class TAParameters{
 
     /**
      * @memberof TAParameters
+     * @function TA_VIEW_BY_SIG_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_VIEW_BY_SIG_Domain(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        TAParametersBuilder.RenderViewBySigParameter({
+            context: context,
+            emptyValueLabel: currentDictionary["-select-"]
+        });
+    }
+
+    /**
+     * @memberof TAParameters
      * @function TA_CORRELATION_QUESTION_Domain
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
