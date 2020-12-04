@@ -332,10 +332,10 @@ class Page_sig_test{
                 ");"+
                 "</script>";
 
-            context.component.Output.Append(upgradeText);
             context.component.Output.Append(JSON.print(hierarchy,"hierarchy"));
             context.component.Output.Append(JSON.print(headers,"rowheaders"));
             context.component.Output.Append(JSON.print(blocks,"blocks"));
+            context.component.Output.Append(upgradeText);
         }
         var moveToggleText = "<script>"+
             "var toggle = document.querySelector('.toggle.percentCountToggle').parentNode.parentNode;"+
