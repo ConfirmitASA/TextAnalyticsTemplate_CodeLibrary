@@ -35,7 +35,7 @@ class Page_sig_test{
         var selectedCategory =  context.state.Parameters.GetString('TA_ALL_CATEGORIES');
         var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
 
-        var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
+        var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE_SIG");
         new TATiles({
             context: context,
             folder: Config.GetTALibrary().GetFolderById(selectedFolder),
@@ -253,8 +253,8 @@ class Page_sig_test{
         if(selectedQuestion && selectedQuestion !== "emptyv")
             selectedQuestionType =  project.GetQuestion(selectedQuestion).QuestionType;
 
-        var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE");
-        var hideEmptyRows = TAParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_HIDE_EMPTY_ROWS"});
+        var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE_SIG");
+        var hideEmptyRows = TAParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_HIDE_EMPTY_ROWS_SIG"});
         var toggleChartValue = TAParameterUtilities.GetCheckedValues({context: context, parameterName: "TA_TOGGLE_BARCHART"});
         var toggleChart = (toggleChartValue.length > 0);
 

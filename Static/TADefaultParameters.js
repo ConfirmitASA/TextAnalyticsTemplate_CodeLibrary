@@ -69,6 +69,10 @@ class TADefaultParameters {
             Value: "0"
         },
         {
+            Id: "TA_DISTRIBUTION_TOGGLE_SIG",
+            Value: "0"
+        },
+        {
             Id: "TA_SIG_TESTING_SINGLE",
             Value: "1"
         },

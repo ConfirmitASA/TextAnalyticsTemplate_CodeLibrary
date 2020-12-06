@@ -51,6 +51,11 @@ class TAParameterValues {
                     {Code: "0", Label: currentDictionary["Count"]},
                     {Code: "1", Label: "%"}
                 ];
+            case "TA_DISTRIBUTION_TOGGLE_SIG":
+                return [
+                    {Code: "0", Label: currentDictionary["Count"]},
+                    {Code: "1", Label: "%"}
+                ];
             case "TA_PERIOD":
                 return [
                     {Code: "w", Label: currentDictionary["Weeks"]},

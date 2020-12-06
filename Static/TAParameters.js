@@ -310,7 +310,24 @@ class TAParameters{
         });
     }
 
+    /**
+     * @memberof TAParameters
+     * @function TA_DISTRIBUTION_TOGGLE_SIG_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_DISTRIBUTION_TOGGLE_SIG_Domain(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+        var parameterValues = [
+            {Code: 0, Label: currentDictionary["Count"]},
+            {Code: 1, Label: "%"}
+        ];
 
+        TAParameterUtilities.LoadParameterValues({
+            context: context,
+            parameterValues: parameterValues
+        });
+    }
 
     /**
      * @memberof TAParameters
@@ -379,6 +396,25 @@ class TAParameters{
      * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
     static function TA_HIDE_EMPTY_ROWS_Domain(context){
+        var currentLanguage = context.report.CurrentLanguage;
+        var currentDictionary = Translations.dictionary(currentLanguage);
+
+        var parameterValues = [
+            {Code: "hide", Label: currentDictionary["Hide categories with no hits"]}
+        ];
+
+        TAParameterUtilities.LoadParameterValues({
+            context: context,
+            parameterValues: parameterValues
+        });
+    }
+
+    /**
+     * @memberof TAParameters
+     * @function TA_HIDE_EMPTY_ROWS_SIG_Domain
+     * @param {Object} context - {component: parameter, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function TA_HIDE_EMPTY_ROWS_SIG_Domain(context){
         var currentLanguage = context.report.CurrentLanguage;
         var currentDictionary = Translations.dictionary(currentLanguage);
 
