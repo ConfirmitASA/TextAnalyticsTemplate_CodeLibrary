@@ -126,7 +126,9 @@ class TADetailedAnalysisTable{
 
         categoryHeader += _taTableUtils.GetTAQuestionExpression(qType, mask) + ")";
 
-        rowexpr += overallHeader + "+";
+        if (isSigTesting) {
+            rowexpr += overallHeader + "+";
+        }
         rowexpr += blockHeader + categoryHeader;
 
         return rowexpr
@@ -157,7 +159,7 @@ class TADetailedAnalysisTable{
         if (isSigTesting) {
             columnexpr = [columnbase, countformula, columnAVGstatistic, columnSTDEVstatistic, positivecolumn, neutralcolumn, negativecolumn].join("+");
         } else {
-            [columnbase, countformula, columnAVGstatistic, positivecolumn, neutralcolumn, negativecolumn].join("+");
+            columnexpr = [columnbase, countformula, columnAVGstatistic, positivecolumn, neutralcolumn, negativecolumn].join("+");
         }
         return columnexpr
     }
