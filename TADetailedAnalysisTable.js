@@ -72,7 +72,7 @@ class TADetailedAnalysisTable{
      * @function _render
      */
     private function _render(isSigTesting){
-        var rowexpr = _getRowheadersExpression(isSigTesting);
+        var rowexpr = _getRowheadersExpression();
         var colexpr = _getColumnheadersExpression(isSigTesting);
 
         _taTableUtils.CreateTableFromExpression(rowexpr, colexpr);
@@ -94,10 +94,8 @@ class TADetailedAnalysisTable{
      * if view by variable selected we add it as a top level for all headers and set it "collapsed" if it is multi
      * then we add categorySentimentHeader with mask by selected category and all its children and subchildren
      */
-    private function _getRowheadersExpression(isSigTesting){
+    private function _getRowheadersExpression(){
         var rowexpr = "";
-
-        var overallHeader = _taTableUtils.GetTAQuestionExpression("overallsentiment");
 
         var blockHeader = "";
         var qType = "categorysentiment";
@@ -126,9 +124,6 @@ class TADetailedAnalysisTable{
 
         categoryHeader += _taTableUtils.GetTAQuestionExpression(qType, mask) + ")";
 
-        if (isSigTesting) {
-            rowexpr += overallHeader + "+";
-        }
         rowexpr += blockHeader + categoryHeader;
 
         return rowexpr
