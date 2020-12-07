@@ -277,6 +277,51 @@ class Page_sig_test{
 
     /**
      * @memberof Page_sig_test
+     * @function tblDetailedAnalysisSigTotal_Render
+     * @param {Object} context - {component: table, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
+     */
+    static function tblDetailedAnalysisSigTotal_Render(context){
+        var selectedFolder = TALibrary.GetTAFoldersParameterValue(context);
+        var folder = Config.GetTALibrary().GetFolderById(selectedFolder);
+        var project = context.report.DataSource.GetProject(folder.GetDatasourceId());
+        var taTableUtils = new TATableUtils({
+            context: context,
+            folder: folder,
+            table: context.component
+        });
+        var selectedCategory = context.state.Parameters.GetString('TA_ALL_CATEGORIES_SIG');
+        var selectedQuestion = context.state.Parameters.GetString("TA_VIEW_BY_SIG");
+        var selectedQuestionType = false;
+        if(selectedQuestion && selectedQuestion !== "emptyv") {
+            selectedQuestionType = project.GetQuestion(selectedQuestion).QuestionType;
+        }
+        var multiQuestion = (selectedQuestionType === QuestionType.Multi);
+        selectedCategory = selectedCategory && selectedCategory !== "emptyv" ? selectedCategory : "all";
+        selectedQuestion = selectedQuestion && selectedQuestion !== "emptyv" ? selectedQuestion : "all";
+
+        var rowexpr = "";
+        if (selectedQuestion !== "all") {
+            rowexpr += selectedQuestion+'{id:'+selectedQuestion+';totals:false'
+            if(multiQuestion){
+                rowexpr+= ";collapsed:true";
+            }
+            rowexpr += "}/";
+        }
+        if (selectedCategory != "all") {
+            rowexpr += taTableUtils.GetTAQuestionExpression("categorysentiment", [selectedCategory]);
+        } else {
+            rowexpr += taTableUtils.GetTAQuestionExpression("overallsentiment");
+        }
+
+        var colexpr = "[N]";
+
+        taTableUtils.CreateTableFromExpression(rowexpr, colexpr);
+
+        context.component.RowNesting = TableRowNestingType.Nesting;
+    }
+
+    /**
+     * @memberof Page_sig_test
      * @function txtDetailedAnalysisScript_Render
      * @param {Object} context - {component: text, pageContext: this.pageContext, report: report, user: user, state: state, confirmit: confirmit, log: log}
      */
@@ -327,6 +372,7 @@ class Page_sig_test{
                 "var significantTesting = new Reportal.SigTestingTable("+
                 "{"+
                 "tableContainerId:'sig-sentiment-table',"+
+                "totalTableContainerId:'sig-sentiment-total-table',"+
                 "significantTestScore:'" + significantTestScore + "'" +
                 "}"+
                 ");"+
