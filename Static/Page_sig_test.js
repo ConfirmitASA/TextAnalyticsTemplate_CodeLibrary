@@ -343,6 +343,8 @@ class Page_sig_test{
 
         var headers = TATableData.GetTableRowHeaders({context: context, tableName: "tblDetailedAnalysisSig"});
 
+        var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE_SIG");
+
         if( headers.length > 0){
             var blocks = TATableData.GetBlocks({context: context, tableName: "tblDetailedAnalysisSig"}, true);
 
@@ -373,6 +375,7 @@ class Page_sig_test{
                 "{"+
                 "tableContainerId:'sig-sentiment-table',"+
                 "totalTableContainerId:'sig-sentiment-total-table',"+
+                "distribution:'" + distribution + "',"+
                 "significantTestScore:'" + significantTestScore + "'" +
                 "}"+
                 ");"+

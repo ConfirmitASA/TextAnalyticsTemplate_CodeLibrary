@@ -151,10 +151,14 @@ class TADetailedAnalysisTable{
         var neutralcolumn = _taTableUtils.GetCategoriesExpression( "neu", false, false, _distribution, Config.SentimentRange );
         var negativecolumn = _taTableUtils.GetCategoriesExpression( "neg", false, false, _distribution, Config.SentimentRange );
 
-        if (isSigTesting) {
-            columnexpr = [columnbase, countformula, columnAVGstatistic, columnSTDEVstatistic, positivecolumn, neutralcolumn, negativecolumn].join("+");
-        } else {
+        if (!isSigTesting) {
             columnexpr = [columnbase, countformula, columnAVGstatistic, positivecolumn, neutralcolumn, negativecolumn].join("+");
+        } else {
+            if (_distribution !== "1") {
+                columnexpr = [columnbase, countformula, columnAVGstatistic, columnSTDEVstatistic, positivecolumn, neutralcolumn, negativecolumn].join("+");
+            } else {
+                columnexpr = [columnbase, countformula, columnAVGstatistic, columnSTDEVstatistic, columnbase, _getColumnFormulaExpression("0"), positivecolumn, neutralcolumn, negativecolumn].join("+");
+            }
         }
         return columnexpr
     }
@@ -165,13 +169,13 @@ class TADetailedAnalysisTable{
      * @instance
      * @function _getColumnFormulaExpression
      */
-    private function _getColumnFormulaExpression(){
+    private function _getColumnFormulaExpression(distribution){
         var countformulaexpression;
         var countformula = '[FORMULA]{decimals:0;label:"'+_curDictionary['Comments']+'";hideheader:true';
-        if( _distribution === "1"){
+        if (_distribution === "1" && distribution !== "0") {
             countformula += ";percent:true";
             countformulaexpression = '"IF((cellv(1,1)>0),(cellv(col-1,row)/cellv(1,1)),EMPTYV())"';
-        }else{
+        } else {
             countformula += ";percent:false";
             countformulaexpression = '"IF(cellv(col-1,row)>0,cellv(col-1,row),EMPTYV())"';
         }
