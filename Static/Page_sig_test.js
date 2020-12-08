@@ -346,7 +346,7 @@ class Page_sig_test{
         var distribution = context.state.Parameters.GetString("TA_DISTRIBUTION_TOGGLE_SIG");
 
         if( headers.length > 0){
-            var blocks = TATableData.GetBlocks({context: context, tableName: "tblDetailedAnalysisSig"}, true);
+            var blocks = TATableData.GetBlocks({context: context, tableName: "tblDetailedAnalysisSig"});
 
             var upgradeText = "<script type=\"text/javascript\">"+
                 "var upgradedTable = new Reportal.AggregatedTable("+
